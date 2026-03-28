@@ -160,8 +160,8 @@
   .lp-preview-header .dot:nth-child(3) { background: #28c840; }
 
   .lp-preview-body {
-    padding: 24px;
-    min-height: 200px;
+    padding: 24px 20px 32px;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -351,7 +351,7 @@
   /* V4 iframe */
   .v4-frame {
     width: 100%;
-    height: 60vh;
+    height: 70vh;
     border: 1px solid rgba(0,212,255,0.2);
     border-radius: 8px;
     overflow: hidden;
@@ -468,13 +468,13 @@
     <h2><span class="em">最初の指示</span>を出してみた</h2>
 
     <div class="chat-bubble">
-      <span class="label">PROMPT</span>
-      茶花ホルダーさん向けのAI制作ワークショップのLPを作って。6時間で2つの成果物が完成する実践型。デザイナー3人がサポート。パソコン苦手な人でもOKという訴求で。
+      <span class="label">あや</span>
+      茶花のホルダーさん向けにAI勉強会のLPを作りたい。ワークショップで6時間くらい。デザイナー3人でサポートして、パソコン苦手な人でも大丈夫ってのを伝えたい。よろしく！
     </div>
 
     <div class="chat-response">
       <span class="label">CLAUDE CODE</span>
-      了解！LP作りますね。ターゲットに合わせて暖かみのあるデザインで...
+      了解です！ターゲットに合わせて暖かみのあるデザインでLP作りますね。
     </div>
 
     <div class="lp-preview v1">
@@ -484,13 +484,21 @@
       <div class="lp-preview-body">
         <div class="lp-badge">WORKSHOP</div>
         <div class="lp-title">デザイナーと一緒に学ぶ<br>AI制作ワークショップ</div>
-        <div class="lp-sub">パソコン苦手でも大丈夫。6時間で2つの成果物が完成。</div>
+        <div class="lp-sub">パソコン苦手でも大丈夫。<br>6時間で2つの成果物が完成。</div>
         <div class="lp-btn">詳しく見る</div>
+        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(139,69,19,0.15); width: 100%;">
+          <div style="font-size: 0.65rem; color: #a0522d; margin-bottom: 6px;">こんなお悩みありませんか？</div>
+          <div style="font-size: 0.6rem; color: #8b6914; text-align: left; line-height: 1.8;">
+            ・LP外注すると15〜30万円かかる...<br>
+            ・修正のたびに連絡するのが面倒<br>
+            ・AIを使いたいけど何から始めれば...
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="feedback-tag">FIRST OUTPUT</div>
-    <p style="font-size: 0.8rem; color: var(--text-light);">暖色系のナチュラルなデザイン。よくある講座LPっぽい仕上がり。悪くないけど...</p>
+    <p style="font-size: 0.8rem; color: var(--text-light);">出てきたのは普通の暖色系LP。悪くはないけど......なんか普通すぎる。もっと攻めたい！</p>
     <div class="arrow-down">scroll</div>
   </div>
 </section>
@@ -503,13 +511,13 @@
     <h2><span class="em">フィードバック①</span><br>もっとサイバー感が欲しい</h2>
 
     <div class="chat-bubble">
-      <span class="label">FEEDBACK</span>
-      もっとサイバー感が欲しい！ネオンカラーでダークテーマにして。未来感のあるかっこいいデザインに変えて。
+      <span class="label">あや</span>
+      うーん、普通すぎる！もっとサイバー感出して！ネオンカラーでダークテーマがいい。かっこよくして！
     </div>
 
     <div class="chat-response">
       <span class="label">CLAUDE CODE</span>
-      ネオンカラーのサイバーパンクテーマに変更します！暗い背景に青紫のグロー...
+      ネオンカラーのサイバーパンクテーマに変更しますね！
     </div>
 
     <div class="lp-preview v2">
@@ -519,13 +527,17 @@
       <div class="lp-preview-body">
         <div class="lp-badge">WORKSHOP</div>
         <div class="lp-title"><span class="neon-text">デザイナー視点もりもり</span>の<br>AI制作ワークショップ</div>
-        <div class="lp-sub">プログラミング不要。パソコン苦手でも大丈夫。</div>
+        <div class="lp-sub">プログラミング不要。<br>パソコン苦手でも大丈夫。</div>
         <div class="lp-btn">参加を申し込む →</div>
+        <div style="margin-top: 16px; display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+          <span style="font-size: 0.55rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: #00d4ff; padding: 3px 10px;">CODE SKILL 0</span>
+          <span style="font-size: 0.55rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: #00d4ff; padding: 3px 10px;">6H / 2 OUTPUTS</span>
+        </div>
       </div>
     </div>
 
     <div class="feedback-tag">SECOND OUTPUT</div>
-    <p style="font-size: 0.8rem; color: var(--text-light);">ダークテーマ + ネオンカラーに一気にチェンジ。雰囲気はガラッと変わった！フォントをもっと攻めたい。</p>
+    <p style="font-size: 0.8rem; color: var(--text-light);">おおー！ガラッと変わった！でもフォントがまだ普通だな......もっと攻めたい。</p>
     <div class="arrow-down">scroll</div>
   </div>
 </section>
@@ -538,13 +550,13 @@
     <h2><span class="em">フィードバック②</span><br>フォントを変えて、もっと攻めて</h2>
 
     <div class="chat-bubble">
-      <span class="label">FEEDBACK</span>
-      英語のフォントをOrbitronにして。斜めのカットを入れて。ヘキサゴンの画像マスクも使いたい。もっと攻めたデザインで！
+      <span class="label">あや</span>
+      英語のフォントをOrbitronってやつに変えて！あと斜めのカット入れたい。画像は六角形にくり抜いて。もっと攻めて大丈夫！
     </div>
 
     <div class="chat-response">
       <span class="label">CLAUDE CODE</span>
-      Orbitron導入 + clip-pathで斜めカット + ヘキサゴンマスク追加します！
+      Orbitron + 斜めカット + ヘキサゴンマスク、全部入れますね！
     </div>
 
     <div class="lp-preview v3">
@@ -562,7 +574,7 @@
     </div>
 
     <div class="feedback-tag">THIRD OUTPUT</div>
-    <p style="font-size: 0.8rem; color: var(--text-light);">Orbitronフォント + 斜めカット + ヘキサゴン。近未来ワークショップ感が一気に出た！最後の仕上げへ。</p>
+    <p style="font-size: 0.8rem; color: var(--text-light);">めっちゃいい！フォント変えたら一気にプロっぽくなった。あとは細かい読みやすさとか調整して完成！</p>
     <div class="arrow-down">scroll</div>
   </div>
 </section>
@@ -575,8 +587,8 @@
     <h2><span class="em">完成版</span> — 細部を仕上げて公開</h2>
 
     <div class="chat-bubble">
-      <span class="label">FINAL TOUCHES</span>
-      英語の見出しをもっと明るく。グレーのテキストを白寄りに。アイコンに3Dグロー追加。Claudeのキャラクターを増やして。ミーティングで決まった内容も反映して。
+      <span class="label">あや</span>
+      英語の見出しが暗くて読めないから明るくして！グレーの文字も白に近くして。あとアイコンにもっと光らせて、Claudeのキャラもっと増やして！あ、あとミーティングで決まった料金とか時間も入れてね。
     </div>
 
     <div class="v4-frame">
@@ -596,7 +608,7 @@
   <div class="orb orb-2"></div>
   <div class="slide-inner" style="text-align: center;">
     <div class="big-title">4 TALKS<br>= 1 LP</div>
-    <p style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 24px;">たった4回の会話で、プロ品質のLPが完成。</p>
+    <p style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 24px;">「こうして！」「もっと攻めて！」<br>を4回伝えたらLPが完成しました。</p>
 
     <div class="stats">
       <div class="stat-card">
