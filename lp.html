@@ -17,7 +17,7 @@
     --dark-card: #111128;
     --dark-card2: #0d0d22;
     --text: #e0e0f0;
-    --text-light: #c0c0dd;
+    --text-light: #dcdcf0;
   }
 
   body {
@@ -198,7 +198,7 @@
     line-height: 1.3; margin-bottom: 20px; letter-spacing: 4px;
     filter: drop-shadow(0 0 20px rgba(168,85,247,0.4));
   }
-  .fv-sub { color: rgba(255,255,255,0.88); font-size: 0.85rem; margin-bottom: 24px; line-height: 2; }
+  .fv-sub { color: rgba(255,255,255,0.95); font-size: 0.85rem; margin-bottom: 24px; line-height: 2; }
 
   .fv-proof { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
   .fv-proof span {
@@ -246,10 +246,10 @@
     font-family: 'Orbitron', sans-serif;
     font-size: 3.5rem; font-weight: 900;
     letter-spacing: 6px; line-height: 1;
-    background: linear-gradient(135deg, rgba(0,212,255,0.45), rgba(168,85,247,0.4));
+    background: linear-gradient(135deg, rgba(0,212,255,0.85), rgba(168,85,247,0.8));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     margin-bottom: 8px;
-    filter: drop-shadow(0 0 15px rgba(0,212,255,0.2));
+    filter: drop-shadow(0 0 20px rgba(0,212,255,0.4)) drop-shadow(0 0 40px rgba(168,85,247,0.2));
   }
   .section-line {
     display: block; width: 80px; height: 3px;
@@ -284,9 +284,12 @@
   .worry-list li:last-child { border-bottom: none; }
   .worry-icon {
     flex-shrink: 0; width: 44px; height: 44px;
-    background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3);
+    background: linear-gradient(145deg, rgba(168,85,247,0.25), rgba(236,72,153,0.15));
+    border: 1px solid rgba(168,85,247,0.4);
     display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
     clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+    box-shadow: 0 0 15px rgba(168,85,247,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+    filter: drop-shadow(0 0 8px rgba(168,85,247,0.3));
   }
   .worry-list li strong { color: var(--neon-pink); }
 
@@ -316,6 +319,7 @@
     color: rgba(0,212,255,0.07); position: absolute; top: 8px; right: 12px; line-height: 1;
   }
   .solution-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .solution-card h3 svg { filter: drop-shadow(0 0 6px rgba(0,212,255,0.5)) drop-shadow(0 0 12px rgba(168,85,247,0.3)); }
   .solution-card p { font-size: 0.82rem; color: var(--text-light); }
 
   @media (max-width: 480px) { .solution-cards { grid-template-columns: 1fr; } }
@@ -340,7 +344,7 @@
     font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 700;
     color: var(--neon-blue); letter-spacing: 3px; margin-bottom: 8px;
   }
-  .takeaway-card .icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .takeaway-card .icon { font-size: 2.2rem; margin-bottom: 8px; filter: drop-shadow(0 0 10px rgba(0,212,255,0.4)) drop-shadow(0 0 20px rgba(168,85,247,0.2)); }
   .takeaway-card h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
   .takeaway-card p { font-size: 0.88rem; color: var(--text-light); }
   .takeaway-card .examples { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -783,7 +787,7 @@
     <p class="fv-sub">プログラミング不要。パソコン苦手でも大丈夫。<br>デザイナー3人がサポートするから、<br>AI臭くない "ちゃんとおしゃれ" なものが作れます。</p>
     <div class="fv-proof">
       <span>CODE SKILL 0 でOK</span>
-      <span>7H / 2 OUTPUTS</span>
+      <span>6H / 2 OUTPUTS</span>
       <span>MONITOR ¥18,000</span>
     </div>
     <a href="#apply" class="cta-btn">参加を申し込む →</a>
@@ -988,6 +992,11 @@
       <div class="compare-row"><div><strong>修正</strong></div><div>都度連絡&待ち</div><div class="compare-highlight">「直して」で即</div></div>
       <div class="compare-row"><div><strong>追加</strong></div><div>別途見積もり</div><div class="compare-highlight">作り放題</div></div>
     </div>
+    <div class="savings-callout reveal-scale" style="margin-top: 28px; text-align: center; padding: 20px; background: linear-gradient(135deg, rgba(236,72,153,0.08), rgba(168,85,247,0.08)); border: 1px solid rgba(236,72,153,0.2); clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);">
+      <div style="font-size: 0.75rem; color: var(--neon-pink); font-family: 'Orbitron', sans-serif; letter-spacing: 3px; margin-bottom: 6px;">SAVE UP TO</div>
+      <div style="font-size: 1.8rem; font-weight: 900; background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-family: 'Orbitron', sans-serif;">¥282,000</div>
+      <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 4px;">外注LP 1枚分で ¥18,000のワークショップ + 作り放題スキル</div>
+    </div>
   </div>
 </section>
 
@@ -1015,9 +1024,35 @@
         全部できません。でも、Claude Codeは<strong style="color:#fff;">「話しかけるだけ」</strong>だから大丈夫でした。<br>
         技術じゃなく、<strong style="color:#fff;">「こういうの作りたい！」</strong>という想像力があれば十分です。
       </p>
+      <p style="margin-top: 20px; font-size: 0.9rem; line-height: 2; color: var(--neon-pink); font-weight: 700; text-align: center; border-top: 1px solid rgba(236,72,153,0.15); padding-top: 20px;">
+        正直、私たちの仕事は減ります。<br>
+        でも、皆さんに<strong style="color:#fff;">全部ギブ</strong>します。
+      </p>
     </div>
   </div>
 </section>
+
+<!-- Claude character: STORY → FLOW -->
+<div class="claude-float">
+  <svg width="60" height="60" viewBox="0 0 60 60">
+    <defs>
+      <linearGradient id="claude-grad4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ec4899"/>
+        <stop offset="100%" stop-color="#a855f7"/>
+      </linearGradient>
+      <filter id="claude-glow4">
+        <feGaussianBlur stdDeviation="2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <polygon points="30,2 56,16 56,44 30,58 4,44 4,16" fill="url(#claude-grad4)" opacity="0.9" filter="url(#claude-glow4)"/>
+    <polygon points="30,6 52,18 52,42 30,54 8,42 8,18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="30" y="36" text-anchor="middle" fill="#fff" font-family="Orbitron, monospace" font-size="16" font-weight="900">&gt;_</text>
+    <circle cx="30" cy="5" r="3" fill="#ec4899" opacity="0.7"/>
+    <line x1="30" y1="2" x2="30" y2="0" stroke="#ec4899" stroke-width="1.5" opacity="0.5"/>
+  </svg>
+  <div class="claude-speech">さあ、当日の流れを見てみよう</div>
+</div>
 
 <!-- 講座の流れ -->
 <section class="flow">
@@ -1025,7 +1060,7 @@
     <div class="section-header">
       <div class="section-en reveal">FLOW</div>
       <span class="section-line reveal delay-1"></span>
-      <h2 class="section-title reveal delay-2">7時間で<span class="em">こう進みます</span></h2>
+      <h2 class="section-title reveal delay-2">6時間で<span class="em">こう進みます</span></h2>
     </div>
     <div class="flow-steps">
       <div class="flow-step reveal delay-1"><div class="flow-num">1</div><div class="flow-body"><div class="time">10:00 - 10:30</div><h3>イントロ & セットアップ</h3><p>Claude Codeを体験デモで理解。みんなで一緒にセットアップ。</p></div></div>
@@ -1086,6 +1121,28 @@
   </div>
 </section>
 
+<!-- Claude character: OVERVIEW → FAQ -->
+<div class="claude-float">
+  <svg width="60" height="60" viewBox="0 0 60 60">
+    <defs>
+      <linearGradient id="claude-grad5" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#22d3ee"/>
+        <stop offset="100%" stop-color="#a855f7"/>
+      </linearGradient>
+      <filter id="claude-glow5">
+        <feGaussianBlur stdDeviation="2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <polygon points="30,2 56,16 56,44 30,58 4,44 4,16" fill="url(#claude-grad5)" opacity="0.9" filter="url(#claude-glow5)"/>
+    <polygon points="30,6 52,18 52,42 30,54 8,42 8,18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="30" y="36" text-anchor="middle" fill="#fff" font-family="Orbitron, monospace" font-size="16" font-weight="900">&gt;_</text>
+    <circle cx="30" cy="5" r="3" fill="#22d3ee" opacity="0.7"/>
+    <line x1="30" y1="2" x2="30" y2="0" stroke="#22d3ee" stroke-width="1.5" opacity="0.5"/>
+  </svg>
+  <div class="claude-speech">気になること、ここで解決！</div>
+</div>
+
 <!-- FAQ -->
 <section class="faq">
   <div class="inner">
@@ -1098,7 +1155,7 @@
     <div class="faq-item reveal delay-2"><div class="faq-q">パソコンが苦手でも大丈夫？</div><div class="faq-a">大丈夫。講師はエクセルもブラインドタッチもできません。</div></div>
     <div class="faq-item reveal delay-3"><div class="faq-q">Windowsでも参加できますか？</div><div class="faq-a">Mac推奨ですがWindows可。事前セットアップ手順をお送りします。</div></div>
     <div class="faq-item reveal delay-1"><div class="faq-q">Claude Codeの利用料はかかりますか？</div><div class="faq-a">月額 約3,000円（$20）。登録方法もワークショップ内でご案内。</div></div>
-    <div class="faq-item reveal delay-2"><div class="faq-q">7時間で本当に完成しますか？</div><div class="faq-a">はい。デザイナー3人体制でサポート。講師は1〜3時間で完成させた実績あり。</div></div>
+    <div class="faq-item reveal delay-2"><div class="faq-q">6時間で本当に完成しますか？</div><div class="faq-a">はい。デザイナー3人体制でサポート。講師は1〜3時間で完成させた実績あり。</div></div>
     <div class="faq-item reveal delay-3"><div class="faq-q">当日作ったものは持ち帰れますか？</div><div class="faq-a">もちろん！ネット上に公開するのでスマホからいつでもアクセス可能。</div></div>
   </div>
 </section>
@@ -1130,7 +1187,7 @@
   <div class="inner">
     <h2><span class="highlight">「これも私が<br>つくれるの！？」</span><br>を体験しよう</h2>
     <div class="date">2026.4.18 FRI / 10:00-16:00 / TOKYO</div>
-    <div class="price"><span class="original">通常価格 ¥◯◯,000</span><span class="current">MONITOR ¥18,000</span></div>
+    <div class="price"><span class="original">通常価格 ¥25,000</span><span class="current">MONITOR ¥18,000</span></div>
     <a href="#" class="cta-btn">参加を申し込む →</a>
     <div class="note">※ 茶花ホルダーさん限定　※ モニター条件：ストーリーズでの感想シェア</div>
   </div>
