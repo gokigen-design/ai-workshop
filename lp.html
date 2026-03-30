@@ -702,16 +702,21 @@
     filter: drop-shadow(0 0 12px rgba(168,85,247,0.5)) drop-shadow(0 0 30px rgba(0,212,255,0.2));
   }
   .claude-float {
-    text-align: center; padding: 20px 0; position: relative; z-index: 2;
+    text-align: center; padding: 50px 20px; position: relative; z-index: 2;
+    background: radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.08) 0%, transparent 70%);
   }
-  .claude-float svg { animation: float 4s ease-in-out infinite; }
+  .claude-float svg { animation: float 4s ease-in-out infinite; width: 80px; height: 80px; }
   .claude-float .claude-speech {
     display: inline-block;
-    font-size: 0.78rem; color: var(--neon-cyan);
-    background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.15);
-    padding: 8px 20px; margin-top: 8px;
-    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-    font-weight: 500; letter-spacing: 1px;
+    font-size: 1.3rem; color: #fff;
+    font-weight: 900; letter-spacing: 3px;
+    background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(0,212,255,0.2));
+    border: 2px solid rgba(0,212,255,0.4);
+    padding: 18px 40px; margin-top: 16px;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    box-shadow: 0 0 30px rgba(0,212,255,0.2), 0 0 60px rgba(168,85,247,0.15);
+    text-shadow: 0 0 20px rgba(0,212,255,0.5);
+    animation: neon-flicker 3s infinite;
   }
   @keyframes claude-bounce {
     0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -723,6 +728,8 @@
   /* モバイル調整 */
   /* ================================ */
   @media (max-width: 480px) {
+    .claude-float .claude-speech { font-size: 1rem; padding: 14px 28px; letter-spacing: 2px; }
+    .claude-float svg { width: 60px; height: 60px; }
     .fv .main-title { font-size: 1.2rem; }
     .fv .catch { font-size: 1.8rem; }
     .fv-hero-img { width: 200px; height: 200px; }
@@ -781,7 +788,7 @@
   <img src="mainvisual.png.jpg" alt="デザイナー3人" class="fv-hero-img">
   <div class="fv-content">
     <div class="fv-badge">HOLDER LIMITED / MONITOR</div>
-    <div class="fv-date"><span>2026.4.18 FRI | TOKYO</span></div>
+    <div class="fv-date"><span>2026.4.18 SAT | TOKYO</span></div>
     <div class="pre-title">POWERED BY CLAUDE CODE</div>
     <div class="main-title"><span class="neon">デザイナー視点もりもり</span>の<br>AI制作ワークショップ</div>
     <div class="catch">「これも私が<br>つくれるの！？」</div>
@@ -789,7 +796,7 @@
     <div class="fv-proof">
       <span>CODE SKILL 0 でOK</span>
       <span>6H / 2 OUTPUTS</span>
-      <span>MONITOR ¥18,000</span>
+      <span>MONITOR ¥25,000</span>
     </div>
     <a href="#apply" class="cta-btn">参加を申し込む →</a>
   </div>
@@ -805,10 +812,11 @@
       <h2 class="section-title reveal delay-2">こんなこと、<br><span class="em">思ったことありませんか？</span></h2>
     </div>
     <ul class="worry-list">
-      <li class="reveal delay-1"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-cost" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><rect x="4" y="10" width="32" height="22" rx="3" fill="none" stroke="url(#g-cost)" stroke-width="2"/><line x1="4" y1="18" x2="36" y2="18" stroke="url(#g-cost)" stroke-width="1.5"/><circle cx="30" cy="25" r="3" fill="url(#g-cost)" opacity="0.6"/><text x="12" y="28" fill="url(#g-cost)" font-size="8" font-weight="700">¥¥¥</text></svg></div><div>LP作りたいけど、外注すると <strong>15〜30万円</strong>かかる…</div></li>
-      <li class="reveal delay-2"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-time" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><circle cx="20" cy="20" r="15" fill="none" stroke="url(#g-time)" stroke-width="2"/><line x1="20" y1="20" x2="20" y2="10" stroke="url(#g-time)" stroke-width="2.5" stroke-linecap="round"/><line x1="20" y1="20" x2="28" y2="22" stroke="url(#g-time)" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="20" r="2" fill="url(#g-time)"/></svg></div><div>修正のたびに外注さんに連絡して、<strong>返事を待つのがストレス</strong></div></li>
-      <li class="reveal delay-3"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-phone" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><rect x="10" y="4" width="20" height="32" rx="4" fill="none" stroke="url(#g-phone)" stroke-width="2"/><line x1="16" y1="8" x2="24" y2="8" stroke="url(#g-phone)" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="32" r="1.5" fill="url(#g-phone)"/><rect x="14" y="13" width="12" height="14" rx="1" fill="url(#g-phone)" opacity="0.15"/></svg></div><div>LINEのプレゼント、PDF以外に<strong>何か面白いもの</strong>渡したい</div></li>
-      <li class="reveal delay-4"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-design" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><circle cx="14" cy="26" r="8" fill="none" stroke="url(#g-design)" stroke-width="2"/><path d="M22 26 L30 8" stroke="url(#g-design)" stroke-width="2.5" stroke-linecap="round"/><circle cx="31" cy="6" r="3" fill="url(#g-design)" opacity="0.4"/><circle cx="10" cy="18" r="2" fill="#ec4899" opacity="0.5"/><circle cx="18" cy="20" r="2" fill="#00d4ff" opacity="0.5"/></svg></div><div>AI使ってみたけど、出てくるもの<strong>なんかダサい</strong>…</div></li>
+      <li class="reveal delay-1"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-cost" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><rect x="4" y="10" width="32" height="22" rx="3" fill="none" stroke="url(#g-cost)" stroke-width="2"/><line x1="4" y1="18" x2="36" y2="18" stroke="url(#g-cost)" stroke-width="1.5"/><circle cx="30" cy="25" r="3" fill="url(#g-cost)" opacity="0.6"/><text x="12" y="28" fill="url(#g-cost)" font-size="8" font-weight="700">¥¥¥</text></svg></div><div>自分のサービスの<strong>LP（案内ページ）が欲しい</strong>けど、外注すると最低でも5万円…</div></li>
+      <li class="reveal delay-2"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-time" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><circle cx="20" cy="20" r="15" fill="none" stroke="url(#g-time)" stroke-width="2"/><line x1="20" y1="20" x2="20" y2="10" stroke="url(#g-time)" stroke-width="2.5" stroke-linecap="round"/><line x1="20" y1="20" x2="28" y2="22" stroke="url(#g-time)" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="20" r="2" fill="url(#g-time)"/></svg></div><div>イベントやセミナーのたびに<strong>わざわざ告知ページを作る</strong>のが大変…</div></li>
+      <li class="reveal delay-3"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-blog" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><rect x="6" y="4" width="28" height="32" rx="3" fill="none" stroke="url(#g-blog)" stroke-width="2"/><line x1="12" y1="12" x2="28" y2="12" stroke="url(#g-blog)" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="18" x2="24" y2="18" stroke="url(#g-blog)" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="24" x2="26" y2="24" stroke="url(#g-blog)" stroke-width="1.5" stroke-linecap="round"/><rect x="6" y="4" width="28" height="32" rx="3" fill="url(#g-blog)" opacity="0.08"/></svg></div><div>ブログやSNSだけじゃ<strong>サービスの魅力が伝わりきらない</strong>…ちゃんとした案内ページが欲しい</div></li>
+      <li class="reveal delay-4"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-design" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><circle cx="14" cy="26" r="8" fill="none" stroke="url(#g-design)" stroke-width="2"/><path d="M22 26 L30 8" stroke="url(#g-design)" stroke-width="2.5" stroke-linecap="round"/><circle cx="31" cy="6" r="3" fill="url(#g-design)" opacity="0.4"/><circle cx="10" cy="18" r="2" fill="#ec4899" opacity="0.5"/><circle cx="18" cy="20" r="2" fill="#00d4ff" opacity="0.5"/></svg></div><div>Canvaで自分で作ってみたけど、<strong>なんか垢抜けない</strong>…</div></li>
+      <li class="reveal delay-5"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-comm" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><path d="M8 8h24v18H18l-6 6v-6H8z" fill="none" stroke="url(#g-comm)" stroke-width="2"/><path d="M8 8h24v18H18l-6 6v-6H8z" fill="url(#g-comm)" opacity="0.08"/><circle cx="16" cy="17" r="1.5" fill="url(#g-comm)"/><circle cx="20" cy="17" r="1.5" fill="url(#g-comm)"/><circle cx="24" cy="17" r="1.5" fill="url(#g-comm)"/></svg></div><div>修正のたびに外注さんに連絡して、<strong>返事を待つのがストレス</strong></div></li>
       <li class="reveal delay-5"><div class="worry-icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-lost" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><circle cx="20" cy="20" r="15" fill="none" stroke="url(#g-lost)" stroke-width="2"/><text x="20" y="26" text-anchor="middle" fill="url(#g-lost)" font-size="18" font-weight="900">?</text></svg></div><div>AIが気になるけど、<strong>何から始めれば</strong>いいかわからない</div></li>
     </ul>
   </div>
@@ -845,9 +853,9 @@
       <h2 class="section-title reveal delay-2">それ全部、<span class="em">自分で作れる</span>時代です</h2>
     </div>
     <div class="solution-cards">
-      <div class="solution-card reveal delay-1"><div class="number">01</div><h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="s1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><path d="M12 2L8 6h3v6H8l4 4 4-4h-3V6h3z" fill="url(#s1)" transform="rotate(180 12 8)"/><rect x="4" y="18" width="16" height="2" rx="1" fill="url(#s1)" opacity="0.4"/><rect x="6" y="21" width="12" height="2" rx="1" fill="url(#s1)" opacity="0.2"/></svg>時間が生まれる</h3><p>外注→待ち→修正→また待ち…から解放。思いついたその日に完成。</p></div>
-      <div class="solution-card reveal delay-2"><div class="number">02</div><h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="s2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><circle cx="12" cy="14" r="8" fill="none" stroke="url(#s2)" stroke-width="1.5"/><circle cx="12" cy="14" r="5" fill="url(#s2)" opacity="0.15"/><text x="12" y="17" text-anchor="middle" fill="url(#s2)" font-size="9" font-weight="700">¥</text><path d="M12 6V2M8 7L5 4M16 7l3-3" stroke="url(#s2)" stroke-width="1.5" stroke-linecap="round"/></svg>お金が浮く</h3><p>LP 15〜30万円 → 月額約3,000円で何個でも作り放題。</p></div>
-      <div class="solution-card reveal delay-3"><div class="number">03</div><h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="s3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><polygon points="12,2 14.5,9 22,9 16,13.5 18,21 12,16.5 6,21 8,13.5 2,9 9.5,9" fill="none" stroke="url(#s3)" stroke-width="1.5"/><polygon points="12,6 13.5,10 17,10 14,12.5 15,16 12,14 9,16 10,12.5 7,10 10.5,10" fill="url(#s3)" opacity="0.3"/></svg>AI臭ゼロ</h3><p>デザイナー3人が教えるから「なんかダサい」がなくなる。</p></div>
+      <div class="solution-card reveal delay-1"><div class="number">01</div><h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="s1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><path d="M12 2L8 6h3v6H8l4 4 4-4h-3V6h3z" fill="url(#s1)" transform="rotate(180 12 8)"/><rect x="4" y="18" width="16" height="2" rx="1" fill="url(#s1)" opacity="0.4"/><rect x="6" y="21" width="12" height="2" rx="1" fill="url(#s1)" opacity="0.2"/></svg>時間が生まれる</h3><p>外注→待ち→修正→また待ち…から解放。ちょっとした修正もわざわざ連絡して返事を待つ必要なし。思いついたその日に自分で完成。</p></div>
+      <div class="solution-card reveal delay-2"><div class="number">02</div><h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="s2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><circle cx="12" cy="14" r="8" fill="none" stroke="url(#s2)" stroke-width="1.5"/><circle cx="12" cy="14" r="5" fill="url(#s2)" opacity="0.15"/><text x="12" y="17" text-anchor="middle" fill="url(#s2)" font-size="9" font-weight="700">¥</text><path d="M12 6V2M8 7L5 4M16 7l3-3" stroke="url(#s2)" stroke-width="1.5" stroke-linecap="round"/></svg>LP1枚¥50,000〜を打破</h3><p>デザイナーに頼めば最低でも5万円。Canvaで自作しても垢抜けない、時間もかかる。AIなら1日で完成、次からは月額約3,000円だけ。</p></div>
+      <div class="solution-card reveal delay-3"><div class="number">03</div><h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="s3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><polygon points="12,2 14.5,9 22,9 16,13.5 18,21 12,16.5 6,21 8,13.5 2,9 9.5,9" fill="none" stroke="url(#s3)" stroke-width="1.5"/><polygon points="12,6 13.5,10 17,10 14,12.5 15,16 12,14 9,16 10,12.5 7,10 10.5,10" fill="url(#s3)" opacity="0.3"/></svg>AI臭ゼロ</h3><p>Canvaや他のツールで作ると「なんか垢抜けない」。デザイナー3人が教えるから、ちゃんとおしゃれに仕上がる。</p></div>
       <div class="solution-card reveal delay-4"><div class="number">04</div><h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="s4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><path d="M12 22V12M12 12L6 18M12 12l6 6" stroke="url(#s4)" stroke-width="0" fill="none"/><path d="M5 18l7-16 7 16-3-1-4 5-4-5z" fill="none" stroke="url(#s4)" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 16l4-10 4 10" fill="url(#s4)" opacity="0.2"/></svg>一生使えるスキル</h3><p>LP、スライド、アプリ……なんでも自分で。アイデア次第で無限。</p></div>
     </div>
   </div>
@@ -865,17 +873,25 @@
       <div class="takeaway-card reveal-left">
         <div class="num-label">OUTPUT 01</div>
         <div class="icon"><svg viewBox="0 0 40 40" width="36" height="36"><defs><linearGradient id="g-gift" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs><rect x="6" y="18" width="28" height="18" rx="2" fill="none" stroke="url(#g-gift)" stroke-width="2"/><rect x="4" y="12" width="32" height="8" rx="2" fill="none" stroke="url(#g-gift)" stroke-width="2"/><rect x="4" y="12" width="32" height="8" rx="2" fill="url(#g-gift)" opacity="0.1"/><line x1="20" y1="12" x2="20" y2="36" stroke="url(#g-gift)" stroke-width="2"/><line x1="6" y1="16" x2="34" y2="16" stroke="url(#g-gift)" stroke-width="0.5" opacity="0.3"/><path d="M20 12c-3-6-10-6-10 0" fill="none" stroke="url(#g-gift)" stroke-width="2" stroke-linecap="round"/><path d="M20 12c3-6 10-6 10 0" fill="none" stroke="url(#g-gift)" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3>LINEプレゼント</h3>
-        <p>LINEのお友達に配れる、ぽちぽち触れるコンテンツを作って持ち帰り。</p>
-        <div class="examples"><span>診断ツール</span><span>占い</span><span>チェックリスト</span></div>
+        <h3>LP（ランディングページ）</h3>
+        <p>デザイナー3人がハンズオンで教えるから、おしゃれなLPがその場で完成！時間がある限り、いろんなものを作れます。</p>
+        <div class="examples"><span>サービス紹介LP</span><span>イベント告知LP</span><span>セミナー集客LP</span></div>
       </div>
       <div class="takeaway-card reveal-right">
         <div class="num-label">OUTPUT 02</div>
         <div class="icon"><svg viewBox="0 0 40 40" width="36" height="36"><defs><linearGradient id="g-doc" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><path d="M10 4h14l8 8v24a2 2 0 01-2 2H10a2 2 0 01-2-2V6a2 2 0 012-2z" fill="none" stroke="url(#g-doc)" stroke-width="2"/><path d="M24 4v8h8" fill="none" stroke="url(#g-doc)" stroke-width="2" stroke-linejoin="round"/><path d="M10 4h14l8 8v24a2 2 0 01-2 2H10a2 2 0 01-2-2V6a2 2 0 012-2z" fill="url(#g-doc)" opacity="0.08"/><line x1="14" y1="20" x2="26" y2="20" stroke="url(#g-doc)" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="25" x2="24" y2="25" stroke="url(#g-doc)" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="30" x2="20" y2="30" stroke="url(#g-doc)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-        <h3>LP / スライド制作スキル</h3>
-        <p>サービス紹介ページやプレゼンスライドが作れるように。帰ったあとも量産可能！</p>
-        <div class="examples"><span>サービス紹介LP</span><span>セミナースライド</span><span>インスタ時短</span></div>
+        <h3>「自分で作れる」という考え方</h3>
+        <p>この講座を受けるだけで、AIへの伝え方・考え方がわかります。LPが作れるようになったら、診断ツールも会員サイトもスライドも — 何でも自分で作れるように！</p>
+        <div class="examples"><span>診断ツール</span><span>会員サイト</span><span>スライド</span><span>ポートフォリオ</span></div>
       </div>
+
+      <!-- 時間が余ったら -->
+      <div style="margin-top:20px; background:rgba(0,212,255,0.06); border:1px dashed rgba(0,212,255,0.3); padding:20px 24px; border-radius:8px; text-align:center;" class="reveal">
+        <div style="font-family:'Orbitron',sans-serif; font-size:0.65rem; color:var(--neon-blue); letter-spacing:3px; margin-bottom:6px;">BONUS</div>
+        <p style="font-size:0.92rem; color:var(--text-light);">⏰ 時間が余ったら…<br><strong style="color:#fff;">LINEのお友達プレゼントに使えるコンテンツ</strong>のアイデアもシェアします！</p>
+        <div class="examples" style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center;"><span style="font-size:0.72rem; background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.2); padding:5px 14px; color:var(--neon-cyan); clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);">診断ツール</span><span style="font-size:0.72rem; background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.2); padding:5px 14px; color:var(--neon-cyan); clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);">占い</span><span style="font-size:0.72rem; background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.2); padding:5px 14px; color:var(--neon-cyan); clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);">チェックリスト</span></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -993,67 +1009,9 @@
       <div class="compare-row"><div><strong>修正</strong></div><div>都度連絡&待ち</div><div class="compare-highlight">「直して」で即</div></div>
       <div class="compare-row"><div><strong>追加</strong></div><div>別途見積もり</div><div class="compare-highlight">作り放題</div></div>
     </div>
-    <div class="savings-callout reveal-scale" style="margin-top: 28px; text-align: center; padding: 20px; background: linear-gradient(135deg, rgba(236,72,153,0.08), rgba(168,85,247,0.08)); border: 1px solid rgba(236,72,153,0.2); clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);">
-      <div style="font-size: 0.75rem; color: var(--neon-pink); font-family: 'Orbitron', sans-serif; letter-spacing: 3px; margin-bottom: 6px;">SAVE UP TO</div>
-      <div style="font-size: 1.8rem; font-weight: 900; background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-family: 'Orbitron', sans-serif;">¥282,000</div>
-      <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 4px;">外注LP 1枚分で ¥18,000のワークショップ + 作り放題スキル</div>
-    </div>
   </div>
 </section>
 
-<!-- ストーリー -->
-<section class="story">
-  <div class="inner">
-    <div class="section-header">
-      <div class="section-en reveal">STORY</div>
-      <span class="section-line reveal delay-1"></span>
-      <h2 class="section-title reveal delay-2">教えるのは、<br><span class="em">エクセルも使えなかった</span>私たちです</h2>
-    </div>
-    <div class="story-box reveal-scale">
-      <ul class="story-timeline">
-        <li>服飾大学卒業</li>
-        <li>飲食店を10年経営 → 体を壊す</li>
-        <li>アパレルで3年</li>
-        <li>出産を機にWebデザインのスクールへ</li>
-        <li>フリーランスデザイナーとして独立</li>
-        <li>Claude Codeに出会い、5つのツール/サイトを自力制作！</li>
-      </ul>
-      <div class="story-spec">
-        <span>✕ エクセル</span><span>✕ ワード</span><span>✕ ブラインドタッチ</span><span>✕ プログラミング</span><span>✕ フォルダ整理</span>
-      </div>
-      <p style="margin-top: 24px; font-size: 0.95rem; line-height: 2; color: var(--text-light);">
-        全部できません。でも、Claude Codeは<strong style="color:#fff;">「話しかけるだけ」</strong>だから大丈夫でした。<br>
-        技術じゃなく、<strong style="color:#fff;">「こういうの作りたい！」</strong>という想像力があれば十分です。
-      </p>
-      <p style="margin-top: 20px; font-size: 0.9rem; line-height: 2; color: var(--neon-pink); font-weight: 700; text-align: center; border-top: 1px solid rgba(236,72,153,0.15); padding-top: 20px;">
-        正直、私たちの仕事は減ります。<br>
-        でも、皆さんに<strong style="color:#fff;">全部ギブ</strong>します。
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- Claude character: STORY → FLOW -->
-<div class="claude-float">
-  <svg width="60" height="60" viewBox="0 0 60 60">
-    <defs>
-      <linearGradient id="claude-grad4" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#ec4899"/>
-        <stop offset="100%" stop-color="#a855f7"/>
-      </linearGradient>
-      <filter id="claude-glow4">
-        <feGaussianBlur stdDeviation="2" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-    <polygon points="30,2 56,16 56,44 30,58 4,44 4,16" fill="url(#claude-grad4)" opacity="0.9" filter="url(#claude-glow4)"/>
-    <polygon points="30,6 52,18 52,42 30,54 8,42 8,18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-    <text x="30" y="36" text-anchor="middle" fill="#fff" font-family="Orbitron, monospace" font-size="16" font-weight="900">&gt;_</text>
-    <circle cx="30" cy="5" r="3" fill="#ec4899" opacity="0.7"/>
-    <line x1="30" y1="2" x2="30" y2="0" stroke="#ec4899" stroke-width="1.5" opacity="0.5"/>
-  </svg>
-  <div class="claude-speech">さあ、当日の流れを見てみよう</div>
-</div>
 
 <!-- 講座の流れ -->
 <section class="flow">
@@ -1066,7 +1024,7 @@
     <div class="flow-steps">
       <div class="flow-step reveal delay-1"><div class="flow-num">1</div><div class="flow-body"><div class="time">10:00 - 10:30</div><h3>イントロ & セットアップ</h3><p>Claude Codeを体験デモで理解。みんなで一緒にセットアップ。</p></div></div>
       <div class="flow-step reveal delay-2"><div class="flow-num">2</div><div class="flow-body"><div class="time">10:30 - 11:30</div><h3>はじめての「話しかけ」体験</h3><p>簡単なお願いから。Claude Codeとのやりとりに慣れよう。</p></div></div>
-      <div class="flow-step reveal delay-3"><div class="flow-num">3</div><div class="flow-body"><div class="time">11:30 - 13:00</div><h3>成果物① LINEプレゼントを作ろう</h3><p>全員で診断ツールや占いコンテンツを制作。その場で動かす！</p></div></div>
+      <div class="flow-step reveal delay-3"><div class="flow-num">3</div><div class="flow-body"><div class="time">11:30 - 13:00</div><h3>成果物① LPを作ろう</h3><p>デザイナー3人がハンズオンでサポート。おしゃれなLPをその場で完成！</p></div></div>
       <div class="lunch-break reveal"><div class="icon"><svg viewBox="0 0 40 40" width="28" height="28"><defs><linearGradient id="g-lunch" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><ellipse cx="20" cy="28" rx="14" ry="3" fill="none" stroke="url(#g-lunch)" stroke-width="1.5"/><line x1="13" y1="8" x2="13" y2="24" stroke="url(#g-lunch)" stroke-width="2" stroke-linecap="round"/><path d="M13 8c0-4 8-4 8 0v6c0 3-8 3-8 0z" fill="url(#g-lunch)" opacity="0.15" stroke="url(#g-lunch)" stroke-width="1.5"/><line x1="27" y1="8" x2="27" y2="24" stroke="url(#g-lunch)" stroke-width="2" stroke-linecap="round"/><line x1="23" y1="8" x2="23" y2="16" stroke="url(#g-lunch)" stroke-width="1.5" stroke-linecap="round"/><line x1="27" y1="8" x2="31" y2="8" stroke="url(#g-lunch)" stroke-width="1.5" stroke-linecap="round"/><line x1="27" y1="12" x2="30" y2="12" stroke="url(#g-lunch)" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="text"><strong style="color:#fff;">13:00 - 13:45</strong>　ランチ休憩</div></div>
       <div class="flow-step reveal delay-1"><div class="flow-num">4</div><div class="flow-body"><div class="time">13:45 - 15:00</div><h3>成果物② LP / スライドを作ろう</h3><p>自分のサービスページを制作。おしゃれに仕上げるコツを伝授。</p></div></div>
       <div class="flow-step reveal delay-2"><div class="flow-num">5</div><div class="flow-body"><div class="time">15:00 - 15:30</div><h3>仕上げ & 公開</h3><p>デザインの最終調整、スマホで確認、インターネット上に公開。</p></div></div>
@@ -1097,6 +1055,23 @@
         <p>飲食接客業から、妊娠出産を機にデザイナーに転身。エクセルもブラインドタッチもできないけど、Claude Codeで5つのツール/サイトを自力制作。</p>
       </div>
     </div>
+
+    <!-- 私たちが教える理由 -->
+    <div class="reveal-scale" style="margin-top: 40px; background: rgba(168,85,247,0.06); border: 1px solid rgba(168,85,247,0.2); padding: 32px 28px; clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));">
+      <h3 style="font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 16px; text-align: center;">正直に言います。</h3>
+      <p style="font-size: 0.92rem; color: var(--text-light); line-height: 2.2; text-align: center;">
+        LP制作をお仕事としてお引き受けした方が、<br>
+        私たちにとっては<strong style="color: var(--neon-pink);">商売になります。</strong><br><br>
+        でも、いつもお世話になっている皆さんには<br>
+        <strong style="color: #fff;">同じようにAIを使いこなして</strong><br>
+        時間的にも、金銭的にも負担を軽くして、<br>
+        <strong style="color: var(--neon-cyan);">もっとご自身の活動に集中してほしい。</strong><br><br>
+        だから、この取り組みをさせていただきました。<br>
+        私たちも皆さんから気づきをいただけると思っています。<br>
+        <span style="color: var(--neon-purple); font-weight: 700;">一緒に学べることに、感謝しています。</span>
+      </p>
+    </div>
+
   </div>
 </section>
 
@@ -1109,11 +1084,11 @@
       <h2 class="section-title reveal delay-2">開催概要</h2>
     </div>
     <div class="overview-table reveal">
-      <div class="overview-row"><div class="overview-label">DATE</div><div class="overview-value">2026年4月18日（金）10:00〜16:00<span class="note">ランチ休憩あり</span></div></div>
+      <div class="overview-row"><div class="overview-label">DATE</div><div class="overview-value">2026年4月18日（土）10:00〜16:00<span class="note">ランチ休憩あり</span></div></div>
       <div class="overview-row"><div class="overview-label">PLACE</div><div class="overview-value">都内会場<span class="note">※詳細はお申し込み後にご案内</span></div></div>
-      <div class="overview-row"><div class="overview-label">PRICE</div><div class="overview-value"><strong style="color: var(--neon-cyan); font-size: 1.2rem;">¥18,000</strong>（税込）<span class="note">初回モニター価格</span></div></div>
+      <div class="overview-row"><div class="overview-label">PRICE</div><div class="overview-value"><strong style="color: var(--neon-cyan); font-size: 1.2rem;">¥25,000</strong>（税込）<span class="note">初回モニター価格</span></div></div>
       <div class="overview-row"><div class="overview-label">BRING</div><div class="overview-value">パソコン（Mac推奨）<span class="note">事前セットアップのご案内あり</span></div></div>
-      <div class="overview-row"><div class="overview-label">TARGET</div><div class="overview-value">茶花ホルダーさん<span class="note">講座やサービスをお持ちの方</span></div></div>
+      <div class="overview-row"><div class="overview-label">TARGET</div><div class="overview-value"><strong style="color:#fff;">対象者：</strong>ご自身の講座やサービスをお持ちの方<span class="note" style="margin-top:8px; color:var(--neon-pink);">※ ご自身のサービスをお持ちでない方は対象外となります</span></div></div>
     </div>
     <div class="condition-box reveal">
       <h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="g-camera" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><rect x="2" y="6" width="20" height="14" rx="2" fill="none" stroke="url(#g-camera)" stroke-width="1.5"/><rect x="2" y="6" width="20" height="14" rx="2" fill="url(#g-camera)" opacity="0.08"/><circle cx="12" cy="13" r="4" fill="none" stroke="url(#g-camera)" stroke-width="1.5"/><circle cx="12" cy="13" r="2" fill="url(#g-camera)" opacity="0.3"/><path d="M8 6l1-3h6l1 3" fill="none" stroke="url(#g-camera)" stroke-width="1.5" stroke-linejoin="round"/></svg> モニター参加の条件</h3>
@@ -1187,8 +1162,8 @@
 <section class="cta-section" id="apply">
   <div class="inner">
     <h2><span class="highlight">「これも私が<br>つくれるの！？」</span><br>を体験しよう</h2>
-    <div class="date">2026.4.18 FRI / 10:00-16:00 / TOKYO</div>
-    <div class="price"><span class="original">通常価格 ¥25,000</span><span class="current">MONITOR ¥18,000</span></div>
+    <div class="date">2026.4.18 SAT / 10:00-16:00 / TOKYO</div>
+    <div class="price"><span class="original">通常価格 ¥50,000</span><span class="current">MONITOR ¥25,000</span></div>
     <a href="#" class="cta-btn">参加を申し込む →</a>
     <div class="note">※ 茶花ホルダーさん限定　※ モニター条件：ストーリーズでの感想シェア</div>
   </div>
