@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claude Codeで叶える！デザイナー視点もりもりのAI制作ワークショップ</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link rel="preload" href="bg-fv.jpg" as="image">
+<link rel="preload" href="hero.png" as="image">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -194,7 +196,7 @@
     background: url('hero.png') top center / cover no-repeat;
     /* brightness/contrastでモヤを消してパキッとさせる */
     filter: brightness(1.12) contrast(1.18) saturate(1.15);
-    animation: heroBloomIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+    animation: heroBloomIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
     z-index: 2;
     overflow: hidden;
   }
@@ -1209,7 +1211,7 @@
     background: #000010;
   }
   #gate-opening {
-    transition: opacity 0.5s ease;
+    transition: opacity 1.2s ease;
   }
   #gate-opening.gone {
     opacity: 0;
@@ -1469,7 +1471,7 @@
     <circle cx="30" cy="5" r="3" fill="#00d4ff" opacity="0.7"/>
     <line x1="30" y1="2" x2="30" y2="0" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
   </svg>
-  <div class="claude-speech"><span class="speech-text">それ、全部解決できるよ</span></div>
+  <div class="claude-speech"><span class="speech-text">それ、全部解決できます</span></div>
 </div>
 
 <!-- 解決 -->
@@ -1864,15 +1866,12 @@
   window.addEventListener('load', () => {
     const gate = document.getElementById('gate-opening');
 
-    // 3.8s: フラッシュ中にゲートをフェードアウト開始（heroBloomInと重ねる）
+    // 3.0s: ゲートフェードアウト開始（1.2sかけてゆっくり消える → 4.2sに完全透明）
     setTimeout(() => {
       gate.classList.add('gone');
       document.body.style.overflow = '';
-    }, 3800);
-    // 4.4s: フェード完了後にDOMから完全除去
-    setTimeout(() => {
-      gate.style.display = 'none';
-    }, 4400);
+    }, 3000);
+    // display:noneは使わない → 瞬間的なブラックフラッシュを防止
 
     // 4.4s以降: fv-proofのタイピングアニメーション
     const proofSpans = document.querySelectorAll('.fv-proof span');
