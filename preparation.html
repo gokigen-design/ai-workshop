@@ -1414,141 +1414,174 @@
     <div class="sec-title">横文字・専門用語をわかりやすく</div>
     <p class="sec-desc">知らなくてもワークショップには参加できますが、意味を知っておくと当日の理解が深まります。</p>
 
-    <div class="glossary-grid">
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">GitHub</div>
-          <div class="gloss-ja">ギットハブ</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag github">Web Service</div>
-          <div class="gloss-one">ファイルをインターネット上に保存・管理するサービス</div>
-          <div class="gloss-desc">作ったLPのHTMLファイルをここに置くと、誰でもURLでアクセスできる状態になります。無料で使えます。「フォルダをクラウドに置く感覚」と思えばOK。今回のワークショップでは、ここにlp.htmlをアップロードして公開します。</div>
-        </div>
+    <!-- グループ①: Claude Code の基本 -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:4px;height:20px;background:var(--orange);border-radius:2px;flex-shrink:0;"></div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);">Claude Code の基本</div>
       </div>
+      <div class="glossary-grid">
 
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">Deploy</div>
-          <div class="gloss-ja">デプロイ</div>
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Skills</div>
+            <div class="gloss-ja">スキルズ</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag cc">Claude Code</div>
+            <div class="gloss-one">Claude Codeに追加できる「専門機能パック」</div>
+            <div class="gloss-desc">PDF読み取り・Excelの操作・スライド作成など、特定の作業に特化した機能を追加できます。スキルを使うことで、専門的な作業も日本語の指示だけでできるようになります。今回のワークショップでは使いませんが、活用の幅が広がります。</div>
+          </div>
         </div>
-        <div class="gloss-body">
-          <div class="gloss-tag web">Web</div>
-          <div class="gloss-one">作ったものをインターネット上に公開すること</div>
-          <div class="gloss-desc">「デプロイする」＝「ネットに上げる」「公開する」という意味です。今回はGitHub Pagesという機能を使ってデプロイします。デプロイが完了すると、スマホからでもURLでアクセスできるようになります。</div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Terminal</div>
+            <div class="gloss-ja">ターミナル</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Tool</div>
+            <div class="gloss-one">文字を入力してパソコンを操作する「黒い画面」</div>
+            <div class="gloss-desc">Claude Codeはこのターミナルから起動します。最初は怖く見えますが、使うコマンドは数個だけ。Macの場合は「Command + Space」→「ターミナル」で開けます。Windowsは「PowerShell」を検索してください。</div>
+          </div>
         </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">npm</div>
+            <div class="gloss-ja">エヌピーエム</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Tool</div>
+            <div class="gloss-one">Node.jsのソフトをインストールするためのツール</div>
+            <div class="gloss-desc">Claude Codeをインストールする時に使います。<code style="background:var(--beige);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px;">npm install -g @anthropic-ai/claude-code</code> というコマンドを1回打つだけでOK。「アプリストアのようなもの」と思えば大丈夫です。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">API / API Key</div>
+            <div class="gloss-ja">エーピーアイ / APIキー</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Web</div>
+            <div class="gloss-one">サービスを外部から使うための「合言葉（鍵）」</div>
+            <div class="gloss-desc">Claude CodeはAnthropicのAPIを通じてAIと会話しています。APIキーは「あなた専用の合言葉」で、これが課金の単位にもなります。他人に見せてはいけません。今回のワークショップでは、MaxプランへのログインだけでAPIキーの管理は不要です。</div>
+          </div>
+        </div>
+
       </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">Vercel</div>
-          <div class="gloss-ja">バーセル</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag web">Web Service</div>
-          <div class="gloss-one">GitHubと連携して、自動でデプロイしてくれるサービス</div>
-          <div class="gloss-desc">GitHub Pagesと同じように「ネットに公開する」ためのサービスです。GitHubにファイルを保存すると自動でデプロイしてくれる点が便利。今回はGitHub Pagesを使いますが、慣れてきたらVercelも使ってみてください。無料枠あり。</div>
-        </div>
-      </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">Repository</div>
-          <div class="gloss-ja">リポジトリ</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag github">GitHub</div>
-          <div class="gloss-one">GitHubの中の「プロジェクトフォルダ」のこと</div>
-          <div class="gloss-desc">パソコンの「フォルダ」と同じイメージです。1サービス1リポジトリで管理するのが基本。今回はLP用のリポジトリを1つ作って、そこにlp.htmlを入れます。「リポジトリを作る」＝「GitHubにフォルダを作る」と覚えてください。</div>
-        </div>
-      </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">Sandbox</div>
-          <div class="gloss-ja">サンドボックス</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag cc">Claude Code</div>
-          <div class="gloss-one">Claude Codeの「確認モード」。ファイルを変更する前に許可を求めてくれる</div>
-          <div class="gloss-desc">サンドボックスをONにすると、Claude Codeがファイルを書き換える前に「本当に実行していいですか？」と確認してきます。慣れないうちはONにしておくと安心です。慣れてきたらOFFにすると作業スピードが上がります。</div>
-        </div>
-      </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">.claudeignore</div>
-          <div class="gloss-ja">ドットクロードイグノア</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag cc">Claude Code</div>
-          <div class="gloss-one">「このファイルはClaude Codeに触らせない」と指定するファイル</div>
-          <div class="gloss-desc">プロジェクトフォルダの中に <code style="background:var(--beige);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px;">.claudeignore</code> というファイルを作り、触らせたくないファイル名を書いておきます。パスワードや個人情報が入ったファイルは、念のためここに記載しておくと安心です。</div>
-        </div>
-      </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">Skills</div>
-          <div class="gloss-ja">スキルズ</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag cc">Claude Code</div>
-          <div class="gloss-one">Claude Codeに追加できる「専門機能パック」</div>
-          <div class="gloss-desc">PDF読み取り・Excelの操作・スライド作成など、特定の作業に特化した機能を追加できます。スキルを使うことで、専門的な作業も日本語の指示だけでできるようになります。今回のワークショップでは使いませんが、活用の幅が広がります。</div>
-        </div>
-      </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">Training Opt-out</div>
-          <div class="gloss-ja">学習設定オフ</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag cc">Claude Code</div>
-          <div class="gloss-one">自分の会話がAIの学習データに使われないようにする設定</div>
-          <div class="gloss-desc">Anthropicの有料プラン（Maxプラン）に加入している場合、デフォルトでAI学習への利用はオフになっています。気になる方はAnthropicのアカウント設定 → Privacy から確認できます。クライアントの情報や個人情報を扱う際は特に確認しておきましょう。</div>
-        </div>
-      </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">Terminal</div>
-          <div class="gloss-ja">ターミナル</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag web">Tool</div>
-          <div class="gloss-one">文字を入力してパソコンを操作する「黒い画面」</div>
-          <div class="gloss-desc">Claude Codeはこのターミナルから起動します。最初は怖く見えますが、使うコマンドは数個だけ。Macの場合は「Command + Space」→「ターミナル」で開けます。Windowsは「PowerShell」を検索してください。</div>
-        </div>
-      </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">npm</div>
-          <div class="gloss-ja">エヌピーエム</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag web">Tool</div>
-          <div class="gloss-one">Node.jsのソフトをインストールするためのツール</div>
-          <div class="gloss-desc">Claude Codeをインストールする時に使います。<code style="background:var(--beige);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px;">npm install -g @anthropic-ai/claude-code</code> というコマンドを1回打つだけでOK。「アプリストアのようなもの」と思えば大丈夫です。</div>
-        </div>
-      </div>
-
-      <div class="gloss-card">
-        <div class="gloss-term">
-          <div class="gloss-en">API / API Key</div>
-          <div class="gloss-ja">エーピーアイ / APIキー</div>
-        </div>
-        <div class="gloss-body">
-          <div class="gloss-tag web">Web</div>
-          <div class="gloss-one">サービスを外部から使うための「合言葉（鍵）」</div>
-          <div class="gloss-desc">Claude CodeはAnthropicのAPIを通じてAIと会話しています。APIキーは「あなた専用の合言葉」で、これが課金の単位にもなります。他人に見せてはいけません。今回のワークショップでは、MaxプランへのログインだけでAPIキーの管理は不要です。</div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- グループ②: セキュリティ・プライバシー -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:4px;height:20px;background:#5a7fc8;border-radius:2px;flex-shrink:0;"></div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#5a7fc8;">セキュリティ・プライバシー</div>
+      </div>
+      <div style="background:rgba(60,110,200,0.04);border:1px solid rgba(60,110,200,0.15);border-radius:14px;padding:20px 20px 8px;">
+        <p style="font-size:12px;color:#5a7fc8;line-height:1.75;margin-bottom:16px;padding:10px 14px;background:rgba(60,110,200,0.07);border-radius:8px;">この3つは「自分とクライアントの情報を守るための設定」です。知っておくだけで安心感が変わります。</p>
+        <div class="glossary-grid">
+
+          <div class="gloss-card">
+            <div class="gloss-term">
+              <div class="gloss-en">Sandbox</div>
+              <div class="gloss-ja">サンドボックス</div>
+            </div>
+            <div class="gloss-body">
+              <div class="gloss-tag cc">Claude Code</div>
+              <div class="gloss-one">Claude Codeの「確認モード」。ファイルを変更する前に許可を求めてくれる</div>
+              <div class="gloss-desc">サンドボックスをONにすると、Claude Codeがファイルを書き換える前に「本当に実行していいですか？」と確認してきます。慣れないうちはONにしておくと安心です。慣れてきたらOFFにすると作業スピードが上がります。</div>
+            </div>
+          </div>
+
+          <div class="gloss-card">
+            <div class="gloss-term">
+              <div class="gloss-en">.claudeignore</div>
+              <div class="gloss-ja">ドットクロードイグノア</div>
+            </div>
+            <div class="gloss-body">
+              <div class="gloss-tag cc">Claude Code</div>
+              <div class="gloss-one">「このファイルはClaude Codeに触らせない」と指定するファイル</div>
+              <div class="gloss-desc">プロジェクトフォルダの中に <code style="background:var(--beige);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px;">.claudeignore</code> というファイルを作り、触らせたくないファイル名を書いておきます。パスワードや個人情報が入ったファイルは、念のためここに記載しておくと安心です。</div>
+            </div>
+          </div>
+
+          <div class="gloss-card">
+            <div class="gloss-term">
+              <div class="gloss-en">Training Opt-out</div>
+              <div class="gloss-ja">学習設定オフ</div>
+            </div>
+            <div class="gloss-body">
+              <div class="gloss-tag cc">Claude Code</div>
+              <div class="gloss-one">自分の会話がAIの学習データに使われないようにする設定</div>
+              <div class="gloss-desc">Anthropicの有料プラン（Maxプラン）に加入している場合、デフォルトでAI学習への利用はオフになっています。気になる方はAnthropicのアカウント設定 → Privacy から確認できます。クライアントの情報や個人情報を扱う際は特に確認しておきましょう。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- グループ③: Web・公開・GitHub -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:4px;height:20px;background:#5a9a6a;border-radius:2px;flex-shrink:0;"></div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#5a9a6a;">Web・公開・GitHub</div>
+      </div>
+      <div class="glossary-grid">
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">GitHub</div>
+            <div class="gloss-ja">ギットハブ</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag github">Web Service</div>
+            <div class="gloss-one">ファイルをインターネット上に保存・管理するサービス</div>
+            <div class="gloss-desc">作ったLPのHTMLファイルをここに置くと、誰でもURLでアクセスできる状態になります。無料で使えます。「フォルダをクラウドに置く感覚」と思えばOK。今回のワークショップでは、ここにlp.htmlをアップロードして公開します。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Repository</div>
+            <div class="gloss-ja">リポジトリ</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag github">GitHub</div>
+            <div class="gloss-one">GitHubの中の「プロジェクトフォルダ」のこと</div>
+            <div class="gloss-desc">パソコンの「フォルダ」と同じイメージです。1サービス1リポジトリで管理するのが基本。今回はLP用のリポジトリを1つ作って、そこにlp.htmlを入れます。「リポジトリを作る」＝「GitHubにフォルダを作る」と覚えてください。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Deploy</div>
+            <div class="gloss-ja">デプロイ</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Web</div>
+            <div class="gloss-one">作ったものをインターネット上に公開すること</div>
+            <div class="gloss-desc">「デプロイする」＝「ネットに上げる」「公開する」という意味です。今回はGitHub Pagesという機能を使ってデプロイします。デプロイが完了すると、スマホからでもURLでアクセスできるようになります。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Vercel</div>
+            <div class="gloss-ja">バーセル</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Web Service</div>
+            <div class="gloss-one">GitHubと連携して、自動でデプロイしてくれるサービス</div>
+            <div class="gloss-desc">GitHub Pagesと同じように「ネットに公開する」ためのサービスです。GitHubにファイルを保存すると自動でデプロイしてくれる点が便利。今回はGitHub Pagesを使いますが、慣れてきたらVercelも使ってみてください。無料枠あり。</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </section>
 
   <!-- ═══ TAB 8: ワークシート（ワークショップ） ═══ -->
