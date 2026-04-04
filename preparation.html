@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AIワークショップ 事前準備ガイド</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500&family=Noto+Serif+JP:wght@300;400&family=M+PLUS+Rounded+1c:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500&family=Noto+Serif+JP:wght@300;400&family=M+PLUS+Rounded+1c:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --black:   #1A1A1A;
@@ -34,51 +34,134 @@
     }
 
     /* ─── HEADER ─── */
+    .hero-wrapper {
+      height: 250vh;
+      position: relative;
+    }
+
     .site-header {
-      max-width: 900px;
+      max-width: 100%;
       margin: 0 auto;
-      padding: 56px 48px 0;
+      padding: 0;
+      position: sticky;
+      top: 0;
+      overflow: hidden;
+      height: 100vh;
+      min-height: 600px;
+    }
+
+    /* Background image */
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('./hero2.jpg') center center / cover no-repeat;
+      filter: brightness(1.08) saturate(0.9);
+    }
+
+    /* Overlay - starts transparent, becomes opaque on scroll */
+    .header-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(245,239,228,0.92);
+      opacity: 0;
+    }
+
+    .header-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 2;
+      padding: 0 24px;
     }
 
     .site-header .eyebrow {
       font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.22em;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: var(--gray-lt);
+      margin-bottom: 24px;
+      display: block;
+      opacity: 0;
     }
 
     .site-header .eyebrow::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
+      display: none;
     }
 
     .site-header h1 {
-      font-size: clamp(30px, 4.5vw, 48px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 12vw, 140px);
       font-weight: 300;
-      letter-spacing: -0.025em;
-      line-height: 1.15;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      line-height: 1.0;
       color: var(--black);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: scale(2.5);
     }
 
-    .site-header h1 em {
-      font-style: normal;
-      color: var(--orange);
+    .site-header .subtitle {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(12px, 1.5vw, 15px);
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      line-height: 1.8;
+      color: var(--gray-mid);
+      opacity: 0;
     }
 
-    .site-header .lead {
-      font-size: 14px;
+    .header-date {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--gray-lt);
-      max-width: 540px;
-      line-height: 1.9;
+      opacity: 0;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray-lt);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    .scroll-indicator::after {
+      content: '';
+      width: 1px;
+      height: 24px;
+      background: var(--gray);
+      opacity: 0.5;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
     }
 
     /* ─── LAYOUT ─── */
@@ -839,7 +922,8 @@
         justify-content: flex-start;
       }
       .tab-btn.active { background: var(--beige-mid); }
-      .site-header { padding-left: 20px; padding-right: 20px; }
+      .hero-wrapper { height: 200vh; }
+      .site-header { height: 100vh; min-height: 480px; }
       .row-2 { grid-template-columns: 1fr; }
       .palette-grid { grid-template-columns: 1fr 1fr; }
       .rules-grid { grid-template-columns: 1fr; }
@@ -853,11 +937,18 @@
 <body>
 
   <!-- ═══ HEADER ═══ -->
-  <header class="site-header">
-    <div class="eyebrow">AI Workshop &nbsp;·&nbsp; 2026.4.18 &nbsp;·&nbsp; Pre-Workshop Guide</div>
-    <h1>当日を最大限に活かすための<br><em>事前準備</em>をしよう</h1>
-    <p class="lead">7つのタブを順番に進めてください。<br>当日までにすべて完了させておくことで、ワークショップを最大限に楽しめます。</p>
-  </header>
+  <div class="hero-wrapper" id="heroWrapper">
+    <header class="site-header" id="heroHeader">
+      <div class="header-overlay"></div>
+      <div class="header-inner">
+        <div class="eyebrow">Pre-Workshop Guide</div>
+        <h1 id="heroTitle">AI<br>Workshop</h1>
+        <p class="subtitle">当日を最大限に活かすための事前準備をしよう</p>
+        <div class="header-date">2026.4.18 Sat &middot; 10:00 – 17:00 &middot; Online</div>
+      </div>
+      <div class="scroll-indicator">Scroll</div>
+    </header>
+  </div>
 
   <!-- ═══ MAIN LAYOUT ═══ -->
   <div class="main-layout">
@@ -2860,6 +2951,51 @@ git push</div>
   </section>
 
   <script>
+    /* ─── Hero scroll effect: photo → scroll → text appears → page continues ─── */
+    (function() {
+      const wrapper = document.getElementById('heroWrapper');
+      const hero = document.getElementById('heroHeader');
+      const title = document.getElementById('heroTitle');
+      const overlay = hero.querySelector('.header-overlay');
+      const eyebrow = hero.querySelector('.eyebrow');
+      const subtitle = hero.querySelector('.subtitle');
+      const date = hero.querySelector('.header-date');
+      const indicator = hero.querySelector('.scroll-indicator');
+
+      let ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(function() {
+            const wrapperTop = wrapper.offsetTop;
+            const scrollRange = wrapper.offsetHeight - hero.offsetHeight;
+            const scrolled = window.scrollY - wrapperTop;
+            const progress = Math.max(0, Math.min(scrolled / scrollRange, 1));
+
+            // Overlay fades in (photo becomes hidden)
+            overlay.style.opacity = progress;
+
+            // Title: starts large & invisible, shrinks to 1x and becomes visible
+            const scale = 2.8 - progress * 1.8;
+            const titleOpacity = Math.min(progress * 1.6, 1);
+            title.style.transform = `scale(${scale})`;
+            title.style.opacity = titleOpacity;
+
+            // Other text appears after 50% scroll
+            const textFade = Math.max(0, (progress - 0.5) / 0.35);
+            eyebrow.style.opacity = Math.min(textFade, 1);
+            subtitle.style.opacity = Math.min(textFade, 1);
+            date.style.opacity = Math.min(textFade, 1);
+
+            // Scroll indicator fades out
+            if (indicator) indicator.style.opacity = 1 - Math.min(progress * 2, 1);
+
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
     function switchPtab(tabId, btn) {
       document.querySelectorAll('.ptab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.ptab-btn').forEach(el => el.classList.remove('active'));
