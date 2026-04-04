@@ -1715,8 +1715,74 @@
     <p class="sec-desc">カラーとフォントを先に決めておくことで、当日「どうしよう」で迷う時間をゼロにします。</p>
 
     <div class="card">
-      <div class="card-head"><div class="card-num">1</div><div class="card-title">カラーテイストを選ぶ</div></div>
-      <p style="font-size:13px;color:var(--gray-lt);margin-bottom:24px;">あなたのサービスの雰囲気に合うものを1つ選んでください。クリックで選択できます。</p>
+      <div class="card-head"><div class="card-num">1</div><div class="card-title">カラーの考え方</div></div>
+
+      <!-- 色の意味 -->
+      <p style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:10px;">色にはイメージがある</p>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:16px;">色は見た瞬間に感情を動かします。「好きな色」ではなく、<strong style="color:var(--black);">あなたのお客さんが感じてほしいイメージ</strong>から選ぶのがプロの視点です。</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;">
+        <div style="text-align:center;padding:14px 8px;background:linear-gradient(135deg,#fff5f5,#ffe0e0);border-radius:10px;border:1px solid #ffc0c0;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#E63946;margin:0 auto 8px;"></div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px;">赤</div>
+          <div style="font-size:11px;color:#c0392b;line-height:1.5;">情熱・エネルギー<br>緊急感・行動促進</div>
+        </div>
+        <div style="text-align:center;padding:14px 8px;background:linear-gradient(135deg,#fffbf0,#fff3d0);border-radius:10px;border:1px solid #ffd080;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#F4A261;margin:0 auto 8px;"></div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px;">オレンジ</div>
+          <div style="font-size:11px;color:#b8621a;line-height:1.5;">温かみ・元気<br>親しみやすさ</div>
+        </div>
+        <div style="text-align:center;padding:14px 8px;background:linear-gradient(135deg,#fffff0,#faffd0);border-radius:10px;border:1px solid #e8e060;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#F4D03F;margin:0 auto 8px;"></div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px;">黄色</div>
+          <div style="font-size:11px;color:#9a8010;line-height:1.5;">明るさ・注意喚起<br>ポップ・楽しさ</div>
+        </div>
+        <div style="text-align:center;padding:14px 8px;background:linear-gradient(135deg,#f0fff4,#d0f0e0);border-radius:10px;border:1px solid #80d0a0;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#2ECC71;margin:0 auto 8px;"></div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px;">緑</div>
+          <div style="font-size:11px;color:#1a8040;line-height:1.5;">自然・健康・安心<br>癒し・成長</div>
+        </div>
+        <div style="text-align:center;padding:14px 8px;background:linear-gradient(135deg,#f0f4ff,#d0e0ff);border-radius:10px;border:1px solid #80a0e0;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#3498DB;margin:0 auto 8px;"></div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px;">青</div>
+          <div style="font-size:11px;color:#1a60a0;line-height:1.5;">信頼・誠実<br>清潔感・知性</div>
+        </div>
+        <div style="text-align:center;padding:14px 8px;background:linear-gradient(135deg,#faf0ff,#ead0ff);border-radius:10px;border:1px solid #c080e0;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#9B59B6;margin:0 auto 8px;"></div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px;">紫</div>
+          <div style="font-size:11px;color:#6020a0;line-height:1.5;">上品・神秘<br>高級感・個性</div>
+        </div>
+        <div style="text-align:center;padding:14px 8px;background:linear-gradient(135deg,#fff8f0,#f0e0d0);border-radius:10px;border:1px solid #d0a080;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#C9A84C;margin:0 auto 8px;"></div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px;">ゴールド</div>
+          <div style="font-size:11px;color:#806020;line-height:1.5;">高級・プレミアム<br>特別感・品格</div>
+        </div>
+        <div style="text-align:center;padding:14px 8px;background:linear-gradient(135deg,#fef5f0,#fde8e0);border-radius:10px;border:1px solid #e0c0b8;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#E8C4B8;margin:0 auto 8px;border:1px solid #d0a898;"></div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px;">パステル</div>
+          <div style="font-size:11px;color:#a06050;line-height:1.5;">やさしさ・柔らかさ<br>女性らしさ・癒し</div>
+        </div>
+      </div>
+
+      <!-- カラー比率 -->
+      <div style="background:var(--beige);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:24px;">
+        <p style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:12px;">色の使い方：70・25・5の法則</p>
+        <div style="display:flex;gap:0;height:20px;border-radius:6px;overflow:hidden;margin-bottom:12px;">
+          <div style="flex:70;background:var(--beige-mid);"></div>
+          <div style="flex:25;background:var(--orange);opacity:0.6;"></div>
+          <div style="flex:5;background:var(--orange);"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;"><strong style="color:var(--black);">70%</strong> ベースカラー<br>白・ベージュなど背景色</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;"><strong style="color:var(--black);">25%</strong> メインカラー<br>サービスのイメージ色</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;"><strong style="color:var(--black);">5%</strong> アクセントカラー<br>ボタン・強調など</div>
+        </div>
+        <p style="font-size:12px;color:var(--orange);margin-top:10px;line-height:1.7;">色は3色まで。多色使いはごちゃごちゃして見えます。</p>
+      </div>
+
+      <!-- カラーパレット選択 -->
+      <p style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:6px;">あなたのサービスに合うテイストを選ぶ</p>
+      <p style="font-size:12px;color:var(--gray-lt);margin-bottom:16px;">クリックで選択できます。</p>
 
       <div class="palette-grid">
         <div class="palette-card" onclick="selectPalette(this, 'クラシックモダン')">
@@ -1799,8 +1865,64 @@
     </div>
 
     <div class="card">
-      <div class="card-head"><div class="card-num">2</div><div class="card-title">フォントを選ぶ</div></div>
-      <p style="font-size:13px;color:var(--gray-lt);margin-bottom:24px;">フォントはサービスの「声のトーン」です。この4つから選べば外れません。</p>
+      <div class="card-head"><div class="card-num">2</div><div class="card-title">フォントの考え方</div></div>
+
+      <!-- フォントとは -->
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:16px;">フォントはサービスの<strong style="color:var(--black);">「声のトーン」</strong>です。同じ言葉でも、フォントが変わるだけで伝わる印象がまったく変わります。</p>
+
+      <!-- フォント種別解説 -->
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+          <div style="padding:16px;background:var(--beige-mid);display:flex;flex-direction:column;justify-content:center;">
+            <div style="font-family:'Noto Serif JP',serif;font-size:15px;font-weight:400;color:var(--black);margin-bottom:4px;">明朝体</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:9px;color:var(--gray-lt);letter-spacing:0.1em;">MINCHO</div>
+          </div>
+          <div style="padding:14px 16px;background:#fff;">
+            <div style="font-size:12px;font-weight:500;margin-bottom:4px;">上品・知的・落ち着き</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">高単価サービス・コーチング・士業・和をテーマにしたサービスに。信頼感と格を出したいときに選ぶ。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+          <div style="padding:16px;background:var(--beige-mid);display:flex;flex-direction:column;justify-content:center;">
+            <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;font-weight:400;color:var(--black);margin-bottom:4px;">ゴシック体</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:9px;color:var(--gray-lt);letter-spacing:0.1em;">GOTHIC</div>
+          </div>
+          <div style="padding:14px 16px;background:#fff;">
+            <div style="font-size:12px;font-weight:500;margin-bottom:4px;">視認性が高い・読みやすい・モダン</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">Webで最もよく使われるフォント。すっきり読みやすく、どんなサービスにも合わせやすい万能タイプ。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+          <div style="padding:16px;background:var(--beige-mid);display:flex;flex-direction:column;justify-content:center;">
+            <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:15px;color:var(--black);margin-bottom:4px;">丸ゴシック</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:9px;color:var(--gray-lt);letter-spacing:0.1em;">MARU GOTHIC</div>
+          </div>
+          <div style="padding:14px 16px;background:#fff;">
+            <div style="font-size:12px;font-weight:500;margin-bottom:4px;">親しみやすさ・やわらかさ・かわいらしさ</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">子育て・美容・料理・ハンドメイドなど、温かみや身近さを伝えたいサービスに。堅くなりすぎない。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- フォントルール -->
+      <div style="background:var(--beige);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:24px;">
+        <p style="font-size:12px;font-weight:500;color:var(--black);margin-bottom:8px;">フォント使いのルール</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--gray-mid);line-height:1.7;">
+            <span style="color:var(--orange);flex-shrink:0;font-weight:500;">→</span>1ページに使うフォントは最大2種類まで。それ以上はごちゃつく。
+          </div>
+          <div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--gray-mid);line-height:1.7;">
+            <span style="color:var(--orange);flex-shrink:0;font-weight:500;">→</span>「見出し：明朝体 ＋ 本文：ゴシック体」のような組み合わせが黄金パターン。
+          </div>
+          <div style="display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--gray-mid);line-height:1.7;">
+            <span style="color:var(--orange);flex-shrink:0;font-weight:500;">→</span>フォントで迷ったらゴシック体一択でOK。失敗しない。
+          </div>
+        </div>
+      </div>
+
+      <!-- フォント選択 -->
+      <p style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:6px;">使うフォントを選ぶ</p>
+      <p style="font-size:12px;color:var(--gray-lt);margin-bottom:16px;">フォントはサービスの「声のトーン」です。この4つから選べば外れません。</p>
 
       <div class="font-list">
         <div class="font-card" onclick="selectFont(this, 'Noto Sans JP')">
