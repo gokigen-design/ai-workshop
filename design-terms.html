@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIをプロのWebデザイナーに変える魔法のキーワード集</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #FAF9F7;
+    --text: #2C2C2C;
+    --sub: #888;
+    --accent: #B8704B;
+    --accent-light: #F5EDE8;
+    --border: #E8E4DF;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ───── Header ───── */
+  .page-header {
+    text-align: center;
+    padding: 60px 24px 20px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .page-header .tag {
+    font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+  }
+  .page-header h1 {
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 900; line-height: 1.5; margin: 12px 0;
+  }
+  .page-header .subtitle {
+    font-size: 14px; color: var(--sub); line-height: 1.9;
+  }
+  .page-header .note {
+    font-size: 12px; color: #aaa; margin-top: 12px; line-height: 1.8;
+  }
+
+  /* ───── Sticky Nav ───── */
+  .nav-wrap {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0; margin-bottom: 40px;
+  }
+  .nav-scroll {
+    display: flex; gap: 6px; overflow-x: auto;
+    padding: 0 20px; max-width: 1100px; margin: 0 auto;
+    scrollbar-width: none;
+  }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    white-space: nowrap; padding: 7px 16px;
+    border: 1px solid var(--border); border-radius: 100px;
+    background: #fff; font-size: 12px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    color: var(--text); font-family: 'Noto Sans JP', sans-serif;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+
+  /* ───── Section Common ───── */
+  .style-section, .vocab-section, .guide-section {
+    max-width: 1060px; margin: 0 auto 80px; padding: 0 20px;
+  }
+  .section-head {
+    display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;
+  }
+  .section-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; flex-shrink: 0;
+    color: #fff; background: var(--accent);
+  }
+  .section-title h2 { font-size: 22px; font-weight: 800; line-height: 1.3; }
+  .section-title .en { font-size: 12px; color: var(--accent); font-weight: 500; letter-spacing: 1px; }
+  .section-desc {
+    font-size: 14px; color: var(--sub);
+    margin-bottom: 6px; padding-left: 56px; line-height: 1.8;
+  }
+  .keywords {
+    padding-left: 56px; margin-bottom: 20px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .kw {
+    font-size: 11px; padding: 4px 12px;
+    border-radius: 100px; font-weight: 500;
+  }
+
+  /* ───── FV Preview ───── */
+  .preview-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  @media (max-width: 700px) {
+    .preview-wrap { grid-template-columns: 1fr; }
+    .section-desc, .keywords { padding-left: 0; }
+  }
+
+  .fv-preview {
+    border-radius: 14px; overflow: hidden;
+    min-height: 400px; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 40px 28px; text-align: center;
+    position: relative; background-size: cover; background-position: center;
+  }
+  .fv-preview::before {
+    content: ''; position: absolute; inset: 0; border-radius: 14px;
+  }
+  .fv-preview > * { position: relative; z-index: 1; }
+  .fv-preview .p-tag {
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 12px; font-weight: 600;
+  }
+  .fv-preview h3 { margin-bottom: 10px; line-height: 1.5; }
+  .fv-preview .p-body { margin-bottom: 20px; line-height: 1.9; }
+  .fv-preview .p-btn {
+    display: inline-block; padding: 14px 36px;
+    border-radius: 6px; font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .fv-preview .p-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+  /* Info Panel */
+  .info-panel {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .info-panel h4 {
+    font-size: 13px; font-weight: 700;
+    margin-bottom: 4px; color: var(--accent);
+  }
+  .info-item { font-size: 13px; line-height: 1.8; color: #555; }
+  .info-item code {
+    background: #F3EFEA; padding: 2px 7px;
+    border-radius: 4px; font-size: 11px;
+  }
+  .info-item .en-kw {
+    display: inline-block; background: #EDE8E0; padding: 1px 8px;
+    border-radius: 4px; font-size: 10px; font-family: 'Inter', sans-serif;
+    font-weight: 600; color: #8B7355; letter-spacing: 0.3px;
+  }
+  .use-case {
+    background: #F9F6F2; border-radius: 8px;
+    padding: 12px 14px; font-size: 12px; line-height: 1.8; color: #666;
+  }
+  .use-case strong { color: var(--accent); }
+  .prompt-hint {
+    background: linear-gradient(135deg, #F5EDE8, #FFF);
+    border-radius: 8px; padding: 12px 14px;
+    font-size: 11px; line-height: 1.8; color: #7A6050;
+    border-left: 3px solid var(--accent);
+  }
+  .prompt-hint strong { color: var(--accent); }
+
+  /* ───── 1. ナチュラル ───── */
+  .fv-natural {
+    background-image: url('https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=800&q=80');
+    font-family: 'Noto Serif JP', serif;
+  }
+  .fv-natural::before { background: rgba(247,243,238,0.82); }
+  .fv-natural .p-tag { color: #A68B6B; }
+  .fv-natural h3 { font-size: 24px; font-weight: 700; color: #3E3428; }
+  .fv-natural .p-body { font-size: 13px; color: #7A6E61; }
+  .fv-natural .p-btn { background: #A68B6B; color: #fff; border-radius: 100px; }
+  .kw-natural { background: #F0EAE1; color: #8B7355; }
+
+  /* ───── 2. エレガント ───── */
+  .fv-elegant {
+    background-image: url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80');
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+  }
+  .fv-elegant::before { background: rgba(20,15,30,0.78); }
+  .fv-elegant .p-tag { color: #C9A96E; letter-spacing: 4px; }
+  .fv-elegant h3 { font-size: 28px; font-weight: 600; color: #F0E0C0; letter-spacing: 3px; }
+  .fv-elegant .p-body { font-size: 13px; color: rgba(255,255,255,0.55); }
+  .fv-elegant .p-btn {
+    background: transparent; border: 1px solid #C9A96E;
+    color: #C9A96E; letter-spacing: 3px; border-radius: 0;
+  }
+  .kw-elegant { background: #EDE6DA; color: #8B7355; }
+
+  /* ───── 3. 癒し・パステル ───── */
+  .fv-healing {
+    background-image: url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80');
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .fv-healing::before { background: rgba(232,245,233,0.78); }
+  .fv-healing .p-tag { color: #81B29A; }
+  .fv-healing h3 { font-size: 22px; font-weight: 700; color: #3D5A4C; }
+  .fv-healing .p-body { font-size: 13px; color: #6A8E7A; }
+  .fv-healing .p-btn { background: #81B29A; color: #fff; border-radius: 100px; }
+  .kw-healing { background: #E3F0E8; color: #5A8A6E; }
+
+  /* ───── 4. ジャパンディ ───── */
+  .fv-japandi {
+    background-image: url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&q=80');
+    font-family: 'Noto Serif JP', serif;
+  }
+  .fv-japandi::before { background: rgba(240,235,225,0.80); }
+  .fv-japandi .p-tag { color: #9B8B70; letter-spacing: 3px; }
+  .fv-japandi h3 { font-size: 24px; font-weight: 700; color: #3C3024; letter-spacing: 2px; }
+  .fv-japandi .p-body { font-size: 13px; color: #8A7A68; }
+  .fv-japandi .p-btn {
+    background: transparent; border: 1px solid #9B8B70;
+    color: #9B8B70; border-radius: 2px; letter-spacing: 2px;
+  }
+  .kw-japandi { background: #EDE5D8; color: #8B7355; }
+
+  /* ───── 5. ポップ ───── */
+  .fv-pop {
+    background-image: url('https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&q=80');
+    font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+  }
+  .fv-pop::before { background: rgba(255,248,225,0.82); }
+  .fv-pop .p-tag { color: #FF6B35; font-weight: 700; }
+  .fv-pop h3 { font-size: 28px; font-weight: 900; color: #FF6B35; }
+  .fv-pop .p-body { font-size: 13px; color: #666; }
+  .fv-pop .p-btn { background: #FF6B35; color: #fff; border-radius: 100px; font-weight: 700; }
+  .kw-pop { background: #FFE8DD; color: #E05520; }
+
+  /* ───── Vocab Section ───── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+  .vocab-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .vocab-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05); transform: translateY(-1px);
+  }
+  .vocab-card .term { font-size: 15px; font-weight: 700; margin-bottom: 1px; }
+  .vocab-card .reading {
+    font-size: 10px; color: var(--accent);
+    font-weight: 600; letter-spacing: 0.5px; margin-bottom: 6px;
+    font-family: 'Inter', sans-serif;
+  }
+  .vocab-card .def { font-size: 12px; color: #777; line-height: 1.7; }
+  .vocab-card .example {
+    margin-top: 8px; font-size: 11px;
+    background: var(--accent-light); border-radius: 6px;
+    padding: 8px 10px; line-height: 1.7; color: #6B5040;
+  }
+  .vocab-card .ai-tip {
+    margin-top: 6px; font-size: 10px;
+    color: #999; line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 6px;
+  }
+  .vocab-card .ai-tip span {
+    background: #E8E3D5; padding: 1px 6px; border-radius: 3px;
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: 10px; color: #7A6A55;
+  }
+
+  .vocab-cat {
+    grid-column: 1 / -1;
+    font-size: 14px; font-weight: 700; color: var(--accent);
+    padding: 20px 0 6px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .vocab-cat:first-child { padding-top: 0; }
+  .vocab-cat .cat-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* ───── Prompt Guide ───── */
+  .guide-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px;
+  }
+  .guide-card h2 { font-size: 20px; font-weight: 800; margin-bottom: 20px; }
+  .guide-example {
+    background: #F9F6F2; border-radius: 10px;
+    padding: 20px; margin-bottom: 16px;
+    font-size: 13px; line-height: 2;
+  }
+  .guide-example .lbl {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1px; margin-bottom: 8px; display: block;
+  }
+  .guide-example .lbl-bad { color: #C0392B; }
+  .guide-example .lbl-good { color: #27AE60; }
+  .guide-example em {
+    background: #EDE5D8; padding: 1px 6px; border-radius: 3px;
+    font-style: normal; font-weight: 600; font-size: 12px; color: var(--accent);
+  }
+  .guide-example .en-prompt {
+    display: block; margin-top: 8px; padding: 10px 14px;
+    background: #2C2C2C; color: #E0D8CE; border-radius: 8px;
+    font-size: 12px; font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    line-height: 1.8; letter-spacing: 0.3px;
+  }
+
+  /* ───── Scroll Fade-in Animation ───── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+
+  /* ───── Accordion (Keyword Dictionary) ───── */
+  .accordion-trigger {
+    grid-column: 1 / -1;
+    font-size: 14px; font-weight: 700; color: var(--accent);
+    padding: 16px 0 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+    display: flex; align-items: center; gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+  }
+  .accordion-trigger:first-child { padding-top: 0; }
+  .accordion-trigger:hover { color: #96553A; }
+  .accordion-trigger .cat-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+  .accordion-trigger .arrow {
+    margin-left: auto;
+    font-size: 14px;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    color: #bbb;
+  }
+  .accordion-trigger.open .arrow {
+    transform: rotate(180deg);
+  }
+  .accordion-content {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.4s ease,
+                margin 0.4s ease;
+    opacity: 0;
+    margin-bottom: 0;
+  }
+  .accordion-content.open {
+    max-height: 2000px;
+    opacity: 1;
+    margin-bottom: 12px;
+  }
+
+  /* ───── Enhanced Hover Effects ───── */
+  .fv-preview {
+    transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .fv-preview:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  }
+  .vocab-card {
+    transition: box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .vocab-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    transform: translateY(-3px);
+  }
+  .fv-preview .p-btn {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                background 0.3s ease;
+  }
+
+  /* ───── Footer ───── */
+  .page-footer {
+    text-align: center; padding: 40px 24px;
+    font-size: 11px; color: #bbb;
+    border-top: 1px solid var(--border);
+    max-width: 1060px; margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="tag">Design Keyword Reference</div>
+  <h1>AIをプロのWebデザイナーに変える<br>魔法のキーワード集</h1>
+  <p class="subtitle">AI（Claude Code・画像生成）に指示を出すとき、これらのキーワードを混ぜるだけで<br>「安っぽさ・無難さ」が消え、洗練されたプロのデザインに仕上がります。</p>
+  <p class="note">5つのスタイル見本 + 6カテゴリのデザイン用語 + プロンプトの組み立て方</p>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-scroll">
+    <button class="nav-btn active" onclick="go('natural')">01 ナチュラル</button>
+    <button class="nav-btn" onclick="go('elegant')">02 エレガント</button>
+    <button class="nav-btn" onclick="go('healing')">03 癒し系</button>
+    <button class="nav-btn" onclick="go('japandi')">04 ジャパンディ</button>
+    <button class="nav-btn" onclick="go('pop')">05 ポップ</button>
+    <button class="nav-btn" onclick="go('vocab')">キーワード辞典</button>
+    <button class="nav-btn" onclick="go('guide')">プロンプトの組み立て方</button>
+  </div>
+</div>
+
+
+<!-- ━━━━━ 01 ナチュラル ━━━━━ -->
+<section class="style-section fade-in" id="natural">
+  <div class="section-head">
+    <div class="section-num">01</div>
+    <div class="section-title">
+      <div class="en">Organic &amp; Natural</div>
+      <h2>ナチュラル・オーガニック</h2>
+    </div>
+  </div>
+  <p class="section-desc">温かみ・自然体・安心感。一番多くの女性起業家に選ばれているスタイル。</p>
+  <div class="keywords">
+    <span class="kw kw-natural">温かみ</span>
+    <span class="kw kw-natural">余白多め</span>
+    <span class="kw kw-natural">アースカラー</span>
+    <span class="kw kw-natural">明朝体</span>
+    <span class="kw kw-natural">手描き感</span>
+    <span class="kw kw-natural">丸み</span>
+    <span class="kw kw-natural">マットな質感</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-natural">
+      <div class="p-tag">Natural Life Salon</div>
+      <h3>あなたらしい暮らしを<br>もっと自由に</h3>
+      <p class="p-body">日々のくらしに寄り添う<br>やさしい時間をお届けします</p>
+      <span class="p-btn">体験してみる</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>ナチュラルな雰囲気</code> <code>温かみのある</code><br>
+          <code>明朝体で上品に</code> <code>余白たっぷり</code><br>
+          <code>アースカラー</code> <code>手描き風のあしらい</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Organic & Natural</span>
+          <span class="en-kw">Earth tones</span>
+          <span class="en-kw">Warm neutral colors</span><br>
+          <span class="en-kw">Matte finish</span>
+          <span class="en-kw">Hand-drawn elements</span>
+          <span class="en-kw">Watercolor accents</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          ベージュ・テラコッタ・カーキ・オフホワイト<br>
+          見出し：明朝体 / 本文：細めゴシック
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>サロン、花屋、ハンドメイド、料理教室、カフェ、ヨガ
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Organic & Natural テイストで、Earth tones のLP。Watercolor accents と Hand-drawn elements を取り入れて、温かみのあるデザインにして」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 02 エレガント ━━━━━ -->
+<section class="style-section fade-in" id="elegant">
+  <div class="section-head">
+    <div class="section-num">02</div>
+    <div class="section-title">
+      <div class="en">Feminine &amp; Elegant</div>
+      <h2>エレガント・ラグジュアリー</h2>
+    </div>
+  </div>
+  <p class="section-desc">高級感・特別感・憧れ。高単価サービスやブランディングの定番。</p>
+  <div class="keywords">
+    <span class="kw kw-elegant">セリフ体</span>
+    <span class="kw kw-elegant">ゴールド</span>
+    <span class="kw kw-elegant">ダーク背景</span>
+    <span class="kw kw-elegant">細線ボーダー</span>
+    <span class="kw kw-elegant">字間広め</span>
+    <span class="kw kw-elegant">マットな質感</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-elegant">
+      <div class="p-tag">Private Beauty Salon</div>
+      <h3>Timeless<br>Elegance</h3>
+      <p class="p-body">あなただけの特別な時間を<br>完全プライベート空間で</p>
+      <span class="p-btn">Reserve</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>高級感のある</code> <code>エレガントに</code><br>
+          <code>ダーク背景にゴールド</code> <code>セリフ体</code><br>
+          <code>文字間を広めに</code> <code>細いボーダー</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Feminine & Elegant</span>
+          <span class="en-kw">Elegant Serif font</span><br>
+          <span class="en-kw">Generous letter spacing</span>
+          <span class="en-kw">Matte finish</span><br>
+          <span class="en-kw">Muted color palette</span>
+          <span class="en-kw">Soft drop shadow</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          ダークネイビー・ブラック + ゴールド・シャンパン<br>
+          英字：Playfair, Cormorant / 和文：明朝体
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>高級サロン、ジュエリー、ウェディング、高単価コンサル
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Feminine & Elegant テイストで、Elegant Serif font を使用。Generous letter spacing と Matte finish で上品なLPにして」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 03 癒し・パステル ━━━━━ -->
+<section class="style-section fade-in" id="healing">
+  <div class="section-head">
+    <div class="section-num">03</div>
+    <div class="section-title">
+      <div class="en">Healing / Pastel</div>
+      <h2>癒し・パステル</h2>
+    </div>
+  </div>
+  <p class="section-desc">やさしさ・安らぎ・透明感。心と身体に関わるサービスにぴったり。</p>
+  <div class="keywords">
+    <span class="kw kw-healing">パステル</span>
+    <span class="kw kw-healing">やわらかい</span>
+    <span class="kw kw-healing">透明感</span>
+    <span class="kw kw-healing">丸みのある</span>
+    <span class="kw kw-healing">ふんわり</span>
+    <span class="kw kw-healing">水彩風</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-healing">
+      <div class="p-tag">Mindfulness &amp; Healing</div>
+      <h3>こころとからだに<br>やさしい時間を</h3>
+      <p class="p-body">忙しい毎日にほっと一息<br>あなたを癒す特別なひととき</p>
+      <span class="p-btn">詳しく見る</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>パステル調で</code> <code>やわらかい雰囲気</code><br>
+          <code>ふんわりした</code> <code>透明感のある</code><br>
+          <code>丸みを持たせて</code> <code>水彩風のあしらい</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Muted color palette</span>
+          <span class="en-kw">Soft gradient</span><br>
+          <span class="en-kw">Watercolor accents</span>
+          <span class="en-kw">Abundant negative space</span><br>
+          <span class="en-kw">Smooth fade-in</span>
+          <span class="en-kw">Gentle floating animation</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          ミントグリーン・ラベンダー・ベビーピンク・水色<br>
+          細めのゴシック体 / Light〜Regular
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>アロマ、ヒーリング、カウンセリング、スイーツ、ベビー
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Muted color palette のパステル調LP。Watercolor accents と Soft gradient で、Gentle floating animation をつけて優しい印象に」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 04 ジャパンディ ━━━━━ -->
+<section class="style-section fade-in" id="japandi">
+  <div class="section-head">
+    <div class="section-num">04</div>
+    <div class="section-title">
+      <div class="en">Japandi Style</div>
+      <h2>ジャパンディ</h2>
+    </div>
+  </div>
+  <p class="section-desc">和と北欧のミックス。温かみのあるミニマルで、大人の女性に今一番人気のトレンドスタイル。</p>
+  <div class="keywords">
+    <span class="kw kw-japandi">和×北欧</span>
+    <span class="kw kw-japandi">余白の美</span>
+    <span class="kw kw-japandi">明朝体</span>
+    <span class="kw kw-japandi">くすみカラー</span>
+    <span class="kw kw-japandi">温かいミニマル</span>
+    <span class="kw kw-japandi">抜け感</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-japandi">
+      <div class="p-tag">Inner Beauty Studio</div>
+      <h3>静けさのなかに<br>宿る美しさ</h3>
+      <p class="p-body">余白を愛する、大人のための<br>心地よいライフスタイル</p>
+      <span class="p-btn">詳しく見る</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>和モダン×北欧ミックス</code> <code>余白多め</code><br>
+          <code>くすみカラー</code> <code>抜け感のある</code><br>
+          <code>温かみのあるミニマル</code> <code>こなれ感</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Japandi</span>
+          <span class="en-kw">Minimalist</span>
+          <span class="en-kw">Clean & Modern</span><br>
+          <span class="en-kw">Warm neutral colors</span>
+          <span class="en-kw">Muted color palette</span><br>
+          <span class="en-kw">Abundant negative space</span>
+          <span class="en-kw">Matte finish</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          生成り・グレージュ・くすみベージュ・墨色<br>
+          見出し：明朝体 / 英字：細めサンセリフ
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>ライフスタイル、コーチング、インテリア、食、大人向け教室
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Japandi style のLP。Warm neutral colors と Abundant negative space で、Matte finish の落ち着いたデザインにして」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 05 ポップ ━━━━━ -->
+<section class="style-section fade-in" id="pop">
+  <div class="section-head">
+    <div class="section-num">05</div>
+    <div class="section-title">
+      <div class="en">Pop / Casual</div>
+      <h2>ポップ・カジュアル</h2>
+    </div>
+  </div>
+  <p class="section-desc">楽しい・親しみやすい・元気。イベントやワークショップに最適。</p>
+  <div class="keywords">
+    <span class="kw kw-pop">ビビッドカラー</span>
+    <span class="kw kw-pop">太字</span>
+    <span class="kw kw-pop">丸ゴシック</span>
+    <span class="kw kw-pop">カラフル</span>
+    <span class="kw kw-pop">角丸</span>
+    <span class="kw kw-pop">イラスト</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-pop">
+      <div class="p-tag">Special Workshop</div>
+      <h3>ワクワクが<br>止まらない！</h3>
+      <p class="p-body">初心者さん大歓迎！<br>手ぶらで気軽に参加できます</p>
+      <span class="p-btn">今すぐ申し込む</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>ポップな</code> <code>カジュアルで楽しい</code><br>
+          <code>カラフルに</code> <code>親しみやすい</code><br>
+          <code>丸ボタン</code> <code>イラスト風のあしらい</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Clean Sans-serif font</span>
+          <span class="en-kw">Soft hover effect</span><br>
+          <span class="en-kw">Hand-drawn elements</span>
+          <span class="en-kw">Micro-interactions</span><br>
+          <span class="en-kw">Smooth fade-in</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          オレンジ・イエロー・ピンクなど暖色系ビビッド<br>
+          太めの丸ゴシック / サイズ大きめ
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>イベント、ワークショップ、キッズ、カジュアル教室
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「ポップで楽しい雰囲気のLP。Clean Sans-serif font で、Hand-drawn elements のあしらいを入れて、Micro-interactions で動きも加えて」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ キーワード辞典 ━━━━━ -->
+<section class="vocab-section fade-in" id="vocab">
+  <div class="section-head">
+    <div class="section-num">A</div>
+    <div class="section-title">
+      <h2>デザインキーワード辞典</h2>
+    </div>
+  </div>
+  <p class="section-desc">AIへの指示に使える日本語＋英語キーワード。英語キーワードをプロンプトに混ぜると精度が上がります。</p>
+
+  <div class="vocab-grid">
+
+    <!-- 1. レイアウト -->
+    <div class="accordion-trigger open" onclick="toggleAccordion(this)">
+      <span class="cat-num">1</span>レイアウト・構図<span class="arrow">&#9662;</span>
+    </div>
+    <div class="accordion-content open">
+      <div class="vocab-card"><div class="term">ファーストビュー（FV）</div><div class="reading">First View / Above the Fold</div><div class="def">ページを開いて最初に見える画面。ここで離脱されるかが決まる。</div><div class="example">「FVにキャッチコピーとCTAボタンを入れて」</div></div>
+      <div class="vocab-card"><div class="term">余白（ネガティブスペース）</div><div class="reading">Abundant Negative Space / White Space</div><div class="def">要素まわりの空き。「何もない」が高級感を生む。</div><div class="example">「もっと余白を取ってゆったりさせて」</div><div class="ai-tip"><span>Abundant negative space</span> をプロンプトに入れるとAIが適切に余白を確保</div></div>
+      <div class="vocab-card"><div class="term">非対称レイアウト</div><div class="reading">Asymmetrical Layout</div><div class="def">左右のバランスをあえて崩す。動きと抜け感が出てプロっぽくなる。</div><div class="example">「左右対称じゃなく、あえて非対称に」</div><div class="ai-tip"><span>Asymmetrical layout</span> で完璧すぎるAIの対称性を崩せる</div></div>
+      <div class="vocab-card"><div class="term">ブロークングリッド</div><div class="reading">Broken Grid</div><div class="def">写真と文字を少し重ねるなど、枠にとらわれない配置。プロ感UP。</div><div class="example">「写真とテキストを少し重ねるレイアウトにして」</div><div class="ai-tip"><span>Broken grid</span> + <span>Overlapping elements</span> で雑誌風に</div></div>
+      <div class="vocab-card"><div class="term">カラム</div><div class="reading">Column</div><div class="def">縦方向の列。「2カラム＝横に2分割」のように使う。</div><div class="example">「左に写真、右にテキストの2カラムで」</div></div>
+      <div class="vocab-card"><div class="term">エディトリアルデザイン</div><div class="reading">Editorial Design</div><div class="def">ファッション誌のような美しい配置。写真×文字の魅せ方が洗練。</div><div class="example">「雑誌のような美しいレイアウトで」</div><div class="ai-tip"><span>Editorial design</span> で一気に雑誌風の洗練感に</div></div>
+    </div>
+
+    <!-- 2. 配色 -->
+    <div class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="cat-num">2</span>配色・カラーパレット<span class="arrow">&#9662;</span>
+    </div>
+    <div class="accordion-content">
+      <div class="vocab-card"><div class="term">トンマナ</div><div class="reading">Tone & Manner</div><div class="def">デザイン全体の雰囲気・統一感。色・フォント・写真の世界観。</div><div class="example">「全体のトンマナをナチュラルに揃えて」</div></div>
+      <div class="vocab-card"><div class="term">くすみカラー</div><div class="reading">Muted Color Palette</div><div class="def">彩度を落とした大人っぽい色合い。AIの「鮮やかすぎる色」を防ぐ。</div><div class="example">「くすみカラーで大人っぽく」</div><div class="ai-tip"><span>Muted color palette</span> はAIのビビッドすぎる配色を抑える必須ワード</div></div>
+      <div class="vocab-card"><div class="term">アースカラー</div><div class="reading">Earth Tones</div><div class="def">ベージュ・カーキ・テラコッタ。自然界にある温かい色。</div><div class="example">「アースカラーで温かみのある配色に」</div></div>
+      <div class="vocab-card"><div class="term">トーンオントーン</div><div class="reading">Tone on Tone</div><div class="def">同じ色味で濃淡だけを変える配色。失敗なくまとまりが出る。</div><div class="example">「ベージュのトーンオントーンでまとめて」</div><div class="ai-tip"><span>Tone on tone</span> で色の統一感を簡単に指示できる</div></div>
+      <div class="vocab-card"><div class="term">アクセントカラー</div><div class="reading">Accent Color</div><div class="def">目を引くポイントに使う差し色。ボタンや強調部分に。</div><div class="example">「アクセントカラーをコーラルピンクに」</div></div>
+      <div class="vocab-card"><div class="term">温かいニュートラルカラー</div><div class="reading">Warm Neutral Colors</div><div class="def">真っ白ではなく、アイボリーやグレージュ。肌馴染みの良い色。</div><div class="example">「背景は真っ白じゃなくアイボリーで」</div><div class="ai-tip"><span>Warm neutral colors</span> でAIの冷たい白を回避</div></div>
+    </div>
+
+    <!-- 3. 文字 -->
+    <div class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="cat-num">3</span>文字・タイポグラフィ<span class="arrow">&#9662;</span>
+    </div>
+    <div class="accordion-content">
+      <div class="vocab-card"><div class="term">セリフ体 / 明朝体</div><div class="reading">Elegant Serif Font</div><div class="def">文字に「ひげ」がある書体。高級感・信頼感・女性らしさ。</div><div class="example">「見出しはセリフ体で上品に」</div></div>
+      <div class="vocab-card"><div class="term">サンセリフ体 / ゴシック体</div><div class="reading">Clean Sans-serif Font</div><div class="def">ひげがないシンプルな書体。モダン・親しみやすさ・実用性。</div><div class="example">「本文はサンセリフでスッキリ見せて」</div></div>
+      <div class="vocab-card"><div class="term">ゆったりとした字送り</div><div class="reading">Generous Letter Spacing</div><div class="def">文字と文字の間隔を広げる。上品さ・優雅さ・余裕の演出。</div><div class="example">「文字間を広めにして高級感を」</div><div class="ai-tip"><span>Generous letter spacing</span> を入れるだけでプロっぽさが段違い</div></div>
+      <div class="vocab-card"><div class="term">タイポグラフィ主役</div><div class="reading">Typography-driven</div><div class="def">写真ではなく「美しい文字の配置」でデザインする手法。</div><div class="example">「タイポグラフィ主役のデザインにして」</div><div class="ai-tip"><span>Typography-driven</span> で文字で魅せるミニマルなデザインに</div></div>
+      <div class="vocab-card"><div class="term">行間（ラインハイト）</div><div class="reading">Line Height</div><div class="def">行と行の間隔。広いとゆったり読みやすい。</div><div class="example">「行間をもう少し広げて読みやすくして」</div></div>
+    </div>
+
+    <!-- 4. 質感 -->
+    <div class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="cat-num">4</span>質感・あしらい（AI特有のテカテカ感を消す）<span class="arrow">&#9662;</span>
+    </div>
+    <div class="accordion-content">
+      <div class="vocab-card"><div class="term">マットな質感</div><div class="reading">Matte Finish</div><div class="def">テカリを消した上品な質感。画用紙やすりガラスのような仕上がり。</div><div class="example">「マットな質感で上品に仕上げて」</div><div class="ai-tip"><span>Matte finish</span> はAIのCG感・テカテカ感を消す最強ワード</div></div>
+      <div class="vocab-card"><div class="term">柔らかいドロップシャドウ</div><div class="reading">Soft Drop Shadow</div><div class="def">黒い濃い影ではなく「ふわっと広く薄い影」にして今っぽく。</div><div class="example">「カードに柔らかい影をつけて」</div><div class="ai-tip"><span>Soft drop shadow</span> でAIの強すぎる影を防止</div></div>
+      <div class="vocab-card"><div class="term">水彩風のあしらい</div><div class="reading">Watercolor Accents</div><div class="def">絵の具が滲んだような表現。背景や装飾に使うと柔らかい印象に。</div><div class="example">「背景に水彩風のあしらいを入れて」</div></div>
+      <div class="vocab-card"><div class="term">手描き風の要素</div><div class="reading">Hand-drawn Elements</div><div class="def">矢印やアンダーラインに手書き感。親近感と人間味がプラス。</div><div class="example">「ポイントに手描き風のアンダーラインを」</div></div>
+      <div class="vocab-card"><div class="term">フィルムグレイン</div><div class="reading">Film Grain / Subtle Noise</div><div class="def">フィルム写真のような微かなザラつき。デジタル臭さを消して人間味UP。</div><div class="example">「写真にフィルムグレインをかけて」</div><div class="ai-tip"><span>Film grain</span> + <span>Subtle noise</span> でAI画像の不自然さが消える</div></div>
+    </div>
+
+    <!-- 5. 動き -->
+    <div class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="cat-num">5</span>動き・アニメーション（安っぽいパワポ感を避ける）<span class="arrow">&#9662;</span>
+    </div>
+    <div class="accordion-content">
+      <div class="vocab-card"><div class="term">なめらかなフェードイン</div><div class="reading">Smooth Fade-in / Gentle Reveal</div><div class="def">パッと出すのではなく、じわっと優しく要素を表示。上品な定番演出。</div><div class="example">「セクションごとにフェードインで」</div><div class="ai-tip"><span>Smooth fade-in</span> + <span>Natural easing</span> で人間味のある動きに</div></div>
+      <div class="vocab-card"><div class="term">自然なイージング</div><div class="reading">Natural Easing</div><div class="def">ロボットのような等速ではなく、フワッと始まりスッと止まる動き。</div><div class="example">「動きは自然なイージングで」</div><div class="ai-tip"><span>Natural easing</span> がないと機械的な動きになりがち</div></div>
+      <div class="vocab-card"><div class="term">控えめなパララックス</div><div class="reading">Subtle Parallax Effect</div><div class="def">背景と前景が違う速度で動き、奥行きを演出。「控えめ」がポイント。</div><div class="example">「ヒーロー画像に控えめなパララックスを」</div><div class="ai-tip">必ず <span>Subtle</span> をつけること。なしだとやりすぎになる</div></div>
+      <div class="vocab-card"><div class="term">ゆったりした浮遊感</div><div class="reading">Gentle Floating Animation</div><div class="def">写真やあしらいが呼吸するようにゆっくりフワフワと動く。</div><div class="example">「装飾にゆったりした浮遊アニメをつけて」</div></div>
+      <div class="vocab-card"><div class="term">ホバーエフェクト</div><div class="reading">Soft Hover Effect</div><div class="def">マウスを乗せたとき、ふんわりと色や影が変わる心地よい反応。</div><div class="example">「ボタンにソフトなホバーエフェクトを」</div></div>
+      <div class="vocab-card"><div class="term">マイクロインタラクション</div><div class="reading">Micro-interactions</div><div class="def">ボタンを押した時の小さな反応。細部の丁寧さがプロとの差。</div><div class="example">「CTAにマイクロインタラクションを入れて」</div></div>
+    </div>
+
+    <!-- 6. パーツ -->
+    <div class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="cat-num">6</span>パーツ・要素<span class="arrow">&#9662;</span>
+    </div>
+    <div class="accordion-content">
+      <div class="vocab-card"><div class="term">CTA（シーティーエー）</div><div class="reading">Call To Action</div><div class="def">「申し込む」「購入」など行動を促すボタン。LPの最重要パーツ。</div><div class="example">「CTAをもっと大きく目立たせて」</div></div>
+      <div class="vocab-card"><div class="term">テスティモニアル</div><div class="reading">Testimonial</div><div class="def">お客様の声セクション。顔写真＋コメントの構成が定番。</div><div class="example">「お客様の声をテスティモニアルセクションで」</div></div>
+      <div class="vocab-card"><div class="term">アコーディオン</div><div class="reading">Accordion</div><div class="def">クリックで開閉する折りたたみUI。FAQ（よくある質問）に最適。</div><div class="example">「FAQはアコーディオンにして」</div></div>
+      <div class="vocab-card"><div class="term">フローティングボタン</div><div class="reading">Floating CTA</div><div class="def">画面下に常に浮いている申込ボタン。スマホLPで必須。</div><div class="example">「スマホは画面下にボタンを固定して」</div></div>
+      <div class="vocab-card"><div class="term">カード</div><div class="reading">Card</div><div class="def">情報をまとまりとして囲んだUI。Soft drop shadow で浮かせるのが今風。</div><div class="example">「特徴を3つのカードに分けて並べて」</div></div>
+      <div class="vocab-card"><div class="term">ソーシャルプルーフ</div><div class="reading">Social Proof</div><div class="def">「〇〇名が参加」「メディア掲載」など信頼を高める社会的証明。</div><div class="example">「参加者数やメディア実績を入れて信頼感を」</div></div>
+    </div>
+
+    <!-- 7. 雰囲気 -->
+    <div class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="cat-num">7</span>デザイナーがよく使う「雰囲気の言葉」<span class="arrow">&#9662;</span>
+    </div>
+    <div class="accordion-content">
+      <div class="vocab-card"><div class="term">世界観</div><div class="reading">Brand World</div><div class="def">サービス全体から伝わる統一された雰囲気。色・写真・言葉が一体に。</div><div class="example">「世界観が伝わるFVにして」</div></div>
+      <div class="vocab-card"><div class="term">抜け感</div><div class="reading">Airy / Breathable</div><div class="def">詰め込みすぎず、軽やかで風通しの良い印象。余白がカギ。</div><div class="example">「もっと抜け感を出して」</div></div>
+      <div class="vocab-card"><div class="term">こなれ感</div><div class="reading">Effortless</div><div class="def">がんばりすぎず、でもおしゃれ。自然に洗練された印象。</div><div class="example">「こなれ感のあるデザインにして」</div></div>
+      <div class="vocab-card"><div class="term">メリハリ</div><div class="reading">Contrast / Rhythm</div><div class="def">大小・太細の差をつけること。単調なデザインの解消に。</div><div class="example">「見出しと本文でもっとメリハリを」</div></div>
+      <div class="vocab-card"><div class="term">統一感</div><div class="reading">Consistency</div><div class="def">色・フォント・余白のルールが揃っている。プロっぽさの源。</div><div class="example">「全体の統一感を出して」</div></div>
+      <div class="vocab-card"><div class="term">視線誘導</div><div class="reading">Eye Flow</div><div class="def">読者の目線を意図通りに導くこと。CTAに自然と目が行くように。</div><div class="example">「CTAに視線が行くように誘導して」</div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ━━━━━ プロンプトの組み立て方 ━━━━━ -->
+<section class="guide-section fade-in" id="guide">
+  <div class="guide-card">
+    <h2>プロンプトの組み立て方</h2>
+
+    <div class="guide-example">
+      <span class="lbl lbl-bad">&#9651; ざっくりすぎる</span>
+      「おしゃれなLPを作って」
+    </div>
+
+    <div class="guide-example">
+      <span class="lbl lbl-good">&#9675; 日本語で具体的に</span>
+      「<em>ナチュラル</em>な雰囲気のLPを作って。<br>
+      　背景は<em>アースカラー</em>、見出しは<em>明朝体</em>で<em>字間広め</em>。<br>
+      　<em>余白たっぷり</em>のゆったりした構成にして。<br>
+      　<em>CTA</em>は<em>丸ボタン</em>で<em>ファーストビュー</em>に配置。<br>
+      　各セクションは<em>フェードイン</em>で表示して。」
+    </div>
+
+    <div class="guide-example">
+      <span class="lbl lbl-good">&#9675; 英語キーワードを混ぜると精度UP</span>
+      「30代女性向けのヨガサロンのLPを作ります。<br>デザインのテイストは以下のキーワードを取り入れてください。」
+      <span class="en-prompt">Japandi style, Asymmetrical layout, Abundant negative space,<br>Earth tones, Matte finish, Elegant Serif font.<br>Smooth fade-in + Natural easing で上品で落ち着いた動きに。</span>
+    </div>
+
+    <div class="guide-example">
+      <span class="lbl lbl-good">&#9675; 組み合わせで自分だけのスタイルに</span>
+      「<em>癒し・パステル</em>ベースだけど、<br>
+      　見出しだけ<em>エレガント</em>寄りの<em>セリフ体</em>にして、<br>
+      　<em>Muted color palette</em> + <em>Generous letter spacing</em> で<br>
+      　少し<em>高級感</em>も出したい。」
+    </div>
+
+    <div class="guide-example" style="border-left: 3px solid var(--accent);">
+      <strong>コツ</strong><br>
+      1. まず5つのスタイルから好みを1つ選ぶ<br>
+      2. キーワード辞典から2〜3個追加する<br>
+      3. 「もうちょっと〇〇にして」で微調整する<br><br>
+      完璧な指示を最初から出す必要はありません。<br>
+      <strong>スタイル名 + 2〜3個のキーワード</strong>だけで、AIのデザインは劇的に変わります。
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  AI Workshop 2026.4.18 — Design Keyword Reference for Women Entrepreneurs
+</footer>
+
+<script>
+// Navigation
+function go(id) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (event && event.target) event.target.classList.add('active');
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Active tab on scroll
+const sections = document.querySelectorAll('.style-section, .vocab-section, .guide-section');
+const navBtns = document.querySelectorAll('.nav-btn');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navBtns.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('onclick')?.includes(current)) btn.classList.add('active');
+  });
+});
+
+// Scroll Fade-in (Smooth fade-in + Natural easing)
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+// Accordion
+function toggleAccordion(trigger) {
+  const content = trigger.nextElementSibling;
+  const isOpen = trigger.classList.contains('open');
+  if (isOpen) {
+    trigger.classList.remove('open');
+    content.classList.remove('open');
+  } else {
+    trigger.classList.add('open');
+    content.classList.add('open');
+  }
+}
+</script>
+
+</body>
+</html>
