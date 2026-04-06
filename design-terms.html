@@ -23,6 +23,13 @@
 </style>
 <script>
   (function(){
+    var isEmbed = window.self !== window.top || /[?&]embed=1/.test(location.search);
+    if (isEmbed) {
+      var s = document.createElement('style');
+      s.textContent = '.page-header{display:none!important}.nav-wrap{top:0!important}body{padding-top:0!important}';
+      document.documentElement.appendChild(s);
+      return;
+    }
     if (sessionStorage.getItem('aiws_auth') === 'ok') return;
     document.documentElement.classList.add('pw-locked');
     document.addEventListener('DOMContentLoaded', function(){
