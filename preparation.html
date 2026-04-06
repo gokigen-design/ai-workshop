@@ -1629,69 +1629,46 @@
         OSによって手順が違うので、ご自分のPCに合わせて選んでください。
       </p>
 
-      <!-- (a) Claude Codeインストール -->
+      <!-- (a) Claudeをブラウザで使う + Chrome拡張機能 -->
       <div style="margin-bottom:24px;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
           <div style="width:24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'DM Sans',sans-serif;">a</div>
-          <div style="font-size:15px;font-weight:600;color:var(--black);">Claude Codeをインストール</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);">Claudeをブラウザで使えるようにする（Chrome拡張機能）</div>
         </div>
-        <p style="font-size:12px;color:var(--gray-mid);line-height:1.7;margin:0 0 8px 34px;">
-          Claude Codeは「ターミナルでClaudeに話しかけてコードを書いてもらう」ツールです。今回のLP制作のメインツールになります。
+        <p style="font-size:12px;color:var(--gray-mid);line-height:1.7;margin:0 0 14px 34px;">
+          今回は<strong style="color:var(--black);">ターミナルもアプリのインストールも不要</strong>。ブラウザ（Chrome）だけで完結します。<br>
+          さらに<strong style="color:var(--black);">「Claude for Chrome」拡張機能</strong>を入れると、Claudeが画面を見ながら代わりに操作してくれるようになります。
         </p>
 
-        <div class="ostab-group">
-          <div class="ostab-nav">
-            <button class="ostab-btn active" onclick="switchOstab('kick-mac', this)">🍎 &nbsp;Mac</button>
-            <button class="ostab-btn" onclick="switchOstab('kick-win', this)">🪟 &nbsp;Windows</button>
-          </div>
+        <!-- STEP 1 -->
+        <div class="code-step-label">STEP 1 ／ claude.ai にログイン</div>
+        <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin:6px 0 6px;">
+          Chromeで下のURLを開いて、Googleアカウントなどでログインしてください。これだけでClaudeが使えるようになります。
+        </p>
+        <div class="code-step">https://claude.ai<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
 
-          <!-- Mac -->
-          <div class="ostab-content active" id="kick-mac">
-            <div style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;">下のコマンドを<strong style="color:var(--black);">「ターミナル」アプリ</strong>にコピペして順番に実行してください。<br>ターミナルは「アプリケーション → ユーティリティ → ターミナル」にあります。</div>
+        <!-- STEP 2 -->
+        <div class="code-step-label" style="margin-top:18px;">STEP 2 ／ Chrome拡張機能「Claude」を追加</div>
+        <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin:6px 0 8px;">
+          下のリンクを<strong style="color:var(--black);">Chromeで</strong>開いて、右上の <strong style="color:var(--black);">「Chromeに追加」</strong> ボタンをクリック → 確認ダイアログで <strong style="color:var(--black);">「拡張機能を追加」</strong>。
+        </p>
+        <div class="code-step"><a href="https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn?hl=ja" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:underline;word-break:break-all;">https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn?hl=ja</a><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
 
-            <div class="code-step-label">STEP 1 ／ Homebrewが入っているか確認</div>
-            <div class="code-step">brew --version
-<span class="code-comment"># 「Homebrew 4.x.x」と出ればOK。出なければ次のSTEP 2へ</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+        <!-- STEP 3 -->
+        <div class="code-step-label" style="margin-top:18px;">STEP 3 ／ 拡張機能をピン留め</div>
+        <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin:6px 0 0;">
+          Chrome右上の <strong style="color:var(--black);">🧩 パズルピース</strong> アイコンをクリック → 「Claude」の横の <strong style="color:var(--black);">📌 ピンマーク</strong> を押して常時表示に。<br>
+          ツールバーにClaudeのアイコンが出てきたらOKです。
+        </p>
 
-            <div class="code-step-label">STEP 2 ／ Homebrewが無い人だけ実行</div>
-            <div class="code-step">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+        <!-- STEP 4 -->
+        <div class="code-step-label" style="margin-top:18px;">STEP 4 ／ 拡張機能からサインイン</div>
+        <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin:6px 0 0;">
+          ツールバーのClaudeアイコンをクリック → 「Sign in」 → claude.aiと同じアカウントでログイン。これで<strong style="color:var(--black);">Claudeがブラウザの中で動ける状態</strong>になります。
+        </p>
 
-            <div class="code-step-label">STEP 3 ／ Node.jsをインストール</div>
-            <div class="code-step">brew install node
-<span class="code-comment"># 5〜10分かかります</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
-
-            <div class="code-step-label">STEP 4 ／ Claude Codeをインストール</div>
-            <div class="code-step">npm install -g @anthropic-ai/claude-code<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
-
-            <div class="code-step-label">STEP 5 ／ 起動してログイン</div>
-            <div class="code-step">claude
-<span class="code-comment"># ブラウザが開くので Anthropicアカウントでログイン</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
-          </div>
-
-          <!-- Windows -->
-          <div class="ostab-content" id="kick-win">
-            <div style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;">Windowsは<strong style="color:var(--black);">「PowerShell」</strong>を使います。スタートメニューで「PowerShell」と検索して起動してください。</div>
-
-            <div class="code-step-label">STEP 1 ／ Node.jsをダウンロード</div>
-            <div class="code-step"><span class="code-comment"># 下のURLからLTS版（推奨）をダウンロードしてインストーラーを実行</span>
-https://nodejs.org/ja/download<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
-
-            <div class="code-step-label">STEP 2 ／ インストール確認</div>
-            <div class="code-step">node --version
-npm --version
-<span class="code-comment"># どちらもバージョン番号が出ればOK</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
-
-            <div class="code-step-label">STEP 3 ／ Claude Codeをインストール</div>
-            <div class="code-step">npm install -g @anthropic-ai/claude-code<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
-
-            <div class="code-step-label">STEP 4 ／ 起動してログイン</div>
-            <div class="code-step">claude
-<span class="code-comment"># ブラウザが開くので Anthropicアカウントでログイン</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
-
-            <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:12px 16px;margin-top:14px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
-              💡 <strong style="color:var(--black);">うまくいかない時</strong>：PowerShellを「管理者として実行」で開き直してみてください。それでもダメな場合は当日サポートします！
-            </div>
-          </div>
+        <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:12px 16px;margin-top:16px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+          💡 <strong style="color:var(--black);">ブラウザはChrome必須</strong>：SafariやEdgeでは拡張機能が入りません。まだChromeを入れていない人は <a href="https://www.google.com/chrome/" target="_blank" rel="noopener" style="color:var(--orange);">google.com/chrome</a> から先にインストールしてください。
         </div>
       </div>
 
@@ -1706,10 +1683,10 @@ npm --version
         </p>
         <div style="background:var(--beige);border-radius:10px;padding:16px 20px;">
           <div style="font-size:12px;color:var(--black);line-height:2;">
-            ☐ ターミナル / PowerShellで <code style="background:#fff;padding:2px 8px;border-radius:4px;font-size:11px;">claude</code> と打って起動できる<br>
-            ☐ Anthropicアカウントでログインできている<br>
-            ☐ 「こんにちは」と打って返事が返ってくる<br>
-            ☐ デスクトップに作業用フォルダを作れる
+            ☐ Chromeで claude.ai を開いてログインできている<br>
+            ☐ Chrome拡張機能「Claude」がツールバーに表示されている<br>
+            ☐ 拡張機能からサインインできている<br>
+            ☐ 「こんにちは」と打って返事が返ってくる
           </div>
         </div>
       </div>
@@ -1755,7 +1732,7 @@ npm --version
       </div>
 
       <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:14px 18px;margin-top:18px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
-        💡 <strong style="color:var(--black);">この日のゴール</strong>：「Claude Codeが起動できる」+「自分のサービスを30秒で説明できる」状態。これができていれば、4/18 当日は最速でLP完成までいけます。
+        💡 <strong style="color:var(--black);">この日のゴール</strong>：「Chromeでclaude.aiが使えて、Claude拡張機能も入っている」+「自分のサービスを30秒で説明できる」状態。これができていれば、4/18 当日は最速でLP完成までいけます。
       </div>
     </div>
   </section>
@@ -3040,135 +3017,253 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div>
   </section>
 
-  <!-- ═══ TAB 4: デプロイ手順 ═══ -->
+  <!-- ═══ TAB: STEP 05 公開する ═══ -->
   <section class="tab-content" id="tab-deploy">
     <div class="sec-eyebrow">Step 05 ／ 公開する</div>
     <div class="sec-title">LPをネットに公開する</div>
-    <p class="sec-desc">GitHubを使えば無料でLPを公開できます。手順通りに進めれば10分で完了します。</p>
+    <p class="sec-desc">「GitHub（保管庫）」と「Vercel（サーバー）」の2つを使って、誰でもアクセスできるURLでLPを公開します。Claude Codeにお願いすれば、コマンドはほぼ自動で進みます。</p>
 
-    <div class="callout">GitHubアカウントは事前に作っておいてください。当日「アカウント作成」に時間をとられるともったいないです。</div>
-
+    <!-- 全体像：保管庫 → サーバー -->
     <div class="card">
-      <div class="card-head"><div class="card-num">0</div><div class="card-title">事前準備</div></div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">GitHubアカウントを作る</div>
-            <div class="step-desc">github.com にアクセス → 「Sign up」からアカウント作成。メールアドレスがあればOK。<br>すでにお持ちの方はスキップしてください。</div>
+      <div class="card-head"><div class="card-num">📐</div><div class="card-title">全体の流れ（イメージ）</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:18px;">
+        ネット公開には<strong style="color:var(--black);">「ファイルを保管する場所」</strong>と<strong style="color:var(--black);">「URLを発行してくれるサーバー」</strong>の2つが必要です。今回はそれぞれGitHubとVercelを使います。
+      </p>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch;">
+        <div style="background:var(--beige);border-radius:12px;padding:18px 14px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">💻</div>
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">あなたのPC</div>
+          <div style="font-size:10px;color:var(--gray-lt);line-height:1.6;">Claude Codeで<br>LPを作る</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--orange);font-size:18px;font-weight:600;">→</div>
+        <div style="background:linear-gradient(135deg,#FAF5EC 0%,#F5EFE4 100%);border:1px solid var(--orange-border);border-radius:12px;padding:18px 14px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">🗄️</div>
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">GitHub</div>
+          <div style="font-size:10px;color:var(--orange);font-weight:600;line-height:1.6;">＝ 保管庫<br>（Privateで保管）</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--orange);font-size:18px;font-weight:600;">→</div>
+        <div style="background:linear-gradient(135deg,#FAF5EC 0%,#F5EFE4 100%);border:1px solid var(--orange-border);border-radius:12px;padding:18px 14px;text-align:center;">
+          <div style="font-size:28px;margin-bottom:6px;">🌐</div>
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Vercel</div>
+          <div style="font-size:10px;color:var(--orange);font-weight:600;line-height:1.6;">＝ サーバー<br>（公開URL発行）</div>
+        </div>
+      </div>
+      <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:12px 16px;margin-top:18px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+        💡 一度この仕組みを作ってしまえば、あとは <strong style="color:var(--black);">「Claude Codeに『pushして』と頼むだけ」</strong> で自動的にネット上のLPも更新されるようになります。
+      </div>
+    </div>
+
+    <!-- 重要注意：Privateにする -->
+    <div class="card" style="border:1.5px solid #C96A3A;background:linear-gradient(135deg,#fff 0%,rgba(201,106,58,0.04) 100%);">
+      <div class="card-head"><div class="card-num" style="background:#C96A3A;color:#fff;border:none;">!</div><div class="card-title" style="color:#C96A3A;">超重要：GitHubは必ず「Private」にしてください</div></div>
+      <p style="font-size:13px;color:var(--black);line-height:1.9;margin-bottom:14px;">
+        GitHubには <strong>Public（公開）</strong>と<strong>Private（非公開）</strong>の2種類があります。<br>
+        今回は<strong style="color:#C96A3A;">必ず Private を選んでください。</strong>
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;letter-spacing:0.1em;color:#C96A3A;font-weight:700;margin-bottom:6px;">❌ Public（公開）</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">中身のコードを<strong style="color:var(--black);">世界中の誰でも見られる</strong>状態。Claude Codeとのやり取り・下書き・パスワード・お客様情報なども丸見えになる危険があります。</div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;letter-spacing:0.1em;color:#5A8A6E;font-weight:700;margin-bottom:6px;">⭕ Private（非公開）</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">コード本体は<strong style="color:var(--black);">あなたしか見られない</strong>状態。Vercel経由で公開する「LPの見た目」だけが、URLからアクセスする人に届きます。</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;">
+        💬 「Privateにすると公開できないんじゃ？」と思いがちですが、<strong style="color:var(--black);">VercelはPrivateリポジトリでも無料で公開URLを発行できます</strong>。安心してください。
+      </p>
+    </div>
+
+    <!-- 事前準備 -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">0</div><div class="card-title">事前準備（キックオフまでに済ませておく）</div></div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">GitHubアカウントを作る</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">
+              <a href="https://github.com/signup" target="_blank" style="color:var(--orange);text-decoration:none;">github.com/signup</a> からメールアドレスで作成。無料です。
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">Vercelアカウントを作る</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">
+              <a href="https://vercel.com/signup" target="_blank" style="color:var(--orange);text-decoration:none;">vercel.com/signup</a> で「Continue with GitHub」を選ぶと、GitHubアカウントでそのままサインアップできます（同じメアドでOK）。
+            </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- 1. GitHub保管庫を作る -->
     <div class="card">
-      <div class="card-head"><div class="card-num">1</div><div class="card-title">リポジトリを作る</div></div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">「New repository」をクリック</div>
-            <div class="step-desc">GitHubにログイン後、右上の「＋」→「New repository」</div>
+      <div class="card-head"><div class="card-num">1</div><div class="card-title">GitHubに「保管庫」を作る</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">
+        まずはあなたのLPを保管する箱（リポジトリ）をGitHub上に作ります。
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">GitHub右上の「＋」→「New repository」をクリック</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">ログイン後の画面、画面右上のプラスマークから新しいリポジトリ作成画面に進みます。</div>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">リポジトリ名を入力</div>
-            <div class="step-desc">Repository name に好きな名前を入力（英数字・ハイフンのみ）</div>
-            <div class="step-code">例）my-lp　/ workshop-lp　/ サービス名-lp</div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">リポジトリ名を入力</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">英数字・ハイフンのみ。例：<code style="background:#fff;padding:2px 8px;border-radius:4px;">my-lp</code> ／ <code style="background:#fff;padding:2px 8px;border-radius:4px;">サービス名-lp</code></div>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">Public を選んで「Create repository」</div>
-            <div class="step-desc">Public（公開）を必ず選ぶ。Privateだとページが公開されません。</div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:rgba(201,106,58,0.08);border:1px solid var(--orange-border);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:#C96A3A;border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#C96A3A;margin-bottom:4px;">⭕ Private を選ぶ（ここがいちばん大事！）</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">2つのラジオボタンから「Private」を選択。Publicは絶対に選ばないでください。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">「Create repository」をクリック</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">下のボタンを押すと、空っぽのリポジトリができます。次のステップで中身を入れていきます。</div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- 2. GitHubに送る（ターミナル不要） -->
     <div class="card">
-      <div class="card-head"><div class="card-num">2</div><div class="card-title">HTMLファイルをアップロード</div></div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">「uploading an existing file」をクリック</div>
-            <div class="step-desc">リポジトリ作成直後の画面に「uploading an existing file」というリンクがあります。</div>
+      <div class="card-head"><div class="card-num">2</div><div class="card-title">LPのファイルをGitHubに送る（ターミナル不要）</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">
+        作ったLPのファイル（<code style="background:var(--beige);padding:2px 8px;border-radius:4px;">index.html</code> など）をGitHubの保管庫に送ります。<br>
+        ターミナルは使いません。<strong style="color:var(--black);">2つの方法</strong>があるので、ラクな方を選んでください。
+      </p>
+
+      <!-- 方法A -->
+      <div style="background:var(--beige);border-radius:12px;padding:20px 22px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;">A</div>
+          <div style="font-size:14px;font-weight:700;color:var(--black);">github.com の画面から直接ドラッグ＆ドロップ（いちばんカンタン）</div>
+        </div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;padding-left:38px;">
+          ① さっき作った空のリポジトリページで <strong style="color:var(--black);">「uploading an existing file」</strong> のリンクをクリック<br>
+          ② LPのフォルダをFinder/エクスプローラーで開く → 中身を<strong style="color:var(--black);">全選択してブラウザにドラッグ＆ドロップ</strong><br>
+          ③ 下の <strong style="color:var(--black);">「Commit changes」</strong> ボタンをクリック<br>
+          ✨ これだけでGitHubに全ファイルが入ります。インストール不要。
+        </div>
+      </div>
+
+      <!-- 方法B -->
+      <div style="background:var(--beige);border-radius:12px;padding:20px 22px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;">B</div>
+          <div style="font-size:14px;font-weight:700;color:var(--black);">GitHub Desktop を使う（更新が多い人向け）</div>
+        </div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;padding-left:38px;">
+          ① <a href="https://desktop.github.com/" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:underline;">desktop.github.com</a> からアプリをダウンロード → インストール → GitHubアカウントでログイン<br>
+          ② 「Add Local Repository」でLPのフォルダを選択（「git initしますか？」と聞かれたら Yes）<br>
+          ③ 左下の <strong style="color:var(--black);">Summary欄に「初回コミット」</strong> と入力 → 「Commit to main」<br>
+          ④ 右上の <strong style="color:var(--black);">「Publish repository」</strong> → さっき作ったリポジトリ名で、<strong style="color:#C96A3A;">Private のチェックを必ず入れて</strong> Publish<br>
+          ✨ 次回以降は「変更 → Commit → Push」の3クリックだけで更新できます。
+        </div>
+      </div>
+
+      <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:12px 16px;margin-top:14px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+        💡 <strong style="color:var(--black);">迷ったらA</strong>：1回だけならブラウザのドラッグ＆ドロップが最短。何度も更新する予定なら B の GitHub Desktop が便利です。
+      </div>
+
+      <div style="margin-top:14px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 18px;">
+        <div style="font-size:11px;letter-spacing:0.1em;color:var(--orange);font-weight:600;margin-bottom:8px;">CHECK</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">
+          GitHubのリポジトリページをリロードして、<code style="background:var(--beige);padding:2px 8px;border-radius:4px;">index.html</code> などのファイルが表示されていればアップロード成功です ✨
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Vercelで公開 -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">3</div><div class="card-title">Vercelに繋いで公開URLを発行する</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">
+        GitHubに保管したLPを、Vercelに「これを公開して」とお願いします。3クリックで公開URLが発行されます。
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;"><a href="https://vercel.com/new" target="_blank" style="color:var(--black);text-decoration:none;border-bottom:1px dotted var(--orange);">vercel.com/new</a> を開く</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">Vercelにログインした状態で、新規プロジェクト作成画面を開きます。</div>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">ファイルをドラッグ&ドロップ</div>
-            <div class="step-desc">Claude Codeが作った lp.html をドラッグ&ドロップ（または「choose your files」でアップロード）</div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">「Import Git Repository」から先ほどのリポジトリを選ぶ</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">一覧にPrivateリポジトリも表示されます。先ほど作った <code style="background:#fff;padding:2px 8px;border-radius:4px;">my-lp</code> を「Import」。<br>※ 初回は「VercelにGitHubへのアクセス権を渡す」確認が出ます → Authorizeで進めてください。</div>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">「Commit changes」をクリック</div>
-            <div class="step-desc">ページ下部の「Commit changes」ボタンを押す。これでファイルが保存されます。</div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">設定はそのまま「Deploy」をクリック</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">何も変更しなくてOK。HTMLだけのサイトはVercelが自動で認識してくれます。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:rgba(90,138,110,0.08);border:1px solid rgba(90,138,110,0.3);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:#5A8A6E;border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#5A8A6E;margin-bottom:4px;">1〜2分待つと公開URLが発行されます</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">
+              <code style="background:#fff;padding:2px 8px;border-radius:4px;font-size:11px;">https://リポジトリ名-xxxx.vercel.app</code><br>
+              これがあなたのLPの公開URLです。スマホからもアクセスできます！
+            </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- 4. 以降の更新 -->
     <div class="card">
-      <div class="card-head"><div class="card-num">3</div><div class="card-title">GitHub Pagesで公開する</div></div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">「Settings」タブをクリック</div>
-            <div class="step-desc">リポジトリページ上部の「Settings」へ</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">左サイドバーの「Pages」を選ぶ</div>
-            <div class="step-desc">「Code and automation」セクション内の「Pages」をクリック</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">Branch を「main」に設定 → Save</div>
-            <div class="step-desc">Source を「Deploy from a branch」に変更 → Branch を「main」に設定 → 「Save」をクリック</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <div class="step-title">URLが発行される（1〜2分待つ）</div>
-            <div class="step-desc">しばらくするとページにURLが表示されます。これがあなたのLPのURLです。</div>
-            <div class="step-code">https://あなたのGitHubユーザー名.github.io/リポジトリ名/lp.html</div>
-          </div>
+      <div class="card-head"><div class="card-num">4</div><div class="card-title">あとはファイルを差し替えるだけで自動更新</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        ここまで設定すれば、以降の更新は<strong style="color:var(--black);">GitHubにファイルを上げ直すだけ</strong>。<br>
+        VercelがGitHubの更新を自動で検知して、数十秒で公開URL側にも反映されます。
+      </p>
+      <div style="background:var(--beige);border-radius:10px;padding:16px 20px;">
+        <div style="font-size:11px;letter-spacing:0.1em;color:var(--orange);font-weight:600;margin-bottom:8px;">UPDATE FLOW</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:2;">
+          ① claude.ai でLPを修正してもらう → 新しいコードをコピペで保存<br>
+          ② GitHubの該当ファイルを開いて ✏️鉛筆マーク → 中身を貼り替えて「Commit changes」<br>
+          　（GitHub Desktop派なら Commit → Push の2クリック）<br>
+          ③ Vercelが自動でデプロイ → 公開URLが更新される（30秒〜1分）
         </div>
       </div>
     </div>
 
+    <!-- 独自ドメイン -->
     <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 70%,rgba(201,106,58,0.03));">
       <div class="card-head"><div class="card-num" style="background:transparent;border:1px solid var(--orange);color:var(--orange);">+</div><div class="card-title">独自ドメインをお持ちの方へ</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">取得済みの独自ドメイン（例：<span style="font-family:'DM Sans',monospace;color:var(--black);">yourname.com</span>）をお持ちの方は、公開したLPに繋げることができます。</p>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        取得済みの独自ドメイン（例：<code style="background:var(--beige);padding:2px 8px;border-radius:4px;">yourname.com</code>）をお持ちの方は、Vercelの公開URLに繋げることができます。
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
         <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:var(--beige);border-radius:8px;">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px;"><circle cx="8" cy="8" r="7" stroke="#C96A3A" stroke-width="1.2"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#C96A3A" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div style="font-size:13px;line-height:1.7;">GitHub Pages の設定画面から「Custom domain」欄に入力するだけ</div>
+          <div style="font-size:13px;line-height:1.7;color:var(--gray-mid);"><strong style="color:var(--black);">①</strong> Vercelプロジェクトの「Settings → Domains」で独自ドメインを入力</div>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:var(--beige);border-radius:8px;">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px;"><circle cx="8" cy="8" r="7" stroke="#C96A3A" stroke-width="1.2"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#C96A3A" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div style="font-size:13px;line-height:1.7;">ドメインのDNS設定でGitHubのIPアドレスを指定する（ドメイン会社の管理画面から）</div>
+          <div style="font-size:13px;line-height:1.7;color:var(--gray-mid);"><strong style="color:var(--black);">②</strong> 表示されるDNSレコードをドメイン会社の管理画面に設定</div>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:var(--beige);border-radius:8px;">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px;"><circle cx="8" cy="8" r="7" stroke="#C96A3A" stroke-width="1.2"/><polyline points="4.5,8 7,10.5 11.5,5.5" stroke="#C96A3A" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div style="font-size:13px;line-height:1.7;">設定後、数分〜数時間で反映。HTTPS（SSL）も無料で自動対応</div>
+          <div style="font-size:13px;line-height:1.7;color:var(--gray-mid);"><strong style="color:var(--black);">③</strong> 数分〜数時間で反映。HTTPS（SSL）も無料で自動対応</div>
         </div>
       </div>
-      <p style="font-size:12px;color:var(--gray-lt);line-height:1.8;">ドメインをお持ちでない方は、まずは GitHub Pages の無料URLで公開 → 後から独自ドメインを繋げることも可能です。当日は講師に声をかけてください。</p>
+      <p style="font-size:12px;color:var(--gray-lt);line-height:1.8;">ドメインをお持ちでない方は、Vercelの無料URLでまず公開 → 後から繋げることもできます。当日サポートしますので講師に声をかけてください。</p>
     </div>
   </section>
 
