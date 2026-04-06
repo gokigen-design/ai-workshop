@@ -4,15 +4,144 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AIワークショップ 事前準備ガイド</title>
+  <style id="pw-gate-style">
+    html.pw-locked > body { visibility: hidden; }
+    #pw-gate {
+      position: fixed; inset: 0; z-index: 999999;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #F5EFE4 0%, #EDE4D6 100%);
+      font-family: 'Noto Serif JP', serif;
+      visibility: visible;
+    }
+    #pw-gate .pw-card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 24px;
+      padding: 56px 48px 48px;
+      max-width: 420px;
+      width: calc(100% - 40px);
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(60,40,20,0.12);
+    }
+    #pw-gate .pw-orn {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: #C9A96E;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    #pw-gate .pw-orn::before, #pw-gate .pw-orn::after {
+      content: '─'; margin: 0 10px; opacity: 0.5;
+    }
+    #pw-gate h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 44px;
+      color: #3E3428;
+      margin: 0 0 14px;
+      line-height: 1.2;
+    }
+    #pw-gate .pw-sub {
+      font-size: 12px;
+      color: #8A7A68;
+      letter-spacing: 1px;
+      margin: 0 0 36px;
+      line-height: 1.8;
+    }
+    #pw-gate input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 16px 20px;
+      border: 1px solid rgba(201,169,110,0.35);
+      border-radius: 100px;
+      background: rgba(255,255,255,0.7);
+      font-family: inherit;
+      font-size: 15px;
+      color: #3E3428;
+      text-align: center;
+      letter-spacing: 2px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    #pw-gate input::placeholder { color: #BFB0A0; letter-spacing: 1px; font-size: 13px; }
+    #pw-gate input:focus { border-color: #C9A96E; background: #fff; box-shadow: 0 0 0 4px rgba(201,169,110,0.1); }
+    #pw-gate button {
+      margin-top: 16px;
+      width: 100%;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 100px;
+      background: linear-gradient(135deg, #C9A96E 0%, #B8945A 100%);
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 17px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(201,169,110,0.3);
+    }
+    #pw-gate button:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,169,110,0.4); }
+    #pw-gate .pw-err {
+      min-height: 18px;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #C96A3A;
+      letter-spacing: 1px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    #pw-gate .pw-err.show { opacity: 1; }
+    #pw-gate .pw-foot {
+      margin-top: 28px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #B8A590;
+    }
+  </style>
   <script>
     (function(){
       if (sessionStorage.getItem('aiws_auth') === 'ok') return;
-      var pw = prompt('パスワードを入力してください');
-      if (pw === 'otaku2026') {
-        sessionStorage.setItem('aiws_auth','ok');
-      } else {
-        document.documentElement.innerHTML = '<body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#F5EFE4;color:#1A1A1A;">パスワードが違います</body>';
-      }
+      document.documentElement.classList.add('pw-locked');
+      document.addEventListener('DOMContentLoaded', function(){
+        var gate = document.createElement('div');
+        gate.id = 'pw-gate';
+        gate.innerHTML =
+          '<div class="pw-card">' +
+            '<div class="pw-orn">Private</div>' +
+            '<h1>Welcome</h1>' +
+            '<p class="pw-sub">こちらはご招待者さま限定のページです<br>パスワードをご入力ください</p>' +
+            '<form id="pw-form" autocomplete="off">' +
+              '<input type="password" id="pw-input" placeholder="password" autofocus />' +
+              '<div class="pw-err" id="pw-err">パスワードが違います</div>' +
+              '<button type="submit">Enter</button>' +
+            '</form>' +
+            '<div class="pw-foot">AI Workshop</div>' +
+          '</div>';
+        document.body.appendChild(gate);
+        var form = document.getElementById('pw-form');
+        var input = document.getElementById('pw-input');
+        var err = document.getElementById('pw-err');
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          if (input.value === 'otaku2026') {
+            sessionStorage.setItem('aiws_auth','ok');
+            document.documentElement.classList.remove('pw-locked');
+            gate.remove();
+          } else {
+            err.classList.add('show');
+            input.value = '';
+            input.focus();
+          }
+        });
+      });
     })();
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500&family=Noto+Serif+JP:wght@300;400&family=M+PLUS+Rounded+1c:wght@400;500&display=swap" rel="stylesheet">

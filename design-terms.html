@@ -4,15 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIをプロのWebデザイナーに変える魔法のキーワード集</title>
+<style id="pw-gate-style">
+  html.pw-locked > body { visibility: hidden; }
+  #pw-gate { position: fixed; inset: 0; z-index: 999999; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #F5EFE4 0%, #EDE4D6 100%); font-family: 'Noto Serif JP', serif; visibility: visible; }
+  #pw-gate .pw-card { background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(201,169,110,0.25); border-radius: 24px; padding: 56px 48px 48px; max-width: 420px; width: calc(100% - 40px); text-align: center; box-shadow: 0 30px 80px rgba(60,40,20,0.12); }
+  #pw-gate .pw-orn { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; letter-spacing: 4px; color: #C9A96E; text-transform: uppercase; margin-bottom: 18px; }
+  #pw-gate .pw-orn::before, #pw-gate .pw-orn::after { content: '─'; margin: 0 10px; opacity: 0.5; }
+  #pw-gate h1 { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 44px; color: #3E3428; margin: 0 0 14px; line-height: 1.2; }
+  #pw-gate .pw-sub { font-size: 12px; color: #8A7A68; letter-spacing: 1px; margin: 0 0 36px; line-height: 1.8; }
+  #pw-gate input { width: 100%; box-sizing: border-box; padding: 16px 20px; border: 1px solid rgba(201,169,110,0.35); border-radius: 100px; background: rgba(255,255,255,0.7); font-family: inherit; font-size: 15px; color: #3E3428; text-align: center; letter-spacing: 2px; outline: none; transition: all 0.3s ease; }
+  #pw-gate input::placeholder { color: #BFB0A0; letter-spacing: 1px; font-size: 13px; }
+  #pw-gate input:focus { border-color: #C9A96E; background: #fff; box-shadow: 0 0 0 4px rgba(201,169,110,0.1); }
+  #pw-gate button { margin-top: 16px; width: 100%; padding: 16px 24px; border: none; border-radius: 100px; background: linear-gradient(135deg, #C9A96E 0%, #B8945A 100%); color: #fff; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; letter-spacing: 3px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 24px rgba(201,169,110,0.3); }
+  #pw-gate button:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,169,110,0.4); }
+  #pw-gate .pw-err { min-height: 18px; margin-top: 14px; font-size: 11px; color: #C96A3A; letter-spacing: 1px; opacity: 0; transition: opacity 0.3s; }
+  #pw-gate .pw-err.show { opacity: 1; }
+  #pw-gate .pw-foot { margin-top: 28px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 11px; letter-spacing: 2px; color: #B8A590; }
+</style>
 <script>
   (function(){
     if (sessionStorage.getItem('aiws_auth') === 'ok') return;
-    var pw = prompt('パスワードを入力してください');
-    if (pw === 'otaku2026') {
-      sessionStorage.setItem('aiws_auth','ok');
-    } else {
-      document.documentElement.innerHTML = '<body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#F5EFE4;color:#1A1A1A;">パスワードが違います</body>';
-    }
+    document.documentElement.classList.add('pw-locked');
+    document.addEventListener('DOMContentLoaded', function(){
+      var gate = document.createElement('div');
+      gate.id = 'pw-gate';
+      gate.innerHTML = '<div class="pw-card"><div class="pw-orn">Private</div><h1>Welcome</h1><p class="pw-sub">こちらはご招待者さま限定のページです<br>パスワードをご入力ください</p><form id="pw-form" autocomplete="off"><input type="password" id="pw-input" placeholder="password" autofocus /><div class="pw-err" id="pw-err">パスワードが違います</div><button type="submit">Enter</button></form><div class="pw-foot">AI Workshop</div></div>';
+      document.body.appendChild(gate);
+      var form = document.getElementById('pw-form');
+      var input = document.getElementById('pw-input');
+      var err = document.getElementById('pw-err');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if (input.value === 'otaku2026') {
+          sessionStorage.setItem('aiws_auth','ok');
+          document.documentElement.classList.remove('pw-locked');
+          gate.remove();
+        } else {
+          err.classList.add('show');
+          input.value = '';
+          input.focus();
+        }
+      });
+    });
   })();
 </script>
 <style>
@@ -245,6 +278,72 @@
   .fv-pop .p-btn { background: #FF6B35; color: #fff; border-radius: 100px; font-weight: 700; }
   .kw-pop { background: #FFE8DD; color: #E05520; }
 
+  /* ───── 6. フェミニン・ピンク ───── */
+  .fv-feminine {
+    background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80');
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+  }
+  .fv-feminine::before { background: rgba(252,232,236,0.80); }
+  .fv-feminine .p-tag { color: #D17B95; letter-spacing: 3px; }
+  .fv-feminine h3 { font-size: 26px; font-weight: 500; font-style: italic; color: #8B3A55; }
+  .fv-feminine .p-body { font-size: 13px; color: #A06578; }
+  .fv-feminine .p-btn { background: #D17B95; color: #fff; border-radius: 100px; }
+  .kw-feminine { background: #FCE4EC; color: #C2185B; }
+
+  /* ───── 7. ラグジュアリー・モノクロ ───── */
+  .fv-mono {
+    background-image: url('https://images.unsplash.com/photo-1517705008128-361805f42e86?w=800&q=80');
+    font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+  }
+  .fv-mono::before { background: rgba(15,15,15,0.82); }
+  .fv-mono .p-tag { color: #BFBFBF; letter-spacing: 5px; }
+  .fv-mono h3 { font-size: 30px; font-weight: 300; color: #fff; letter-spacing: 4px; }
+  .fv-mono .p-body { font-size: 13px; color: rgba(255,255,255,0.55); letter-spacing: 1px; }
+  .fv-mono .p-btn {
+    background: transparent; border: 1px solid #fff;
+    color: #fff; letter-spacing: 4px; border-radius: 0;
+  }
+  .kw-mono { background: #ECECEC; color: #2A2A2A; }
+
+  /* ───── 8. エディトリアル ───── */
+  .fv-editorial {
+    background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80');
+    font-family: 'Playfair Display', 'Noto Serif JP', serif;
+  }
+  .fv-editorial::before { background: rgba(248,245,238,0.85); }
+  .fv-editorial .p-tag { color: #8B6F47; letter-spacing: 4px; font-style: italic; }
+  .fv-editorial h3 { font-size: 32px; font-weight: 700; color: #1A1A1A; line-height: 1.1; letter-spacing: -1px; }
+  .fv-editorial .p-body { font-size: 13px; color: #666; }
+  .fv-editorial .p-btn {
+    background: transparent; border-bottom: 1px solid #1A1A1A;
+    color: #1A1A1A; border-radius: 0; padding: 8px 0; letter-spacing: 3px;
+  }
+  .kw-editorial { background: #F0EBE0; color: #6B4F2A; }
+
+  /* ───── 9. レトロ・ヴィンテージ ───── */
+  .fv-retro {
+    background-image: url('https://images.unsplash.com/photo-1530653333484-8b67d3060f60?w=800&q=80');
+    font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+  }
+  .fv-retro::before { background: rgba(245,224,190,0.85); }
+  .fv-retro .p-tag { color: #C25B2E; letter-spacing: 3px; font-weight: 700; }
+  .fv-retro h3 { font-size: 28px; font-weight: 800; color: #7A3A1C; }
+  .fv-retro .p-body { font-size: 13px; color: #8B5A3C; }
+  .fv-retro .p-btn { background: #C25B2E; color: #FFF5E6; border-radius: 4px; font-weight: 700; }
+  .kw-retro { background: #F8E0C0; color: #A04518; }
+
+  /* ───── 10. モダン・ボールド ───── */
+  .fv-bold {
+    background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=800&q=80');
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  }
+  .fv-bold::before { background: rgba(20,30,80,0.78); }
+  .fv-bold .p-tag { color: #FFD93D; letter-spacing: 3px; font-weight: 800; }
+  .fv-bold h3 { font-size: 34px; font-weight: 900; color: #fff; letter-spacing: -1px; line-height: 1.05; }
+  .fv-bold .p-body { font-size: 13px; color: rgba(255,255,255,0.7); }
+  .fv-bold .p-btn { background: #FFD93D; color: #1A1A1A; border-radius: 4px; font-weight: 800; }
+  .kw-bold { background: #E8ECFF; color: #2A3A8B; }
+
   /* ───── Vocab Section ───── */
   .vocab-grid {
     display: grid;
@@ -425,7 +524,7 @@
   <div class="tag">Design Keyword Reference</div>
   <h1>AIをプロのWebデザイナーに変える<br>魔法のキーワード集</h1>
   <p class="subtitle">AI（Claude Code・画像生成）に指示を出すとき、これらのキーワードを混ぜるだけで<br>「安っぽさ・無難さ」が消え、洗練されたプロのデザインに仕上がります。</p>
-  <p class="note">5つのスタイル見本 + 6カテゴリのデザイン用語 + プロンプトの組み立て方</p>
+  <p class="note">10のスタイル見本 + 6カテゴリのデザイン用語 + プロンプトの組み立て方</p>
 </header>
 
 <div class="nav-wrap">
@@ -435,6 +534,11 @@
     <button class="nav-btn" onclick="go('healing')">03 癒し系</button>
     <button class="nav-btn" onclick="go('japandi')">04 ジャパンディ</button>
     <button class="nav-btn" onclick="go('pop')">05 ポップ</button>
+    <button class="nav-btn" onclick="go('feminine')">06 フェミニン</button>
+    <button class="nav-btn" onclick="go('mono')">07 モノクロ</button>
+    <button class="nav-btn" onclick="go('editorial')">08 エディトリアル</button>
+    <button class="nav-btn" onclick="go('retro')">09 レトロ</button>
+    <button class="nav-btn" onclick="go('bold')">10 ボールド</button>
     <button class="nav-btn" onclick="go('vocab')">キーワード辞典</button>
     <button class="nav-btn" onclick="go('guide')">プロンプトの組み立て方</button>
   </div>
@@ -751,6 +855,321 @@
       </div>
       <div class="prompt-hint">
         <strong>AI指示例：</strong>「ポップで楽しい雰囲気のLP。Clean Sans-serif font で、Hand-drawn elements のあしらいを入れて、Micro-interactions で動きも加えて」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 06 フェミニン・ピンク ━━━━━ -->
+<section class="style-section fade-in" id="feminine">
+  <div class="section-head">
+    <div class="section-num">06</div>
+    <div class="section-title">
+      <div class="en">Feminine &amp; Romantic</div>
+      <h2>フェミニン・ロマンティック</h2>
+    </div>
+  </div>
+  <p class="section-desc">愛らしさ・甘さ・繊細さ。女性のときめきに寄り添うブランドに。</p>
+  <div class="keywords">
+    <span class="kw kw-feminine">ピンク</span>
+    <span class="kw kw-feminine">イタリック</span>
+    <span class="kw kw-feminine">花モチーフ</span>
+    <span class="kw kw-feminine">繊細な線</span>
+    <span class="kw kw-feminine">レース感</span>
+    <span class="kw kw-feminine">きらめき</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-feminine">
+      <div class="p-tag">Romantic Atelier</div>
+      <h3>Bloom in<br>your beauty</h3>
+      <p class="p-body">あなたの中に咲く<br>愛らしさを引き出すサロン</p>
+      <span class="p-btn">View More</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>フェミニンに</code> <code>ロマンティック</code><br>
+          <code>淡いピンクで</code> <code>イタリック体</code><br>
+          <code>花のあしらい</code> <code>繊細な線</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Feminine & Romantic</span>
+          <span class="en-kw">Italic Serif</span><br>
+          <span class="en-kw">Soft pink palette</span>
+          <span class="en-kw">Floral motifs</span><br>
+          <span class="en-kw">Delicate line art</span>
+          <span class="en-kw">Subtle shimmer</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          ダスティピンク・ローズ・アイボリー・ボルドー<br>
+          イタリックセリフ / Cormorant Garamond
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>ブライダル、コスメ、ファッション、フラワー、お菓子
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Feminine & Romantic スタイルで、Soft pink palette と Italic serif を使って。Floral motifs と Delicate line art で繊細に」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 07 ラグジュアリー・モノクロ ━━━━━ -->
+<section class="style-section fade-in" id="mono">
+  <div class="section-head">
+    <div class="section-num">07</div>
+    <div class="section-title">
+      <div class="en">Monochrome Luxury</div>
+      <h2>モノクロ・ラグジュアリー</h2>
+    </div>
+  </div>
+  <p class="section-desc">研ぎ澄まされた美しさ。ハイブランドのような静謐さと品格。</p>
+  <div class="keywords">
+    <span class="kw kw-mono">モノトーン</span>
+    <span class="kw kw-mono">余白の美</span>
+    <span class="kw kw-mono">細字</span>
+    <span class="kw kw-mono">大胆な余白</span>
+    <span class="kw kw-mono">ミニマル</span>
+    <span class="kw kw-mono">字間広め</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-mono">
+      <div class="p-tag">Maison Noir</div>
+      <h3>QUIET<br>LUXURY</h3>
+      <p class="p-body">silence speaks louder<br>than anything else</p>
+      <span class="p-btn">DISCOVER</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>モノクロで</code> <code>細字のセリフ体</code><br>
+          <code>大胆な余白</code> <code>静謐な雰囲気</code><br>
+          <code>ハイブランド風</code> <code>字間を広く</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Monochrome</span>
+          <span class="en-kw">Quiet luxury</span><br>
+          <span class="en-kw">Thin Serif font</span>
+          <span class="en-kw">Wide letter spacing</span><br>
+          <span class="en-kw">Generous white space</span>
+          <span class="en-kw">High contrast</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          ブラック・チャコール・ホワイト・グレー<br>
+          細字セリフ / Cormorant, Didot
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>ハイブランド、フォトグラファー、建築、アート、コンセプト系
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Monochrome quiet luxury スタイルで、Thin serif font と Wide letter spacing。Generous white space で静謐なLPに」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 08 エディトリアル ━━━━━ -->
+<section class="style-section fade-in" id="editorial">
+  <div class="section-head">
+    <div class="section-num">08</div>
+    <div class="section-title">
+      <div class="en">Editorial Magazine</div>
+      <h2>エディトリアル・マガジン</h2>
+    </div>
+  </div>
+  <p class="section-desc">雑誌のような洗練。大きなセリフ体と非対称レイアウトで知的な美しさ。</p>
+  <div class="keywords">
+    <span class="kw kw-editorial">大きな見出し</span>
+    <span class="kw kw-editorial">非対称</span>
+    <span class="kw kw-editorial">セリフ体</span>
+    <span class="kw kw-editorial">罫線</span>
+    <span class="kw kw-editorial">写真大きく</span>
+    <span class="kw kw-editorial">余白の取り方</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-editorial">
+      <div class="p-tag">— Editorial No.07 —</div>
+      <h3>The Art of<br>Living Slow</h3>
+      <p class="p-body">忙しい日々の中に見つける<br>本当の豊かさについて</p>
+      <span class="p-btn">READ STORY</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>雑誌風レイアウト</code> <code>大きな見出し</code><br>
+          <code>非対称配置</code> <code>セリフ体で知的に</code><br>
+          <code>細い罫線</code> <code>写真を大胆に</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Editorial design</span>
+          <span class="en-kw">Magazine layout</span><br>
+          <span class="en-kw">Oversized headline</span>
+          <span class="en-kw">Asymmetrical layout</span><br>
+          <span class="en-kw">Broken grid</span>
+          <span class="en-kw">Hairline divider</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          オフホワイト・ブラック・差し色1色<br>
+          見出し：Playfair, Bodoni / 本文：細ゴシック
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>ライター、編集、ライフスタイル、文化系、知的サービス
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Editorial magazine スタイルで、Oversized headline と Asymmetrical layout。Broken grid と Hairline divider で雑誌のように洗練して」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 09 レトロ・ヴィンテージ ━━━━━ -->
+<section class="style-section fade-in" id="retro">
+  <div class="section-head">
+    <div class="section-num">09</div>
+    <div class="section-title">
+      <div class="en">Retro &amp; Vintage</div>
+      <h2>レトロ・ヴィンテージ</h2>
+    </div>
+  </div>
+  <p class="section-desc">懐かしさ・温かさ・物語性。70sカラーと手仕事感で個性を出したいときに。</p>
+  <div class="keywords">
+    <span class="kw kw-retro">70sカラー</span>
+    <span class="kw kw-retro">手書き風</span>
+    <span class="kw kw-retro">テクスチャ</span>
+    <span class="kw kw-retro">マスタード</span>
+    <span class="kw kw-retro">太字</span>
+    <span class="kw kw-retro">紙質感</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-retro">
+      <div class="p-tag">EST. 1974</div>
+      <h3>Good Coffee,<br>Good Stories.</h3>
+      <p class="p-body">毎朝のコーヒーから始まる<br>ちいさな物語をあなたに</p>
+      <span class="p-btn">Visit Us</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>レトロな雰囲気</code> <code>70年代風</code><br>
+          <code>マスタード×ブラウン</code> <code>紙の質感</code><br>
+          <code>手書き風タイトル</code> <code>太字でレトロに</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Retro & Vintage</span>
+          <span class="en-kw">70s color palette</span><br>
+          <span class="en-kw">Paper texture</span>
+          <span class="en-kw">Hand-drawn typography</span><br>
+          <span class="en-kw">Grain effect</span>
+          <span class="en-kw">Warm earthy tones</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          マスタード・テラコッタ・ブラウン・クリーム<br>
+          太めセリフ or 手書き / 紙テクスチャ背景
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>カフェ、ベーカリー、雑貨、古着、ハンドメイド、酒造
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Retro vintage スタイルで、70s color palette と Paper texture。Hand-drawn typography と Grain effect で温かみを」
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ━━━━━ 10 モダン・ボールド ━━━━━ -->
+<section class="style-section fade-in" id="bold">
+  <div class="section-head">
+    <div class="section-num">10</div>
+    <div class="section-title">
+      <div class="en">Modern Bold</div>
+      <h2>モダン・ボールド</h2>
+    </div>
+  </div>
+  <p class="section-desc">力強さ・革新・自信。インパクトで一気に印象づけたいブランドに。</p>
+  <div class="keywords">
+    <span class="kw kw-bold">超太字</span>
+    <span class="kw kw-bold">高コントラスト</span>
+    <span class="kw kw-bold">蛍光カラー</span>
+    <span class="kw kw-bold">大胆な配置</span>
+    <span class="kw kw-bold">幾何学</span>
+    <span class="kw kw-bold">角張った</span>
+  </div>
+  <div class="preview-wrap">
+    <div class="fv-preview fv-bold">
+      <div class="p-tag">NEXT LEVEL</div>
+      <h3>BREAK<br>THE RULES</h3>
+      <p class="p-body">常識を超えるブランドを<br>あなたと一緒に作る</p>
+      <span class="p-btn">START NOW</span>
+    </div>
+    <div class="info-panel">
+      <div>
+        <h4>日本語で伝える</h4>
+        <div class="info-item">
+          <code>モダンで力強く</code> <code>超太字で</code><br>
+          <code>高コントラスト</code> <code>蛍光イエローを差し色に</code><br>
+          <code>大胆なレイアウト</code> <code>角張った印象</code>
+        </div>
+      </div>
+      <div>
+        <h4>英語キーワード（プロンプト用）</h4>
+        <div class="info-item">
+          <span class="en-kw">Modern Bold</span>
+          <span class="en-kw">Heavy sans-serif</span><br>
+          <span class="en-kw">High contrast</span>
+          <span class="en-kw">Neon accent</span><br>
+          <span class="en-kw">Geometric shapes</span>
+          <span class="en-kw">Brutalist touch</span>
+        </div>
+      </div>
+      <div>
+        <h4>配色・フォント</h4>
+        <div class="info-item">
+          ディープネイビー・ブラック + 蛍光イエロー or ライム<br>
+          見出し：Inter Black, Anton / 本文：細サンセリフ
+        </div>
+      </div>
+      <div class="use-case">
+        <strong>こんな方に：</strong>テック、スタートアップ、フィットネス、コーチ、男性向け
+      </div>
+      <div class="prompt-hint">
+        <strong>AI指示例：</strong>「Modern bold スタイルで、Heavy sans-serif と High contrast。Neon accent と Geometric shapes で力強いLPに」
       </div>
     </div>
   </div>
