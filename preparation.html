@@ -3537,77 +3537,219 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
   <!-- ═══ TAB 13: 当日の感想 ═══ -->
   <section class="tab-content" id="tab-feedback">
     <div class="sec-eyebrow">Community ／ Feedback</div>
-    <div class="sec-title">当日の感想を残す</div>
-    <p class="sec-desc">ワークショップを終えた率直な声を一言からでもOK。スプレッドシートに自動で集約されます。</p>
+    <div class="sec-title">Workshop Feedback</div>
+    <p class="sec-desc">ワークショップを終えた感想を教えてください。全項目必須です（お客様の声のみ任意）。</p>
 
-    <div class="card">
-      <div class="card-head"><div class="card-num">✎</div><div class="card-title">感想フォーム</div></div>
+    <form id="feedback-form" onsubmit="submitFeedback(event)" style="display:flex;flex-direction:column;gap:18px;margin-top:6px;">
 
-      <form id="feedback-form" onsubmit="submitFeedback(event)" style="display:flex;flex-direction:column;gap:18px;margin-top:6px;">
+      <!-- お名前 -->
+      <div class="fb-card">
+        <label class="fb-label">お名前 <span class="fb-req">*必須</span></label>
+        <input type="text" name="name" required placeholder="例：ちゃかな" class="fb-input">
+      </div>
 
-        <div>
-          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">お名前 <span style="color:var(--orange);">*</span></label>
-          <input type="text" name="name" required placeholder="例：ちゃかな" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;font-family:inherit;">
+      <!-- 満足度 -->
+      <div class="fb-card">
+        <label class="fb-label">このワークショップの満足度は？ <span class="fb-req">*必須</span></label>
+        <div class="fb-scale" data-name="satisfaction" data-labels='["不満","やや不満","ふつう","満足","とても満足"]'>
+          <button type="button" class="fb-num" data-value="1">1</button>
+          <button type="button" class="fb-num" data-value="2">2</button>
+          <button type="button" class="fb-num" data-value="3">3</button>
+          <button type="button" class="fb-num" data-value="4">4</button>
+          <button type="button" class="fb-num" data-value="5">5</button>
         </div>
+        <div class="fb-scale-label"></div>
+        <input type="hidden" name="satisfaction" required>
+      </div>
 
-        <div>
-          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">満足度 <span style="color:var(--orange);">*</span></label>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <label style="flex:1;min-width:80px;cursor:pointer;"><input type="radio" name="rating" value="5" required style="display:none;" onchange="updateRating(this)"><div class="rating-chip">★★★★★<br><span>最高</span></div></label>
-            <label style="flex:1;min-width:80px;cursor:pointer;"><input type="radio" name="rating" value="4" style="display:none;" onchange="updateRating(this)"><div class="rating-chip">★★★★<br><span>良かった</span></div></label>
-            <label style="flex:1;min-width:80px;cursor:pointer;"><input type="radio" name="rating" value="3" style="display:none;" onchange="updateRating(this)"><div class="rating-chip">★★★<br><span>ふつう</span></div></label>
-            <label style="flex:1;min-width:80px;cursor:pointer;"><input type="radio" name="rating" value="2" style="display:none;" onchange="updateRating(this)"><div class="rating-chip">★★<br><span>いまひとつ</span></div></label>
-          </div>
+      <!-- 感想を自由にどうぞ -->
+      <div class="fb-card">
+        <label class="fb-label">感想を自由にどうぞ <span class="fb-req">*必須</span></label>
+        <textarea name="free_comment" required rows="6" placeholder="率直な感想をどうぞ" class="fb-textarea"></textarea>
+      </div>
+
+      <!-- 印象に残った瞬間 -->
+      <div class="fb-card">
+        <label class="fb-label">一番印象に残った瞬間は？ <span class="fb-req">*必須</span></label>
+        <textarea name="memorable" required rows="4" placeholder="「ここで鳥肌立った！」という瞬間を教えてください" class="fb-textarea"></textarea>
+      </div>
+
+      <!-- AI活用の自信（参加前） -->
+      <div class="fb-card">
+        <label class="fb-label">AI活用の自信（参加前） <span class="fb-req">*必須</span></label>
+        <div class="fb-sublabel">このワークショップに参加する前、AIを仕事に活用する自信はどのくらいありましたか？</div>
+        <div class="fb-scale" data-name="confidence_before" data-labels='["ほぼ無し","少し","ふつう","やや自信あり","とても自信あり"]'>
+          <button type="button" class="fb-num" data-value="1">1</button>
+          <button type="button" class="fb-num" data-value="2">2</button>
+          <button type="button" class="fb-num" data-value="3">3</button>
+          <button type="button" class="fb-num" data-value="4">4</button>
+          <button type="button" class="fb-num" data-value="5">5</button>
         </div>
+        <div class="fb-scale-label"></div>
+        <input type="hidden" name="confidence_before" required>
+      </div>
 
-        <div>
-          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">良かったこと・気づき <span style="color:var(--orange);">*</span></label>
-          <textarea name="good" required rows="4" placeholder="「1日でLPが完成するとは思わなかった！」など、素直な感想をどうぞ" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;font-family:inherit;resize:vertical;line-height:1.7;"></textarea>
+      <!-- AI活用の自信（参加後） -->
+      <div class="fb-card">
+        <label class="fb-label">AI活用の自信（参加後） <span class="fb-req">*必須</span></label>
+        <div class="fb-sublabel">今日を終えて、AIを仕事に活用する自信はどのくらいありますか？</div>
+        <div class="fb-scale" data-name="confidence_after" data-labels='["ほぼ無し","少し","ふつう","やや自信あり","とても自信あり"]'>
+          <button type="button" class="fb-num" data-value="1">1</button>
+          <button type="button" class="fb-num" data-value="2">2</button>
+          <button type="button" class="fb-num" data-value="3">3</button>
+          <button type="button" class="fb-num" data-value="4">4</button>
+          <button type="button" class="fb-num" data-value="5">5</button>
         </div>
+        <div class="fb-scale-label"></div>
+        <input type="hidden" name="confidence_after" required>
+      </div>
 
-        <div>
-          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">むずかしかったこと・改善してほしいこと</label>
-          <textarea name="hard" rows="3" placeholder="つまずいた場所や、もう少し時間が欲しかったところなど" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;font-family:inherit;resize:vertical;line-height:1.7;"></textarea>
+      <!-- NPS -->
+      <div class="fb-card">
+        <label class="fb-label">このワークショップを知り合いに勧めますか？ <span class="fb-req">*必須</span></label>
+        <div class="fb-scale" data-name="nps" data-labels='["勧めない","あまり勧めない","どちらとも","勧める","強く勧める"]'>
+          <button type="button" class="fb-num" data-value="1">1</button>
+          <button type="button" class="fb-num" data-value="2">2</button>
+          <button type="button" class="fb-num" data-value="3">3</button>
+          <button type="button" class="fb-num" data-value="4">4</button>
+          <button type="button" class="fb-num" data-value="5">5</button>
         </div>
+        <div class="fb-scale-label"></div>
+        <input type="hidden" name="nps" required>
+      </div>
 
-        <div>
-          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">これから活かしたいこと</label>
-          <textarea name="next" rows="3" placeholder="今後どう使っていきたいか、つくってみたいLPなど" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;font-family:inherit;resize:vertical;line-height:1.7;"></textarea>
-        </div>
+      <!-- 理由 -->
+      <div class="fb-card">
+        <label class="fb-label">おすすめする／しない理由 <span class="fb-req">*必須</span></label>
+        <textarea name="nps_reason" required rows="3" placeholder="理由を自由にお書きください" class="fb-textarea"></textarea>
+      </div>
 
-        <div id="feedback-msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:12px;line-height:1.7;"></div>
+      <!-- 変化 -->
+      <div class="fb-card">
+        <label class="fb-label">参加前と参加後で何が変わった？ <span class="fb-req">*必須</span></label>
+        <textarea name="change" required rows="3" placeholder="気持ち・スキル・視点、何でも" class="fb-textarea"></textarea>
+      </div>
 
-        <button type="submit" id="feedback-submit" style="background:var(--orange);color:#fff;border:none;padding:14px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:0.05em;">
-          送信する
-        </button>
-      </form>
-    </div>
+      <!-- まず何をする -->
+      <div class="fb-card">
+        <label class="fb-label">帰ったらまず何をする？ <span class="fb-req">*必須</span></label>
+        <textarea name="first_action" required rows="3" placeholder="具体的なネクストアクション" class="fb-textarea"></textarea>
+      </div>
+
+      <!-- 改善点 -->
+      <div class="fb-card">
+        <label class="fb-label">もっとこうだったら良かった、というところは？ <span class="fb-req">*必須</span></label>
+        <textarea name="improvement" required rows="4" placeholder="率直なフィードバックをお願いします" class="fb-textarea"></textarea>
+      </div>
+
+      <!-- お客様の声 -->
+      <div class="fb-card fb-card-accent">
+        <label class="fb-label">お客様の声（任意）</label>
+        <div class="fb-sublabel">このワークショップの感想を、今後の紹介ページやSNSで「お客様の声」として使わせていただけますか？ 下に書いていただいた内容を、お名前（ニックネーム可）と合わせて掲載させていただきます。</div>
+        <textarea name="testimonial" rows="5" placeholder="掲載用の感想（記入した方のみ掲載OKチェックをお願いします）" class="fb-textarea"></textarea>
+        <label style="display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12px;color:var(--black);cursor:pointer;">
+          <input type="checkbox" name="testimonial_ok" value="OK" style="width:16px;height:16px;accent-color:var(--orange);">
+          お客様の声として掲載OKです
+        </label>
+      </div>
+
+      <div id="feedback-msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:12px;line-height:1.7;"></div>
+
+      <button type="submit" id="feedback-submit" class="fb-submit">送信する</button>
+    </form>
 
     <style>
-      .rating-chip {
-        text-align:center;
-        padding:12px 8px;
+      .fb-card {
+        background:#fff;
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:22px 24px;
+      }
+      .fb-card-accent {
+        border-color:var(--orange);
+        background:linear-gradient(135deg,#fff 70%,rgba(201,106,58,0.04));
+      }
+      .fb-label {
+        display:block;
+        font-size:14px;
+        font-weight:700;
+        color:var(--black);
+        margin-bottom:4px;
+      }
+      .fb-req {
+        font-size:11px;
+        color:var(--orange);
+        font-weight:600;
+        margin-left:6px;
+      }
+      .fb-sublabel {
+        font-size:12px;
+        color:var(--gray-mid);
+        line-height:1.7;
+        margin:4px 0 12px;
+      }
+      .fb-input, .fb-textarea {
+        width:100%;
+        padding:12px 14px;
         border:1px solid var(--border);
         border-radius:8px;
-        background:#fff;
         font-size:13px;
-        color:var(--gray-mid);
-        transition:all 0.2s;
-        line-height:1.4;
+        background:#fff;
+        font-family:inherit;
+        line-height:1.7;
+        box-sizing:border-box;
       }
-      .rating-chip span { font-size:10px; display:block; margin-top:2px; }
-      .rating-chip:hover { border-color:var(--orange); }
-      input[type="radio"]:checked + .rating-chip {
+      .fb-textarea { resize:vertical; }
+      .fb-input:focus, .fb-textarea:focus {
+        outline:none;
+        border-color:var(--orange);
+      }
+      .fb-scale {
+        display:flex;
+        gap:10px;
+        margin-top:12px;
+        flex-wrap:wrap;
+      }
+      .fb-num {
+        width:44px;
+        height:44px;
+        border-radius:50%;
+        border:1px solid var(--border);
+        background:#fff;
+        color:var(--gray-mid);
+        font-family:'DM Sans',sans-serif;
+        font-size:14px;
+        font-weight:600;
+        cursor:pointer;
+        transition:all 0.15s;
+      }
+      .fb-num:hover { border-color:var(--orange); }
+      .fb-num.active {
         background:var(--orange);
         color:#fff;
         border-color:var(--orange);
       }
-      #feedback-form input:focus, #feedback-form textarea:focus {
-        outline:none;
-        border-color:var(--orange);
+      .fb-scale-label {
+        margin-top:8px;
+        font-size:12px;
+        color:var(--orange);
+        font-weight:600;
+        min-height:18px;
       }
-      #feedback-submit:hover { opacity:0.9; }
-      #feedback-submit:disabled { opacity:0.5; cursor:not-allowed; }
+      .fb-submit {
+        background:var(--orange);
+        color:#fff;
+        border:none;
+        padding:16px 24px;
+        border-radius:10px;
+        font-size:14px;
+        font-weight:700;
+        cursor:pointer;
+        font-family:inherit;
+        letter-spacing:0.05em;
+      }
+      .fb-submit:hover { opacity:0.9; }
+      .fb-submit:disabled { opacity:0.5; cursor:not-allowed; }
     </style>
   </section>
 
@@ -3632,9 +3774,22 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     // ↓ GASのWeb App URLをここに貼ってください（デプロイ後）
     const FEEDBACK_GAS_URL = 'https://script.google.com/macros/s/AKfycby6wGnnS7qh1Gw_xInMXHSssjC1ok7CvWo-u_yl9IYIEJzg1TpZrk6h7obIXFXrMsmX/exec';
 
-    function updateRating(el) {
-      // 視覚的更新のためのダミー（CSSで対応済み）
-    }
+    // スケール（1-5）ボタンの挙動をセットアップ
+    document.querySelectorAll('.fb-scale').forEach(scale => {
+      const name = scale.dataset.name;
+      const labels = JSON.parse(scale.dataset.labels || '[]');
+      const labelEl = scale.nextElementSibling;
+      const hidden = scale.parentElement.querySelector('input[type="hidden"][name="'+name+'"]');
+      scale.querySelectorAll('.fb-num').forEach(btn => {
+        btn.addEventListener('click', () => {
+          scale.querySelectorAll('.fb-num').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const v = btn.dataset.value;
+          if (hidden) hidden.value = v;
+          if (labelEl) labelEl.textContent = labels[parseInt(v)-1] || '';
+        });
+      });
+    });
 
     function submitFeedback(e) {
       e.preventDefault();
@@ -3642,12 +3797,33 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       const btn = document.getElementById('feedback-submit');
       const msg = document.getElementById('feedback-msg');
 
+      // 必須スケール未選択チェック
+      const requiredScales = ['satisfaction','confidence_before','confidence_after','nps'];
+      for (const key of requiredScales) {
+        if (!form[key].value) {
+          msg.style.display = 'block';
+          msg.style.background = '#fff4e6';
+          msg.style.color = '#C96A3A';
+          msg.style.border = '1px solid #C96A3A';
+          msg.textContent = '⚠️ すべての必須項目（1〜5のスケール含む）を選択してください。';
+          return;
+        }
+      }
+
       const data = {
         name: form.name.value,
-        rating: form.rating.value,
-        good: form.good.value,
-        hard: form.hard.value,
-        next: form.next.value,
+        satisfaction: form.satisfaction.value,
+        free_comment: form.free_comment.value,
+        memorable: form.memorable.value,
+        confidence_before: form.confidence_before.value,
+        confidence_after: form.confidence_after.value,
+        nps: form.nps.value,
+        nps_reason: form.nps_reason.value,
+        change: form.change.value,
+        first_action: form.first_action.value,
+        improvement: form.improvement.value,
+        testimonial: form.testimonial.value,
+        testimonial_ok: form.testimonial_ok.checked ? 'OK' : '',
         timestamp: new Date().toISOString()
       };
 
