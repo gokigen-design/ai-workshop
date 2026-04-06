@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIをプロのWebデザイナーに変える魔法のキーワード集</title>
+<script>
+  (function(){
+    if (sessionStorage.getItem('aiws_auth') === 'ok') return;
+    var pw = prompt('パスワードを入力してください');
+    if (pw === 'otaku2026') {
+      sessionStorage.setItem('aiws_auth','ok');
+    } else {
+      document.documentElement.innerHTML = '<body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#F5EFE4;color:#1A1A1A;">パスワードが違います</body>';
+    }
+  })();
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
