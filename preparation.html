@@ -9,46 +9,50 @@
     #pw-gate {
       position: fixed; inset: 0; z-index: 999999;
       display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(135deg, #F5EFE4 0%, #EDE4D6 100%);
+      background: linear-gradient(135deg, #EEF1FB 0%, #E8F5F3 100%);
       font-family: 'Noto Serif JP', serif;
       visibility: visible;
     }
     #pw-gate .pw-card {
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(201,169,110,0.25);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(79,126,247,0.15);
       border-radius: 24px;
       padding: 56px 48px 48px;
       max-width: 420px;
       width: calc(100% - 40px);
       text-align: center;
-      box-shadow: 0 30px 80px rgba(60,40,20,0.12);
+      box-shadow: 0 30px 80px rgba(79,126,247,0.10);
     }
     #pw-gate .pw-orn {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 14px;
       letter-spacing: 4px;
-      color: #C9A96E;
+      background: linear-gradient(135deg, #4F7EF7, #1BC6B4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-transform: uppercase;
       margin-bottom: 18px;
+      display: block;
     }
     #pw-gate .pw-orn::before, #pw-gate .pw-orn::after {
-      content: '─'; margin: 0 10px; opacity: 0.5;
+      content: '─'; margin: 0 10px; opacity: 0.4;
     }
     #pw-gate h1 {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-weight: 400;
       font-size: 44px;
-      color: #3E3428;
+      color: #1C1D2E;
       margin: 0 0 14px;
       line-height: 1.2;
     }
     #pw-gate .pw-sub {
       font-size: 12px;
-      color: #8A7A68;
+      color: #6B7280;
       letter-spacing: 1px;
       margin: 0 0 36px;
       line-height: 1.8;
@@ -57,26 +61,26 @@
       width: 100%;
       box-sizing: border-box;
       padding: 16px 20px;
-      border: 1px solid rgba(201,169,110,0.35);
+      border: 1px solid rgba(79,126,247,0.25);
       border-radius: 100px;
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.8);
       font-family: inherit;
       font-size: 15px;
-      color: #3E3428;
+      color: #1C1D2E;
       text-align: center;
       letter-spacing: 2px;
       outline: none;
       transition: all 0.3s ease;
     }
-    #pw-gate input::placeholder { color: #BFB0A0; letter-spacing: 1px; font-size: 13px; }
-    #pw-gate input:focus { border-color: #C9A96E; background: #fff; box-shadow: 0 0 0 4px rgba(201,169,110,0.1); }
+    #pw-gate input::placeholder { color: #A0A8BC; letter-spacing: 1px; font-size: 13px; }
+    #pw-gate input:focus { border-color: #4F7EF7; background: #fff; box-shadow: 0 0 0 4px rgba(79,126,247,0.1); }
     #pw-gate button {
       margin-top: 16px;
       width: 100%;
       padding: 16px 24px;
       border: none;
       border-radius: 100px;
-      background: linear-gradient(135deg, #C9A96E 0%, #B8945A 100%);
+      background: linear-gradient(135deg, #4F7EF7 0%, #1BC6B4 100%);
       color: #fff;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
@@ -84,14 +88,14 @@
       letter-spacing: 3px;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 24px rgba(201,169,110,0.3);
+      box-shadow: 0 8px 24px rgba(79,126,247,0.25);
     }
-    #pw-gate button:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,169,110,0.4); }
+    #pw-gate button:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(79,126,247,0.35); }
     #pw-gate .pw-err {
       min-height: 18px;
       margin-top: 14px;
       font-size: 11px;
-      color: #C96A3A;
+      color: #4F7EF7;
       letter-spacing: 1px;
       opacity: 0;
       transition: opacity 0.3s;
@@ -147,19 +151,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500&family=Noto+Serif+JP:wght@300;400&family=M+PLUS+Rounded+1c:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black:   #1A1A1A;
-      --dark:    #2A2A2A;
-      --card:    #FFFFFF;
-      --border:  #E4DDD4;
-      --orange:  #C96A3A;
-      --orange-dim: rgba(201,106,58,0.08);
-      --orange-border: rgba(201,106,58,0.25);
-      --beige:   #F5EFE4;
-      --beige-mid: #EDE4D6;
-      --white:   #FAF8F5;
-      --gray:    #B0A89E;
-      --gray-mid:#7A7068;
-      --gray-lt: #9A9088;
+      --black:      #1C1D2E;
+      --dark:       #2A2B3D;
+      --card:       #FFFFFF;
+      --border:     #E5E8F0;
+      --orange:     #4F7EF7;
+      --orange-dim: rgba(79,126,247,0.07);
+      --orange-border: rgba(79,126,247,0.22);
+      --beige:      #F5F7FB;
+      --beige-mid:  #EBEEf5;
+      --white:      #FFFFFF;
+      --gray:       #A0A8BC;
+      --gray-mid:   #6B7280;
+      --gray-lt:    #9CA3AF;
+      --grad:       linear-gradient(135deg, #4F7EF7 0%, #1BC6B4 100%);
+      --grad-soft:  linear-gradient(135deg, rgba(79,126,247,0.12) 0%, rgba(27,198,180,0.12) 100%);
     }
 
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -203,7 +209,7 @@
     .header-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(245,239,228,0.92);
+      background: rgba(255,255,255,0.94);
       opacity: 0;
     }
 
@@ -399,15 +405,21 @@
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--orange);
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 10px;
+      display: inline-block;
     }
 
     .sec-title {
       font-size: 22px;
       font-weight: 400;
-      letter-spacing: -0.02em;
+      font-family: 'Noto Serif JP', serif;
+      letter-spacing: 0.02em;
       margin-bottom: 8px;
+      color: var(--black);
     }
 
     .sec-desc {
@@ -448,8 +460,8 @@
 
     .card-num {
       width: 26px; height: 26px;
-      background: var(--orange);
-      color: var(--black);
+      background: var(--grad);
+      color: #fff;
       border-radius: 50%;
       font-family: 'DM Sans', sans-serif;
       font-size: 12px;
@@ -461,6 +473,8 @@
     .card-title {
       font-size: 14px;
       font-weight: 500;
+      font-family: 'Noto Serif JP', serif;
+      letter-spacing: 0.03em;
     }
 
     /* ─── FORM ─── */
@@ -888,7 +902,7 @@
       margin-bottom: 10px;
     }
 
-    .gloss-tag.cc { background: rgba(201,106,58,0.1); color: var(--orange); }
+    .gloss-tag.cc { background: rgba(79,126,247,0.1); color: var(--orange); }
     .gloss-tag.web { background: rgba(100,150,220,0.1); color: #5588CC; }
     .gloss-tag.github { background: rgba(80,80,80,0.1); color: #555; }
 
