@@ -1167,6 +1167,11 @@
         <div class="sidebar-label">Reference</div>
         <button class="tab-btn" onclick="switchTab('glossary', this)"><span>12</span>用語集</button>
       </div>
+      <div class="sidebar-group">
+        <div class="sidebar-label">Community</div>
+        <button class="tab-btn" onclick="switchTab('feedback', this)"><span>13</span>当日の感想</button>
+        <button class="tab-btn" onclick="switchTab('qa', this)"><span>14</span>Q &amp; A</button>
+      </div>
     </nav>
 
     <div class="content-area">
@@ -3528,6 +3533,168 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       </div>
     </div>
   </section>
+
+  <!-- ═══ TAB 13: 当日の感想 ═══ -->
+  <section class="tab-content" id="tab-feedback">
+    <div class="sec-eyebrow">Community ／ Feedback</div>
+    <div class="sec-title">当日の感想を残す</div>
+    <p class="sec-desc">ワークショップを終えた率直な声を一言からでもOK。スプレッドシートに自動で集約されます。</p>
+
+    <div class="card">
+      <div class="card-head"><div class="card-num">✎</div><div class="card-title">感想フォーム</div></div>
+
+      <form id="feedback-form" onsubmit="submitFeedback(event)" style="display:flex;flex-direction:column;gap:18px;margin-top:6px;">
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">お名前 <span style="color:var(--orange);">*</span></label>
+          <input type="text" name="name" required placeholder="例：ちゃかな" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;font-family:inherit;">
+        </div>
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">満足度 <span style="color:var(--orange);">*</span></label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <label style="flex:1;min-width:80px;cursor:pointer;"><input type="radio" name="rating" value="5" required style="display:none;" onchange="updateRating(this)"><div class="rating-chip">★★★★★<br><span>最高</span></div></label>
+            <label style="flex:1;min-width:80px;cursor:pointer;"><input type="radio" name="rating" value="4" style="display:none;" onchange="updateRating(this)"><div class="rating-chip">★★★★<br><span>良かった</span></div></label>
+            <label style="flex:1;min-width:80px;cursor:pointer;"><input type="radio" name="rating" value="3" style="display:none;" onchange="updateRating(this)"><div class="rating-chip">★★★<br><span>ふつう</span></div></label>
+            <label style="flex:1;min-width:80px;cursor:pointer;"><input type="radio" name="rating" value="2" style="display:none;" onchange="updateRating(this)"><div class="rating-chip">★★<br><span>いまひとつ</span></div></label>
+          </div>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">良かったこと・気づき <span style="color:var(--orange);">*</span></label>
+          <textarea name="good" required rows="4" placeholder="「1日でLPが完成するとは思わなかった！」など、素直な感想をどうぞ" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;font-family:inherit;resize:vertical;line-height:1.7;"></textarea>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">むずかしかったこと・改善してほしいこと</label>
+          <textarea name="hard" rows="3" placeholder="つまずいた場所や、もう少し時間が欲しかったところなど" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;font-family:inherit;resize:vertical;line-height:1.7;"></textarea>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;">これから活かしたいこと</label>
+          <textarea name="next" rows="3" placeholder="今後どう使っていきたいか、つくってみたいLPなど" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;background:#fff;font-family:inherit;resize:vertical;line-height:1.7;"></textarea>
+        </div>
+
+        <div id="feedback-msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:12px;line-height:1.7;"></div>
+
+        <button type="submit" id="feedback-submit" style="background:var(--orange);color:#fff;border:none;padding:14px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:0.05em;">
+          送信する
+        </button>
+      </form>
+    </div>
+
+    <style>
+      .rating-chip {
+        text-align:center;
+        padding:12px 8px;
+        border:1px solid var(--border);
+        border-radius:8px;
+        background:#fff;
+        font-size:13px;
+        color:var(--gray-mid);
+        transition:all 0.2s;
+        line-height:1.4;
+      }
+      .rating-chip span { font-size:10px; display:block; margin-top:2px; }
+      .rating-chip:hover { border-color:var(--orange); }
+      input[type="radio"]:checked + .rating-chip {
+        background:var(--orange);
+        color:#fff;
+        border-color:var(--orange);
+      }
+      #feedback-form input:focus, #feedback-form textarea:focus {
+        outline:none;
+        border-color:var(--orange);
+      }
+      #feedback-submit:hover { opacity:0.9; }
+      #feedback-submit:disabled { opacity:0.5; cursor:not-allowed; }
+    </style>
+  </section>
+
+  <!-- ═══ TAB 14: Q & A ═══ -->
+  <section class="tab-content" id="tab-qa">
+    <div class="sec-eyebrow">Community ／ Q &amp; A</div>
+    <div class="sec-title">Q &amp; A ─ よくある質問</div>
+    <p class="sec-desc">ワークショップに関する質問と回答をここに追加していきます。</p>
+
+    <div class="card" style="text-align:center;padding:60px 24px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;color:var(--gray-mid);margin-bottom:12px;">Coming soon</div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;max-width:480px;margin:0 auto;">
+        当日や事前に出てきた質問をまとめて、こちらに順次追加していきます。<br>
+        「こんなこと聞いてもいいのかな？」と思ったことも、ぜひ気軽にお声がけください。
+      </p>
+    </div>
+  </section>
+
+
+  <script>
+    /* ─── 感想フォーム送信（Google Apps Script 経由でスプシへ） ─── */
+    // ↓ GASのWeb App URLをここに貼ってください（デプロイ後）
+    const FEEDBACK_GAS_URL = 'PASTE_YOUR_GAS_WEB_APP_URL_HERE';
+
+    function updateRating(el) {
+      // 視覚的更新のためのダミー（CSSで対応済み）
+    }
+
+    function submitFeedback(e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = document.getElementById('feedback-submit');
+      const msg = document.getElementById('feedback-msg');
+
+      const data = {
+        name: form.name.value,
+        rating: form.rating.value,
+        good: form.good.value,
+        hard: form.hard.value,
+        next: form.next.value,
+        timestamp: new Date().toISOString()
+      };
+
+      btn.disabled = true;
+      btn.textContent = '送信中...';
+      msg.style.display = 'none';
+
+      if (FEEDBACK_GAS_URL === 'PASTE_YOUR_GAS_WEB_APP_URL_HERE') {
+        // GAS未設定時：ローカル確認用
+        console.log('[Feedback - GAS未設定] 送信予定データ:', data);
+        setTimeout(() => {
+          msg.style.display = 'block';
+          msg.style.background = '#fff4e6';
+          msg.style.color = '#C96A3A';
+          msg.style.border = '1px solid #C96A3A';
+          msg.innerHTML = '⚠️ GAS Web App URL が未設定です。コンソール (F12) に送信予定データを出力しました。';
+          btn.disabled = false;
+          btn.textContent = '送信する';
+        }, 400);
+        return;
+      }
+
+      fetch(FEEDBACK_GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type': 'text/plain;charset=utf-8'},
+        body: JSON.stringify(data)
+      }).then(() => {
+        msg.style.display = 'block';
+        msg.style.background = 'rgba(90,138,110,0.1)';
+        msg.style.color = '#5A8A6E';
+        msg.style.border = '1px solid #5A8A6E';
+        msg.textContent = '✨ 感想を送信しました。ありがとうございます！';
+        form.reset();
+        btn.disabled = false;
+        btn.textContent = '送信する';
+      }).catch(err => {
+        msg.style.display = 'block';
+        msg.style.background = '#fff4e6';
+        msg.style.color = '#C96A3A';
+        msg.style.border = '1px solid #C96A3A';
+        msg.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+        btn.disabled = false;
+        btn.textContent = '送信する';
+      });
+    }
+  </script>
 
 
   <script>
