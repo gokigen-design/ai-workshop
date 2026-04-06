@@ -931,6 +931,44 @@
     }
     .ptab-content { display: none; }
     .ptab-content.active { display: block; }
+
+    /* OS切り替えタブ（Mac / Windows） */
+    .ostab-group { margin: 16px 0 8px; }
+    .ostab-nav { display: flex; gap: 6px; margin-bottom: 14px; }
+    .ostab-btn {
+      flex: 1; padding: 12px 18px; border: 1px solid var(--border);
+      background: var(--beige); color: var(--gray-mid);
+      font-size: 13px; font-weight: 500; font-family: inherit;
+      border-radius: 10px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ostab-btn.active {
+      background: var(--black); color: #fff; border-color: var(--black);
+    }
+    .ostab-content { display: none; }
+    .ostab-content.active { display: block; }
+    .code-step {
+      background: #1A1A1A; color: #F5EFE4;
+      border-radius: 10px; padding: 16px 18px;
+      font-family: 'DM Sans', 'Courier New', monospace;
+      font-size: 12px; line-height: 1.8;
+      margin: 10px 0; position: relative;
+      white-space: pre-wrap; word-break: break-all;
+    }
+    .code-step .code-comment { color: #8A7A68; }
+    .code-step-label {
+      display: inline-block; font-size: 10px; letter-spacing: 0.15em;
+      color: var(--orange); text-transform: uppercase;
+      margin-bottom: 6px; font-family: 'DM Sans', sans-serif;
+    }
+    .copy-mini {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(255,255,255,0.1); color: #F5EFE4;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 10px; font-size: 10px; border-radius: 4px;
+      cursor: pointer; font-family: inherit;
+    }
+    .copy-mini:hover { background: rgba(255,255,255,0.2); }
     .copy-field {
       display: flex;
       align-items: flex-start;
@@ -1113,20 +1151,21 @@
         <button class="tab-btn active" onclick="switchTab('overview', this)"><span>01</span>全体像</button>
         <button class="tab-btn" onclick="switchTab('team', this)"><span>02</span>チーム一覧</button>
         <button class="tab-btn" onclick="switchTab('designer', this)"><span>03</span>デザイナー視点</button>
-        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>04</span>4/18 当日</button>
+        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>04</span>4/11 キックオフ</button>
+        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>05</span>4/18 当日</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">Workflow ─ 6 Steps</div>
-        <button class="tab-btn" onclick="switchTab('setup', this)"><span>05</span>STEP 01 ／ 環境を整える</button>
-        <button class="tab-btn" onclick="switchTab('worksheet', this)"><span>06</span>STEP 02 ／ 内容を整理する</button>
-        <button class="tab-btn" onclick="switchTab('design', this)"><span>07</span>STEP 03 ／ デザインを学ぶ</button>
-        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>08</span>STEP 04 ／ AIに指示する</button>
-        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>09</span>STEP 05 ／ 公開する</button>
-        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>10</span>STEP 06 ／ 当日に備える</button>
+        <button class="tab-btn" onclick="switchTab('setup', this)"><span>06</span>STEP 01 ／ 環境を整える</button>
+        <button class="tab-btn" onclick="switchTab('worksheet', this)"><span>07</span>STEP 02 ／ 内容を整理する</button>
+        <button class="tab-btn" onclick="switchTab('design', this)"><span>08</span>STEP 03 ／ デザインを学ぶ</button>
+        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>09</span>STEP 04 ／ AIに指示する</button>
+        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>10</span>STEP 05 ／ 公開する</button>
+        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>11</span>STEP 06 ／ 当日に備える</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">Reference</div>
-        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>11</span>用語集</button>
+        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>12</span>用語集</button>
       </div>
     </nav>
 
@@ -1536,6 +1575,187 @@
           <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--orange);text-transform:uppercase;margin-bottom:10px;">Photo</div>
           <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">素材はLPの印象を9割決める。暗い写真・ぼやけた写真は信頼を下げる。</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TAB: 4/11 キックオフ ═══ -->
+  <section class="tab-content" id="tab-kickoff">
+    <div class="sec-eyebrow">Kick-off Meeting</div>
+    <div class="sec-title">4月11日（土）20:00 ／ キックオフ</div>
+    <p class="sec-desc">本番1週間前のセットアップ会。ここで全員の環境を揃えて、当日スムーズに制作を始められる状態にします。</p>
+
+    <!-- 日時カード -->
+    <div class="card" style="background:linear-gradient(135deg,#FAF5EC 0%,#F5EFE4 100%);border:1px solid var(--orange-border);">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;">
+        <div style="text-align:center;padding:14px 22px;background:#fff;border-radius:14px;border:1px solid var(--border);">
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.15em;color:var(--orange);text-transform:uppercase;">Sat</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:var(--black);line-height:1;margin:4px 0;">11</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--gray-mid);">April 2026</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.18em;color:var(--orange);text-transform:uppercase;margin-bottom:6px;">Kick-off Meeting</div>
+          <div style="font-size:20px;font-weight:600;color:var(--black);margin-bottom:8px;">20:00 〜（オンライン）</div>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            本番（4/18）の1週間前。Claude Codeの環境構築と、<br>
+            当日「何を作るか」をはっきりさせる時間です。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- やることサマリー -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">📋</div><div class="card-title">この日にやること（2つ）</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="background:var(--beige);border-radius:10px;padding:18px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:6px;">PART 1</div>
+          <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">環境を整える</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">Claude Codeをインストール → 全員動作確認</div>
+        </div>
+        <div style="background:var(--beige);border-radius:10px;padding:18px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:6px;">PART 2</div>
+          <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">何を作るかを明確にする</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">サービス・ターゲット・ゴールの言語化</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ━━━━━ PART 1 ━━━━━ -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">1</div><div class="card-title">環境を整える</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:18px;">
+        当日いきなりインストールから始めると半日終わってしまうので、<strong style="color:var(--black);">この日のうちに環境を完成させておきます</strong>。<br>
+        OSによって手順が違うので、ご自分のPCに合わせて選んでください。
+      </p>
+
+      <!-- (a) Claude Codeインストール -->
+      <div style="margin-bottom:24px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'DM Sans',sans-serif;">a</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);">Claude Codeをインストール</div>
+        </div>
+        <p style="font-size:12px;color:var(--gray-mid);line-height:1.7;margin:0 0 8px 34px;">
+          Claude Codeは「ターミナルでClaudeに話しかけてコードを書いてもらう」ツールです。今回のLP制作のメインツールになります。
+        </p>
+
+        <div class="ostab-group">
+          <div class="ostab-nav">
+            <button class="ostab-btn active" onclick="switchOstab('kick-mac', this)">🍎 &nbsp;Mac</button>
+            <button class="ostab-btn" onclick="switchOstab('kick-win', this)">🪟 &nbsp;Windows</button>
+          </div>
+
+          <!-- Mac -->
+          <div class="ostab-content active" id="kick-mac">
+            <div style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;">下のコマンドを<strong style="color:var(--black);">「ターミナル」アプリ</strong>にコピペして順番に実行してください。<br>ターミナルは「アプリケーション → ユーティリティ → ターミナル」にあります。</div>
+
+            <div class="code-step-label">STEP 1 ／ Homebrewが入っているか確認</div>
+            <div class="code-step">brew --version
+<span class="code-comment"># 「Homebrew 4.x.x」と出ればOK。出なければ次のSTEP 2へ</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+
+            <div class="code-step-label">STEP 2 ／ Homebrewが無い人だけ実行</div>
+            <div class="code-step">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+
+            <div class="code-step-label">STEP 3 ／ Node.jsをインストール</div>
+            <div class="code-step">brew install node
+<span class="code-comment"># 5〜10分かかります</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+
+            <div class="code-step-label">STEP 4 ／ Claude Codeをインストール</div>
+            <div class="code-step">npm install -g @anthropic-ai/claude-code<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+
+            <div class="code-step-label">STEP 5 ／ 起動してログイン</div>
+            <div class="code-step">claude
+<span class="code-comment"># ブラウザが開くので Anthropicアカウントでログイン</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+          </div>
+
+          <!-- Windows -->
+          <div class="ostab-content" id="kick-win">
+            <div style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;">Windowsは<strong style="color:var(--black);">「PowerShell」</strong>を使います。スタートメニューで「PowerShell」と検索して起動してください。</div>
+
+            <div class="code-step-label">STEP 1 ／ Node.jsをダウンロード</div>
+            <div class="code-step"><span class="code-comment"># 下のURLからLTS版（推奨）をダウンロードしてインストーラーを実行</span>
+https://nodejs.org/ja/download<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+
+            <div class="code-step-label">STEP 2 ／ インストール確認</div>
+            <div class="code-step">node --version
+npm --version
+<span class="code-comment"># どちらもバージョン番号が出ればOK</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+
+            <div class="code-step-label">STEP 3 ／ Claude Codeをインストール</div>
+            <div class="code-step">npm install -g @anthropic-ai/claude-code<button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+
+            <div class="code-step-label">STEP 4 ／ 起動してログイン</div>
+            <div class="code-step">claude
+<span class="code-comment"># ブラウザが開くので Anthropicアカウントでログイン</span><button class="copy-mini" onclick="copyCode(this)">コピー</button></div>
+
+            <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:12px 16px;margin-top:14px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+              💡 <strong style="color:var(--black);">うまくいかない時</strong>：PowerShellを「管理者として実行」で開き直してみてください。それでもダメな場合は当日サポートします！
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- (b) 全員確認 -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'DM Sans',sans-serif;">b</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);">全員ができているか確認</div>
+        </div>
+        <p style="font-size:12px;color:var(--gray-mid);line-height:1.7;margin:0 0 12px 34px;">
+          画面共有しながら、ひとりずつ動作確認します。下のチェックリストを全員クリアできたらPART 1完了です。
+        </p>
+        <div style="background:var(--beige);border-radius:10px;padding:16px 20px;">
+          <div style="font-size:12px;color:var(--black);line-height:2;">
+            ☐ ターミナル / PowerShellで <code style="background:#fff;padding:2px 8px;border-radius:4px;font-size:11px;">claude</code> と打って起動できる<br>
+            ☐ Anthropicアカウントでログインできている<br>
+            ☐ 「こんにちは」と打って返事が返ってくる<br>
+            ☐ デスクトップに作業用フォルダを作れる
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ━━━━━ PART 2 ━━━━━ -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">2</div><div class="card-title">何を作るのかを明確にする</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:18px;">
+        当日「何を作りますか？」と聞かれて固まらないように、<strong style="color:var(--black);">この日のうちにサービスの輪郭を言語化</strong>しておきます。<br>
+        ここで決めた内容は、本番当日「STEP 02 ／ 内容を整理する」でそのまま使えます。
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">サービス名 / 何を提供するか</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">「○○のための△△プログラム」のように一言で。まだ仮でもOK。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">ターゲット（誰のためか）</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">年齢・性別・職業・悩み。「あの人ひとりのために書く」つもりで具体的に。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">ゴール（LPを見た人にしてほしい行動）</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">申し込み？無料相談？LINE登録？— 1つだけ選びます。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">参考にしたいLP（URL）を1〜3個</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">「こんな雰囲気で作りたい」というイメージのLPを集めておく。<strong style="color:var(--black);">STEP 03 デザインを学ぶ</strong>のカード5に参考LPまとめあり。</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:14px 18px;margin-top:18px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+        💡 <strong style="color:var(--black);">この日のゴール</strong>：「Claude Codeが起動できる」+「自分のサービスを30秒で説明できる」状態。これができていれば、4/18 当日は最速でLP完成までいけます。
       </div>
     </div>
   </section>
@@ -3126,6 +3346,24 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       document.querySelectorAll('.ptab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       btn.classList.add('active');
+    }
+
+    function switchOstab(tabId, btn) {
+      var grp = btn.closest('.ostab-group');
+      grp.querySelectorAll('.ostab-content').forEach(el => el.classList.remove('active'));
+      grp.querySelectorAll('.ostab-btn').forEach(el => el.classList.remove('active'));
+      grp.querySelector('#' + tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function copyCode(btn) {
+      var pre = btn.parentElement;
+      var text = pre.innerText.replace(/コピー$/,'').trim();
+      navigator.clipboard.writeText(text).then(() => {
+        var orig = btn.textContent;
+        btn.textContent = '✓ コピー完了';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      });
     }
 
     function copyText(text, btn) {
