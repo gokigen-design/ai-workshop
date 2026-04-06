@@ -1825,148 +1825,288 @@
 
   <!-- ═══ TAB 5: CCセットアップ ═══ -->
   <section class="tab-content" id="tab-setup">
-    <div class="sec-eyebrow">Step 01 ／ 環境を整える</div>
-    <div class="sec-title">Claude Codeを使える状態にする</div>
-    <p class="sec-desc">当日は「すぐ作業できる状態」でお越しください。このページを見ながら事前にセットアップを済ませておきましょう。</p>
+    <div class="sec-eyebrow">Step 01</div>
+    <div class="sec-title">Claude Desktop セットアップ</div>
+    <p class="sec-desc">2日間のワークショップで使う「あなた専属のAIアシスタント」を準備します。事前にやることは2つだけです。</p>
+
+    <!-- 事前にやること -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;">
+      <div style="background:var(--grad);border-radius:12px;padding:20px 22px;color:#fff;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.2em;opacity:0.8;margin-bottom:8px;">STEP 1</div>
+        <div style="font-size:14px;font-weight:500;margin-bottom:4px;">サブスク加入</div>
+        <div style="font-size:12px;opacity:0.85;">$20/月 Pro プラン</div>
+      </div>
+      <div style="background:var(--beige);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.2em;color:var(--gray-lt);margin-bottom:8px;">STEP 2</div>
+        <div style="font-size:14px;font-weight:500;margin-bottom:4px;">Desktop アプリ</div>
+        <div style="font-size:12px;color:var(--gray-mid);">ダウンロードしてログイン</div>
+      </div>
+    </div>
 
     <div class="callout">セットアップに不安がある方は、事前オンライン会で一緒に確認します。わからなくても大丈夫です。</div>
 
+    <!-- ─── Card 1: サブスクリプション加入 ─── -->
     <div class="card">
-      <div class="card-head"><div class="card-num">1</div><div class="card-title">Claude Codeとは？</div></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:4px;">
-        <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:20px;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">What</div>
-          <div style="font-size:13px;line-height:1.8;color:var(--gray-mid);">ターミナル（黒い画面）で動くAIアシスタント。<strong style="color:var(--black);">「指示するだけでファイルを作ってくれる」</strong>ツールです。</div>
-        </div>
-        <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:20px;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">ChatGPTとの違い</div>
-          <div style="font-size:13px;line-height:1.8;color:var(--gray-mid);">ChatGPTは「答えを返す」だけ。Claude Codeは<strong style="color:var(--black);">パソコン上のファイルを直接作ったり編集したりできます。</strong></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head"><div class="card-num">2</div><div class="card-title">何ができるの？</div></div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:14px;background:var(--beige);border-radius:8px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;margin-top:1px;"><circle cx="10" cy="10" r="9" stroke="#C96A3A" stroke-width="1.2"/><polyline points="6,10 9,13 14,7" stroke="#C96A3A" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">LPや診断ツールをHTMLで作る</strong><span style="color:var(--gray-mid);"> — 日本語で「こんなページ作って」と言うだけで完成</span></div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:14px;background:var(--beige);border-radius:8px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;margin-top:1px;"><circle cx="10" cy="10" r="9" stroke="#C96A3A" stroke-width="1.2"/><polyline points="6,10 9,13 14,7" stroke="#C96A3A" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">色・フォント・レイアウトを修正する</strong><span style="color:var(--gray-mid);"> — 「もっとシックにして」「余白を広くして」でOK</span></div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:14px;background:var(--beige);border-radius:8px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;margin-top:1px;"><circle cx="10" cy="10" r="9" stroke="#C96A3A" stroke-width="1.2"/><polyline points="6,10 9,13 14,7" stroke="#C96A3A" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">複数ファイルをまとめて編集する</strong><span style="color:var(--gray-mid);"> — 1つの指示で関連するファイルを全部直してくれる</span></div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:14px;background:var(--beige);border-radius:8px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;margin-top:1px;"><circle cx="10" cy="10" r="9" stroke="#C96A3A" stroke-width="1.2"/><polyline points="6,10 9,13 14,7" stroke="#C96A3A" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">コードが書けなくても動く</strong><span style="color:var(--gray-mid);"> — プログラミング知識は一切不要</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head"><div class="card-num">3</div><div class="card-title">使う前に知っておくこと</div></div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--beige);border-radius:8px;border-left:3px solid var(--orange);">
-          <div>
-            <div style="font-size:13px;font-weight:500;margin-bottom:4px;">費用がかかります（月額 3,000円〜）</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.75;">Anthropicの有料プラン（Max $20/月）が必要です。使い放題ではなく、使うほどクレジットを消費します。ワークショップ1日で大量に使っても、通常は$20の枠内に収まります。</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--beige);border-radius:8px;border-left:3px solid var(--orange);">
-          <div>
-            <div style="font-size:13px;font-weight:500;margin-bottom:4px;">ファイルが自動で変更されます</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.75;">Claude Codeは指示した内容をファイルに直接書き込みます。「戻す」ボタンはないので、大きな変更の前はファイルをコピーして保存しておきましょう。</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--beige);border-radius:8px;border-left:3px solid var(--orange);">
-          <div>
-            <div style="font-size:13px;font-weight:500;margin-bottom:4px;">英語で返ってくることがあります</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.75;">日本語で話しかけても、確認メッセージが英語になることがあります。「y」と入力してEnterを押せば進めます。困ったら「日本語で答えて」と追加してOK。</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head"><div class="card-num">4</div><div class="card-title">ダウンロード・インストール手順</div></div>
+      <div class="card-head"><div class="card-num">1</div><div class="card-title">サブスクリプション加入（$20/月 Pro）</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">Claude を使うには有料プラン（Pro）への加入が必要です。月額 $20（約3,000円）。まだの方は事前に済ませておきましょう。</p>
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-body">
-            <div class="step-title">Anthropicアカウントを作る</div>
-            <div class="step-desc">claude.ai にアクセスしてアカウント作成。<br><strong>Maxプラン（$20/月）</strong>に加入してください。無料プランではClaude Codeは使えません。</div>
+            <div class="step-title">claude.ai にアクセス</div>
+            <div class="step-desc">ブラウザで <a href="https://claude.ai" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">claude.ai</a> を開きます。アカウントがない方はメールアドレスで無料登録してください。</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-body">
-            <div class="step-title">Node.js をインストール</div>
-            <div class="step-desc">Claude Codeを動かすために必要なソフトです。<br>nodejs.org にアクセスして「LTS版」をダウンロード → インストール。</div>
-            <div class="step-code">インストール後、ターミナルで確認：node -v</div>
+            <div class="step-title">左メニューから「Upgrade plan」を選択</div>
+            <div class="step-desc">ログイン後、左サイドバー下部にある「Upgrade plan」をクリックします。</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-body">
-            <div class="step-title">ターミナルを開く</div>
-            <div class="step-desc">Mac の場合：Command + Space を押して「ターミナル」と検索 → 開く<br>Windows の場合：スタートメニューから「PowerShell」を検索 → 開く</div>
+            <div class="step-title">「Pro」プランを選んで支払い</div>
+            <div class="step-desc"><strong>Pro（$20/月）</strong>を選択 → クレジットカード情報を入力 → 「Subscribe」で完了。ワークショップ中に使う分は通常この枠内で収まります。</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:14px 16px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:10px;font-size:12px;color:var(--gray-mid);line-height:1.75;">
+        <strong style="color:var(--black);">既にProプランの方</strong>はこのステップをスキップしてOKです。無料プランの方は次に進む前に必ず加入してください。
+      </div>
+    </div>
+
+    <!-- ─── Card 2: Claude Desktop ダウンロード ─── -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">2</div><div class="card-title">Claude Desktop をダウンロード・インストール</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.9;">ブラウザではなく、パソコンにインストールするデスクトップアプリを使います。Mac と Windows どちらも対応しています。</p>
+
+      <!-- Mac / Windows タブ切り替え -->
+      <div style="display:flex;gap:0;margin-bottom:20px;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+        <button id="btn-mac" onclick="setupSwitchOS('mac')" style="flex:1;padding:10px 0;font-size:13px;font-weight:500;border:none;cursor:pointer;background:var(--orange);color:#fff;transition:all 0.2s;">
+          🍎 Mac
+        </button>
+        <button id="btn-win" onclick="setupSwitchOS('win')" style="flex:1;padding:10px 0;font-size:13px;font-weight:500;border:none;cursor:pointer;background:var(--beige);color:var(--gray-mid);transition:all 0.2s;">
+          🪟 Windows
+        </button>
+      </div>
+
+      <!-- Mac 手順 -->
+      <div id="setup-mac" class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">ダウンロードページへ</div>
+            <div class="step-desc"><a href="https://claude.ai/download" target="_blank" style="color:var(--orange);font-weight:500;">claude.ai/download</a> にアクセスして「Download for macOS」をクリック。<code style="background:var(--beige);padding:2px 8px;border-radius:5px;font-size:12px;">.dmg</code> ファイルがダウンロードされます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">インストール</div>
+            <div class="step-desc">ダウンロードした <code style="background:var(--beige);padding:2px 8px;border-radius:5px;font-size:12px;">Claude.dmg</code> をダブルクリック → 「Claude」をApplicationsフォルダにドラッグ → 完了。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">起動してログイン</div>
+            <div class="step-desc">LaunchpadまたはApplicationsからClaudeを開きます。「Sign in」からProプランで登録したアカウントでログインして完了。</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-body">
-            <div class="step-title">Claude Code をインストール</div>
-            <div class="step-desc">ターミナルに以下をコピペして Enter。少し時間がかかります。</div>
-            <div class="step-code">npm install -g @anthropic-ai/claude-code</div>
+            <div class="step-title">確認：Claude Code 機能が使えるか</div>
+            <div class="step-desc">アプリを開いてチャット入力欄の左下に<strong>「＋」ボタンと「ツール」アイコン</strong>が表示されていればOKです。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Windows 手順 -->
+      <div id="setup-win" class="steps" style="display:none;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">ダウンロードページへ</div>
+            <div class="step-desc"><a href="https://claude.ai/download" target="_blank" style="color:var(--orange);font-weight:500;">claude.ai/download</a> にアクセスして「Download for Windows」をクリック。<code style="background:var(--beige);padding:2px 8px;border-radius:5px;font-size:12px;">ClaudeSetup.exe</code> がダウンロードされます。</div>
           </div>
         </div>
         <div class="step">
-          <div class="step-num">5</div>
+          <div class="step-num">2</div>
           <div class="step-body">
-            <div class="step-title">起動して、ログインする</div>
-            <div class="step-desc">ターミナルに「claude」と入力してEnter。ブラウザが開いてAnthropicのログイン画面が出たら成功。ログインして完了。</div>
-            <div class="step-code">claude</div>
+            <div class="step-title">インストール</div>
+            <div class="step-desc">ダウンロードした <code style="background:var(--beige);padding:2px 8px;border-radius:5px;font-size:12px;">ClaudeSetup.exe</code> をダブルクリック。「この不明な発行元からのアプリがデバイスに変更を加えることを許可しますか？」が出たら「はい」を選択してインストールを進めます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">起動してログイン</div>
+            <div class="step-desc">インストール完了後、Claudeが自動的に起動します。「Sign in」からProプランで登録したアカウントでログインして完了。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">確認：Claude Code 機能が使えるか</div>
+            <div class="step-desc">アプリを開いてチャット入力欄の左下に<strong>「＋」ボタンと「ツール」アイコン</strong>が表示されていればOKです。</div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- ─── Card 3: 機能を使ってみよう ─── -->
     <div class="card">
-      <div class="card-head"><div class="card-num">5</div><div class="card-title">フォルダの考え方</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">Claude Codeは「今いるフォルダ」の中でだけ作業します。フォルダ＝作業部屋のイメージです。</p>
-      <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:16px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.15em;color:var(--orange);margin-bottom:12px;text-transform:uppercase;">フォルダ構成の例</div>
-        <div style="font-family:'DM Sans','Courier New',monospace;font-size:13px;line-height:2;color:var(--gray-mid);">
-          <div>workshop-lp/　　　　← <span style="color:var(--black);">プロジェクトフォルダ（作業部屋）</span></div>
-          <div>&nbsp;&nbsp;├─ lp.html　　　← <span style="color:var(--black);">Claude Codeが作るLPファイル</span></div>
-          <div>&nbsp;&nbsp;└─ images/　　　← <span style="color:var(--orange);font-weight:600;">素材フォルダ（写真はすべてここに）</span></div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ profile.jpg　← <span style="color:var(--black);">顔写真</span></div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ banner.jpg　 ← <span style="color:var(--black);">その他の画像</span></div>
+      <div class="card-head"><div class="card-num">3</div><div class="card-title">Claude の機能を使ってみよう（3つの練習）</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">インストールできたら、当日までに3つの操作を試しておきましょう。全部で10分あれば完了します。</p>
+
+      <!-- 練習1 -->
+      <div style="margin-bottom:16px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--beige);">
+          <div style="width:28px;height:28px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;flex-shrink:0;">①</div>
+          <div style="font-size:14px;font-weight:500;">チャットで質問してみる</div>
+        </div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">入力欄に日本語で何でも質問してみましょう。</div>
+          <div style="background:var(--beige-mid);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--black);line-height:1.7;">
+            💬 例：「自己紹介のコピーを5パターン作って」「私のビジネスについてのLPのタイトル案を10個考えて」
+          </div>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div style="display:flex;gap:12px;align-items:flex-start;">
-          <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
-          <div style="font-size:13px;line-height:1.8;">まずデスクトップに <strong>「workshop-lp」</strong> というフォルダを1つ作る</div>
+
+      <!-- 練習2 -->
+      <div style="margin-bottom:16px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--beige);">
+          <div style="width:28px;height:28px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;flex-shrink:0;">②</div>
+          <div style="font-size:14px;font-weight:500;">画像や資料を添付してみる</div>
         </div>
-        <div style="display:flex;gap:12px;align-items:flex-start;">
-          <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
-          <div style="font-size:13px;line-height:1.8;"><strong>workshop-lp/images/</strong> フォルダを作り、顔写真・素材はすべてそこに入れておく</div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">入力欄の<strong>「＋」ボタン</strong>または画像をドラッグ＆ドロップで添付できます。</div>
+          <div style="background:var(--beige-mid);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--black);line-height:1.7;">
+            💬 例：スクリーンショットを貼り付けて「このデザインの改善点を教えて」<br>名刺の写真を貼り付けて「このデザインをもとにLPのカラーを提案して」
+          </div>
         </div>
-        <div style="display:flex;gap:12px;align-items:flex-start;">
-          <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
-          <div style="font-size:13px;line-height:1.8;">Claude Codeを起動するときは <strong>そのフォルダに移動してから</strong> 起動する（当日一緒に確認します）</div>
+      </div>
+
+      <!-- 練習3 -->
+      <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--beige);">
+          <div style="width:28px;height:28px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;flex-shrink:0;">③</div>
+          <div style="font-size:14px;font-weight:500;">ファイルを作成してもらう（Claude Code機能）</div>
         </div>
-        <div style="display:flex;gap:12px;align-items:flex-start;">
-          <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
-          <div style="font-size:13px;line-height:1.8;">フォルダの外のファイルはClaude Codeから見えないので <strong>1つのフォルダにまとめる</strong> のが大事</div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">Claude Desktop には「<strong>Claude Code</strong>」というファイル操作機能があります。チャット欄の<strong>ツールアイコン</strong>から「Allow file access」を許可してから試してみましょう。</div>
+          <div style="background:var(--beige-mid);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--black);line-height:1.7;">
+            💬 例：「デスクトップに test.html というファイルを作って。シンプルなHello Worldページで。」
+          </div>
+          <div style="margin-top:12px;padding:10px 14px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
+            作成が完了したら、デスクトップに <code style="font-size:11px;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:4px;">test.html</code> が生成されているか確認してみてください。ブラウザで開けばページが表示されます。
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- ─── Card 4: 自分の課題を解決してみよう ─── -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">4</div><div class="card-title">自分の課題を解決してみよう</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">練習が終わったら、当日のワークショップに向けて「自分が作りたいもの」を Claude に相談してみましょう。事前に壁打ちしておくと、当日スムーズに進みます。</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--beige);border-radius:10px;">
+          <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:8px;"></div>
+          <div style="font-size:13px;line-height:1.8;">「私は〇〇をしているフリーランスです。集客用のLPを作りたいのですが、どんな構成が良いですか？」</div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--beige);border-radius:10px;">
+          <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:8px;"></div>
+          <div style="font-size:13px;line-height:1.8;">「私のターゲット層は〇〇で、悩みは〇〇です。このLPのキャッチコピーを3パターン提案して」</div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--beige);border-radius:10px;">
+          <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:8px;"></div>
+          <div style="font-size:13px;line-height:1.8;">「参加者の情報を参考に、自分のビジネスとの共通点や差別化ポイントを教えて」</div>
+        </div>
+      </div>
+      <div style="padding:16px 20px;background:var(--grad-soft);border:1px solid var(--orange-border);border-radius:12px;text-align:center;">
+        <div style="font-size:13px;color:var(--black);margin-bottom:10px;">当日一緒に作るLPの<strong>コンセプト・ターゲット・強み</strong>を事前に整理しておくと、スムーズに進みます。</div>
+        <a href="#" onclick="document.querySelectorAll('.tab-btn')[5].click();return false;" style="display:inline-block;padding:8px 20px;background:var(--orange);color:#fff;border-radius:20px;font-size:13px;font-weight:500;text-decoration:none;">チーム一覧を確認する →</a>
+      </div>
+    </div>
+
+    <!-- ─── Card 5: よくある質問 ─── -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">5</div><div class="card-title">よくある質問</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>Claude Desktop と Claude.ai（ブラウザ版）の違いは？</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            基本的な会話機能は同じです。Desktop版には「Claude Code」機能が搭載されており、パソコン上のファイルを直接作成・編集できます。ワークショップではDesktop版を使います。
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>インストール中にエラーが出てしまいました</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            慌てずにスクリーンショットを撮ってLINEグループでシェアしてください。事前オンライン会（4/16）でも一緒に確認します。当日サポートもあるので、インストールできていなくても参加できます。
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>Pro プランはいつでも解約できますか？</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            はい、いつでも解約可能です。claude.ai にログイン → 左メニューの「Settings」→「Billing」から解約できます。解約後も月末まで使えます。まず1ヶ月だけ試してみるのがおすすめです。
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>Windows でうまく動かない場合は？</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            Windows Defender や セキュリティソフトがブロックすることがあります。その場合は「詳細情報」→「実行」を選ぶか、一時的にリアルタイム保護をオフにしてからインストールしてみてください。詳しくは事前オンライン会で確認します。
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      function setupSwitchOS(os) {
+        var macEl = document.getElementById('setup-mac');
+        var winEl = document.getElementById('setup-win');
+        var btnMac = document.getElementById('btn-mac');
+        var btnWin = document.getElementById('btn-win');
+        if (os === 'mac') {
+          macEl.style.display = '';
+          winEl.style.display = 'none';
+          btnMac.style.background = 'var(--orange)';
+          btnMac.style.color = '#fff';
+          btnWin.style.background = 'var(--beige)';
+          btnWin.style.color = 'var(--gray-mid)';
+        } else {
+          macEl.style.display = 'none';
+          winEl.style.display = '';
+          btnWin.style.background = 'var(--orange)';
+          btnWin.style.color = '#fff';
+          btnMac.style.background = 'var(--beige)';
+          btnMac.style.color = 'var(--gray-mid)';
+        }
+      }
+    </script>
   </section>
 
   <!-- ═══ TAB 7: 用語集 ═══ -->
