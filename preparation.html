@@ -1116,15 +1116,17 @@
         <button class="tab-btn" onclick="switchTab('schedule', this)"><span>04</span>4/18 当日</button>
       </div>
       <div class="sidebar-group">
-        <div class="sidebar-label">事前準備</div>
-        <button class="tab-btn" onclick="switchTab('setup', this)"><span>05</span>CCセットアップ</button>
-        <button class="tab-btn" onclick="switchTab('worksheet', this)"><span>06</span>ワークシート</button>
-        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>07</span>用語集</button>
-        <button class="tab-btn" onclick="switchTab('design', this)"><span>08</span>デザインガイド</button>
-        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>09</span>指示テンプレ</button>
-        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>10</span>デプロイ手順</button>
-        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>11</span>当日チェック</button>
-        <button class="tab-btn" onclick="switchTab('github', this)"><span>12</span>GitHub連携</button>
+        <div class="sidebar-label">Workflow ─ 6 Steps</div>
+        <button class="tab-btn" onclick="switchTab('setup', this)"><span>05</span>STEP 01 ／ 環境を整える</button>
+        <button class="tab-btn" onclick="switchTab('worksheet', this)"><span>06</span>STEP 02 ／ 内容を整理する</button>
+        <button class="tab-btn" onclick="switchTab('design', this)"><span>07</span>STEP 03 ／ デザインを学ぶ</button>
+        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>08</span>STEP 04 ／ AIに指示する</button>
+        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>09</span>STEP 05 ／ 公開する</button>
+        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>10</span>STEP 06 ／ 当日に備える</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-label">Reference</div>
+        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>11</span>用語集</button>
       </div>
     </nav>
 
@@ -1132,7 +1134,7 @@
 
   <!-- ═══ TAB 1: 全体像 ═══ -->
   <section class="tab-content active" id="tab-overview">
-    <div class="sec-eyebrow">Overview</div>
+    <div class="sec-eyebrow">Intro</div>
     <div class="sec-title">このワークショップで起きること</div>
     <p class="sec-desc">6時間で何を作り、何を持ち帰るのか。全体像を最初に把握しておきましょう。</p>
 
@@ -1210,7 +1212,7 @@
 
   <!-- ═══ TAB 2: チーム一覧 ═══ -->
   <section class="tab-content" id="tab-team">
-    <div class="sec-eyebrow">Team</div>
+    <div class="sec-eyebrow">Members</div>
     <div class="sec-title">講師チームを知っておこう</div>
     <p class="sec-desc">デザイナー歴20年以上のプロ3人が、当日フルサポートします。</p>
 
@@ -1449,7 +1451,7 @@
 
   <!-- ═══ TAB 3: デザイナー視点 ═══ -->
   <section class="tab-content" id="tab-designer">
-    <div class="sec-eyebrow">Designer's Eye</div>
+    <div class="sec-eyebrow">Mindset</div>
     <div class="sec-title">プロのデザイナーはLPをこう見る</div>
     <p class="sec-desc">CCでLPを作る技術より大事なこと。それが「デザイナーの頭の中」です。当日の前に読んでおいてください。</p>
 
@@ -1540,7 +1542,7 @@
 
   <!-- ═══ TAB 4: 今日の流れ ═══ -->
   <section class="tab-content" id="tab-schedule">
-    <div class="sec-eyebrow">4.18 Workshop Day</div>
+    <div class="sec-eyebrow">Schedule</div>
     <div class="sec-title">4月18日 当日の流れ</div>
     <p class="sec-desc">ワークショップ当日（4/18）のタイムラインです。事前準備の日程とは別です。7時間でLP完成・公開まで行います。</p>
 
@@ -1626,7 +1628,7 @@
 
   <!-- ═══ TAB 5: CCセットアップ ═══ -->
   <section class="tab-content" id="tab-setup">
-    <div class="sec-eyebrow">Step 02</div>
+    <div class="sec-eyebrow">Step 01 ／ 環境を整える</div>
     <div class="sec-title">Claude Codeを使える状態にする</div>
     <p class="sec-desc">当日は「すぐ作業できる状態」でお越しください。このページを見ながら事前にセットアップを済ませておきましょう。</p>
 
@@ -1772,8 +1774,8 @@
 
   <!-- ═══ TAB 7: 用語集 ═══ -->
   <section class="tab-content" id="tab-glossary">
-    <div class="sec-eyebrow">Glossary</div>
-    <div class="sec-title">横文字・専門用語をわかりやすく</div>
+    <div class="sec-eyebrow">Reference</div>
+    <div class="sec-title">用語集 ─ 横文字・専門用語をわかりやすく</div>
     <p class="sec-desc">知らなくてもワークショップには参加できますが、意味を知っておくと当日の理解が深まります。</p>
 
     <!-- グループ①: Claude Code の基本 -->
@@ -1948,8 +1950,8 @@
 
   <!-- ═══ TAB 8: ワークシート（ワークショップ） ═══ -->
   <section class="tab-content" id="tab-worksheet">
-    <div class="sec-eyebrow">Workshop</div>
-    <div class="sec-title">LPの内容を入力する</div>
+    <div class="sec-eyebrow">Step 02 ／ 内容を整理する</div>
+    <div class="sec-title">LPに載せる情報を入力する</div>
     <p class="sec-desc">全項目を埋めると、一番下に<strong>CCにそのままコピペできるプロンプト</strong>が自動生成されます。</p>
 
     <div class="callout">完璧でなくてOKです。「仮」でも埋めておくことで、当日の制作スピードが大きく変わります。</div>
@@ -2072,7 +2074,7 @@
 
   <!-- ═══ TAB 2: デザインガイド ═══ -->
   <section class="tab-content" id="tab-design">
-    <div class="sec-eyebrow">Step 02</div>
+    <div class="sec-eyebrow">Step 03 ／ デザインを学ぶ</div>
     <div class="sec-title">デザインを理解して、LPを作る</div>
     <p class="sec-desc">デザインとは「見た目を整えること」ではありません。まず伝えたいことを整理して、その上で見た目を作ります。</p>
 
@@ -2612,7 +2614,7 @@
 
   <!-- ═══ TAB 3: 指示テンプレ ═══ -->
   <section class="tab-content" id="tab-prompt">
-    <div class="sec-eyebrow">Step 03</div>
+    <div class="sec-eyebrow">Step 04 ／ AIに指示する</div>
     <div class="sec-title">Claude Codeへの指示テンプレ</div>
     <p class="sec-desc">穴埋めしてコピペするだけでLPが完成します。当日はこのテンプレを使います。</p>
 
@@ -2728,9 +2730,41 @@
 【デザイン指定】
 カラーテイスト：<span class="fill">デザインタブで選んだもの</span>
 フォント：<span class="fill">デザインタブで選んだもの</span>
+参考にしたいLP（URL）：<span class="fill">https://〇〇〇.com</span>
+↑ このサイトの「<span class="fill">余白の取り方・写真の雰囲気・〇〇</span>」が好きです。
 
 LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 → 料金 → CTA の順でお願いします。</div>
         <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-num" style="background:var(--orange);color:#fff;border:none;">★</div><div class="card-title">URL貼り付け式モデリングプロンプト（最強）</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">
+        作りたい雰囲気に近いLPのURLを貼るだけで、Claude Codeがそのサイトの構成・色味・空気感を読み取って、あなたのLPに翻訳してくれます。<br>
+        <strong style="color:var(--black);">「丸パクリ」ではなく「エッセンスを取り入れる」</strong>のがポイント。
+      </p>
+      <div class="prompt-wrap">
+        <div class="prompt-box">参考にしたいLPがあります：
+<span class="fill">https://〇〇〇.com</span>
+
+このサイトの中で特に好きなところ：
+・<span class="fill">余白の取り方</span>
+・<span class="fill">写真の使い方／雰囲気</span>
+・<span class="fill">フォントの世界観</span>
+
+このサイトの「空気感・レイアウトの呼吸・色のトーン」を参考に、
+私のLPを作ってください。
+ただし丸パクリではなく、エッセンスだけ取り入れてください。
+
+掲載する内容（テキスト・サービス情報）はこちらを使ってください：
+─────────────────────
+<span class="fill">ワークシートの内容を貼る</span>
+─────────────────────</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+      </div>
+      <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:12px 16px;margin-top:14px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+        💡 <strong style="color:var(--black);">参考LPの探し方</strong>：「STEP 03 デザインを学ぶ」タブの<strong>カード5「LP・デザイン参考サイト」</strong>に、女性起業家向けの参考LPまとめがあります。
       </div>
     </div>
 
@@ -2788,7 +2822,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- ═══ TAB 4: デプロイ手順 ═══ -->
   <section class="tab-content" id="tab-deploy">
-    <div class="sec-eyebrow">Step 04</div>
+    <div class="sec-eyebrow">Step 05 ／ 公開する</div>
     <div class="sec-title">LPをネットに公開する</div>
     <p class="sec-desc">GitHubを使えば無料でLPを公開できます。手順通りに進めれば10分で完了します。</p>
 
@@ -2920,7 +2954,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- ═══ TAB 5: チェックリスト ═══ -->
   <section class="tab-content" id="tab-checklist">
-    <div class="sec-eyebrow">Step 05</div>
+    <div class="sec-eyebrow">Step 06 ／ 当日に備える</div>
     <div class="sec-title">当日までの準備チェック</div>
     <p class="sec-desc">全部にチェックがついたら、あなたは準備完了です。</p>
 
@@ -3040,221 +3074,6 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div>
   </section>
 
-  <!-- ═══ TAB 13: GitHub連携 ═══ -->
-  <section class="tab-content" id="tab-github">
-    <div class="sec-eyebrow">GitHub Collaboration</div>
-    <div class="sec-title">クライアントと<br>同じファイルをいじる方法</div>
-    <p class="sec-desc">GitHubを使えば、離れた場所にいる人と同じファイルを安全に編集できます。この4コマで全体の流れを掴みましょう。</p>
-
-    <!-- フロー図 -->
-    <div class="gh-flow-svg">
-      <svg width="520" height="110" viewBox="0 0 520 110" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
-        <!-- あや -->
-        <rect x="10" y="25" width="110" height="60" rx="10" fill="#FAF8F5" stroke="#E4DDD4" stroke-width="1.5"/>
-        <circle cx="55" cy="42" r="14" fill="#F5EFE4" stroke="#C96A3A" stroke-width="1.5"/>
-        <text x="55" y="47" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#C96A3A">あや</text>
-        <text x="55" y="72" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">Claude Code</text>
-        <text x="55" y="85" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">で編集</text>
-        <!-- push矢印 -->
-        <line x1="122" y1="55" x2="168" y2="55" stroke="#C96A3A" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <polygon points="168,51 176,55 168,59" fill="#C96A3A"/>
-        <text x="145" y="48" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#C96A3A">push</text>
-        <!-- GitHub -->
-        <rect x="178" y="10" width="164" height="90" rx="12" fill="#FAF8F5" stroke="#C96A3A" stroke-width="1.8"/>
-        <text x="260" y="35" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#C96A3A">GITHUB</text>
-        <text x="260" y="52" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">インターネット上の</text>
-        <text x="260" y="65" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">共有フォルダ</text>
-        <rect x="200" y="74" width="120" height="20" rx="6" fill="#EDE4D6"/>
-        <text x="260" y="88" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#7A7068">preparation.html</text>
-        <!-- pull矢印 -->
-        <line x1="344" y1="55" x2="388" y2="55" stroke="#3a6ec8" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <polygon points="388,51 396,55 388,59" fill="#3a6ec8"/>
-        <text x="366" y="48" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a6ec8">pull</text>
-        <!-- ゆみさん -->
-        <rect x="398" y="25" width="112" height="60" rx="10" fill="#FAF8F5" stroke="#E4DDD4" stroke-width="1.5"/>
-        <circle cx="454" cy="42" r="14" fill="#EBF0FA" stroke="#3a6ec8" stroke-width="1.5"/>
-        <text x="454" y="47" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#3a6ec8">ゆみさん</text>
-        <text x="454" y="72" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">Claude Code</text>
-        <text x="454" y="85" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">で編集</text>
-        <!-- 説明テキスト -->
-        <text x="260" y="108" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#9A9088">どちらが変更しても、GitHubを通じて相手に届く</text>
-      </svg>
-    </div>
-
-    <!-- 01 GitHubとは -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-num">01</div>
-        <div class="card-title">GitHubは「インターネット上の共有フォルダ」</div>
-      </div>
-      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:18px;line-height:1.8;">DropboxやGoogleドライブに近いイメージです。ただしファイルの「変更履歴」も全部残ります。</p>
-      <div class="gh-4grid">
-        <div class="gh-4card">
-          <div class="gh-4card-title">普通のフォルダと同じこと</div>
-          <div class="gh-4card-desc">ファイルを入れる・取り出す・編集する。基本的な操作はフォルダと同じです。</div>
-        </div>
-        <div class="gh-4card">
-          <div class="gh-4card-title">変更履歴が残る</div>
-          <div class="gh-4card-desc">「誰が・いつ・何を変えたか」がすべて記録されます。間違えても前の状態に戻せます。</div>
-        </div>
-        <div class="gh-4card">
-          <div class="gh-4card-title">複数人で使える</div>
-          <div class="gh-4card-desc">Collaborator（共同作業者）として招待した人だけが編集できます。</div>
-        </div>
-        <div class="gh-4card">
-          <div class="gh-4card-title">無料で使える</div>
-          <div class="gh-4card-desc">基本機能は無料。プライベート（非公開）リポジトリも無料で作れます。</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 02 招待する側の手順 -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-num">02</div>
-        <div class="card-title">一緒に編集したい人を招待する</div>
-      </div>
-      <div class="gh-role-badge aya">あやがやること</div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">GitHubでリポジトリを開く</div>
-            <div class="step-desc">github.com → 対象のリポジトリ（例：gokigen-design/ai-workshop）を開く</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">Settings → Collaborators を開く</div>
-            <div class="step-desc">上部タブの「Settings」→ 左メニュー「Collaborators（協力者）」をクリック</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">「人を追加する」→ ユーザー名を入力</div>
-            <div class="step-desc">相手のGitHubユーザー名を入力して選択 → 「Add」をクリック</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <div class="step-title">招待メールが相手に届く</div>
-            <div class="step-desc">相手のメールアドレスに招待が届きます。承認されると編集できるようになります。</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 03 招待された側の手順 -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-num">03</div>
-        <div class="card-title">招待を受け取ったら、自分のPCにコピーする</div>
-      </div>
-      <div class="gh-role-badge client">クライアント・チームがやること</div>
-      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:18px;line-height:1.8;">「clone（クローン）」とは、GitHubのフォルダを自分のパソコンにコピーすることです。1回やるだけです。</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">招待メールを承認する</div>
-            <div class="step-desc">GitHubからのメールを開いて「Accept invitation」をクリック</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">ターミナルを開いてcloneする</div>
-            <div class="step-desc">以下のコマンドをコピペして実行。フォルダが自動で作られます。</div>
-            <div class="step-code"># 共有フォルダを自分のPCにコピーする（1回だけ）
-git clone https://github.com/gokigen-design/ai-workshop.git</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">Claude Codeでそのフォルダを開く</div>
-            <div class="step-desc">cloneしたフォルダをClaude Codeで開けば、すぐに編集できます。</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 04 編集してpush -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-num">04</div>
-        <div class="card-title">変更したら「push」で全員に届ける</div>
-      </div>
-      <div class="gh-role-badge both">あや・クライアント共通</div>
-      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.8;">Claude Codeで編集したら、pushでGitHubに送ります。これが「保存して共有」の操作です。</p>
-      <!-- パイプライン図 -->
-      <div class="gh-flow-svg" style="margin-bottom:20px;">
-        <svg width="500" height="80" viewBox="0 0 500 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
-          <rect x="0" y="20" width="100" height="40" rx="8" fill="#FAF8F5" stroke="#E4DDD4" stroke-width="1.5"/>
-          <text x="50" y="38" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">Claude Code</text>
-          <text x="50" y="52" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">で編集する</text>
-          <line x1="102" y1="40" x2="130" y2="40" stroke="#C96A3A" stroke-width="1.5" stroke-dasharray="3 2"/>
-          <polygon points="130,36 138,40 130,44" fill="#C96A3A"/>
-          <text x="116" y="33" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#C96A3A">git add</text>
-          <rect x="140" y="20" width="90" height="40" rx="8" fill="#FAF8F5" stroke="#E4DDD4" stroke-width="1.5"/>
-          <text x="185" y="38" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">ステージング</text>
-          <text x="185" y="52" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#9A9088">「保存する準備」</text>
-          <line x1="232" y1="40" x2="258" y2="40" stroke="#C96A3A" stroke-width="1.5" stroke-dasharray="3 2"/>
-          <polygon points="258,36 266,40 258,44" fill="#C96A3A"/>
-          <text x="246" y="33" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#C96A3A">git commit</text>
-          <rect x="268" y="20" width="90" height="40" rx="8" fill="#FAF8F5" stroke="#E4DDD4" stroke-width="1.5"/>
-          <text x="313" y="38" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#7A7068">コミット</text>
-          <text x="313" y="52" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#9A9088">「変更を記録」</text>
-          <line x1="360" y1="40" x2="384" y2="40" stroke="#C96A3A" stroke-width="1.5" stroke-dasharray="3 2"/>
-          <polygon points="384,36 392,40 384,44" fill="#C96A3A"/>
-          <text x="373" y="33" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#C96A3A">git push</text>
-          <rect x="394" y="10" width="100" height="60" rx="10" fill="#FFF5F0" stroke="#C96A3A" stroke-width="1.8"/>
-          <text x="444" y="36" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#C96A3A">GitHub</text>
-          <text x="444" y="52" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="10" fill="#C96A3A">に届く！</text>
-        </svg>
-      </div>
-      <div class="step-code"># 変更したファイルを指定（preparation.htmlの場合）
-git add preparation.html
-
-# 「何を変えたか」のメモをつける
-git commit -m "ワークシートの内容を更新"
-
-# GitHubに送って全員に共有する
-git push</div>
-    </div>
-
-    <!-- 05 コマンド早見表 -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-num">05</div>
-        <div class="card-title">コマンド早見表</div>
-      </div>
-      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:18px;">この4つだけ覚えれば大丈夫。迷ったらここに戻ってきてください。</p>
-      <table class="gh-cmd-table">
-        <tr>
-          <td>git clone</td>
-          <td>GitHubのフォルダを自分のPCにコピーする（初回1回だけ）</td>
-        </tr>
-        <tr>
-          <td>git add</td>
-          <td>保存するファイルを選ぶ</td>
-        </tr>
-        <tr>
-          <td>git commit</td>
-          <td>「何を変えたか」のメモをつけて記録する</td>
-        </tr>
-        <tr class="gh-cmd-highlight">
-          <td>git push</td>
-          <td>GitHubに送って全員と共有する　← 一番大事！</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="callout">💡 Claude Codeを使えば、これらのコマンドは「git push して」と話しかけるだけで自動で実行してくれます。難しく考えすぎなくて大丈夫！</div>
-  </section>
 
   <script>
     /* ─── Hero scroll effect: photo → scroll → text appears → page continues ─── */
