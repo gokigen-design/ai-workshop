@@ -1650,15 +1650,39 @@
       var box = document.getElementById(id+'-prompt');
       box.textContent = prompt;
       box.style.display = 'block';
-      navigator.clipboard.writeText(prompt).then(function(){
-        var btn = box.previousElementSibling;
-        var orig = btn.textContent;
+      box.scrollIntoView({behavior:'smooth', block:'center'});
+
+      // クリップボードにコピー（フォールバック付き）
+      function doSuccess() {
+        var btn = document.getElementById(id+'-prompt').previousElementSibling;
         btn.textContent = '✅ コピー完了！Claude Desktopに貼り付けてください';
         btn.style.background = '#1BC6B4';
-        setTimeout(function(){ btn.textContent = orig; btn.style.background=''; }, 3000);
-      }).catch(function(){
-        alert('上に表示されたテキストを選択してコピーしてください（Ctrl+A → Ctrl+C）');
-      });
+        setTimeout(function(){ btn.textContent = '📋 Claudeへのプロンプトをコピーする'; btn.style.background=''; }, 4000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(prompt).then(doSuccess).catch(function(){
+          // フォールバック：テキストエリアを使った旧来の方法
+          var ta = document.createElement('textarea');
+          ta.value = prompt;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          doSuccess();
+        });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = prompt;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        doSuccess();
+      }
     }
 
     // ─── 初期描画 ───
