@@ -1546,8 +1546,9 @@
       h += '<div class="card" style="background:var(--grad-soft);border-color:var(--orange-border);">';
       h += '<div class="card-head"><div class="card-num">4</div><div class="card-title">Claudeへのプロンプトをコピー</div></div>';
       h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">2〜3を埋めたら、このボタンを押してプロンプトをコピー → Claude Desktop に貼り付けるだけでLPが生成されます。</p>';
-      h += '<button class="copy-btn" onclick="copyPrompt(\''+id+'\')" style="position:static;top:auto;right:auto;width:100%;display:block;">📋 Claudeへのプロンプトをコピーする</button>';
-      h += '<div class="prompt-box" id="'+id+'-prompt"></div>';
+      h += '<button class="copy-btn" onclick="copyPrompt(\''+id+'\')" style="position:static;top:auto;right:auto;width:100%;display:block;">📋 プロンプトを生成してコピー</button>';
+      h += '<textarea class="prompt-box" id="'+id+'-prompt" readonly style="display:none;width:100%;min-height:300px;margin-top:12px;padding:16px;font-size:12px;line-height:1.8;border:2px solid var(--orange);border-radius:12px;background:#fffaf5;resize:vertical;font-family:inherit;"></textarea>';
+      h += '<button class="copy-btn" id="'+id+'-copy2" onclick="copyOnly(\''+id+'\')" style="display:none;position:static;top:auto;right:auto;width:100%;display:none;margin-top:8px;background:#1BC6B4;">📋 もう一度コピーする</button>';
       h += '</div>';
 
       el.innerHTML = h;
@@ -1692,40 +1693,44 @@
       ]);
       var prompt = lines.join('\n');
       var box = document.getElementById(id+'-prompt');
-      box.textContent = prompt;
+      box.value = prompt;
       box.style.display = 'block';
+      var copy2 = document.getElementById(id+'-copy2');
+      if (copy2) copy2.style.display = 'block';
       box.scrollIntoView({behavior:'smooth', block:'center'});
 
-      // クリップボードにコピー（フォールバック付き）
+      // テキストエリアを全選択してコピー
+      box.focus();
+      box.select();
+      doCopy(prompt, id);
+    }
+
+    function copyOnly(id) {
+      var box = document.getElementById(id+'-prompt');
+      box.focus();
+      box.select();
+      doCopy(box.value, id);
+    }
+
+    function doCopy(text, id) {
       function doSuccess() {
         var btn = document.getElementById(id+'-prompt').previousElementSibling;
         btn.textContent = '✅ コピー完了！Claude Desktopに貼り付けてください';
         btn.style.background = '#1BC6B4';
-        setTimeout(function(){ btn.textContent = '📋 Claudeへのプロンプトをコピーする'; btn.style.background=''; }, 4000);
+        setTimeout(function(){ btn.textContent = '📋 プロンプトを生成してコピー'; btn.style.background=''; }, 4000);
       }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(prompt).then(doSuccess).catch(function(){
-          // フォールバック：テキストエリアを使った旧来の方法
-          var ta = document.createElement('textarea');
-          ta.value = prompt;
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(doSuccess).catch(function(){
+            document.execCommand('copy');
+            doSuccess();
+          });
+        } else {
           document.execCommand('copy');
-          document.body.removeChild(ta);
           doSuccess();
-        });
-      } else {
-        var ta = document.createElement('textarea');
-        ta.value = prompt;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        doSuccess();
+        }
+      } catch(e) {
+        alert('自動コピーできませんでした。下のテキストを長押し→全選択→コピーしてください');
       }
     }
 
