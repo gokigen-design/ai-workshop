@@ -1438,6 +1438,14 @@
 
       var h = '';
 
+      // 事前準備報告ボタン
+      var reported = localStorage.getItem('reported-'+id) === '1';
+      h += '<div class="card" style="margin-bottom:16px;background:linear-gradient(135deg,#fff 60%,rgba(27,198,180,0.05));border-color:#1BC6B4;">';
+      h += '<div class="card-head"><div class="card-num" style="background:#1BC6B4;">0</div><div class="card-title">事前準備の進捗を報告する</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">フォームを入力し終えたら、このボタンを押してください。あやさんに「準備できてるよ！」と伝わります。</p>';
+      h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
+      h += '</div>';
+
       // プロフィール
       h += '<div class="card" style="margin-bottom:16px;">';
       h += '<div class="card-head"><div class="card-num" style="font-size:10px;padding:0 10px;width:auto;min-width:auto;">Group '+m.group+'</div><div class="card-title">'+m.name+'</div><span style="margin-left:auto;font-size:11px;font-weight:600;color:'+roleCol+';">'+m.role+'</span></div>';
@@ -1534,6 +1542,29 @@
       h += '</div>';
 
       el.innerHTML = h;
+    }
+
+    // ─── Google Spreadsheet 報告 ───
+    var GAS_URL = 'https://script.google.com/macros/s/AKfycbwWFM9HMOBFBdmU8vpzJF5_Vt3wUDT4LtVeSfJa5OMui3Ilok5iQH3n4G5ZJwsGCtyk/exec';
+    function reportDone(id) {
+      var m = MEMBERS[id];
+      var serviceEl = document.querySelector('[data-key="'+id+'-service"]');
+      var service = serviceEl ? serviceEl.value.trim() : m.service;
+      var btn = document.getElementById(id+'-report-btn');
+      btn.disabled = true;
+      btn.textContent = '送信中...';
+      fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({name: m.name, group: m.group, service: service}),
+      }).then(function(){
+        btn.textContent = '✅ 報告済！ありがとうございます';
+        btn.style.background = '#1BC6B4';
+        localStorage.setItem('reported-'+id, '1');
+      }).catch(function(){
+        btn.disabled = false;
+        btn.textContent = '⚠️ 送信エラー。もう一度試してください';
+        btn.style.background = '#e55';
+      });
     }
 
     // ─── localStorage 自動保存 ───
