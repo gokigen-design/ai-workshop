@@ -1553,10 +1553,24 @@
       var btn = document.getElementById(id+'-report-btn');
       btn.disabled = true;
       btn.textContent = '送信中...';
+      function fv(f){ var el=document.querySelector('[data-key="'+id+'-'+f+'"]'); return el?el.value.trim():''; }
       var url = GAS_URL
-        + '?name=' + encodeURIComponent(m.name)
-        + '&group=' + encodeURIComponent(m.group)
-        + '&service=' + encodeURIComponent(service);
+        + '?name='    + encodeURIComponent(m.name)
+        + '&group='   + encodeURIComponent(m.group)
+        + '&service=' + encodeURIComponent(fv('service')||m.service)
+        + '&title='   + encodeURIComponent(fv('title'))
+        + '&price='   + encodeURIComponent(fv('price'))
+        + '&target='  + encodeURIComponent(fv('target'))
+        + '&catch='   + encodeURIComponent(fv('catch'))
+        + '&p1='      + encodeURIComponent(fv('p1'))
+        + '&p2='      + encodeURIComponent(fv('p2'))
+        + '&p3='      + encodeURIComponent(fv('p3'))
+        + '&b1='      + encodeURIComponent(fv('b1'))
+        + '&b2='      + encodeURIComponent(fv('b2'))
+        + '&b3='      + encodeURIComponent(fv('b3'))
+        + '&bio='     + encodeURIComponent(fv('bio'))
+        + '&color='   + encodeURIComponent(fv('color'))
+        + '&cta='     + encodeURIComponent(fv('cta'));
       fetch(url, { mode: 'no-cors' }).then(function(){
         btn.textContent = '✅ 報告済！ありがとうございます';
         btn.style.background = '#1BC6B4';
