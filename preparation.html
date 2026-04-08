@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" translate="no">
 <head>
   <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AIワークショップ 事前準備ガイド</title>
   <style id="pw-gate-style">
@@ -1626,6 +1627,7 @@
 
     // ─── プロンプト生成 ───
     function copyPrompt(id) {
+      try {
       function fv(f){ var el=document.querySelector('[data-key="'+id+'-'+f+'"]'); return el?el.value.trim():''; }
       var m = MEMBERS[id];
       var lines = [
@@ -1702,6 +1704,9 @@
       box.focus();
       box.select();
       tryClipboard(prompt, btn);
+      } catch(err) {
+        alert('エラー: ' + err.message);
+      }
     }
 
     function copyOnly(id) {
