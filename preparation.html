@@ -1444,6 +1444,9 @@
       h += '<div class="card-head"><div class="card-num" style="background:#1BC6B4;">0</div><div class="card-title">事前準備の進捗を報告する</div></div>';
       h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">フォームを入力し終えたら、このボタンを押してください。あやさんに「準備できてるよ！」と伝わります。</p>';
       h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;position:static;top:auto;right:auto;width:100%;display:block;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
+      if (reported) {
+        h += '<p style="text-align:center;margin-top:8px;font-size:12px;color:var(--gray-mid);">内容を変更した場合は <a href="#" onclick="resetReport(\''+id+'\');return false;" style="color:#1BC6B4;text-decoration:underline;">もう一度報告する</a></p>';
+      }
       h += '</div>';
 
       // プロフィール
@@ -1580,6 +1583,20 @@
         btn.textContent = '⚠️ 送信エラー。もう一度試してください';
         btn.style.background = '#e55';
       });
+    }
+
+    // ─── 報告リセット ───
+    function resetReport(id) {
+      localStorage.removeItem('reported-'+id);
+      var btn = document.getElementById(id+'-report-btn');
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = '📩 準備完了を報告する';
+        btn.style.background = '#1BC6B4';
+      }
+      // リセットリンクを非表示に
+      var p = btn && btn.nextElementSibling;
+      if (p) p.remove();
     }
 
     // ─── localStorage 自動保存 ───
