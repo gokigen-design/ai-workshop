@@ -1428,7 +1428,7 @@
       var id = el.dataset.id;
       var m = MEMBERS[id];
       if (!m) return;
-      function sv(f) { return (localStorage.getItem('lp-'+id+'-'+f)||'').replace(/"/g,'&quot;'); }
+      function sv(f, def) { return (localStorage.getItem('lp-'+id+'-'+f)||def||'').replace(/"/g,'&quot;'); }
 
       var roleCol = m.role==='リーダー' ? 'var(--orange)' : m.role==='サブリーダー' ? '#1BC6B4' : 'var(--gray-mid)';
       var igLink = m.ig ? '<a href="https://instagram.com/'+m.ig.replace('@','')+'" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">'+m.ig+'</a>' : '—';
@@ -1463,7 +1463,7 @@
 
       // ▼ サービスの基本情報
       h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">サービスの基本情報</div>';
-      h += '<div class="lp-row"><label class="lp-label">サービス名・講座名</label><input class="lp-input" data-key="'+id+'-service" placeholder="例：食べながら痩せる！3ヶ月ダイエットプログラム" value="'+sv('service')+'"></div>';
+      h += '<div class="lp-row"><label class="lp-label">サービス名・講座名</label><input class="lp-input" data-key="'+id+'-service" placeholder="サービス名を入力してください" value="'+sv('service', m.service)+'"></div>';
       h += '<div class="lp-row"><label class="lp-label">あなたの肩書き</label><input class="lp-input" data-key="'+id+'-title" placeholder="例：ダイエットコーチ / 食事管理アドバイザー" value="'+sv('title')+'"></div>';
       h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
       h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">料金</label><input class="lp-input" data-key="'+id+'-price" placeholder="例：¥98,000" value="'+sv('price')+'"></div>';
