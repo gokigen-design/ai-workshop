@@ -1431,16 +1431,14 @@
       function sv(f) { return (localStorage.getItem('lp-'+id+'-'+f)||'').replace(/"/g,'&quot;'); }
 
       var roleCol = m.role==='リーダー' ? 'var(--orange)' : m.role==='サブリーダー' ? '#1BC6B4' : 'var(--gray-mid)';
+      var igLink = m.ig ? '<a href="https://instagram.com/'+m.ig.replace('@','')+'" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">'+m.ig+'</a>' : '—';
 
       var h = '';
 
       // プロフィール
       h += '<div class="card" style="margin-bottom:16px;">';
       h += '<div class="card-head"><div class="card-num" style="font-size:10px;padding:0 10px;width:auto;min-width:auto;">Group '+m.group+'</div><div class="card-title">'+m.name+'</div><span style="margin-left:auto;font-size:11px;font-weight:600;color:'+roleCol+';">'+m.role+'</span></div>';
-      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">';
-      h += '<div style="background:var(--beige);border-radius:8px;padding:11px 14px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">INSTAGRAM</div><div style="font-size:13px;font-weight:500;">'+(m.ig||'—')+'</div></div>';
-      h += '<div style="background:var(--beige);border-radius:8px;padding:11px 14px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">AI LEVEL</div><div style="font-size:13px;font-weight:500;">'+m.level+'</div></div>';
-      h += '</div>';
+      h += '<div style="background:var(--beige);border-radius:8px;padding:11px 14px;margin-top:12px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">INSTAGRAM</div><div style="font-size:13px;">'+igLink+'</div></div>';
       h += '<div style="margin-top:10px;padding:11px 14px;background:var(--beige);border-radius:8px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">SERVICE</div><div style="font-size:13px;">'+m.service+'</div></div>';
       h += '</div>';
 
@@ -1458,29 +1456,54 @@
       });
       h += '</div>';
 
-      // LP情報シート
+      // LP情報シート（STEP 02と同じ構成）
       h += '<div class="card" style="margin-bottom:16px;">';
       h += '<div class="card-head"><div class="card-num">2</div><div class="card-title">LP情報シート（ここを埋めると当日ラクになる！）</div></div>';
       h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">この情報をもとにClaudeがLPを自動作成します。できるだけ全部埋めてください。</p>';
 
-      [['catchcopy','サービス名・キャッチコピー案','例：「食べながら痩せる！3ヶ月ダイエットプログラム」','サービス名やキャッチコピーのイメージを書いてください',false],
-       ['target','ターゲット像（どんな人に届けたい？）','例：「30〜40代・子育て中のママ・時間がない・自分に自信がない」','年齢・職業・状況・気持ちなどを具体的に',true],
-       ['pain','ターゲットのお悩み・課題','例：「食事制限が辛くて続かない・リバウンドを繰り返している」','ターゲットのリアルな悩みを書いてください',true],
-       ['strength','私が提供できること・強み','例：「食べながら痩せる方法・我慢ゼロで-5kg・続けやすい仕組み」','あなたならではの提供価値を書いてください',true],
-       ['result','実績・お客様の声・エピソード','例：「3ヶ月で-8kg達成・受講生30名・喜びの声など」','数字や具体的なエピソードがあると強い',true],
-       ['price','料金・プラン・申し込み方法','例：「3ヶ月98,000円・月払い可・LINE申し込み」','金額・支払い方法・申し込みの流れ',true],
-       ['profile','プロフィール・自己紹介','例：「元会社員・3人の子育て中・自分も-20kgの経験あり」','あなたのストーリーや経歴を書いてください',true]
-      ].forEach(function(f){
-        h += '<div class="lp-row"><label class="lp-label">'+f[1]+'</label><span class="lp-hint">'+f[2]+'</span>';
-        if (f[4]) {
-          h += '<textarea class="lp-ta" data-key="'+id+'-'+f[0]+'" placeholder="'+f[3]+'">'+( localStorage.getItem('lp-'+id+'-'+f[0])||'' )+'</textarea>';
-        } else {
-          h += '<input class="lp-input" data-key="'+id+'-'+f[0]+'" placeholder="'+f[3]+'" value="'+sv(f[0])+'">';
-        }
-        h += '</div>';
-      });
+      // ▼ サービスの基本情報
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">サービスの基本情報</div>';
+      h += '<div class="lp-row"><label class="lp-label">サービス名・講座名</label><input class="lp-input" data-key="'+id+'-service" placeholder="例：食べながら痩せる！3ヶ月ダイエットプログラム" value="'+sv('service')+'"></div>';
+      h += '<div class="lp-row"><label class="lp-label">あなたの肩書き</label><input class="lp-input" data-key="'+id+'-title" placeholder="例：ダイエットコーチ / 食事管理アドバイザー" value="'+sv('title')+'"></div>';
+      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">料金</label><input class="lp-input" data-key="'+id+'-price" placeholder="例：¥98,000" value="'+sv('price')+'"></div>';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">形式・回数</label><input class="lp-input" data-key="'+id+'-format" placeholder="例：オンライン / 全6回" value="'+sv('format')+'"></div>';
+      h += '</div>';
+      h += '<div class="lp-row" style="margin-top:12px;"><label class="lp-label">対象者（どんな人に来てほしいか）</label><input class="lp-input" data-key="'+id+'-target" placeholder="例：30〜40代・子育て中のママ・時間がない・自分に自信がない" value="'+sv('target')+'"></div>';
+      h += '<div class="lp-row"><label class="lp-label">LPのゴール（何をしてほしいか）</label><input class="lp-input" data-key="'+id+'-goal" placeholder="例：申し込みフォームから申し込んでほしい" value="'+sv('goal')+'"></div>';
 
-      h += '<div class="lp-row"><label class="lp-label">カラー・雰囲気イメージ</label><span class="lp-hint">例：「温かみのあるベージュ×グリーン・ナチュラル・女性らしい」</span><input class="lp-input" data-key="'+id+'-color" placeholder="色のイメージや雰囲気を言葉で表現してください" value="'+sv('color')+'"></div>';
+      // ▼ キャッチコピー
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">キャッチコピー</div>';
+      h += '<div class="lp-row"><label class="lp-label">メインキャッチコピー（一言）</label><input class="lp-input" data-key="'+id+'-catch" placeholder="例：食べながら痩せた。我慢ゼロで-5kgの3ヶ月。" value="'+sv('catch')+'"></div>';
+      h += '<div class="lp-row"><label class="lp-label">サブコピー（補足一言）</label><input class="lp-input" data-key="'+id+'-sub" placeholder="例：続けられなかった方こそ、このプログラムが向いています" value="'+sv('sub')+'"></div>';
+
+      // ▼ 悩み×3
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">参加者の悩み（3つ）</div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p1" placeholder="悩み 1：例）食事制限が辛くて続かない" value="'+sv('p1')+'"></div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p2" placeholder="悩み 2：例）リバウンドを繰り返している" value="'+sv('p2')+'"></div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p3" placeholder="悩み 3：例）何をすればいいかわからない" value="'+sv('p3')+'"></div>';
+
+      // ▼ 得られること×3
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">参加後に得られること（3つ）</div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b1" placeholder="得られること 1：例）我慢ゼロで-5kgを実現できる" value="'+sv('b1')+'"></div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b2" placeholder="得られること 2：例）リバウンドしない食習慣が身につく" value="'+sv('b2')+'"></div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b3" placeholder="得られること 3：例）食事を楽しみながら理想のカラダへ" value="'+sv('b3')+'"></div>';
+
+      // ▼ 自己紹介
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">自己紹介</div>';
+      h += '<div class="lp-row"><label class="lp-label">自己紹介文（3〜5行）</label>';
+      h += '<textarea class="lp-ta" data-key="'+id+'-bio" placeholder="例：元会社員・3人の子育て中・自分も-20kgの経験あり。食べることが大好きで食事制限なしのダイエットを研究し続けて10年…">'+( localStorage.getItem('lp-'+id+'-bio')||'' )+'</textarea></div>';
+
+      // ▼ デザイン指定
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">デザイン指定</div>';
+      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">カラーテイスト</label><input class="lp-input" data-key="'+id+'-color" placeholder="例：ナチュラル / ラグジュアリー" value="'+sv('color')+'"></div>';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">フォント</label><input class="lp-input" data-key="'+id+'-font" placeholder="例：Zen Maru Gothic" value="'+sv('font')+'"></div>';
+      h += '</div>';
+      h += '<div class="lp-row" style="margin-top:12px;"><label class="lp-label">顔写真ファイル名（当日フォルダに入れておくもの）</label><input class="lp-input" data-key="'+id+'-photo" placeholder="例：profile.jpg" value="'+sv('photo')+'"></div>';
+
+      // ▼ リンク情報
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">リンク情報</div>';
       h += '<div class="lp-row"><label class="lp-label">申し込み先URL（LINE・予約サイト・メール等）</label><input class="lp-input" data-key="'+id+'-cta" placeholder="https://lin.ee/..." value="'+sv('cta')+'"></div>';
       h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">Instagram / SNS URL</label><input class="lp-input" data-key="'+id+'-sns" placeholder="https://www.instagram.com/..." value="'+sv('sns')+'"></div>';
       h += '</div>';
@@ -1531,31 +1554,37 @@
         '',
         '【基本情報】',
         '氏名：'+m.name,
+        '肩書き：'+(fv('title')||'（未記入）'),
         'Instagram：'+(m.ig||fv('sns')||'未記入'),
         '',
-        '【サービス・キャッチコピー】',
-        fv('catchcopy')||'（未記入）',
+        '【サービス情報】',
+        'サービス名：'+(fv('service')||'（未記入）'),
+        '料金：'+(fv('price')||'（未記入）'),
+        '形式・回数：'+(fv('format')||'（未記入）'),
+        '対象者：'+(fv('target')||'（未記入）'),
+        'LPのゴール：'+(fv('goal')||'（未記入）'),
         '',
-        '【ターゲット像】',
-        fv('target')||'（未記入）',
+        '【キャッチコピー】',
+        'メインキャッチ：'+(fv('catch')||'（未記入）'),
+        'サブコピー：'+(fv('sub')||'（未記入）'),
         '',
-        '【ターゲットのお悩み】',
-        fv('pain')||'（未記入）',
+        '【参加者の悩み】',
+        '悩み1：'+(fv('p1')||'（未記入）'),
+        '悩み2：'+(fv('p2')||'（未記入）'),
+        '悩み3：'+(fv('p3')||'（未記入）'),
         '',
-        '【提供できること・強み】',
-        fv('strength')||'（未記入）',
+        '【参加後に得られること】',
+        '得られること1：'+(fv('b1')||'（未記入）'),
+        '得られること2：'+(fv('b2')||'（未記入）'),
+        '得られること3：'+(fv('b3')||'（未記入）'),
         '',
-        '【実績・お客様の声】',
-        fv('result')||'（未記入）',
+        '【自己紹介】',
+        fv('bio')||'（未記入）',
         '',
-        '【料金・申し込み方法】',
-        fv('price')||'（未記入）',
-        '',
-        '【プロフィール・自己紹介】',
-        fv('profile')||'（未記入）',
-        '',
-        '【デザインイメージ】',
-        fv('color')||'（未記入）',
+        '【デザイン指定】',
+        'カラーテイスト：'+(fv('color')||'（未記入）'),
+        'フォント：'+(fv('font')||'（未記入）'),
+        '顔写真ファイル名：'+(fv('photo')||'profile.jpg'),
       ];
       if(fv('modeling')) lines.push('モデリング先：'+fv('modeling'));
       if(fv('ref1')) lines.push('参考サイト①：'+fv('ref1'));
@@ -1569,17 +1598,13 @@
         '【SNS URL（フッター表示）】',
         fv('sns')||'（未記入）',
         '',
-        '【使用する写真ファイル（images/フォルダ内）】',
-        fv('files')||'profile.jpg',
-        '',
         '【LP構成の指示】',
         '1. ファーストビュー（キャッチコピー＋プロフィール写真）',
         '2. ターゲットへの共感セクション（お悩み）',
-        '3. サービス内容・強み',
-        '4. 実績・お客様の声',
-        '5. 料金・申し込みCTAボタン',
-        '6. プロフィール',
-        '7. フッター（SNSリンク）',
+        '3. サービス内容・得られること',
+        '4. 料金・申し込みCTAボタン',
+        '5. プロフィール（自己紹介）',
+        '6. フッター（SNSリンク）',
         '',
         '・デザインは女性向け、洗練されたイメージで作成してください',
         '・モバイル対応（レスポンシブ）にしてください',
