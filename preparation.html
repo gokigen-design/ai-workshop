@@ -1573,7 +1573,13 @@
         + '&b3='      + encodeURIComponent(fv('b3'))
         + '&bio='     + encodeURIComponent(fv('bio'))
         + '&color='   + encodeURIComponent(fv('color'))
-        + '&cta='     + encodeURIComponent(fv('cta'));
+        + '&cta='     + encodeURIComponent(fv('cta'))
+        + '&sns='     + encodeURIComponent(fv('sns'))
+        + '&existlp=' + encodeURIComponent(fv('existlp'))
+        + '&modeling=' + encodeURIComponent(fv('modeling'))
+        + '&ref1='    + encodeURIComponent(fv('ref1'))
+        + '&ref2='    + encodeURIComponent(fv('ref2'))
+        + '&ref3='    + encodeURIComponent(fv('ref3'));
       fetch(url, { mode: 'no-cors' }).then(function(){
         btn.textContent = '✅ 報告済！ありがとうございます';
         btn.style.background = '#1BC6B4';
