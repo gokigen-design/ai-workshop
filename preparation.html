@@ -1443,7 +1443,7 @@
       h += '<div class="card" style="margin-bottom:16px;background:linear-gradient(135deg,#fff 60%,rgba(27,198,180,0.05));border-color:#1BC6B4;">';
       h += '<div class="card-head"><div class="card-num" style="background:#1BC6B4;">0</div><div class="card-title">事前準備の進捗を報告する</div></div>';
       h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">フォームを入力し終えたら、このボタンを押してください。あやさんに「準備できてるよ！」と伝わります。</p>';
-      h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
+      h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;position:static;top:auto;right:auto;width:100%;display:block;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
       h += '</div>';
 
       // プロフィール
@@ -1537,7 +1537,7 @@
       h += '<div class="card" style="background:var(--grad-soft);border-color:var(--orange-border);">';
       h += '<div class="card-head"><div class="card-num">4</div><div class="card-title">Claudeへのプロンプトをコピー</div></div>';
       h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">2〜3を埋めたら、このボタンを押してプロンプトをコピー → Claude Desktop に貼り付けるだけでLPが生成されます。</p>';
-      h += '<button class="copy-btn" onclick="copyPrompt(\''+id+'\')">📋 Claudeへのプロンプトをコピーする</button>';
+      h += '<button class="copy-btn" onclick="copyPrompt(\''+id+'\')" style="position:static;top:auto;right:auto;width:100%;display:block;">📋 Claudeへのプロンプトをコピーする</button>';
       h += '<div class="prompt-box" id="'+id+'-prompt"></div>';
       h += '</div>';
 
