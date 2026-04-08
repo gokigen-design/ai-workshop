@@ -1982,22 +1982,35 @@
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-body">
-            <div class="step-title">下のリンクからダウンロードページを開く</div>
-            <div class="step-desc"><a href="https://claude.ai/download" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">→ claude.ai/download を開く</a></div>
+            <div class="step-title">まず Git for Windows をインストールする</div>
+            <div class="step-desc">Claude Code はパソコン内部で「Git」というソフトを使います。<strong>これがないと Claude Code 機能が動きません。</strong>必ず先に入れてください。</div>
+            <div style="margin-top:12px;padding:14px 16px;background:var(--beige);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--gray-mid);line-height:2;">
+              ① git-scm.com を開き、ページ上部の <a href="https://git-scm.com/downloads/win" target="_blank" style="color:var(--orange);font-weight:500;">「Click here to download」</a> をクリック<br>
+              ② ダウンロードされたファイルをダブルクリック<br>
+              ③ <strong style="color:var(--black);">すべて「Next」を押し続けて大丈夫</strong> → 最後に Install → Finish
+            </div>
+            <div style="margin-top:10px;padding:10px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;font-size:11px;color:var(--gray-mid);line-height:1.8;">
+              <strong style="color:#16a34a;">確認方法：</strong> Windowsキー → 「cmd」と入力して Enter → 黒い画面に <code style="background:#e2e8f0;padding:1px 6px;border-radius:3px;">git --version</code> と打って Enter →「git version 2.xx.x」と表示されれば成功
+            </div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-body">
-            <div class="step-title">「Download for Windows」をクリック</div>
-            <div class="step-desc"><code style="background:var(--beige);padding:2px 8px;border-radius:5px;font-size:12px;">ClaudeSetup.exe</code> がダウンロードされます。</div>
+            <div class="step-title">Claude Desktop をダウンロード</div>
+            <div class="step-desc"><a href="https://claude.ai/download" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">→ claude.ai/download を開く</a></div>
+            <div class="step-desc" style="margin-top:6px;">「Download for Windows」をクリック。<code style="background:var(--beige);padding:2px 8px;border-radius:5px;font-size:12px;">Claude.Setup.exe</code> がダウンロードされます。</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-body">
-            <div class="step-title">ダウンロードした .exe ファイルを実行</div>
-            <div class="step-desc">「この不明な発行元からのアプリがデバイスに変更を加えることを許可しますか？」が表示されたら <strong>「はい」</strong> を選択して進めます。</div>
+            <div class="step-title">ダウンロードしたファイルをダブルクリックして実行</div>
+            <div class="step-desc">インストールが自動的に始まります（数分かかることがあります）。</div>
+            <div style="margin-top:10px;padding:10px 14px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+              <strong style="color:var(--black);">「WindowsによってPCが保護されました」と出たら？</strong><br>
+              →「<strong>詳細情報</strong>」をクリック →「<strong>実行</strong>」をクリックすれば進めます。
+            </div>
           </div>
         </div>
         <div class="step">
@@ -2010,8 +2023,18 @@
         <div class="step">
           <div class="step-num">5</div>
           <div class="step-body">
-            <div class="step-title">先ほどのアカウントでログイン</div>
-            <div class="step-desc">「Sign in」からサブスク加入したアカウントでログインして完了。</div>
+            <div class="step-title">ブラウザでログインする</div>
+            <div class="step-desc">アプリが起動すると、ブラウザが自動的に開いてログイン画面が表示されます。STEP 1 で作った Claude アカウントでログインしてください。</div>
+            <div style="margin-top:10px;padding:10px 14px;background:var(--beige);border:1px solid var(--border);border-radius:8px;font-size:11px;color:var(--gray-mid);line-height:1.8;">
+              ブラウザが自動で開かない場合 → アプリ画面に表示される URL をコピーして、ブラウザに貼り付けてください。
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <div class="step-title">「Code」タブを開いて、フォルダを選ぶ</div>
+            <div class="step-desc">アプリ上部の「<strong>Code</strong>」タブをクリック →「<strong>Select folder</strong>」で作業フォルダを選択。これで Claude Code が使える状態になります。</div>
           </div>
         </div>
       </div>
