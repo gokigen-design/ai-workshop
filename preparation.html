@@ -1301,196 +1301,313 @@
       </div>
     </div>
 
-    <!-- 参加者セクション -->
+    <!-- ═══ 参加者セクション ═══ -->
     <div style="border-top:1px solid var(--border);margin:36px 0 28px;"></div>
-    <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">Participants</div>
+    <div class="sec-eyebrow">Participants</div>
     <div style="font-size:14px;font-weight:500;margin-bottom:6px;">参加者ページ</div>
-    <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:20px;">自分のタブを開くと、LPに使うコンテンツがコピペできます。</p>
+    <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:24px;">グループを選んで自分の名前をタップ。LP情報を事前に埋めておくと、当日ボタン1つでClaudeへの指示文がコピーできます。</p>
 
-    <div class="ptab-nav" id="ptab-nav">
-      <button class="ptab-btn active" onclick="switchPtab('p-a',this)">Aさん</button>
-      <button class="ptab-btn" onclick="switchPtab('p-b',this)">Bさん</button>
-      <button class="ptab-btn" onclick="switchPtab('p-c',this)">Cさん</button>
-      <button class="ptab-btn" onclick="switchPtab('p-d',this)">Dさん</button>
-      <button class="ptab-btn" onclick="switchPtab('p-e',this)">Eさん</button>
-      <button class="ptab-btn" onclick="switchPtab('p-f',this)">Fさん</button>
+    <style>
+      .grp-nav{display:flex;gap:8px;margin-bottom:20px;}
+      .grp-btn{flex:1;padding:11px 6px;border:1px solid var(--border);border-radius:10px;background:var(--beige);font-size:13px;font-weight:500;cursor:pointer;text-align:center;transition:all 0.2s;font-family:inherit;}
+      .grp-btn.active{background:var(--grad);color:#fff;border-color:transparent;}
+      .grp-panel{display:none;}
+      .grp-panel.active{display:block;}
+      .mbr-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+      .mbr-btn{padding:8px 18px;border:1px solid var(--border);border-radius:20px;background:var(--beige);font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+      .mbr-btn.active{background:var(--orange);color:#fff;border-color:transparent;}
+      .mbr-page{display:none;}
+      .mbr-page.active{display:block;}
+      .lp-row{margin-bottom:14px;}
+      .lp-label{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;color:var(--orange);margin-bottom:4px;text-transform:uppercase;}
+      .lp-hint{display:block;font-size:11px;color:var(--gray-lt);margin-bottom:6px;line-height:1.6;}
+      .lp-input,.lp-ta{width:100%;box-sizing:border-box;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;font-family:inherit;color:var(--black);background:var(--white);transition:border-color 0.15s;}
+      .lp-input:focus,.lp-ta:focus{outline:none;border-color:var(--orange);}
+      .lp-ta{resize:vertical;min-height:80px;}
+      .prompt-box{background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:11px;line-height:1.8;color:var(--gray-mid);white-space:pre-wrap;max-height:280px;overflow-y:auto;margin-top:12px;display:none;font-family:'DM Sans',monospace;}
+      .copy-btn{display:block;width:100%;padding:14px;background:var(--grad);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:background 0.2s;}
+    </style>
+
+    <div class="grp-nav">
+      <button class="grp-btn active" onclick="switchGrp('ga',this)">🟡 Group A<br><span style="font-size:11px;font-weight:400;opacity:0.85;">4名</span></button>
+      <button class="grp-btn" onclick="switchGrp('gb',this)">🔴 Group B<br><span style="font-size:11px;font-weight:400;opacity:0.85;">5名</span></button>
+      <button class="grp-btn" onclick="switchGrp('gc',this)">🔵 Group C<br><span style="font-size:11px;font-weight:400;opacity:0.85;">5名</span></button>
     </div>
 
-    <!-- 参加者A -->
-    <div class="ptab-content active" id="p-a">
-      <!-- 参考サイト -->
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">🔗</div><div class="card-title">参考サイト</div></div>
-        <p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;">自分のLPを作るときに参考にしたいサイトのURLを入れておきましょう</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考①</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考②</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考③</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-        </div>
+    <!-- Group A -->
+    <div class="grp-panel active" id="ga">
+      <div style="font-size:11px;color:var(--gray-lt);margin-bottom:12px;">リーダー：海老原愛 ／ サブリーダー：藤葉ともみ</div>
+      <div class="mbr-nav">
+        <button class="mbr-btn active" onclick="switchMbr('m-ebihara',this,'ga')">海老原愛</button>
+        <button class="mbr-btn" onclick="switchMbr('m-fujiba',this,'ga')">藤葉ともみ</button>
+        <button class="mbr-btn" onclick="switchMbr('m-tsuruka',this,'ga')">鶴岡好美</button>
+        <button class="mbr-btn" onclick="switchMbr('m-ariel',this,'ga')">アリエル</button>
       </div>
-      <!-- コンテンツ -->
-      <div class="card" style="border-style:dashed;">
-        <div class="card-head"><div class="card-num">📋</div><div class="card-title">LPコンテンツ（コピペ用）</div></div>
-        <div style="text-align:center;padding:16px 0;color:var(--gray-lt);">
-          <div style="font-size:13px;margin-bottom:6px;">申し込み後に追加します</div>
-          <div style="font-size:11px;">Coming Soon</div>
-        </div>
-      </div>
+      <div id="m-ebihara" class="mbr-page active" data-id="ebihara"></div>
+      <div id="m-fujiba"  class="mbr-page" data-id="fujiba"></div>
+      <div id="m-tsuruka" class="mbr-page" data-id="tsuruka"></div>
+      <div id="m-ariel"   class="mbr-page" data-id="ariel"></div>
     </div>
 
-    <!-- 参加者B -->
-    <div class="ptab-content" id="p-b">
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">🔗</div><div class="card-title">参考サイト</div></div>
-        <p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;">自分のLPを作るときに参考にしたいサイトのURLを入れておきましょう</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考①</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考②</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考③</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-        </div>
+    <!-- Group B -->
+    <div class="grp-panel" id="gb">
+      <div style="font-size:11px;color:var(--gray-lt);margin-bottom:12px;">リーダー：川副真理子 ／ サブリーダー：ぬん（大森真里亜）</div>
+      <div class="mbr-nav">
+        <button class="mbr-btn active" onclick="switchMbr('m-kawasoe',this,'gb')">川副真理子</button>
+        <button class="mbr-btn" onclick="switchMbr('m-nun',this,'gb')">ぬん</button>
+        <button class="mbr-btn" onclick="switchMbr('m-nagaoka',this,'gb')">長岡篤子</button>
+        <button class="mbr-btn" onclick="switchMbr('m-nakamura',this,'gb')">中村知代已</button>
+        <button class="mbr-btn" onclick="switchMbr('m-koga',this,'gb')">古賀明美</button>
       </div>
-      <div class="card" style="border-style:dashed;">
-        <div class="card-head"><div class="card-num">📋</div><div class="card-title">LPコンテンツ（コピペ用）</div></div>
-        <div style="text-align:center;padding:16px 0;color:var(--gray-lt);">
-          <div style="font-size:13px;margin-bottom:6px;">申し込み後に追加します</div>
-          <div style="font-size:11px;">Coming Soon</div>
-        </div>
-      </div>
+      <div id="m-kawasoe"  class="mbr-page active" data-id="kawasoe"></div>
+      <div id="m-nun"      class="mbr-page" data-id="nun"></div>
+      <div id="m-nagaoka"  class="mbr-page" data-id="nagaoka"></div>
+      <div id="m-nakamura" class="mbr-page" data-id="nakamura"></div>
+      <div id="m-koga"     class="mbr-page" data-id="koga"></div>
     </div>
 
-    <!-- 参加者C -->
-    <div class="ptab-content" id="p-c">
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">🔗</div><div class="card-title">参考サイト</div></div>
-        <p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;">自分のLPを作るときに参考にしたいサイトのURLを入れておきましょう</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考①</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考②</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考③</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-        </div>
+    <!-- Group C -->
+    <div class="grp-panel" id="gc">
+      <div style="font-size:11px;color:var(--gray-lt);margin-bottom:12px;">リーダー：和田あゆみ ／ サブリーダー：西脇さやか</div>
+      <div class="mbr-nav">
+        <button class="mbr-btn active" onclick="switchMbr('m-wada',this,'gc')">和田あゆみ</button>
+        <button class="mbr-btn" onclick="switchMbr('m-nishiwaki',this,'gc')">西脇さやか</button>
+        <button class="mbr-btn" onclick="switchMbr('m-murakami',this,'gc')">村上華</button>
+        <button class="mbr-btn" onclick="switchMbr('m-hirano',this,'gc')">平野那奈</button>
+        <button class="mbr-btn" onclick="switchMbr('m-hanuma',this,'gc')">羽沼景子</button>
       </div>
-      <div class="card" style="border-style:dashed;">
-        <div class="card-head"><div class="card-num">📋</div><div class="card-title">LPコンテンツ（コピペ用）</div></div>
-        <div style="text-align:center;padding:16px 0;color:var(--gray-lt);">
-          <div style="font-size:13px;margin-bottom:6px;">申し込み後に追加します</div>
-          <div style="font-size:11px;">Coming Soon</div>
-        </div>
-      </div>
+      <div id="m-wada"      class="mbr-page active" data-id="wada"></div>
+      <div id="m-nishiwaki" class="mbr-page" data-id="nishiwaki"></div>
+      <div id="m-murakami"  class="mbr-page" data-id="murakami"></div>
+      <div id="m-hirano"    class="mbr-page" data-id="hirano"></div>
+      <div id="m-hanuma"    class="mbr-page" data-id="hanuma"></div>
     </div>
 
-    <!-- 参加者D -->
-    <div class="ptab-content" id="p-d">
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">🔗</div><div class="card-title">参考サイト</div></div>
-        <p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;">自分のLPを作るときに参考にしたいサイトのURLを入れておきましょう</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考①</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考②</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考③</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="border-style:dashed;">
-        <div class="card-head"><div class="card-num">📋</div><div class="card-title">LPコンテンツ（コピペ用）</div></div>
-        <div style="text-align:center;padding:16px 0;color:var(--gray-lt);">
-          <div style="font-size:13px;margin-bottom:6px;">申し込み後に追加します</div>
-          <div style="font-size:11px;">Coming Soon</div>
-        </div>
-      </div>
-    </div>
+    <script>
+    // ─── メンバーデータ ───
+    var MEMBERS = {
+      ebihara:  {name:'海老原愛',       ig:'@ebi.styiing',        service:'映像制作・運用代行・動画編集講座',                  level:'A（上級）',   group:'A', role:'リーダー'},
+      fujiba:   {name:'藤葉ともみ',     ig:'@tomomi_fujiha',      service:'起業家向けファッション・ショッピング同行',           level:'A（上級）',   group:'A', role:'サブリーダー'},
+      tsuruka:  {name:'鶴岡好美',       ig:'@yoshimi_diet_',      service:'食べ痩せダイエット3ヶ月プログラム',                  level:'C（中級）',   group:'A', role:'メンバー'},
+      ariel:    {name:'アリエル（富樫亜純）', ig:'@trinityariel_', service:'魂の設計書の鑑定と個人セッション',                  level:'D（初中級）', group:'A', role:'メンバー'},
+      kawasoe:  {name:'川副真理子',     ig:'@zoe_yanagimind',     service:'クライアントワーカー・プロモサポート・LP制作',       level:'A（上級）',   group:'B', role:'リーダー'},
+      nun:      {name:'ぬん（大森真里亜）', ig:'',                service:'ダイエット講座・講師養成講座・インスタコンサル',      level:'B（中上級）', group:'B', role:'サブリーダー'},
+      nagaoka:  {name:'長岡篤子',       ig:'@stylist_atsuko',     service:'パーソナルスタイリスト・ショッピング同行',           level:'C（中級）',   group:'B', role:'メンバー'},
+      nakamura: {name:'中村知代已',     ig:'@sugar_tree_2021',    service:'フラワーケーキ教室・お花絞りレッスン',               level:'D（初中級）', group:'B', role:'メンバー'},
+      koga:     {name:'古賀明美',       ig:'@akemi.koga_mind',    service:'優等生タイプ向け6ヶ月個別セッション',               level:'C（中級）',   group:'B', role:'メンバー'},
+      wada:     {name:'和田あゆみ',     ig:'',                    service:'デザイナー・プロモーションサポート・LP/HP制作',      level:'A（上級）',   group:'C', role:'リーダー'},
+      nishiwaki:{name:'西脇さやか',     ig:'@sayaka_nishiwaki',   service:'劇あそび・表現教育ファシリテーター',                level:'B（中上級）', group:'C', role:'サブリーダー'},
+      murakami: {name:'村上華',         ig:'@hananookashi',        service:'焼き菓子販売・オンラインレッスン',                  level:'B（中上級）', group:'C', role:'メンバー'},
+      hirano:   {name:'平野那奈',       ig:'@yours.7ms',          service:'クライアントワーカー・SNS運用代行',                 level:'C（中級）',   group:'C', role:'メンバー'},
+      hanuma:   {name:'羽沼景子',       ig:'@hanu_party',         service:'パーティープロデュース・トータルプロデュース',       level:'E（初級）',   group:'C', role:'メンバー'},
+    };
 
-    <!-- 参加者E -->
-    <div class="ptab-content" id="p-e">
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">🔗</div><div class="card-title">参考サイト</div></div>
-        <p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;">自分のLPを作るときに参考にしたいサイトのURLを入れておきましょう</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考①</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考②</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考③</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="border-style:dashed;">
-        <div class="card-head"><div class="card-num">📋</div><div class="card-title">LPコンテンツ（コピペ用）</div></div>
-        <div style="text-align:center;padding:16px 0;color:var(--gray-lt);">
-          <div style="font-size:13px;margin-bottom:6px;">申し込み後に追加します</div>
-          <div style="font-size:11px;">Coming Soon</div>
-        </div>
-      </div>
-    </div>
+    // ─── グループ / メンバー切り替え ───
+    function switchGrp(id, btn) {
+      document.querySelectorAll('.grp-panel').forEach(function(p){p.classList.remove('active');});
+      document.querySelectorAll('.grp-btn').forEach(function(b){b.classList.remove('active');});
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+      var grp = document.getElementById(id);
+      var first = grp.querySelector('.mbr-page.active');
+      if (first) renderMember(first);
+    }
+    function switchMbr(id, btn, grpId) {
+      var grp = document.getElementById(grpId);
+      grp.querySelectorAll('.mbr-page').forEach(function(p){p.classList.remove('active');});
+      grp.querySelectorAll('.mbr-btn').forEach(function(b){b.classList.remove('active');});
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+      renderMember(document.getElementById(id));
+    }
 
-    <!-- 参加者F -->
-    <div class="ptab-content" id="p-f">
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">🔗</div><div class="card-title">参考サイト</div></div>
-        <p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;">自分のLPを作るときに参考にしたいサイトのURLを入れておきましょう</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考①</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考②</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--border);border-radius:8px;padding:12px 16px;">
-            <span style="font-size:11px;font-weight:600;color:var(--orange);white-space:nowrap;">参考③</span>
-            <span style="font-size:13px;color:var(--gray-lt);">（未記入）</span>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="border-style:dashed;">
-        <div class="card-head"><div class="card-num">📋</div><div class="card-title">LPコンテンツ（コピペ用）</div></div>
-        <div style="text-align:center;padding:16px 0;color:var(--gray-lt);">
-          <div style="font-size:13px;margin-bottom:6px;">申し込み後に追加します</div>
-          <div style="font-size:11px;">Coming Soon</div>
-        </div>
-      </div>
-    </div>
+    // ─── メンバーページ描画 ───
+    function renderMember(el) {
+      if (!el || el.dataset.rendered) return;
+      el.dataset.rendered = '1';
+      var id = el.dataset.id;
+      var m = MEMBERS[id];
+      if (!m) return;
+      function sv(f) { return (localStorage.getItem('lp-'+id+'-'+f)||'').replace(/"/g,'&quot;'); }
+
+      var roleCol = m.role==='リーダー' ? 'var(--orange)' : m.role==='サブリーダー' ? '#1BC6B4' : 'var(--gray-mid)';
+
+      var h = '';
+
+      // プロフィール
+      h += '<div class="card" style="margin-bottom:16px;">';
+      h += '<div class="card-head"><div class="card-num" style="font-size:10px;padding:0 10px;width:auto;min-width:auto;">Group '+m.group+'</div><div class="card-title">'+m.name+'</div><span style="margin-left:auto;font-size:11px;font-weight:600;color:'+roleCol+';">'+m.role+'</span></div>';
+      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">';
+      h += '<div style="background:var(--beige);border-radius:8px;padding:11px 14px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">INSTAGRAM</div><div style="font-size:13px;font-weight:500;">'+(m.ig||'—')+'</div></div>';
+      h += '<div style="background:var(--beige);border-radius:8px;padding:11px 14px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">AI LEVEL</div><div style="font-size:13px;font-weight:500;">'+m.level+'</div></div>';
+      h += '</div>';
+      h += '<div style="margin-top:10px;padding:11px 14px;background:var(--beige);border-radius:8px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">SERVICE</div><div style="font-size:13px;">'+m.service+'</div></div>';
+      h += '</div>';
+
+      // 参考リンク
+      h += '<div class="card" style="margin-bottom:16px;">';
+      h += '<div class="card-head"><div class="card-num">1</div><div class="card-title">参考リンクを貼っておこう</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">既存LP・モデリング先・参考サイトを貼っておきましょう。当日すぐ引き出せます。</p>';
+      [['existlp','既存LPのURL（持っている方はこちら）','https://...（なければ空欄でOK）'],
+       ['modeling','モデリング先URL（こんなデザインにしたい！）','https://...'],
+       ['ref1','参考サイト ①','https://...'],
+       ['ref2','参考サイト ②','https://...'],
+       ['ref3','参考サイト ③','https://...']].forEach(function(f){
+        h += '<div class="lp-row"><label class="lp-label">'+f[1]+'</label>';
+        h += '<input class="lp-input" data-key="'+id+'-'+f[0]+'" placeholder="'+f[2]+'" value="'+sv(f[0])+'"></div>';
+      });
+      h += '</div>';
+
+      // LP情報シート
+      h += '<div class="card" style="margin-bottom:16px;">';
+      h += '<div class="card-head"><div class="card-num">2</div><div class="card-title">LP情報シート（ここを埋めると当日ラクになる！）</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">この情報をもとにClaudeがLPを自動作成します。できるだけ全部埋めてください。</p>';
+
+      [['catchcopy','サービス名・キャッチコピー案','例：「食べながら痩せる！3ヶ月ダイエットプログラム」','サービス名やキャッチコピーのイメージを書いてください',false],
+       ['target','ターゲット像（どんな人に届けたい？）','例：「30〜40代・子育て中のママ・時間がない・自分に自信がない」','年齢・職業・状況・気持ちなどを具体的に',true],
+       ['pain','ターゲットのお悩み・課題','例：「食事制限が辛くて続かない・リバウンドを繰り返している」','ターゲットのリアルな悩みを書いてください',true],
+       ['strength','私が提供できること・強み','例：「食べながら痩せる方法・我慢ゼロで-5kg・続けやすい仕組み」','あなたならではの提供価値を書いてください',true],
+       ['result','実績・お客様の声・エピソード','例：「3ヶ月で-8kg達成・受講生30名・喜びの声など」','数字や具体的なエピソードがあると強い',true],
+       ['price','料金・プラン・申し込み方法','例：「3ヶ月98,000円・月払い可・LINE申し込み」','金額・支払い方法・申し込みの流れ',true],
+       ['profile','プロフィール・自己紹介','例：「元会社員・3人の子育て中・自分も-20kgの経験あり」','あなたのストーリーや経歴を書いてください',true]
+      ].forEach(function(f){
+        h += '<div class="lp-row"><label class="lp-label">'+f[1]+'</label><span class="lp-hint">'+f[2]+'</span>';
+        if (f[4]) {
+          h += '<textarea class="lp-ta" data-key="'+id+'-'+f[0]+'" placeholder="'+f[3]+'">'+( localStorage.getItem('lp-'+id+'-'+f[0])||'' )+'</textarea>';
+        } else {
+          h += '<input class="lp-input" data-key="'+id+'-'+f[0]+'" placeholder="'+f[3]+'" value="'+sv(f[0])+'">';
+        }
+        h += '</div>';
+      });
+
+      h += '<div class="lp-row"><label class="lp-label">カラー・雰囲気イメージ</label><span class="lp-hint">例：「温かみのあるベージュ×グリーン・ナチュラル・女性らしい」</span><input class="lp-input" data-key="'+id+'-color" placeholder="色のイメージや雰囲気を言葉で表現してください" value="'+sv('color')+'"></div>';
+      h += '<div class="lp-row"><label class="lp-label">申し込み先URL（LINE・予約サイト・メール等）</label><input class="lp-input" data-key="'+id+'-cta" placeholder="https://lin.ee/..." value="'+sv('cta')+'"></div>';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">Instagram / SNS URL</label><input class="lp-input" data-key="'+id+'-sns" placeholder="https://www.instagram.com/..." value="'+sv('sns')+'"></div>';
+      h += '</div>';
+
+      // 写真チェックリスト
+      h += '<div class="card" style="margin-bottom:16px;">';
+      h += '<div class="card-head"><div class="card-num">3</div><div class="card-title">写真・素材チェックリスト</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;line-height:1.7;">当日 <code style="background:var(--beige);padding:1px 5px;border-radius:4px;font-size:11px;">images/</code> フォルダに入れておく素材の確認です。</p>';
+      ['プロフィール写真（profile.jpg）','サービス・施術の写真','実績・ビフォーアフター画像','ロゴ・アイコン（あれば）','その他使いたい素材'].forEach(function(item, i){
+        var ck = localStorage.getItem('lp-'+id+'-chk'+i)==='1' ? 'checked' : '';
+        h += '<label style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--beige);border-radius:8px;cursor:pointer;margin-bottom:8px;">';
+        h += '<input type="checkbox" data-key="'+id+'-chk'+i+'" data-ck="1" '+ck+'>';
+        h += '<span style="font-size:13px;">'+item+'</span></label>';
+      });
+      h += '<div class="lp-row" style="margin-top:8px;margin-bottom:0;"><label class="lp-label">使いたい写真のファイル名メモ</label>';
+      h += '<textarea class="lp-ta" style="min-height:60px;" data-key="'+id+'-files" placeholder="例：profile.jpg / before.png / logo.svg">'+( localStorage.getItem('lp-'+id+'-files')||'' )+'</textarea></div>';
+      h += '</div>';
+
+      // Claudeプロンプト
+      h += '<div class="card" style="background:var(--grad-soft);border-color:var(--orange-border);">';
+      h += '<div class="card-head"><div class="card-num">4</div><div class="card-title">Claudeへのプロンプトをコピー</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">2〜3を埋めたら、このボタンを押してプロンプトをコピー → Claude Desktop に貼り付けるだけでLPが生成されます。</p>';
+      h += '<button class="copy-btn" onclick="copyPrompt(\''+id+'\')">📋 Claudeへのプロンプトをコピーする</button>';
+      h += '<div class="prompt-box" id="'+id+'-prompt"></div>';
+      h += '</div>';
+
+      el.innerHTML = h;
+    }
+
+    // ─── localStorage 自動保存 ───
+    document.addEventListener('input', function(e){
+      var key = e.target.dataset.key;
+      if (!key) return;
+      localStorage.setItem('lp-'+key, e.target.value);
+    });
+    document.addEventListener('change', function(e){
+      var key = e.target.dataset.key;
+      if (!key || !e.target.dataset.ck) return;
+      localStorage.setItem('lp-'+key, e.target.checked ? '1' : '');
+    });
+
+    // ─── プロンプト生成 ───
+    function copyPrompt(id) {
+      function fv(f){ var el=document.querySelector('[data-key="'+id+'-'+f+'"]'); return el?el.value.trim():''; }
+      var m = MEMBERS[id];
+      var lines = [
+        'あなたはプロのLP制作デザイナーです。以下の情報をもとに、集客力の高いLP（ランディングページ）のHTMLを1ファイルで作成してください。',
+        '',
+        '【基本情報】',
+        '氏名：'+m.name,
+        'Instagram：'+(m.ig||fv('sns')||'未記入'),
+        '',
+        '【サービス・キャッチコピー】',
+        fv('catchcopy')||'（未記入）',
+        '',
+        '【ターゲット像】',
+        fv('target')||'（未記入）',
+        '',
+        '【ターゲットのお悩み】',
+        fv('pain')||'（未記入）',
+        '',
+        '【提供できること・強み】',
+        fv('strength')||'（未記入）',
+        '',
+        '【実績・お客様の声】',
+        fv('result')||'（未記入）',
+        '',
+        '【料金・申し込み方法】',
+        fv('price')||'（未記入）',
+        '',
+        '【プロフィール・自己紹介】',
+        fv('profile')||'（未記入）',
+        '',
+        '【デザインイメージ】',
+        fv('color')||'（未記入）',
+      ];
+      if(fv('modeling')) lines.push('モデリング先：'+fv('modeling'));
+      if(fv('ref1')) lines.push('参考サイト①：'+fv('ref1'));
+      if(fv('ref2')) lines.push('参考サイト②：'+fv('ref2'));
+      if(fv('ref3')) lines.push('参考サイト③：'+fv('ref3'));
+      lines = lines.concat([
+        '',
+        '【申し込み先URL（CTAボタンの飛び先）】',
+        fv('cta')||'（未記入）',
+        '',
+        '【SNS URL（フッター表示）】',
+        fv('sns')||'（未記入）',
+        '',
+        '【使用する写真ファイル（images/フォルダ内）】',
+        fv('files')||'profile.jpg',
+        '',
+        '【LP構成の指示】',
+        '1. ファーストビュー（キャッチコピー＋プロフィール写真）',
+        '2. ターゲットへの共感セクション（お悩み）',
+        '3. サービス内容・強み',
+        '4. 実績・お客様の声',
+        '5. 料金・申し込みCTAボタン',
+        '6. プロフィール',
+        '7. フッター（SNSリンク）',
+        '',
+        '・デザインは女性向け、洗練されたイメージで作成してください',
+        '・モバイル対応（レスポンシブ）にしてください',
+        '・写真は images/ フォルダから読み込んでください',
+        '・CSSはHTMLファイル内に記述してください',
+        '・ファイルはデスクトップに lp.html という名前で保存してください',
+      ]);
+      var prompt = lines.join('\n');
+      var box = document.getElementById(id+'-prompt');
+      box.textContent = prompt;
+      box.style.display = 'block';
+      navigator.clipboard.writeText(prompt).then(function(){
+        var btn = box.previousElementSibling;
+        var orig = btn.textContent;
+        btn.textContent = '✅ コピー完了！Claude Desktopに貼り付けてください';
+        btn.style.background = '#1BC6B4';
+        setTimeout(function(){ btn.textContent = orig; btn.style.background=''; }, 3000);
+      }).catch(function(){
+        alert('上に表示されたテキストを選択してコピーしてください（Ctrl+A → Ctrl+C）');
+      });
+    }
+
+    // ─── 初期描画 ───
+    (function(){
+      document.querySelectorAll('.mbr-page.active').forEach(function(el){ renderMember(el); });
+    })();
+    </script>
+
   </section>
 
   <!-- ═══ TAB 3: デザイナー視点 ═══ -->
