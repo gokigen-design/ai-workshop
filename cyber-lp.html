@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サイバー女子 | 一家に1台、あなたの業務をもっと自由に</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #2B3240;
+      --bg-deep: #1e2430;
+      --bg-card: #353d4d;
+      --lime: #C2F542;
+      --lime-glow: rgba(194, 245, 66, 0.25);
+      --cyan: #3BDEE4;
+      --purple: #A35BE2;
+      --red: #EF4A2E;
+      --yellow: #F7CF31;
+      --white: #f5f5f5;
+      --gray: #9ca3af;
+      --gray-light: #b8bcc6;
+      --font-ja: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+      --font-en: 'Inter', sans-serif;
+      --gap: 24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-ja);
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ═══ Utility ═══ */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 var(--gap); }
+    .section { padding: 100px 0; position: relative; }
+
+    .section-label {
+      font-family: var(--font-en);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 5.5vw, 36px);
+      font-weight: 900;
+      line-height: 1.6;
+      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+    }
+
+    .accent { color: var(--lime); }
+    .accent-cyan { color: var(--cyan); }
+    .accent-purple { color: var(--purple); }
+
+    /* ═══ Scroll Text Color Animation (参考サイト風) ═══ */
+    .scroll-text span {
+      color: var(--gray);
+      transition: color 0.1s linear;
+    }
+    .scroll-text span.lit { color: var(--white); }
+    .scroll-text .word-accent.lit { color: var(--lime); }
+
+    /* ═══ Hero / FV ═══ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 80px var(--gap);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(163, 91, 226, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(59, 222, 228, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(194, 245, 66, 0.04) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 780px;
+    }
+
+    .hero-text { order: 1; }
+    .hero-visual { order: 2; display: flex; justify-content: center; }
+
+    .hero-photo-wrap {
+      width: 240px;
+      height: 240px;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      transform: rotate(3deg);
+      transition: transform 0.4s ease;
+    }
+
+    .hero-photo-wrap:hover { transform: rotate(0deg) scale(1.02); }
+
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(194, 245, 66, 0.2);
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-catch {
+      font-size: clamp(28px, 6vw, 44px);
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-catch .em {
+      display: inline;
+      background: linear-gradient(transparent 60%, var(--lime-glow) 60%);
+    }
+
+    .hero-subcopy {
+      font-size: 15px;
+      color: var(--gray-light);
+      margin-bottom: 12px;
+      line-height: 1.9;
+    }
+
+    .hero-title-label {
+      font-size: 12px;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+
+    /* ═══ CTA Button ═══ */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 40px;
+      background: var(--lime);
+      color: var(--bg-deep);
+      font-family: var(--font-ja);
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px var(--lime-glow);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--lime-glow);
+      filter: brightness(1.1);
+    }
+
+    .cta-btn-outline {
+      background: transparent;
+      border: 2px solid var(--lime);
+      color: var(--lime);
+      box-shadow: none;
+    }
+
+    .cta-btn-outline:hover {
+      background: var(--lime);
+      color: var(--bg-deep);
+      box-shadow: 0 8px 30px var(--lime-glow);
+    }
+
+    .cta-note {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 12px;
+    }
+
+    .cta-arrow { font-size: 18px; transition: transform 0.3s; }
+    .cta-btn:hover .cta-arrow { transform: translateX(4px); }
+
+    /* ═══ Marquee (参考サイト風 横スクロール) ═══ */
+    .marquee-wrap {
+      overflow: hidden;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .marquee {
+      display: flex;
+      gap: 48px;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee span {
+      font-family: var(--font-en);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ═══ Pain Section ═══ */
+    .pain { background: var(--bg-deep); }
+
+    .pain-lead {
+      font-size: clamp(20px, 4.5vw, 28px);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .pain-list { list-style: none; display: grid; gap: 16px; }
+
+    .pain-item {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 28px 28px 28px 72px;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .pain-item:hover { transform: translateX(4px); }
+
+    .pain-item::before {
+      content: attr(data-num);
+      position: absolute;
+      left: 24px;
+      top: 26px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--lime);
+      color: var(--bg-deep);
+      font-family: var(--font-en);
+      font-size: 13px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .pain-item p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--white);
+    }
+
+    .pain-item .sub {
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ═══ Solution Section ═══ */
+    .solution {
+      background: var(--bg);
+      position: relative;
+    }
+
+    .benefit-grid {
+      display: grid;
+      gap: var(--gap);
+    }
+
+    .benefit-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .benefit-card:nth-child(1)::before { background: var(--lime); }
+    .benefit-card:nth-child(2)::before { background: var(--cyan); }
+    .benefit-card:nth-child(3)::before { background: var(--purple); }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+
+    .benefit-num {
+      font-family: var(--font-en);
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .benefit-card:nth-child(1) .benefit-num { color: var(--lime); }
+    .benefit-card:nth-child(2) .benefit-num { color: var(--cyan); }
+    .benefit-card:nth-child(3) .benefit-num { color: var(--purple); }
+
+    .benefit-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .benefit-card p {
+      font-size: 14px;
+      color: var(--gray-light);
+      line-height: 1.9;
+    }
+
+    /* ═══ Service / Price ═══ */
+    .service { background: var(--bg-deep); }
+
+    .service-box {
+      background: var(--bg);
+      border: 1px solid rgba(194, 245, 66, 0.12);
+      border-radius: 24px;
+      padding: 48px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--lime), var(--cyan), var(--purple));
+    }
+
+    .service-name {
+      font-size: clamp(22px, 4.5vw, 28px);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .service-format {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+
+    .service-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .service-detail-item {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .service-detail-label {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 8px;
+    }
+
+    .service-detail-value {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .price-area { margin-bottom: 36px; }
+
+    .price-amount {
+      font-family: var(--font-en);
+      font-size: clamp(48px, 10vw, 64px);
+      font-weight: 900;
+      color: var(--lime);
+      letter-spacing: -2px;
+    }
+
+    .price-yen {
+      font-size: 20px;
+      color: var(--gray-light);
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    .price-note {
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    /* ═══ Profile ═══ */
+    /* ═══ Menu Section ═══ */
+    .menu { background: var(--bg); }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .menu-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    .menu-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .menu-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .menu-card p {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .menu-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .tag-popular { background: var(--lime); color: var(--bg-deep); }
+    .tag-new { background: var(--cyan); color: var(--bg-deep); }
+    .tag-hot { background: var(--red); color: #fff; }
+
+    @media (max-width: 640px) {
+      .menu-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══ FAQ Section ═══ */
+    .faq { background: var(--bg-deep); }
+
+    .faq-list { display: grid; gap: 12px; }
+
+    .faq-item {
+      background: var(--bg-card);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .faq-q {
+      padding: 20px 52px 20px 24px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.7;
+      position: relative;
+      user-select: none;
+    }
+
+    .faq-q::before {
+      content: 'Q';
+      font-family: var(--font-en);
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--lime);
+      margin-right: 10px;
+    }
+
+    .faq-q::after {
+      content: '+';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--lime);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-q::after {
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 24px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 24px 20px;
+    }
+
+    .faq-a p {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--gray-light);
+    }
+
+    .faq-a p::before {
+      content: 'A';
+      font-family: var(--font-en);
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--cyan);
+      margin-right: 10px;
+    }
+
+    .profile { background: var(--bg); }
+
+    .profile-card {
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 44px;
+    }
+
+    .profile-img {
+      width: 130px;
+      height: 130px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+
+    .profile-info h3 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .profile-info .profile-title {
+      font-size: 13px;
+      color: var(--lime);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .profile-info p {
+      font-size: 14px;
+      line-height: 2;
+      color: var(--gray-light);
+    }
+
+    /* ═══ Final CTA ═══ */
+    .final-cta {
+      background: var(--bg-deep);
+      text-align: center;
+      padding: 120px var(--gap);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--lime-glow) 0%, transparent 50%);
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .final-cta * { position: relative; z-index: 1; }
+
+    /* ═══ Footer ═══ */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px var(--gap);
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: var(--font-en);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: var(--lime);
+      margin-bottom: 8px;
+    }
+
+    footer p { font-size: 12px; color: var(--gray); }
+
+    /* ═══ Responsive ═══ */
+    @media (max-width: 640px) {
+      .section { padding: 72px 0; }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 32px;
+      }
+
+      .hero-text { order: 2; }
+      .hero-visual { order: 1; }
+
+      .hero-photo-wrap {
+        width: 180px; height: 180px;
+        transform: rotate(0deg);
+      }
+
+      .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 32px 24px;
+      }
+
+      .service-detail { grid-template-columns: 1fr; }
+      .service-box { padding: 36px 24px; }
+      .cta-btn { padding: 14px 32px; font-size: 14px; width: 100%; justify-content: center; }
+    }
+
+    /* ═══ Scroll Animations ═══ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ═══ Scrollbar (参考サイト風) ═══ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--lime); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO / FV ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-eyebrow">AI Assistant</div>
+      <h1 class="hero-catch">
+        一家に1台、<br><span class="em">サイバー女子。</span><br>
+        あなたの業務を、<br>もっと自由に。
+      </h1>
+      <p class="hero-subcopy">365日24時間、疲れ知らずで働き続ける<br>あなたの相棒</p>
+      <p class="hero-title-label">AIであなたの業務を自動化するサイバー女子</p>
+      <a href="#contact" class="cta-btn">
+        無料で相談してみる <span class="cta-arrow">&rarr;</span>
+      </a>
+      <p class="cta-note">オンライン個別面談 / 約30分</p>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo-wrap">
+        <img src="images/profile.jpg" alt="サイバー女子" class="hero-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Automation</span><span>AI Assistant</span><span>Business Support</span>
+    <span>24/7 Available</span><span>Cyber Joshi</span><span>Smart Work</span>
+    <span>No More Overtime</span><span>Digital Freedom</span>
+    <span>Automation</span><span>AI Assistant</span><span>Business Support</span>
+    <span>24/7 Available</span><span>Cyber Joshi</span><span>Smart Work</span>
+    <span>No More Overtime</span><span>Digital Freedom</span>
+  </div>
+</div>
+
+<!-- ═══ PAIN ═══ -->
+<section class="pain section">
+  <div class="container">
+    <div class="section-label">Pain</div>
+    <p class="pain-lead reveal scroll-text" id="painLead">こんなお悩み、ありませんか？</p>
+    <ul class="pain-list">
+      <li class="pain-item reveal reveal-delay-1" data-num="01">
+        <p>1人起業家なのに、まるでブラック企業。<br>全部自分でやらなきゃで頭も体も限界...</p>
+      </li>
+      <li class="pain-item reveal reveal-delay-2" data-num="02">
+        <p>ウェブ・IT系が苦手で外注したいけど、<br>誰に何をお願いすればいいかわからない</p>
+      </li>
+      <li class="pain-item reveal reveal-delay-3" data-num="03">
+        <p>「自動化したい」と思いつつ、<br>どこから手をつければいいかさっぱりわからない</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION ═══ -->
+<section class="solution section">
+  <div class="container">
+    <div class="section-label">Solution</div>
+    <h2 class="section-title reveal">
+      サイバー女子が<br>
+      あなたの<span class="accent">「困った」</span>を<br>
+      全部引き受けます
+    </h2>
+    <div class="benefit-grid">
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-num">01</div>
+        <h3>面倒な繰り返し作業が<br>完全自動化</h3>
+        <p>あなたは何もしなくていい。毎日の事務作業・投稿準備・データ整理...全部おまかせください。</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-num">02</div>
+        <h3>「あれもこれもやらなきゃ」<br>から解放</h3>
+        <p>自分にしかできないことに集中できる。クリエイティブな仕事、お客様との時間を取り戻せます。</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-num">03</div>
+        <h3>余白が生まれて、<br>やりたいことができる</h3>
+        <p>ずっとやりたかったこと、後回しにしていたこと。自由な時間が手に入ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MENU ═══ -->
+<section class="menu section">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title reveal">
+      具体的に<span class="accent">何をしてくれる</span>の？
+    </h2>
+    <div class="menu-grid">
+      <div class="menu-card reveal reveal-delay-1">
+        <span class="menu-tag tag-popular">POPULAR</span>
+        <h4>SNS投稿の自動作成・予約</h4>
+        <p>Instagram・Xの投稿文をAIが作成。画像の提案から投稿スケジュール管理まで、毎日の「投稿しなきゃ」から解放されます。</p>
+      </div>
+      <div class="menu-card reveal reveal-delay-2">
+        <span class="menu-tag tag-popular">POPULAR</span>
+        <h4>LINE・メルマガの自動配信</h4>
+        <p>ステップ配信の文面作成からスケジュール管理まで。お客様との関係を自動で温め続けます。</p>
+      </div>
+      <div class="menu-card reveal reveal-delay-1">
+        <span class="menu-tag tag-new">NEW</span>
+        <h4>LP・Webサイトの制作</h4>
+        <p>「外注すると数十万」のLP制作を、AIとの会話だけで実現。修正も即対応、自分で更新もできるように。</p>
+      </div>
+      <div class="menu-card reveal reveal-delay-2">
+        <span class="menu-tag tag-hot">HOT</span>
+        <h4>事務作業の完全自動化</h4>
+        <p>請求書作成・顧客管理・スケジュール整理・データ入力...「誰かやって」と思っていた雑務を一掃。</p>
+      </div>
+      <div class="menu-card reveal reveal-delay-1">
+        <h4>資料・スライドの爆速作成</h4>
+        <p>セミナー資料・提案書・マニュアルを、指示するだけで作成。デザインも整った状態で仕上がります。</p>
+      </div>
+      <div class="menu-card reveal reveal-delay-2">
+        <h4>「何からやればいい？」の相談</h4>
+        <p>ITが苦手でも大丈夫。あなたのビジネスに合った自動化の優先順位を一緒に考えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICE / PRICE ═══ -->
+<section class="service section" id="contact">
+  <div class="container">
+    <div class="section-label">Service</div>
+    <h2 class="section-title reveal" style="text-align:center;">
+      まずは<span class="accent">気軽に</span>相談してみませんか？
+    </h2>
+    <div class="service-box reveal">
+      <h3 class="service-name">サイバー女子 個別相談</h3>
+      <p class="service-format">オンライン個別面談 / 回数無制限</p>
+      <div class="service-detail">
+        <div class="service-detail-item">
+          <div class="service-detail-label">Target</div>
+          <div class="service-detail-value">30〜50代<br>女性起業家</div>
+        </div>
+        <div class="service-detail-item">
+          <div class="service-detail-label">For You</div>
+          <div class="service-detail-value">1人で全部回していて<br>時間がない方</div>
+        </div>
+      </div>
+      <div class="price-area">
+        <span class="price-amount">3,000</span><span class="price-yen">円</span>
+        <p class="price-note">個別面談であなたの課題をヒアリングします</p>
+      </div>
+      <a href="#" class="cta-btn">個別相談に申し込む <span class="cta-arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq section">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title reveal">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">AIって難しそう...パソコン苦手でも大丈夫ですか？</div>
+        <div class="faq-a"><p>はい、まったく問題ありません。サイバー女子は日本語で話しかけるだけ。「こんなことやりたい」と伝えるだけで、あとは全部おまかせです。エクセルが苦手な方でも安心してご利用いただけます。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">AIに仕事を任せて、品質は大丈夫ですか？</div>
+        <div class="faq-a"><p>最終チェックは必ずあなたが行います。AIは「下書き・たたき台・データ処理」を超高速で仕上げるので、あなたは確認と微調整だけ。むしろ時間に余裕ができて、品質が上がったという声が多いです。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">自分の情報やお客様のデータが漏れませんか？</div>
+        <div class="faq-a"><p>セキュリティは最優先事項です。個別相談で、あなたのビジネスに合った安全な運用方法を一緒に設計します。個人情報の取り扱いルールもしっかりお伝えします。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">3,000円の個別相談で何がわかりますか？</div>
+        <div class="faq-a"><p>あなたのビジネスの「今いちばん時間がかかっていること」をヒアリングし、AIで自動化できるポイントを具体的にお伝えします。「自分に合うかわからない」という方こそ、まずはお試しください。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">AIに仕事を奪われるのが怖いです</div>
+        <div class="faq-a"><p>サイバー女子が自動化するのは「繰り返しの作業」や「時間がかかる事務作業」だけ。あなたにしかできないクリエイティブな仕事、お客様との信頼関係づくりに、もっと時間を使えるようになります。奪うのではなく、解放します。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">続けられるか不安です。回数無制限って本当ですか？</div>
+        <div class="faq-a"><p>本当です。わからないことがあれば何度でも相談してください。「1回聞いて終わり」ではなく、あなたのペースで少しずつ自動化を進められるのがサイバー女子の強みです。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROFILE ═══ -->
+<section class="profile section">
+  <div class="container">
+    <div class="section-label">Profile</div>
+    <h2 class="section-title reveal">サイバー女子って？</h2>
+    <div class="profile-card reveal">
+      <img src="images/profile.jpg" alt="サイバー女子" class="profile-img">
+      <div class="profile-info">
+        <h3>サイバー女子</h3>
+        <p class="profile-title">AIであなたの業務を自動化するサイバー女子</p>
+        <p>
+          ゆみおかさんから生まれた、あなたのAIアシスタント「サイバー女子」。
+          あなたのパソコンの中に住んでいて、日本語で声をかければ何でもやっちゃいます。
+          面倒な作業も、繰り返しの仕事も、「これどうすればいいの？」という相談も全部おまかせ。
+          ぜひ一度、私に出会いにきてください。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <h2 class="section-title reveal" style="margin-bottom:16px;">
+    あなたの<span class="accent">「もっと自由に」</span>を<br>
+    サイバー女子が叶えます
+  </h2>
+  <p style="color:var(--gray);margin-bottom:36px;" class="reveal">
+    まずは気軽にお話しましょう
+  </p>
+  <a href="#" class="cta-btn reveal">無料で相談してみる <span class="cta-arrow">&rarr;</span></a>
+  <p class="cta-note reveal">オンライン個別面談 / 3,000円</p>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-name">Cyber Joshi</div>
+  <p>&copy; 2026 サイバー女子 All Rights Reserved.</p>
+</footer>
+
+<!-- ═══ Scripts ═══ -->
+<script>
+  // Scroll reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Scroll text color animation (参考サイト風)
+  function initScrollText() {
+    document.querySelectorAll('.scroll-text').forEach(el => {
+      const text = el.textContent;
+      el.innerHTML = '';
+      const accentWords = ['お悩み'];
+      let html = '';
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        let isAccent = false;
+        for (const w of accentWords) {
+          const idx = text.indexOf(w);
+          if (idx !== -1 && i >= idx && i < idx + w.length) { isAccent = true; break; }
+        }
+        html += '<span' + (isAccent ? ' class="word-accent"' : '') + '>' + char + '</span>';
+      }
+      el.innerHTML = html;
+    });
+  }
+  initScrollText();
+
+  function updateScrollText() {
+    document.querySelectorAll('.scroll-text').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      const progress = Math.max(0, Math.min(1, (viewH - rect.top) / (viewH * 0.5)));
+      const spans = el.querySelectorAll('span');
+      const litCount = Math.floor(progress * spans.length);
+      spans.forEach((s, i) => {
+        if (i < litCount) s.classList.add('lit');
+        else s.classList.remove('lit');
+      });
+    });
+  }
+  window.addEventListener('scroll', updateScrollText, { passive: true });
+  updateScrollText();
+</script>
+
+</body>
+</html>
