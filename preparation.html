@@ -1547,7 +1547,7 @@
       h += '<div class="card" style="background:var(--grad-soft);border-color:var(--orange-border);">';
       h += '<div class="card-head"><div class="card-num">4</div><div class="card-title">Claudeへのプロンプトをコピー</div></div>';
       h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">すべての項目を埋めたら、このボタンを押してプロンプトをコピー → Claude Desktop に貼り付けるだけでLPが生成されます。</p>';
-      h += '<button id="'+id+'-copybtn" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#C96A3A,#4a86c8);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;" onclick="copyPrompt(\''+id+'\')">📋 プロンプトを生成してコピー</button>';
+      h += '<button id="'+id+'-copybtn" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4a86c8,#1BC6B4);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;" onclick="copyPrompt(\''+id+'\')">📋 プロンプトを生成してコピー</button>';
       h += '<textarea id="'+id+'-prompt" readonly style="display:none;width:100%;min-height:300px;margin-top:12px;padding:16px;font-size:12px;line-height:1.8;border:2px solid #C96A3A;border-radius:12px;background:#fffaf5;resize:vertical;font-family:inherit;box-sizing:border-box;"></textarea>';
       h += '<button id="'+id+'-copy2" style="display:none;width:100%;padding:12px;background:#1BC6B4;color:#fff;border:none;border-radius:10px;font-size:13px;cursor:pointer;font-family:inherit;margin-top:8px;" onclick="copyOnly(\''+id+'\')">📋 もう一度コピーする</button>';
       h += '</div>';
@@ -1733,7 +1733,7 @@
       if (!btn) return;
       btn.textContent = '✅ コピー完了！Claude Desktopに貼り付けてください';
       btn.style.background = '#1BC6B4';
-      setTimeout(function(){ btn.textContent = '📋 プロンプトを生成してコピー'; btn.style.background='linear-gradient(135deg,#C96A3A,#4a86c8)'; }, 4000);
+      setTimeout(function(){ btn.textContent = '📋 プロンプトを生成してコピー'; btn.style.background='linear-gradient(135deg,#4a86c8,#1BC6B4)'; }, 4000);
     }
 
     // ─── 初期描画 ───
