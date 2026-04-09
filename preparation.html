@@ -3471,7 +3471,7 @@
 ↑ このサイトの「<span class="fill">余白の取り方・写真の雰囲気・〇〇</span>」が好きです。
 
 LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 → 料金 → CTA の順でお願いします。</div>
-        <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+        <button class="copy-btn" onclick="copyPromptTemplate(this)">コピー</button>
       </div>
     </div>
 
@@ -3498,7 +3498,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 ─────────────────────
 <span class="fill">ワークシートの内容を貼る</span>
 ─────────────────────</div>
-        <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+        <button class="copy-btn" onclick="copyPromptTemplate(this)">コピー</button>
       </div>
       <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:12px 16px;margin-top:14px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
         💡 <strong style="color:var(--black);">参考LPの探し方</strong>：「STEP 03 デザインを学ぶ」タブの<strong>カード5「LP・デザイン参考サイト」</strong>に、女性起業家向けの参考LPまとめがあります。
@@ -3517,12 +3517,12 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
 【変更後】
 <span class="fill">こうしてほしい内容</span></div>
-        <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+        <button class="copy-btn" onclick="copyPromptTemplate(this)">コピー</button>
       </div>
       <div class="prompt-wrap">
         <div class="prompt-box">デザインをもっと<span class="fill">〇〇（例：シックに / 余白多めに / フォントを大きく）</span>してください。
 現在の構成は崩さず、見た目だけ変えてください。</div>
-        <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+        <button class="copy-btn" onclick="copyPromptTemplate(this)">コピー</button>
       </div>
     </div>
 
@@ -4436,7 +4436,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       }
     }
 
-    function copyPrompt(btn) {
+    function copyPromptTemplate(btn) {
       const box = btn.previousElementSibling;
       const text = box.innerText.trim();
       navigator.clipboard.writeText(text).then(() => {
