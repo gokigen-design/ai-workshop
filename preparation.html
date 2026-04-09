@@ -1207,6 +1207,23 @@
       </div>
     </div>
 
+    <!-- LP制作過程カード -->
+    <a href="presentation.html" target="_blank" style="display:block;text-decoration:none;color:inherit;margin-bottom:20px;">
+      <div class="card" style="margin-bottom:0;border-color:var(--orange-border);background:linear-gradient(135deg,#fff 40%,rgba(201,106,58,0.06));cursor:pointer;transition:transform 0.2s ease, box-shadow 0.2s ease;">
+        <div style="display:flex;align-items:center;gap:16px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#D97706,#F59E0B);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z" fill="#fff" stroke="#fff" stroke-width="1" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:4px;">Making of</div>
+            <div style="font-size:15px;font-weight:500;line-height:1.5;">今回のLPができるまで</div>
+            <div style="font-size:12px;color:var(--gray-lt);line-height:1.7;margin-top:2px;">AIとの会話だけでLPが変化していく過程を見る</div>
+          </div>
+          <div style="color:var(--orange);font-size:20px;flex-shrink:0;">›</div>
+        </div>
+      </div>
+    </a>
+
     <div class="card">
       <div class="card-head"><div class="card-num">1</div><div class="card-title">なぜLPが必要か</div></div>
       <div style="display:flex;flex-direction:column;gap:10px;">
@@ -1449,7 +1466,7 @@
       var reported = localStorage.getItem('reported-'+id) === '1';
       h += '<div class="card" style="margin-bottom:16px;background:linear-gradient(135deg,#fff 60%,rgba(27,198,180,0.05));border-color:#1BC6B4;">';
       h += '<div class="card-head"><div class="card-num" style="background:#1BC6B4;">0</div><div class="card-title">事前準備の進捗を報告する</div></div>';
-      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">フォームを入力し終えたら、このボタンを押してください。あやさんに「準備できてるよ！」と伝わります。</p>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">事前準備ができた方はこちらを押してください。講師に通知が届きます。</p>';
       h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;position:static;top:auto;right:auto;width:100%;display:block;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
       if (reported) {
         h += '<p style="text-align:center;margin-top:8px;font-size:12px;color:var(--gray-mid);">内容を変更した場合は <a href="#" onclick="resetReport(\''+id+'\');return false;" style="color:#1BC6B4;text-decoration:underline;">もう一度報告する</a></p>';
