@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows セットアップガイド｜AIワークショップ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400&family=M+PLUS+Rounded+1c:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:      #1C1D2E;
+      --dark:       #2A2B3D;
+      --card:       #FFFFFF;
+      --border:     #E5E8F0;
+      --orange:     #4F7EF7;
+      --orange-dim: rgba(79,126,247,0.07);
+      --orange-border: rgba(79,126,247,0.22);
+      --beige:      #F5F7FB;
+      --beige-mid:  #EBEEf5;
+      --white:      #FFFFFF;
+      --gray:       #A0A8BC;
+      --gray-mid:   #6B7280;
+      --gray-lt:    #9CA3AF;
+      --grad:       linear-gradient(135deg, #4F7EF7 0%, #1BC6B4 100%);
+      --grad-soft:  linear-gradient(135deg, rgba(79,126,247,0.12) 0%, rgba(27,198,180,0.12) 100%);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─── */
+    .page-header {
+      background: var(--grad-soft);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+
+    .page-header .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .page-header h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+      color: var(--black);
+    }
+
+    .page-header .subtitle {
+      font-size: 13px;
+      color: var(--gray-mid);
+      line-height: 1.9;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .os-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      padding: 6px 16px;
+      background: var(--black);
+      color: #fff;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ─── MAIN ─── */
+    .main-content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px 24px 100px;
+    }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      border-radius: 10px;
+      padding: 16px 22px;
+      font-size: 13px;
+      color: var(--gray-mid);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-bottom: 20px;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .card-num {
+      width: 26px; height: 26px;
+      background: var(--grad);
+      color: #fff;
+      border-radius: 50%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Noto Serif JP', serif;
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── STEPS ─── */
+    .steps { display: flex; flex-direction: column; }
+
+    .step {
+      display: flex;
+      gap: 22px;
+      position: relative;
+    }
+
+    .step:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 44px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .step-num {
+      width: 40px; height: 40px;
+      border: 1px solid var(--orange-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .step-body { padding: 8px 0 36px; }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--gray-lt);
+      line-height: 1.85;
+    }
+
+    /* ─── FOOTER ─── */
+    .page-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 11px;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      .card {
+        padding: 24px 20px;
+      }
+      .page-header {
+        padding: 36px 20px 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header class="page-header">
+    <span class="eyebrow">AI Workshop</span>
+    <h1>Windows セットアップガイド</h1>
+    <p class="subtitle">4/18 ワークショップに向けて、事前にセットアップを完了してください。<br>Windowsは不具合が起きやすいため、<strong style="color:var(--black);">事前の準備が特に重要</strong>です。</p>
+    <div class="os-badge">🪟 Windows 専用ガイド</div>
+  </header>
+
+  <!-- ─── MAIN ─── -->
+  <main class="main-content">
+
+    <!-- やること概要 -->
+    <div style="background:var(--beige);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:28px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.2em;color:var(--gray-lt);margin-bottom:14px;text-transform:uppercase;">セットアップでやること</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--gray-mid);">
+          <div style="width:20px;height:20px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;">1</div>
+          Claude のアカウント作成とサブスクリプション加入
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--gray-mid);">
+          <div style="width:20px;height:20px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;">2</div>
+          Git for Windows のインストール
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--gray-mid);">
+          <div style="width:20px;height:20px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;">3</div>
+          Claude Desktop アプリのインストール
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--gray-mid);">
+          <div style="width:20px;height:20px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;">4</div>
+          動作確認
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong style="color:var(--black);">Windows ユーザーの方へ</strong><br>
+      Windows ではセキュリティソフトやシステム設定の影響で、インストール時にエラーが出ることがあります。事前にこのガイドの手順を済ませておいていただけると、当日スムーズに進められます。うまくいかない場合は、4/11 のキックオフで一緒に解決しますので、エラー画面のスクリーンショットを Slack でゆみまでお送りください。
+    </div>
+
+    <!-- ─── Card 1: サブスクリプション加入 ─── -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">1</div><div class="card-title">サブスクリプション加入</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">まず Claude のアカウントを作って、Pro プラン（$20/月）に加入します。これだけで Claude Desktop アプリが使えるようになります。</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">下のリンクから claude.ai を開く</div>
+            <div class="step-desc"><a href="https://claude.ai" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">→ claude.ai を開く</a></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">「Sign up」でアカウント作成</div>
+            <div class="step-desc">Google ログインがおすすめです。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Settings → Billing へ</div>
+            <div class="step-desc">ログイン後、左下の自分の名前 → Settings → Billing へ進みます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">Pro プラン（$20/月）を選択して決済</div>
+            <div class="step-desc">クレジットカード情報を入力して完了。</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:14px 16px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:10px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+        <strong style="color:var(--black);">プランについて</strong><br>
+        まずは $20/月 の Pro プランで十分です。使っていて「回数制限に引っかかるな」と感じたら、$100 や $200 のプランにいつでもアップグレードできます。キャンプ後にダウングレードも自由です。
+      </div>
+    </div>
+
+    <!-- ─── Card 2: Git for Windows ─── -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">2</div><div class="card-title">Git for Windows をインストール</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">Claude Code はパソコン内部で「Git」というソフトを使います。<strong style="color:var(--black);">これがないと Claude Code 機能が動きません。</strong>必ず先に入れてください。</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Git のダウンロードページを開く</div>
+            <div class="step-desc"><a href="https://git-scm.com/downloads/win" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">→ git-scm.com/downloads/win を開く</a></div>
+            <div class="step-desc" style="margin-top:6px;">ページ上部の「Click here to download」をクリックしてダウンロードします。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">ダウンロードしたファイルをダブルクリック</div>
+            <div class="step-desc">インストーラーが起動します。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">すべて「Next」を押し続ける → Install → Finish</div>
+            <div class="step-desc">設定項目がたくさん出ますが、<strong style="color:var(--black);">すべてデフォルトのまま「Next」で大丈夫</strong>です。</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;padding:14px 16px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+        <strong style="color:#16a34a;">インストール確認方法</strong><br>
+        ① Windows キーを押す<br>
+        ②「cmd」と入力して Enter<br>
+        ③ 黒い画面に <code style="background:#e2e8f0;padding:2px 8px;border-radius:4px;font-size:12px;">git --version</code> と打って Enter<br>
+        ④「git version 2.xx.x」と表示されれば成功です
+      </div>
+    </div>
+
+    <!-- ─── Card 3: Claude Desktop インストール ─── -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">3</div><div class="card-title">Claude Desktop をインストール</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">ブラウザでも使えますが、Desktop アプリの方が快適です。ファイルのドラッグ＆ドロップや、コピー＆ペーストが楽になります。</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Claude Desktop をダウンロード</div>
+            <div class="step-desc"><a href="https://claude.ai/download" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">→ claude.ai/download を開く</a></div>
+            <div class="step-desc" style="margin-top:6px;">「Download for Windows」をクリック。<code style="background:var(--beige);padding:2px 8px;border-radius:5px;font-size:12px;">Claude.Setup.exe</code> がダウンロードされます。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">ダウンロードしたファイルをダブルクリックして実行</div>
+            <div class="step-desc">インストールが自動的に始まります（数分かかることがあります）。</div>
+            <div style="margin-top:12px;padding:12px 16px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+              <strong style="color:var(--black);">「WindowsによってPCが保護されました」と出たら？</strong><br>
+              →「<strong>詳細情報</strong>」をクリック →「<strong>実行</strong>」をクリックすれば進めます。
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">インストール完了後、自動で起動</div>
+            <div class="step-desc">インストールが終わると Claude が自動的に起動します。起動しない場合はスタートメニューから「Claude」を検索して開いてください。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">ブラウザでログインする</div>
+            <div class="step-desc">アプリが起動すると、ブラウザが自動的に開いてログイン画面が表示されます。STEP 1 で作った Claude アカウントでログインしてください。</div>
+            <div style="margin-top:10px;padding:10px 14px;background:var(--beige);border:1px solid var(--border);border-radius:8px;font-size:11px;color:var(--gray-mid);line-height:1.8;">
+              ブラウザが自動で開かない場合 → アプリ画面に表示される URL をコピーして、ブラウザに貼り付けてください。
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <div class="step-title">「Code」タブを開いて、フォルダを選ぶ</div>
+            <div class="step-desc">アプリ上部の「<strong style="color:var(--black);">Code</strong>」タブをクリック →「<strong style="color:var(--black);">Select folder</strong>」で作業フォルダを選択。これで Claude Code が使える状態になります。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Card 4: 動作確認 ─── -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">4</div><div class="card-title">動作確認をしよう</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">インストールが完了したら、実際に Claude Desktop で簡単なメッセージを送って動作を確認してください。</p>
+
+      <div style="margin-bottom:14px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--beige);">
+          <div style="width:26px;height:26px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;flex-shrink:0;">1</div>
+          <div style="font-size:13px;font-weight:500;">まずは話しかけてみる</div>
+        </div>
+        <div style="padding:14px 18px;">
+          <div style="background:var(--beige-mid);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--black);line-height:1.8;font-style:italic;margin-bottom:10px;">
+            「こんにちは！ちゃんと動いていますか？」
+          </div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">→ Claude が返答してくれば OK です。</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--beige);">
+          <div style="width:26px;height:26px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;flex-shrink:0;">2</div>
+          <div style="font-size:13px;font-weight:500;">Claude Code 機能を試す</div>
+        </div>
+        <div style="padding:14px 18px;">
+          <div style="background:var(--beige-mid);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--black);line-height:1.8;font-style:italic;margin-bottom:10px;">
+            「Claude Code 機能を使って、デスクトップに test.txt というファイルを作ってください。中身は『テスト成功！』と書いてください。」
+          </div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">→ デスクトップに test.txt が作成されれば、Claude Code 機能も正常です。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 完了まとめ ─── -->
+    <div style="padding:24px;background:var(--grad);border-radius:14px;color:#fff;text-align:center;margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:8px;opacity:0.85;">事前にやること（3つ）</div>
+      <div style="font-size:15px;font-weight:600;margin-bottom:16px;line-height:1.8;">
+        ① Claude Pro プラン（$20/月）に加入する<br>
+        ② Git for Windows をインストールする<br>
+        ③ Claude Desktop アプリをインストールする
+      </div>
+      <div style="font-size:12px;opacity:0.75;">4/11 キックオフまでに完了をお願いします。</div>
+    </div>
+
+    <!-- ─── よくある質問 ─── -->
+    <div class="card">
+      <div class="card-head"><div class="card-num" style="background:var(--beige);color:var(--gray-mid);border:1px solid var(--border);">?</div><div class="card-title">うまくいかない時 / よくある質問</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>「WindowsによってPCが保護されました」と表示される</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            「<strong>詳細情報</strong>」をクリック →「<strong>実行</strong>」をクリックしてください。これは Windows のセキュリティ機能で、新しいアプリに対して表示されるものです。
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>git --version でエラーが出る / コマンドが認識されない</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            Git のインストール後、PCを再起動してからもう一度試してください。再起動しないとコマンドが認識されないことがあります。
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>Desktop アプリが開かない / 動作しない</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            PC を再起動してからもう一度試してください。セキュリティソフト（ウイルスバスター、ノートンなど）がブロックしている可能性があります。セキュリティソフトの「例外設定」に Claude を追加してみてください。
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>Google アカウントでログインできない</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            メールアドレスで新規アカウントを作成してください。
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
+            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
+            <span>何をやってもダメ</span>
+          </div>
+          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
+            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
+            大丈夫です。<strong style="color:var(--black);">エラー画面のスクリーンショットを Slack でゆみまでお送りください。</strong>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    AI Workshop — Windows Setup Guide
+  </footer>
+
+</body>
+</html>
