@@ -1410,7 +1410,7 @@
     <script>
     // ─── メンバーデータ ───
     var MEMBERS = {
-      ebihara:  {name:'海老原愛',       ig:'@ebi.styiing',        service:'映像制作・運用代行・動画編集講座',                  level:'A（上級）',   group:'A', role:'リーダー'},
+      ebihara:  {name:'海老原愛',       ig:'https://www.instagram.com/ebi.styling/',        service:'映像制作・運用代行・動画編集講座',                  level:'A（上級）',   group:'A', role:'リーダー'},
       fujiba:   {name:'藤葉ともみ',     ig:'@tomomi_fujiha',      service:'起業家向けファッション・ショッピング同行',           level:'A（上級）',   group:'A', role:'サブリーダー'},
       tsuruka:  {name:'鶴岡好美',       ig:'@yoshimi_diet_',      service:'食べ痩せダイエット3ヶ月プログラム',                  level:'C（中級）',   group:'A', role:'メンバー'},
       ariel:    {name:'アリエル（富樫亜純）', ig:'@trinityariel_', service:'魂の設計書の鑑定と個人セッション',                  level:'D（初中級）', group:'A', role:'メンバー'},
@@ -1458,7 +1458,9 @@
       function sv(f, def) { return (localStorage.getItem('lp-'+id+'-'+f)||def||'').replace(/"/g,'&quot;'); }
 
       var roleCol = m.role==='リーダー' ? 'var(--orange)' : m.role==='サブリーダー' ? '#1BC6B4' : 'var(--gray-mid)';
-      var igLink = m.ig ? '<a href="https://instagram.com/'+m.ig.replace('@','')+'" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">'+m.ig+'</a>' : '—';
+      var igUrl = m.ig ? (m.ig.startsWith('http') ? m.ig : 'https://instagram.com/'+m.ig.replace('@','')) : '';
+      var igDisplay = m.ig ? (m.ig.startsWith('http') ? m.ig.replace('https://www.instagram.com/','@').replace('https://instagram.com/','@').replace(/\/$/,'') : m.ig) : '';
+      var igLink = m.ig ? '<a href="'+igUrl+'" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">'+igDisplay+'</a>' : '—';
 
       var h = '';
 
