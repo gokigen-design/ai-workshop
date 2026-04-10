@@ -2101,8 +2101,21 @@
   <!-- ═══ TAB 5: CCセットアップ ═══ -->
   <section class="tab-content" id="tab-setup">
     <div class="sec-eyebrow">事前準備</div>
-    <div class="sec-title">Claude Desktop セットアップ</div>
-    <p class="sec-desc">2日間のワークショップで使う「あなた専属のAIアシスタント」を準備します。まずは Claude Desktop アプリから始めましょう。</p>
+    <div class="sec-title">環境を整える</div>
+    <p class="sec-desc">ワークショップで使うツールを準備します。Claude Desktop と音声AIツールをセットアップしましょう。</p>
+
+    <!-- サブタブ切り替え：Claude Code / 音声AIツール -->
+    <div style="display:flex;gap:0;margin-bottom:28px;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+      <button id="btn-subtab-claude" onclick="switchSetupSubtab('claude')" style="flex:1;padding:13px 0;font-size:13px;font-weight:500;border:none;cursor:pointer;background:var(--orange);color:#fff;transition:all 0.2s;">
+        Claude Code
+      </button>
+      <button id="btn-subtab-voice" onclick="switchSetupSubtab('voice')" style="flex:1;padding:13px 0;font-size:13px;font-weight:500;border:none;cursor:pointer;background:var(--beige);color:var(--gray-mid);transition:all 0.2s;">
+        音声AIツール
+      </button>
+    </div>
+
+    <!-- ===== サブタブ：Claude Code ===== -->
+    <div id="subtab-claude">
 
     <!-- このガイドでやること -->
     <div style="background:var(--beige);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:28px;">
@@ -2526,6 +2539,150 @@
         }
       }
     </script>
+
+    </div><!-- /subtab-claude -->
+
+    <!-- ===== サブタブ：音声AIツール ===== -->
+    <div id="subtab-voice" style="display:none;">
+
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:24px;line-height:1.9;">当日、AIへの指示やテキスト入力をもっとスムーズにするための音声ツールを紹介します。用途がそれぞれ違うので、必要なものだけインストールすればOKです。</p>
+
+      <!-- 用途マップ -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;">
+        <div style="background:rgba(201,106,58,0.08);border:1px solid var(--orange-border);border-radius:10px;padding:18px 14px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">音声入力</div>
+          <div style="font-size:13px;font-weight:500;margin-bottom:4px;">Typeless</div>
+          <div style="font-size:11px;color:var(--gray-lt);line-height:1.6;">喋る → そのまま文字入力</div>
+        </div>
+        <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:18px 14px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--gray-lt);margin-bottom:10px;text-transform:uppercase;">文字起こし</div>
+          <div style="font-size:13px;font-weight:500;margin-bottom:4px;">ElevenLabs</div>
+          <div style="font-size:11px;color:var(--gray-lt);line-height:1.6;">録音・動画 → 議事録</div>
+        </div>
+      </div>
+
+      <!-- ─── Card 1: Typeless（おすすめ） ─── -->
+      <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
+        <div class="card-head">
+          <div class="card-num">1</div>
+          <div class="card-title">Typeless<span style="display:inline-block;margin-left:10px;padding:2px 10px;background:var(--orange);color:#fff;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.05em;vertical-align:middle;">おすすめ</span></div>
+        </div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--orange);margin-bottom:12px;text-transform:uppercase;">リアルタイム音声入力</div>
+        <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.9;">音声入力アプリです。Claude でコード作業をする時に、タイピングの代わりに声で指示を出せるので、作業がぐっとスムーズになります。話す方がタイピングより速い分、考えたことをそのまま伝えられるのが最大のメリットです。ぜひ導入してみてください。</p>
+
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">Push-to-Talk</strong><span style="color:var(--gray-mid);"> — 設定したキーを押している間だけ録音。離すとテキスト変換</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">どのアプリでも動く</strong><span style="color:var(--gray-mid);"> — Claude、Notion、Slack、メールなど全対応</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">フィラー自動除去</strong><span style="color:var(--gray-mid);"> — 「えー」「あのー」を消してきれいな文章に</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">100以上の言語</strong><span style="color:var(--gray-mid);"> — 日本語・英語の切り替えも自動検出</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;">
+          <div style="padding:6px 14px;background:var(--beige);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray-mid);">基本無料</div>
+          <div style="padding:6px 14px;background:var(--beige);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray-mid);">有料プランあり</div>
+          <div style="padding:6px 14px;background:var(--beige);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray-mid);">Mac / Windows</div>
+        </div>
+
+        <a href="https://www.typeless.com/" target="_blank" style="display:inline-block;padding:10px 24px;background:var(--orange);color:#fff;border-radius:24px;font-size:13px;font-weight:500;text-decoration:none;">Typeless をダウンロード →</a>
+      </div>
+
+      <!-- ─── Card 2: ElevenLabs Scribe ─── -->
+      <div class="card">
+        <div class="card-head"><div class="card-num">2</div><div class="card-title">ElevenLabs Scribe</div></div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--gray-lt);margin-bottom:12px;text-transform:uppercase;">文字起こし・コンテンツ変換</div>
+        <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.9;">音声や動画から文字起こしをするサービス。話者分離（誰が何を言ったか）もできるので、MTGの議事録作成に最適です。GoogleやWhisperより精度が高く、日本語の認識も優秀です。</p>
+
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+            <div style="width:6px;height:6px;background:var(--gray-lt);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">高精度な文字起こし</strong><span style="color:var(--gray-mid);"> — 日本語の認識精度が高く、音声・動画ファイルに対応</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+            <div style="width:6px;height:6px;background:var(--gray-lt);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">話者分離</strong><span style="color:var(--gray-mid);"> — 複数人のMTGでも「誰の発言か」が分かる</span></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+            <div style="width:6px;height:6px;background:var(--gray-lt);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">Claudeと組み合わせ</strong><span style="color:var(--gray-mid);"> — 文字起こし結果をClaude に渡して議事録やマニュアルに加工</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px;">
+          <div style="padding:6px 14px;background:var(--beige);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray-mid);">Web版は無料（Googleログイン）</div>
+          <div style="padding:6px 14px;background:var(--beige);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray-mid);">ブラウザで使える</div>
+        </div>
+
+        <a href="https://elevenlabs.io/" target="_blank" style="display:inline-block;padding:10px 20px;background:var(--beige);border:1px solid var(--border);border-radius:24px;font-size:13px;font-weight:500;color:var(--black);text-decoration:none;">ElevenLabs を試す →</a>
+      </div>
+
+      <!-- まとめ -->
+      <div style="padding:16px 18px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:10px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+        <strong style="color:var(--black);">まずは Typeless だけでOK</strong><br>
+        当日のワークショップでは、Claudeへの指示を音声で入力できると作業がグッと速くなります。まずは Typeless をインストールして、音声で話しかける操作に慣れておいてください。ElevenLabs は議事録作成に便利なので、興味があれば試してみてください。
+      </div>
+
+    </div><!-- /subtab-voice -->
+
+    <script>
+      function switchSetupSubtab(tab) {
+        var claudeEl = document.getElementById('subtab-claude');
+        var voiceEl = document.getElementById('subtab-voice');
+        var btnClaude = document.getElementById('btn-subtab-claude');
+        var btnVoice = document.getElementById('btn-subtab-voice');
+        if (tab === 'claude') {
+          claudeEl.style.display = '';
+          voiceEl.style.display = 'none';
+          btnClaude.style.background = 'var(--orange)';
+          btnClaude.style.color = '#fff';
+          btnVoice.style.background = 'var(--beige)';
+          btnVoice.style.color = 'var(--gray-mid)';
+        } else {
+          claudeEl.style.display = 'none';
+          voiceEl.style.display = '';
+          btnVoice.style.background = 'var(--orange)';
+          btnVoice.style.color = '#fff';
+          btnClaude.style.background = 'var(--beige)';
+          btnClaude.style.color = 'var(--gray-mid)';
+        }
+        window.scrollTo({ top: document.getElementById('tab-setup').offsetTop - 20, behavior: 'smooth' });
+      }
+    </script>
+
+    <script>
+      function setupSwitchOS(os) {
+        var macEl = document.getElementById('setup-mac');
+        var winEl = document.getElementById('setup-win');
+        var btnMac = document.getElementById('btn-mac');
+        var btnWin = document.getElementById('btn-win');
+        if (os === 'mac') {
+          macEl.style.display = '';
+          winEl.style.display = 'none';
+          btnMac.style.background = 'var(--orange)';
+          btnMac.style.color = '#fff';
+          btnWin.style.background = 'var(--beige)';
+          btnWin.style.color = 'var(--gray-mid)';
+        } else {
+          macEl.style.display = 'none';
+          winEl.style.display = '';
+          btnWin.style.background = 'var(--orange)';
+          btnWin.style.color = '#fff';
+          btnMac.style.background = 'var(--beige)';
+          btnMac.style.color = 'var(--gray-mid)';
+        }
+      }
+    </script>
   </section>
 
   <!-- ═══ TAB 7: 用語集 ═══ -->
@@ -2716,29 +2873,29 @@
       <div class="card-head"><div class="card-num">1</div><div class="card-title">サービスの基本情報</div></div>
       <div class="form-group">
         <label>サービス名・講座名</label>
-        <input type="text" id="ws-service" placeholder="例：整理収納オンライン講座 3ヶ月コース" oninput="updatePrompt()">
+        <input type="text" id="ws-service" placeholder="例：整理収納オンライン講座 3ヶ月コース" value="薬膳おうちごはん オンライン講座 3ヶ月コース" oninput="updatePrompt()">
       </div>
       <div class="form-group">
         <label>あなたの肩書き</label>
-        <input type="text" id="ws-title" placeholder="例：整理収納アドバイザー / ライフオーガナイザー" oninput="updatePrompt()">
+        <input type="text" id="ws-title" placeholder="例：整理収納アドバイザー / ライフオーガナイザー" value="薬膳料理研究家 / 国際中医薬膳師" oninput="updatePrompt()">
       </div>
       <div class="row-2">
         <div class="form-group">
           <label>料金</label>
-          <input type="text" id="ws-price" placeholder="例：¥98,000" oninput="updatePrompt()">
+          <input type="text" id="ws-price" placeholder="例：¥98,000" value="¥55,000（税込）" oninput="updatePrompt()">
         </div>
         <div class="form-group">
           <label>形式・回数</label>
-          <input type="text" id="ws-format" placeholder="例：オンライン / 全6回" oninput="updatePrompt()">
+          <input type="text" id="ws-format" placeholder="例：オンライン / 全6回" value="オンライン（Zoom）/ 全6回・月2回" oninput="updatePrompt()">
         </div>
       </div>
       <div class="form-group">
         <label>対象者（どんな人に来てほしいか）</label>
-        <input type="text" id="ws-target" placeholder="例：片付けが苦手で毎日イライラしている30〜40代の女性" oninput="updatePrompt()">
+        <input type="text" id="ws-target" placeholder="例：片付けが苦手で毎日イライラしている30〜40代の女性" value="疲れやすさや冷え性に悩み、食事で体質改善したいと思っている30〜50代の女性" oninput="updatePrompt()">
       </div>
       <div class="form-group">
         <label>LPのゴール（何をしてほしいか）</label>
-        <input type="text" id="ws-goal" placeholder="例：申し込みフォームから申し込んでほしい" oninput="updatePrompt()">
+        <input type="text" id="ws-goal" placeholder="例：申し込みフォームから申し込んでほしい" value="LINE公式アカウントに登録して無料体験レッスンに申し込んでほしい" oninput="updatePrompt()">
       </div>
     </div>
 
@@ -2747,11 +2904,11 @@
       <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">一番伝えたいことを一言で。完璧じゃなくてOK。当日一緒に磨きます。</p>
       <div class="form-group">
         <label>メインキャッチコピー（一言）</label>
-        <input type="text" id="ws-catch" placeholder="例：片付けられない私が変わった。3ヶ月で家も心も整った。" oninput="updatePrompt()">
+        <input type="text" id="ws-catch" placeholder="例：片付けられない私が変わった。3ヶ月で家も心も整った。" value="「なんとなく不調」が消えた。毎日の食卓が、私のお医者さんになった。" oninput="updatePrompt()">
       </div>
       <div class="form-group">
         <label>サブコピー（補足一言）</label>
-        <input type="text" id="ws-sub" placeholder="例：忙しいママでも続けられる、無理のない整理メソッド" oninput="updatePrompt()">
+        <input type="text" id="ws-sub" placeholder="例：忙しいママでも続けられる、無理のない整理メソッド" value="スーパーの食材だけでOK。忙しい人のための、がんばらない薬膳レシピ" oninput="updatePrompt()">
       </div>
     </div>
 
@@ -2759,13 +2916,13 @@
       <div class="card-head"><div class="card-num">3</div><div class="card-title">参加者の悩み（3つ）</div></div>
       <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">「わかる！」と思ってもらえるかがポイント。お客さんのリアルな声を思い出して。</p>
       <div class="form-group">
-        <input type="text" id="ws-p1" placeholder="悩み 1：例）部屋が散らかりすぎて、どこから手をつければいいかわからない" oninput="updatePrompt()">
+        <input type="text" id="ws-p1" placeholder="悩み 1：例）部屋が散らかりすぎて、どこから手をつければいいかわからない" value="季節の変わり目になると必ず体調を崩す。疲れが抜けない日が続いている" oninput="updatePrompt()">
       </div>
       <div class="form-group">
-        <input type="text" id="ws-p2" placeholder="悩み 2：例）片付けても数日でリバウンドしてしまう" oninput="updatePrompt()">
+        <input type="text" id="ws-p2" placeholder="悩み 2：例）片付けても数日でリバウンドしてしまう" value="薬膳に興味はあるけれど、特別な食材が必要そうで敷居が高いと感じている" oninput="updatePrompt()">
       </div>
       <div class="form-group">
-        <input type="text" id="ws-p3" placeholder="悩み 3：例）家族に片付けを頼んでもやってくれない" oninput="updatePrompt()">
+        <input type="text" id="ws-p3" placeholder="悩み 3：例）家族に片付けを頼んでもやってくれない" value="仕事と家事で忙しく、手の込んだ料理をする余裕がない" oninput="updatePrompt()">
       </div>
     </div>
 
@@ -2773,13 +2930,13 @@
       <div class="card-head"><div class="card-num">4</div><div class="card-title">参加後に得られること（3つ）</div></div>
       <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">Before → After のイメージで。変化を具体的に書くほど刺さります。</p>
       <div class="form-group">
-        <input type="text" id="ws-b1" placeholder="得られること 1：例）3ヶ月後、毎朝スッキリした部屋で目が覚める" oninput="updatePrompt()">
+        <input type="text" id="ws-b1" placeholder="得られること 1：例）3ヶ月後、毎朝スッキリした部屋で目が覚める" value="3ヶ月後、朝の目覚めが変わり「なんとなくだるい」がなくなる" oninput="updatePrompt()">
       </div>
       <div class="form-group">
-        <input type="text" id="ws-b2" placeholder="得られること 2：例）「片付けられない」という罪悪感から解放される" oninput="updatePrompt()">
+        <input type="text" id="ws-b2" placeholder="得られること 2：例）「片付けられない」という罪悪感から解放される" value="スーパーの食材で薬膳ごはんが作れるようになり、家族の体調管理に自信が持てる" oninput="updatePrompt()">
       </div>
       <div class="form-group">
-        <input type="text" id="ws-b3" placeholder="得られること 3：例）家族も自然と片付けるようになる仕組みが作れる" oninput="updatePrompt()">
+        <input type="text" id="ws-b3" placeholder="得られること 3：例）家族も自然と片付けるようになる仕組みが作れる" value="「冷え性」「肌荒れ」など自分の体質に合ったレシピを自分で選べるようになる" oninput="updatePrompt()">
       </div>
     </div>
 
@@ -2787,11 +2944,11 @@
       <div class="card-head"><div class="card-num">5</div><div class="card-title">自己紹介</div></div>
       <div class="form-group">
         <label>名前（表示名）</label>
-        <input type="text" id="ws-name" placeholder="例：山田 花子" oninput="updatePrompt()">
+        <input type="text" id="ws-name" placeholder="例：山田 花子" value="佐藤 美咲" oninput="updatePrompt()">
       </div>
       <div class="form-group">
         <label>自己紹介文（3〜5行）</label>
-        <textarea id="ws-bio" placeholder="例：2人の子どもを持つワーキングマザー。自身も片付けが大の苦手で、産後うつをきっかけに整理収納を学ぶ。資格取得後、500名以上をサポート。「片付けは才能じゃなく、仕組みだ」をモットーに活動中。" oninput="updatePrompt()"></textarea>
+        <textarea id="ws-bio" placeholder="例：2人の子どもを持つワーキングマザー。自身も片付けが大の苦手で、産後うつをきっかけに整理収納を学ぶ。資格取得後、500名以上をサポート。「片付けは才能じゃなく、仕組みだ」をモットーに活動中。" oninput="updatePrompt()">会社員時代、激務で体調を崩したことをきっかけに薬膳の世界へ。国際中医薬膳師の資格を取得し、2019年に独立。「特別な食材がなくても、スーパーの食材で薬膳はできる」をコンセプトに、これまで800名以上にオンラインレッスンを提供。雑誌「からだにいいこと」にレシピ連載中。2児の母。</textarea>
       </div>
     </div>
 
@@ -2801,11 +2958,11 @@
       <div class="row-2">
         <div class="form-group">
           <label>カラーテイスト</label>
-          <input type="text" id="ws-color" placeholder="例：ナチュラル / ラグジュアリー / クールブルー" oninput="updatePrompt()">
+          <input type="text" id="ws-color" placeholder="例：ナチュラル / ラグジュアリー / クールブルー" value="ナチュラル / アースカラー（ベージュ × 深緑）" oninput="updatePrompt()">
         </div>
         <div class="form-group">
           <label>フォント</label>
-          <input type="text" id="ws-font" placeholder="例：Zen Maru Gothic / Noto Serif JP" oninput="updatePrompt()">
+          <input type="text" id="ws-font" placeholder="例：Zen Maru Gothic / Noto Serif JP" value="Zen Maru Gothic / Noto Serif JP" oninput="updatePrompt()">
         </div>
       </div>
       <div class="form-group">
