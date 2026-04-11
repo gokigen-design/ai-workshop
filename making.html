@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LP制作の裏側 — AIワークショップができるまで</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a1a2e;
+      --surface: #16213e;
+      --surface2: #0f3460;
+      --accent: #e94560;
+      --claude: #d4a574;
+      --user-bg: #2d1b69;
+      --claude-bg: #1a2a1a;
+      --text: #e0e0e0;
+      --text-dim: #8892a4;
+      --border: #2a2a4a;
+      --green: #4ade80;
+      --blue: #60a5fa;
+      --purple: #a78bfa;
+      --pink: #f472b6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      line-height: 1.8;
+    }
+
+    /* === HEADER === */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #0f0f23 0%, var(--bg) 100%);
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--green);
+      border: 1px solid var(--green);
+      border-radius: 20px;
+      padding: 4px 16px;
+      margin-bottom: 20px;
+      letter-spacing: 0.1em;
+    }
+    .hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 0%, var(--claude) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--claude);
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* === TIMELINE === */
+    .timeline {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .phase {
+      margin-bottom: 48px;
+    }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .phase-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--bg);
+      background: var(--purple);
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-weight: 600;
+    }
+    .phase-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* === CHAT BUBBLES === */
+    .msg {
+      margin-bottom: 20px;
+      animation: fadeUp 0.4s ease both;
+    }
+    .msg-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .msg-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+    }
+    .msg-icon.user {
+      background: var(--accent);
+      color: #fff;
+    }
+    .msg-icon.claude {
+      background: var(--claude);
+      color: #1a1a2e;
+    }
+    .msg-name {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+    .msg-body {
+      margin-left: 32px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+    .msg-body.user {
+      background: var(--user-bg);
+      border: 1px solid rgba(167, 139, 250, 0.2);
+    }
+    .msg-body.claude {
+      background: var(--claude-bg);
+      border: 1px solid rgba(74, 222, 128, 0.15);
+    }
+    .msg-body code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* === CHANGE INDICATOR === */
+    .change {
+      margin-left: 32px;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: rgba(96, 165, 250, 0.08);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.85rem;
+    }
+    .change-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .change .before {
+      color: var(--accent);
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+    .change .after {
+      color: var(--green);
+    }
+
+    /* === VISUAL CHANGE === */
+    .visual-change {
+      margin-left: 32px;
+      margin-bottom: 20px;
+      padding: 16px;
+      background: rgba(244, 114, 182, 0.06);
+      border: 1px solid rgba(244, 114, 182, 0.15);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .visual-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--pink);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .visual-desc {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+    .arrow-down {
+      display: block;
+      text-align: center;
+      color: var(--green);
+      font-size: 1.2rem;
+      margin: 4px 0;
+    }
+
+    /* === LP PREVIEW === */
+    .lp-preview {
+      margin-left: 32px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0a0a1a;
+    }
+    .lp-preview-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid var(--border);
+    }
+    .lp-preview-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+    .lp-preview-dot.r { background: #ff5f57; }
+    .lp-preview-dot.y { background: #febc2e; }
+    .lp-preview-dot.g { background: #28c840; }
+    .lp-preview-url {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      margin-left: 8px;
+    }
+    .lp-preview iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .lp-preview { margin-left: 0; }
+      .lp-preview iframe { height: 400px; }
+    }
+
+    /* === SEPARATOR === */
+    .separator {
+      text-align: center;
+      margin: 48px 0;
+      position: relative;
+    }
+    .separator::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border);
+    }
+    .separator span {
+      position: relative;
+      background: var(--bg);
+      padding: 0 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    /* === FOOTER === */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 0.82rem;
+    }
+    .footer .tool {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--claude);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .stats { gap: 24px; }
+      .msg-body { margin-left: 0; }
+      .change { margin-left: 0; }
+      .visual-change { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">MAKING OF</div>
+    <h1>AIワークショップLPができるまで</h1>
+    <p>デザイナー3人が Claude Code に指示を出しながら、リアルタイムでLPを作り上げた全記録</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">バージョン進化</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">変更回数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">~3</div>
+        <div class="stat-label">hours 制作時間</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+
+    <!-- ====== PHASE 1 ====== -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 01</span>
+        <span class="phase-title">最初の一言 — まず作ってみて</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          デザイナー3人でAI制作ワークショップのLPを作りたい。ハンズオンで参加者が自分のLPを作れるようになる講座。サイバーパンクっぽい雰囲気で、かっこよくして！
+        </div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon claude">C</div>
+          <div class="msg-name">Claude</div>
+        </div>
+        <div class="msg-body claude">
+          了解です！サイバーパンクテーマのLPを作成しました。ネオンカラー × ダーク背景でまとめています。
+        </div>
+      </div>
+
+      <div class="lp-preview">
+        <div class="lp-preview-header">
+          <span class="lp-preview-dot r"></span>
+          <span class="lp-preview-dot y"></span>
+          <span class="lp-preview-dot g"></span>
+          <span class="lp-preview-url">VERSION 1 — 初版</span>
+        </div>
+        <iframe src="making-screenshots/v1-initial.html"></iframe>
+      </div>
+      <div class="visual-change">
+        <div class="visual-label">VERSION 1 — FIRST OUTPUT</div>
+        <div class="visual-desc">
+          最初に出てきたLP。ヘキサゴン（六角形）マスクの中に講師写真が収まっている。スクロールして中を見てみてください。
+        </div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          うーん、普通すぎる！もっとサイバー感出して！
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== PHASE 2 ====== -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 02</span>
+        <span class="phase-title">サイバー感を追求</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon claude">C</div>
+          <div class="msg-name">Claude</div>
+        </div>
+        <div class="msg-body claude">
+          ダークテーマに切り替えました。ネオンブルー × パープルのグロー効果を追加し、背景にグリッドパターンを入れました。
+        </div>
+      </div>
+
+      <div class="lp-preview">
+        <div class="lp-preview-header">
+          <span class="lp-preview-dot r"></span>
+          <span class="lp-preview-dot y"></span>
+          <span class="lp-preview-dot g"></span>
+          <span class="lp-preview-url">VERSION 2 — 視認性改善 + Claudeキャラ追加</span>
+        </div>
+        <iframe src="making-screenshots/v2-improved.html"></iframe>
+      </div>
+      <div class="visual-change">
+        <div class="visual-label">VERSION 2 — IMPROVED</div>
+        <div class="visual-desc">
+          見出しを明るく、テキスト読みやすく改善。3Dアイコン化、Claudeキャラクター追加。
+        </div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          いい感じ！でもフォントもっと攻めたい。英語部分はもっとSFっぽくできない？
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== PHASE 3 ====== -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 03</span>
+        <span class="phase-title">フォントとレイアウトの攻め</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          英語フォント変えて、斜めカット入れて！もっとエッジの効いた感じにしたい
+        </div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon claude">C</div>
+          <div class="msg-name">Claude</div>
+        </div>
+        <div class="msg-body claude">
+          英語フォントを <code>Orbitron</code> に変更し、セクション間に <code>clip-path</code> で斜めカットを入れました。アイコンにも3Dグロー効果を追加しています。
+        </div>
+      </div>
+
+      <div class="lp-preview">
+        <div class="lp-preview-header">
+          <span class="lp-preview-dot r"></span>
+          <span class="lp-preview-dot y"></span>
+          <span class="lp-preview-dot g"></span>
+          <span class="lp-preview-url">VERSION 3 — 内容変更（成果物・価格・対象者）</span>
+        </div>
+        <iframe src="making-screenshots/v3-content.html"></iframe>
+      </div>
+      <div class="visual-change">
+        <div class="visual-label">VERSION 3 — CONTENT UPDATE</div>
+        <div class="visual-desc">
+          成果物・価格・対象者を全面改訂。「正直に言います」メッセージ追加。ここで20分で13回の変更を一気に実施。
+        </div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          めっちゃいい！！！
+        </div>
+      </div>
+    </div>
+
+    <div class="separator"><span>DESIGN LOCKED</span></div>
+
+    <!-- ====== PHASE 4 ====== -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 04</span>
+        <span class="phase-title">内容を詰める — 20分で13回の変更</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          成果物1のところはハンズオンでデザイナー3人が教える。内容はLPにして
+        </div>
+      </div>
+      <div class="change">
+        <div class="change-label">CHANGED</div>
+        <span class="before">OUTPUT 01: LINEプレゼント</span>
+        <span class="arrow-down">&darr;</span>
+        <span class="after">OUTPUT 01: LP（ランディングページ）</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          ストーリーはいらないので消してください
+        </div>
+      </div>
+      <div class="change">
+        <div class="change-label">REMOVED</div>
+        <span class="before">STORYセクション まるごと削除</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          モニター価格は25000円に。通常価格は50000円に書いてください
+        </div>
+      </div>
+      <div class="change">
+        <div class="change-label">CHANGED</div>
+        <span class="before">モニター ¥18,000 / 通常 ¥25,000</span>
+        <span class="arrow-down">&darr;</span>
+        <span class="after">モニター ¥25,000 / 通常 ¥50,000（3箇所同時更新）</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          25000円で通常LP頼むところを打破したい。Canvaでも垢抜けない問題もある。デザイナーに頼んでも最低50000円かかるし
+        </div>
+      </div>
+      <div class="change">
+        <div class="change-label">CHANGED</div>
+        <span class="before">「お金が浮く」</span>
+        <span class="arrow-down">&darr;</span>
+        <span class="after">「LP1枚 ¥50,000〜 を打破」+ Canva垢抜けない問題を追加</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          正直に言うと、私たちがお引き受けした方が商売になる。でも皆さんの時間的・金銭的負担を軽くしたいんです
+        </div>
+      </div>
+      <div class="change">
+        <div class="change-label">ADDED</div>
+        <span class="after">講師セクション下に「正直に言います」メッセージボックス追加</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          対象者：自身の講座やサービスを持っている方。対象外：自身のサービスがない方
+        </div>
+      </div>
+      <div class="change">
+        <div class="change-label">ADDED</div>
+        <span class="after">TARGETセクションを対象者 / 対象外で明確化</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          「解決できるよ」ってところのデザインがささやかすぎる。もう少し目立つように！
+        </div>
+      </div>
+      <div class="change">
+        <div class="change-label">ENHANCED</div>
+        <span class="after">Claudeキャラクターの吹き出しを80px化 + ネオングロー + フリッカーアニメーション追加</span>
+      </div>
+    </div>
+
+    <div class="separator"><span>CONTENT COMPLETE</span></div>
+
+    <!-- ====== PHASE 5 ====== -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 05</span>
+        <span class="phase-title">ファーストビューの大改造</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          ファーストビューを変えたい。hero.png を使って全画面で見せたい。ヘキサゴンの中に収まってるのをやめて、ドーンと出したい
+        </div>
+      </div>
+
+      <div class="lp-preview">
+        <div class="lp-preview-header">
+          <span class="lp-preview-dot r"></span>
+          <span class="lp-preview-dot y"></span>
+          <span class="lp-preview-dot g"></span>
+          <span class="lp-preview-url">VERSION 4 — FVリデザイン（hero.png全画面化）</span>
+        </div>
+        <iframe src="making-screenshots/v4-fv-redesign.html"></iframe>
+      </div>
+      <div class="visual-change">
+        <div class="visual-label">BEFORE</div>
+        <div class="visual-desc">講師写真がヘキサゴン（六角形）マスクの中に小さく配置</div>
+        <span class="arrow-down">&darr;</span>
+        <div class="visual-label">AFTER</div>
+        <div class="visual-desc">hero.png を全画面配置。3人が画面いっぱいに登場する迫力のFVに</div>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          ネオンカラーもっと強くして！背景のbg-fv.jpgも使って
+        </div>
+      </div>
+
+      <div class="change">
+        <div class="change-label">ENHANCED</div>
+        <span class="after">ネオンブルー #00d4ff / パープル #c084fc 強化 + bg-fv.jpg を背景に配置 + スマホ対応（background-size: 170%）</span>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon user">A</div>
+          <div class="msg-name">あや</div>
+        </div>
+        <div class="msg-body user">
+          講師の年数は消して。あと、ちかの→ちゃかなに名前変更して
+        </div>
+      </div>
+      <div class="change">
+        <div class="change-label">CHANGED</div>
+        <span class="before">ちかの / 経歴年数表示あり</span>
+        <span class="arrow-down">&darr;</span>
+        <span class="after">ちゃかな / 年数削除でスッキリ</span>
+      </div>
+    </div>
+
+    <div class="separator"><span>FINAL VERSION</span></div>
+
+    <!-- ====== SUMMARY ====== -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-num">RESULT</span>
+        <span class="phase-title">完成したLP</span>
+      </div>
+
+      <div class="lp-preview">
+        <div class="lp-preview-header">
+          <span class="lp-preview-dot r"></span>
+          <span class="lp-preview-dot y"></span>
+          <span class="lp-preview-dot g"></span>
+          <span class="lp-preview-url">FINAL — 完成版LP</span>
+        </div>
+        <iframe src="making-screenshots/v5-final.html"></iframe>
+      </div>
+
+      <div class="msg">
+        <div class="msg-header">
+          <div class="msg-icon claude">C</div>
+          <div class="msg-name">Claude</div>
+        </div>
+        <div class="msg-body claude">
+          全ての変更を反映しました。最終版の特徴：<br><br>
+          <strong>Design:</strong> サイバーパンク × ネオンダーク<br>
+          <strong>Font:</strong> Orbitron（英語）+ Noto Sans JP<br>
+          <strong>Layout:</strong> clip-pathの斜めカット、全画面FV<br>
+          <strong>Animation:</strong> ネオングロー、フリッカー、スクロール連動<br>
+          <strong>Responsive:</strong> スマホ対応済み
+        </div>
+      </div>
+
+      <div class="visual-change">
+        <div class="visual-label" style="color: var(--green);">POINT</div>
+        <div class="visual-desc">
+          すべて音声入力ベースで指示。<br>
+          あやが口頭で伝え → Claude が即反映のサイクルを繰り返し、<br>
+          約3時間で完成しました。
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p>Made with <span class="tool">Claude Code</span> + 音声入力</p>
+    <p style="margin-top: 4px;">AIワークショップ 2026</p>
+  </div>
+
+</body>
+</html>
