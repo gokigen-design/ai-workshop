@@ -1667,105 +1667,6 @@
       h += '<div style="margin-top:10px;padding:11px 14px;background:var(--beige);border-radius:8px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">SERVICE</div><div style="font-size:13px;">'+m.service+'</div></div>';
       h += '</div>';
 
-      // 参考リンク
-      h += '<div class="card" style="margin-bottom:16px;">';
-      h += '<div class="card-head"><div class="card-num">1</div><div class="card-title">参考リンクを貼っておこう</div></div>';
-      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">既存LP・モデリング先・参考サイトを貼っておきましょう。当日すぐ引き出せます。</p>';
-      [['existlp','既存LPのURL（持っている方はこちら）','https://...（なければ空欄でOK）'],
-       ['modeling','モデリング先URL（こんなデザインにしたい！）','https://...'],
-       ['ref1','参考サイト ①','https://...'],
-       ['ref2','参考サイト ②','https://...'],
-       ['ref3','参考サイト ③','https://...']].forEach(function(f){
-        h += '<div class="lp-row"><label class="lp-label">'+f[1]+'</label>';
-        h += '<input class="lp-input" data-key="'+id+'-'+f[0]+'" placeholder="'+f[2]+'" value="'+sv(f[0])+'"></div>';
-      });
-      h += '</div>';
-
-      // LP情報シート（STEP 02と同じ構成）
-      h += '<div class="card" style="margin-bottom:16px;">';
-      h += '<div class="card-head"><div class="card-num">2</div><div class="card-title">LP情報シート（ここを埋めると当日ラクになる！）</div></div>';
-      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">この情報をもとにClaudeがLPを自動作成します。できるだけ全部埋めてください。</p>';
-
-      // ▼ サービスの基本情報
-      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">サービスの基本情報</div>';
-      h += '<div class="lp-row"><label class="lp-label">サービス名・講座名</label><input class="lp-input" data-key="'+id+'-service" placeholder="サービス名を入力してください" value="'+sv('service', m.service)+'"></div>';
-      h += '<div class="lp-row"><label class="lp-label">あなたの肩書き</label><input class="lp-input" data-key="'+id+'-title" placeholder="例：ダイエットコーチ / 食事管理アドバイザー" value="'+sv('title')+'"></div>';
-      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
-      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">料金</label><input class="lp-input" data-key="'+id+'-price" placeholder="例：¥98,000" value="'+sv('price')+'"></div>';
-      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">形式・回数</label><input class="lp-input" data-key="'+id+'-format" placeholder="例：オンライン / 全6回" value="'+sv('format')+'"></div>';
-      h += '</div>';
-      h += '<div class="lp-row" style="margin-top:12px;"><label class="lp-label">対象者（どんな人に来てほしいか）</label><input class="lp-input" data-key="'+id+'-target" placeholder="例：30〜40代・子育て中のママ・時間がない・自分に自信がない" value="'+sv('target')+'"></div>';
-      h += '<div class="lp-row"><label class="lp-label">LPのゴール（何をしてほしいか）</label><input class="lp-input" data-key="'+id+'-goal" placeholder="例：申し込みフォームから申し込んでほしい" value="'+sv('goal')+'"></div>';
-
-      // ▼ キャッチコピー
-      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">キャッチコピー</div>';
-      h += '<div class="lp-row"><label class="lp-label">メインキャッチコピー（一言）</label><input class="lp-input" data-key="'+id+'-catch" placeholder="例：食べながら痩せた。我慢ゼロで-5kgの3ヶ月。" value="'+sv('catch')+'"></div>';
-      h += '<div class="lp-row"><label class="lp-label">サブコピー（補足一言）</label><input class="lp-input" data-key="'+id+'-sub" placeholder="例：続けられなかった方こそ、このプログラムが向いています" value="'+sv('sub')+'"></div>';
-
-      // ▼ 悩み×3
-      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">参加者の悩み（3つ）</div>';
-      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p1" placeholder="悩み 1：例）食事制限が辛くて続かない" value="'+sv('p1')+'"></div>';
-      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p2" placeholder="悩み 2：例）リバウンドを繰り返している" value="'+sv('p2')+'"></div>';
-      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p3" placeholder="悩み 3：例）何をすればいいかわからない" value="'+sv('p3')+'"></div>';
-
-      // ▼ 得られること×3
-      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">参加後に得られること（3つ）</div>';
-      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b1" placeholder="得られること 1：例）我慢ゼロで-5kgを実現できる" value="'+sv('b1')+'"></div>';
-      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b2" placeholder="得られること 2：例）リバウンドしない食習慣が身につく" value="'+sv('b2')+'"></div>';
-      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b3" placeholder="得られること 3：例）食事を楽しみながら理想のカラダへ" value="'+sv('b3')+'"></div>';
-
-      // ▼ 自己紹介
-      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">自己紹介</div>';
-      h += '<div class="lp-row"><label class="lp-label">自己紹介文（3〜5行）</label>';
-      h += '<textarea class="lp-ta" data-key="'+id+'-bio" placeholder="例：元会社員・3人の子育て中・自分も-20kgの経験あり。食べることが大好きで食事制限なしのダイエットを研究し続けて10年…">'+( localStorage.getItem('lp-'+id+'-bio')||'' )+'</textarea></div>';
-
-      // ▼ デザイン指定
-      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">デザイン指定</div>';
-      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
-      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">カラーテイスト</label><input class="lp-input" data-key="'+id+'-color" placeholder="例：ナチュラル / ラグジュアリー" value="'+sv('color')+'"></div>';
-      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">フォント</label><input class="lp-input" data-key="'+id+'-font" placeholder="例：Zen Maru Gothic" value="'+sv('font')+'"></div>';
-      h += '</div>';
-      h += '<div class="lp-row" style="margin-top:12px;"><label class="lp-label">顔写真ファイル名（当日フォルダに入れておくもの）</label><input class="lp-input" data-key="'+id+'-photo" placeholder="例：profile.jpg" value="'+sv('photo')+'"></div>';
-
-      // ▼ リンク情報
-      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">リンク情報</div>';
-      h += '<div class="lp-row"><label class="lp-label">申し込み先URL（LINE・予約サイト・メール等）</label><input class="lp-input" data-key="'+id+'-cta" placeholder="https://lin.ee/..." value="'+sv('cta')+'"></div>';
-      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">Instagram / SNS URL</label><input class="lp-input" data-key="'+id+'-sns" placeholder="https://www.instagram.com/..." value="'+sv('sns')+'"></div>';
-      h += '</div>';
-
-      // 写真チェックリスト
-      h += '<div class="card" style="margin-bottom:16px;">';
-      h += '<div class="card-head"><div class="card-num">3</div><div class="card-title">写真・素材チェックリスト</div></div>';
-      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;line-height:1.7;">当日 <code style="background:var(--beige);padding:1px 5px;border-radius:4px;font-size:11px;">images/</code> フォルダに入れておく素材の確認です。</p>';
-      ['プロフィール写真（profile.jpg）','サービス・施術の写真','実績・ビフォーアフター画像','ロゴ・アイコン（あれば）','その他使いたい素材'].forEach(function(item, i){
-        var ck = localStorage.getItem('lp-'+id+'-chk'+i)==='1' ? 'checked' : '';
-        h += '<label style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--beige);border-radius:8px;cursor:pointer;margin-bottom:8px;">';
-        h += '<input type="checkbox" data-key="'+id+'-chk'+i+'" data-ck="1" '+ck+'>';
-        h += '<span style="font-size:13px;">'+item+'</span></label>';
-      });
-      h += '<div class="lp-row" style="margin-top:8px;margin-bottom:0;"><label class="lp-label">使いたい写真のファイル名メモ</label>';
-      h += '<textarea class="lp-ta" style="min-height:60px;" data-key="'+id+'-files" placeholder="例：profile.jpg / before.png / logo.svg">'+( localStorage.getItem('lp-'+id+'-files')||'' )+'</textarea></div>';
-      h += '</div>';
-
-      // Claudeプロンプト
-      h += '<div class="card" style="background:var(--grad-soft);border-color:var(--orange-border);">';
-      h += '<div class="card-head"><div class="card-num">4</div><div class="card-title">Claudeへのプロンプトをコピー</div></div>';
-      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">すべての項目を埋めたら、このボタンを押してプロンプトをコピー → Claude Desktop に貼り付けるだけでLPが生成されます。</p>';
-      h += '<button id="'+id+'-copybtn" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4a86c8,#1BC6B4);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;" onclick="copyPrompt(\''+id+'\')">📋 プロンプトを生成してコピー</button>';
-      h += '<textarea id="'+id+'-prompt" readonly style="display:none;width:100%;min-height:300px;margin-top:12px;padding:16px;font-size:12px;line-height:1.8;border:2px solid #C96A3A;border-radius:12px;background:#fffaf5;resize:vertical;font-family:inherit;box-sizing:border-box;"></textarea>';
-      h += '<button id="'+id+'-copy2" style="display:none;width:100%;padding:12px;background:#1BC6B4;color:#fff;border:none;border-radius:10px;font-size:13px;cursor:pointer;font-family:inherit;margin-top:8px;" onclick="copyOnly(\''+id+'\')">📋 もう一度コピーする</button>';
-      h += '</div>';
-
-      // 事前準備報告ボタン（一番下）
-      h += '<div class="card" style="margin-bottom:16px;background:linear-gradient(135deg,#fff 60%,rgba(27,198,180,0.05));border-color:#1BC6B4;">';
-      h += '<div class="card-head"><div class="card-num" style="background:#1BC6B4;">5</div><div class="card-title">事前準備の進捗を報告する</div></div>';
-      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">事前準備ができた方はこちらを押してください。講師に通知が届きます。</p>';
-      h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;position:static;top:auto;right:auto;width:100%;display:block;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
-      if (reported) {
-        h += '<p style="text-align:center;margin-top:8px;font-size:12px;color:var(--gray-mid);">内容を変更した場合は <a href="#" onclick="resetReport(\''+id+'\');return false;" style="color:#1BC6B4;text-decoration:underline;">もう一度報告する</a></p>';
-      }
-      h += '</div>';
-
       el.innerHTML = h;
     }
 
@@ -3122,73 +3023,10 @@
       <div id="ws-member-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px;"></div>
     </div>
 
-    <!-- 個人フォーム（名前選択後に表示） -->
+    <!-- 個人フォーム（名前選択後に動的生成） -->
     <div id="ws-form-area" style="display:none;">
-
       <div id="ws-selected-name" style="font-size:18px;font-weight:700;color:var(--black);margin-bottom:18px;padding:14px 20px;background:var(--beige);border-radius:10px;text-align:center;"></div>
-
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">2</div><div class="card-title">サービスの基本情報</div></div>
-        <div class="form-group"><label>サービス名・講座名</label><input type="text" class="ws-field" data-field="service" placeholder="例：整理収納オンライン講座 3ヶ月コース"></div>
-        <div class="form-group"><label>あなたの肩書き</label><input type="text" class="ws-field" data-field="title" placeholder="例：整理収納アドバイザー / ライフオーガナイザー"></div>
-        <div class="row-2">
-          <div class="form-group"><label>料金</label><input type="text" class="ws-field" data-field="price" placeholder="例：¥98,000"></div>
-          <div class="form-group"><label>形式・回数</label><input type="text" class="ws-field" data-field="format" placeholder="例：オンライン / 全6回"></div>
-        </div>
-        <div class="form-group"><label>対象者（どんな人に来てほしいか）</label><input type="text" class="ws-field" data-field="target" placeholder="例：片付けが苦手で毎日イライラしている30〜40代の女性"></div>
-        <div class="form-group"><label>LPのゴール（何をしてほしいか）</label><input type="text" class="ws-field" data-field="goal" placeholder="例：申し込みフォームから申し込んでほしい"></div>
-      </div>
-
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">3</div><div class="card-title">キャッチコピー</div></div>
-        <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">一番伝えたいことを一言で。完璧じゃなくてOK。当日一緒に磨きます。</p>
-        <div class="form-group"><label>メインキャッチコピー（一言）</label><input type="text" class="ws-field" data-field="catch" placeholder="例：片付けられない私が変わった。3ヶ月で家も心も整った。"></div>
-        <div class="form-group"><label>サブコピー（補足一言）</label><input type="text" class="ws-field" data-field="sub" placeholder="例：忙しいママでも続けられる、無理のない整理メソッド"></div>
-      </div>
-
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">4</div><div class="card-title">参加者の悩み（3つ）</div></div>
-        <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">「わかる！」と思ってもらえるかがポイント。お客さんのリアルな声を思い出して。</p>
-        <div class="form-group"><input type="text" class="ws-field" data-field="p1" placeholder="悩み 1"></div>
-        <div class="form-group"><input type="text" class="ws-field" data-field="p2" placeholder="悩み 2"></div>
-        <div class="form-group"><input type="text" class="ws-field" data-field="p3" placeholder="悩み 3"></div>
-      </div>
-
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">5</div><div class="card-title">参加後に得られること（3つ）</div></div>
-        <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">Before → After のイメージで。変化を具体的に書くほど刺さります。</p>
-        <div class="form-group"><input type="text" class="ws-field" data-field="b1" placeholder="得られること 1"></div>
-        <div class="form-group"><input type="text" class="ws-field" data-field="b2" placeholder="得られること 2"></div>
-        <div class="form-group"><input type="text" class="ws-field" data-field="b3" placeholder="得られること 3"></div>
-      </div>
-
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">6</div><div class="card-title">自己紹介</div></div>
-        <div class="form-group"><label>名前（表示名）</label><input type="text" class="ws-field" data-field="display_name" placeholder="例：山田 花子"></div>
-        <div class="form-group"><label>自己紹介文（3〜5行）</label><textarea class="ws-field" data-field="bio" rows="4" placeholder="例：2人の子どもを持つワーキングマザー…"></textarea></div>
-      </div>
-
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">7</div><div class="card-title">デザイン指定</div></div>
-        <div class="row-2">
-          <div class="form-group"><label>カラーテイスト</label><input type="text" class="ws-field" data-field="color" placeholder="例：ナチュラル / ラグジュアリー"></div>
-          <div class="form-group"><label>フォント</label><input type="text" class="ws-field" data-field="font" placeholder="例：Zen Maru Gothic"></div>
-        </div>
-        <div class="form-group"><label>顔写真ファイル名</label><input type="text" class="ws-field" data-field="photo" placeholder="例：profile.jpg"></div>
-      </div>
-
-      <div class="card" style="margin-bottom:16px;">
-        <div class="card-head"><div class="card-num">8</div><div class="card-title">リンク情報</div></div>
-        <div class="form-group"><label>モデリング先URL（こんなデザインにしたい！）</label><input type="text" class="ws-field" data-field="modeling" placeholder="https://..."></div>
-        <div class="form-group"><label>申し込み先URL（LINE・予約サイト等）</label><input type="text" class="ws-field" data-field="cta" placeholder="https://lin.ee/..."></div>
-        <div class="form-group"><label>Instagram / SNS URL</label><input type="text" class="ws-field" data-field="sns" placeholder="https://www.instagram.com/..."></div>
-      </div>
-
-      <!-- 送信 -->
-      <div id="ws-submit-msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:12px;line-height:1.7;margin-bottom:12px;"></div>
-      <button id="ws-submit-btn" onclick="submitWorksheet()" style="display:block;width:100%;padding:16px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:0.05em;">
-        入力内容を保存する
-      </button>
+      <div id="ws-form-content"></div>
     </div>
   </section>
 
@@ -4874,76 +4712,111 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       var m = MEMBERS[id];
       document.querySelectorAll('.ws-mbr-btn').forEach(function(b){ b.classList.remove('active'); });
       btn.classList.add('active');
-      document.getElementById('ws-form-area').style.display = 'block';
+
+      var area = document.getElementById('ws-form-area');
+      area.style.display = 'block';
       document.getElementById('ws-selected-name').textContent = m.name + 'さんの入力フォーム';
-      // localStorageから復元（チーム一覧と同じキー形式 lp-{id}-{field}）
-      document.querySelectorAll('.ws-field').forEach(function(el) {
-        var key = 'lp-' + id + '-' + el.dataset.field;
-        var saved = localStorage.getItem(key) || '';
-        el.value = saved;
+
+      // localStorageから値を取得するヘルパー
+      function sv(f, def) { return (localStorage.getItem('lp-'+id+'-'+f)||def||'').replace(/"/g,'&quot;'); }
+      var reported = localStorage.getItem('reported-'+id) === '1';
+
+      var h = '';
+
+      // ── Card 1: 参考リンク ──
+      h += '<div class="card" style="margin-bottom:16px;">';
+      h += '<div class="card-head"><div class="card-num">1</div><div class="card-title">参考リンクを貼っておこう</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">既存LP・モデリング先・参考サイトを貼っておきましょう。当日すぐ引き出せます。</p>';
+      [['existlp','既存LPのURL（持っている方はこちら）','https://...（なければ空欄でOK）'],
+       ['modeling','モデリング先URL（こんなデザインにしたい！）','https://...'],
+       ['ref1','参考サイト ①','https://...'],
+       ['ref2','参考サイト ②','https://...'],
+       ['ref3','参考サイト ③','https://...']].forEach(function(f){
+        h += '<div class="lp-row"><label class="lp-label">'+f[1]+'</label>';
+        h += '<input class="lp-input" data-key="'+id+'-'+f[0]+'" placeholder="'+f[2]+'" value="'+sv(f[0])+'"></div>';
       });
-      document.getElementById('ws-form-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      document.getElementById('ws-submit-msg').style.display = 'none';
-    }
+      h += '</div>';
 
-    // 入力時にlocalStorageに自動保存（チーム一覧と同じキー形式）
-    document.addEventListener('input', function(e) {
-      if (!e.target.classList.contains('ws-field') || !wsSelectedMember) return;
-      var key = 'lp-' + wsSelectedMember + '-' + e.target.dataset.field;
-      localStorage.setItem(key, e.target.value);
-    });
+      // ── Card 2: LP情報シート ──
+      h += '<div class="card" style="margin-bottom:16px;">';
+      h += '<div class="card-head"><div class="card-num">2</div><div class="card-title">LP情報シート（ここを埋めると当日ラクになる！）</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">この情報をもとにClaudeがLPを自動作成します。できるだけ全部埋めてください。</p>';
 
-    // 既存GAS（チーム一覧のreportDoneと同じURL・パラメータ構造）で送信
-    function submitWorksheet() {
-      if (!wsSelectedMember) return;
-      var id = wsSelectedMember;
-      var m = MEMBERS[id];
-      var btn = document.getElementById('ws-submit-btn');
-      var msg = document.getElementById('ws-submit-msg');
-      btn.disabled = true;
-      btn.textContent = '保存中...';
-      msg.style.display = 'none';
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">サービスの基本情報</div>';
+      h += '<div class="lp-row"><label class="lp-label">サービス名・講座名</label><input class="lp-input" data-key="'+id+'-service" placeholder="サービス名を入力してください" value="'+sv('service', m.service)+'"></div>';
+      h += '<div class="lp-row"><label class="lp-label">あなたの肩書き</label><input class="lp-input" data-key="'+id+'-title" placeholder="例：ダイエットコーチ / 食事管理アドバイザー" value="'+sv('title')+'"></div>';
+      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">料金</label><input class="lp-input" data-key="'+id+'-price" placeholder="例：¥98,000" value="'+sv('price')+'"></div>';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">形式・回数</label><input class="lp-input" data-key="'+id+'-format" placeholder="例：オンライン / 全6回" value="'+sv('format')+'"></div>';
+      h += '</div>';
+      h += '<div class="lp-row" style="margin-top:12px;"><label class="lp-label">対象者（どんな人に来てほしいか）</label><input class="lp-input" data-key="'+id+'-target" placeholder="例：30〜40代・子育て中のママ・時間がない・自分に自信がない" value="'+sv('target')+'"></div>';
+      h += '<div class="lp-row"><label class="lp-label">LPのゴール（何をしてほしいか）</label><input class="lp-input" data-key="'+id+'-goal" placeholder="例：申し込みフォームから申し込んでほしい" value="'+sv('goal')+'"></div>';
 
-      function fv(f) {
-        var el = document.querySelector('.ws-field[data-field="'+f+'"]');
-        return el ? el.value.trim() : '';
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">キャッチコピー</div>';
+      h += '<div class="lp-row"><label class="lp-label">メインキャッチコピー（一言）</label><input class="lp-input" data-key="'+id+'-catch" placeholder="例：食べながら痩せた。我慢ゼロで-5kgの3ヶ月。" value="'+sv('catch')+'"></div>';
+      h += '<div class="lp-row"><label class="lp-label">サブコピー（補足一言）</label><input class="lp-input" data-key="'+id+'-sub" placeholder="例：続けられなかった方こそ、このプログラムが向いています" value="'+sv('sub')+'"></div>';
+
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">参加者の悩み（3つ）</div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p1" placeholder="悩み 1：例）食事制限が辛くて続かない" value="'+sv('p1')+'"></div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p2" placeholder="悩み 2：例）リバウンドを繰り返している" value="'+sv('p2')+'"></div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-p3" placeholder="悩み 3：例）何をすればいいかわからない" value="'+sv('p3')+'"></div>';
+
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">参加後に得られること（3つ）</div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b1" placeholder="得られること 1：例）我慢ゼロで-5kgを実現できる" value="'+sv('b1')+'"></div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b2" placeholder="得られること 2：例）リバウンドしない食習慣が身につく" value="'+sv('b2')+'"></div>';
+      h += '<div class="lp-row"><input class="lp-input" data-key="'+id+'-b3" placeholder="得られること 3：例）食事を楽しみながら理想のカラダへ" value="'+sv('b3')+'"></div>';
+
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">自己紹介</div>';
+      h += '<div class="lp-row"><label class="lp-label">自己紹介文（3〜5行）</label>';
+      h += '<textarea class="lp-ta" data-key="'+id+'-bio" placeholder="例：元会社員・3人の子育て中・自分も-20kgの経験あり。食べることが大好きで食事制限なしのダイエットを研究し続けて10年…">'+(localStorage.getItem('lp-'+id+'-bio')||'')+'</textarea></div>';
+
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">デザイン指定</div>';
+      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">カラーテイスト</label><input class="lp-input" data-key="'+id+'-color" placeholder="例：ナチュラル / ラグジュアリー" value="'+sv('color')+'"></div>';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">フォント</label><input class="lp-input" data-key="'+id+'-font" placeholder="例：Zen Maru Gothic" value="'+sv('font')+'"></div>';
+      h += '</div>';
+      h += '<div class="lp-row" style="margin-top:12px;"><label class="lp-label">顔写真ファイル名（当日フォルダに入れておくもの）</label><input class="lp-input" data-key="'+id+'-photo" placeholder="例：profile.jpg" value="'+sv('photo')+'"></div>';
+
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">リンク情報</div>';
+      h += '<div class="lp-row"><label class="lp-label">申し込み先URL（LINE・予約サイト・メール等）</label><input class="lp-input" data-key="'+id+'-cta" placeholder="https://lin.ee/..." value="'+sv('cta')+'"></div>';
+      h += '<div class="lp-row" style="margin-bottom:0;"><label class="lp-label">Instagram / SNS URL</label><input class="lp-input" data-key="'+id+'-sns" placeholder="https://www.instagram.com/..." value="'+sv('sns')+'"></div>';
+      h += '</div>';
+
+      // ── Card 3: 写真・素材チェックリスト ──
+      h += '<div class="card" style="margin-bottom:16px;">';
+      h += '<div class="card-head"><div class="card-num">3</div><div class="card-title">写真・素材チェックリスト</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:14px;line-height:1.7;">当日 <code style="background:var(--beige);padding:1px 5px;border-radius:4px;font-size:11px;">images/</code> フォルダに入れておく素材の確認です。</p>';
+      ['プロフィール写真（profile.jpg）','サービス・施術の写真','実績・ビフォーアフター画像','ロゴ・アイコン（あれば）','その他使いたい素材'].forEach(function(item, i){
+        var ck = localStorage.getItem('lp-'+id+'-chk'+i)==='1' ? 'checked' : '';
+        h += '<label style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--beige);border-radius:8px;cursor:pointer;margin-bottom:8px;">';
+        h += '<input type="checkbox" data-key="'+id+'-chk'+i+'" data-ck="1" '+ck+'>';
+        h += '<span style="font-size:13px;">'+item+'</span></label>';
+      });
+      h += '<div class="lp-row" style="margin-top:8px;margin-bottom:0;"><label class="lp-label">使いたい写真のファイル名メモ</label>';
+      h += '<textarea class="lp-ta" style="min-height:60px;" data-key="'+id+'-files" placeholder="例：profile.jpg / before.png / logo.svg">'+(localStorage.getItem('lp-'+id+'-files')||'')+'</textarea></div>';
+      h += '</div>';
+
+      // ── Card 4: Claudeプロンプト ──
+      h += '<div class="card" style="background:var(--grad-soft);border-color:var(--orange-border);">';
+      h += '<div class="card-head"><div class="card-num">4</div><div class="card-title">Claudeへのプロンプトをコピー</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">すべての項目を埋めたら、このボタンを押してプロンプトをコピー → Claude に貼り付けるだけでLPが生成されます。</p>';
+      h += '<button id="'+id+'-copybtn" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4a86c8,#1BC6B4);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;" onclick="copyPrompt(\''+id+'\')">📋 プロンプトを生成してコピー</button>';
+      h += '<textarea id="'+id+'-prompt" readonly style="display:none;width:100%;min-height:300px;margin-top:12px;padding:16px;font-size:12px;line-height:1.8;border:2px solid #C96A3A;border-radius:12px;background:#fffaf5;resize:vertical;font-family:inherit;box-sizing:border-box;"></textarea>';
+      h += '<button id="'+id+'-copy2" style="display:none;width:100%;padding:12px;background:#1BC6B4;color:#fff;border:none;border-radius:10px;font-size:13px;cursor:pointer;font-family:inherit;margin-top:8px;" onclick="copyOnly(\''+id+'\')">📋 もう一度コピーする</button>';
+      h += '</div>';
+
+      // ── Card 5: 完了報告 ──
+      h += '<div class="card" style="margin-bottom:16px;background:linear-gradient(135deg,#fff 60%,rgba(27,198,180,0.05));border-color:#1BC6B4;">';
+      h += '<div class="card-head"><div class="card-num" style="background:#1BC6B4;">5</div><div class="card-title">事前準備の進捗を報告する</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">事前準備ができた方はこちらを押してください。講師に通知が届きます。</p>';
+      h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;position:static;top:auto;right:auto;width:100%;display:block;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
+      if (reported) {
+        h += '<p style="text-align:center;margin-top:8px;font-size:12px;color:var(--gray-mid);">内容を変更した場合は <a href="#" onclick="resetReport(\''+id+'\');return false;" style="color:#1BC6B4;text-decoration:underline;">もう一度報告する</a></p>';
       }
+      h += '</div>';
 
-      var url = GAS_URL
-        + '?name='    + encodeURIComponent(m.name)
-        + '&group='   + encodeURIComponent(m.group)
-        + '&service=' + encodeURIComponent(fv('service') || m.service)
-        + '&title='   + encodeURIComponent(fv('title'))
-        + '&price='   + encodeURIComponent(fv('price'))
-        + '&target='  + encodeURIComponent(fv('target'))
-        + '&catch='   + encodeURIComponent(fv('catch'))
-        + '&p1='      + encodeURIComponent(fv('p1'))
-        + '&p2='      + encodeURIComponent(fv('p2'))
-        + '&p3='      + encodeURIComponent(fv('p3'))
-        + '&b1='      + encodeURIComponent(fv('b1'))
-        + '&b2='      + encodeURIComponent(fv('b2'))
-        + '&b3='      + encodeURIComponent(fv('b3'))
-        + '&bio='     + encodeURIComponent(fv('bio'))
-        + '&color='   + encodeURIComponent(fv('color'))
-        + '&cta='     + encodeURIComponent(fv('cta'))
-        + '&sns='     + encodeURIComponent(fv('sns'))
-        + '&existlp=' + encodeURIComponent(fv('existlp') || '')
-        + '&modeling=' + encodeURIComponent(fv('modeling'))
-        + '&ref1='    + encodeURIComponent('')
-        + '&ref2='    + encodeURIComponent('')
-        + '&ref3='    + encodeURIComponent('');
-
-      fetch(url, { mode: 'no-cors' }).then(function(){
-        msg.style.display = 'block';
-        msg.style.background = 'rgba(90,138,110,0.1)'; msg.style.color = '#5A8A6E'; msg.style.border = '1px solid #5A8A6E';
-        msg.textContent = '✨ 保存しました！内容を変更したら、もう一度「保存する」を押してください。';
-        btn.disabled = false; btn.textContent = '入力内容を保存する';
-      }).catch(function(){
-        msg.style.display = 'block';
-        msg.style.background = '#fff4e6'; msg.style.color = '#C96A3A'; msg.style.border = '1px solid #C96A3A';
-        msg.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
-        btn.disabled = false; btn.textContent = '入力内容を保存する';
-      });
+      document.getElementById('ws-form-content').innerHTML = h;
+      area.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   </script>
 
