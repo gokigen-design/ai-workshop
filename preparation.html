@@ -1351,10 +1351,10 @@
         <div class="sidebar-label">Workflow ─ 6 Steps</div>
         <button class="tab-btn" onclick="switchTab('setup', this)"><span>06</span>STEP 01 ／ 環境を整える</button>
         <button class="tab-btn" onclick="switchTab('worksheet', this)"><span>07</span>STEP 02 ／ 内容を整理する</button>
-        <button class="tab-btn" onclick="switchTab('design', this)"><span>08</span>STEP 03 ／ デザインを学ぶ</button>
-        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>09</span>STEP 04 ／ AIに指示する</button>
-        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>10</span>STEP 05 ／ 公開する</button>
-        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>11</span>STEP 06 ／ 当日に備える</button>
+        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>08</span>STEP 03 ／ 当日に備える</button>
+        <button class="tab-btn" onclick="switchTab('design', this)"><span>09</span>STEP 04 ／ デザインを学ぶ</button>
+        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>10</span>STEP 05 ／ AIに指示する</button>
+        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>11</span>STEP 06 ／ 公開する</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">Reference</div>
@@ -1658,17 +1658,7 @@
       var igLink = m.ig ? '<a href="'+igUrl+'" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">'+igDisplay+'</a>' : '—';
 
       var h = '';
-
-      // 事前準備報告ボタン
       var reported = localStorage.getItem('reported-'+id) === '1';
-      h += '<div class="card" style="margin-bottom:16px;background:linear-gradient(135deg,#fff 60%,rgba(27,198,180,0.05));border-color:#1BC6B4;">';
-      h += '<div class="card-head"><div class="card-num" style="background:#1BC6B4;">0</div><div class="card-title">事前準備の進捗を報告する</div></div>';
-      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">事前準備ができた方はこちらを押してください。講師に通知が届きます。</p>';
-      h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;position:static;top:auto;right:auto;width:100%;display:block;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
-      if (reported) {
-        h += '<p style="text-align:center;margin-top:8px;font-size:12px;color:var(--gray-mid);">内容を変更した場合は <a href="#" onclick="resetReport(\''+id+'\');return false;" style="color:#1BC6B4;text-decoration:underline;">もう一度報告する</a></p>';
-      }
-      h += '</div>';
 
       // プロフィール
       h += '<div class="card" style="margin-bottom:16px;">';
@@ -1764,6 +1754,16 @@
       h += '<button id="'+id+'-copybtn" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4a86c8,#1BC6B4);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;" onclick="copyPrompt(\''+id+'\')">📋 プロンプトを生成してコピー</button>';
       h += '<textarea id="'+id+'-prompt" readonly style="display:none;width:100%;min-height:300px;margin-top:12px;padding:16px;font-size:12px;line-height:1.8;border:2px solid #C96A3A;border-radius:12px;background:#fffaf5;resize:vertical;font-family:inherit;box-sizing:border-box;"></textarea>';
       h += '<button id="'+id+'-copy2" style="display:none;width:100%;padding:12px;background:#1BC6B4;color:#fff;border:none;border-radius:10px;font-size:13px;cursor:pointer;font-family:inherit;margin-top:8px;" onclick="copyOnly(\''+id+'\')">📋 もう一度コピーする</button>';
+      h += '</div>';
+
+      // 事前準備報告ボタン（一番下）
+      h += '<div class="card" style="margin-bottom:16px;background:linear-gradient(135deg,#fff 60%,rgba(27,198,180,0.05));border-color:#1BC6B4;">';
+      h += '<div class="card-head"><div class="card-num" style="background:#1BC6B4;">5</div><div class="card-title">事前準備の進捗を報告する</div></div>';
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:12px;line-height:1.7;">事前準備ができた方はこちらを押してください。講師に通知が届きます。</p>';
+      h += '<button id="'+id+'-report-btn" class="copy-btn" onclick="reportDone(\''+id+'\')" style="background:#1BC6B4;position:static;top:auto;right:auto;width:100%;display:block;"'+(reported?' disabled':'')+'>'+(reported?'✅ 報告済！ありがとうございます':'📩 準備完了を報告する')+'</button>';
+      if (reported) {
+        h += '<p style="text-align:center;margin-top:8px;font-size:12px;color:var(--gray-mid);">内容を変更した場合は <a href="#" onclick="resetReport(\''+id+'\');return false;" style="color:#1BC6B4;text-decoration:underline;">もう一度報告する</a></p>';
+      }
       h += '</div>';
 
       el.innerHTML = h;
@@ -3112,129 +3112,89 @@
   <section class="tab-content" id="tab-worksheet">
     <div class="sec-eyebrow">Step 02 ／ 内容を整理する</div>
     <div class="sec-title">LPに載せる情報を入力する</div>
-    <p class="sec-desc">全項目を埋めると、一番下に<strong>CCにそのままコピペできるプロンプト</strong>が自動生成されます。</p>
+    <p class="sec-desc">自分の名前を選んで、LP制作に必要な情報を入力してください。入力した内容はスプレッドシートに保存されます。</p>
 
     <div class="callout">完璧でなくてOKです。「仮」でも埋めておくことで、当日の制作スピードが大きく変わります。</div>
 
-    <div class="card">
-      <div class="card-head"><div class="card-num">1</div><div class="card-title">サービスの基本情報</div></div>
-      <div class="form-group">
-        <label>サービス名・講座名</label>
-        <input type="text" id="ws-service" placeholder="例：整理収納オンライン講座 3ヶ月コース" value="薬膳おうちごはん オンライン講座 3ヶ月コース" oninput="updatePrompt()">
-      </div>
-      <div class="form-group">
-        <label>あなたの肩書き</label>
-        <input type="text" id="ws-title" placeholder="例：整理収納アドバイザー / ライフオーガナイザー" value="薬膳料理研究家 / 国際中医薬膳師" oninput="updatePrompt()">
-      </div>
-      <div class="row-2">
-        <div class="form-group">
-          <label>料金</label>
-          <input type="text" id="ws-price" placeholder="例：¥98,000" value="¥55,000（税込）" oninput="updatePrompt()">
+    <!-- 名前選択 -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-head"><div class="card-num">1</div><div class="card-title">あなたの名前を選んでください</div></div>
+      <div id="ws-member-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px;"></div>
+    </div>
+
+    <!-- 個人フォーム（名前選択後に表示） -->
+    <div id="ws-form-area" style="display:none;">
+
+      <div id="ws-selected-name" style="font-size:18px;font-weight:700;color:var(--black);margin-bottom:18px;padding:14px 20px;background:var(--beige);border-radius:10px;text-align:center;"></div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-head"><div class="card-num">2</div><div class="card-title">サービスの基本情報</div></div>
+        <div class="form-group"><label>サービス名・講座名</label><input type="text" class="ws-field" data-field="service" placeholder="例：整理収納オンライン講座 3ヶ月コース"></div>
+        <div class="form-group"><label>あなたの肩書き</label><input type="text" class="ws-field" data-field="title" placeholder="例：整理収納アドバイザー / ライフオーガナイザー"></div>
+        <div class="row-2">
+          <div class="form-group"><label>料金</label><input type="text" class="ws-field" data-field="price" placeholder="例：¥98,000"></div>
+          <div class="form-group"><label>形式・回数</label><input type="text" class="ws-field" data-field="format" placeholder="例：オンライン / 全6回"></div>
         </div>
-        <div class="form-group">
-          <label>形式・回数</label>
-          <input type="text" id="ws-format" placeholder="例：オンライン / 全6回" value="オンライン（Zoom）/ 全6回・月2回" oninput="updatePrompt()">
+        <div class="form-group"><label>対象者（どんな人に来てほしいか）</label><input type="text" class="ws-field" data-field="target" placeholder="例：片付けが苦手で毎日イライラしている30〜40代の女性"></div>
+        <div class="form-group"><label>LPのゴール（何をしてほしいか）</label><input type="text" class="ws-field" data-field="goal" placeholder="例：申し込みフォームから申し込んでほしい"></div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-head"><div class="card-num">3</div><div class="card-title">キャッチコピー</div></div>
+        <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">一番伝えたいことを一言で。完璧じゃなくてOK。当日一緒に磨きます。</p>
+        <div class="form-group"><label>メインキャッチコピー（一言）</label><input type="text" class="ws-field" data-field="catch" placeholder="例：片付けられない私が変わった。3ヶ月で家も心も整った。"></div>
+        <div class="form-group"><label>サブコピー（補足一言）</label><input type="text" class="ws-field" data-field="sub" placeholder="例：忙しいママでも続けられる、無理のない整理メソッド"></div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-head"><div class="card-num">4</div><div class="card-title">参加者の悩み（3つ）</div></div>
+        <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">「わかる！」と思ってもらえるかがポイント。お客さんのリアルな声を思い出して。</p>
+        <div class="form-group"><input type="text" class="ws-field" data-field="p1" placeholder="悩み 1"></div>
+        <div class="form-group"><input type="text" class="ws-field" data-field="p2" placeholder="悩み 2"></div>
+        <div class="form-group"><input type="text" class="ws-field" data-field="p3" placeholder="悩み 3"></div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-head"><div class="card-num">5</div><div class="card-title">参加後に得られること（3つ）</div></div>
+        <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">Before → After のイメージで。変化を具体的に書くほど刺さります。</p>
+        <div class="form-group"><input type="text" class="ws-field" data-field="b1" placeholder="得られること 1"></div>
+        <div class="form-group"><input type="text" class="ws-field" data-field="b2" placeholder="得られること 2"></div>
+        <div class="form-group"><input type="text" class="ws-field" data-field="b3" placeholder="得られること 3"></div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-head"><div class="card-num">6</div><div class="card-title">自己紹介</div></div>
+        <div class="form-group"><label>名前（表示名）</label><input type="text" class="ws-field" data-field="display_name" placeholder="例：山田 花子"></div>
+        <div class="form-group"><label>自己紹介文（3〜5行）</label><textarea class="ws-field" data-field="bio" rows="4" placeholder="例：2人の子どもを持つワーキングマザー…"></textarea></div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-head"><div class="card-num">7</div><div class="card-title">デザイン指定</div></div>
+        <div class="row-2">
+          <div class="form-group"><label>カラーテイスト</label><input type="text" class="ws-field" data-field="color" placeholder="例：ナチュラル / ラグジュアリー"></div>
+          <div class="form-group"><label>フォント</label><input type="text" class="ws-field" data-field="font" placeholder="例：Zen Maru Gothic"></div>
         </div>
+        <div class="form-group"><label>顔写真ファイル名</label><input type="text" class="ws-field" data-field="photo" placeholder="例：profile.jpg"></div>
       </div>
-      <div class="form-group">
-        <label>対象者（どんな人に来てほしいか）</label>
-        <input type="text" id="ws-target" placeholder="例：片付けが苦手で毎日イライラしている30〜40代の女性" value="疲れやすさや冷え性に悩み、食事で体質改善したいと思っている30〜50代の女性" oninput="updatePrompt()">
-      </div>
-      <div class="form-group">
-        <label>LPのゴール（何をしてほしいか）</label>
-        <input type="text" id="ws-goal" placeholder="例：申し込みフォームから申し込んでほしい" value="LINE公式アカウントに登録して無料体験レッスンに申し込んでほしい" oninput="updatePrompt()">
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="card-head"><div class="card-num">2</div><div class="card-title">キャッチコピー</div></div>
-      <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">一番伝えたいことを一言で。完璧じゃなくてOK。当日一緒に磨きます。</p>
-      <div class="form-group">
-        <label>メインキャッチコピー（一言）</label>
-        <input type="text" id="ws-catch" placeholder="例：片付けられない私が変わった。3ヶ月で家も心も整った。" value="「なんとなく不調」が消えた。毎日の食卓が、私のお医者さんになった。" oninput="updatePrompt()">
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-head"><div class="card-num">8</div><div class="card-title">リンク情報</div></div>
+        <div class="form-group"><label>モデリング先URL（こんなデザインにしたい！）</label><input type="text" class="ws-field" data-field="modeling" placeholder="https://..."></div>
+        <div class="form-group"><label>申し込み先URL（LINE・予約サイト等）</label><input type="text" class="ws-field" data-field="cta" placeholder="https://lin.ee/..."></div>
+        <div class="form-group"><label>Instagram / SNS URL</label><input type="text" class="ws-field" data-field="sns" placeholder="https://www.instagram.com/..."></div>
       </div>
-      <div class="form-group">
-        <label>サブコピー（補足一言）</label>
-        <input type="text" id="ws-sub" placeholder="例：忙しいママでも続けられる、無理のない整理メソッド" value="スーパーの食材だけでOK。忙しい人のための、がんばらない薬膳レシピ" oninput="updatePrompt()">
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="card-head"><div class="card-num">3</div><div class="card-title">参加者の悩み（3つ）</div></div>
-      <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">「わかる！」と思ってもらえるかがポイント。お客さんのリアルな声を思い出して。</p>
-      <div class="form-group">
-        <input type="text" id="ws-p1" placeholder="悩み 1：例）部屋が散らかりすぎて、どこから手をつければいいかわからない" value="季節の変わり目になると必ず体調を崩す。疲れが抜けない日が続いている" oninput="updatePrompt()">
-      </div>
-      <div class="form-group">
-        <input type="text" id="ws-p2" placeholder="悩み 2：例）片付けても数日でリバウンドしてしまう" value="薬膳に興味はあるけれど、特別な食材が必要そうで敷居が高いと感じている" oninput="updatePrompt()">
-      </div>
-      <div class="form-group">
-        <input type="text" id="ws-p3" placeholder="悩み 3：例）家族に片付けを頼んでもやってくれない" value="仕事と家事で忙しく、手の込んだ料理をする余裕がない" oninput="updatePrompt()">
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head"><div class="card-num">4</div><div class="card-title">参加後に得られること（3つ）</div></div>
-      <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">Before → After のイメージで。変化を具体的に書くほど刺さります。</p>
-      <div class="form-group">
-        <input type="text" id="ws-b1" placeholder="得られること 1：例）3ヶ月後、毎朝スッキリした部屋で目が覚める" value="3ヶ月後、朝の目覚めが変わり「なんとなくだるい」がなくなる" oninput="updatePrompt()">
-      </div>
-      <div class="form-group">
-        <input type="text" id="ws-b2" placeholder="得られること 2：例）「片付けられない」という罪悪感から解放される" value="スーパーの食材で薬膳ごはんが作れるようになり、家族の体調管理に自信が持てる" oninput="updatePrompt()">
-      </div>
-      <div class="form-group">
-        <input type="text" id="ws-b3" placeholder="得られること 3：例）家族も自然と片付けるようになる仕組みが作れる" value="「冷え性」「肌荒れ」など自分の体質に合ったレシピを自分で選べるようになる" oninput="updatePrompt()">
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head"><div class="card-num">5</div><div class="card-title">自己紹介</div></div>
-      <div class="form-group">
-        <label>名前（表示名）</label>
-        <input type="text" id="ws-name" placeholder="例：山田 花子" value="佐藤 美咲" oninput="updatePrompt()">
-      </div>
-      <div class="form-group">
-        <label>自己紹介文（3〜5行）</label>
-        <textarea id="ws-bio" placeholder="例：2人の子どもを持つワーキングマザー。自身も片付けが大の苦手で、産後うつをきっかけに整理収納を学ぶ。資格取得後、500名以上をサポート。「片付けは才能じゃなく、仕組みだ」をモットーに活動中。" oninput="updatePrompt()">会社員時代、激務で体調を崩したことをきっかけに薬膳の世界へ。国際中医薬膳師の資格を取得し、2019年に独立。「特別な食材がなくても、スーパーの食材で薬膳はできる」をコンセプトに、これまで800名以上にオンラインレッスンを提供。雑誌「からだにいいこと」にレシピ連載中。2児の母。</textarea>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head"><div class="card-num">6</div><div class="card-title">デザイン指定</div></div>
-      <p style="font-size:13px;color:var(--gray-lt);margin-bottom:20px;">詳しくはタブ08「デザインガイド」で選べます。ここに直接書いてもOK。</p>
-      <div class="row-2">
-        <div class="form-group">
-          <label>カラーテイスト</label>
-          <input type="text" id="ws-color" placeholder="例：ナチュラル / ラグジュアリー / クールブルー" value="ナチュラル / アースカラー（ベージュ × 深緑）" oninput="updatePrompt()">
-        </div>
-        <div class="form-group">
-          <label>フォント</label>
-          <input type="text" id="ws-font" placeholder="例：Zen Maru Gothic / Noto Serif JP" value="Zen Maru Gothic / Noto Serif JP" oninput="updatePrompt()">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>顔写真ファイル名（当日フォルダに入れておくもの）</label>
-        <input type="text" id="ws-photo" placeholder="例：profile.jpg" oninput="updatePrompt()">
-      </div>
-    </div>
-
-    <!-- プロンプト生成エリア -->
-    <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 70%,rgba(201,106,58,0.04));">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:6px;">Auto Generated</div>
-          <div style="font-size:15px;font-weight:500;">CCにコピペするプロンプト</div>
-        </div>
-        <button onclick="copyGeneratedPrompt()" style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 24px;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:400;cursor:pointer;transition:opacity 0.2s;" id="copy-generated-btn">コピーする</button>
-      </div>
-      <p style="font-size:12px;color:var(--gray-lt);margin-bottom:16px;">上の項目を入力すると自動的に更新されます。このプロンプトをClaude Codeに貼り付けて「Enter」を押してください。</p>
-      <pre id="generated-prompt" style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:20px 24px;font-family:'DM Sans','Courier New',monospace;font-size:12px;line-height:1.9;color:var(--black);white-space:pre-wrap;word-break:break-word;"></pre>
+      <!-- 送信 -->
+      <div id="ws-submit-msg" style="display:none;padding:12px 16px;border-radius:8px;font-size:12px;line-height:1.7;margin-bottom:12px;"></div>
+      <button id="ws-submit-btn" onclick="submitWorksheet()" style="display:block;width:100%;padding:16px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:0.05em;">
+        入力内容を保存する
+      </button>
     </div>
   </section>
 
   <!-- ═══ TAB 2: デザインガイド ═══ -->
   <section class="tab-content" id="tab-design">
-    <div class="sec-eyebrow">Step 03 ／ デザインを学ぶ</div>
+    <div class="sec-eyebrow">Step 04 ／ デザインを学ぶ</div>
     <div class="sec-title">デザインを理解して、LPを作る</div>
     <p class="sec-desc">デザインとは「見た目を整えること」ではありません。まず伝えたいことを整理して、その上で見た目を作ります。</p>
 
@@ -3774,7 +3734,7 @@
 
   <!-- ═══ TAB 3: 指示テンプレ ═══ -->
   <section class="tab-content" id="tab-prompt">
-    <div class="sec-eyebrow">Step 04 ／ AIに指示する</div>
+    <div class="sec-eyebrow">Step 05 ／ AIに指示する</div>
     <div class="sec-title">Claude Codeへの指示テンプレ</div>
     <p class="sec-desc">穴埋めしてコピペするだけでLPが完成します。当日はこのテンプレを使います。</p>
 
@@ -3988,7 +3948,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <button class="copy-btn" onclick="copyPromptTemplate(this)">コピー</button>
       </div>
       <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:12px 16px;margin-top:14px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
-        💡 <strong style="color:var(--black);">参考LPの探し方</strong>：「STEP 03 デザインを学ぶ」タブの<strong>カード5「LP・デザイン参考サイト」</strong>に、女性起業家向けの参考LPまとめがあります。
+        💡 <strong style="color:var(--black);">参考LPの探し方</strong>：「STEP 04 デザインを学ぶ」タブの<strong>カード5「LP・デザイン参考サイト」</strong>に、女性起業家向けの参考LPまとめがあります。
       </div>
     </div>
 
@@ -4033,9 +3993,9 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div>
   </section>
 
-  <!-- ═══ TAB: STEP 05 公開する ═══ -->
+  <!-- ═══ TAB: STEP 06 公開する ═══ -->
   <section class="tab-content" id="tab-deploy">
-    <div class="sec-eyebrow">Step 05 ／ Deploy</div>
+    <div class="sec-eyebrow">Step 06 ／ 公開する</div>
     <div class="sec-title">LPをネットに公開する</div>
     <p class="sec-desc">「自分のパソコンで作ったLPが、どうやってインターネットに公開されるの？」<br>まずは全体の仕組みを知ってから、手順に進みましょう。</p>
 
@@ -4581,7 +4541,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- ═══ TAB 5: チェックリスト ═══ -->
   <section class="tab-content" id="tab-checklist">
-    <div class="sec-eyebrow">Step 06 ／ 当日に備える</div>
+    <div class="sec-eyebrow">Step 03 ／ 当日に備える</div>
     <div class="sec-title">当日までの準備チェック</div>
     <p class="sec-desc">全部にチェックがついたら、あなたは準備完了です。</p>
 
@@ -4634,10 +4594,6 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       <ul class="checklist">
         <li onclick="toggleCheck(this)">
           <div class="check-box"></div>
-          <span class="check-label">GitHubアカウントを作成した</span>
-        </li>
-        <li onclick="toggleCheck(this)">
-          <div class="check-box"></div>
           <span class="check-label">Claude Codeのセットアップが完了している</span>
         </li>
         <li onclick="toggleCheck(this)">
@@ -4648,57 +4604,13 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
           <div class="check-box"></div>
           <span class="check-label">会場・アクセスを確認した</span>
         </li>
+        <li onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span class="check-label">お昼ごはん（外に食べに行ってもOK。持参してもOKです）</span>
+        </li>
       </ul>
     </div>
 
-    <div class="card" style="border-color:var(--orange-border);">
-      <div class="card-head" style="margin-bottom:20px;">
-        <div class="card-num">+</div>
-        <div class="card-title" style="color:var(--orange);">当日の流れ（予告）</div>
-      </div>
-      <div class="timeline">
-        <div class="tl-row">
-          <div class="tl-time">10:00</div>
-          <div class="tl-label">開場 / Claude Codeセットアップ</div>
-          <div class="tl-tag">Setup</div>
-        </div>
-        <div class="tl-row">
-          <div class="tl-time">10:30</div>
-          <div class="tl-label">Claude Codeでできること紹介・デモ</div>
-          <div class="tl-tag">Demo</div>
-        </div>
-        <div class="tl-row">
-          <div class="tl-time">11:00</div>
-          <div class="tl-label">LP制作スタート（ハンズオン）</div>
-          <div class="tl-tag">Hands-on</div>
-        </div>
-        <div class="tl-row">
-          <div class="tl-time">12:15</div>
-          <div class="tl-label">ランチ休憩（45分）</div>
-          <div class="tl-tag">Break</div>
-        </div>
-        <div class="tl-row">
-          <div class="tl-time">13:00</div>
-          <div class="tl-label">LP制作つづき / デザイン調整</div>
-          <div class="tl-tag">Hands-on</div>
-        </div>
-        <div class="tl-row">
-          <div class="tl-time">15:00</div>
-          <div class="tl-label">GitHubデプロイ / URL発行</div>
-          <div class="tl-tag">Deploy</div>
-        </div>
-        <div class="tl-row">
-          <div class="tl-time">15:30</div>
-          <div class="tl-label">完成発表 / シェア / ボーナスコンテンツ</div>
-          <div class="tl-tag">Share</div>
-        </div>
-        <div class="tl-row">
-          <div class="tl-time">16:00</div>
-          <div class="tl-label">終了</div>
-          <div class="tl-tag">End</div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- ═══ TAB 13: 当日の感想 ═══ -->
@@ -4935,6 +4847,126 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div>
   </section>
 
+
+  <script>
+    /* ─── STEP 02 ワークシート：メンバー選択 → 個人フォーム → 既存GASスプシ送信 ─── */
+    var wsSelectedMember = null;
+
+    // メンバーグリッドを描画
+    (function renderWsMemberGrid() {
+      var grid = document.getElementById('ws-member-grid');
+      if (!grid) return;
+      var exclude = ['cyber','chakana','yumi'];
+      Object.keys(MEMBERS).forEach(function(id) {
+        if (exclude.indexOf(id) !== -1) return;
+        var m = MEMBERS[id];
+        var btn = document.createElement('button');
+        btn.className = 'ws-mbr-btn';
+        btn.dataset.id = id;
+        btn.textContent = m.name;
+        btn.onclick = function() { selectWsMember(id, btn); };
+        grid.appendChild(btn);
+      });
+    })();
+
+    function selectWsMember(id, btn) {
+      wsSelectedMember = id;
+      var m = MEMBERS[id];
+      document.querySelectorAll('.ws-mbr-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('ws-form-area').style.display = 'block';
+      document.getElementById('ws-selected-name').textContent = m.name + 'さんの入力フォーム';
+      // localStorageから復元（チーム一覧と同じキー形式 lp-{id}-{field}）
+      document.querySelectorAll('.ws-field').forEach(function(el) {
+        var key = 'lp-' + id + '-' + el.dataset.field;
+        var saved = localStorage.getItem(key) || '';
+        el.value = saved;
+      });
+      document.getElementById('ws-form-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('ws-submit-msg').style.display = 'none';
+    }
+
+    // 入力時にlocalStorageに自動保存（チーム一覧と同じキー形式）
+    document.addEventListener('input', function(e) {
+      if (!e.target.classList.contains('ws-field') || !wsSelectedMember) return;
+      var key = 'lp-' + wsSelectedMember + '-' + e.target.dataset.field;
+      localStorage.setItem(key, e.target.value);
+    });
+
+    // 既存GAS（チーム一覧のreportDoneと同じURL・パラメータ構造）で送信
+    function submitWorksheet() {
+      if (!wsSelectedMember) return;
+      var id = wsSelectedMember;
+      var m = MEMBERS[id];
+      var btn = document.getElementById('ws-submit-btn');
+      var msg = document.getElementById('ws-submit-msg');
+      btn.disabled = true;
+      btn.textContent = '保存中...';
+      msg.style.display = 'none';
+
+      function fv(f) {
+        var el = document.querySelector('.ws-field[data-field="'+f+'"]');
+        return el ? el.value.trim() : '';
+      }
+
+      var url = GAS_URL
+        + '?name='    + encodeURIComponent(m.name)
+        + '&group='   + encodeURIComponent(m.group)
+        + '&service=' + encodeURIComponent(fv('service') || m.service)
+        + '&title='   + encodeURIComponent(fv('title'))
+        + '&price='   + encodeURIComponent(fv('price'))
+        + '&target='  + encodeURIComponent(fv('target'))
+        + '&catch='   + encodeURIComponent(fv('catch'))
+        + '&p1='      + encodeURIComponent(fv('p1'))
+        + '&p2='      + encodeURIComponent(fv('p2'))
+        + '&p3='      + encodeURIComponent(fv('p3'))
+        + '&b1='      + encodeURIComponent(fv('b1'))
+        + '&b2='      + encodeURIComponent(fv('b2'))
+        + '&b3='      + encodeURIComponent(fv('b3'))
+        + '&bio='     + encodeURIComponent(fv('bio'))
+        + '&color='   + encodeURIComponent(fv('color'))
+        + '&cta='     + encodeURIComponent(fv('cta'))
+        + '&sns='     + encodeURIComponent(fv('sns'))
+        + '&existlp=' + encodeURIComponent(fv('existlp') || '')
+        + '&modeling=' + encodeURIComponent(fv('modeling'))
+        + '&ref1='    + encodeURIComponent('')
+        + '&ref2='    + encodeURIComponent('')
+        + '&ref3='    + encodeURIComponent('');
+
+      fetch(url, { mode: 'no-cors' }).then(function(){
+        msg.style.display = 'block';
+        msg.style.background = 'rgba(90,138,110,0.1)'; msg.style.color = '#5A8A6E'; msg.style.border = '1px solid #5A8A6E';
+        msg.textContent = '✨ 保存しました！内容を変更したら、もう一度「保存する」を押してください。';
+        btn.disabled = false; btn.textContent = '入力内容を保存する';
+      }).catch(function(){
+        msg.style.display = 'block';
+        msg.style.background = '#fff4e6'; msg.style.color = '#C96A3A'; msg.style.border = '1px solid #C96A3A';
+        msg.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+        btn.disabled = false; btn.textContent = '入力内容を保存する';
+      });
+    }
+  </script>
+
+  <style>
+    .ws-mbr-btn {
+      padding: 12px 8px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .ws-mbr-btn:hover { border-color: var(--orange); }
+    .ws-mbr-btn.active {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+    }
+  </style>
 
   <script>
     /* ─── 感想フォーム送信（Google Apps Script 経由でスプシへ） ─── */
