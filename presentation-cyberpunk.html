@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LP制作ストーリー — AIとの会話だけで作りました</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --neon-blue: #00d4ff;
+    --neon-purple: #a855f7;
+    --neon-pink: #ec4899;
+    --neon-cyan: #22d3ee;
+    --dark-bg: #0a0a1a;
+    --dark-card: #111128;
+    --text: #e0e0f0;
+    --text-light: #dcdcf0;
+  }
+
+  html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .slide {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background grid */
+  .slide::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  .slide-inner {
+    max-width: 640px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Typography */
+  .font-en {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 3px;
+  }
+
+  .slide-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(0,212,255,0.5);
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  h1 .neon {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  h2 .em {
+    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* Chat bubble */
+  .chat-bubble {
+    background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168,85,247,0.25);
+    border-radius: 16px 16px 16px 4px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    position: relative;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .chat-bubble .label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    color: var(--neon-purple);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .chat-response {
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 16px 16px 4px 16px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .chat-response .label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    color: var(--neon-cyan);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  /* Mini LP preview */
+  .lp-preview {
+    width: 100%;
+    border: 1px solid rgba(0,212,255,0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px 0;
+    position: relative;
+  }
+  .lp-preview-header {
+    background: rgba(0,212,255,0.08);
+    padding: 6px 12px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .lp-preview-header .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+  }
+  .lp-preview-header .dot:first-child { background: #ff5f57; }
+  .lp-preview-header .dot:nth-child(2) { background: #ffbd2e; }
+  .lp-preview-header .dot:nth-child(3) { background: #28c840; }
+
+  .lp-preview-body {
+    padding: 24px 20px 32px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Version-specific styles */
+  .v1 .lp-preview-body {
+    background: linear-gradient(180deg, #fff5e6, #ffe0c0);
+  }
+  .v1 .lp-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #8b4513;
+    margin-bottom: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .v1 .lp-sub {
+    font-size: 0.75rem;
+    color: #a0522d;
+  }
+  .v1 .lp-btn {
+    margin-top: 12px;
+    padding: 8px 24px;
+    background: #d4956a;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .v1 .lp-badge {
+    background: #c08050;
+    color: #fff;
+    font-size: 0.6rem;
+    padding: 3px 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+
+  .v2 .lp-preview-body {
+    background: linear-gradient(180deg, #0a0a1a, #111128);
+  }
+  .v2 .lp-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .v2 .lp-sub {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+  }
+  .v2 .lp-btn {
+    margin-top: 12px;
+    padding: 8px 24px;
+    background: linear-gradient(135deg, #a855f7, #00d4ff);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  }
+  .v2 .lp-badge {
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.3);
+    color: #00d4ff;
+    font-size: 0.6rem;
+    padding: 3px 12px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .v2 .neon-text {
+    background: linear-gradient(135deg, #00d4ff, #a855f7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .v3 .lp-preview-body {
+    background: linear-gradient(180deg, #0a0a1a, #111128);
+  }
+  .v3 .lp-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #00d4ff, #a855f7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 4px;
+  }
+  .v3 .lp-main {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .v3 .lp-catch {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ec4899, #a855f7, #00d4ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 8px;
+    letter-spacing: 3px;
+  }
+  .v3 .lp-sub {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.9);
+  }
+  .v3 .lp-btn {
+    margin-top: 12px;
+    padding: 8px 24px;
+    background: linear-gradient(135deg, #a855f7, #00d4ff);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    box-shadow: 0 0 20px rgba(168,85,247,0.4);
+  }
+  .v3 .lp-badge {
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, rgba(168,85,247,0.3), rgba(0,212,255,0.3));
+    border: 1px solid rgba(0,212,255,0.4);
+    color: #22d3ee;
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 4px 16px;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 8px;
+    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+  }
+
+  /* Arrow indicator */
+  .arrow-down {
+    margin-top: 16px;
+    text-align: center;
+    color: rgba(0,212,255,0.4);
+    font-size: 1.2rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(8px); opacity: 0.8; }
+  }
+
+  /* Feedback tag */
+  .feedback-tag {
+    display: inline-block;
+    background: rgba(236,72,153,0.12);
+    border: 1px solid rgba(236,72,153,0.3);
+    color: var(--neon-pink);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    margin-bottom: 12px;
+    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+  }
+
+  /* Stats grid */
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .stat-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(0,212,255,0.1);
+    padding: 16px;
+    text-align: center;
+    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  }
+  .stat-card .num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .stat-card .desc {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  /* V4 iframe */
+  .v4-frame {
+    width: 100%;
+    height: 70vh;
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .v4-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Orb decorations */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .orb-1 { width: 200px; height: 200px; background: rgba(168,85,247,0.15); top: -50px; right: -50px; }
+  .orb-2 { width: 180px; height: 180px; background: rgba(0,212,255,0.12); bottom: -30px; left: -30px; }
+
+  /* Slide indicator */
+  .slide-nav {
+    position: fixed;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+  .slide-nav a {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: block;
+    transition: all 0.3s;
+  }
+  .slide-nav a.active {
+    background: var(--neon-cyan);
+    box-shadow: 0 0 8px rgba(0,212,255,0.5);
+  }
+
+  /* CTA section */
+  .big-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple), var(--neon-blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    text-align: center;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 20px rgba(168,85,247,0.3));
+  }
+
+  /* Claude character */
+  .claude-mini {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 4px;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.3rem; }
+    h2 { font-size: 1.1rem; }
+    .big-title { font-size: 1.4rem; }
+    .stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat-card .num { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Slide nav dots -->
+<nav class="slide-nav">
+  <a href="#s0" class="active"></a>
+  <a href="#s1"></a>
+  <a href="#s2"></a>
+  <a href="#s3"></a>
+  <a href="#s3b"></a>
+  <a href="#s3c"></a>
+  <a href="#s4"></a>
+  <a href="#s5"></a>
+</nav>
+
+<!-- SLIDE 0: Title -->
+<section class="slide" id="s0">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="slide-inner" style="text-align: center;">
+    <div style="margin-bottom: 24px;">
+      <svg width="80" height="80" viewBox="0 0 60 60">
+        <defs>
+          <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#a855f7"/>
+            <stop offset="100%" stop-color="#00d4ff"/>
+          </linearGradient>
+          <filter id="cglow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <polygon points="30,2 56,16 56,44 30,58 4,44 4,16" fill="url(#cg)" opacity="0.9" filter="url(#cglow)"/>
+        <text x="30" y="36" text-anchor="middle" fill="#fff" font-family="Orbitron, monospace" font-size="16" font-weight="900">&gt;_</text>
+      </svg>
+    </div>
+    <h1 style="font-size: 1.8rem;">このLP、<br><span class="neon">AIとの会話だけ</span>で<br>作りました</h1>
+    <p style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 8px;">制作時間: 約3時間</p>
+    <p style="color: rgba(255,255,255,0.5); font-size: 0.75rem;">使ったツール: Claude Code</p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 1: First prompt → v1 -->
+<section class="slide" id="s1">
+  <div class="orb orb-1"></div>
+  <div class="slide-inner">
+    <div class="slide-num">STEP 01 / 06</div>
+    <h2><span class="em">最初の指示</span>を出してみた</h2>
+
+    <div class="chat-bubble">
+      <span class="label">あや</span>
+      茶花のホルダーさん向けにAI勉強会のLPを作りたい。ワークショップで6時間くらい。デザイナー3人でサポートして、パソコン苦手な人でも大丈夫ってのを伝えたい。よろしく！
+    </div>
+
+    <div class="chat-response">
+      <span class="label">CLAUDE CODE</span>
+      了解です！ターゲットに合わせて暖かみのあるデザインでLP作りますね。
+    </div>
+
+    <div class="lp-preview v1">
+      <div class="lp-preview-header">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="lp-preview-body">
+        <div class="lp-badge">WORKSHOP</div>
+        <div class="lp-title">デザイナーと一緒に学ぶ<br>AI制作ワークショップ</div>
+        <div class="lp-sub">パソコン苦手でも大丈夫。<br>6時間で2つの成果物が完成。</div>
+        <div class="lp-btn">詳しく見る</div>
+        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(139,69,19,0.15); width: 100%;">
+          <div style="font-size: 0.65rem; color: #a0522d; margin-bottom: 6px;">こんなお悩みありませんか？</div>
+          <div style="font-size: 0.6rem; color: #8b6914; text-align: left; line-height: 1.8;">
+            ・LP外注すると15〜30万円かかる...<br>
+            ・修正のたびに連絡するのが面倒<br>
+            ・AIを使いたいけど何から始めれば...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-tag">FIRST OUTPUT</div>
+    <p style="font-size: 0.8rem; color: var(--text-light);">出てきたのは普通の暖色系LP。悪くはないけど......なんか普通すぎる。もっと攻めたい！</p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 2: Feedback → v2 neon -->
+<section class="slide" id="s2">
+  <div class="orb orb-2"></div>
+  <div class="slide-inner">
+    <div class="slide-num">STEP 02 / 06</div>
+    <h2><span class="em">フィードバック①</span><br>もっとサイバー感が欲しい</h2>
+
+    <div class="chat-bubble">
+      <span class="label">あや</span>
+      うーん、普通すぎる！もっとサイバー感出して！ネオンカラーでダークテーマがいい。かっこよくして！
+    </div>
+
+    <div class="chat-response">
+      <span class="label">CLAUDE CODE</span>
+      ネオンカラーのサイバーパンクテーマに変更しますね！
+    </div>
+
+    <div class="lp-preview v2">
+      <div class="lp-preview-header">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="lp-preview-body">
+        <div class="lp-badge">WORKSHOP</div>
+        <div class="lp-title"><span class="neon-text">デザイナー視点もりもり</span>の<br>AI制作ワークショップ</div>
+        <div class="lp-sub">プログラミング不要。<br>パソコン苦手でも大丈夫。</div>
+        <div class="lp-btn">参加を申し込む →</div>
+        <div style="margin-top: 16px; display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+          <span style="font-size: 0.55rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: #00d4ff; padding: 3px 10px;">CODE SKILL 0</span>
+          <span style="font-size: 0.55rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: #00d4ff; padding: 3px 10px;">6H / 2 OUTPUTS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-tag">SECOND OUTPUT</div>
+    <p style="font-size: 0.8rem; color: var(--text-light);">おおー！ガラッと変わった！でもフォントがまだ普通だな......もっと攻めたい。</p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 3: Feedback → v3 Orbitron -->
+<section class="slide" id="s3">
+  <div class="orb orb-1"></div>
+  <div class="slide-inner">
+    <div class="slide-num">STEP 03 / 06</div>
+    <h2><span class="em">フィードバック②</span><br>フォントを変えて、もっと攻めて</h2>
+
+    <div class="chat-bubble">
+      <span class="label">あや</span>
+      英語のフォントをOrbitronってやつに変えて！あと斜めのカット入れたい。画像は六角形にくり抜いて。もっと攻めて大丈夫！
+    </div>
+
+    <div class="chat-response">
+      <span class="label">CLAUDE CODE</span>
+      Orbitron + 斜めカット + ヘキサゴンマスク、全部入れますね！
+    </div>
+
+    <div class="lp-preview v3">
+      <div class="lp-preview-header">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="lp-preview-body">
+        <div class="lp-badge">HOLDER LIMITED / MONITOR</div>
+        <div class="lp-title">POWERED BY CLAUDE CODE</div>
+        <div class="lp-main"><span style="background: linear-gradient(135deg, #00d4ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">デザイナー視点もりもり</span>の<br>AI制作ワークショップ</div>
+        <div class="lp-catch">「これも私が<br>つくれるの！？」</div>
+        <div class="lp-sub">デザイナー3人がサポート。AI臭くない仕上がり。</div>
+        <div class="lp-btn">参加を申し込む →</div>
+      </div>
+    </div>
+
+    <div class="feedback-tag">THIRD OUTPUT</div>
+    <p style="font-size: 0.8rem; color: var(--text-light);">めっちゃいい！フォント変えたら一気にプロっぽくなった。あとは細かい読みやすさとか調整して完成！</p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 3b: Hexagon floating version (actual LP) -->
+<section class="slide" id="s3b">
+  <div class="orb orb-2"></div>
+  <div class="slide-inner">
+    <div class="slide-num">STEP 04 / 06</div>
+    <h2><span class="em">ヘキサゴンの中で</span><br>女性がぷかぷか浮いてる版</h2>
+
+    <div class="chat-bubble">
+      <span class="label">あや</span>
+      講師の写真をヘキサゴンの中に入れて、ぷかぷか浮いてる感じにして！背景はサイバーシティで。
+    </div>
+
+    <div class="chat-response">
+      <span class="label">CLAUDE CODE</span>
+      ヘキサゴンマスクで写真を切り抜き、フロートアニメーションを付けました！
+    </div>
+
+    <div class="v4-frame" style="height: 50vh;">
+      <iframe src="making-screenshots/v1-initial.html" loading="lazy"></iframe>
+    </div>
+
+    <div class="feedback-tag">HEXAGON VERSION</div>
+    <p style="font-size: 0.8rem; color: var(--text-light);">六角形の中に3人が浮遊するデザイン。スクロールして中身も見てみてください！</p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 3c: Gate animation version -->
+<section class="slide" id="s3c">
+  <div class="orb orb-1"></div>
+  <div class="slide-inner">
+    <div class="slide-num">STEP 05 / 06</div>
+    <h2>5秒の<span class="em">オープニング演出</span>をつけた版</h2>
+
+    <div class="chat-bubble">
+      <span class="label">あや</span>
+      LPを開いた瞬間に、かっこいいオープニングを入れたい！5秒くらいのゲートが開く演出で、ロゴが光ってスパークルが散って、そこからLPの本編に入るようにして！
+    </div>
+
+    <div class="chat-response">
+      <span class="label">CLAUDE CODE</span>
+      5秒間のオープニングゲートアニメーションを追加しました！ロゴ表示 → スパークルエフェクト → フェードアウトで本編が現れる演出です。
+    </div>
+
+    <div class="v4-frame" style="height: 50vh;">
+      <iframe id="gate-iframe" src="making-screenshots/v-gate.html" loading="lazy"></iframe>
+    </div>
+
+    <div style="text-align: center; margin-top: 12px;">
+      <button onclick="document.getElementById('gate-iframe').src = document.getElementById('gate-iframe').src" style="background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink)); color: #fff; border: none; padding: 10px 28px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Noto Sans JP', sans-serif;">もう一度オープニングを見る</button>
+    </div>
+
+    <div class="feedback-tag">OPENING ANIMATION</div>
+    <p style="font-size: 0.8rem; color: var(--text-light);">LPを開いた瞬間の5秒間のオープニング演出。ヘキサゴンの中にいた女性たちが画面いっぱいに飛び出し、一気にリッチな体験に！</p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 4: Final version -->
+<section class="slide" id="s4">
+  <div class="orb orb-2"></div>
+  <div class="slide-inner">
+    <div class="slide-num">STEP 06 / 06</div>
+    <h2><span class="em">完成版</span> — 細部を仕上げて公開</h2>
+
+    <div class="chat-bubble">
+      <span class="label">あや</span>
+      英語の見出しが暗くて読めないから明るくして！グレーの文字も白に近くして。あとアイコンにもっと光らせて、Claudeのキャラもっと増やして！あ、あとミーティングで決まった料金とか時間も入れてね。
+    </div>
+
+    <div class="v4-frame">
+      <iframe src="lp.html" loading="lazy"></iframe>
+    </div>
+
+    <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 12px; text-align: center;">
+      <a href="lp.html" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">完成版をフルスクリーンで見る →</a>
+    </p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 5: Summary -->
+<section class="slide" id="s5">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="slide-inner" style="text-align: center;">
+    <div class="big-title">6 TALKS<br>= 1 LP</div>
+    <p style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 24px;">「こうして！」「もっと攻めて！」<br>を6回伝えたらLPが完成しました。</p>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="num">6</div>
+        <div class="desc">会話の回数</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">~3h</div>
+        <div class="desc">制作時間</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">¥0</div>
+        <div class="desc">外注費</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">100%</div>
+        <div class="desc">自分のイメージ通り</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; padding: 20px; background: rgba(236,72,153,0.06); border: 1px solid rgba(236,72,153,0.15); border-radius: 8px;">
+      <p style="font-size: 0.9rem; color: var(--neon-pink); font-weight: 700; margin-bottom: 8px;">これが今日、皆さんにもできるようになります。</p>
+      <p style="font-size: 0.8rem; color: var(--text-light);">LP、診断ツール、スライド......<br>「こういうの作りたい」を伝えるだけ。</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Update nav dots on scroll
+  const slides = document.querySelectorAll('.slide');
+  const navLinks = document.querySelectorAll('.slide-nav a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(slide => navObserver.observe(slide));
+</script>
+</body>
+</html>
