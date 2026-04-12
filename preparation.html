@@ -1702,7 +1702,9 @@
         + '&modeling=' + encodeURIComponent(fv('modeling'))
         + '&ref1='    + encodeURIComponent(fv('ref1'))
         + '&ref2='    + encodeURIComponent(fv('ref2'))
-        + '&ref3='    + encodeURIComponent(fv('ref3'));
+        + '&ref3='    + encodeURIComponent(fv('ref3'))
+        + '&design2=' + encodeURIComponent(fv('design2'))
+        + '&design3=' + encodeURIComponent(fv('design3'));
       fetch(url, { mode: 'no-cors' }).then(function(){
         btn.textContent = '✅ 報告済！ありがとうございます';
         btn.style.background = '#1BC6B4';
@@ -1782,10 +1784,19 @@
         'フォント：'+(fv('font')||'（未記入）'),
         '顔写真ファイル名：'+(fv('photo')||'profile.jpg'),
       ];
-      if(fv('modeling')) lines.push('モデリング先：'+fv('modeling'));
-      if(fv('ref1')) lines.push('参考サイト①：'+fv('ref1'));
-      if(fv('ref2')) lines.push('参考サイト②：'+fv('ref2'));
-      if(fv('ref3')) lines.push('参考サイト③：'+fv('ref3'));
+      if(fv('existlp')) lines.push('既存LP：'+fv('existlp'));
+      if(fv('modeling')||fv('ref1')||fv('ref2')) {
+        lines.push('【構成参考】');
+        if(fv('modeling')) lines.push('・'+fv('modeling'));
+        if(fv('ref1')) lines.push('・'+fv('ref1'));
+        if(fv('ref2')) lines.push('・'+fv('ref2'));
+      }
+      if(fv('ref3')||fv('design2')||fv('design3')) {
+        lines.push('【デザイン参考】');
+        if(fv('ref3')) lines.push('・'+fv('ref3'));
+        if(fv('design2')) lines.push('・'+fv('design2'));
+        if(fv('design3')) lines.push('・'+fv('design3'));
+      }
       lines = lines.concat([
         '',
         '【申し込み先URL（CTAボタンの飛び先）】',
@@ -2314,6 +2325,23 @@
 
     <div class="callout">セットアップに不安がある方は、事前オンライン会で一緒に確認します。わからなくても大丈夫です。</div>
 
+    <!-- スクショガイド予告 -->
+    <style>
+      .scrn-slot { margin:14px 0; padding:18px 16px; background:#fafafa; border:2px dashed #d8d4cc; border-radius:10px; text-align:center; }
+      .scrn-slot-icon { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:#fff; border:1px solid var(--border); border-radius:50%; margin-bottom:8px; }
+      .scrn-slot-title { font-size:11px; font-weight:600; color:var(--orange); letter-spacing:0.05em; margin-bottom:4px; }
+      .scrn-slot-desc { font-size:11px; color:var(--gray-lt); line-height:1.7; }
+    </style>
+    <div style="margin-bottom:24px;padding:18px 22px;background:linear-gradient(135deg,#fff8f3 0%,#fffaf5 100%);border:1px solid var(--orange-border);border-radius:12px;display:flex;gap:14px;align-items:flex-start;">
+      <div style="flex-shrink:0;width:36px;height:36px;background:#fff;border:1px solid var(--orange-border);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      </div>
+      <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">
+        <strong style="color:var(--black);font-size:13px;">操作画面のスクショは順次追加していきます</strong><br>
+        事前キックオフで「実際の画面を見ながらだと分かりやすい」というお声をいただいたので、Mac / Windows それぞれの操作画面に「①ここを押す → ②ここを押す」のスクショを追加していきます。下記の <span style="color:var(--orange);font-weight:600;">点線枠</span> の場所が追加予定の場所です。
+      </div>
+    </div>
+
     <!-- ─── Card 1: サブスクリプション加入 ─── -->
     <div class="card">
       <div class="card-head"><div class="card-num">1</div><div class="card-title">サブスクリプション加入</div></div>
@@ -2404,6 +2432,37 @@
           <div class="step-body">
             <div class="step-title">アプリを開いて、先ほどのアカウントでログイン</div>
             <div class="step-desc">Launchpad または Applications から Claude を開き、「Sign in」からサブスク加入したアカウントでログインして完了。</div>
+            <div class="scrn-slot">
+              <div class="scrn-slot-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+              <div class="scrn-slot-title">スクショ追加予定</div>
+              <div class="scrn-slot-desc">Claude Desktop のログイン画面 → Code タブ → Select folder までの流れ</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mac トラブルシュート -->
+        <div style="margin-top:18px;padding:18px 20px;background:#fff8f3;border:1px solid var(--orange-border);border-radius:12px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">▲ Mac でつまずきやすいポイント</div>
+          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:8px;">「xcode-select --install を実行してください」と出たら？</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:12px;">
+            Claude Code を初めて起動した時に、英語のエラーが出て止まることがあります。これは Mac に必要な「開発ツール（Xcode Command Line Tools）」が入っていないだけなので、以下の手順で入れれば解決します。
+          </div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--gray-mid);line-height:2;">
+            <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:6px;">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">1</span>
+              <div><strong style="color:var(--black);">ターミナルを開く</strong> ─ <code style="background:var(--beige);padding:2px 7px;border-radius:4px;font-size:11px;">⌘ + space</code> →「ターミナル」と入力して Enter</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:6px;">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">2</span>
+              <div><code style="background:var(--beige);padding:2px 7px;border-radius:4px;font-size:11px;">xcode-select --install</code> をコピペして Enter</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">3</span>
+              <div>ポップアップが出たら「<strong style="color:var(--black);">インストール</strong>」をクリック → 完了したら Claude Code を再起動</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;padding:10px 14px;background:var(--beige);border-radius:8px;font-size:11px;color:var(--gray-mid);line-height:1.8;">
+            <strong style="color:var(--black);">それでも解決しない時は</strong> → エラー画面のスクリーンショット（<code style="background:#fff;padding:1px 5px;border-radius:3px;">⌘ + shift + 4</code> でドラッグ範囲指定）を撮って、Claude のチャットに貼り付けて「このエラーを直したい」と聞いてください。Claude が一緒に解決してくれます。
           </div>
         </div>
       </div>
@@ -2466,6 +2525,11 @@
           <div class="step-body">
             <div class="step-title">「Code」タブを開いて、フォルダを選ぶ</div>
             <div class="step-desc">アプリ上部の「<strong>Code</strong>」タブをクリック →「<strong>Select folder</strong>」で作業フォルダを選択。これで Claude Code が使える状態になります。</div>
+            <div class="scrn-slot">
+              <div class="scrn-slot-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+              <div class="scrn-slot-title">スクショ追加予定</div>
+              <div class="scrn-slot-desc">Claude Desktop の上部「Code」タブの場所 → Select folder ボタンの位置</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2601,6 +2665,12 @@
         </div>
       </div>
 
+      <div class="scrn-slot">
+        <div class="scrn-slot-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div class="scrn-slot-title">スクショ追加予定</div>
+        <div class="scrn-slot-desc">プロンプトをコピー → Claude Desktop に貼り付け → 実際に動いている画面の流れ（①〜⑤）</div>
+      </div>
+
       <div style="padding:16px 18px;background:var(--beige);border-radius:10px;margin-bottom:16px;">
         <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--orange);margin-bottom:8px;text-transform:uppercase;">プランのアップグレード</div>
         <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">使い込んでいくと回数制限に当たることがあります。その場合は $100 や $200 のプランにアップグレードしてください。Settings → Billing からいつでも変更できます。キャンプ後にダウングレードも自由です。</div>
@@ -2626,42 +2696,154 @@
     <!-- ─── よくある質問 ─── -->
     <div class="card">
       <div class="card-head"><div class="card-num" style="background:var(--beige);color:var(--gray-mid);border:1px solid var(--border);">?</div><div class="card-title">うまくいかない時 / よくある質問</div></div>
-      <div style="display:flex;flex-direction:column;gap:12px;">
+      <p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">事前キックオフでみなさんから出た質問をまとめました。クリックで開閉できます。</p>
+      <style>
+        .faq-acc { border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:10px; }
+        .faq-acc summary { padding:14px 18px; background:var(--beige); font-size:13px; font-weight:500; cursor:pointer; list-style:none; display:flex; gap:10px; align-items:flex-start; line-height:1.6; }
+        .faq-acc summary::-webkit-details-marker { display:none; }
+        .faq-acc summary::before { content:'Q.'; color:var(--orange); font-weight:700; flex-shrink:0; }
+        .faq-acc summary::after { content:'＋'; margin-left:auto; color:var(--gray-lt); font-weight:300; flex-shrink:0; transition:transform 0.2s; }
+        .faq-acc[open] summary::after { content:'−'; }
+        .faq-acc-body { padding:16px 18px 18px; font-size:13px; color:var(--gray-mid); line-height:1.9; background:#fff; }
+        .faq-acc-body p { margin:0 0 10px; }
+        .faq-acc-body p:last-child { margin-bottom:0; }
+        .faq-acc-body strong { color:var(--black); font-weight:600; }
+        .faq-acc-body code { background:var(--beige); padding:1px 6px; border-radius:4px; font-size:12px; font-family:monospace; }
+        .faq-cat { font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.15em; color:var(--orange); margin:18px 0 8px; text-transform:uppercase; }
+        .faq-cat:first-of-type { margin-top:0; }
+      </style>
 
-        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
-            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
-            <span>Google アカウントでログインできない</span>
-          </div>
-          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
-            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
-            メールアドレスで新規アカウントを作成してください。
-          </div>
+      <div class="faq-cat">─ 環境構築でつまずいた時</div>
+
+      <details class="faq-acc">
+        <summary>Mac で「xcode-select --install」というエラーが出ました</summary>
+        <div class="faq-acc-body">
+          <p>Mac に必要な開発ツール（Xcode Command Line Tools）が入っていないだけです。</p>
+          <p><strong>1.</strong> <code>⌘ + space</code> →「ターミナル」と入力して開く<br>
+          <strong>2.</strong> <code>xcode-select --install</code> をコピペして Enter<br>
+          <strong>3.</strong> ポップアップで「インストール」をクリック → 完了したら Claude Code を再起動</p>
+          <p>解決しない時はエラー画面をスクショ（<code>⌘ + shift + 4</code>）して Claude のチャットに貼り付けて聞いてください。</p>
         </div>
+      </details>
 
-        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
-            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
-            <span>Desktop アプリが開かない</span>
-          </div>
-          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
-            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
-            PC を再起動してからもう一度試してください。Windows の場合はセキュリティソフトがブロックしている可能性があります。「詳細情報」→「実行」を選んでみてください。
-          </div>
+      <details class="faq-acc">
+        <summary>Windows で「Git をインストールしてください」と出ました</summary>
+        <div class="faq-acc-body">
+          <p>Claude Code は内部で Git というソフトを使うので、先に <strong>Git for Windows</strong> をインストールする必要があります。</p>
+          <p><strong>1.</strong> <a href="https://git-scm.com/downloads/win" target="_blank" style="color:var(--orange);">git-scm.com/downloads/win</a> から「Click here to download」をクリック<br>
+          <strong>2.</strong> ダウンロードしたファイルを開いて、すべて「Next」を押し続けて Install → Finish<br>
+          <strong>3.</strong> Claude Code を再起動</p>
         </div>
+      </details>
 
-        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-          <div style="padding:14px 18px;background:var(--beige);font-size:13px;font-weight:500;display:flex;gap:10px;align-items:flex-start;">
-            <span style="color:var(--orange);font-weight:700;flex-shrink:0;">Q.</span>
-            <span>何をやってもダメ</span>
-          </div>
-          <div style="padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
-            <span style="color:var(--gray-lt);font-weight:700;margin-right:6px;">A.</span>
-            大丈夫です。キックオフで一緒に解決します。エラー画面のスクリーンショットを撮っておいてください。
-          </div>
+      <details class="faq-acc">
+        <summary>Google アカウントでログインできない</summary>
+        <div class="faq-acc-body">
+          <p>メールアドレスで新規アカウントを作成してください。Claude のアカウントは Google ログインではなくメール登録が確実です。</p>
         </div>
+      </details>
 
-      </div>
+      <details class="faq-acc">
+        <summary>Desktop アプリが開かない / Windows でブロックされる</summary>
+        <div class="faq-acc-body">
+          <p>PC を再起動してからもう一度試してください。Windows で「WindowsによってPCが保護されました」と出たら、「<strong>詳細情報</strong>」→「<strong>実行</strong>」をクリックすれば進めます。</p>
+        </div>
+      </details>
+
+      <div class="faq-cat">─ Claude Code の使い方</div>
+
+      <details class="faq-acc">
+        <summary>「フォルダ」って何？どこに作ればいい？</summary>
+        <div class="faq-acc-body">
+          <p>Claude Code は「指定したフォルダの中だけ」を見るしくみです。PC全体を見られないように、<strong>作業場所を1つ決めてあげる</strong>のがフォルダ選択です。</p>
+          <p><strong>おすすめ：</strong>デスクトップに「<code>クラウドコード</code>」というフォルダを作り、その中に案件ごとのサブフォルダを作る。<br>
+          例：<code>クラウドコード / LP制作 / 4月18日ワークショップ</code></p>
+          <p>素材ファイル（写真・参考資料など）も、Claude に見せたければそのフォルダに<strong>コピー</strong>して入れておきましょう（移動ではなくコピー）。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>「許可を求められた」のダイアログ、Yes押して大丈夫？</summary>
+        <div class="faq-acc-body">
+          <p><strong>自分の作業フォルダの中なら全部 Yes でOKです。</strong>Claude は安全のため、ファイルを書き換える前に毎回確認してきます。慣れてきたら「このセッションの間は許可」を選ぶと聞かれなくなります。</p>
+          <p>不安な時はそのまま読んで判断すれば大丈夫。怪しい操作（パスワードや決済まわり）でない限り、Yesで進めて問題ありません。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>Pro と Max、どっちのプランがいい？</summary>
+        <div class="faq-acc-body">
+          <p><strong>ワークショップは Pro（$22／月・税込）でOK</strong>です。Pro で十分LPは作れます。</p>
+          <p>Max（$100）は1日に何時間も Claude Code を使い倒したい人向け。回数制限に当たって困るようになったらアップグレードを検討してください（いつでも変更可）。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>「Sonnet」「Opus」ってモデル選択、どっちにすればいい？</summary>
+        <div class="faq-acc-body">
+          <p><strong>基本は Sonnet で大丈夫</strong>です。動作も速くて、LP制作にはこれで十分。</p>
+          <p>「もっとデザインにこだわりたい」「複雑な指示を理解させたい」時だけ <strong>Opus</strong> に切り替えてみてください。Opus は賢い分、消費が大きいので使い分けがおすすめ。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>既存ファイルや素材を、新しいフォルダに「移動」していい？</summary>
+        <div class="faq-acc-body">
+          <p><strong>移動ではなく「コピー」してください。</strong>元のファイルはそのままに、コピーをClaude用フォルダに入れる。これで「あ、消えちゃった！」を防げます。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>スマホからでもできる？</summary>
+        <div class="faq-acc-body">
+          <p><strong>パソコンを強くおすすめします。</strong>Claude Desktop アプリも Claude Code 機能もパソコン用です。スマホでは Claude のチャットアプリは使えますが、ファイル作成などの本格的な作業はできません。</p>
+        </div>
+      </details>
+
+      <div class="faq-cat">─ ちょっとしたコツ</div>
+
+      <details class="faq-acc">
+        <summary>エラー画面のスクショ、どうやって撮る？</summary>
+        <div class="faq-acc-body">
+          <p><strong>Mac：</strong><br>
+          <code>⌘ + shift + 4</code> → ドラッグで範囲選択 → デスクトップに保存される<br>
+          <code>⌘ + shift + ctrl + 4</code> → ドラッグで範囲選択 → クリップボードにコピー（<code>⌘ + V</code> で貼付）</p>
+          <p><strong>Windows：</strong><br>
+          <code>Windowsキー + Shift + S</code> → ドラッグで範囲選択 → クリップボードにコピー</p>
+          <p>撮ったスクショを Claude のチャットに貼り付けて「このエラーを直したい」と聞けば、Claude が解決方法を教えてくれます。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>参考LPのスクショを丸ごと撮りたい（縦長ページ全部）</summary>
+        <div class="faq-acc-body">
+          <p>Chrome 拡張機能の「<strong>GoFullPage</strong>」がおすすめです。クリック1つで、表示中のページを縦長のまま全部スクショしてくれます。</p>
+          <p>非公開LPや、一般的なスクショでは入りきらない参考サイトを保存したい時に便利です。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>人物の画像を AI で作りたい時、何を使えばいい？</summary>
+        <div class="faq-acc-body">
+          <p><strong>顔・人物は ChatGPT が一番安定します。</strong>Gemini / Flow / Nano Banana などは人物が崩れやすいので、ポートレートやスタッフ写真の生成は ChatGPT を使うのがおすすめ。</p>
+          <p>イメージ画像（風景・抽象など）はどのツールでもOKです。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>Chrome 拡張機能「Claude in Chrome」のログインで詰まった</summary>
+        <div class="faq-acc-body">
+          <p>ログインは <strong>Claude のアカウント</strong>で行ってください。Google アカウントではありません。</p>
+          <p>「ベータ版に参加できます」というメッセージが出ても、そのまま参加してOKです。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>何をやってもダメ…</summary>
+        <div class="faq-acc-body">
+          <p>大丈夫です！4/18 当日や事前サポートで一緒に解決します。エラー画面のスクリーンショットだけ撮っておいてください。</p>
+        </div>
+      </details>
     </div>
 
     <script>
@@ -2744,6 +2926,17 @@
         </div>
 
         <a href="https://www.typeless.com/" target="_blank" style="display:inline-block;padding:10px 24px;background:var(--orange);color:#fff;border-radius:24px;font-size:13px;font-weight:500;text-decoration:none;">Typeless をダウンロード →</a>
+
+        <!-- Typeless キー設定でつまずく人向け -->
+        <div style="margin-top:18px;padding:16px 18px;background:#fff8f3;border:1px solid var(--orange-border);border-radius:10px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:8px;text-transform:uppercase;">▲ つまずきポイント</div>
+          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:8px;">「Right Alt」キーがないキーボードの場合</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">
+            初期設定の Push-to-Talk キーが「Right Alt」になっていますが、<strong style="color:var(--black);">日本語キーボードや一部のノートPCには Right Alt がありません</strong>。その場合は2キーの組み合わせに変更しましょう。<br><br>
+            <strong style="color:var(--black);">設定 → Push-to-Talk → 任意のキーを2つ同時押しで登録</strong><br>
+            （例：<code style="background:var(--beige);padding:1px 6px;border-radius:4px;font-size:11px;">Left Alt + Left Ctrl</code> など、普段使わない組み合わせがおすすめ）
+          </div>
+        </div>
       </div>
 
       <!-- ─── Card 2: ElevenLabs Scribe ─── -->
@@ -4673,14 +4866,153 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
   <section class="tab-content" id="tab-qa">
     <div class="sec-eyebrow">Community ／ Q &amp; A</div>
     <div class="sec-title">Q &amp; A ─ よくある質問</div>
-    <p class="sec-desc">ワークショップに関する質問と回答をここに追加していきます。</p>
+    <p class="sec-desc">事前キックオフでみなさんから出た質問をまとめました。クリックで開閉できます。</p>
 
-    <div class="card" style="text-align:center;padding:60px 24px;">
-      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;color:var(--gray-mid);margin-bottom:12px;">Coming soon</div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;max-width:480px;margin:0 auto;">
-        当日や事前に出てきた質問をまとめて、こちらに順次追加していきます。<br>
-        「こんなこと聞いてもいいのかな？」と思ったことも、ぜひ気軽にお声がけください。
-      </p>
+    <div class="card">
+      <div class="faq-cat">─ 環境構築でつまずいた時</div>
+
+      <details class="faq-acc">
+        <summary>Mac で「xcode-select --install」というエラーが出ました</summary>
+        <div class="faq-acc-body">
+          <p>Mac に必要な開発ツール（Xcode Command Line Tools）が入っていないだけです。</p>
+          <p><strong>1.</strong> <code>⌘ + space</code> →「ターミナル」と入力して開く<br>
+          <strong>2.</strong> <code>xcode-select --install</code> をコピペして Enter<br>
+          <strong>3.</strong> ポップアップで「インストール」をクリック → 完了したら Claude Code を再起動</p>
+          <p>解決しない時はエラー画面をスクショ（<code>⌘ + shift + 4</code>）して Claude のチャットに貼り付けて聞いてください。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>Windows で「Git をインストールしてください」と出ました</summary>
+        <div class="faq-acc-body">
+          <p>Claude Code は内部で Git というソフトを使うので、先に <strong>Git for Windows</strong> をインストールする必要があります。</p>
+          <p><strong>1.</strong> <a href="https://git-scm.com/downloads/win" target="_blank" style="color:var(--orange);">git-scm.com/downloads/win</a> から「Click here to download」をクリック<br>
+          <strong>2.</strong> ダウンロードしたファイルを開いて、すべて「Next」を押し続けて Install → Finish<br>
+          <strong>3.</strong> Claude Code を再起動</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>Google アカウントでログインできない</summary>
+        <div class="faq-acc-body">
+          <p>メールアドレスで新規アカウントを作成してください。Claude のアカウントは Google ログインではなくメール登録が確実です。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>Desktop アプリが開かない / Windows でブロックされる</summary>
+        <div class="faq-acc-body">
+          <p>PC を再起動してからもう一度試してください。Windows で「WindowsによってPCが保護されました」と出たら、「<strong>詳細情報</strong>」→「<strong>実行</strong>」をクリックすれば進めます。</p>
+        </div>
+      </details>
+
+      <div class="faq-cat">─ Claude Code の使い方</div>
+
+      <details class="faq-acc">
+        <summary>「フォルダ」って何？どこに作ればいい？</summary>
+        <div class="faq-acc-body">
+          <p>Claude Code は「指定したフォルダの中だけ」を見るしくみです。PC全体を見られないように、<strong>作業場所を1つ決めてあげる</strong>のがフォルダ選択です。</p>
+          <p><strong>おすすめ：</strong>デスクトップに「<code>クラウドコード</code>」というフォルダを作り、その中に案件ごとのサブフォルダを作る。<br>
+          例：<code>クラウドコード / LP制作 / 4月18日ワークショップ</code></p>
+          <p>素材ファイル（写真・参考資料など）も、Claude に見せたければそのフォルダに<strong>コピー</strong>して入れておきましょう（移動ではなくコピー）。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>「許可を求められた」のダイアログ、Yes押して大丈夫？</summary>
+        <div class="faq-acc-body">
+          <p><strong>自分の作業フォルダの中なら全部 Yes でOKです。</strong>Claude は安全のため、ファイルを書き換える前に毎回確認してきます。慣れてきたら「このセッションの間は許可」を選ぶと聞かれなくなります。</p>
+          <p>不安な時はそのまま読んで判断すれば大丈夫。怪しい操作（パスワードや決済まわり）でない限り、Yesで進めて問題ありません。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>Pro と Max、どっちのプランがいい？</summary>
+        <div class="faq-acc-body">
+          <p><strong>ワークショップは Pro（$22／月・税込）でOK</strong>です。Pro で十分LPは作れます。</p>
+          <p>Max（$100）は1日に何時間も Claude Code を使い倒したい人向け。回数制限に当たって困るようになったらアップグレードを検討してください（いつでも変更可）。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>「Sonnet」「Opus」ってモデル選択、どっちにすればいい？</summary>
+        <div class="faq-acc-body">
+          <p><strong>基本は Sonnet で大丈夫</strong>です。動作も速くて、LP制作にはこれで十分。</p>
+          <p>「もっとデザインにこだわりたい」「複雑な指示を理解させたい」時だけ <strong>Opus</strong> に切り替えてみてください。Opus は賢い分、消費が大きいので使い分けがおすすめ。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>既存ファイルや素材を、新しいフォルダに「移動」していい？</summary>
+        <div class="faq-acc-body">
+          <p><strong>移動ではなく「コピー」してください。</strong>元のファイルはそのままに、コピーをClaude用フォルダに入れる。これで「あ、消えちゃった！」を防げます。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>スマホからでもできる？</summary>
+        <div class="faq-acc-body">
+          <p><strong>パソコンを強くおすすめします。</strong>Claude Desktop アプリも Claude Code 機能もパソコン用です。スマホでは Claude のチャットアプリは使えますが、ファイル作成などの本格的な作業はできません。</p>
+        </div>
+      </details>
+
+      <div class="faq-cat">─ ちょっとしたコツ</div>
+
+      <details class="faq-acc">
+        <summary>エラー画面のスクショ、どうやって撮る？</summary>
+        <div class="faq-acc-body">
+          <p><strong>Mac：</strong><br>
+          <code>⌘ + shift + 4</code> → ドラッグで範囲選択 → デスクトップに保存される<br>
+          <code>⌘ + shift + ctrl + 4</code> → ドラッグで範囲選択 → クリップボードにコピー（<code>⌘ + V</code> で貼付）</p>
+          <p><strong>Windows：</strong><br>
+          <code>Windowsキー + Shift + S</code> → ドラッグで範囲選択 → クリップボードにコピー</p>
+          <p>撮ったスクショを Claude のチャットに貼り付けて「このエラーを直したい」と聞けば、Claude が解決方法を教えてくれます。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>参考LPのスクショを丸ごと撮りたい（縦長ページ全部）</summary>
+        <div class="faq-acc-body">
+          <p>Chrome 拡張機能の「<strong>GoFullPage</strong>」がおすすめです。クリック1つで、表示中のページを縦長のまま全部スクショしてくれます。</p>
+          <p>非公開LPや、一般的なスクショでは入りきらない参考サイトを保存したい時に便利です。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>人物の画像を AI で作りたい時、何を使えばいい？</summary>
+        <div class="faq-acc-body">
+          <p><strong>顔・人物は ChatGPT が一番安定します。</strong>Gemini / Flow / Nano Banana などは人物が崩れやすいので、ポートレートやスタッフ写真の生成は ChatGPT を使うのがおすすめ。</p>
+          <p>イメージ画像（風景・抽象など）はどのツールでもOKです。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>Chrome 拡張機能「Claude in Chrome」のログインで詰まった</summary>
+        <div class="faq-acc-body">
+          <p>ログインは <strong>Claude のアカウント</strong>で行ってください。Google アカウントではありません。</p>
+          <p>「ベータ版に参加できます」というメッセージが出ても、そのまま参加してOKです。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>Typeless の Push-to-Talk キーが押せない</summary>
+        <div class="faq-acc-body">
+          <p>初期設定は「Right Alt」になっていますが、日本語キーボードや一部のノートPCには Right Alt がありません。</p>
+          <p><strong>設定 → Push-to-Talk → 任意のキーを2つ同時押しで登録</strong>（例：<code>Left Alt + Left Ctrl</code> など、普段使わない組み合わせがおすすめ）</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
+        <summary>何をやってもダメ…</summary>
+        <div class="faq-acc-body">
+          <p>大丈夫です！4/18 当日や事前サポートで一緒に解決します。エラー画面のスクリーンショットだけ撮っておいてください。</p>
+        </div>
+      </details>
+
+      <div style="margin-top:24px;padding:18px 20px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:10px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+        <strong style="color:var(--black);">このページは随時アップデートしていきます。</strong><br>
+        当日や事前に出てきた新しい質問は、ここに追加していきます。「こんなこと聞いてもいいのかな？」と思ったことも、ぜひ気軽にお声がけください。
+      </div>
     </div>
   </section>
 
@@ -4725,12 +5057,26 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       // ── Card 1: 参考リンク ──
       h += '<div class="card" style="margin-bottom:16px;">';
       h += '<div class="card-head"><div class="card-num">1</div><div class="card-title">参考リンクを貼っておこう</div></div>';
-      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">既存LP・モデリング先・参考サイトを貼っておきましょう。当日すぐ引き出せます。</p>';
-      [['existlp','既存LPのURL（持っている方はこちら）','https://...（なければ空欄でOK）'],
-       ['modeling','モデリング先URL（こんなデザインにしたい！）','https://...'],
-       ['ref1','参考サイト ①','https://...'],
-       ['ref2','参考サイト ②','https://...'],
-       ['ref3','参考サイト ③','https://...']].forEach(function(f){
+      h += '<p style="font-size:12px;color:var(--gray-mid);margin-bottom:16px;line-height:1.7;">既存LP・構成参考・デザイン参考を貼っておきましょう。当日すぐ引き出せます。</p>';
+
+      // 既存LP
+      h += '<div class="lp-row"><label class="lp-label">既存LPのURL（持っている方はこちら）</label>';
+      h += '<input class="lp-input" data-key="'+id+'-existlp" placeholder="https://...（なければ空欄でOK）" value="'+sv('existlp')+'"></div>';
+
+      // 構成参考（3つ）
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">構成参考（こんな流れのLPにしたい）</div>';
+      [['modeling','構成参考 ①','https://...'],
+       ['ref1','構成参考 ②','https://...'],
+       ['ref2','構成参考 ③','https://...']].forEach(function(f){
+        h += '<div class="lp-row"><label class="lp-label">'+f[1]+'</label>';
+        h += '<input class="lp-input" data-key="'+id+'-'+f[0]+'" placeholder="'+f[2]+'" value="'+sv(f[0])+'"></div>';
+      });
+
+      // デザイン参考（3つ）
+      h += '<div style="font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.1em;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">デザイン参考（こんなビジュアルにしたい）</div>';
+      [['ref3','デザイン参考 ①','https://...'],
+       ['design2','デザイン参考 ②','https://...'],
+       ['design3','デザイン参考 ③','https://...']].forEach(function(f){
         h += '<div class="lp-row"><label class="lp-label">'+f[1]+'</label>';
         h += '<input class="lp-input" data-key="'+id+'-'+f[0]+'" placeholder="'+f[2]+'" value="'+sv(f[0])+'"></div>';
       });
