@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提出状況ダッシュボード ─ AIワークショップ</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #C96A3A;
+    --orange-dim: rgba(201,106,58,0.08);
+    --orange-border: rgba(201,106,58,0.25);
+    --black: #2A241F;
+    --gray-mid: #6B6359;
+    --gray-lt: #9B9388;
+    --border: #E4DDD4;
+    --beige: #F5EFE4;
+    --beige-mid: #EDE5D6;
+    --bg: #FAF5EC;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --yellow: #ca8a04;
+    --yellow-bg: #fefce8;
+    --grad: linear-gradient(135deg, #C96A3A 0%, #D18A5B 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Zen Maru Gothic', 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.8;
+    padding: 24px 16px 80px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  .hdr {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hdr::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--grad);
+  }
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hdr-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .hdr-sub {
+    font-size: 13px;
+    color: var(--gray-mid);
+    line-height: 1.8;
+  }
+  .adm-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    background: var(--red-bg);
+    color: var(--red);
+    border: 1px solid #fecaca;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  /* URL設定カード */
+  .url-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 24px;
+  }
+  .url-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .url-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .url-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--black);
+    background: #fff;
+  }
+  .url-input:focus {
+    outline: none;
+    border-color: var(--orange);
+  }
+  .btn {
+    padding: 10px 20px;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: inherit;
+  }
+  .btn:hover { opacity: 0.9; }
+  .btn.ghost {
+    background: var(--beige);
+    color: var(--gray-mid);
+    border: 1px solid var(--border);
+  }
+  .help-toggle {
+    font-size: 11px;
+    color: var(--orange);
+    cursor: pointer;
+    user-select: none;
+    margin-top: 8px;
+    display: inline-block;
+  }
+  .help-box {
+    display: none;
+    margin-top: 14px;
+    padding: 16px 18px;
+    background: var(--orange-dim);
+    border: 1px solid var(--orange-border);
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.9;
+  }
+  .help-box.show { display: block; }
+  .help-box ol { padding-left: 20px; }
+  .help-box li { margin-bottom: 6px; }
+  .help-box code {
+    background: #fff;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--orange);
+  }
+
+  /* サマリー */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--gray-lt);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+  }
+  .stat-sub {
+    font-size: 10px;
+    color: var(--gray-lt);
+    margin-top: 4px;
+  }
+  .stat.accent .stat-value { color: var(--orange); }
+
+  /* グループタブ */
+  .grp-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    background: #fff;
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .grp-tab {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+    color: var(--gray-mid);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .grp-tab.active {
+    background: var(--orange);
+    color: #fff;
+  }
+
+  /* メンバーカードグリッド */
+  .mbr-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .mbr-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mbr-card:hover {
+    border-color: var(--orange-border);
+    box-shadow: 0 2px 8px rgba(201,106,58,0.06);
+  }
+  .mbr-card-head {
+    display: grid;
+    grid-template-columns: 20px 1fr auto 120px 60px 80px 50px;
+    gap: 14px;
+    align-items: center;
+  }
+  .grp-pill {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: var(--beige);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--gray-mid);
+  }
+  .grp-pill.A { background: #fce7d6; color: #C96A3A; }
+  .grp-pill.B { background: #e0f2fe; color: #0284c7; }
+  .grp-pill.C { background: #f0fdf4; color: #16a34a; }
+  .mbr-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .mbr-role {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--beige);
+    color: var(--gray-mid);
+  }
+  .mbr-role.leader { background: var(--orange); color: #fff; }
+  .mbr-role.sub { background: #1BC6B4; color: #fff; }
+  .prog-wrap {
+    width: 100%;
+    height: 6px;
+    background: var(--beige);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .prog-bar {
+    height: 100%;
+    background: var(--orange);
+    transition: width 0.4s ease;
+  }
+  .prog-bar.full { background: var(--green); }
+  .prog-bar.low { background: #ef4444; }
+  .prog-bar.empty { background: var(--gray-lt); width: 3px !important; }
+  .prog-pct {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: right;
+    color: var(--black);
+  }
+  .prog-pct.full { color: var(--green); }
+  .prog-pct.low { color: #ef4444; }
+  .prog-pct.empty { color: var(--gray-lt); }
+  .img-chk {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--gray-mid);
+    cursor: pointer;
+    user-select: none;
+  }
+  .img-chk input {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    accent-color: var(--orange);
+  }
+  .expand-arrow {
+    color: var(--gray-lt);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* 詳細展開 */
+  .mbr-detail {
+    display: none;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .mbr-card.expanded .mbr-detail { display: block; }
+  .mbr-card.expanded .expand-arrow { transform: rotate(180deg); display: inline-block; }
+
+  .field-sec {
+    margin-bottom: 14px;
+  }
+  .field-sec-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    padding: 6px 0;
+    font-size: 12px;
+  }
+  .field-label {
+    color: var(--gray-mid);
+  }
+  .field-value {
+    color: var(--black);
+    line-height: 1.6;
+    word-break: break-all;
+  }
+  .field-value.empty {
+    color: var(--red);
+    font-style: italic;
+  }
+  .field-value.empty::before {
+    content: '✗ 未入力';
+    display: inline-block;
+    padding: 1px 8px;
+    background: var(--red-bg);
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+  }
+  .field-value.filled::before {
+    content: '✓';
+    color: var(--green);
+    margin-right: 6px;
+    font-weight: 700;
+  }
+
+  /* メッセージ */
+  .msg {
+    padding: 16px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .msg.info {
+    background: var(--orange-dim);
+    border: 1px solid var(--orange-border);
+    color: var(--gray-mid);
+  }
+  .msg.error {
+    background: var(--red-bg);
+    border: 1px solid #fecaca;
+    color: var(--red);
+  }
+  .loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray-lt);
+  }
+  .last-updated {
+    font-size: 11px;
+    color: var(--gray-lt);
+    text-align: right;
+    margin-bottom: 14px;
+  }
+
+  /* モバイル */
+  @media (max-width: 768px) {
+    body { padding: 12px 8px 60px; font-size: 13px; }
+    .hdr { padding: 20px 18px; }
+    .hdr-title { font-size: 19px; }
+    .summary { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .stat-value { font-size: 22px; }
+    .mbr-card-head {
+      grid-template-columns: 20px 1fr auto;
+      gap: 10px;
+      grid-template-rows: auto auto auto;
+    }
+    .mbr-card-head > .prog-wrap,
+    .mbr-card-head > .prog-pct,
+    .mbr-card-head > .img-chk,
+    .mbr-card-head > .expand-arrow {
+      grid-column: 1 / -1;
+    }
+    .mbr-card-head > .prog-wrap {
+      grid-column: 1 / -1;
+      margin-top: 8px;
+    }
+    .mbr-card-head > .prog-pct {
+      position: absolute;
+      right: 20px;
+      top: 18px;
+    }
+    .mbr-card {
+      position: relative;
+    }
+    .field-row { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ヘッダー -->
+  <div class="hdr">
+    <div class="eyebrow">Admin Dashboard</div>
+    <div class="hdr-title">提出状況ダッシュボード<span class="adm-badge">管理者のみ</span></div>
+    <div class="hdr-sub">
+      参加者のLP情報入力状況を一覧で確認できます。<br>
+      このページは管理者専用です。参加者には共有しないでください。
+    </div>
+  </div>
+
+  <!-- URL設定 -->
+  <div class="url-card">
+    <div class="url-card-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+      スプレッドシートのCSV URLを設定
+    </div>
+    <div class="url-row">
+      <input type="text" class="url-input" id="csvUrl" placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?output=csv">
+      <button class="btn" onclick="saveUrl()">保存・読み込み</button>
+      <button class="btn ghost" onclick="reload()">更新</button>
+    </div>
+    <span class="help-toggle" onclick="toggleHelp()">▼ CSVの公開方法（初回のみ設定）</span>
+    <div class="help-box" id="helpBox">
+      <strong style="color:var(--black);">スプシを「ウェブに公開」してCSV URLを取得する手順</strong>
+      <ol style="margin-top:8px;">
+        <li>スプレッドシートを開く</li>
+        <li>メニュー：<code>ファイル → 共有 → ウェブに公開</code></li>
+        <li>「リンク」タブ：公開する範囲は「シート1（または対象のシート）」を選択</li>
+        <li>形式は「<strong>カンマ区切り形式 (.csv)</strong>」を選択</li>
+        <li>「公開」ボタンをクリック → 警告が出たら「OK」</li>
+        <li>表示されるURLをコピー → 上の入力欄に貼り付け →「保存・読み込み」をクリック</li>
+      </ol>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--orange-border);">
+        <strong style="color:var(--black);">注意：</strong>公開URLを知っている人なら誰でも見れます。このURLはチーム内でのみ共有してください。
+      </div>
+    </div>
+  </div>
+
+  <div id="status"></div>
+  <div id="content"></div>
+
+</div>
+
+<script>
+  // ─── メンバー定義（preparation.htmlと同じ） ───
+  var MEMBERS = {
+    ebihara:  {name:'海老原愛',       group:'A', role:'リーダー',     level:'A（上級）'},
+    fujiba:   {name:'藤葉ともみ',     group:'A', role:'サブリーダー', level:'A（上級）'},
+    tsuruka:  {name:'鶴岡好美',       group:'A', role:'メンバー',     level:'C（中級）'},
+    ariel:    {name:'アリエル（富樫亜純）', group:'A', role:'メンバー', level:'D（初中級）'},
+    kawasoe:  {name:'川副真理子',     group:'B', role:'リーダー',     level:'A（上級）'},
+    nun:      {name:'ぬん（大森真里亜）', group:'B', role:'サブリーダー', level:'B（中上級）'},
+    nagaoka:  {name:'長岡篤子',       group:'B', role:'メンバー',     level:'C（中級）'},
+    nakamura: {name:'中村知代已',     group:'B', role:'メンバー',     level:'D（初中級）'},
+    koga:     {name:'古賀明美',       group:'B', role:'メンバー',     level:'C（中級）'},
+    wada:     {name:'和田あゆみ',     group:'C', role:'リーダー',     level:'A（上級）'},
+    nishiwaki:{name:'西脇さやか',     group:'C', role:'サブリーダー', level:'B（中上級）'},
+    murakami: {name:'村上華',         group:'C', role:'メンバー',     level:'B（中上級）'},
+    hirano:   {name:'平野那奈',       group:'C', role:'メンバー',     level:'C（中級）'},
+    hanuma:   {name:'羽沼景子',       group:'C', role:'メンバー',     level:'E（初級）'},
+  };
+
+  // LP入力フィールド定義（フィールド名, 表示名, カテゴリ, 必須か）
+  var FIELDS = [
+    {key:'service',  label:'サービス名',       cat:'基本情報',  req:true},
+    {key:'title',    label:'肩書き',          cat:'基本情報',  req:true},
+    {key:'price',    label:'料金',            cat:'基本情報',  req:true},
+    {key:'format',   label:'形式・回数',      cat:'基本情報',  req:false},
+    {key:'target',   label:'ターゲット',      cat:'基本情報',  req:true},
+    {key:'goal',     label:'LPのゴール',      cat:'基本情報',  req:false},
+    {key:'catch',    label:'メインキャッチ',  cat:'キャッチ',  req:true},
+    {key:'sub',      label:'サブコピー',      cat:'キャッチ',  req:false},
+    {key:'p1',       label:'悩み①',           cat:'悩み',     req:true},
+    {key:'p2',       label:'悩み②',           cat:'悩み',     req:false},
+    {key:'p3',       label:'悩み③',           cat:'悩み',     req:false},
+    {key:'b1',       label:'得られること①',   cat:'ベネフィット', req:true},
+    {key:'b2',       label:'得られること②',   cat:'ベネフィット', req:false},
+    {key:'b3',       label:'得られること③',   cat:'ベネフィット', req:false},
+    {key:'bio',      label:'自己紹介',        cat:'プロフィール', req:true},
+    {key:'color',    label:'カラーテイスト',  cat:'デザイン',  req:false},
+    {key:'cta',      label:'申込先URL',       cat:'デザイン',  req:false},
+    {key:'sns',      label:'SNS',            cat:'デザイン',  req:false},
+    {key:'existlp',  label:'既存LP',         cat:'参考リンク', req:false},
+    {key:'modeling', label:'構成参考①',      cat:'参考リンク', req:false},
+    {key:'ref1',     label:'構成参考②',      cat:'参考リンク', req:false},
+    {key:'ref2',     label:'構成参考③',      cat:'参考リンク', req:false},
+    {key:'ref3',     label:'デザイン参考①',  cat:'参考リンク', req:false},
+    {key:'design2',  label:'デザイン参考②',  cat:'参考リンク', req:false},
+    {key:'design3',  label:'デザイン参考③',  cat:'参考リンク', req:false},
+  ];
+
+  // ステート
+  var state = {
+    csvUrl: localStorage.getItem('admin-csv-url') || '',
+    data: {},        // {memberId: {field: value}}
+    lastUpdated: null,
+    group: 'all'
+  };
+
+  document.getElementById('csvUrl').value = state.csvUrl;
+
+  // ─── URL保存 ───
+  function saveUrl() {
+    var url = document.getElementById('csvUrl').value.trim();
+    localStorage.setItem('admin-csv-url', url);
+    state.csvUrl = url;
+    reload();
+  }
+
+  function toggleHelp() {
+    document.getElementById('helpBox').classList.toggle('show');
+  }
+
+  // ─── データ読み込み ───
+  function reload() {
+    if (!state.csvUrl) {
+      showMessage('info', 'スプシのCSV URLを設定してください（上の「CSVの公開方法」を参照）。');
+      renderEmptyGrid();
+      return;
+    }
+    showMessage('info', '読み込み中...');
+    fetch(state.csvUrl + (state.csvUrl.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then(function(csv) {
+        parseCsv(csv);
+        state.lastUpdated = new Date();
+        renderAll();
+      })
+      .catch(function(err) {
+        showMessage('error', 'データを読み込めませんでした。URLが正しいか、CSV公開設定を確認してください。<br>エラー詳細: ' + err.message);
+      });
+  }
+
+  // ─── CSV パース ───
+  function parseCsv(text) {
+    var lines = text.split(/\r?\n/).filter(function(l){ return l.length > 0; });
+    if (lines.length < 2) { state.data = {}; return; }
+    var headers = parseCsvLine(lines[0]).map(function(h){ return h.trim().toLowerCase(); });
+    var data = {};
+
+    for (var i = 1; i < lines.length; i++) {
+      var cols = parseCsvLine(lines[i]);
+      var row = {};
+      for (var j = 0; j < headers.length; j++) {
+        row[headers[j]] = (cols[j] || '').trim();
+      }
+      // 名前でメンバー特定
+      var matchedId = findMemberIdByName(row['name'] || row['氏名'] || row['メンバー'] || '');
+      if (matchedId) {
+        // 同じ人の複数行がある場合は、後の方（新しい方）を採用
+        data[matchedId] = row;
+      }
+    }
+    state.data = data;
+  }
+
+  function parseCsvLine(line) {
+    var result = [], cur = '', inQuote = false;
+    for (var i = 0; i < line.length; i++) {
+      var c = line[i];
+      if (inQuote) {
+        if (c === '"' && line[i+1] === '"') { cur += '"'; i++; }
+        else if (c === '"') inQuote = false;
+        else cur += c;
+      } else {
+        if (c === '"') inQuote = true;
+        else if (c === ',') { result.push(cur); cur = ''; }
+        else cur += c;
+      }
+    }
+    result.push(cur);
+    return result;
+  }
+
+  function findMemberIdByName(name) {
+    if (!name) return null;
+    var n = name.replace(/\s+/g, '').toLowerCase();
+    for (var id in MEMBERS) {
+      var mname = MEMBERS[id].name.replace(/\s+/g, '').toLowerCase();
+      if (mname === n || n.indexOf(mname) !== -1 || mname.indexOf(n) !== -1) {
+        return id;
+      }
+    }
+    return null;
+  }
+
+  // ─── 進捗計算 ───
+  function calcProgress(memberData) {
+    if (!memberData) return { pct: 0, total: FIELDS.length, filled: 0 };
+    var filled = 0;
+    FIELDS.forEach(function(f) {
+      var v = (memberData[f.key] || '').trim();
+      if (v && v.length > 0) filled++;
+    });
+    return {
+      pct: Math.round(filled / FIELDS.length * 100),
+      total: FIELDS.length,
+      filled: filled
+    };
+  }
+
+  function calcCritical(memberData) {
+    if (!memberData) return 0;
+    var criticalKeys = ['service', 'target', 'catch']; // 最低限これは欲しい
+    var got = 0;
+    criticalKeys.forEach(function(k) {
+      if ((memberData[k] || '').trim()) got++;
+    });
+    return got;
+  }
+
+  // ─── 描画 ───
+  function renderAll() {
+    renderSummary();
+    renderGrid();
+    document.getElementById('status').innerHTML = '';
+    if (state.lastUpdated) {
+      var statusEl = document.getElementById('status');
+      statusEl.innerHTML = '<div class="last-updated">最終更新: ' + formatTime(state.lastUpdated) + '</div>';
+    }
+  }
+
+  function formatTime(d) {
+    var pad = function(n) { return n < 10 ? '0'+n : n; };
+    return d.getMonth()+1 + '/' + d.getDate() + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+
+  function showMessage(type, html) {
+    document.getElementById('status').innerHTML = '<div class="msg ' + type + '">' + html + '</div>';
+  }
+
+  function renderSummary() {
+    var content = document.getElementById('content');
+    var ids = Object.keys(MEMBERS);
+    var submitted = 0, avgPct = 0, fullCount = 0;
+    ids.forEach(function(id) {
+      var p = calcProgress(state.data[id]);
+      if (p.filled > 0) submitted++;
+      if (p.pct >= 80) fullCount++;
+      avgPct += p.pct;
+    });
+    avgPct = Math.round(avgPct / ids.length);
+    var needPush = ids.length - fullCount;
+
+    var html = '';
+    html += '<div class="summary">';
+    html += '<div class="stat accent"><div class="stat-label">Total</div><div class="stat-value">' + ids.length + '</div><div class="stat-sub">参加者</div></div>';
+    html += '<div class="stat"><div class="stat-label">Submitted</div><div class="stat-value" style="color:var(--green);">' + submitted + '</div><div class="stat-sub">何か入力済み</div></div>';
+    html += '<div class="stat"><div class="stat-label">Avg.</div><div class="stat-value">' + avgPct + '%</div><div class="stat-sub">平均完成度</div></div>';
+    html += '<div class="stat"><div class="stat-label">Push</div><div class="stat-value" style="color:#ef4444;">' + needPush + '</div><div class="stat-sub">追加依頼したい</div></div>';
+    html += '</div>';
+
+    // グループタブ
+    html += '<div class="grp-tabs">';
+    html += '<button class="grp-tab ' + (state.group==='all'?'active':'') + '" onclick="switchGroup(\'all\')">ALL</button>';
+    html += '<button class="grp-tab ' + (state.group==='A'?'active':'') + '" onclick="switchGroup(\'A\')">Group A</button>';
+    html += '<button class="grp-tab ' + (state.group==='B'?'active':'') + '" onclick="switchGroup(\'B\')">Group B</button>';
+    html += '<button class="grp-tab ' + (state.group==='C'?'active':'') + '" onclick="switchGroup(\'C\')">Group C</button>';
+    html += '</div>';
+
+    html += '<div id="mbrGrid" class="mbr-grid"></div>';
+
+    content.innerHTML = html;
+  }
+
+  function switchGroup(g) {
+    state.group = g;
+    renderAll();
+  }
+
+  function renderGrid() {
+    var grid = document.getElementById('mbrGrid');
+    if (!grid) return;
+    var html = '';
+    Object.keys(MEMBERS).forEach(function(id) {
+      var m = MEMBERS[id];
+      if (state.group !== 'all' && m.group !== state.group) return;
+      var d = state.data[id];
+      var p = calcProgress(d);
+      var imgOk = localStorage.getItem('admin-img-' + id) === '1';
+      var pctCls = p.pct === 0 ? 'empty' : p.pct >= 80 ? 'full' : p.pct < 30 ? 'low' : '';
+      var roleCls = m.role === 'リーダー' ? 'leader' : m.role === 'サブリーダー' ? 'sub' : '';
+      html += '<div class="mbr-card" id="card-' + id + '" onclick="toggleCard(\'' + id + '\', event)">';
+      html += '<div class="mbr-card-head">';
+      html += '<span class="grp-pill ' + m.group + '">' + m.group + '</span>';
+      html += '<span class="mbr-name">' + m.name + '</span>';
+      html += '<span class="mbr-role ' + roleCls + '">' + m.role + '</span>';
+      html += '<div class="prog-wrap"><div class="prog-bar ' + pctCls + '" style="width:' + Math.max(p.pct, 1) + '%"></div></div>';
+      html += '<div class="prog-pct ' + pctCls + '">' + p.pct + '%</div>';
+      html += '<label class="img-chk" onclick="event.stopPropagation()">';
+      html += '<input type="checkbox" ' + (imgOk?'checked':'') + ' onchange="toggleImg(\'' + id + '\', this.checked)">';
+      html += '画像';
+      html += '</label>';
+      html += '<span class="expand-arrow">▼</span>';
+      html += '</div>';
+      html += '<div class="mbr-detail" id="detail-' + id + '"></div>';
+      html += '</div>';
+    });
+    grid.innerHTML = html;
+  }
+
+  function renderEmptyGrid() {
+    var content = document.getElementById('content');
+    var html = '<div class="grp-tabs">';
+    html += '<button class="grp-tab active">ALL</button>';
+    html += '<button class="grp-tab">Group A</button>';
+    html += '<button class="grp-tab">Group B</button>';
+    html += '<button class="grp-tab">Group C</button>';
+    html += '</div>';
+    html += '<div class="mbr-grid">';
+    Object.keys(MEMBERS).forEach(function(id) {
+      var m = MEMBERS[id];
+      var roleCls = m.role === 'リーダー' ? 'leader' : m.role === 'サブリーダー' ? 'sub' : '';
+      html += '<div class="mbr-card" style="opacity:0.6;">';
+      html += '<div class="mbr-card-head">';
+      html += '<span class="grp-pill ' + m.group + '">' + m.group + '</span>';
+      html += '<span class="mbr-name">' + m.name + '</span>';
+      html += '<span class="mbr-role ' + roleCls + '">' + m.role + '</span>';
+      html += '<div class="prog-wrap"><div class="prog-bar empty" style="width:3px"></div></div>';
+      html += '<div class="prog-pct empty">—</div>';
+      html += '<div></div>';
+      html += '<div></div>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+
+  function toggleCard(id, e) {
+    if (e && (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL')) return;
+    var card = document.getElementById('card-' + id);
+    var detail = document.getElementById('detail-' + id);
+    if (card.classList.contains('expanded')) {
+      card.classList.remove('expanded');
+    } else {
+      renderDetail(id);
+      card.classList.add('expanded');
+    }
+  }
+
+  function renderDetail(id) {
+    var d = state.data[id] || {};
+    var detail = document.getElementById('detail-' + id);
+    var cats = {};
+    FIELDS.forEach(function(f) {
+      if (!cats[f.cat]) cats[f.cat] = [];
+      cats[f.cat].push(f);
+    });
+    var html = '';
+    Object.keys(cats).forEach(function(catName) {
+      html += '<div class="field-sec">';
+      html += '<div class="field-sec-title">' + catName + '</div>';
+      cats[catName].forEach(function(f) {
+        var v = (d[f.key] || '').trim();
+        var cls = v ? 'filled' : 'empty';
+        var displayVal = v ? escapeHtml(v) : '';
+        html += '<div class="field-row">';
+        html += '<div class="field-label">' + f.label + (f.req ? ' <span style="color:var(--red);">*</span>' : '') + '</div>';
+        html += '<div class="field-value ' + cls + '">' + displayVal + '</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+    });
+    detail.innerHTML = html;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, function(c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function toggleImg(id, checked) {
+    localStorage.setItem('admin-img-' + id, checked ? '1' : '0');
+    renderSummary();
+    renderGrid();
+  }
+
+  // ─── 初期描画 ───
+  renderSummary();
+  if (state.csvUrl) {
+    reload();
+  } else {
+    renderEmptyGrid();
+    showMessage('info', '初めにスプレッドシートを公開CSVとして設定してください。「▼ CSVの公開方法」をクリックして手順を確認してください。');
+  }
+</script>
+
+</body>
+</html>
