@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>当日の流れ ─ AIワークショップ実践ステップ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF7F2;
+  --beige:#F3EDE2;
+  --beige-dark:#E8DFCF;
+  --ink:#2A2520;
+  --ink-light:#5C5148;
+  --orange:#C96A3A;
+  --orange-light:#E08A5E;
+  --gold:#C9A961;
+  --green:#3F7A4A;
+  --red:#B94A3A;
+  --border:#E0D8C8;
+  --white:#fff;
+  --shadow-sm:0 2px 8px rgba(60,40,20,.06);
+  --shadow-md:0 8px 24px rgba(60,40,20,.08);
+  --shadow-lg:0 16px 40px rgba(60,40,20,.12);
+  --font-ja:'Zen Maru Gothic','Noto Sans JP',sans-serif;
+  --font-en:'Inter',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-ja);background:var(--bg);color:var(--ink);line-height:1.9;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+.section{padding:48px 0}
+
+/* ─── Hero ─── */
+.hero{padding:80px 24px 56px;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse at 20% 40%, rgba(201,106,58,.08) 0%, transparent 55%),
+  radial-gradient(ellipse at 80% 60%, rgba(201,169,97,.1) 0%, transparent 55%);
+  z-index:0}
+.hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.hero-eyebrow{display:inline-block;padding:6px 18px;border:1px solid var(--orange);color:var(--orange);border-radius:999px;font-family:var(--font-en);font-size:11px;letter-spacing:3px;margin-bottom:20px;font-weight:700}
+.hero h1{font-size:clamp(28px,5vw,44px);font-weight:700;line-height:1.45;letter-spacing:-.01em;margin-bottom:20px}
+.hero h1 .accent{background:linear-gradient(120deg,var(--orange),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900}
+.hero p{color:var(--ink-light);font-size:15px;line-height:1.9}
+
+/* ─── Flow overview ─── */
+.flow-overview{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:28px;margin:32px 0;box-shadow:var(--shadow-sm)}
+.flow-overview h2{font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.flow-overview h2::before{content:'';width:4px;height:18px;background:var(--orange);border-radius:2px}
+.flow-list{display:grid;gap:12px}
+.flow-item{display:flex;gap:14px;align-items:flex-start;padding:14px 18px;background:var(--beige);border-radius:12px;transition:all .2s;cursor:pointer}
+.flow-item:hover{background:var(--beige-dark);transform:translateX(4px)}
+.flow-num{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--white);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-weight:700;font-size:14px;border:1.5px solid var(--orange)}
+.flow-text{flex:1}
+.flow-title{font-weight:700;font-size:14px;margin-bottom:2px}
+.flow-time{font-family:var(--font-en);font-size:11px;color:var(--ink-light);letter-spacing:.05em}
+
+/* ─── Step card ─── */
+.step{background:var(--white);border:1px solid var(--border);border-radius:20px;margin-bottom:32px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.step-hd{padding:32px;background:linear-gradient(135deg,var(--beige),var(--bg));border-bottom:1px solid var(--border);display:flex;gap:20px;align-items:flex-start}
+.step-badge{flex-shrink:0;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--gold));color:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-en);font-weight:700;line-height:1;box-shadow:var(--shadow-md)}
+.step-badge .lbl{font-size:9px;letter-spacing:2px;margin-bottom:2px;opacity:.9}
+.step-badge .no{font-size:22px}
+.step-hd-text{flex:1;min-width:0}
+.step-title{font-size:22px;font-weight:700;line-height:1.5;margin-bottom:8px}
+.step-lead{color:var(--ink-light);font-size:14px;line-height:1.8}
+.step-time{display:inline-block;margin-top:10px;padding:4px 12px;background:var(--white);border:1px solid var(--border);border-radius:999px;font-family:var(--font-en);font-size:11px;color:var(--ink-light);letter-spacing:.05em}
+
+.step-body{padding:32px}
+
+/* ─── Action box ─── */
+.action{background:var(--beige);border-radius:14px;padding:24px;margin:16px 0}
+.action h4{font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.action h4::before{content:'→';color:var(--orange);font-weight:900}
+.action p{font-size:13.5px;line-height:1.9}
+.action ol, .action ul{padding-left:20px;font-size:13.5px;line-height:1.9}
+.action li{margin-bottom:4px}
+
+.callout{padding:18px 22px;border-left:4px solid var(--orange);background:#FEF9F3;border-radius:0 10px 10px 0;margin:16px 0;font-size:13.5px;line-height:1.9}
+.callout strong{color:var(--orange)}
+.callout.blue{border-color:#3F7A4A;background:#F0F7F1}
+.callout.blue strong{color:var(--green)}
+
+/* ─── Prompt snippet ─── */
+.prompt{background:#1E1A16;color:#E8DFCF;border-radius:12px;padding:20px 24px;font-family:'Menlo','Consolas',monospace;font-size:13px;line-height:1.8;white-space:pre-wrap;word-wrap:break-word;position:relative;margin:14px 0}
+.prompt-copy{position:absolute;top:12px;right:12px;padding:5px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#E8DFCF;border-radius:6px;font-family:var(--font-en);font-size:11px;cursor:pointer;transition:all .2s}
+.prompt-copy:hover{background:rgba(255,255,255,.16)}
+.prompt-copy.done{background:#2F7A3F;border-color:#2F7A3F}
+.prompt-lbl{font-family:var(--font-en);font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:700;margin-bottom:6px;display:block}
+
+/* ─── Mockup: Claude Desktop window ─── */
+.claude-win{background:var(--white);border-radius:12px;box-shadow:var(--shadow-md);overflow:hidden;margin:16px 0;max-width:640px;margin-inline:auto}
+.win-top{background:#EEE;padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.win-dot{width:11px;height:11px;border-radius:50%}
+.win-dot.r{background:#FF5F57}
+.win-dot.y{background:#FEBC2E}
+.win-dot.g{background:#28C840}
+.win-tabs{display:flex;gap:4px;margin-left:20px}
+.win-tab{padding:5px 14px;border-radius:6px 6px 0 0;font-size:12px;color:var(--ink-light)}
+.win-tab.active{background:var(--white);color:var(--ink);font-weight:600;border:1px solid var(--border);border-bottom:none}
+.win-body{padding:20px;background:#FAFAFA;min-height:140px}
+.chat-msg{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 18px;font-size:13px;line-height:1.8;margin-bottom:10px}
+.chat-msg.user{background:var(--beige);margin-left:40px}
+.chat-msg.ai{margin-right:40px}
+
+/* ─── Compare (Before / After) ─── */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.compare-box{border:1px solid var(--border);border-radius:14px;padding:20px;background:var(--white)}
+.compare-label{display:inline-block;padding:3px 10px;border-radius:999px;font-family:var(--font-en);font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:12px}
+.compare-label.before{background:#FEE8E8;color:var(--red)}
+.compare-label.after{background:#E0F0D8;color:var(--green)}
+.compare-box h5{font-size:14px;margin-bottom:6px;font-weight:700}
+.compare-box p{font-size:12.5px;color:var(--ink-light);line-height:1.8}
+.compare-visual{height:80px;border-radius:8px;margin-bottom:10px}
+.compare-visual.bv1{background:linear-gradient(135deg,#F3EDE2,#E8DFCF)}
+.compare-visual.bv2{background:
+  linear-gradient(135deg,rgba(42,37,32,.4),rgba(201,106,58,.3)),
+  linear-gradient(45deg,#8B6B4F,#C9A961)}
+
+/* ─── Checklist ─── */
+.checklist{background:var(--white);border:1px dashed var(--orange);border-radius:14px;padding:24px;margin:20px 0}
+.checklist h4{font-size:14px;margin-bottom:12px;color:var(--orange);display:flex;align-items:center;gap:8px}
+.checklist h4::before{content:'✓';display:inline-flex;width:22px;height:22px;border-radius:50%;background:var(--orange);color:var(--white);align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.checklist label{display:flex;gap:10px;padding:10px 14px;background:var(--beige);border-radius:8px;margin-bottom:6px;cursor:pointer;font-size:13px;line-height:1.7;align-items:flex-start}
+.checklist input{margin-top:3px;flex-shrink:0}
+
+/* ─── Screenshot hint ─── */
+.shot{background:var(--ink);color:var(--beige);border-radius:14px;padding:22px 26px;margin:16px 0;display:flex;gap:16px;align-items:flex-start}
+.shot-ic{flex-shrink:0;width:44px;height:44px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.shot h4{color:var(--white);font-size:14px;margin-bottom:4px}
+.shot p{font-size:12.5px;line-height:1.8;color:#D8CEBE}
+.shot code{background:rgba(255,255,255,.12);padding:1px 6px;border-radius:4px;font-family:var(--font-en);font-size:11px}
+
+/* ─── CTA bottom ─── */
+.cta-end{background:linear-gradient(135deg,var(--orange),var(--gold));color:var(--white);border-radius:20px;padding:48px 32px;text-align:center;margin:48px 0}
+.cta-end h3{font-size:22px;margin-bottom:14px;line-height:1.5}
+.cta-end p{font-size:14px;line-height:1.9;margin-bottom:20px;opacity:.95}
+.cta-end a{display:inline-block;padding:12px 28px;background:var(--white);color:var(--orange);border-radius:999px;font-weight:700;font-size:13px;margin:4px;letter-spacing:.03em;transition:all .3s}
+.cta-end a:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.15)}
+
+footer{background:var(--ink);color:var(--beige);padding:40px 0;text-align:center;font-size:13px;margin-top:40px}
+
+@media (max-width:700px){
+  .step-hd{flex-direction:column;padding:24px;gap:14px}
+  .step-body{padding:24px}
+  .compare{grid-template-columns:1fr}
+  .claude-win{max-width:100%}
+  .win-tabs{margin-left:8px}
+  .chat-msg.user{margin-left:0}
+  .chat-msg.ai{margin-right:0}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <span class="hero-eyebrow">WORKSHOP DAY ─ STEP BY STEP</span>
+    <h1>AIワークショップ<br><span class="accent">当日の進め方</span></h1>
+    <p>
+      今日の目的は「Claudeのクセを知って、自分のLPに"らしさ"を出す」こと。<br>
+      5つのステップで、確実に仕上がりが変わります。
+    </p>
+  </div>
+</section>
+
+<!-- ── Overview ── -->
+<div class="container">
+  <div class="flow-overview">
+    <h2>全体の流れ（目安：60〜90分）</h2>
+    <div class="flow-list">
+      <a class="flow-item" href="#s1"><div class="flow-num">1</div><div class="flow-text"><div class="flow-title">まずそのままコピペで生成してみる</div><div class="flow-time">ABOUT 10 MIN</div></div></a>
+      <a class="flow-item" href="#s2"><div class="flow-num">2</div><div class="flow-text"><div class="flow-title">生成されたLPをスクショで記録する</div><div class="flow-time">ABOUT 5 MIN</div></div></a>
+      <a class="flow-item" href="#s3"><div class="flow-num">3</div><div class="flow-text"><div class="flow-title">"Claudeっぽさ"を自分のLPで確認する</div><div class="flow-time">ABOUT 10 MIN</div></div></a>
+      <a class="flow-item" href="#s4"><div class="flow-num">4</div><div class="flow-text"><div class="flow-title">画像と参考サイトを足してもう一度生成</div><div class="flow-time">ABOUT 20〜40 MIN</div></div></a>
+      <a class="flow-item" href="#s5"><div class="flow-num">5</div><div class="flow-text"><div class="flow-title">Before / After を比較して違いを体感</div><div class="flow-time">ABOUT 10 MIN</div></div></a>
+    </div>
+  </div>
+</div>
+
+<!-- ── STEP 1 ── -->
+<section class="section" id="s1">
+  <div class="container">
+    <article class="step">
+      <div class="step-hd">
+        <div class="step-badge"><span class="lbl">STEP</span><span class="no">01</span></div>
+        <div class="step-hd-text">
+          <h2 class="step-title">まず、そのままコピペで生成してみる</h2>
+          <p class="step-lead">最初は指示を盛らず、準備サイトで入力した「LPの内容」をそのまま渡すだけ。ここで出てくるものが、"Claudeデフォルト"の見本になります。</p>
+          <span class="step-time">ABOUT 10 MIN</span>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <div class="action">
+          <h4>やること</h4>
+          <ol>
+            <li>準備サイトの「内容を整理するページ」から、自分のLP内容をコピー</li>
+            <li>Claude Code を開いて、Chat側のチャット欄に貼り付け</li>
+            <li>「このLPを作って」とだけ伝える</li>
+            <li>生成が始まるのを待つ</li>
+          </ol>
+        </div>
+
+        <span class="prompt-lbl">最初のプロンプト例</span>
+        <div class="prompt"><button class="prompt-copy" onclick="copyP(this)">COPY</button>以下の内容でランディングページを作ってください。
+lp.html として保存してください。
+
+━━━━━━━━━━━━━━━━━━━━━━
+（ここに準備サイトでコピーしたテキストを貼り付け）
+━━━━━━━━━━━━━━━━━━━━━━</div>
+
+        <div class="callout">
+          <strong>ポイント：</strong>ここでは<strong>あえて何も追加しません</strong>。「参考サイトを見て」「こういう色で」などの指示を入れないことで、Claude の素のクセがそのまま出ます。
+        </div>
+
+        <div class="claude-win">
+          <div class="win-top">
+            <div class="win-dot r"></div><div class="win-dot y"></div><div class="win-dot g"></div>
+            <div class="win-tabs">
+              <div class="win-tab active">Chat</div>
+              <div class="win-tab">Code</div>
+            </div>
+          </div>
+          <div class="win-body">
+            <div class="chat-msg user">以下の内容でランディングページを作ってください。<br>lp.html として保存してください。<br>（内容）...</div>
+            <div class="chat-msg ai">承知しました。シンプルで上品な女性向けLPとして、ベージュ系の配色で作成します...</div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ── STEP 2 ── -->
+<section class="section" id="s2">
+  <div class="container">
+    <article class="step">
+      <div class="step-hd">
+        <div class="step-badge"><span class="lbl">STEP</span><span class="no">02</span></div>
+        <div class="step-hd-text">
+          <h2 class="step-title">生成されたLPをスクショで記録する</h2>
+          <p class="step-lead">「最初のLP」を残しておくことが超大事。あとで改善版と比較するとき、ここが基準になります。</p>
+          <span class="step-time">ABOUT 5 MIN</span>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <div class="action">
+          <h4>やること</h4>
+          <ol>
+            <li>生成された lp.html をブラウザで開く</li>
+            <li>ページ全体のスクショを撮る（GoFullPage などのChrome拡張がおすすめ）</li>
+            <li>ファイル名は <code style="background:var(--beige);padding:1px 6px;border-radius:4px">01_before.png</code> 等、"最初"と分かる名前に</li>
+          </ol>
+        </div>
+
+        <div class="shot">
+          <div class="shot-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M23 19V8a2 2 0 0 0-2-2h-3.17l-1.83-2H8L6.17 6H3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <div>
+            <h4>スクショの撮り方（おさらい）</h4>
+            <p>
+              <strong style="color:var(--orange)">Mac：</strong> <code>Shift + ⌘ + 4</code> で範囲選択 ／ <code>Shift + ⌘ + 3</code> で画面全体<br>
+              <strong style="color:var(--orange)">Win：</strong> <code>Win + Shift + S</code> で範囲選択 ／ <code>PrtSc</code> で画面全体<br>
+              <strong style="color:var(--orange)">ページ全体：</strong> Chrome拡張「<strong>GoFullPage</strong>」が一番ラク
+            </p>
+          </div>
+        </div>
+
+        <div class="callout blue">
+          <strong>メモ：</strong>撮ったスクショは、あとで Before/After として並べられるように、ちゃんと保存しておきましょう。Googleドライブの自分のフォルダに置くのがおすすめ。
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ── STEP 3 ── -->
+<section class="section" id="s3">
+  <div class="container">
+    <article class="step">
+      <div class="step-hd">
+        <div class="step-badge"><span class="lbl">STEP</span><span class="no">03</span></div>
+        <div class="step-hd-text">
+          <h2 class="step-title">"Claudeっぽさ"を自分のLPで探してみる</h2>
+          <p class="step-lead">デザイナーから見ると「AIくさいなぁ」と思われる定番ポイントがあります。まず自分のLPを客観的に見て、当てはまる箇所を探してみましょう。</p>
+          <span class="step-time">ABOUT 10 MIN</span>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <div class="callout">
+          <strong>デザイナーから見た「AIくさい」ポイント：</strong>
+          <ul style="margin-top:8px;padding-left:20px">
+            <li>ベージュ × くすみオレンジの配色</li>
+            <li>セクションの頭に英語ラベル（FOR WOMEN / OUR SERVICE など）</li>
+            <li>角丸12pxのカードが整然と並んでいる</li>
+            <li>Hero → 悩み → 解決 → 特徴 → 声 → CTA の"SaaS型"構成</li>
+            <li>和文 Zen Maru Gothic ／ 英文 Inter or Playfair</li>
+          </ul>
+        </div>
+
+        <div class="checklist">
+          <h4>自分のLPチェックリスト</h4>
+          <label><input type="checkbox">背景がベージュ or クリーム系</label>
+          <label><input type="checkbox">アクセント色がオレンジ / ゴールド系</label>
+          <label><input type="checkbox">セクション頭に小さい英語ラベルがある</label>
+          <label><input type="checkbox">カードが角丸8〜14pxで整然と並んでいる</label>
+          <label><input type="checkbox">構成が Hero → 悩み → 解決 → 特徴 → 声 → CTA</label>
+          <label><input type="checkbox">フォントが Zen Maru Gothic / Noto Sans JP</label>
+          <label><input type="checkbox">全体が左右対称・整列しすぎている</label>
+        </div>
+
+        <div class="callout">
+          <strong>3つ以上当てはまった人：</strong>典型Claudeです！ でも安心してください。これを"自分らしさ"に変えるのが、次のSTEP 4。
+        </div>
+
+        <div class="action">
+          <h4>講師ゆみ・ちかのからのコメントタイム</h4>
+          <p>「こういう箇所がAIくさい」「ここを変えるとあなたらしくなる」を、実際の画面を見ながら伝えてもらいます。参加者は自分のLPをシェアして、フィードバックをもらいましょう。</p>
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ── STEP 4 ── -->
+<section class="section" id="s4">
+  <div class="container">
+    <article class="step">
+      <div class="step-hd">
+        <div class="step-badge"><span class="lbl">STEP</span><span class="no">04</span></div>
+        <div class="step-hd-text">
+          <h2 class="step-title">画像と参考サイトを足してもう一度生成</h2>
+          <p class="step-lead">Claudeのクセを脱却するには、"情報を足す"のが一番効きます。言葉だけじゃなく、画像・参考URLを渡してください。精度が段違いに上がります。</p>
+          <span class="step-time">ABOUT 20〜40 MIN</span>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <div class="action">
+          <h4>足すといい情報（優先順）</h4>
+          <ol>
+            <li><strong>好きなLPのスクショ</strong>：真似したい雰囲気の画像を2〜3枚</li>
+            <li><strong>構成の参考サイト</strong>：並び順やセクション構成の参考</li>
+            <li><strong>デザインの参考サイト</strong>：色・フォント・装飾の参考</li>
+            <li><strong>具体的な色・フォントの指定</strong>：「ピンク系」「Playfair使わないで」など</li>
+            <li><strong>手書きラフやイメージ画像</strong>：自分のイメージに近い画像</li>
+          </ol>
+        </div>
+
+        <span class="prompt-lbl">改善プロンプト例</span>
+        <div class="prompt"><button class="prompt-copy" onclick="copyP(this)">COPY</button>先ほど作った lp.html を、以下を参考に作り直してください。
+
+【構成の参考】
+https://example-site1.com
+↑ このサイトのセクションの並び方を参考にして
+
+【デザインの参考】
+https://example-site2.com
+↑ このサイトの配色・余白感を参考にして
+
+【イメージ画像】
+（手書きラフや好きなLPのスクショをドラッグ&amp;ドロップ）
+
+【色の指定】
+・メインカラー：ピンク（#E87BA0）
+・アクセント：深いネイビー（#1A2438）
+・ベージュ系は使わないでください
+
+【雰囲気】
+上品というよりは、エネルギッシュで前向きな感じに。</div>
+
+        <div class="callout blue">
+          <strong>なぜこれで変わるのか：</strong>画像や具体URLを渡すと、Claudeは"学習データの多数派"ではなく"あなたが見せた参考"を優先して出してくれます。曖昧さが減ると、ベージュ×オレンジの呪縛から抜け出せます。
+        </div>
+
+        <div class="action">
+          <h4>やってみる手順</h4>
+          <ol>
+            <li>自分が「好きだな」と思うLPを <a href="https://sankou.com/" target="_blank" style="color:var(--orange);text-decoration:underline">SANKOU!</a> などで3つ探す</li>
+            <li>そのスクショを撮って保存</li>
+            <li>プロンプトに画像をドラッグ&amp;ドロップ（またはクリップボードから貼り付け）</li>
+            <li>上のプロンプト例に、自分の希望を入れて送信</li>
+            <li>再生成された lp.html を確認</li>
+          </ol>
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ── STEP 5 ── -->
+<section class="section" id="s5">
+  <div class="container">
+    <article class="step">
+      <div class="step-hd">
+        <div class="step-badge"><span class="lbl">STEP</span><span class="no">05</span></div>
+        <div class="step-hd-text">
+          <h2 class="step-title">Before / After を並べて違いを体感</h2>
+          <p class="step-lead">STEP 2 で撮ったスクショと、STEP 4 で生成したものを並べて見比べる時間。「ここまで変わるんだ」という驚きが、今日の一番のお土産。</p>
+          <span class="step-time">ABOUT 10 MIN</span>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <div class="compare">
+          <div class="compare-box">
+            <span class="compare-label before">BEFORE</span>
+            <div class="compare-visual bv1"></div>
+            <h5>コピペだけ ─ 典型Claude</h5>
+            <p>ベージュ背景、オレンジアクセント、整然としたカード。悪くはないけど、他社と似る。</p>
+          </div>
+          <div class="compare-box">
+            <span class="compare-label after">AFTER</span>
+            <div class="compare-visual bv2"></div>
+            <h5>情報を足した ─ 自分らしい</h5>
+            <p>画像と参考サイトを渡したことで、色・構成・雰囲気が"自分のブランド"に寄った。</p>
+          </div>
+        </div>
+
+        <div class="action">
+          <h4>シェアタイム</h4>
+          <ul>
+            <li>チームの人に Before/After を見せる</li>
+            <li>「どこが変わった？」を言葉にしてみる</li>
+            <li>改善ポイントや感想をフィードバック</li>
+          </ul>
+        </div>
+
+        <div class="callout">
+          <strong>さらに磨くには：</strong>「加工テクニック見本帳」で、パララックス・ホバー演出・グラデ文字などのコピペコードを試してみてください。30秒で追加できる演出が15種類あります。
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ── Ending ── -->
+<div class="container">
+  <div class="cta-end">
+    <h3>「情報を足す」が、AIを使いこなすコツ</h3>
+    <p>言葉だけで伝わらないものは、画像・URL・具体指定で補う。<br>これだけで、あなたのLPは"AIっぽい"から"自分らしい"に変わります。</p>
+    <a href="design-tips.html">加工テクニック見本帳へ</a>
+    <a href="preparation.html">準備サイトへ戻る</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px">AIワークショップ 当日の流れ ─ 2026</p>
+    <p>Claude Codeで叶える、デザイナー視点もりもりのAI制作</p>
+  </div>
+</footer>
+
+<script>
+function copyP(btn){
+  const code = btn.parentNode.innerText.replace(/^COPY\s*/,'');
+  navigator.clipboard.writeText(code).then(()=>{
+    const old = btn.textContent;
+    btn.textContent = 'COPIED';
+    btn.classList.add('done');
+    setTimeout(()=>{ btn.textContent = old; btn.classList.remove('done'); }, 1600);
+  });
+}
+</script>
+
+</body>
+</html>

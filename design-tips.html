@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>加工テクニック見本帳 ─ 初心者がちょっとで垢抜けるLP加工集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF7F2;
+  --beige:#F3EDE2;
+  --beige-dark:#E8DFCF;
+  --ink:#2A2520;
+  --ink-light:#5C5148;
+  --orange:#C96A3A;
+  --orange-light:#E08A5E;
+  --gold:#C9A961;
+  --border:#E0D8C8;
+  --white:#fff;
+  --shadow-sm:0 2px 8px rgba(60,40,20,.06);
+  --shadow-md:0 8px 24px rgba(60,40,20,.08);
+  --shadow-lg:0 16px 40px rgba(60,40,20,.12);
+  --font-ja:'Zen Maru Gothic','Noto Sans JP',sans-serif;
+  --font-en:'Inter',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-ja);background:var(--bg);color:var(--ink);line-height:1.9;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ═══ Layout ═══ */
+.container{max-width:980px;margin:0 auto;padding:0 24px}
+.section{padding:80px 0}
+.section-hd{text-align:center;margin-bottom:48px}
+.section-label{font-family:var(--font-en);font-size:12px;letter-spacing:4px;color:var(--orange);font-weight:700;margin-bottom:8px;text-transform:uppercase}
+.section-title{font-size:clamp(24px,4vw,32px);font-weight:700;letter-spacing:.02em;line-height:1.5}
+.section-desc{margin-top:12px;color:var(--ink-light);font-size:15px}
+
+/* ═══ Hero ═══ */
+.hero{position:relative;min-height:72vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:80px 24px}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse at 20% 30%, rgba(201,106,58,.08) 0%, transparent 50%),
+  radial-gradient(ellipse at 80% 70%, rgba(201,169,97,.1) 0%, transparent 50%),
+  var(--bg);
+  z-index:0}
+.hero-grain{position:absolute;inset:0;opacity:.35;mix-blend-mode:multiply;pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.6  0 0 0 0 0.5  0 0 0 0 0.4  0 0 0 .15 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");z-index:1}
+.hero-inner{position:relative;z-index:2;max-width:720px}
+.hero-eyebrow{display:inline-block;padding:6px 18px;border:1px solid var(--orange);color:var(--orange);border-radius:999px;font-size:12px;letter-spacing:3px;margin-bottom:24px;font-weight:700}
+.hero h1{font-size:clamp(32px,6vw,56px);font-weight:700;line-height:1.45;letter-spacing:-.01em;margin-bottom:24px}
+.hero h1 .accent{background:linear-gradient(120deg,var(--orange) 0%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900}
+.hero-sub{color:var(--ink-light);font-size:16px;line-height:1.9;margin-bottom:32px}
+.hero-meta{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;color:var(--ink-light);font-size:13px}
+.hero-meta span::before{content:'';display:inline-block;width:4px;height:4px;background:var(--orange);border-radius:50%;margin-right:8px;vertical-align:middle}
+
+/* ═══ Nav tabs ═══ */
+.lv-nav{position:sticky;top:0;background:rgba(250,247,242,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:50;padding:12px 0}
+.lv-nav-inner{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;overflow-x:auto}
+.lv-btn{padding:10px 18px;border:1px solid var(--border);background:var(--white);border-radius:999px;font-family:inherit;font-size:13px;color:var(--ink-light);cursor:pointer;transition:all .2s;font-weight:500;white-space:nowrap}
+.lv-btn:hover{border-color:var(--orange);color:var(--orange)}
+.lv-btn.active{background:var(--orange);color:var(--white);border-color:var(--orange)}
+
+/* ═══ Technique Card ═══ */
+.tech{background:var(--white);border:1px solid var(--border);border-radius:18px;margin-bottom:32px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .3s}
+.tech:hover{box-shadow:var(--shadow-md)}
+.tech-hd{padding:28px 32px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:16px}
+.tech-no{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--gold));color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-weight:700;font-size:16px}
+.tech-hd-text{flex:1;min-width:0}
+.tech-title{font-size:19px;font-weight:700;margin-bottom:6px;line-height:1.5}
+.tech-desc{color:var(--ink-light);font-size:14px;line-height:1.8}
+.tech-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.tag{padding:3px 10px;background:var(--beige);border-radius:999px;font-size:11px;color:var(--ink-light)}
+.tag.hot{background:#FEE8D9;color:var(--orange)}
+
+/* Demo area */
+.tech-demo{padding:32px;background:var(--beige);position:relative;min-height:200px}
+.demo-label{position:absolute;top:12px;left:16px;font-family:var(--font-en);font-size:10px;letter-spacing:2px;color:var(--ink-light);font-weight:600;text-transform:uppercase}
+
+/* Code area */
+.tech-code-wrap{border-top:1px solid var(--border)}
+.tech-code-tabs{display:flex;gap:0;background:var(--beige);padding:0 16px}
+.code-tab{padding:10px 16px;border:none;background:transparent;font-family:var(--font-en);font-size:12px;color:var(--ink-light);cursor:pointer;border-bottom:2px solid transparent;font-weight:600;letter-spacing:.05em}
+.code-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.tech-code{position:relative;background:#1E1A16;color:#E8DFCF;padding:20px 24px;font-family:'Menlo','Consolas',monospace;font-size:12.5px;line-height:1.75;overflow-x:auto;white-space:pre;display:none}
+.tech-code.active{display:block}
+.copy-btn{position:absolute;top:12px;right:12px;padding:6px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#E8DFCF;border-radius:6px;font-family:var(--font-en);font-size:11px;cursor:pointer;transition:all .2s}
+.copy-btn:hover{background:rgba(255,255,255,.16)}
+.copy-btn.done{background:#2F7A3F;border-color:#2F7A3F}
+.code-k{color:#E08A5E}
+.code-s{color:#A3B87A}
+.code-c{color:#7A6E62;font-style:italic}
+.code-p{color:#C9A961}
+
+/* ═══ DEMO 1: Overlay gradient bg image ═══ */
+.d-overlay{height:240px;border-radius:14px;background:
+  linear-gradient(135deg, rgba(42,37,32,.55) 0%, rgba(201,106,58,.35) 100%),
+  linear-gradient(45deg, #6A4F3A 0%, #B08660 50%, #E8DFCF 100%);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;letter-spacing:.05em}
+
+/* ═══ DEMO 2: Rounded + Padding ═══ */
+.d-round{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.d-round-box{background:var(--white);padding:40px 24px;border-radius:4px;text-align:center;box-shadow:var(--shadow-sm);font-size:13px}
+.d-round-box.good{border-radius:24px;padding:56px 24px;background:linear-gradient(180deg,#fff,#FEF9F3)}
+.d-round-box .bad-lbl{display:inline-block;padding:2px 8px;background:#FADADA;color:#B94A3A;border-radius:4px;font-size:10px;margin-bottom:8px}
+.d-round-box .good-lbl{display:inline-block;padding:2px 8px;background:#E0F0D8;color:#3F7A2F;border-radius:4px;font-size:10px;margin-bottom:8px}
+
+/* ═══ DEMO 3: Jump ratio typography ═══ */
+.d-jump{background:var(--white);padding:32px 24px;border-radius:14px;text-align:center}
+.d-jump-kicker{font-family:var(--font-en);font-size:11px;letter-spacing:4px;color:var(--orange);font-weight:700;margin-bottom:8px}
+.d-jump-h{font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.3;letter-spacing:-.01em;margin-bottom:12px}
+.d-jump-p{font-size:14px;color:var(--ink-light);line-height:1.8}
+
+/* ═══ DEMO 4: Text gradient ═══ */
+.d-txt-grad{background:var(--white);padding:48px 24px;border-radius:14px;text-align:center;font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.3;letter-spacing:-.01em}
+.d-txt-grad .g{background:linear-gradient(120deg,var(--orange) 0%,#D97FA3 50%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ═══ DEMO 5: Parallax ═══ */
+.d-parallax{height:260px;border-radius:14px;overflow:hidden;position:relative;
+  background:
+    linear-gradient(135deg, rgba(42,37,32,.3), rgba(201,106,58,.25)),
+    linear-gradient(180deg,#8B6B4F 0%,#C9A961 40%,#F3EDE2 100%);
+  background-attachment:fixed;background-size:cover;background-position:center;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px;letter-spacing:.05em;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+
+/* ═══ DEMO 6: Fade in on scroll ═══ */
+.d-fadein{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.d-fadein-item{background:var(--white);padding:32px 20px;border-radius:14px;text-align:center;box-shadow:var(--shadow-sm);opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1)}
+.d-fadein-item.in{opacity:1;transform:translateY(0)}
+.d-fadein-num{font-family:var(--font-en);font-size:28px;font-weight:900;color:var(--orange);margin-bottom:8px}
+.d-fadein-lbl{font-size:12px;color:var(--ink-light)}
+
+/* ═══ DEMO 7: Hover lift ═══ */
+.d-hover{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.d-hover-card{background:var(--white);padding:24px 16px;border-radius:14px;text-align:center;box-shadow:var(--shadow-sm);transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s;cursor:pointer}
+.d-hover-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.d-hover-ic{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--gold));margin:0 auto 10px}
+.d-hover-t{font-weight:700;font-size:13px}
+
+/* ═══ DEMO 8: Counter ═══ */
+.d-counter{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+.d-counter-num{font-family:var(--font-en);font-size:clamp(32px,6vw,56px);font-weight:900;background:linear-gradient(120deg,var(--orange),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.d-counter-lbl{font-size:12px;color:var(--ink-light);margin-top:4px}
+
+/* ═══ DEMO 9: Negative margin overlap ═══ */
+.d-overlap{position:relative;padding:24px 0}
+.d-overlap-img{width:60%;height:160px;background:linear-gradient(135deg,#B08660,#C9A961);border-radius:14px}
+.d-overlap-card{position:relative;width:60%;background:var(--white);padding:24px;border-radius:14px;box-shadow:var(--shadow-md);margin-top:-60px;margin-left:auto}
+.d-overlap-card h4{font-size:15px;margin-bottom:8px}
+.d-overlap-card p{font-size:12px;color:var(--ink-light);line-height:1.7}
+
+/* ═══ DEMO 10: Diagonal section ═══ */
+.d-diagonal{height:180px;position:relative;overflow:hidden;border-radius:14px;background:linear-gradient(135deg,var(--orange) 0%,var(--gold) 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;letter-spacing:.05em}
+.d-diagonal::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:40px;background:var(--beige);clip-path:polygon(0 100%, 100% 100%, 100% 20%, 0 80%)}
+
+/* ═══ DEMO 11: Marquee ═══ */
+.d-marquee{background:var(--ink);color:var(--beige);padding:18px 0;overflow:hidden;border-radius:14px;white-space:nowrap}
+.d-marquee-track{display:inline-flex;gap:48px;animation:marqueeScroll 18s linear infinite;font-family:var(--font-en);font-size:18px;font-weight:700;letter-spacing:.1em}
+.d-marquee-track span::before{content:'—';margin-right:48px;color:var(--orange)}
+@keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══ DEMO 12: Blob clip ═══ */
+.d-blob{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
+.d-blob-img{width:140px;height:140px;background:linear-gradient(135deg,var(--orange),var(--gold));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
+.d-blob-img.c{border-radius:50%}
+.d-blob-img.b1{border-radius:60% 40% 45% 55% / 50% 60% 40% 50%}
+.d-blob-img.b2{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%}
+
+/* ═══ DEMO 13: Noise texture ═══ */
+.d-noise{height:200px;border-radius:14px;background:linear-gradient(135deg,var(--orange),#E08A5E);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:700}
+.d-noise::before{content:'';position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+.d-noise span{position:relative;z-index:1;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+
+/* ═══ DEMO 14: Cursor follow glow ═══ */
+.d-cursor{height:220px;border-radius:14px;background:var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;cursor:none}
+.d-cursor-glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(201,106,58,.55) 0%,rgba(201,106,58,0) 70%);pointer-events:none;transform:translate(-50%,-50%);transition:opacity .3s;opacity:.9}
+.d-cursor span{position:relative;z-index:1;letter-spacing:.08em}
+
+/* ═══ DEMO 15: Sticky scroll reveal ═══ */
+.d-reveal{background:var(--white);border-radius:14px;padding:28px;text-align:center}
+.d-reveal-text{font-size:clamp(18px,3vw,28px);font-weight:700;line-height:1.7}
+.d-reveal-text span{color:var(--border);transition:color .3s}
+.d-reveal-text span.lit{color:var(--ink)}
+.d-reveal-text span.accent.lit{color:var(--orange)}
+
+/* ═══ Reference sites ═══ */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all .3s;display:block}
+.ref-card:hover{border-color:var(--orange);transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.ref-card-cat{font-family:var(--font-en);font-size:10px;letter-spacing:2px;color:var(--orange);font-weight:700;margin-bottom:8px;text-transform:uppercase}
+.ref-card-name{font-size:18px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.ref-card-name::after{content:'→';color:var(--orange);font-weight:400;transition:transform .3s}
+.ref-card:hover .ref-card-name::after{transform:translateX(4px)}
+.ref-card-desc{font-size:13px;color:var(--ink-light);line-height:1.8}
+.ref-card-url{font-family:var(--font-en);font-size:11px;color:var(--gold);margin-top:10px;letter-spacing:.05em}
+
+/* ═══ Section divider ═══ */
+.lv-head{text-align:center;padding:56px 0 16px}
+.lv-num{display:inline-block;font-family:var(--font-en);font-size:11px;letter-spacing:4px;color:var(--orange);font-weight:700;padding:4px 12px;border:1px solid var(--orange);border-radius:999px;margin-bottom:12px}
+.lv-name{font-size:clamp(22px,3.5vw,28px);font-weight:700}
+.lv-desc{color:var(--ink-light);font-size:14px;margin-top:8px}
+
+/* ═══ Footer ═══ */
+footer{background:var(--ink);color:var(--beige);padding:48px 0;margin-top:80px;text-align:center;font-size:13px}
+footer a{color:var(--orange)}
+
+/* ═══ Responsive ═══ */
+@media (max-width:700px){
+  .section{padding:56px 0}
+  .tech-hd{padding:20px 18px 16px;flex-direction:column;gap:12px}
+  .tech-demo{padding:20px;min-height:160px}
+  .tech-code{padding:16px;font-size:11.5px}
+  .d-round,.d-fadein,.d-hover,.d-counter{grid-template-columns:1fr;gap:10px}
+  .d-counter{grid-template-columns:repeat(3,1fr)}
+  .d-overlap-img,.d-overlap-card{width:100%}
+  .d-overlap-card{margin-top:-40px;margin-left:0;margin-right:0;width:90%;align-self:center;margin-inline:auto}
+  .d-parallax{background-attachment:scroll}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ Hero ══════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <span class="hero-eyebrow">DESIGN TIPS</span>
+    <h1>ちょっとの加工で、<br><span class="accent">ぐっと垢抜けるLP</span></h1>
+    <p class="hero-sub">
+      コピペできるCSS・JS加工テクニック15選。<br>
+      「もうちょっと凝りたい」が、今日から自分でできるように。
+    </p>
+    <div class="hero-meta">
+      <span>すべてコピペOK</span>
+      <span>実演で見て選べる</span>
+      <span>初心者向け解説付き</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ Nav ══════ -->
+<nav class="lv-nav">
+  <div class="container">
+    <div class="lv-nav-inner">
+      <button class="lv-btn active" onclick="scrollTo2('lv0')">STEP 0 ─ Claude特有のクセ</button>
+      <button class="lv-btn" onclick="scrollTo2('lv1')">レベル1 ─ 垢抜ける</button>
+      <button class="lv-btn" onclick="scrollTo2('lv2')">レベル2 ─ 動きをつける</button>
+      <button class="lv-btn" onclick="scrollTo2('lv3')">レベル3 ─ 構造で差をつける</button>
+      <button class="lv-btn" onclick="scrollTo2('ref')">参考サイト</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════ LEVEL 0: Claude's default ══════ -->
+<div class="lv-head" id="lv0">
+  <span class="lv-num">STEP 0</span>
+  <h2 class="lv-name">まず知っておく ─ Claudeのクセ</h2>
+  <p class="lv-desc">「AIっぽい」と感じる正体は、Claude が得意げに出してくる"定番パターン"</p>
+</div>
+
+<section class="section" style="padding-top:16px">
+  <div class="container">
+
+    <article class="tech" style="background:linear-gradient(135deg,#FEF9F3,#FAF0E3);border-color:var(--orange-light)">
+      <div class="tech-hd" style="border-bottom:1px dashed var(--border)">
+        <div class="tech-no" style="background:linear-gradient(135deg,var(--ink),#5C5148)">!</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">最初の"あるある"：Claude がデフォルトで出すデザイン</h3>
+          <p class="tech-desc">指示をざっくり投げると、Claude は必ずと言っていいほど同じ雰囲気に寄ります。<strong>「AIっぽい」「なんか既視感ある」</strong>の正体はこれ。<br>まず参加者自身に「あ、これ自分のLPも！」と気づいてもらうのが最初のステップです。</p>
+        </div>
+      </div>
+
+      <div class="tech-demo" style="background:transparent;padding:32px 32px 8px">
+        <span class="demo-label">THE CLAUDE DEFAULT</span>
+
+        <!-- カラー -->
+        <div style="background:var(--white);border-radius:14px;padding:24px;margin-bottom:16px">
+          <div style="font-family:var(--font-en);font-size:10px;letter-spacing:3px;color:var(--orange);font-weight:700;margin-bottom:14px">01 ─ COLOR</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">ベージュ × くすみオレンジ × ゴールド</div>
+          <div style="font-size:12px;color:var(--ink-light);margin-bottom:14px">原色・蛍光色・強いコントラストは"ほぼ"出さない。上品・落ち着き・大人の女性感。</div>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px">
+            <div style="aspect-ratio:1;background:#FAF7F2;border:1px solid var(--border);border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:var(--font-en);font-size:9px;color:var(--ink-light)">#FAF7F2</div>
+            <div style="aspect-ratio:1;background:#F3EDE2;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:var(--font-en);font-size:9px;color:var(--ink-light)">#F3EDE2</div>
+            <div style="aspect-ratio:1;background:#E8DFCF;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:var(--font-en);font-size:9px;color:var(--ink-light)">#E8DFCF</div>
+            <div style="aspect-ratio:1;background:#C9A961;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:var(--font-en);font-size:9px;color:#fff">#C9A961</div>
+            <div style="aspect-ratio:1;background:#C96A3A;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:var(--font-en);font-size:9px;color:#fff">#C96A3A</div>
+            <div style="aspect-ratio:1;background:#2A2520;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:var(--font-en);font-size:9px;color:#fff">#2A2520</div>
+          </div>
+        </div>
+
+        <!-- タイポ -->
+        <div style="background:var(--white);border-radius:14px;padding:24px;margin-bottom:16px">
+          <div style="font-family:var(--font-en);font-size:10px;letter-spacing:3px;color:var(--orange);font-weight:700;margin-bottom:14px">02 ─ TYPOGRAPHY</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">和文は Zen Maru Gothic、英文は Inter / Playfair / Cormorant</div>
+          <div style="font-size:12px;color:var(--ink-light);margin-bottom:14px">見出しserif + 本文sans-serifの組み合わせ。mediumウェイト中心で、極太や極細はあまり使わない。</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="border:1px solid var(--border);border-radius:10px;padding:16px">
+              <div style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;color:var(--orange);margin-bottom:6px">FOR WOMEN</div>
+              <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:18px;font-weight:700;line-height:1.5">女性のための<br>AI活用プログラム</div>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:10px;padding:16px">
+              <div style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:6px">PREMIUM SERVICE</div>
+              <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:18px;font-weight:700;line-height:1.5">上質な体験を、<br>あなたに。</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;padding:10px 14px;background:#FEF3EA;border-radius:8px;font-size:11.5px;color:var(--ink-light)">※ この見本帳のタイトルも、まさにこのパターンです</div>
+        </div>
+
+        <!-- レイアウト -->
+        <div style="background:var(--white);border-radius:14px;padding:24px;margin-bottom:16px">
+          <div style="font-family:var(--font-en);font-size:10px;letter-spacing:3px;color:var(--orange);font-weight:700;margin-bottom:14px">03 ─ LAYOUT &amp; DECORATION</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">角丸12px + 薄い1px枠線 + 小さい英語ラベル</div>
+          <div style="font-size:12px;color:var(--ink-light);margin-bottom:14px">余白たっぷり、グリッドきっちり、左右対称、細線SVGアイコン、ピル型バッジ。いわゆる"安全運転"。</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px">
+            <div style="border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
+              <div style="width:32px;height:32px;border:1.5px solid var(--orange);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C96A3A" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div style="font-size:11px;color:var(--ink-light)">角丸12px</div>
+              <div style="font-size:11px;color:var(--ink-light)">細線アイコン</div>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
+              <div style="display:inline-block;padding:2px 10px;background:var(--beige);border-radius:999px;font-size:10px;color:var(--ink-light);margin-bottom:8px">PILL BADGE</div>
+              <div style="font-size:11px;color:var(--ink-light)">ピル型バッジ</div>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
+              <div style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:3px;color:var(--orange);font-weight:700;margin-bottom:6px">EYEBROW</div>
+              <div style="font-size:11px;color:var(--ink-light)">セクション頭の<br>小さい英語ラベル</div>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center">
+              <div style="font-size:22px;font-weight:700;line-height:1;margin-bottom:4px">1px</div>
+              <div style="font-size:11px;color:var(--ink-light)">薄い境界線</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 構成パターン -->
+        <div style="background:var(--white);border-radius:14px;padding:24px;margin-bottom:16px">
+          <div style="font-family:var(--font-en);font-size:10px;letter-spacing:3px;color:var(--orange);font-weight:700;margin-bottom:14px">04 ─ COMPOSITION</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">「無難SaaS系LP」型の鉄板フロー</div>
+          <div style="font-size:12px;color:var(--ink-light);margin-bottom:16px">指示なしだと8割このパターン。悪くはないけど、他社と似通う。</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+            <div style="padding:8px 14px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600">Hero</div>
+            <span style="color:var(--orange);font-weight:700">→</span>
+            <div style="padding:8px 14px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600">悩み</div>
+            <span style="color:var(--orange);font-weight:700">→</span>
+            <div style="padding:8px 14px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600">解決</div>
+            <span style="color:var(--orange);font-weight:700">→</span>
+            <div style="padding:8px 14px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600">特徴</div>
+            <span style="color:var(--orange);font-weight:700">→</span>
+            <div style="padding:8px 14px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600">お客様の声</div>
+            <span style="color:var(--orange);font-weight:700">→</span>
+            <div style="padding:8px 14px;background:var(--orange);color:var(--white);border-radius:999px;font-size:12px;font-weight:600">CTA</div>
+          </div>
+        </div>
+
+        <!-- なぜこうなるか -->
+        <div style="background:var(--ink);color:var(--beige);border-radius:14px;padding:24px;margin-bottom:16px">
+          <div style="font-family:var(--font-en);font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:700;margin-bottom:14px">WHY ?</div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:10px;color:var(--white)">なぜ Claude はこう出すのか？</div>
+          <p style="font-size:13.5px;line-height:1.9;color:#D8CEBE">
+            学習データに「今っぽい無難なWebデザイン」が圧倒的に多いから。指示が曖昧だと、多数派の「可もなく不可もない上品系」に自然と寄る。<br>
+            → <strong style="color:var(--gold)">悪くはない。でも、同じ業界の他社と似る。</strong>
+          </p>
+        </div>
+
+        <!-- 脱却するには -->
+        <div style="border:2px dashed var(--orange);border-radius:14px;padding:24px;background:#FEF9F3">
+          <div style="font-family:var(--font-en);font-size:10px;letter-spacing:3px;color:var(--orange);font-weight:700;margin-bottom:14px">HOW TO BREAK OUT</div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:12px">「クセ」から抜け出す3つの方法</div>
+          <ol style="padding-left:20px;font-size:13px;line-height:2;color:var(--ink)">
+            <li><strong>画像を渡す</strong>：手書きラフ・好きなLPのスクショ → 真似してもらう</li>
+            <li><strong>参考サイトを分けて渡す</strong>：「構成はこっち」「デザインはこっち」と役割を明確に</li>
+            <li><strong>具体の色・フォントを指定する</strong>：「ベージュ禁止」「Playfair禁止」など制約も有効</li>
+          </ol>
+          <div style="margin-top:14px;padding:10px 14px;background:var(--white);border-radius:8px;font-size:12px;color:var(--ink-light)">
+            ↓ 下のレベル1〜3で、具体的な加工テクニックを紹介します
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- Self-check list -->
+    <article class="tech" style="background:var(--white)">
+      <div class="tech-hd">
+        <div class="tech-no" style="background:linear-gradient(135deg,var(--gold),var(--orange-light))">✓</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">セルフチェック ─ あなたのLPは"Claudeっぽい"？</h3>
+          <p class="tech-desc">今日生成したLPを見ながら、当てはまる数を数えてみてください。3つ以上あれば"典型Claude"です。</p>
+        </div>
+      </div>
+      <div class="tech-demo" style="background:var(--beige);padding:28px">
+        <div style="display:grid;gap:10px">
+          <label style="display:flex;gap:12px;padding:14px 18px;background:var(--white);border-radius:10px;cursor:pointer;align-items:flex-start">
+            <input type="checkbox" style="margin-top:3px;flex-shrink:0">
+            <div>
+              <div style="font-weight:600;font-size:14px">背景がベージュ or クリーム系</div>
+              <div style="font-size:12px;color:var(--ink-light);line-height:1.7">#FAF7F2 #F3EDE2 みたいな淡い色</div>
+            </div>
+          </label>
+          <label style="display:flex;gap:12px;padding:14px 18px;background:var(--white);border-radius:10px;cursor:pointer;align-items:flex-start">
+            <input type="checkbox" style="margin-top:3px;flex-shrink:0">
+            <div>
+              <div style="font-weight:600;font-size:14px">アクセント色がオレンジ系 or ゴールド系</div>
+              <div style="font-size:12px;color:var(--ink-light);line-height:1.7">テラコッタ、くすみオレンジ、ゴールド</div>
+            </div>
+          </label>
+          <label style="display:flex;gap:12px;padding:14px 18px;background:var(--white);border-radius:10px;cursor:pointer;align-items:flex-start">
+            <input type="checkbox" style="margin-top:3px;flex-shrink:0">
+            <div>
+              <div style="font-weight:600;font-size:14px">セクション頭に小さい英語ラベル（eyebrow）がある</div>
+              <div style="font-size:12px;color:var(--ink-light);line-height:1.7">FOR WOMEN / OUR SERVICE / CUSTOMER VOICE みたいなもの</div>
+            </div>
+          </label>
+          <label style="display:flex;gap:12px;padding:14px 18px;background:var(--white);border-radius:10px;cursor:pointer;align-items:flex-start">
+            <input type="checkbox" style="margin-top:3px;flex-shrink:0">
+            <div>
+              <div style="font-weight:600;font-size:14px">カードが角丸8〜14px + 薄い枠線</div>
+              <div style="font-size:12px;color:var(--ink-light);line-height:1.7">ピシッと整列した四角いカード群</div>
+            </div>
+          </label>
+          <label style="display:flex;gap:12px;padding:14px 18px;background:var(--white);border-radius:10px;cursor:pointer;align-items:flex-start">
+            <input type="checkbox" style="margin-top:3px;flex-shrink:0">
+            <div>
+              <div style="font-weight:600;font-size:14px">構成が「Hero → 悩み → 解決 → 特徴 → 声 → CTA」</div>
+              <div style="font-size:12px;color:var(--ink-light);line-height:1.7">順番がセオリー通りの"無難SaaS型"</div>
+            </div>
+          </label>
+          <label style="display:flex;gap:12px;padding:14px 18px;background:var(--white);border-radius:10px;cursor:pointer;align-items:flex-start">
+            <input type="checkbox" style="margin-top:3px;flex-shrink:0">
+            <div>
+              <div style="font-weight:600;font-size:14px">日本語フォントが Zen Maru Gothic or Noto Sans JP</div>
+              <div style="font-size:12px;color:var(--ink-light);line-height:1.7">Google Fontsで読み込んでいる</div>
+            </div>
+          </label>
+          <label style="display:flex;gap:12px;padding:14px 18px;background:var(--white);border-radius:10px;cursor:pointer;align-items:flex-start">
+            <input type="checkbox" style="margin-top:3px;flex-shrink:0">
+            <div>
+              <div style="font-weight:600;font-size:14px">全体が左右対称・整列・"お行儀よく"仕上がっている</div>
+              <div style="font-size:12px;color:var(--ink-light);line-height:1.7">ネガティブマージンで攻めた重なりなどはない</div>
+            </div>
+          </label>
+        </div>
+        <div style="margin-top:16px;padding:14px 18px;background:var(--white);border-radius:10px;font-size:13px;line-height:1.9;color:var(--ink)">
+          <strong style="color:var(--orange)">3つ以上当てはまった人</strong>：典型Claudeです。下のレベル1〜3から気になる加工を足して、<strong>"自分らしさ"</strong>を注入していきましょう。
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════ LEVEL 1 ══════ -->
+<div class="lv-head" id="lv1">
+  <span class="lv-num">LEVEL 1</span>
+  <h2 class="lv-name">コピペで垢抜ける</h2>
+  <p class="lv-desc">所要3分。知っているだけで印象が変わる基本の5つ</p>
+</div>
+
+<section class="section" style="padding-top:16px">
+  <div class="container">
+
+    <!-- 01 Overlay -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">01</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">写真にグラデーションを重ねて"プロっぽく"</h3>
+          <p class="tech-desc">写真をそのまま使うと素人っぽく見えがち。半透明のグラデを一枚かぶせるだけで、上に置いた文字も読みやすくなります。</p>
+          <div class="tech-tags"><span class="tag hot">最優先</span><span class="tag">CSS</span><span class="tag">写真</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div class="d-overlay">写真＋グラデで読みやすく</div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* 背景画像の上にグラデーションを重ねる */</span>
+.hero {
+  <span class="code-k">background</span>:
+    <span class="code-c">/* 上の層（暗くするオーバーレイ）*/</span>
+    <span class="code-k">linear-gradient</span>(<span class="code-p">135deg</span>,
+      <span class="code-s">rgba(0,0,0,.55)</span> <span class="code-p">0%</span>,
+      <span class="code-s">rgba(201,106,58,.35)</span> <span class="code-p">100%</span>),
+    <span class="code-c">/* 下の層（元の画像）*/</span>
+    <span class="code-k">url</span>(<span class="code-s">"hero.jpg"</span>) <span class="code-p">center</span>/<span class="code-p">cover</span>;
+}</pre>
+      </div>
+    </article>
+
+    <!-- 02 Rounded -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">02</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">角を大胆に丸くする</h3>
+          <p class="tech-desc">4pxの角丸より、16〜24pxの大きめの角丸のほうが今っぽく、やわらかい印象に。スマホUIの流行を取り入れましょう。</p>
+          <div class="tech-tags"><span class="tag">CSS</span><span class="tag">ボタン</span><span class="tag">カード</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">BEFORE / AFTER</span>
+        <div class="d-round">
+          <div class="d-round-box"><span class="bad-lbl">BEFORE</span><br>角丸4px・詰まった余白</div>
+          <div class="d-round-box good"><span class="good-lbl">AFTER</span><br>角丸24px・ゆとりある余白</div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.card {
+  <span class="code-k">border-radius</span>: <span class="code-p">24px</span>;   <span class="code-c">/* 4pxじゃなく24px */</span>
+  <span class="code-k">padding</span>: <span class="code-p">56px 32px</span>; <span class="code-c">/* 上下の余白をたっぷり */</span>
+  <span class="code-k">background</span>: <span class="code-k">linear-gradient</span>(<span class="code-p">180deg</span>, <span class="code-s">#fff</span>, <span class="code-s">#FEF9F3</span>);
+  <span class="code-k">box-shadow</span>: <span class="code-p">0 8px 24px</span> <span class="code-s">rgba(60,40,20,.08)</span>;
+}
+
+<span class="code-c">/* ボタンは角丸999pxでピル型（丸み最大）にすると今っぽい */</span>
+.btn {
+  <span class="code-k">border-radius</span>: <span class="code-p">999px</span>;
+  <span class="code-k">padding</span>: <span class="code-p">14px 32px</span>;
+}</pre>
+      </div>
+    </article>
+
+    <!-- 03 Typography jump -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">03</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">文字サイズのジャンプ率を大きく</h3>
+          <p class="tech-desc">見出しと本文のサイズ差が小さいとメリハリがなくて間延びします。見出しを思い切って大きく、本文は普通に。</p>
+          <div class="tech-tags"><span class="tag hot">効果大</span><span class="tag">タイポグラフィ</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div class="d-jump">
+          <div class="d-jump-kicker">FOR DESIGNERS</div>
+          <div class="d-jump-h">AIで、デザイナーの<br>仕事は倍速になる。</div>
+          <div class="d-jump-p">Claude Codeを使えば、デザインの相談から実装まで、AIと会話するだけ。本文は15〜16pxで落ち着かせるのがバランス良し。</div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* clamp(最小, 推奨, 最大) でレスポンシブも同時に */</span>
+.kicker   { <span class="code-k">font-size</span>: <span class="code-p">11px</span>; <span class="code-k">letter-spacing</span>: <span class="code-p">4px</span>; }
+.heading  { <span class="code-k">font-size</span>: <span class="code-k">clamp</span>(<span class="code-p">28px</span>, <span class="code-p">5vw</span>, <span class="code-p">44px</span>);
+            <span class="code-k">font-weight</span>: <span class="code-p">900</span>;
+            <span class="code-k">line-height</span>: <span class="code-p">1.3</span>; }
+.body     { <span class="code-k">font-size</span>: <span class="code-p">15px</span>;
+            <span class="code-k">line-height</span>: <span class="code-p">1.9</span>;
+            <span class="code-k">color</span>: <span class="code-s">#5C5148</span>; }</pre>
+      </div>
+    </article>
+
+    <!-- 04 Text gradient -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">04</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">文字にグラデーションを塗る</h3>
+          <p class="tech-desc">キャッチの一部だけグラデーションにすると、一気にモダンに。使いすぎ注意、1ページに1〜2箇所だけ。</p>
+          <div class="tech-tags"><span class="tag">CSS</span><span class="tag">キャッチ</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div class="d-txt-grad">未来を、<span class="g">デザインする。</span></div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.gradient-text {
+  <span class="code-k">background</span>: <span class="code-k">linear-gradient</span>(<span class="code-p">120deg</span>,
+    <span class="code-s">#C96A3A</span> <span class="code-p">0%</span>,
+    <span class="code-s">#D97FA3</span> <span class="code-p">50%</span>,
+    <span class="code-s">#C9A961</span> <span class="code-p">100%</span>);
+  <span class="code-k">-webkit-background-clip</span>: <span class="code-p">text</span>;
+  <span class="code-k">background-clip</span>: <span class="code-p">text</span>;
+  <span class="code-k">color</span>: <span class="code-p">transparent</span>;
+  <span class="code-k">font-weight</span>: <span class="code-p">900</span>; <span class="code-c">/* 太字推奨 */</span>
+}</pre>
+      </div>
+    </article>
+
+    <!-- 05 Fonts -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">05</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">和欧混植（わおうこんしょく）で一気にプロっぽく</h3>
+          <p class="tech-desc">日本語と英語で別々のフォントを指定するテク。英語フォント「Inter」「Playfair」と日本語「Zen Maru」「Noto Sans JP」の組み合わせがおすすめ。</p>
+          <div class="tech-tags"><span class="tag hot">即効</span><span class="tag">フォント</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div style="background:var(--white);padding:32px;border-radius:14px">
+          <div style="font-family:'Inter',sans-serif;font-size:13px;letter-spacing:3px;color:var(--orange);font-weight:700;margin-bottom:8px">FOR WOMEN ENTREPRENEURS</div>
+          <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:24px;font-weight:700;line-height:1.5">女性起業家のための<br>AI活用プログラム <span style="font-family:'Inter',sans-serif;color:var(--orange)">2026</span></div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* Google Fontsで両方読み込む */</span>
+<span class="code-c">/* &lt;link href="...family=Zen+Maru+Gothic&amp;family=Inter"&gt; */</span>
+
+body {
+  <span class="code-c">/* 日本語 → 英語の順。英語部分だけInterが使われる */</span>
+  <span class="code-k">font-family</span>: <span class="code-s">'Zen Maru Gothic'</span>, <span class="code-s">'Noto Sans JP'</span>, <span class="code-p">sans-serif</span>;
+}
+
+.en-text { <span class="code-c">/* 英語だけ別フォントを明示 */</span>
+  <span class="code-k">font-family</span>: <span class="code-s">'Inter'</span>, <span class="code-p">sans-serif</span>;
+  <span class="code-k">letter-spacing</span>: <span class="code-p">.05em</span>; <span class="code-c">/* 英語は広めに */</span>
+}</pre>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════ LEVEL 2 ══════ -->
+<div class="lv-head" id="lv2">
+  <span class="lv-num">LEVEL 2</span>
+  <h2 class="lv-name">動きをつける</h2>
+  <p class="lv-desc">所要10分。ページに"動き"が入ると一気に見られる時間が伸びる</p>
+</div>
+
+<section class="section" style="padding-top:16px">
+  <div class="container">
+
+    <!-- 06 Parallax -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">06</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">パララックス（スクロールで背景が動く）</h3>
+          <p class="tech-desc">一番手軽なのは <code style="background:var(--beige);padding:1px 6px;border-radius:4px;font-family:var(--font-en)">background-attachment: fixed</code> の一行。スマホでは効かないので注意。</p>
+          <div class="tech-tags"><span class="tag">CSS一行</span><span class="tag">パララックス</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO ─ 下にスクロールしてみて</span>
+        <div class="d-parallax">PARALLAX ─ 背景が遅れて動く</div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.parallax {
+  <span class="code-k">background-image</span>: <span class="code-k">url</span>(<span class="code-s">"hero.jpg"</span>);
+  <span class="code-k">background-attachment</span>: <span class="code-p">fixed</span>; <span class="code-c">/* ← ここがポイント */</span>
+  <span class="code-k">background-size</span>: <span class="code-p">cover</span>;
+  <span class="code-k">background-position</span>: <span class="code-p">center</span>;
+  <span class="code-k">min-height</span>: <span class="code-p">60vh</span>;
+}
+
+<span class="code-c">/* スマホではパララックスを無効化（重くなるため）*/</span>
+<span class="code-k">@media</span> (max-width: <span class="code-p">700px</span>) {
+  .parallax { <span class="code-k">background-attachment</span>: <span class="code-p">scroll</span>; }
+}</pre>
+      </div>
+    </article>
+
+    <!-- 07 Fade in -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">07</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">スクロールでふわっと表示</h3>
+          <p class="tech-desc">「見えたときに動く」のが今どき。IntersectionObserverっていうブラウザ標準機能で実現。ライブラリ不要。</p>
+          <div class="tech-tags"><span class="tag hot">効果大</span><span class="tag">JS</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO ─ 見えたときにふわっと上がる</span>
+        <div class="d-fadein">
+          <div class="d-fadein-item"><div class="d-fadein-num">1</div><div class="d-fadein-lbl">コピーする</div></div>
+          <div class="d-fadein-item"><div class="d-fadein-num">2</div><div class="d-fadein-lbl">貼り付ける</div></div>
+          <div class="d-fadein-item"><div class="d-fadein-num">3</div><div class="d-fadein-lbl">完成する</div></div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS + JS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* ─── CSS ─── */</span>
+.fade-item {
+  <span class="code-k">opacity</span>: <span class="code-p">0</span>;
+  <span class="code-k">transform</span>: <span class="code-k">translateY</span>(<span class="code-p">24px</span>);
+  <span class="code-k">transition</span>: <span class="code-p">opacity .8s</span>, <span class="code-p">transform .8s cubic-bezier(.2,.7,.3,1)</span>;
+}
+.fade-item.in { <span class="code-k">opacity</span>: <span class="code-p">1</span>; <span class="code-k">transform</span>: <span class="code-k">translateY</span>(<span class="code-p">0</span>); }
+
+<span class="code-c">/* ─── JS ─── */</span>
+<span class="code-k">const</span> io = <span class="code-k">new</span> IntersectionObserver(entries =&gt; {
+  entries.forEach(e =&gt; e.isIntersecting &amp;&amp; e.target.classList.add(<span class="code-s">'in'</span>));
+}, { threshold: <span class="code-p">0.2</span> });
+
+document.querySelectorAll(<span class="code-s">'.fade-item'</span>).forEach(el =&gt; io.observe(el));</pre>
+      </div>
+    </article>
+
+    <!-- 08 Hover lift -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">08</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">ホバーで浮かせる</h3>
+          <p class="tech-desc">カーソルを乗せたときに少し上に浮く＋影が濃くなる。触れると反応するだけで「クリックできる」が伝わる。</p>
+          <div class="tech-tags"><span class="tag">CSS</span><span class="tag">ホバー</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO ─ カーソルを乗せてみて</span>
+        <div class="d-hover">
+          <div class="d-hover-card"><div class="d-hover-ic"></div><div class="d-hover-t">プラン A</div></div>
+          <div class="d-hover-card"><div class="d-hover-ic"></div><div class="d-hover-t">プラン B</div></div>
+          <div class="d-hover-card"><div class="d-hover-ic"></div><div class="d-hover-t">プラン C</div></div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.card {
+  <span class="code-k">transition</span>: <span class="code-p">transform .3s cubic-bezier(.2,.7,.3,1)</span>,
+              <span class="code-p">box-shadow .3s</span>;
+  <span class="code-k">cursor</span>: <span class="code-p">pointer</span>;
+}
+.card<span class="code-k">:hover</span> {
+  <span class="code-k">transform</span>: <span class="code-k">translateY</span>(<span class="code-p">-6px</span>);
+  <span class="code-k">box-shadow</span>: <span class="code-p">0 16px 40px</span> <span class="code-s">rgba(0,0,0,.12)</span>;
+}</pre>
+      </div>
+    </article>
+
+    <!-- 09 Counter -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">09</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">数字がカウントアップする</h3>
+          <p class="tech-desc">「実績○○件」「満足度○○％」などの数字が0から増えていく演出。説得力が一気に増します。</p>
+          <div class="tech-tags"><span class="tag">JS</span><span class="tag">実績</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO ─ このセクションに近づくと動く</span>
+        <div class="d-counter">
+          <div><div class="d-counter-num" data-target="1200">0</div><div class="d-counter-lbl">制作実績</div></div>
+          <div><div class="d-counter-num" data-target="98">0</div><div class="d-counter-lbl">満足度 %</div></div>
+          <div><div class="d-counter-num" data-target="7">0</div><div class="d-counter-lbl">年の経験</div></div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">HTML + JS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">&lt;!-- HTML --&gt;</span>
+<span class="code-k">&lt;span</span> <span class="code-p">class</span>=<span class="code-s">"counter"</span> <span class="code-p">data-target</span>=<span class="code-s">"1200"</span><span class="code-k">&gt;</span>0<span class="code-k">&lt;/span&gt;</span>
+
+<span class="code-c">/* JS */</span>
+<span class="code-k">function</span> countUp(el, target, duration = <span class="code-p">1600</span>) {
+  <span class="code-k">const</span> start = performance.now();
+  <span class="code-k">const</span> step = now =&gt; {
+    <span class="code-k">const</span> p = Math.min((now - start) / duration, <span class="code-p">1</span>);
+    el.textContent = Math.floor(target * (<span class="code-p">1</span> - (<span class="code-p">1</span> - p) ** <span class="code-p">3</span>));
+    <span class="code-k">if</span> (p &lt; <span class="code-p">1</span>) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+<span class="code-k">const</span> io = <span class="code-k">new</span> IntersectionObserver(es =&gt; {
+  es.forEach(e =&gt; {
+    <span class="code-k">if</span> (e.isIntersecting) {
+      countUp(e.target, +e.target.dataset.target);
+      io.unobserve(e.target);
+    }
+  });
+});
+document.querySelectorAll(<span class="code-s">'.counter'</span>).forEach(el =&gt; io.observe(el));</pre>
+      </div>
+    </article>
+
+    <!-- 10 Cursor glow -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">10</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">カーソルに光がついてくる</h3>
+          <p class="tech-desc">暗めの背景と相性抜群。近未来的・高級感のある演出。ヒーローやCTAセクションに効きます。</p>
+          <div class="tech-tags"><span class="tag">JS</span><span class="tag">高級感</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO ─ エリア内でカーソルを動かしてみて</span>
+        <div class="d-cursor" id="cursorDemo">
+          <div class="d-cursor-glow" id="cursorGlow"></div>
+          <span>FOLLOW THE LIGHT</span>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS + JS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* ─── CSS ─── */</span>
+.cursor-area { <span class="code-k">position</span>: <span class="code-p">relative</span>; <span class="code-k">overflow</span>: <span class="code-p">hidden</span>; <span class="code-k">background</span>: <span class="code-s">#1E1A16</span>; }
+.cursor-glow {
+  <span class="code-k">position</span>: <span class="code-p">absolute</span>; <span class="code-k">width</span>: <span class="code-p">260px</span>; <span class="code-k">height</span>: <span class="code-p">260px</span>;
+  <span class="code-k">border-radius</span>: <span class="code-p">50%</span>; <span class="code-k">pointer-events</span>: <span class="code-p">none</span>;
+  <span class="code-k">transform</span>: <span class="code-k">translate</span>(<span class="code-p">-50%,-50%</span>);
+  <span class="code-k">background</span>: <span class="code-k">radial-gradient</span>(<span class="code-k">circle</span>,
+    <span class="code-s">rgba(201,106,58,.55)</span> <span class="code-p">0%</span>, <span class="code-s">transparent</span> <span class="code-p">70%</span>);
+}
+
+<span class="code-c">/* ─── JS ─── */</span>
+<span class="code-k">const</span> area = document.querySelector(<span class="code-s">'.cursor-area'</span>);
+<span class="code-k">const</span> glow = document.querySelector(<span class="code-s">'.cursor-glow'</span>);
+area.addEventListener(<span class="code-s">'mousemove'</span>, e =&gt; {
+  <span class="code-k">const</span> r = area.getBoundingClientRect();
+  glow.style.left = (e.clientX - r.left) + <span class="code-s">'px'</span>;
+  glow.style.top  = (e.clientY - r.top) + <span class="code-s">'px'</span>;
+});</pre>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════ LEVEL 3 ══════ -->
+<div class="lv-head" id="lv3">
+  <span class="lv-num">LEVEL 3</span>
+  <h2 class="lv-name">構造で差をつける</h2>
+  <p class="lv-desc">所要30分。「他と違う」を生む、ちょっと攻めた構造テクニック</p>
+</div>
+
+<section class="section" style="padding-top:16px">
+  <div class="container">
+
+    <!-- 11 Overlap -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">11</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">写真と文字を重ねる（雑誌風レイアウト）</h3>
+          <p class="tech-desc">画像とカードを少し重ねるだけで、一気に雑誌風に。`margin-top: -60px` みたいなネガティブマージンがコツ。</p>
+          <div class="tech-tags"><span class="tag">CSS</span><span class="tag">雑誌風</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div class="d-overlap">
+          <div class="d-overlap-img"></div>
+          <div class="d-overlap-card">
+            <h4>ブランドと出会う、新しい体験</h4>
+            <p>写真とカードが重なることで、静止していたページに奥行きが生まれます。</p>
+          </div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.overlap-wrap { <span class="code-k">position</span>: <span class="code-p">relative</span>; }
+.overlap-img  { <span class="code-k">width</span>: <span class="code-p">60%</span>; <span class="code-k">height</span>: <span class="code-p">320px</span>; }
+.overlap-card {
+  <span class="code-k">position</span>: <span class="code-p">relative</span>;
+  <span class="code-k">width</span>: <span class="code-p">60%</span>;
+  <span class="code-k">background</span>: <span class="code-s">#fff</span>;
+  <span class="code-k">padding</span>: <span class="code-p">40px</span>;
+  <span class="code-k">border-radius</span>: <span class="code-p">14px</span>;
+  <span class="code-k">box-shadow</span>: <span class="code-p">0 16px 40px</span> <span class="code-s">rgba(0,0,0,.1)</span>;
+  <span class="code-k">margin-top</span>: <span class="code-p">-80px</span>; <span class="code-c">/* ← マイナスで重ねる */</span>
+  <span class="code-k">margin-left</span>: <span class="code-p">auto</span>;  <span class="code-c">/* 右に寄せる */</span>
+}</pre>
+      </div>
+    </article>
+
+    <!-- 12 Diagonal -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">12</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">セクションの境目を斜めにカット</h3>
+          <p class="tech-desc">セクション間を水平線でなく斜めにするだけでリズムが出ます。clip-path を使えば自由な形に切れます。</p>
+          <div class="tech-tags"><span class="tag">CSS</span><span class="tag">クリップパス</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div class="d-diagonal">斜めカットでリズムをつける</div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.section-colored {
+  <span class="code-k">position</span>: <span class="code-p">relative</span>;
+  <span class="code-k">background</span>: <span class="code-k">linear-gradient</span>(<span class="code-p">135deg</span>, <span class="code-s">#C96A3A</span>, <span class="code-s">#C9A961</span>);
+  <span class="code-k">padding-bottom</span>: <span class="code-p">100px</span>; <span class="code-c">/* 斜めの分だけ余裕を */</span>
+}
+.section-colored<span class="code-k">::after</span> {
+  <span class="code-k">content</span>: <span class="code-s">''</span>;
+  <span class="code-k">position</span>: <span class="code-p">absolute</span>; <span class="code-k">bottom</span>: <span class="code-p">-1px</span>; <span class="code-k">left</span>: <span class="code-p">0</span>; <span class="code-k">right</span>: <span class="code-p">0</span>;
+  <span class="code-k">height</span>: <span class="code-p">80px</span>;
+  <span class="code-k">background</span>: <span class="code-s">#FAF7F2</span>;
+  <span class="code-k">clip-path</span>: <span class="code-k">polygon</span>(<span class="code-p">0 100%, 100% 100%, 100% 20%, 0 80%</span>);
+}</pre>
+      </div>
+    </article>
+
+    <!-- 13 Marquee -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">13</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">マーキー（流れる文字帯）</h3>
+          <p class="tech-desc">キーワードが横に流れ続ける演出。セクションの区切りに入れると目を引く。animation だけで実現できます。</p>
+          <div class="tech-tags"><span class="tag hot">流行</span><span class="tag">CSS</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div class="d-marquee">
+          <div class="d-marquee-track">
+            <span>DESIGN</span><span>CREATIVITY</span><span>AI</span><span>WORKSHOP</span>
+            <span>DESIGN</span><span>CREATIVITY</span><span>AI</span><span>WORKSHOP</span>
+          </div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">HTML + CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">&lt;!-- 同じ内容を2回並べるのがコツ（切れ目なくループ）--&gt;</span>
+<span class="code-k">&lt;div</span> <span class="code-p">class</span>=<span class="code-s">"marquee"</span><span class="code-k">&gt;</span>
+  <span class="code-k">&lt;div</span> <span class="code-p">class</span>=<span class="code-s">"track"</span><span class="code-k">&gt;</span>
+    <span class="code-k">&lt;span&gt;</span>DESIGN<span class="code-k">&lt;/span&gt;&lt;span&gt;</span>AI<span class="code-k">&lt;/span&gt;</span>
+    <span class="code-k">&lt;span&gt;</span>DESIGN<span class="code-k">&lt;/span&gt;&lt;span&gt;</span>AI<span class="code-k">&lt;/span&gt;</span>
+  <span class="code-k">&lt;/div&gt;&lt;/div&gt;</span>
+
+.marquee { <span class="code-k">overflow</span>: <span class="code-p">hidden</span>; <span class="code-k">white-space</span>: <span class="code-p">nowrap</span>; }
+.track   { <span class="code-k">display</span>: <span class="code-k">inline-flex</span>; <span class="code-k">gap</span>: <span class="code-p">48px</span>;
+           <span class="code-k">animation</span>: <span class="code-p">scroll 18s linear infinite</span>; }
+
+<span class="code-k">@keyframes</span> scroll {
+  <span class="code-k">from</span> { <span class="code-k">transform</span>: <span class="code-k">translateX</span>(<span class="code-p">0</span>); }
+  <span class="code-k">to</span>   { <span class="code-k">transform</span>: <span class="code-k">translateX</span>(<span class="code-p">-50%</span>); }
+}</pre>
+      </div>
+    </article>
+
+    <!-- 14 Blob -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">14</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">画像を有機的な形に切り抜く</h3>
+          <p class="tech-desc">四角や円だけじゃなく、ぐにゃっとした「ブロブ型」に切り抜くと一気におしゃれに。プロフィール写真におすすめ。</p>
+          <div class="tech-tags"><span class="tag">CSS</span><span class="tag">プロフィール</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div class="d-blob">
+          <div class="d-blob-img c">円</div>
+          <div class="d-blob-img b1">ブロブ1</div>
+          <div class="d-blob-img b2">ブロブ2</div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* border-radius を「8つの値」で指定すると自由な形に */</span>
+<span class="code-c">/* 水平 水平 水平 水平 / 垂直 垂直 垂直 垂直 */</span>
+
+.blob-1 {
+  <span class="code-k">border-radius</span>: <span class="code-p">60% 40% 45% 55% / 50% 60% 40% 50%</span>;
+}
+.blob-2 {
+  <span class="code-k">border-radius</span>: <span class="code-p">38% 62% 63% 37% / 41% 44% 56% 59%</span>;
+}
+
+<span class="code-c">/* ジェネレーター:「blobmaker」で検索するとGUIで作れる */</span></pre>
+      </div>
+    </article>
+
+    <!-- 15 Noise -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">15</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">ノイズテクスチャで質感UP</h3>
+          <p class="tech-desc">ベタ塗りの背景に、ザラッとしたノイズを重ねるだけで、紙っぽい・映画っぽい質感に。SVGで画像ファイル不要。</p>
+          <div class="tech-tags"><span class="tag hot">プロ御用達</span><span class="tag">SVG</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO</span>
+        <div class="d-noise"><span>NOISE TEXTURE</span></div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.noise-bg {
+  <span class="code-k">position</span>: <span class="code-p">relative</span>;
+  <span class="code-k">background</span>: <span class="code-k">linear-gradient</span>(<span class="code-p">135deg</span>, <span class="code-s">#C96A3A</span>, <span class="code-s">#E08A5E</span>);
+  <span class="code-k">overflow</span>: <span class="code-p">hidden</span>;
+}
+.noise-bg<span class="code-k">::before</span> {
+  <span class="code-k">content</span>: <span class="code-s">''</span>;
+  <span class="code-k">position</span>: <span class="code-p">absolute</span>; <span class="code-k">inset</span>: <span class="code-p">0</span>;
+  <span class="code-k">opacity</span>: <span class="code-p">.35</span>;
+  <span class="code-k">mix-blend-mode</span>: <span class="code-p">overlay</span>;
+  <span class="code-k">background-image</span>: <span class="code-k">url</span>(<span class="code-s">"data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85'/&gt;&lt;/filter&gt;&lt;rect width='100%25' height='100%25' filter='url(%23n)'/&gt;&lt;/svg&gt;"</span>);
+}</pre>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════ Reference sites ══════ -->
+<section class="section" id="ref" style="background:var(--beige)">
+  <div class="container">
+    <div class="section-hd">
+      <div class="section-label">REFERENCES</div>
+      <h2 class="section-title">参考にしたいサイト集</h2>
+      <p class="section-desc">「こんなLPいいな」を見つけるなら、ここのブックマーク必須</p>
+    </div>
+
+    <div style="margin-bottom:32px">
+      <h3 style="font-size:16px;margin-bottom:16px;color:var(--ink)">LPギャラリー ─ 真似したい実例が集まる</h3>
+      <div class="ref-grid">
+        <a href="https://sankou.com/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">国内 / 総合</div>
+          <div class="ref-card-name">SANKOU!</div>
+          <div class="ref-card-desc">日本の美しいWebサイトが最も集まっている定番。カテゴリが豊富で探しやすい。</div>
+          <div class="ref-card-url">sankou.com</div>
+        </a>
+        <a href="https://muuuuu.org/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">国内 / 縦長LP</div>
+          <div class="ref-card-name">Muuuuu.org</div>
+          <div class="ref-card-desc">縦に長いLP特化ギャラリー。高クオリティな実例ばかりで勉強になる。</div>
+          <div class="ref-card-url">muuuuu.org</div>
+        </a>
+        <a href="https://io3000.com/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">国内 / ミニマル</div>
+          <div class="ref-card-name">I/O 3000</div>
+          <div class="ref-card-desc">ミニマル寄りのキレイなサイトが集まる。シンプル志向の参考に。</div>
+          <div class="ref-card-url">io3000.com</div>
+        </a>
+        <a href="https://bookma.org/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">国内 / UI含む</div>
+          <div class="ref-card-name">bookma!</div>
+          <div class="ref-card-desc">PC・スマホUIも幅広く収録。スマホ時代のデザイン参考に最適。</div>
+          <div class="ref-card-url">bookma.org</div>
+        </a>
+        <a href="https://www.awwwards.com/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">海外 / 最先端</div>
+          <div class="ref-card-name">Awwwards</div>
+          <div class="ref-card-desc">世界の最先端Webサイト受賞サイト。動きやインタラクションの参考に。</div>
+          <div class="ref-card-url">awwwards.com</div>
+        </a>
+        <a href="https://www.cssdesignawards.com/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">海外 / CSS特化</div>
+          <div class="ref-card-name">CSS Design Awards</div>
+          <div class="ref-card-desc">CSSで凝った表現をしているサイトの受賞作品集。技術好きに。</div>
+          <div class="ref-card-url">cssdesignawards.com</div>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-bottom:32px">
+      <h3 style="font-size:16px;margin-bottom:16px;color:var(--ink)">実装チュートリアル ─ コピペ元の宝庫</h3>
+      <div class="ref-grid">
+        <a href="https://tympanus.net/codrops/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">海外 / チュートリアル</div>
+          <div class="ref-card-name">Codrops</div>
+          <div class="ref-card-desc">スクロール演出やアニメーションの実装例が豊富。コード全部公開。</div>
+          <div class="ref-card-url">tympanus.net/codrops</div>
+        </a>
+        <a href="https://codepen.io/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">海外 / コード集</div>
+          <div class="ref-card-name">CodePen</div>
+          <div class="ref-card-desc">「parallax」「scroll animation」で検索するだけで実例が無限に。</div>
+          <div class="ref-card-url">codepen.io</div>
+        </a>
+        <a href="https://uiverse.io/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">海外 / UIパーツ</div>
+          <div class="ref-card-name">uiverse.io</div>
+          <div class="ref-card-desc">ボタン・カード・ローダーなど単品パーツのコピペコード集。</div>
+          <div class="ref-card-url">uiverse.io</div>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:16px;margin-bottom:16px;color:var(--ink)">配色・フォント ─ センスを補強するツール</h3>
+      <div class="ref-grid">
+        <a href="https://coolors.co/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">配色 / 自動生成</div>
+          <div class="ref-card-name">Coolors</div>
+          <div class="ref-card-desc">スペース押すだけで配色パターンが無限に出てくる定番ツール。</div>
+          <div class="ref-card-url">coolors.co</div>
+        </a>
+        <a href="https://fonts.google.com/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">フォント / 無料</div>
+          <div class="ref-card-name">Google Fonts</div>
+          <div class="ref-card-desc">商用OKの無料フォント。「Zen Maru Gothic」「Inter」など定番が揃う。</div>
+          <div class="ref-card-url">fonts.google.com</div>
+        </a>
+        <a href="https://www.blobmaker.app/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">形状 / SVG生成</div>
+          <div class="ref-card-name">Blobmaker</div>
+          <div class="ref-card-desc">ブロブ型のSVGをGUIで作れる。画像の切り抜き形状に便利。</div>
+          <div class="ref-card-url">blobmaker.app</div>
+        </a>
+        <a href="https://undraw.co/" target="_blank" class="ref-card">
+          <div class="ref-card-cat">イラスト / 無料</div>
+          <div class="ref-card-name">unDraw</div>
+          <div class="ref-card-desc">カラー変更できる無料イラスト集。女性起業家向けLPにも合う。</div>
+          <div class="ref-card-url">undraw.co</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px">加工テクニック見本帳 ─ AIワークショップ 2026</p>
+    <p>すべて商用利用OK。コピペしてAIに貼り付けるだけでOKです。</p>
+  </div>
+</footer>
+
+<script>
+/* Tab nav active state */
+function scrollTo2(id){
+  const el = document.getElementById(id);
+  if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  document.querySelectorAll('.lv-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+/* Copy code */
+function copyCode(btn){
+  const code = btn.parentNode.innerText.replace(/^COPY\s*/,'');
+  navigator.clipboard.writeText(code).then(()=>{
+    const old = btn.textContent;
+    btn.textContent = 'COPIED';
+    btn.classList.add('done');
+    setTimeout(()=>{ btn.textContent = old; btn.classList.remove('done'); }, 1600);
+  });
+}
+
+/* Fade in on scroll */
+const fadeIO = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); fadeIO.unobserve(e.target); } });
+}, { threshold: 0.2 });
+document.querySelectorAll('.d-fadein-item').forEach(el=>fadeIO.observe(el));
+
+/* Counter up */
+function countUp(el, target, duration=1600){
+  const start = performance.now();
+  const step = now => {
+    const p = Math.min((now - start) / duration, 1);
+    el.textContent = Math.floor(target * (1 - Math.pow(1-p, 3)));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const cntIO = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      countUp(e.target, +e.target.dataset.target);
+      cntIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.d-counter-num[data-target]').forEach(el=>cntIO.observe(el));
+
+/* Cursor glow */
+const area = document.getElementById('cursorDemo');
+const glow = document.getElementById('cursorGlow');
+if(area && glow){
+  area.addEventListener('mousemove', e=>{
+    const r = area.getBoundingClientRect();
+    glow.style.left = (e.clientX - r.left) + 'px';
+    glow.style.top  = (e.clientY - r.top)  + 'px';
+  });
+}
+
+/* Active nav on scroll */
+const sections = ['lv0','lv1','lv2','lv3','ref'].map(id=>document.getElementById(id)).filter(Boolean);
+const navBtns = document.querySelectorAll('.lv-btn');
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY + 120;
+  let activeIdx = 0;
+  sections.forEach((s, i)=>{ if(s.offsetTop <= y) activeIdx = i; });
+  navBtns.forEach((b,i)=>b.classList.toggle('active', i===activeIdx));
+}, { passive: true });
+</script>
+
+</body>
+</html>
