@@ -95,10 +95,12 @@ img{max-width:100%;display:block}
 .code-p{color:#C9A961}
 
 /* ═══ DEMO 1: Overlay gradient bg image ═══ */
-.d-overlay{height:240px;border-radius:14px;background:
-  linear-gradient(135deg, rgba(42,37,32,.55) 0%, rgba(201,106,58,.35) 100%),
-  linear-gradient(45deg, #6A4F3A 0%, #B08660 50%, #E8DFCF 100%);
-  display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;letter-spacing:.05em}
+.d-overlay{height:280px;border-radius:14px;background:
+  linear-gradient(135deg, rgba(42,37,32,.55) 0%, rgba(201,106,58,.38) 100%),
+  url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&q=80") center/cover;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:700;letter-spacing:.05em;text-shadow:0 2px 14px rgba(0,0,0,.35);text-align:center;padding:24px}
+.d-overlay .sub{font-family:var(--font-en);font-size:11px;letter-spacing:4px;opacity:.9;margin-bottom:10px;font-weight:600}
+.d-overlay .main{font-size:clamp(22px,3.5vw,32px);font-weight:900;line-height:1.5}
 
 /* ═══ DEMO 2: Rounded + Padding ═══ */
 .d-round{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -474,20 +476,33 @@ footer a{color:var(--orange)}
       </div>
       <div class="tech-demo">
         <span class="demo-label">DEMO</span>
-        <div class="d-overlay">写真＋グラデで読みやすく</div>
+        <div class="d-overlay">
+          <span class="sub">FOR WOMEN ENTREPRENEURS</span>
+          <span class="main">あなたの物語を、ひらく</span>
+        </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* 背景画像の上にグラデーションを重ねる */</span>
-.hero {
-  <span class="code-k">background</span>:
-    <span class="code-c">/* 上の層（暗くするオーバーレイ）*/</span>
-    <span class="code-k">linear-gradient</span>(<span class="code-p">135deg</span>,
-      <span class="code-s">rgba(0,0,0,.55)</span> <span class="code-p">0%</span>,
-      <span class="code-s">rgba(201,106,58,.35)</span> <span class="code-p">100%</span>),
-    <span class="code-c">/* 下の層（元の画像）*/</span>
-    <span class="code-k">url</span>(<span class="code-s">"hero.jpg"</span>) <span class="code-p">center</span>/<span class="code-p">cover</span>;
-}</pre>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>以下の内容でヒーロー（トップ）部分を作ってください。
+
+■ 背景に敷く画像
+  お花の写真（images/hero.jpg）
+  画像は中央に配置し、画面全体を覆うようにしてください。
+
+■ その上に重ねるグラデーション
+  左上から右下にかけてグラデーションを1層重ねます。
+  ・左上の色：黒（透明度55%）
+  ・右下の色：オレンジ #C96A3A（透明度35%）
+  ・角度：135度
+
+■ 目的
+  写真を少し暗く落ち着かせて、
+  その上に置く白い見出し文字が読みやすくなるようにしたいです。
+
+■ 文字
+  見出し：「あなたの物語を、ひらく」
+  小さい英語ラベル：「FOR WOMEN ENTREPRENEURS」
+  どちらも白、中央揃えで配置してください。</pre>
       </div>
     </article>
 
