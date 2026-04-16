@@ -102,12 +102,18 @@ img{max-width:100%;display:block}
 .d-overlay .sub{font-family:var(--font-en);font-size:11px;letter-spacing:4px;opacity:.9;margin-bottom:10px;font-weight:600}
 .d-overlay .main{font-size:clamp(22px,3.5vw,32px);font-weight:900;line-height:1.5}
 
-/* ═══ DEMO 2: Rounded + Padding ═══ */
-.d-round{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.d-round-box{background:var(--white);padding:40px 24px;border-radius:4px;text-align:center;box-shadow:var(--shadow-sm);font-size:13px}
-.d-round-box.good{border-radius:24px;padding:56px 24px;background:linear-gradient(180deg,#fff,#FEF9F3)}
-.d-round-box .bad-lbl{display:inline-block;padding:2px 8px;background:#FADADA;color:#B94A3A;border-radius:4px;font-size:10px;margin-bottom:8px}
-.d-round-box .good-lbl{display:inline-block;padding:2px 8px;background:#E0F0D8;color:#3F7A2F;border-radius:4px;font-size:10px;margin-bottom:8px}
+/* ═══ DEMO 2: Border decoration ═══ */
+.d-frame{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.d-frame-box{background:var(--white);padding:26px 20px;text-align:center;font-size:13px;color:var(--ink);line-height:1.8;position:relative;border-radius:0}
+.d-frame-box.dbl{border:1px solid var(--orange);outline:1px solid var(--orange);outline-offset:5px;margin:6px}
+.d-frame-box.cnr{}
+.d-frame-box.cnr::before,.d-frame-box.cnr::after{content:'';position:absolute;width:22px;height:22px;border:2px solid var(--orange)}
+.d-frame-box.cnr::before{top:0;left:0;border-right:none;border-bottom:none}
+.d-frame-box.cnr::after{bottom:0;right:0;border-left:none;border-top:none}
+.d-frame-box.dsh{border:1.5px dashed var(--orange)}
+.d-frame-box.gld{border:1px solid var(--gold);box-shadow:6px 6px 0 var(--gold)}
+.d-frame-label{display:inline-block;padding:3px 12px;background:var(--beige);color:var(--ink);border-radius:999px;font-size:10px;margin-bottom:10px;font-family:var(--font-en);letter-spacing:.15em;font-weight:700}
+.d-frame-sub{display:block;margin-top:4px;font-size:11px;color:var(--ink-light)}
 
 /* ═══ DEMO 3: Jump ratio typography ═══ */
 .d-jump{background:var(--white);padding:32px 24px;border-radius:14px;text-align:center}
@@ -506,37 +512,48 @@ footer a{color:var(--orange)}
       </div>
     </article>
 
-    <!-- 02 Rounded -->
+    <!-- 02 Border decoration -->
     <article class="tech">
       <div class="tech-hd">
         <div class="tech-no">02</div>
         <div class="tech-hd-text">
-          <h3 class="tech-title">角を大胆に丸くする</h3>
-          <p class="tech-desc">4pxの角丸より、16〜24pxの大きめの角丸のほうが今っぽく、やわらかい印象に。スマホUIの流行を取り入れましょう。</p>
-          <div class="tech-tags"><span class="tag">CSS</span><span class="tag">ボタン</span><span class="tag">カード</span></div>
+          <h3 class="tech-title">縁に装飾を入れて"額縁"の表情をつける</h3>
+          <p class="tech-desc">Claudeはほっとくと全部"角丸"になりがち。あえて直線の枠＋装飾を入れると一気に雑誌っぽい・ショップっぽい雰囲気になります。4つのパターンを覚えておくと便利。</p>
+          <div class="tech-tags"><span class="tag hot">Claudeっぽさ脱却</span><span class="tag">枠線</span><span class="tag">装飾</span></div>
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">BEFORE / AFTER</span>
-        <div class="d-round">
-          <div class="d-round-box"><span class="bad-lbl">BEFORE</span><br>角丸4px・詰まった余白</div>
-          <div class="d-round-box good"><span class="good-lbl">AFTER</span><br>角丸24px・ゆとりある余白</div>
+        <span class="demo-label">4 PATTERNS</span>
+        <div class="d-frame">
+          <div class="d-frame-box dbl"><span class="d-frame-label">DOUBLE</span>二重線の枠<span class="d-frame-sub">格式ある・上品</span></div>
+          <div class="d-frame-box cnr"><span class="d-frame-label">CORNER</span>四隅だけ線<span class="d-frame-sub">抜け感・余白が映える</span></div>
+          <div class="d-frame-box dsh"><span class="d-frame-label">DASHED</span>破線（点線）<span class="d-frame-sub">手作り感・ゆるさ</span></div>
+          <div class="d-frame-box gld"><span class="d-frame-label">OFFSET</span>ずらした影<span class="d-frame-sub">ポップ・雑貨っぽい</span></div>
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.card {
-  <span class="code-k">border-radius</span>: <span class="code-p">24px</span>;   <span class="code-c">/* 4pxじゃなく24px */</span>
-  <span class="code-k">padding</span>: <span class="code-p">56px 32px</span>; <span class="code-c">/* 上下の余白をたっぷり */</span>
-  <span class="code-k">background</span>: <span class="code-k">linear-gradient</span>(<span class="code-p">180deg</span>, <span class="code-s">#fff</span>, <span class="code-s">#FEF9F3</span>);
-  <span class="code-k">box-shadow</span>: <span class="code-p">0 8px 24px</span> <span class="code-s">rgba(60,40,20,.08)</span>;
-}
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>カードや見出しの枠を"額縁"っぽくしたいので、以下の4パターンのどれかを使って装飾してください。
+角丸は使わず、あえて直角の枠にしてください。
 
-<span class="code-c">/* ボタンは角丸999pxでピル型（丸み最大）にすると今っぽい */</span>
-.btn {
-  <span class="code-k">border-radius</span>: <span class="code-p">999px</span>;
-  <span class="code-k">padding</span>: <span class="code-p">14px 32px</span>;
-}</pre>
+【パターン1】二重線の枠
+<span class="code-c">　ボックスの外側にオレンジ色の細い線を2本（内側と外側に1本ずつ、間に5pxの余白）</span>
+<span class="code-c">　で囲んでください。格式ある・上品な印象になります。</span>
+
+【パターン2】四隅だけに線を入れる
+<span class="code-c">　ボックスの左上と右下の角に、L字型のオレンジの線だけを表示してください。</span>
+<span class="code-c">　線の太さは2px、L字の長さは20px前後。抜け感があって余白が美しく見えます。</span>
+
+【パターン3】破線（ダッシュ）
+<span class="code-c">　1.5pxのオレンジの破線でボックスを囲ってください。</span>
+<span class="code-c">　手作り感・ゆるさが出て、ワークショップ案内やチェックリストに合います。</span>
+
+【パターン4】ずらした影（オフセットシャドウ）
+<span class="code-c">　ゴールド色の細い線でボックスを囲み、右下方向に6pxだけずらした位置に</span>
+<span class="code-c">　同じゴールドのべた塗り影を置いてください。ポップで雑貨ショップっぽい雰囲気に。</span>
+
+ポイント：どのパターンも"角丸ゼロ"にすることで、
+AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。</pre>
       </div>
     </article>
 
@@ -559,15 +576,27 @@ footer a{color:var(--orange)}
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* clamp(最小, 推奨, 最大) でレスポンシブも同時に */</span>
-.kicker   { <span class="code-k">font-size</span>: <span class="code-p">11px</span>; <span class="code-k">letter-spacing</span>: <span class="code-p">4px</span>; }
-.heading  { <span class="code-k">font-size</span>: <span class="code-k">clamp</span>(<span class="code-p">28px</span>, <span class="code-p">5vw</span>, <span class="code-p">44px</span>);
-            <span class="code-k">font-weight</span>: <span class="code-p">900</span>;
-            <span class="code-k">line-height</span>: <span class="code-p">1.3</span>; }
-.body     { <span class="code-k">font-size</span>: <span class="code-p">15px</span>;
-            <span class="code-k">line-height</span>: <span class="code-p">1.9</span>;
-            <span class="code-k">color</span>: <span class="code-s">#5C5148</span>; }</pre>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>見出しと本文の"ジャンプ率"を大きくして、メリハリのあるページにしてください。
+以下の3段構えで文字サイズを設定してほしいです。
+
+1段目：キッカー（見出しの上の小さな英字ラベル）
+<span class="code-c">　・11px前後の小さめ</span>
+<span class="code-c">　・英字でぎゅっと詰めず、1文字ずつ4px空けて（字間を広く）</span>
+<span class="code-c">　・大文字で、色は薄めのブラウンかオレンジ</span>
+
+2段目：メイン見出し
+<span class="code-c">　・スマホで28px、PCで44px前後まで大きくしてください（画面幅に応じて自動調整）</span>
+<span class="code-c">　・太さは極太（900ウェイト）</span>
+<span class="code-c">　・行間は詰めめ（line-height 1.3くらい）で塊感を出す</span>
+
+3段目：本文
+<span class="code-c">　・15〜16pxで落ち着かせる</span>
+<span class="code-c">　・行間は広めに（1.9くらい）読みやすく</span>
+<span class="code-c">　・色は真っ黒ではなく、少しブラウン寄りのグレーに</span>
+
+ポイントは、2段目だけを思いきり大きく・太くして、
+1段目と3段目は控えめにすること。ここで差をつけると垢抜けます。</pre>
       </div>
     </article>
 
@@ -586,17 +615,20 @@ footer a{color:var(--orange)}
         <div class="d-txt-grad">未来を、<span class="g">デザインする。</span></div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.gradient-text {
-  <span class="code-k">background</span>: <span class="code-k">linear-gradient</span>(<span class="code-p">120deg</span>,
-    <span class="code-s">#C96A3A</span> <span class="code-p">0%</span>,
-    <span class="code-s">#D97FA3</span> <span class="code-p">50%</span>,
-    <span class="code-s">#C9A961</span> <span class="code-p">100%</span>);
-  <span class="code-k">-webkit-background-clip</span>: <span class="code-p">text</span>;
-  <span class="code-k">background-clip</span>: <span class="code-p">text</span>;
-  <span class="code-k">color</span>: <span class="code-p">transparent</span>;
-  <span class="code-k">font-weight</span>: <span class="code-p">900</span>; <span class="code-c">/* 太字推奨 */</span>
-}</pre>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>キャッチコピーの一部だけ、文字そのものにグラデーションを塗ってください。
+
+・文字の色は、オレンジ → ピンク → ゴールドの3色を
+<span class="code-c">　左上から右下に向かってなめらかに変わるグラデーションで塗ってください。</span>
+<span class="code-c">　（オレンジ #C96A3A / ピンク #D97FA3 / ゴールド #C9A961）</span>
+
+・グラデーションを塗る範囲は、キャッチの"一番言いたい単語だけ"にしてください。
+<span class="code-c">　例：「未来を、デザインする。」なら"デザインする。"の部分だけ色をつける。</span>
+
+・グラデ文字は太字（900ウェイト）で表示してください。細いと色がぼやけて見えません。
+
+・1ページに1〜2箇所だけに絞ってください。
+<span class="code-c">　使いすぎると派手で安っぽくなるので、"ここぞ"という場所にだけ。</span></pre>
       </div>
     </article>
 
@@ -618,19 +650,22 @@ footer a{color:var(--orange)}
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* Google Fontsで両方読み込む */</span>
-<span class="code-c">/* &lt;link href="...family=Zen+Maru+Gothic&amp;family=Inter"&gt; */</span>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>日本語と英語で違うフォントを使いたいです（和欧混植）。
 
-body {
-  <span class="code-c">/* 日本語 → 英語の順。英語部分だけInterが使われる */</span>
-  <span class="code-k">font-family</span>: <span class="code-s">'Zen Maru Gothic'</span>, <span class="code-s">'Noto Sans JP'</span>, <span class="code-p">sans-serif</span>;
-}
+・日本語部分は「Zen Maru Gothic」という丸ゴシックで表示してください。
+<span class="code-c">　やわらかく女性的な印象になります。</span>
 
-.en-text { <span class="code-c">/* 英語だけ別フォントを明示 */</span>
-  <span class="code-k">font-family</span>: <span class="code-s">'Inter'</span>, <span class="code-p">sans-serif</span>;
-  <span class="code-k">letter-spacing</span>: <span class="code-p">.05em</span>; <span class="code-c">/* 英語は広めに */</span>
-}</pre>
+・英語や数字の部分は「Inter」という英字専用フォントで表示してください。
+<span class="code-c">　日本語のゴシック体にそのまま英数字を乗せると野暮ったくなるので、</span>
+<span class="code-c">　英数字だけ別フォントにすることで一気にプロっぽくなります。</span>
+
+・英字部分は字間を少しだけ広げてください（0.05em くらい）。
+
+・フォントはGoogle Fontsから読み込んでください。
+
+・参考に、英字（例：2026, FOR WOMEN ENTREPRENEURS など）は
+<span class="code-c">　オレンジ色（#C96A3A）にすると日本語との対比でさらに映えます。</span></pre>
       </div>
     </article>
 
@@ -662,19 +697,22 @@ body {
         <div class="d-parallax">PARALLAX ─ 背景が遅れて動く</div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.parallax {
-  <span class="code-k">background-image</span>: <span class="code-k">url</span>(<span class="code-s">"hero.jpg"</span>);
-  <span class="code-k">background-attachment</span>: <span class="code-p">fixed</span>; <span class="code-c">/* ← ここがポイント */</span>
-  <span class="code-k">background-size</span>: <span class="code-p">cover</span>;
-  <span class="code-k">background-position</span>: <span class="code-p">center</span>;
-  <span class="code-k">min-height</span>: <span class="code-p">60vh</span>;
-}
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>ページの背景にパララックス（視差スクロール）効果を入れてください。
 
-<span class="code-c">/* スマホではパララックスを無効化（重くなるため）*/</span>
-<span class="code-k">@media</span> (max-width: <span class="code-p">700px</span>) {
-  .parallax { <span class="code-k">background-attachment</span>: <span class="code-p">scroll</span>; }
-}</pre>
+・指定したセクションの背景に大きめの写真を敷いてください。
+<span class="code-c">　写真はページいっぱいに広がるように（背景のサイズはcoverで、中央寄せ）。</span>
+
+・スクロールしても背景画像はその場に"固定"されて、
+<span class="code-c">　前景のテキストだけが動くようにしてください。</span>
+<span class="code-c">　（背景が遅れて動いて見えるのがパララックスの演出）</span>
+
+・セクションの高さは画面の6割くらい（60vh）を目安に。
+
+・スマホでは重くなるので、画面幅700px以下では
+<span class="code-c">　パララックスを無効にして、普通にスクロールで一緒に動くようにしてください。</span>
+
+使うのはヒーロー（トップ）か、ページの中間の"イメージ写真"セクションがおすすめです。</pre>
       </div>
     </article>
 
@@ -697,21 +735,23 @@ body {
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS + JS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* ─── CSS ─── */</span>
-.fade-item {
-  <span class="code-k">opacity</span>: <span class="code-p">0</span>;
-  <span class="code-k">transform</span>: <span class="code-k">translateY</span>(<span class="code-p">24px</span>);
-  <span class="code-k">transition</span>: <span class="code-p">opacity .8s</span>, <span class="code-p">transform .8s cubic-bezier(.2,.7,.3,1)</span>;
-}
-.fade-item.in { <span class="code-k">opacity</span>: <span class="code-p">1</span>; <span class="code-k">transform</span>: <span class="code-k">translateY</span>(<span class="code-p">0</span>); }
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>要素がスクロールで画面に入ってきたときに、
+"ふわっ"と下から上に浮き上がるアニメーションをつけてください。
 
-<span class="code-c">/* ─── JS ─── */</span>
-<span class="code-k">const</span> io = <span class="code-k">new</span> IntersectionObserver(entries =&gt; {
-  entries.forEach(e =&gt; e.isIntersecting &amp;&amp; e.target.classList.add(<span class="code-s">'in'</span>));
-}, { threshold: <span class="code-p">0.2</span> });
+・最初は透明かつ少し下にずれた状態（24pxくらい下）にしておく。
 
-document.querySelectorAll(<span class="code-s">'.fade-item'</span>).forEach(el =&gt; io.observe(el));</pre>
+・画面に20%以上入ったタイミングで、
+<span class="code-c">　透明から不透明へ、下から定位置へ、なめらかに動かしてください。</span>
+<span class="code-c">　（0.8秒くらいかけて、最初はゆっくり・最後もゆっくり）</span>
+
+・検知にはIntersectionObserverを使ってください（ライブラリは不要）。
+
+・一度表示されたら、スクロールで戻ってもアニメは再発動しない
+<span class="code-c">　（チカチカしないように）仕様にしてください。</span>
+
+適用したい要素には、あとから自分でクラス名（例：fade-item）を
+つければそれだけで発動する仕組みにしてほしいです。</pre>
       </div>
     </article>
 
@@ -734,16 +774,25 @@ document.querySelectorAll(<span class="code-s">'.fade-item'</span>).forEach(el =
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.card {
-  <span class="code-k">transition</span>: <span class="code-p">transform .3s cubic-bezier(.2,.7,.3,1)</span>,
-              <span class="code-p">box-shadow .3s</span>;
-  <span class="code-k">cursor</span>: <span class="code-p">pointer</span>;
-}
-.card<span class="code-k">:hover</span> {
-  <span class="code-k">transform</span>: <span class="code-k">translateY</span>(<span class="code-p">-6px</span>);
-  <span class="code-k">box-shadow</span>: <span class="code-p">0 16px 40px</span> <span class="code-s">rgba(0,0,0,.12)</span>;
-}</pre>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>カードやボタンにカーソルを乗せたとき、
+"ふわっと浮く"動きをつけてください。
+
+・ホバー時にカードを6pxだけ上に持ち上げてください。
+
+・同時に、影を濃く・広く・下方向にずらしてください。
+<span class="code-c">　（浮いているように見える立体感）</span>
+
+・動きは0.3秒くらいで、最初から最後までなめらかに。
+<span class="code-c">　カクッとした動きではなく、"すっ"と浮くような感じ。</span>
+
+・カーソルを離したら、同じ時間で元に戻るようにしてください。
+
+・マウスカーソルが乗ったときは、カーソル形状もポインター（指）に
+<span class="code-c">　変えて「押せる」ことを伝えてください。</span>
+
+適用先は、料金プランカード、メニュー、ボタンなど
+「クリックしてほしい要素」全部に。</pre>
       </div>
     </article>
 
@@ -766,30 +815,27 @@ document.querySelectorAll(<span class="code-s">'.fade-item'</span>).forEach(el =
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">HTML + JS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">&lt;!-- HTML --&gt;</span>
-<span class="code-k">&lt;span</span> <span class="code-p">class</span>=<span class="code-s">"counter"</span> <span class="code-p">data-target</span>=<span class="code-s">"1200"</span><span class="code-k">&gt;</span>0<span class="code-k">&lt;/span&gt;</span>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>「実績1200件」「満足度98%」などの数字を、
+0からカウントアップする演出にしてください。
 
-<span class="code-c">/* JS */</span>
-<span class="code-k">function</span> countUp(el, target, duration = <span class="code-p">1600</span>) {
-  <span class="code-k">const</span> start = performance.now();
-  <span class="code-k">const</span> step = now =&gt; {
-    <span class="code-k">const</span> p = Math.min((now - start) / duration, <span class="code-p">1</span>);
-    el.textContent = Math.floor(target * (<span class="code-p">1</span> - (<span class="code-p">1</span> - p) ** <span class="code-p">3</span>));
-    <span class="code-k">if</span> (p &lt; <span class="code-p">1</span>) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
+・数字はHTML側に"ゴール値"を指定しておけば、
+<span class="code-c">　0からその値までアニメーションする仕組みにしてほしいです。</span>
+<span class="code-c">　（例：data-target="1200" を見に行く）</span>
 
-<span class="code-k">const</span> io = <span class="code-k">new</span> IntersectionObserver(es =&gt; {
-  es.forEach(e =&gt; {
-    <span class="code-k">if</span> (e.isIntersecting) {
-      countUp(e.target, +e.target.dataset.target);
-      io.unobserve(e.target);
-    }
-  });
-});
-document.querySelectorAll(<span class="code-s">'.counter'</span>).forEach(el =&gt; io.observe(el));</pre>
+・アニメの長さは1.6秒くらい。
+
+・最初は速く、最後はゆっくり止まるイージング（減速カーブ）にしてください。
+<span class="code-c">　ピタッと止まる瞬間の気持ちよさが大事。</span>
+
+・数字セクションが画面に入ってきた瞬間に発動してください。
+<span class="code-c">　（IntersectionObserverで検知。最初から動き出すのは避ける）</span>
+
+・一度カウントが終わった数字は、再びスクロールで戻ってきても
+<span class="code-c">　もう発動しない仕様にしてください。</span>
+
+よく使う場所：LPのヘッダー直下、お客様の声の上、料金表の下など
+「信頼の裏付け」がほしい場所に。</pre>
       </div>
     </article>
 
@@ -811,25 +857,26 @@ document.querySelectorAll(<span class="code-s">'.counter'</span>).forEach(el =&g
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS + JS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* ─── CSS ─── */</span>
-.cursor-area { <span class="code-k">position</span>: <span class="code-p">relative</span>; <span class="code-k">overflow</span>: <span class="code-p">hidden</span>; <span class="code-k">background</span>: <span class="code-s">#1E1A16</span>; }
-.cursor-glow {
-  <span class="code-k">position</span>: <span class="code-p">absolute</span>; <span class="code-k">width</span>: <span class="code-p">260px</span>; <span class="code-k">height</span>: <span class="code-p">260px</span>;
-  <span class="code-k">border-radius</span>: <span class="code-p">50%</span>; <span class="code-k">pointer-events</span>: <span class="code-p">none</span>;
-  <span class="code-k">transform</span>: <span class="code-k">translate</span>(<span class="code-p">-50%,-50%</span>);
-  <span class="code-k">background</span>: <span class="code-k">radial-gradient</span>(<span class="code-k">circle</span>,
-    <span class="code-s">rgba(201,106,58,.55)</span> <span class="code-p">0%</span>, <span class="code-s">transparent</span> <span class="code-p">70%</span>);
-}
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>暗い背景のセクションで、カーソルの動きに合わせて
+ぼんやりした光が追従する演出にしてください。
 
-<span class="code-c">/* ─── JS ─── */</span>
-<span class="code-k">const</span> area = document.querySelector(<span class="code-s">'.cursor-area'</span>);
-<span class="code-k">const</span> glow = document.querySelector(<span class="code-s">'.cursor-glow'</span>);
-area.addEventListener(<span class="code-s">'mousemove'</span>, e =&gt; {
-  <span class="code-k">const</span> r = area.getBoundingClientRect();
-  glow.style.left = (e.clientX - r.left) + <span class="code-s">'px'</span>;
-  glow.style.top  = (e.clientY - r.top) + <span class="code-s">'px'</span>;
-});</pre>
+・セクションの背景色は濃いダークブラウン（#1E1A16 など）にしてください。
+
+・カーソルの位置に、直径260pxくらいのオレンジ色の光を表示してください。
+<span class="code-c">　中心は濃く、外に向かって透明になるグラデーション（ふわっとした光）。</span>
+
+・マウスを動かすと、光もなめらかに追従してください。
+<span class="code-c">　カクカクせず、すっと移動する感じ。</span>
+
+・光はクリックできないように（pointer-events: none）して、
+<span class="code-c">　下のリンクやボタンを邪魔しないようにしてください。</span>
+
+・セクションから外に光がはみ出さないように、
+<span class="code-c">　セクション側でoverflow: hidden を指定してください。</span>
+
+使いどころ：ヒーロー、CTAセクション、実績数字の背景など。
+"近未来的・高級感"のある印象になります。</pre>
       </div>
     </article>
 
@@ -867,19 +914,27 @@ area.addEventListener(<span class="code-s">'mousemove'</span>, e =&gt; {
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.overlap-wrap { <span class="code-k">position</span>: <span class="code-p">relative</span>; }
-.overlap-img  { <span class="code-k">width</span>: <span class="code-p">60%</span>; <span class="code-k">height</span>: <span class="code-p">320px</span>; }
-.overlap-card {
-  <span class="code-k">position</span>: <span class="code-p">relative</span>;
-  <span class="code-k">width</span>: <span class="code-p">60%</span>;
-  <span class="code-k">background</span>: <span class="code-s">#fff</span>;
-  <span class="code-k">padding</span>: <span class="code-p">40px</span>;
-  <span class="code-k">border-radius</span>: <span class="code-p">14px</span>;
-  <span class="code-k">box-shadow</span>: <span class="code-p">0 16px 40px</span> <span class="code-s">rgba(0,0,0,.1)</span>;
-  <span class="code-k">margin-top</span>: <span class="code-p">-80px</span>; <span class="code-c">/* ← マイナスで重ねる */</span>
-  <span class="code-k">margin-left</span>: <span class="code-p">auto</span>;  <span class="code-c">/* 右に寄せる */</span>
-}</pre>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>雑誌っぽいレイアウトにしたいので、
+写真とテキストカードを少しだけ重ねて配置してください。
+
+・大きな写真を左側に60%幅・320pxくらいの高さで表示してください。
+
+・その下にテキストカード（見出し＋本文）を置いて、
+<span class="code-c">　写真と80pxほど重なるように上に引き上げてください。</span>
+<span class="code-c">　（マイナスマージンで重ねるのがコツ）</span>
+
+・テキストカードは右に寄せてください。
+<span class="code-c">　写真の左半分と、カードの右半分が重なるようなL字の組み合わせに。</span>
+
+・カードは白背景に少しの角丸、やわらかい影をつけて
+<span class="code-c">　"浮いている"印象にしてください。</span>
+
+・スマホでは重なりを解除して、写真の下にカードが普通に並ぶように
+<span class="code-c">　切り替えてください。</span>
+
+使いどころ：ブランド紹介、メニュー紹介、プロフィール、商品特集など
+「雰囲気を見せたい」セクションに。</pre>
       </div>
     </article>
 
@@ -898,19 +953,25 @@ area.addEventListener(<span class="code-s">'mousemove'</span>, e =&gt; {
         <div class="d-diagonal">斜めカットでリズムをつける</div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.section-colored {
-  <span class="code-k">position</span>: <span class="code-p">relative</span>;
-  <span class="code-k">background</span>: <span class="code-k">linear-gradient</span>(<span class="code-p">135deg</span>, <span class="code-s">#C96A3A</span>, <span class="code-s">#C9A961</span>);
-  <span class="code-k">padding-bottom</span>: <span class="code-p">100px</span>; <span class="code-c">/* 斜めの分だけ余裕を */</span>
-}
-.section-colored<span class="code-k">::after</span> {
-  <span class="code-k">content</span>: <span class="code-s">''</span>;
-  <span class="code-k">position</span>: <span class="code-p">absolute</span>; <span class="code-k">bottom</span>: <span class="code-p">-1px</span>; <span class="code-k">left</span>: <span class="code-p">0</span>; <span class="code-k">right</span>: <span class="code-p">0</span>;
-  <span class="code-k">height</span>: <span class="code-p">80px</span>;
-  <span class="code-k">background</span>: <span class="code-s">#FAF7F2</span>;
-  <span class="code-k">clip-path</span>: <span class="code-k">polygon</span>(<span class="code-p">0 100%, 100% 100%, 100% 20%, 0 80%</span>);
-}</pre>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションとセクションの境目を、水平な直線ではなく
+"斜めの線"でカットしてください。
+
+・色付きのセクション（オレンジ〜ゴールドのグラデーションなど）の
+<span class="code-c">　下端を、左から右に向かってゆるく斜めに切ってください。</span>
+<span class="code-c">　（左側は高く、右側は低くなるイメージ）</span>
+
+・切り口の下には、次のセクションのベージュ色が覗くように。
+
+・切り口の角度はきつすぎず、ゆったりとしたもの。
+<span class="code-c">　clip-path: polygon() を使って三角形や台形で切り抜いてください。</span>
+
+・斜めに切った分、その上のセクションには余分な下余白を
+<span class="code-c">　100pxくらい足しておいてください（中身が切れないように）。</span>
+
+使いどころ：ヒーロー→特徴、特徴→料金、料金→お客様の声など
+"流れ"を作りたい境目に1〜2箇所だけ。
+入れすぎるとチカチカするので注意。</pre>
       </div>
     </article>
 
@@ -934,22 +995,27 @@ area.addEventListener(<span class="code-s">'mousemove'</span>, e =&gt; {
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">HTML + CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">&lt;!-- 同じ内容を2回並べるのがコツ（切れ目なくループ）--&gt;</span>
-<span class="code-k">&lt;div</span> <span class="code-p">class</span>=<span class="code-s">"marquee"</span><span class="code-k">&gt;</span>
-  <span class="code-k">&lt;div</span> <span class="code-p">class</span>=<span class="code-s">"track"</span><span class="code-k">&gt;</span>
-    <span class="code-k">&lt;span&gt;</span>DESIGN<span class="code-k">&lt;/span&gt;&lt;span&gt;</span>AI<span class="code-k">&lt;/span&gt;</span>
-    <span class="code-k">&lt;span&gt;</span>DESIGN<span class="code-k">&lt;/span&gt;&lt;span&gt;</span>AI<span class="code-k">&lt;/span&gt;</span>
-  <span class="code-k">&lt;/div&gt;&lt;/div&gt;</span>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>キーワードが横に流れ続ける"マーキー"（流れる文字帯）を
+セクションの区切りに入れてください。
 
-.marquee { <span class="code-k">overflow</span>: <span class="code-p">hidden</span>; <span class="code-k">white-space</span>: <span class="code-p">nowrap</span>; }
-.track   { <span class="code-k">display</span>: <span class="code-k">inline-flex</span>; <span class="code-k">gap</span>: <span class="code-p">48px</span>;
-           <span class="code-k">animation</span>: <span class="code-p">scroll 18s linear infinite</span>; }
+・流したいキーワードを4〜6個リストで指定できるようにしてください。
+<span class="code-c">　例：DESIGN / CREATIVITY / AI / WORKSHOP など。</span>
 
-<span class="code-k">@keyframes</span> scroll {
-  <span class="code-k">from</span> { <span class="code-k">transform</span>: <span class="code-k">translateX</span>(<span class="code-p">0</span>); }
-  <span class="code-k">to</span>   { <span class="code-k">transform</span>: <span class="code-k">translateX</span>(<span class="code-p">-50%</span>); }
-}</pre>
+・同じリストを2回連続で並べて、切れ目なくループするようにしてください。
+<span class="code-c">　（1セット分スライドしたら、2セット目が自然につながる）</span>
+
+・アニメーションの速度は18秒くらいで一周。
+<span class="code-c">　速すぎると読めないので、ゆっくり目に。</span>
+
+・文字と文字の間は48pxくらい空けて、1つずつ視認できるようにしてください。
+
+・帯の上下に細いボーダー（1pxのオレンジ線など）を入れて、
+<span class="code-c">　"ここが区切り"と伝わるようにしてください。</span>
+
+・横にはみ出る部分は overflow: hidden で隠してください。
+
+使いどころ：ヒーローの下／フッターの上／セクションの区切りなど。</pre>
       </div>
     </article>
 
@@ -972,18 +1038,25 @@ area.addEventListener(<span class="code-s">'mousemove'</span>, e =&gt; {
         </div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button><span class="code-c">/* border-radius を「8つの値」で指定すると自由な形に */</span>
-<span class="code-c">/* 水平 水平 水平 水平 / 垂直 垂直 垂直 垂直 */</span>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>プロフィール写真や商品画像を、普通の丸や四角ではなく
+"ぐにゃっとした有機的な形（ブロブ型）"で切り抜いてください。
 
-.blob-1 {
-  <span class="code-k">border-radius</span>: <span class="code-p">60% 40% 45% 55% / 50% 60% 40% 50%</span>;
-}
-.blob-2 {
-  <span class="code-k">border-radius</span>: <span class="code-p">38% 62% 63% 37% / 41% 44% 56% 59%</span>;
-}
+・正円より少し歪んだ、アメーバのような不規則な曲線の形。
+<span class="code-c">　上下左右の角度がすべて違っていて、手描き風の柔らかさがあるイメージ。</span>
 
-<span class="code-c">/* ジェネレーター:「blobmaker」で検索するとGUIで作れる */</span></pre>
+・2〜3パターンの違う形を用意して、セクション内で交互に使ってください。
+<span class="code-c">　全部同じ形だと単調になるので、少しずつ違う形にバリエーションを。</span>
+
+・実現方法は、border-radius に「8つの値」を指定してください。
+<span class="code-c">　（水平方向4つ / 垂直方向4つ）</span>
+<span class="code-c">　例：60% 40% 45% 55% / 50% 60% 40% 50%</span>
+
+・形を考えるのが難しければ「blobmaker」というジェネレーターで
+<span class="code-c">　好みの形を作って、その値を教えてもらえれば反映できます。</span>
+
+使いどころ：プロフィール写真、お客様の声のアイコン、
+ブランドカラー背景のオブジェクト装飾など。</pre>
       </div>
     </article>
 
@@ -1002,19 +1075,26 @@ area.addEventListener(<span class="code-s">'mousemove'</span>, e =&gt; {
         <div class="d-noise"><span>NOISE TEXTURE</span></div>
       </div>
       <div class="tech-code-wrap">
-        <div class="tech-code-tabs"><button class="code-tab active">CSS</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>.noise-bg {
-  <span class="code-k">position</span>: <span class="code-p">relative</span>;
-  <span class="code-k">background</span>: <span class="code-k">linear-gradient</span>(<span class="code-p">135deg</span>, <span class="code-s">#C96A3A</span>, <span class="code-s">#E08A5E</span>);
-  <span class="code-k">overflow</span>: <span class="code-p">hidden</span>;
-}
-.noise-bg<span class="code-k">::before</span> {
-  <span class="code-k">content</span>: <span class="code-s">''</span>;
-  <span class="code-k">position</span>: <span class="code-p">absolute</span>; <span class="code-k">inset</span>: <span class="code-p">0</span>;
-  <span class="code-k">opacity</span>: <span class="code-p">.35</span>;
-  <span class="code-k">mix-blend-mode</span>: <span class="code-p">overlay</span>;
-  <span class="code-k">background-image</span>: <span class="code-k">url</span>(<span class="code-s">"data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='.85'/&gt;&lt;/filter&gt;&lt;rect width='100%25' height='100%25' filter='url(%23n)'/&gt;&lt;/svg&gt;"</span>);
-}</pre>
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>ベタ塗りや単色グラデーションの背景に"ザラッとしたノイズ質感"を重ねて、
+紙っぽい・映画のワンシーンっぽい雰囲気にしてください。
+
+・ベースの背景はオレンジ系のグラデーションなど、色付きセクション。
+
+・その上に、細かい粒子状のノイズを薄く重ねてください。
+<span class="code-c">　透明度35%くらい、重ね方は「オーバーレイ（mix-blend-mode: overlay）」で。</span>
+
+・ノイズは画像ファイルではなく、SVGのfeTurbulenceフィルタで
+<span class="code-c">　生成したものをインラインで埋め込んでください。</span>
+<span class="code-c">　（baseFrequency は 0.85 前後で細かい粒に）</span>
+
+・ノイズ用のレイヤーは::before疑似要素で作り、
+<span class="code-c">　ベース背景と分離して管理できるようにしてください。</span>
+
+・画像ファイル不要・軽量・どんな色にも乗るので使い勝手が良いです。
+
+使いどころ：ヒーロー、CTAセクション、特典紹介など
+"雰囲気・温度感"を足したい場所に。入れすぎると重いので1〜2箇所まで。</pre>
       </div>
     </article>
 
