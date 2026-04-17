@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>加工テクニック見本帳 ─ 初心者がちょっとで垢抜けるLP加工集</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Shippori+Mincho:wght@500;700;800&family=RocknRoll+One&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FAF7F2;
@@ -128,23 +128,101 @@ img{max-width:100%;display:block}
 .d-txt-grad{background:var(--white);padding:48px 24px;border-radius:14px;text-align:center;font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.3;letter-spacing:-.01em}
 .d-txt-grad .g{background:linear-gradient(120deg,var(--orange) 0%,#D97FA3 50%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* ═══ DEMO 5 (#5 和欧混植): Before/After ═══ */
-.d-fonts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.d-fonts-col{background:var(--white);padding:32px 22px;border-radius:14px;position:relative;overflow:hidden;min-height:260px;display:flex;flex-direction:column;justify-content:center}
-.d-fonts-col.bad{border:1px dashed #C9BDA8}
-.d-fonts-col.good{box-shadow:var(--shadow-md);border:1px solid var(--border)}
-.d-fonts-badge{display:inline-block;padding:3px 10px;border-radius:999px;font-family:var(--font-en);font-size:10px;letter-spacing:.18em;font-weight:700;margin-bottom:14px;align-self:flex-start}
-.d-fonts-badge.bad{background:#F3EDE2;color:#8B7B6B}
-.d-fonts-badge.good{background:var(--orange);color:#fff}
-.d-fonts-en-bad{font-family:var(--font-ja);font-size:13px;font-weight:700;color:var(--ink-light);letter-spacing:0;margin-bottom:8px}
-.d-fonts-h-bad{font-family:var(--font-ja);font-size:20px;font-weight:700;line-height:1.55;color:var(--ink)}
-.d-fonts-h-bad .yr{font-family:var(--font-ja)}
-.d-fonts-en-good{font-family:var(--font-en);font-size:13px;font-weight:700;color:var(--orange);letter-spacing:3px;margin-bottom:10px}
-.d-fonts-h-good{font-family:var(--font-ja);font-size:22px;font-weight:700;line-height:1.55;color:var(--ink)}
-.d-fonts-h-good .yr{font-family:var(--font-en);color:var(--orange);font-weight:900;margin-left:6px}
-.d-fonts-script{font-family:var(--font-script);font-size:42px;line-height:1;color:var(--gold);position:absolute;bottom:10px;right:18px;opacity:.85;transform:rotate(-4deg);pointer-events:none}
-.d-fonts-note{margin-top:14px;text-align:center;font-size:12px;color:var(--ink-light)}
-.d-fonts-note strong{color:var(--orange)}
+/* ═══ DEMO 5 (#5 和欧混植): 3フォント使い分け ═══ */
+.d-fonts{display:flex;flex-direction:column;gap:14px}
+.d-fonts-main{background:var(--white);padding:44px 32px;border-radius:14px;box-shadow:var(--shadow-md);border:1px solid var(--border);text-align:center;position:relative;overflow:hidden}
+.d-fonts-main::before{content:'';position:absolute;top:12px;left:12px;right:12px;height:1px;background:var(--border)}
+.d-fonts-main::after{content:'';position:absolute;bottom:12px;left:12px;right:12px;height:1px;background:var(--border)}
+.d-fonts-part1{font-family:'Shippori Mincho',serif;font-size:clamp(22px,3.3vw,30px);font-weight:700;color:var(--ink);letter-spacing:.04em;line-height:1.55;margin-bottom:6px}
+.d-fonts-part2{font-family:'RocknRoll One',sans-serif;font-size:clamp(28px,4.4vw,40px);font-weight:400;color:var(--ink);letter-spacing:.06em;line-height:1.3;margin-bottom:10px}
+.d-fonts-part2 .ai{color:var(--orange)}
+.d-fonts-part3{font-family:'Great Vibes',cursive;font-size:clamp(52px,7vw,72px);color:var(--gold);line-height:1;font-weight:400;display:inline-block;transform:rotate(-3deg);margin-top:4px}
+.d-fonts-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.d-fonts-leg{background:var(--beige);border-radius:10px;padding:14px 12px;text-align:center}
+.d-fonts-leg-num{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;font-family:var(--font-en);font-size:11px;font-weight:700;line-height:22px;margin-bottom:8px}
+.d-fonts-leg-sample{font-size:22px;line-height:1.2;margin-bottom:6px;color:var(--ink);font-weight:700}
+.d-fonts-leg-sample.s1{font-family:'Shippori Mincho',serif}
+.d-fonts-leg-sample.s2{font-family:'RocknRoll One',sans-serif;font-weight:400;color:var(--orange)}
+.d-fonts-leg-sample.s3{font-family:'Great Vibes',cursive;color:var(--gold);font-size:36px;font-weight:400;line-height:1}
+.d-fonts-leg-name{font-family:var(--font-en);font-size:10px;color:var(--ink-light);letter-spacing:.1em;margin-bottom:4px;font-weight:700}
+.d-fonts-leg-desc{font-size:11px;color:var(--ink-light);line-height:1.6}
+.d-fonts-bad{background:#FBF7F0;border:1px dashed #C9BDA8;padding:20px;border-radius:10px;text-align:center;margin-top:4px}
+.d-fonts-bad-lbl{display:inline-block;padding:3px 12px;background:#E8DFCF;color:#7A6B5C;border-radius:999px;font-family:var(--font-en);font-size:10px;letter-spacing:.15em;font-weight:700;margin-bottom:10px}
+.d-fonts-bad-text{font-family:var(--font-ja);font-size:18px;font-weight:700;color:var(--ink-light);line-height:1.5}
+
+/* ═══ DEMO 16: Background image (simple) ═══ */
+.d-bgimg-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.d-bgimg-col{height:240px;border-radius:14px;overflow:hidden;position:relative;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px}
+.d-bgimg-col.sakura{background:url("https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1200&q=80") center/cover}
+.d-bgimg-col.cafe{background:url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80") center/cover}
+.d-bgimg-col::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.55) 100%)}
+.d-bgimg-col > *{position:relative;z-index:1}
+.d-bgimg-lbl{font-family:var(--font-en);font-size:10px;letter-spacing:.3em;opacity:.9;margin-bottom:8px;font-weight:700}
+.d-bgimg-ttl{font-family:'Shippori Mincho',serif;font-size:clamp(18px,2.6vw,24px);font-weight:700;line-height:1.5;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+
+/* ═══ DEMO 17: Dividers & ornaments ═══ */
+.d-div-stack{background:var(--white);border-radius:14px;padding:36px 28px;display:flex;flex-direction:column;gap:28px}
+.d-div-item{text-align:center}
+.d-div-label{display:block;font-family:var(--font-en);font-size:10px;letter-spacing:.2em;color:var(--orange);font-weight:700;margin-bottom:12px}
+/* Pattern A: simple orange line */
+.div-a{height:1px;background:var(--orange);width:60%;margin:0 auto}
+/* Pattern B: line with center dot */
+.div-b{display:flex;align-items:center;gap:12px;justify-content:center}
+.div-b::before,.div-b::after{content:'';flex:0 0 80px;height:1px;background:var(--ink-light);opacity:.4}
+.div-b span{width:8px;height:8px;border-radius:50%;background:var(--orange)}
+/* Pattern C: script ornament */
+.div-c{display:flex;align-items:center;gap:16px;justify-content:center}
+.div-c::before,.div-c::after{content:'';flex:0 0 60px;height:1px;background:var(--gold);opacity:.6}
+.div-c span{font-family:'Great Vibes',cursive;color:var(--gold);font-size:28px;line-height:1;transform:translateY(-2px)}
+/* Pattern D: double line */
+.div-d{width:50%;margin:0 auto;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);height:5px}
+/* Pattern E: asterism (three dots) */
+.div-e{display:flex;justify-content:center;gap:8px}
+.div-e i{width:4px;height:4px;border-radius:50%;background:var(--ink-light);display:block}
+.div-e i:nth-child(2){background:var(--orange);transform:scale(1.3)}
+/* Pattern F: leaf SVG ornament */
+.div-f{display:flex;align-items:center;gap:14px;justify-content:center}
+.div-f::before,.div-f::after{content:'';flex:0 0 70px;height:1px;background:#A9C388;opacity:.7}
+.div-f svg{width:22px;height:22px;color:#7BAA5E;flex-shrink:0}
+
+/* ═══ DEMO 18: Emphasis text ═══ */
+.d-emph-stack{background:var(--white);border-radius:14px;padding:32px 28px;display:flex;flex-direction:column;gap:22px}
+.d-emph-row{font-family:'Shippori Mincho',serif;font-size:clamp(16px,2.2vw,20px);line-height:1.9;color:var(--ink);font-weight:500}
+.d-emph-lbl{display:inline-block;font-family:var(--font-en);font-size:10px;letter-spacing:.2em;color:var(--orange);font-weight:700;margin-right:12px;padding:2px 8px;background:var(--beige);border-radius:4px;vertical-align:middle}
+.e-color{color:var(--orange);font-weight:700}
+.e-marker{background:linear-gradient(transparent 62%,rgba(245,215,110,.65) 62%,rgba(245,215,110,.65) 92%,transparent 92%);font-weight:700;padding:0 3px}
+.e-under{border-bottom:3px solid var(--orange);padding-bottom:1px;font-weight:700}
+.e-box{display:inline-block;padding:2px 10px;background:var(--orange);color:#fff;border-radius:4px;font-weight:700}
+.e-kacchiri{font-family:'RocknRoll One',sans-serif;color:var(--ink);font-weight:400}
+.e-big{font-size:1.4em;color:var(--orange);font-weight:900;display:inline-block;transform:translateY(2px)}
+
+/* ═══ DEMO 19: Photo frames ═══ */
+.d-photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.d-photo-item{display:flex;flex-direction:column;align-items:center;gap:10px}
+.d-photo-img{width:100%;aspect-ratio:1;background:url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80") center/cover;flex-shrink:0}
+.d-photo-img.round{border-radius:50%;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.d-photo-img.shadow-box{box-shadow:8px 8px 0 var(--orange)}
+.d-photo-img.border-frame{border:8px solid var(--white);box-shadow:0 4px 14px rgba(0,0,0,.15),0 0 0 1px var(--border)}
+.d-photo-img.clip-blob{border-radius:60% 40% 45% 55% / 50% 60% 40% 50%}
+.d-photo-lbl{font-size:11px;color:var(--ink-light);text-align:center;line-height:1.5;font-weight:700}
+.d-photo-lbl span{display:block;font-family:var(--font-en);font-size:9px;color:var(--orange);letter-spacing:.15em;margin-bottom:2px}
+
+/* ═══ DEMO 20: Button sparkle ═══ */
+.d-btn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.d-btn-cell{background:var(--white);border-radius:14px;padding:32px 14px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;border:1px solid var(--border)}
+.d-btn-cell-lbl{font-size:11px;color:var(--ink-light);font-weight:700;letter-spacing:.05em}
+/* Shine button */
+.btn-shine{position:relative;overflow:hidden;padding:14px 32px;background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;border-radius:999px;font-weight:700;font-size:13px;border:none;cursor:pointer;font-family:var(--font-ja);letter-spacing:.05em}
+.btn-shine::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:shineMove 2.8s infinite;transform:skewX(-20deg)}
+@keyframes shineMove{0%{left:-60%}60%{left:120%}100%{left:120%}}
+/* Pulse button */
+.btn-pulse{padding:14px 32px;background:var(--ink);color:#fff;border-radius:999px;font-weight:700;font-size:13px;border:none;cursor:pointer;font-family:var(--font-ja);letter-spacing:.05em;position:relative;animation:btnPulse 2s infinite}
+@keyframes btnPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,106,58,.5)}50%{box-shadow:0 0 0 14px rgba(201,106,58,0)}}
+/* Arrow slide button */
+.btn-arrow{padding:14px 28px;background:transparent;color:var(--ink);border:2px solid var(--ink);border-radius:999px;font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font-ja);display:inline-flex;align-items:center;gap:8px;transition:all .3s;letter-spacing:.05em}
+.btn-arrow .arr{display:inline-block;transition:transform .3s}
+.btn-arrow:hover{background:var(--ink);color:#fff}
+.btn-arrow:hover .arr{transform:translateX(6px)}
 
 /* ═══ DEMO 6 (#6 Parallax): Real photo with fixed attachment ═══ */
 .d-parallax{height:380px;border-radius:14px;overflow:hidden;position:relative;
@@ -210,14 +288,44 @@ img{max-width:100%;display:block}
 .d-blob-img.b2{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%}
 
 /* ═══ DEMO 13: Noise texture ═══ */
-.d-noise{height:200px;border-radius:14px;background:linear-gradient(135deg,var(--orange),#E08A5E);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:700}
-.d-noise::before{content:'';position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
-.d-noise span{position:relative;z-index:1;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.d-noise-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.d-noise-col{height:340px;border-radius:14px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center}
+.d-noise-col.before{background:#4A4038 url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80") center/cover}
+.d-noise-col.after{background:#4A4038 url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80") center/cover}
+.d-noise-col.after::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(42,37,32,.25),rgba(80,70,60,.15));mix-blend-mode:multiply}
+.d-noise-col.after::after{content:'';position:absolute;inset:-50%;opacity:.45;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");animation:noiseMove 1.2s steps(6) infinite;pointer-events:none}
+@keyframes noiseMove{
+  0%{transform:translate(0,0)}
+  20%{transform:translate(-6%,4%)}
+  40%{transform:translate(5%,-5%)}
+  60%{transform:translate(-4%,-4%)}
+  80%{transform:translate(6%,5%)}
+  100%{transform:translate(0,0)}
+}
+.d-noise-badge{position:absolute;top:14px;left:14px;padding:5px 14px;background:rgba(0,0,0,.55);border-radius:999px;font-family:var(--font-en);font-size:10px;letter-spacing:.18em;font-weight:700;backdrop-filter:blur(4px);z-index:2}
+.d-noise-lbl{font-family:var(--font-en);font-size:11px;letter-spacing:5px;opacity:.85;margin-bottom:10px;font-weight:700;position:relative;z-index:2}
+.d-noise-ttl{font-family:'Shippori Mincho',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.5;letter-spacing:.05em;text-shadow:0 2px 16px rgba(0,0,0,.6);position:relative;z-index:2}
+.d-noise-sub{margin-top:12px;font-size:11px;opacity:.8;position:relative;z-index:2;letter-spacing:.1em}
+.d-noise-note{margin-top:14px;text-align:center;font-size:12px;color:var(--ink-light)}
+.d-noise-note strong{color:var(--orange)}
 
 /* ═══ DEMO 14: Cursor follow glow ═══ */
-.d-cursor{height:220px;border-radius:14px;background:var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;cursor:none}
-.d-cursor-glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(201,106,58,.55) 0%,rgba(201,106,58,0) 70%);pointer-events:none;transform:translate(-50%,-50%);transition:opacity .3s;opacity:.9}
-.d-cursor span{position:relative;z-index:1;letter-spacing:.08em}
+.d-cursor-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.d-cursor-tab{background:var(--white);border:1px solid var(--border);border-radius:999px;padding:8px 16px;font-family:var(--font-ja);font-size:12px;font-weight:700;cursor:pointer;color:var(--ink-light);transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.d-cursor-tab svg{width:14px;height:14px}
+.d-cursor-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+.d-cursor-tab.active svg *{stroke:#fff !important;fill:#fff !important}
+.d-cursor{height:280px;border-radius:14px;background:var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;cursor:none}
+.d-cursor.bg-marble{background:#2A2520 url("https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=1200&q=80") center/cover;background-blend-mode:multiply}
+.d-cursor.bg-wood{background:#3B2E24 url("https://images.unsplash.com/photo-1562983407-9293d1c85d09?auto=format&fit=crop&w=1200&q=80") center/cover;background-blend-mode:multiply}
+.d-cursor-glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(201,106,58,.55) 0%,rgba(201,106,58,0) 70%);pointer-events:none;transform:translate(-50%,-50%);transition:opacity .3s;opacity:.9;display:none}
+.d-cursor-glow.show{display:block}
+.d-cursor-follower{position:absolute;width:48px;height:48px;pointer-events:none;transform:translate(-50%,-50%);transition:transform .25s cubic-bezier(.2,.7,.3,1);display:none}
+.d-cursor-follower.show{display:block}
+.d-cursor-follower svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.d-cursor-trail{position:absolute;width:14px;height:14px;pointer-events:none;transform:translate(-50%,-50%);border-radius:50%;background:var(--orange);opacity:0;animation:trailFade 1s forwards}
+@keyframes trailFade{0%{opacity:.8;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(.3)}}
+.d-cursor span{position:relative;z-index:1;letter-spacing:.08em;mix-blend-mode:difference;color:#fff}
 
 /* ═══ DEMO 15: Sticky scroll reveal ═══ */
 .d-reveal{background:var(--white);border-radius:14px;padding:28px;text-align:center}
@@ -253,9 +361,11 @@ footer a{color:var(--orange)}
   .tech-hd{padding:20px 18px 16px;flex-direction:column;gap:12px}
   .tech-demo{padding:20px;min-height:160px}
   .tech-code{padding:16px;font-size:11.5px}
-  .d-round,.d-fadein,.d-hover,.d-counter,.d-frame,.d-fonts{grid-template-columns:1fr;gap:10px}
-  .d-fonts-col{min-height:auto}
+  .d-round,.d-fadein,.d-hover,.d-counter,.d-frame,.d-bgimg-wrap,.d-noise-wrap,.d-btn-grid{grid-template-columns:1fr;gap:10px}
+  .d-fonts-legend{grid-template-columns:1fr 1fr}
   .d-parallax{height:300px}
+  .d-photo-grid{grid-template-columns:repeat(2,1fr)}
+  .d-noise-col{height:260px}
   .d-counter{grid-template-columns:repeat(3,1fr)}
   .d-overlap-img,.d-overlap-card{width:100%}
   .d-overlap-card{margin-top:-40px;margin-left:0;margin-right:0;width:90%;align-self:center;margin-inline:auto}
@@ -290,6 +400,7 @@ footer a{color:var(--orange)}
     <div class="lv-nav-inner">
       <button class="lv-btn active" onclick="scrollTo2('lv0')">STEP 0 ─ Claude特有のクセ</button>
       <button class="lv-btn" onclick="scrollTo2('lv1')">レベル1 ─ 垢抜ける</button>
+      <button class="lv-btn" onclick="scrollTo2('lv1ex')">レベル1+ ─ 基本あしらい</button>
       <button class="lv-btn" onclick="scrollTo2('lv2')">レベル2 ─ 動きをつける</button>
       <button class="lv-btn" onclick="scrollTo2('lv3')">レベル3 ─ 構造で差をつける</button>
       <button class="lv-btn" onclick="scrollTo2('ref')">参考サイト</button>
@@ -678,48 +789,358 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">BEFORE / AFTER ─ 英字部分のフォントだけ変えた比較</span>
+        <span class="demo-label">DEMO ─ 1つの見出しに3フォントを混ぜる</span>
         <div class="d-fonts">
-          <div class="d-fonts-col bad">
-            <span class="d-fonts-badge bad">BEFORE</span>
-            <div class="d-fonts-en-bad">FOR WOMEN ENTREPRENEURS</div>
-            <div class="d-fonts-h-bad">女性起業家のための<br>AI活用プログラム <span class="yr">2026</span></div>
+          <div class="d-fonts-main">
+            <div class="d-fonts-part1">女性起業家のための</div>
+            <div class="d-fonts-part2"><span class="ai">AI</span>活用プログラム</div>
+            <div class="d-fonts-part3">2026</div>
           </div>
-          <div class="d-fonts-col good">
-            <span class="d-fonts-badge good">AFTER</span>
-            <div class="d-fonts-en-good">FOR WOMEN ENTREPRENEURS</div>
-            <div class="d-fonts-h-good">女性起業家のための<br>AI活用プログラム<span class="yr">2026</span></div>
-            <span class="d-fonts-script">for you</span>
+          <div class="d-fonts-legend">
+            <div class="d-fonts-leg">
+              <span class="d-fonts-leg-num">1</span>
+              <div class="d-fonts-leg-sample s1">女性起業家</div>
+              <div class="d-fonts-leg-name">SHIPPORI MINCHO</div>
+              <div class="d-fonts-leg-desc">明朝体<br>上品・伝統・信頼</div>
+            </div>
+            <div class="d-fonts-leg">
+              <span class="d-fonts-leg-num">2</span>
+              <div class="d-fonts-leg-sample s2">AI活用</div>
+              <div class="d-fonts-leg-name">ROCKNROLL ONE</div>
+              <div class="d-fonts-leg-desc">カチッと系<br>モダン・力強さ</div>
+            </div>
+            <div class="d-fonts-leg">
+              <span class="d-fonts-leg-num">3</span>
+              <div class="d-fonts-leg-sample s3">2026</div>
+              <div class="d-fonts-leg-name">GREAT VIBES</div>
+              <div class="d-fonts-leg-desc">カリグラフィー<br>華やか・装飾</div>
+            </div>
+          </div>
+          <div class="d-fonts-bad">
+            <span class="d-fonts-bad-lbl">BEFORE ─ 全部同じフォントだと</span>
+            <div class="d-fonts-bad-text">女性起業家のためのAI活用プログラム2026</div>
           </div>
         </div>
-        <p class="d-fonts-note"><strong>BEFORE</strong>は英数字も日本語フォントのまま／<strong>AFTER</strong>は英数字にInter、装飾に筆記体（Great Vibes）を追加</p>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>日本語と英語で別のフォントを使って、"和欧混植"にしてください。
-さらにワンポイントで筆記体も入れて、装飾として見せたいです。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>メインの見出しを、1つのフレーズの中で"3種類のフォント"を使い分けて表示してください。
+フォント全部同じだと平坦で"AIっぽい"ので、役割ごとに切り替えたいです。
 
-【3種類のフォントを使い分けてください】
+【例：「女性起業家のためのAI活用プログラム 2026」の場合】
 
-1. 日本語部分 → 「Zen Maru Gothic」という丸ゴシック
-<span class="code-c">　やわらかく女性的な印象。見出しも本文もこれで統一。</span>
+1行目「女性起業家のための」→ 明朝体（Shippori Mincho）
+<span class="code-c">　上品・伝統・信頼感を出すパート。フォントサイズは中くらい。</span>
+<span class="code-c">　色はインクっぽいダークブラウン（#2A2520）。</span>
 
-2. 英語・数字部分 → 「Inter」という英字専用フォント
-<span class="code-c">　日本語フォントで英数字を出すと野暮ったくなるので、</span>
-<span class="code-c">　英字・年号・品番などはInterに切り替えてください。</span>
-<span class="code-c">　字間は 0.05em くらい広めに。</span>
+2行目「AI活用プログラム」→ カチッとしたモダン日本語フォント（RocknRoll One）
+<span class="code-c">　角ばった幾何学的な形のフォント。見出しらしい存在感。</span>
+<span class="code-c">　一番大きく表示してください（1行目の1.3倍くらい）。</span>
+<span class="code-c">　"AI"の文字だけオレンジにすると、さらにキーワードが立ちます。</span>
 
-3. 装飾ワンポイント → 「Great Vibes」という筆記体
-<span class="code-c">　カードの右下や見出しの背景に、手書き風の短い英字を薄く配置してください。</span>
-<span class="code-c">　例：「for you」「since 2020」「Hello」など。</span>
-<span class="code-c">　フォントサイズ42px前後、ゴールド色、少し傾けて（-4度くらい）。</span>
-<span class="code-c">　あくまで装飾なので、透明度を下げて主張しすぎないように。</span>
+3行目「2026」→ カリグラフィー（Great Vibes）
+<span class="code-c">　筆記体で華やかに。ゴールド色、大きめ（60px前後）、</span>
+<span class="code-c">　少し斜めに傾けて（-3度くらい）装飾として見せてください。</span>
 
-【フォントはGoogle Fontsから3つまとめて読み込んでください】
-<span class="code-c">　Zen Maru Gothic / Inter / Great Vibes</span>
+【フォント読み込み（Google Fonts）】
+<span class="code-c">　Shippori Mincho / RocknRoll One / Great Vibes の3つ</span>
 
-ポイントは、英数字だけInterに変え、さらに筆記体をワンポイントで
-添えることです。この"3段構え"で一気にプロっぽく見えます。</pre>
+【ポイント】
+・全部同じフォントだと"Claudeっぽい平凡さ"が出るので、必ず3種類使う
+・役割は「情報 → 強調 → 装飾」の順で、サイズにメリハリをつける
+・文字色は「ダーク → ダーク+1色アクセント → ゴールド」の3段階</pre>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════ LEVEL 1+ EXTRA (基本あしらい) ══════ -->
+<div class="lv-head" id="lv1ex">
+  <span class="lv-num">LEVEL 1 +</span>
+  <h2 class="lv-name">基本のあしらい（前半で覚える5つ）</h2>
+  <p class="lv-desc">地味だけど"差がつく"ベース技：背景・区切り・強調・写真枠・ボタン</p>
+</div>
+
+<section class="section" style="padding-top:16px">
+  <div class="container">
+
+    <!-- 16 Background image (basic) -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">16</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">背景に画像を敷く（シンプル版）</h3>
+          <p class="tech-desc">一番基本。ベタ塗りのセクションを写真にするだけで一気に世界観が出ます。文字が読めるよう黒の薄いグラデを上に重ねるのがコツ。</p>
+          <div class="tech-tags"><span class="tag hot">超基本</span><span class="tag">写真</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">DEMO ─ 業種に合わせて写真を選ぶだけ</span>
+        <div class="d-bgimg-wrap">
+          <div class="d-bgimg-col sakura">
+            <span class="d-bgimg-lbl">SPRING CAMPAIGN</span>
+            <div class="d-bgimg-ttl">桜とともに、<br>新しい一歩を。</div>
+          </div>
+          <div class="d-bgimg-col cafe">
+            <span class="d-bgimg-lbl">CAFE MENU</span>
+            <div class="d-bgimg-ttl">午後の一杯を、<br>ゆっくりと。</div>
+          </div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションの背景にベタ塗りではなく、写真を敷いてください。
+
+【基本の作り方】
+・セクションに background-image で写真を指定。
+<span class="code-c">　background-size: cover / background-position: center</span>
+<span class="code-c">　でセクション全体を覆うように。</span>
+
+・写真の上に、上→下の黒グラデーションを重ねてください。
+<span class="code-c">　例：rgba(0,0,0,.1) → rgba(0,0,0,.55)</span>
+<span class="code-c">　これで文字がちゃんと読めるようになります。</span>
+
+・テキストは中央寄せで白。見出しは明朝体がおすすめ。
+
+【写真の選び方】
+・業種のイメージに寄せる：
+<span class="code-c">　・春キャンペーン → 桜・菜の花</span>
+<span class="code-c">　・カフェ → コーヒー・木のテーブル</span>
+<span class="code-c">　・女性起業家 → 柔らかい光・自然</span>
+<span class="code-c">　・ビジネス → 都会の夜景・オフィス</span>
+
+・無料素材は Unsplash が定番。
+<span class="code-c">　"https://images.unsplash.com/photo-xxxxx" のURLを直貼りできます。</span>
+
+・ピントが合いすぎていない、余白が多い写真が◎
+<span class="code-c">　人物がガッツリ写ってるとテキストが邪魔になります。</span></pre>
+      </div>
+    </article>
+
+    <!-- 17 Dividers & ornaments -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">17</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">区切りにラインや"あしらい"を入れる</h3>
+          <p class="tech-desc">セクションの間や見出しの下にちょっとしたラインや装飾を入れるだけで、整った印象に。6パターン覚えておくと便利。</p>
+          <div class="tech-tags"><span class="tag hot">即効</span><span class="tag">あしらい</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">6 PATTERNS</span>
+        <div class="d-div-stack">
+          <div class="d-div-item"><span class="d-div-label">A ─ シンプルライン</span><div class="div-a"></div></div>
+          <div class="d-div-item"><span class="d-div-label">B ─ 中央ドット</span><div class="div-b"><span></span></div></div>
+          <div class="d-div-item"><span class="d-div-label">C ─ 筆記体あしらい</span><div class="div-c"><span>and</span></div></div>
+          <div class="d-div-item"><span class="d-div-label">D ─ ダブルライン</span><div class="div-d"></div></div>
+          <div class="d-div-item"><span class="d-div-label">E ─ 三点アスタリスム</span><div class="div-e"><i></i><i></i><i></i></div></div>
+          <div class="d-div-item"><span class="d-div-label">F ─ 葉っぱのあしらい</span><div class="div-f"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20C4 12 10 6 18 6C18 14 12 20 4 20Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 20L14 10" stroke="currentColor" stroke-width="1.2"/></svg></div></div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションの区切りや見出しの下に、単なる横線ではなく
+"あしらい"を入れて整った印象にしてください。
+
+【パターン例 ─ どれかを使ってください】
+
+A. シンプルライン
+<span class="code-c">　幅60%のオレンジ1pxライン。中央寄せ。最もベーシック。</span>
+
+B. 中央ドット
+<span class="code-c">　左右にグレーの短いライン、中央にオレンジの丸ドット。</span>
+<span class="code-c">　見出し直下に合う。</span>
+
+C. 筆記体あしらい
+<span class="code-c">　左右にゴールドの細いライン、中央にGreat Vibesの筆記体で</span>
+<span class="code-c">　"and" "&" "since 2020" などを入れる。結婚式・サロン向け。</span>
+
+D. ダブルライン
+<span class="code-c">　幅50%の二重線（上下に1pxずつ、間5px）。格式ある印象。</span>
+
+E. 三点アスタリスム（・ ・ ・）
+<span class="code-c">　点を3つ並べる。中央の1つだけオレンジで大きめに。</span>
+<span class="code-c">　雑誌や書籍の章区切り風。</span>
+
+F. 葉っぱ・花のあしらい
+<span class="code-c">　左右にグリーンの細いライン、中央にSVGの葉っぱアイコン。</span>
+<span class="code-c">　ナチュラル・オーガニック系に。</span>
+
+【共通ルール】
+・セクション間の区切りに使う場合は、上下に40pxくらいの余白を。
+・色は"本文と同じ or アクセントカラー"で。3色以上使うと散らかります。</pre>
+      </div>
+    </article>
+
+    <!-- 18 Emphasis text -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">18</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">強調したい文字を目立たせる</h3>
+          <p class="tech-desc">太字だけじゃなく、色・マーカー・下線・囲み・文字サイズなど、6パターン使い分けるとメリハリが出ます。</p>
+          <div class="tech-tags"><span class="tag">即効</span><span class="tag">タイポ</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">6 PATTERNS ─ 同じ文章にそれぞれの強調を</span>
+        <div class="d-emph-stack">
+          <div class="d-emph-row"><span class="d-emph-lbl">A カラー</span>女性起業家のための<span class="e-color">AI活用プログラム</span>が始まります。</div>
+          <div class="d-emph-row"><span class="d-emph-lbl">B マーカー</span>女性起業家のための<span class="e-marker">AI活用プログラム</span>が始まります。</div>
+          <div class="d-emph-row"><span class="d-emph-lbl">C 下線</span>女性起業家のための<span class="e-under">AI活用プログラム</span>が始まります。</div>
+          <div class="d-emph-row"><span class="d-emph-lbl">D 囲み</span>女性起業家のための<span class="e-box">AI活用プログラム</span>が始まります。</div>
+          <div class="d-emph-row"><span class="d-emph-lbl">E フォント変更</span>女性起業家のための<span class="e-kacchiri">AI活用プログラム</span>が始まります。</div>
+          <div class="d-emph-row"><span class="d-emph-lbl">F 大きく</span>女性起業家のための<span class="e-big">AI活用</span>プログラムが始まります。</div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>見出しや本文で強調したいキーワードを目立たせてください。
+太字だけだと弱いので、以下のパターンを組み合わせて使ってください。
+
+A. カラー強調
+<span class="code-c">　アクセントカラー（オレンジ #C96A3A）で太字に。</span>
+<span class="code-c">　一番オーソドックス。LP全体で1〜3箇所まで。</span>
+
+B. 黄色マーカー
+<span class="code-c">　線形グラデで、文字の下半分だけに透明な黄色(#F5D76E)を重ねる。</span>
+<span class="code-c">　手書きマーカーで引いたような雰囲気。親しみ感。</span>
+
+C. 太い下線
+<span class="code-c">　border-bottom: 3px solid オレンジ で下線を引く。</span>
+<span class="code-c">　見出しの一部だけ引くと効きます。</span>
+
+D. 背景色で囲む
+<span class="code-c">　オレンジの背景に白文字、小さな角丸(4px)をつけて"タグ風"に。</span>
+<span class="code-c">　キャッチの中でキーワードをロゴ的に見せたいとき。</span>
+
+E. フォントを変える
+<span class="code-c">　強調したい単語だけフォントを切り替える。</span>
+<span class="code-c">　例：本文は明朝 → 強調部分はRocknRoll One など。</span>
+
+F. 文字サイズを大きく
+<span class="code-c">　強調したい単語を1.4倍の大きさに。色も変えるとさらに強い。</span>
+<span class="code-c">　見出しの中にもう1段のアクセントを作れる。</span>
+
+【使い分けのコツ】
+・1文の中に強調は1つまで。
+・同じページで違うパターンを使うと散らかるので、1つのLPで2種類まで。</pre>
+      </div>
+    </article>
+
+    <!-- 19 Photo frames -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">19</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">写真を加工する（枠・シャドウ・切り抜き）</h3>
+          <p class="tech-desc">そのまま貼った写真は"Claudeっぽい"。丸く切り抜く・四角のずれシャドウ・白枠フレーム・ブロブ型など、加工するだけで印象が変わります。</p>
+          <div class="tech-tags"><span class="tag">写真</span><span class="tag">枠</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">4 PATTERNS ─ 同じ写真を4通りに加工</span>
+        <div class="d-photo-grid">
+          <div class="d-photo-item">
+            <div class="d-photo-img round"></div>
+            <div class="d-photo-lbl"><span>PATTERN A</span>丸く切り抜き<br>プロフィール向け</div>
+          </div>
+          <div class="d-photo-item">
+            <div class="d-photo-img shadow-box"></div>
+            <div class="d-photo-lbl"><span>PATTERN B</span>四角の影<br>ポップ・雑貨感</div>
+          </div>
+          <div class="d-photo-item">
+            <div class="d-photo-img border-frame"></div>
+            <div class="d-photo-lbl"><span>PATTERN C</span>白枠フレーム<br>ポラロイド風</div>
+          </div>
+          <div class="d-photo-item">
+            <div class="d-photo-img clip-blob"></div>
+            <div class="d-photo-lbl"><span>PATTERN D</span>ブロブ型<br>女性・ナチュラル</div>
+          </div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>写真をそのまま貼るのではなく、以下のいずれかの加工をしてください。
+
+A. 丸く切り抜き（真円）
+<span class="code-c">　border-radius: 50% で完全な円形に。</span>
+<span class="code-c">　柔らかい影（box-shadow: 0 8px 20px rgba(0,0,0,.15)）を下に落とす。</span>
+<span class="code-c">　使いどころ：プロフィール写真・お客様の声のアイコン。</span>
+
+B. 四角の"ずれ影"フレーム
+<span class="code-c">　写真はそのまま角ばらせて、右下方向に8pxずらした位置に</span>
+<span class="code-c">　オレンジ色のベタ影を落とす（box-shadow: 8px 8px 0 オレンジ）。</span>
+<span class="code-c">　ポップで雑貨ショップっぽい印象。</span>
+
+C. 白い縁取りフレーム（ポラロイド風）
+<span class="code-c">　写真の周りに8pxの白い枠をつけて、さらに外側にふんわり影。</span>
+<span class="code-c">　ちょっと傾ける（transform: rotate(-2deg)）とアルバム風。</span>
+<span class="code-c">　使いどころ：ギャラリー、ストーリー、想い出系。</span>
+
+D. ブロブ型（ぐにゃっと）
+<span class="code-c">　border-radius を8値指定（例：60% 40% 45% 55% / 50% 60% 40% 50%）で</span>
+<span class="code-c">　有機的な形に切り抜く。女性向け・ナチュラル系に。</span>
+
+【共通ルール】
+・元の写真はアスペクト比1:1（正方形）にクロップしておく。
+・1ページで複数パターンを混ぜない。統一感のために1つに絞る。</pre>
+      </div>
+    </article>
+
+    <!-- 20 Button animations -->
+    <article class="tech">
+      <div class="tech-hd">
+        <div class="tech-no">20</div>
+        <div class="tech-hd-text">
+          <h3 class="tech-title">ボタンをキラッと動かす</h3>
+          <p class="tech-desc">静止したボタンより、"キラッ"や"脈打ち"で目を引くボタンの方がクリック率が上がります。3パターン覚えておくと使い回せます。</p>
+          <div class="tech-tags"><span class="tag hot">CVR</span><span class="tag">CTA</span></div>
+        </div>
+      </div>
+      <div class="tech-demo">
+        <span class="demo-label">3 PATTERNS ─ 実際のアニメ見本</span>
+        <div class="d-btn-grid">
+          <div class="d-btn-cell">
+            <button class="btn-shine">お申し込みはこちら</button>
+            <span class="d-btn-cell-lbl">A ─ キラッと光るシャイン</span>
+          </div>
+          <div class="d-btn-cell">
+            <button class="btn-pulse">今すぐ始める</button>
+            <span class="d-btn-cell-lbl">B ─ 脈打つパルス</span>
+          </div>
+          <div class="d-btn-cell">
+            <button class="btn-arrow">詳細を見る <span class="arr">→</span></button>
+            <span class="d-btn-cell-lbl">C ─ 矢印スライド（ホバー）</span>
+          </div>
+        </div>
+      </div>
+      <div class="tech-code-wrap">
+        <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>CTAボタンを"静止画"のままにせず、目を引く動きをつけてください。
+以下の3パターンから1つ選んでください。
+
+A. キラッと光るシャイン
+<span class="code-c">　ボタンの上を、半透明の白いハイライトが左から右へ通過する演出。</span>
+<span class="code-c">　::before 疑似要素で斜めの光の帯を作り、</span>
+<span class="code-c">　animation で2.8秒ごとに left: -60% → 120% へ移動。</span>
+<span class="code-c">　スキューで少し斜めにすると"流れ星"っぽくなる。</span>
+
+B. 脈打つパルス
+<span class="code-c">　ボタンの周りに、オレンジの影が広がっては消えるを繰り返す演出。</span>
+<span class="code-c">　box-shadow: 0 0 0 0 → 0 0 0 14px の拡大を2秒ループ。</span>
+<span class="code-c">　"クリックして！"を常に訴えかけたいCTAに。</span>
+
+C. 矢印スライド（ホバー時）
+<span class="code-c">　通常は枠線だけのボタン、ホバー時に背景が濃くなり</span>
+<span class="code-c">　中の矢印が右にスッとずれる。</span>
+<span class="code-c">　落ち着いた上品な動き。サロン・セミナー向け。</span>
+
+【共通ルール】
+・1ページに動くボタンは1〜2個まで（増やすとチカチカする）。
+・最重要CTAだけに使って、二次ボタンは静止にする。</pre>
       </div>
     </article>
 
@@ -902,44 +1323,69 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
       </div>
     </article>
 
-    <!-- 10 Cursor glow -->
+    <!-- 10 Cursor follower (multi-variant) -->
     <article class="tech">
       <div class="tech-hd">
         <div class="tech-no">10</div>
         <div class="tech-hd-text">
-          <h3 class="tech-title">カーソルに光がついてくる</h3>
-          <p class="tech-desc">暗めの背景と相性抜群。近未来的・高級感のある演出。ヒーローやCTAセクションに効きます。</p>
-          <div class="tech-tags"><span class="tag">JS</span><span class="tag">高級感</span></div>
+          <h3 class="tech-title">カーソルに何かがついてくる</h3>
+          <p class="tech-desc">光だけじゃなく"葉っぱ・スプーン＆フォーク・星・ハート"など、業種に合わせて追従オブジェクトを変えるとブランドの世界観が伝わります。</p>
+          <div class="tech-tags"><span class="tag hot">印象UP</span><span class="tag">JS</span><span class="tag">世界観</span></div>
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">DEMO ─ エリア内でカーソルを動かしてみて</span>
-        <div class="d-cursor" id="cursorDemo">
-          <div class="d-cursor-glow" id="cursorGlow"></div>
-          <span>FOLLOW THE LIGHT</span>
+        <span class="demo-label">DEMO ─ ボタンで切り替え、エリア内でカーソルを動かしてみて</span>
+        <div class="d-cursor-tabs">
+          <button class="d-cursor-tab active" onclick="switchCursor(this,'glow')"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" fill="currentColor"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity=".4"/></svg>光（ラグジュアリー）</button>
+          <button class="d-cursor-tab" onclick="switchCursor(this,'leaf')"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19C5 11 11 5 19 5C19 13 13 19 5 19Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M5 19L14 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>葉っぱ（ナチュラル）</button>
+          <button class="d-cursor-tab" onclick="switchCursor(this,'utensil')"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v8a2 2 0 0 0 2 2v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 3v6M11 3v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 3c-1.5 0-3 1.5-3 4s1.5 4 3 4v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>スプーン＆フォーク（飲食）</button>
+          <button class="d-cursor-tab" onclick="switchCursor(this,'star')"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 6 6.5.5-5 4.5 1.5 6.5L12 17l-5.5 3.5L8 14 3 9.5 9.5 9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>星（キラキラ）</button>
+          <button class="d-cursor-tab" onclick="switchCursor(this,'heart')"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/></svg>ハート（女性向け）</button>
+          <button class="d-cursor-tab" onclick="switchCursor(this,'pen')"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4l4 4L8 20H4v-4L16 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M14 6l4 4" stroke="currentColor" stroke-width="1.5"/></svg>ペン（クリエイター）</button>
+        </div>
+        <div class="d-cursor bg-marble" id="cursorDemo">
+          <div class="d-cursor-glow show" id="cursorGlow"></div>
+          <div class="d-cursor-follower" id="cursorFollower"></div>
+          <span>MOVE YOUR CURSOR</span>
         </div>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>暗い背景のセクションで、カーソルの動きに合わせて
-ぼんやりした光が追従する演出にしてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>指定したセクション内で、カーソルの動きに合わせて
+何かのオブジェクトがついてくる演出をつけてください。
+業種・世界観に合わせて"追従するもの"を変えます。
 
-・セクションの背景色は濃いダークブラウン（#1E1A16 など）にしてください。
+【パターンの例 ─ どれかを選んで指示してください】
 
-・カーソルの位置に、直径260pxくらいのオレンジ色の光を表示してください。
-<span class="code-c">　中心は濃く、外に向かって透明になるグラデーション（ふわっとした光）。</span>
+1. 光（ラグジュアリー／IT／コンサル向け）
+<span class="code-c">　カーソル位置に直径260pxのオレンジのぼんやりした光。</span>
+<span class="code-c">　背景は暗めのダークブラウン。近未来的・高級感。</span>
 
-・マウスを動かすと、光もなめらかに追従してください。
-<span class="code-c">　カクカクせず、すっと移動する感じ。</span>
+2. 葉っぱ（ナチュラル／オーガニック／ヨガ向け）
+<span class="code-c">　緑のSVGで描いた葉っぱを、カーソルに合わせてふわっと追従。</span>
+<span class="code-c">　背景は明るいベージュや白木で、ナチュラル感を出す。</span>
 
-・光はクリックできないように（pointer-events: none）して、
-<span class="code-c">　下のリンクやボタンを邪魔しないようにしてください。</span>
+3. スプーン＆フォーク（飲食店／レシピ／料理教室向け）
+<span class="code-c">　銀色のカトラリーSVG。背景は木目やテーブルクロスの写真。</span>
 
-・セクションから外に光がはみ出さないように、
-<span class="code-c">　セクション側でoverflow: hidden を指定してください。</span>
+4. 星（キラキラ／占い／女性向けサービス）
+<span class="code-c">　黄金の星を追従。さらに動かすたびに小さな粒子が残像として散る。</span>
+<span class="code-c">　夜空や濃紺背景と合わせる。</span>
 
-使いどころ：ヒーロー、CTAセクション、実績数字の背景など。
-"近未来的・高級感"のある印象になります。</pre>
+5. ハート（女性起業家／恋愛／美容サービス）
+<span class="code-c">　ピンクのハートを追従＋ハートの粒子が少し残る。</span>
+
+6. ペン（クリエイター／ライター／デザイナー）
+<span class="code-c">　ペン先がカーソルを追うように描画する演出。</span>
+
+【共通の仕様】
+・追従オブジェクトは pointer-events: none で
+<span class="code-c">　下のリンクやボタンを邪魔しないように。</span>
+・セクション側は overflow: hidden ではみ出し防止。
+・カクつかないよう transition: transform .25s くらいでなめらかに。
+
+使いどころ：ヒーロー、CTAセクション、プロフィール紹介など
+"世界観を語りたい"場所に1箇所だけ。使いすぎると邪魔になります。</pre>
       </div>
     </article>
 
@@ -1128,36 +1574,58 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
       <div class="tech-hd">
         <div class="tech-no">15</div>
         <div class="tech-hd-text">
-          <h3 class="tech-title">ノイズテクスチャで質感UP</h3>
-          <p class="tech-desc">ベタ塗りの背景に、ザラッとしたノイズを重ねるだけで、紙っぽい・映画っぽい質感に。SVGで画像ファイル不要。</p>
-          <div class="tech-tags"><span class="tag hot">プロ御用達</span><span class="tag">SVG</span></div>
+          <h3 class="tech-title">ノイズテクスチャで"フィルム映画感"を出す</h3>
+          <p class="tech-desc">写真の上にザラッとしたノイズを薄く重ねるだけで、映画のワンシーンみたいな質感に。ブランドの世界観を一段深く見せたいときに。</p>
+          <div class="tech-tags"><span class="tag hot">プロ御用達</span><span class="tag">SVG</span><span class="tag">映画的</span></div>
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">DEMO</span>
-        <div class="d-noise"><span>NOISE TEXTURE</span></div>
+        <span class="demo-label">BEFORE / AFTER ─ 同じマンション写真にノイズを重ねた比較</span>
+        <div class="d-noise-wrap">
+          <div class="d-noise-col before">
+            <span class="d-noise-badge">BEFORE</span>
+            <span class="d-noise-lbl">WITHOUT NOISE</span>
+            <div class="d-noise-ttl">都会の夜景</div>
+            <div class="d-noise-sub">普通の写真のまま</div>
+          </div>
+          <div class="d-noise-col after">
+            <span class="d-noise-badge">AFTER</span>
+            <span class="d-noise-lbl">WITH NOISE</span>
+            <div class="d-noise-ttl">都会の夜景</div>
+            <div class="d-noise-sub">フィルム映画のような質感</div>
+          </div>
+        </div>
+        <p class="d-noise-note">AFTERは<strong>動くノイズ（アニメーション付き）</strong>が重なってる：ザラッとした粒子が映画のフィルム感を作る</p>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>ベタ塗りや単色グラデーションの背景に"ザラッとしたノイズ質感"を重ねて、
-紙っぽい・映画のワンシーンっぽい雰囲気にしてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションの背景写真（マンションや夜景など）に
+"ザラッとしたノイズ"を重ねて、映画のワンシーンみたいな質感にしてください。
 
-・ベースの背景はオレンジ系のグラデーションなど、色付きセクション。
+【ベース】
+・背景に実写の写真を敷いてください（マンション／夜景／街並みなど）。
+・写真の上から、ダークブラウンの薄いグラデーションを
+<span class="code-c">　mix-blend-mode: multiply で重ねて、少し落ち着かせる。</span>
 
-・その上に、細かい粒子状のノイズを薄く重ねてください。
-<span class="code-c">　透明度35%くらい、重ね方は「オーバーレイ（mix-blend-mode: overlay）」で。</span>
+【ノイズレイヤー】
+・::after の疑似要素で、SVGのfeTurbulenceフィルタを使って
+<span class="code-c">　モノクロの粒子ノイズを生成してください。</span>
+<span class="code-c">　（baseFrequency 0.9前後、feColorMatrixで完全モノクロに）</span>
+・重ね方は mix-blend-mode: overlay、透明度は45%くらい。
 
-・ノイズは画像ファイルではなく、SVGのfeTurbulenceフィルタで
-<span class="code-c">　生成したものをインラインで埋め込んでください。</span>
-<span class="code-c">　（baseFrequency は 0.85 前後で細かい粒に）</span>
+【アニメーション】
+・ノイズレイヤーを translate で微妙に位置ずらししながら
+<span class="code-c">　1.2秒ループで animation を steps(6) で飛ばしてください。</span>
+<span class="code-c">　（なめらかに動くとデジタルっぽくなるので、"カクカク"が正解）</span>
+・この動きで"古いフィルム映写機"っぽい質感が出ます。
 
-・ノイズ用のレイヤーは::before疑似要素で作り、
-<span class="code-c">　ベース背景と分離して管理できるようにしてください。</span>
+【色の工夫】
+・ノイズはモノクロ（グレー）で、写真の色を邪魔しないように。
+・写真全体を少し彩度を落として（ややセピア or グレイッシュに）
+<span class="code-c">　映画っぽいトーンに寄せるとさらに雰囲気が出ます。</span>
 
-・画像ファイル不要・軽量・どんな色にも乗るので使い勝手が良いです。
-
-使いどころ：ヒーロー、CTAセクション、特典紹介など
-"雰囲気・温度感"を足したい場所に。入れすぎると重いので1〜2箇所まで。</pre>
+使いどころ：ヒーロー、ブランドストーリー、プロフィール写真背景。
+ベタ塗り背景より、実写＋ノイズの組み合わせのほうが圧倒的に映えます。</pre>
       </div>
     </article>
 
@@ -1334,19 +1802,64 @@ const cntIO = new IntersectionObserver(es=>{
 }, { threshold: 0.3 });
 document.querySelectorAll('.d-counter-num[data-target]').forEach(el=>cntIO.observe(el));
 
-/* Cursor glow */
-const area = document.getElementById('cursorDemo');
-const glow = document.getElementById('cursorGlow');
-if(area && glow){
-  area.addEventListener('mousemove', e=>{
-    const r = area.getBoundingClientRect();
-    glow.style.left = (e.clientX - r.left) + 'px';
-    glow.style.top  = (e.clientY - r.top)  + 'px';
+/* Cursor follower (multi-variant) */
+const cursorArea = document.getElementById('cursorDemo');
+const cursorGlow = document.getElementById('cursorGlow');
+const cursorFollower = document.getElementById('cursorFollower');
+const cursorSVGs = {
+  leaf: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M8 40C8 22 22 8 40 8C40 26 26 40 8 40Z" fill="#7BAA5E" stroke="#5A8843" stroke-width="1.5"/><path d="M8 40L32 16" stroke="#5A8843" stroke-width="1.5" stroke-linecap="round"/><path d="M18 30l-4 6M24 24l-5 3M30 18l-6 2" stroke="#5A8843" stroke-width="1" stroke-linecap="round"/></svg>',
+  utensil: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><g stroke="#E8DFCF" stroke-linecap="round" fill="none"><path d="M14 6v16a3 3 0 0 0 3 3v17" stroke-width="2"/><path d="M14 6v10M18 6v10M22 6v10" stroke-width="1.5"/><path d="M22 16a4 4 0 0 1-4 4" stroke-width="1.5"/><path d="M34 6c-3 0-6 3-6 8s3 8 6 8v20" stroke-width="2"/></g></svg>',
+  star: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4l5.5 13.5L43 19l-10 9 3 14.5L24 35l-12 7.5L15 28 5 19l13.5-1.5L24 4Z" fill="#F5D76E" stroke="#C9A961" stroke-width="1.5" stroke-linejoin="round"/><circle cx="24" cy="22" r="3" fill="#fff" opacity=".7"/></svg>',
+  heart: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 40s-14-9-14-20a8 8 0 0 1 14-5 8 8 0 0 1 14 5c0 11-14 20-14 20Z" fill="#E8708C" stroke="#C95577" stroke-width="1.5"/><circle cx="18" cy="18" r="2" fill="#fff" opacity=".6"/></svg>',
+  pen: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M32 6l10 10L18 40H6V28L32 6Z" fill="#C96A3A" stroke="#2A2520" stroke-width="1.8" stroke-linejoin="round"/><path d="M28 10l10 10" stroke="#2A2520" stroke-width="1.5"/><path d="M6 40l6-6" stroke="#2A2520" stroke-width="1.5" stroke-linecap="round"/></svg>'
+};
+let cursorMode = 'glow';
+function switchCursor(btn, mode){
+  cursorMode = mode;
+  document.querySelectorAll('.d-cursor-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  // background shift per mode
+  cursorArea.classList.remove('bg-marble','bg-wood');
+  if(mode==='utensil') cursorArea.classList.add('bg-wood');
+  else cursorArea.classList.add('bg-marble');
+  // visibility
+  if(mode==='glow'){
+    cursorGlow.classList.add('show');
+    cursorFollower.classList.remove('show');
+    cursorFollower.innerHTML = '';
+  } else {
+    cursorGlow.classList.remove('show');
+    cursorFollower.classList.add('show');
+    cursorFollower.innerHTML = cursorSVGs[mode] || '';
+  }
+}
+if(cursorArea){
+  cursorArea.addEventListener('mousemove', e=>{
+    const r = cursorArea.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+    if(cursorGlow){ cursorGlow.style.left = x + 'px'; cursorGlow.style.top = y + 'px'; }
+    if(cursorFollower){
+      cursorFollower.style.left = x + 'px';
+      cursorFollower.style.top  = y + 'px';
+    }
+    // trail particles for star / heart
+    if(cursorMode==='star' || cursorMode==='heart'){
+      if(Math.random() < 0.3){
+        const t = document.createElement('div');
+        t.className = 'd-cursor-trail';
+        t.style.left = (x + (Math.random()*20-10)) + 'px';
+        t.style.top  = (y + (Math.random()*20-10)) + 'px';
+        t.style.background = cursorMode==='star' ? '#F5D76E' : '#E8708C';
+        cursorArea.appendChild(t);
+        setTimeout(()=>t.remove(), 1000);
+      }
+    }
   });
 }
 
 /* Active nav on scroll */
-const sections = ['lv0','lv1','lv2','lv3','ref'].map(id=>document.getElementById(id)).filter(Boolean);
+const sections = ['lv0','lv1','lv1ex','lv2','lv3','ref'].map(id=>document.getElementById(id)).filter(Boolean);
 const navBtns = document.querySelectorAll('.lv-btn');
 window.addEventListener('scroll', ()=>{
   const y = window.scrollY + 120;
