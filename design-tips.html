@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>加工テクニック見本帳 ─ 初心者がちょっとで垢抜けるLP加工集</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Shippori+Mincho:wght@500;700;800&family=RocknRoll+One&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Shippori+Mincho:wght@500;700;800&family=RocknRoll+One&family=Bebas+Neue&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FAF7F2;
@@ -134,7 +134,7 @@ img{max-width:100%;display:block}
 .d-fonts-main::before{content:'';position:absolute;top:12px;left:12px;right:12px;height:1px;background:var(--border)}
 .d-fonts-main::after{content:'';position:absolute;bottom:12px;left:12px;right:12px;height:1px;background:var(--border)}
 .d-fonts-part1{font-family:'Shippori Mincho',serif;font-size:clamp(22px,3.3vw,30px);font-weight:700;color:var(--ink);letter-spacing:.04em;line-height:1.55;margin-bottom:6px}
-.d-fonts-part2{font-family:'RocknRoll One',sans-serif;font-size:clamp(28px,4.4vw,40px);font-weight:400;color:var(--ink);letter-spacing:.06em;line-height:1.3;margin-bottom:10px}
+.d-fonts-part2{font-family:'Dela Gothic One','Zen Kaku Gothic New',sans-serif;font-size:clamp(26px,4vw,38px);font-weight:400;color:var(--ink);letter-spacing:.04em;line-height:1.35;margin-bottom:12px}
 .d-fonts-part2 .ai{color:var(--orange)}
 .d-fonts-part3{font-family:'Great Vibes',cursive;font-size:clamp(52px,7vw,72px);color:var(--gold);line-height:1;font-weight:400;display:inline-block;transform:rotate(-3deg);margin-top:4px}
 .d-fonts-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -142,7 +142,7 @@ img{max-width:100%;display:block}
 .d-fonts-leg-num{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;font-family:var(--font-en);font-size:11px;font-weight:700;line-height:22px;margin-bottom:8px}
 .d-fonts-leg-sample{font-size:22px;line-height:1.2;margin-bottom:6px;color:var(--ink);font-weight:700}
 .d-fonts-leg-sample.s1{font-family:'Shippori Mincho',serif}
-.d-fonts-leg-sample.s2{font-family:'RocknRoll One',sans-serif;font-weight:400;color:var(--orange)}
+.d-fonts-leg-sample.s2{font-family:'Dela Gothic One','Zen Kaku Gothic New',sans-serif;font-weight:400;color:var(--orange);font-size:20px}
 .d-fonts-leg-sample.s3{font-family:'Great Vibes',cursive;color:var(--gold);font-size:36px;font-weight:400;line-height:1}
 .d-fonts-leg-name{font-family:var(--font-en);font-size:10px;color:var(--ink-light);letter-spacing:.1em;margin-bottom:4px;font-weight:700}
 .d-fonts-leg-desc{font-size:11px;color:var(--ink-light);line-height:1.6}
@@ -150,15 +150,19 @@ img{max-width:100%;display:block}
 .d-fonts-bad-lbl{display:inline-block;padding:3px 12px;background:#E8DFCF;color:#7A6B5C;border-radius:999px;font-family:var(--font-en);font-size:10px;letter-spacing:.15em;font-weight:700;margin-bottom:10px}
 .d-fonts-bad-text{font-family:var(--font-ja);font-size:18px;font-weight:700;color:var(--ink-light);line-height:1.5}
 
-/* ═══ DEMO 16: Background image (simple) ═══ */
-.d-bgimg-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.d-bgimg-col{height:240px;border-radius:14px;overflow:hidden;position:relative;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px}
-.d-bgimg-col.sakura{background:url("https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1200&q=80") center/cover}
-.d-bgimg-col.cafe{background:url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80") center/cover}
-.d-bgimg-col::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.55) 100%)}
-.d-bgimg-col > *{position:relative;z-index:1}
-.d-bgimg-lbl{font-family:var(--font-en);font-size:10px;letter-spacing:.3em;opacity:.9;margin-bottom:8px;font-weight:700}
-.d-bgimg-ttl{font-family:'Shippori Mincho',serif;font-size:clamp(18px,2.6vw,24px);font-weight:700;line-height:1.5;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+/* ═══ DEMO 16: Background image behind a card ═══ */
+.d-bgimg-stage{position:relative;padding:48px 32px;border-radius:14px;overflow:hidden;min-height:400px;display:flex;align-items:center;justify-content:center;background:#4A4038 url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=80") center/cover}
+.d-bgimg-stage::before{content:'';position:absolute;inset:0;background:rgba(20,15,10,.3)}
+.d-bgimg-card{position:relative;z-index:2;background:var(--bg);padding:44px 36px;border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.35);max-width:480px;width:92%;text-align:center;border:1px solid rgba(255,255,255,.4)}
+.d-bgimg-card-lbl{display:inline-block;font-family:var(--font-en);font-size:10px;letter-spacing:.3em;color:var(--orange);font-weight:700;margin-bottom:12px;padding:3px 12px;border:1px solid var(--orange);border-radius:999px}
+.d-bgimg-card-ttl{font-family:'Shippori Mincho',serif;font-size:clamp(22px,3vw,28px);font-weight:700;line-height:1.55;color:var(--ink);margin-bottom:10px;letter-spacing:.05em}
+.d-bgimg-card-sub{font-size:13px;color:var(--ink-light);line-height:1.8}
+.d-bgimg-flag{position:absolute;top:14px;left:14px;padding:5px 12px;background:rgba(255,255,255,.9);border-radius:4px;font-family:var(--font-en);font-size:10px;letter-spacing:.15em;font-weight:700;color:var(--ink);z-index:3;backdrop-filter:blur(4px)}
+.d-bgimg-note{margin-top:14px;text-align:center;font-size:12px;color:var(--ink-light);line-height:1.8}
+.d-bgimg-note strong{color:var(--orange)}
+.d-bgimg-swap{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.d-bgimg-swap button{background:var(--white);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-family:var(--font-ja);font-size:11px;font-weight:700;cursor:pointer;color:var(--ink-light);transition:all .2s}
+.d-bgimg-swap button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* ═══ DEMO 17: Dividers & ornaments ═══ */
 .d-div-stack{background:var(--white);border-radius:14px;padding:36px 28px;display:flex;flex-direction:column;gap:28px}
@@ -237,18 +241,26 @@ img{max-width:100%;display:block}
 .d-parallax-hint{margin-top:10px;text-align:center;font-size:12px;color:var(--ink-light)}
 .d-parallax-hint strong{color:var(--orange)}
 
-/* ═══ DEMO 7 (#7 Fade in on scroll): exaggerated so easy to notice ═══ */
-.d-fadein-wrap{position:relative}
-.d-fadein{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.d-fadein-item{background:var(--white);padding:40px 20px 32px;border-radius:14px;text-align:center;box-shadow:var(--shadow-md);opacity:0;transform:translateY(60px) scale(.92);transition:opacity 1.1s cubic-bezier(.2,.7,.3,1), transform 1.1s cubic-bezier(.2,.7,.3,1);border:1px solid var(--border)}
-.d-fadein-item.in{opacity:1;transform:translateY(0) scale(1)}
-.d-fadein-item:nth-child(2){transition-delay:.18s}
-.d-fadein-item:nth-child(3){transition-delay:.36s}
-.d-fadein-num{font-family:var(--font-en);font-size:40px;font-weight:900;color:var(--orange);margin-bottom:10px;line-height:1}
-.d-fadein-lbl{font-size:14px;color:var(--ink);font-weight:700}
-.d-fadein-replay{position:absolute;top:-8px;right:0;background:var(--orange);color:#fff;border:none;padding:8px 16px;border-radius:999px;font-family:var(--font-ja);font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow-sm);letter-spacing:.05em}
-.d-fadein-replay:hover{background:var(--ink)}
-.d-fadein-hint{margin-top:12px;text-align:center;font-size:12px;color:var(--ink-light)}
+/* ═══ DEMO 7 (#7 Fade in on scroll): 左=BEFORE/右=AFTER 比較 ═══ */
+.d-fadein-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative}
+.d-fadein-col{background:var(--beige);border-radius:14px;padding:22px 18px;position:relative}
+.d-fadein-col-lbl{display:inline-block;font-family:var(--font-en);font-size:10px;letter-spacing:.2em;padding:4px 12px;border-radius:999px;font-weight:700;margin-bottom:14px}
+.d-fadein-col.before .d-fadein-col-lbl{background:#E8DFCF;color:#7A6B5C}
+.d-fadein-col.after .d-fadein-col-lbl{background:var(--orange);color:#fff}
+.d-fadein-steps{display:flex;flex-direction:column;gap:10px}
+.d-fadein-item{background:var(--white);padding:18px 16px;border-radius:10px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+.d-fadein-num{font-family:var(--font-en);font-size:28px;font-weight:900;color:var(--orange);line-height:1;flex-shrink:0;width:44px;text-align:center}
+.d-fadein-lbl{font-size:14px;color:var(--ink);font-weight:700;line-height:1.4}
+/* BEFORE: all visible instantly */
+.d-fadein-col.before .d-fadein-item{opacity:1}
+/* AFTER: animated with replay */
+.d-fadein-col.after .d-fadein-item{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.3,1), transform .9s cubic-bezier(.2,.7,.3,1)}
+.d-fadein-col.after .d-fadein-item.in{opacity:1;transform:translateY(0)}
+.d-fadein-col.after .d-fadein-item:nth-child(2){transition-delay:.25s}
+.d-fadein-col.after .d-fadein-item:nth-child(3){transition-delay:.5s}
+.d-fadein-replay{position:absolute;top:14px;right:14px;background:var(--ink);color:#fff;border:none;padding:7px 14px;border-radius:999px;font-family:var(--font-ja);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.05em;z-index:2}
+.d-fadein-replay:hover{background:var(--orange)}
+.d-fadein-hint{margin-top:12px;font-size:12px;color:var(--ink-light);line-height:1.7;text-align:center}
 .d-fadein-hint strong{color:var(--orange)}
 
 /* ═══ DEMO 7: Hover lift ═══ */
@@ -287,13 +299,13 @@ img{max-width:100%;display:block}
 .d-blob-img.b1{border-radius:60% 40% 45% 55% / 50% 60% 40% 50%}
 .d-blob-img.b2{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%}
 
-/* ═══ DEMO 13: Noise texture ═══ */
-.d-noise-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.d-noise-col{height:340px;border-radius:14px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center}
-.d-noise-col.before{background:#4A4038 url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80") center/cover}
-.d-noise-col.after{background:#4A4038 url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80") center/cover}
-.d-noise-col.after::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(42,37,32,.25),rgba(80,70,60,.15));mix-blend-mode:multiply}
-.d-noise-col.after::after{content:'';position:absolute;inset:-50%;opacity:.45;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");animation:noiseMove 1.2s steps(6) infinite;pointer-events:none}
+/* ═══ DEMO 13: Noise texture (toggle + zoom compare) ═══ */
+.d-noise-toggle-wrap{position:relative}
+.d-noise-stage{position:relative;height:420px;border-radius:14px;overflow:hidden;background:#4A4038 url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80") center/cover;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center}
+.d-noise-stage::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55));pointer-events:none}
+.d-noise-layer{position:absolute;inset:-50%;opacity:0;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");pointer-events:none;transition:opacity .5s}
+.d-noise-toggle-wrap.noise-on .d-noise-layer{opacity:.65;animation:noiseMove 1.2s steps(6) infinite}
+.d-noise-toggle-wrap.noise-on .d-noise-stage::before{background:linear-gradient(180deg,rgba(30,20,10,.25),rgba(20,10,5,.6))}
 @keyframes noiseMove{
   0%{transform:translate(0,0)}
   20%{transform:translate(-6%,4%)}
@@ -302,11 +314,22 @@ img{max-width:100%;display:block}
   80%{transform:translate(6%,5%)}
   100%{transform:translate(0,0)}
 }
-.d-noise-badge{position:absolute;top:14px;left:14px;padding:5px 14px;background:rgba(0,0,0,.55);border-radius:999px;font-family:var(--font-en);font-size:10px;letter-spacing:.18em;font-weight:700;backdrop-filter:blur(4px);z-index:2}
+.d-noise-flag{position:absolute;top:16px;left:16px;padding:6px 14px;background:rgba(0,0,0,.6);border-radius:999px;font-family:var(--font-en);font-size:10px;letter-spacing:.2em;font-weight:700;backdrop-filter:blur(4px);z-index:3;transition:background .3s}
+.d-noise-toggle-wrap.noise-on .d-noise-flag{background:rgba(201,106,58,.85)}
+.d-noise-flag::before{content:'WITHOUT NOISE'}
+.d-noise-toggle-wrap.noise-on .d-noise-flag::before{content:'WITH NOISE (FILM)'}
+.d-noise-ttl{font-family:'Shippori Mincho',serif;font-size:clamp(22px,3.2vw,32px);font-weight:700;line-height:1.5;letter-spacing:.05em;text-shadow:0 2px 16px rgba(0,0,0,.6);position:relative;z-index:2}
 .d-noise-lbl{font-family:var(--font-en);font-size:11px;letter-spacing:5px;opacity:.85;margin-bottom:10px;font-weight:700;position:relative;z-index:2}
-.d-noise-ttl{font-family:'Shippori Mincho',serif;font-size:clamp(20px,2.8vw,28px);font-weight:700;line-height:1.5;letter-spacing:.05em;text-shadow:0 2px 16px rgba(0,0,0,.6);position:relative;z-index:2}
-.d-noise-sub{margin-top:12px;font-size:11px;opacity:.8;position:relative;z-index:2;letter-spacing:.1em}
-.d-noise-note{margin-top:14px;text-align:center;font-size:12px;color:var(--ink-light)}
+.d-noise-sub{margin-top:12px;font-size:11px;opacity:.85;position:relative;z-index:2;letter-spacing:.1em}
+.d-noise-toggle-btn{position:absolute;top:16px;right:16px;background:#fff;color:var(--ink);border:none;padding:9px 18px;border-radius:999px;font-family:var(--font-ja);font-weight:700;font-size:12px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:4;transition:all .2s}
+.d-noise-toggle-btn:hover{transform:scale(1.05)}
+.d-noise-toggle-wrap.noise-on .d-noise-toggle-btn{background:var(--orange);color:#fff}
+/* zoom detail inset */
+.d-noise-zoom{position:absolute;bottom:16px;right:16px;width:150px;height:150px;border-radius:10px;overflow:hidden;border:2px solid #fff;box-shadow:0 6px 24px rgba(0,0,0,.5);z-index:3;background:url("https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80");background-size:600% 600%;background-position:30% 50%}
+.d-noise-zoom::after{content:'';position:absolute;inset:-50%;opacity:0;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");pointer-events:none;transition:opacity .5s}
+.d-noise-toggle-wrap.noise-on .d-noise-zoom::after{opacity:.75;animation:noiseMove 1.2s steps(6) infinite}
+.d-noise-zoom-lbl{position:absolute;top:6px;left:6px;font-family:var(--font-en);font-size:9px;font-weight:700;background:rgba(0,0,0,.7);color:#fff;padding:3px 8px;border-radius:999px;letter-spacing:.12em;z-index:2}
+.d-noise-note{margin-top:14px;text-align:center;font-size:12px;color:var(--ink-light);line-height:1.8}
 .d-noise-note strong{color:var(--orange)}
 
 /* ═══ DEMO 14: Cursor follow glow ═══ */
@@ -361,11 +384,14 @@ footer a{color:var(--orange)}
   .tech-hd{padding:20px 18px 16px;flex-direction:column;gap:12px}
   .tech-demo{padding:20px;min-height:160px}
   .tech-code{padding:16px;font-size:11.5px}
-  .d-round,.d-fadein,.d-hover,.d-counter,.d-frame,.d-bgimg-wrap,.d-noise-wrap,.d-btn-grid{grid-template-columns:1fr;gap:10px}
+  .d-round,.d-fadein,.d-hover,.d-counter,.d-frame,.d-btn-grid,.d-fadein-wrap{grid-template-columns:1fr;gap:10px}
+  .d-bgimg-stage{min-height:340px;padding:36px 20px}
+  .d-bgimg-card{padding:28px 22px}
+  .d-noise-stage{height:360px}
+  .d-noise-zoom{width:110px;height:110px;bottom:12px;right:12px}
   .d-fonts-legend{grid-template-columns:1fr 1fr}
   .d-parallax{height:300px}
   .d-photo-grid{grid-template-columns:repeat(2,1fr)}
-  .d-noise-col{height:260px}
   .d-counter{grid-template-columns:repeat(3,1fr)}
   .d-overlap-img,.d-overlap-card{width:100%}
   .d-overlap-card{margin-top:-40px;margin-left:0;margin-right:0;width:90%;align-self:center;margin-inline:auto}
@@ -527,6 +553,7 @@ footer a{color:var(--orange)}
             <li><strong>画像を渡す</strong>：手書きラフ・好きなLPのスクショ → 真似してもらう</li>
             <li><strong>参考サイトを分けて渡す</strong>：「構成はこっち」「デザインはこっち」と役割を明確に</li>
             <li><strong>具体の色・フォントを指定する</strong>：「ベージュ禁止」「Playfair禁止」など制約も有効</li>
+            <li><strong>絵文字を使わないでと伝える</strong>：Claudeは放っておくと ✓ ★ 🔥 ❤️ などを多用します。「絵文字はNG、SVGアイコンで」と指示を入れると一気に大人っぽくなる</li>
           </ol>
           <div style="margin-top:14px;padding:10px 14px;background:var(--white);border-radius:8px;font-size:12px;color:var(--ink-light)">
             ↓ 下のレベル1〜3で、具体的な加工テクニックを紹介します
@@ -594,6 +621,13 @@ footer a{color:var(--orange)}
             <div>
               <div style="font-weight:600;font-size:14px">全体が左右対称・整列・"お行儀よく"仕上がっている</div>
               <div style="font-size:12px;color:var(--ink-light);line-height:1.7">ネガティブマージンで攻めた重なりなどはない</div>
+            </div>
+          </label>
+          <label style="display:flex;gap:12px;padding:14px 18px;background:var(--white);border-radius:10px;cursor:pointer;align-items:flex-start">
+            <input type="checkbox" style="margin-top:3px;flex-shrink:0">
+            <div>
+              <div style="font-weight:600;font-size:14px">見出しや箇条書きに絵文字がたくさん入っている</div>
+              <div style="font-size:12px;color:var(--ink-light);line-height:1.7">チェックマーク・星・指差し・ハートなど。Claudeは放っておくと多用しがち。SVGアイコンに置き換えると一気に大人っぽくなります</div>
             </div>
           </label>
         </div>
@@ -789,9 +823,14 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">DEMO ─ 1つの見出しに3フォントを混ぜる</span>
+        <span class="demo-label">BEFORE → AFTER ─ 1フォント統一 vs 3フォント使い分け</span>
         <div class="d-fonts">
+          <div class="d-fonts-bad">
+            <span class="d-fonts-bad-lbl">BEFORE ─ 全部同じフォントだと"のっぺり"</span>
+            <div class="d-fonts-bad-text">女性起業家のためのAI活用プログラム2026</div>
+          </div>
           <div class="d-fonts-main">
+            <span style="position:absolute;top:14px;left:14px;padding:4px 12px;background:var(--orange);color:#fff;border-radius:999px;font-family:var(--font-en);font-size:10px;letter-spacing:.15em;font-weight:700;z-index:2">AFTER</span>
             <div class="d-fonts-part1">女性起業家のための</div>
             <div class="d-fonts-part2"><span class="ai">AI</span>活用プログラム</div>
             <div class="d-fonts-part3">2026</div>
@@ -806,8 +845,8 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
             <div class="d-fonts-leg">
               <span class="d-fonts-leg-num">2</span>
               <div class="d-fonts-leg-sample s2">AI活用</div>
-              <div class="d-fonts-leg-name">ROCKNROLL ONE</div>
-              <div class="d-fonts-leg-desc">カチッと系<br>モダン・力強さ</div>
+              <div class="d-fonts-leg-name">DELA GOTHIC ONE</div>
+              <div class="d-fonts-leg-desc">極太ゴシック<br>力強い・モダン</div>
             </div>
             <div class="d-fonts-leg">
               <span class="d-fonts-leg-num">3</span>
@@ -815,10 +854,6 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
               <div class="d-fonts-leg-name">GREAT VIBES</div>
               <div class="d-fonts-leg-desc">カリグラフィー<br>華やか・装飾</div>
             </div>
-          </div>
-          <div class="d-fonts-bad">
-            <span class="d-fonts-bad-lbl">BEFORE ─ 全部同じフォントだと</span>
-            <div class="d-fonts-bad-text">女性起業家のためのAI活用プログラム2026</div>
           </div>
         </div>
       </div>
@@ -833,8 +868,8 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
 <span class="code-c">　上品・伝統・信頼感を出すパート。フォントサイズは中くらい。</span>
 <span class="code-c">　色はインクっぽいダークブラウン（#2A2520）。</span>
 
-2行目「AI活用プログラム」→ カチッとしたモダン日本語フォント（RocknRoll One）
-<span class="code-c">　角ばった幾何学的な形のフォント。見出しらしい存在感。</span>
+2行目「AI活用プログラム」→ 極太ゴシック（Dela Gothic One）
+<span class="code-c">　ずっしり重みのあるモダン日本語フォント。見出しらしい存在感。</span>
 <span class="code-c">　一番大きく表示してください（1行目の1.3倍くらい）。</span>
 <span class="code-c">　"AI"の文字だけオレンジにすると、さらにキーワードが立ちます。</span>
 
@@ -843,7 +878,7 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
 <span class="code-c">　少し斜めに傾けて（-3度くらい）装飾として見せてください。</span>
 
 【フォント読み込み（Google Fonts）】
-<span class="code-c">　Shippori Mincho / RocknRoll One / Great Vibes の3つ</span>
+<span class="code-c">　Shippori Mincho / Dela Gothic One / Great Vibes の3つ</span>
 
 【ポイント】
 ・全部同じフォントだと"Claudeっぽい平凡さ"が出るので、必ず3種類使う
@@ -876,32 +911,42 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">DEMO ─ 業種に合わせて写真を選ぶだけ</span>
-        <div class="d-bgimg-wrap">
-          <div class="d-bgimg-col sakura">
-            <span class="d-bgimg-lbl">SPRING CAMPAIGN</span>
-            <div class="d-bgimg-ttl">桜とともに、<br>新しい一歩を。</div>
-          </div>
-          <div class="d-bgimg-col cafe">
-            <span class="d-bgimg-lbl">CAFE MENU</span>
-            <div class="d-bgimg-ttl">午後の一杯を、<br>ゆっくりと。</div>
+        <span class="demo-label">DEMO ─ 写真はあくまで"背景"、読ませたい情報はカードの中に</span>
+        <div class="d-bgimg-stage" id="bgimgStage">
+          <span class="d-bgimg-flag">PHOTO AS BACKGROUND</span>
+          <div class="d-bgimg-card">
+            <span class="d-bgimg-card-lbl">SPRING PROGRAM</span>
+            <div class="d-bgimg-card-ttl">桜とともに、<br>新しい一歩を。</div>
+            <div class="d-bgimg-card-sub">写真はあくまで背景。読ませたい情報は<br>白いカードの中にまとめて配置します。</div>
           </div>
         </div>
+        <div class="d-bgimg-swap">
+          <button class="active" onclick="swapBgImg(this,'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=80')">桜</button>
+          <button onclick="swapBgImg(this,'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1600&q=80')">カフェ</button>
+          <button onclick="swapBgImg(this,'https://images.unsplash.com/photo-1542382257-80dedb725088?auto=format&fit=crop&w=1600&q=80')">オフィス</button>
+          <button onclick="swapBgImg(this,'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80')">自然</button>
+        </div>
+        <p class="d-bgimg-note">写真は<strong>カードの下＝セクション全体の背景</strong>として機能。カードが浮いて見えることで奥行きが生まれる。<br>「写真の上に直接テキスト」より<strong>可読性が高く、情報整理もしやすい</strong>。</p>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションの背景にベタ塗りではなく、写真を敷いてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションの背景に写真を敷いて、その上に"コンテンツカード"を
+浮かせるレイアウトを作ってください。
 
-【基本の作り方】
-・セクションに background-image で写真を指定。
+【構造のイメージ】
+・外側：セクション全体（stage）に写真を background-image で敷く
 <span class="code-c">　background-size: cover / background-position: center</span>
-<span class="code-c">　でセクション全体を覆うように。</span>
+・内側：白や生成り色の四角いカード（card）を中央に配置
+<span class="code-c">　max-width: 480px くらいの控えめサイズ</span>
+<span class="code-c">　padding を多めに、box-shadow でふわっと浮かせる</span>
+・カードの中に、見出し・小見出し・本文を整理して入れる
 
-・写真の上に、上→下の黒グラデーションを重ねてください。
-<span class="code-c">　例：rgba(0,0,0,.1) → rgba(0,0,0,.55)</span>
-<span class="code-c">　これで文字がちゃんと読めるようになります。</span>
-
-・テキストは中央寄せで白。見出しは明朝体がおすすめ。
+【ポイント】
+・写真の上に直接テキストを置くのではなく、
+<span class="code-c">　カードの中にテキストを入れる</span>ことで可読性UP
+・写真はあくまで世界観を作る背景。情報はカードで整理する
+・写真の上に薄い黒オーバーレイを重ねるとカードが際立つ
+<span class="code-c">　例：rgba(20,15,10,.3)</span>
 
 【写真の選び方】
 ・業種のイメージに寄せる：
@@ -914,7 +959,7 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
 <span class="code-c">　"https://images.unsplash.com/photo-xxxxx" のURLを直貼りできます。</span>
 
 ・ピントが合いすぎていない、余白が多い写真が◎
-<span class="code-c">　人物がガッツリ写ってるとテキストが邪魔になります。</span></pre>
+<span class="code-c">　カードが乗る中央部分が落ち着いている写真がベスト。</span></pre>
       </div>
     </article>
 
@@ -1207,16 +1252,27 @@ C. 矢印スライド（ホバー時）
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">DEMO ─ 見えた瞬間に下から浮き上がる（左→中→右の順）</span>
+        <span class="demo-label">BEFORE → AFTER ─ 同じ3ステップの見せ方の違い</span>
         <div class="d-fadein-wrap">
-          <button class="d-fadein-replay" onclick="replayFade(this)">もう一度見る ↻</button>
-          <div class="d-fadein">
-            <div class="d-fadein-item"><div class="d-fadein-num">1</div><div class="d-fadein-lbl">コピーする</div></div>
-            <div class="d-fadein-item"><div class="d-fadein-num">2</div><div class="d-fadein-lbl">貼り付ける</div></div>
-            <div class="d-fadein-item"><div class="d-fadein-num">3</div><div class="d-fadein-lbl">完成する</div></div>
+          <div class="d-fadein-col before">
+            <span class="d-fadein-col-lbl">BEFORE（普通）</span>
+            <div class="d-fadein-steps">
+              <div class="d-fadein-item"><div class="d-fadein-num">1</div><div class="d-fadein-lbl">コピーする</div></div>
+              <div class="d-fadein-item"><div class="d-fadein-num">2</div><div class="d-fadein-lbl">貼り付ける</div></div>
+              <div class="d-fadein-item"><div class="d-fadein-num">3</div><div class="d-fadein-lbl">完成する</div></div>
+            </div>
+          </div>
+          <div class="d-fadein-col after">
+            <button class="d-fadein-replay" onclick="replayFade(this)">動かす ↻</button>
+            <span class="d-fadein-col-lbl">AFTER（動きあり）</span>
+            <div class="d-fadein-steps">
+              <div class="d-fadein-item"><div class="d-fadein-num">1</div><div class="d-fadein-lbl">コピーする</div></div>
+              <div class="d-fadein-item"><div class="d-fadein-num">2</div><div class="d-fadein-lbl">貼り付ける</div></div>
+              <div class="d-fadein-item"><div class="d-fadein-num">3</div><div class="d-fadein-lbl">完成する</div></div>
+            </div>
           </div>
         </div>
-        <p class="d-fadein-hint">60px下・透明状態から<strong>1.1秒かけて</strong>ふわっと浮上。2枚目・3枚目は少し遅れて表示=リズムが生まれます。</p>
+        <p class="d-fadein-hint">左は最初から全部表示されている／<strong>右は40px下・透明から順番に浮上</strong>してくる。右上の「動かす」ボタンで再生できます。</p>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
@@ -1580,22 +1636,20 @@ C. 矢印スライド（ホバー時）
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">BEFORE / AFTER ─ 同じマンション写真にノイズを重ねた比較</span>
-        <div class="d-noise-wrap">
-          <div class="d-noise-col before">
-            <span class="d-noise-badge">BEFORE</span>
-            <span class="d-noise-lbl">WITHOUT NOISE</span>
+        <span class="demo-label">DEMO ─ ボタンで切り替えて違いを体感する（右下は拡大プレビュー）</span>
+        <div class="d-noise-toggle-wrap">
+          <div class="d-noise-stage">
+            <span class="d-noise-flag"></span>
+            <button class="d-noise-toggle-btn" onclick="toggleNoise(this)">ノイズを重ねる</button>
+            <span class="d-noise-lbl">TOKYO NIGHT</span>
             <div class="d-noise-ttl">都会の夜景</div>
-            <div class="d-noise-sub">普通の写真のまま</div>
-          </div>
-          <div class="d-noise-col after">
-            <span class="d-noise-badge">AFTER</span>
-            <span class="d-noise-lbl">WITH NOISE</span>
-            <div class="d-noise-ttl">都会の夜景</div>
-            <div class="d-noise-sub">フィルム映画のような質感</div>
+            <div class="d-noise-sub">SAME PHOTO / DIFFERENT MOOD</div>
+            <div class="d-noise-zoom">
+              <span class="d-noise-zoom-lbl">ZOOM 6×</span>
+            </div>
           </div>
         </div>
-        <p class="d-noise-note">AFTERは<strong>動くノイズ（アニメーション付き）</strong>が重なってる：ザラッとした粒子が映画のフィルム感を作る</p>
+        <p class="d-noise-note">ボタンを押すと<strong>同じ写真に動くノイズが重なる</strong>。右下の拡大プレビューで粒子の粒感が分かりやすい。<br>ノイズあり＝フィルム映画のような質感／ノイズなし＝ただのストック写真。</p>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
@@ -1767,19 +1821,36 @@ function copyCode(btn){
   });
 }
 
-/* Fade in on scroll */
+/* Fade in on scroll (AFTER column only) */
 const fadeIO = new IntersectionObserver(es=>{
   es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); fadeIO.unobserve(e.target); } });
-}, { threshold: 0.15 });
-document.querySelectorAll('.d-fadein-item').forEach(el=>fadeIO.observe(el));
+}, { threshold: 0.2 });
+document.querySelectorAll('.d-fadein-col.after .d-fadein-item').forEach(el=>fadeIO.observe(el));
 
 /* Replay fade-in demo */
 function replayFade(btn){
-  const items = btn.parentNode.querySelectorAll('.d-fadein-item');
+  const col = btn.closest('.d-fadein-col');
+  const items = col.querySelectorAll('.d-fadein-item');
   items.forEach(el=>el.classList.remove('in'));
-  // force reflow so transition re-runs
-  void btn.parentNode.offsetWidth;
-  setTimeout(()=>{ items.forEach(el=>el.classList.add('in')); }, 60);
+  void col.offsetWidth; // force reflow
+  setTimeout(()=>{ items.forEach(el=>el.classList.add('in')); }, 80);
+}
+
+/* DEMO 16: swap background image */
+function swapBgImg(btn, url){
+  const stage = document.getElementById('bgimgStage');
+  if(!stage) return;
+  stage.style.backgroundImage = 'url("'+url+'")';
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* DEMO 15: toggle noise layer */
+function toggleNoise(btn){
+  const wrap = btn.closest('.d-noise-toggle-wrap');
+  if(!wrap) return;
+  wrap.classList.toggle('noise-on');
+  btn.textContent = wrap.classList.contains('noise-on') ? 'ノイズを消す' : 'ノイズを重ねる';
 }
 
 /* Counter up */
