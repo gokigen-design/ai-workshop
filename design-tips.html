@@ -670,26 +670,29 @@ footer a{color:var(--orange)}
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>以下の内容でヒーロー（トップ）部分を作ってください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+ページの一番上（ヒーロー）を、映画のワンシーンみたいな雰囲気にしてください。
+ひとことで言うと「お花の写真の上に、白い文字がきれいに乗ってる感じ」です。
 
-■ 背景に敷く画像
-  お花の写真（images/hero.jpg）
-  画像は中央に配置し、画面全体を覆うようにしてください。
+【見た目のイメージ】
+・背景いっぱいにお花の写真が広がっている
+<span class="code-c">　使う写真：images/hero.jpg</span>
+<span class="code-c">　写真は画面の真ん中が見えるようにして、すき間なくぎっしり敷いてください</span>
+・写真の上に、うっすら暗い色のフィルターをかぶせてある
+<span class="code-c">　左上は黒っぽく、右下はオレンジっぽく、斜めにじわっと変わる感じ</span>
+<span class="code-c">　写真がちょっと暗めに落ち着いて、上に乗る白い文字が読みやすくなります</span>
 
-■ その上に重ねるグラデーション
-  左上から右下にかけてグラデーションを1層重ねます。
-  ・左上の色：黒（透明度55%）
-  ・右下の色：オレンジ #C96A3A（透明度35%）
-  ・角度：135度
+【色の好み】
+・フィルターのオレンジは #C96A3A（あやブランドのオレンジ）
+・文字はぜんぶ白
 
-■ 目的
-  写真を少し暗く落ち着かせて、
-  その上に置く白い見出し文字が読みやすくなるようにしたいです。
+【文字】
+・大きな見出し「あなたの物語を、ひらく」
+・その上に小さな英語ラベル「FOR WOMEN ENTREPRENEURS」
+・どちらも画面の真ん中に揃えてください
 
-■ 文字
-  見出し：「あなたの物語を、ひらく」
-  小さい英語ラベル：「FOR WOMEN ENTREPRENEURS」
-  どちらも白、中央揃えで配置してください。</pre>
+【使う場所】
+LPの一番上（ファーストビュー）で、最初のつかみに使います。</pre>
       </div>
     </article>
 
@@ -714,27 +717,34 @@ footer a{color:var(--orange)}
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>カードや見出しの枠を"額縁"っぽくしたいので、以下の4パターンのどれかを使って装飾してください。
-角丸は使わず、あえて直角の枠にしてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+カードや見出しの縁を、額縁みたいにちょっと飾ってください。
+AIにまかせるとどうしても角が丸くなりがちなので、今回はあえて角をカクッとさせてください。
+下の4パターンのどれかを選んで使ってください。
 
-【パターン1】二重線の枠
-<span class="code-c">　ボックスの外側にオレンジ色の細い線を2本（内側と外側に1本ずつ、間に5pxの余白）</span>
-<span class="code-c">　で囲んでください。格式ある・上品な印象になります。</span>
+【パターン1】二重線の額縁
+<span class="code-c">　細いオレンジの線が2本、少しだけ間をあけて囲まれている感じ</span>
+<span class="code-c">　ホテルや招待状みたいな、きちんと上品な雰囲気</span>
 
-【パターン2】四隅だけに線を入れる
-<span class="code-c">　ボックスの左上と右下の角に、L字型のオレンジの線だけを表示してください。</span>
-<span class="code-c">　線の太さは2px、L字の長さは20px前後。抜け感があって余白が美しく見えます。</span>
+【パターン2】四隅だけにL字の線
+<span class="code-c">　左上と右下の角っこだけに、オレンジのL字の線が入る感じ</span>
+<span class="code-c">　真ん中はスカッと抜けていて、余白がきれいに見えます</span>
 
-【パターン3】破線（ダッシュ）
-<span class="code-c">　1.5pxのオレンジの破線でボックスを囲ってください。</span>
-<span class="code-c">　手作り感・ゆるさが出て、ワークショップ案内やチェックリストに合います。</span>
+【パターン3】点々の破線（手書き風）
+<span class="code-c">　オレンジの点線（破線）でぐるっと囲ってください</span>
+<span class="code-c">　手作り感・ゆるい雰囲気。ワークショップ案内やチェックリストに合います</span>
 
-【パターン4】ずらした影（オフセットシャドウ）
-<span class="code-c">　ゴールド色の細い線でボックスを囲み、右下方向に6pxだけずらした位置に</span>
-<span class="code-c">　同じゴールドのべた塗り影を置いてください。ポップで雑貨ショップっぽい雰囲気に。</span>
+【パターン4】影をずらして紙がずれたみたいに
+<span class="code-c">　ゴールドの細い線で囲って、その後ろに同じゴールドのベタ塗り影を</span>
+<span class="code-c">　ちょっとだけ右下にずらして置いてください</span>
+<span class="code-c">　ポップで雑貨ショップっぽい雰囲気になります</span>
 
-ポイント：どのパターンも"角丸ゼロ"にすることで、
-AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。</pre>
+【共通のポイント】
+・角はぜったい丸めないでください（まっすぐカクッと）
+・これだけで「いかにもAIが作りました」っぽさから抜け出せます
+
+【使う場所】
+カード、見出しの下、プロフィール枠など、ちょっと飾りたいところに。</pre>
       </div>
     </article>
 
@@ -758,26 +768,35 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>見出しと本文の"ジャンプ率"を大きくして、メリハリのあるページにしてください。
-以下の3段構えで文字サイズを設定してほしいです。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+見出しと本文のサイズの差を思いきり大きくして、メリハリのあるページにしてください。
+ひとことで言うと「見出しだけドーンと大きく、まわりは控えめに」。
+下の3段構えにしてください。
 
-1段目：キッカー（見出しの上の小さな英字ラベル）
-<span class="code-c">　・11px前後の小さめ</span>
-<span class="code-c">　・英字でぎゅっと詰めず、1文字ずつ4px空けて（字間を広く）</span>
-<span class="code-c">　・大文字で、色は薄めのブラウンかオレンジ</span>
+【1段目：見出しの上の小さな英字ラベル】
+<span class="code-c">　・かなり小さめの文字（本文より一回り小さいくらい）</span>
+<span class="code-c">　・アルファベット大文字で、1文字ずつちょっと間をあけて余裕をもたせる</span>
+<span class="code-c">　・色は薄めのブラウンかオレンジ</span>
 
-2段目：メイン見出し
-<span class="code-c">　・スマホで28px、PCで44px前後まで大きくしてください（画面幅に応じて自動調整）</span>
-<span class="code-c">　・太さは極太（900ウェイト）</span>
-<span class="code-c">　・行間は詰めめ（line-height 1.3くらい）で塊感を出す</span>
+【2段目：メインの見出し】
+<span class="code-c">　・とにかく大きく。スマホでも本文の2倍、PCなら3倍くらいドーン</span>
+<span class="code-c">　・極太（ごっつい太字）にしてください</span>
+<span class="code-c">　・行と行のすき間は詰めめにして、塊でどかんと見える感じに</span>
 
-3段目：本文
-<span class="code-c">　・15〜16pxで落ち着かせる</span>
-<span class="code-c">　・行間は広めに（1.9くらい）読みやすく</span>
-<span class="code-c">　・色は真っ黒ではなく、少しブラウン寄りのグレーに</span>
+【3段目：本文】
+<span class="code-c">　・読みやすいふつうのサイズ（やや大きめ）で落ち着かせる</span>
+<span class="code-c">　・行と行のすき間は広めにとってゆったり読める感じ</span>
+<span class="code-c">　・色は真っ黒ではなく、ちょっとブラウン寄りのグレー</span>
 
-ポイントは、2段目だけを思いきり大きく・太くして、
-1段目と3段目は控えめにすること。ここで差をつけると垢抜けます。</pre>
+【色・フォントの好み】
+・見出しは黒に近いインク色、ラベルはオレンジ系、本文はやわらかいグレー
+
+【ポイント】
+・2段目だけ思いきり大きく・太くして、1段目と3段目は控えめ
+・このサイズ差だけで一気に垢抜けます
+
+【使う場所】
+セクションの見出しまわり全般。特にLPのつかみの部分に。</pre>
       </div>
     </article>
 
@@ -797,19 +816,28 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>キャッチコピーの一部だけ、文字そのものにグラデーションを塗ってください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+キャッチコピーの一部の文字だけ、色がじわっと変わる塗り（グラデーション）にしてください。
+ひとことで言うと「一番言いたい単語だけキラッと色付き」。
 
-・文字の色は、オレンジ → ピンク → ゴールドの3色を
-<span class="code-c">　左上から右下に向かってなめらかに変わるグラデーションで塗ってください。</span>
-<span class="code-c">　（オレンジ #C96A3A / ピンク #D97FA3 / ゴールド #C9A961）</span>
+【見た目のイメージ】
+・文字の中で、オレンジ → ピンク → ゴールドの3色が
+<span class="code-c">　左上から右下に向かってなめらかに切り替わる感じ</span>
+・グラデを塗るのはキャッチの"一番言いたい単語だけ"
+<span class="code-c">　例：「未来を、デザインする。」なら"デザインする。"の部分だけ色付き</span>
+・文字は太めにしてください（細いと色がぼやけて見えません）
 
-・グラデーションを塗る範囲は、キャッチの"一番言いたい単語だけ"にしてください。
-<span class="code-c">　例：「未来を、デザインする。」なら"デザインする。"の部分だけ色をつける。</span>
+【色の好み】
+・オレンジ #C96A3A
+・ピンク #D97FA3
+・ゴールド #C9A961
 
-・グラデ文字は太字（900ウェイト）で表示してください。細いと色がぼやけて見えません。
+【ポイント】
+・1ページで使うのは1〜2箇所だけ。使いすぎると派手になって安っぽく見えます
+・"ここぞ"という場所にだけ入れてください
 
-・1ページに1〜2箇所だけに絞ってください。
-<span class="code-c">　使いすぎると派手で安っぽくなるので、"ここぞ"という場所にだけ。</span></pre>
+【使う場所】
+LPのメインキャッチ、セクションの大見出しなど、一番読ませたい言葉に。</pre>
       </div>
     </article>
 
@@ -860,31 +888,37 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>メインの見出しを、1つのフレーズの中で"3種類のフォント"を使い分けて表示してください。
-フォント全部同じだと平坦で"AIっぽい"ので、役割ごとに切り替えたいです。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+ひとつの見出しの中で、フォント（文字の形）を3種類使い分けてください。
+ひとことで言うと「雑誌のタイトルロゴみたいに、場所ごとに文字の顔を変える」。
+フォントが全部同じだと平坦で「いかにもAI」っぽくなるので、役割ごとに切り替えます。
 
 【例：「女性起業家のためのAI活用プログラム 2026」の場合】
 
 1行目「女性起業家のための」→ 明朝体（Shippori Mincho）
-<span class="code-c">　上品・伝統・信頼感を出すパート。フォントサイズは中くらい。</span>
-<span class="code-c">　色はインクっぽいダークブラウン（#2A2520）。</span>
+<span class="code-c">　縦横の線に強弱がある、きちんと上品な文字</span>
+<span class="code-c">　中くらいのサイズで、インクっぽい濃いブラウン（#2A2520）</span>
 
 2行目「AI活用プログラム」→ 極太ゴシック（Dela Gothic One）
-<span class="code-c">　ずっしり重みのあるモダン日本語フォント。見出しらしい存在感。</span>
-<span class="code-c">　一番大きく表示してください（1行目の1.3倍くらい）。</span>
-<span class="code-c">　"AI"の文字だけオレンジにすると、さらにキーワードが立ちます。</span>
+<span class="code-c">　ずっしり重たい、看板みたいな太いゴシック</span>
+<span class="code-c">　一番大きくドーンと。1行目の1.3倍くらいの大きさ</span>
+<span class="code-c">　「AI」の2文字だけオレンジにするとキーワードが立ちます</span>
 
 3行目「2026」→ カリグラフィー（Great Vibes）
-<span class="code-c">　筆記体で華やかに。ゴールド色、大きめ（60px前後）、</span>
-<span class="code-c">　少し斜めに傾けて（-3度くらい）装飾として見せてください。</span>
+<span class="code-c">　羽ペンで書いたような筆記体。華やかな装飾</span>
+<span class="code-c">　ゴールド色・大きめにして、少し斜めに傾けてください</span>
 
-【フォント読み込み（Google Fonts）】
+【色・フォントの好み】
+・使うフォント（Google Fontsから読み込み）
 <span class="code-c">　Shippori Mincho / Dela Gothic One / Great Vibes の3つ</span>
+・色は「濃いブラウン → ブラウン＋オレンジ1文字 → ゴールド」の3段階
 
 【ポイント】
-・全部同じフォントだと"Claudeっぽい平凡さ"が出るので、必ず3種類使う
-・役割は「情報 → 強調 → 装飾」の順で、サイズにメリハリをつける
-・文字色は「ダーク → ダーク+1色アクセント → ゴールド」の3段階</pre>
+・役割は「情報 → 強調 → 飾り」の順で、サイズにメリハリをつける
+・3種類使うだけで一気にプロっぽく、雑誌の表紙っぽい空気になります
+
+【使う場所】
+LPのメインビジュアル、イベントのタイトルロゴ、セミナーのつかみなど。</pre>
       </div>
     </article>
 
@@ -925,36 +959,38 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションの背景に写真を敷いて、その上に"コンテンツカード"を
-浮かせるレイアウトを作ってください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+セクションの背景に写真を敷いて、その上に白いカードを浮かせるレイアウトにしてください。
+ひとことで言うと「写真の上に、メモ紙がふわっと1枚のってる感じ」。
 
-【構造のイメージ】
-・外側：セクション全体（stage）に写真を background-image で敷く
-<span class="code-c">　background-size: cover / background-position: center</span>
-・内側：白や生成り色の四角いカード（card）を中央に配置
-<span class="code-c">　max-width: 480px くらいの控えめサイズ</span>
-<span class="code-c">　padding を多めに、box-shadow でふわっと浮かせる</span>
+【見た目のイメージ】
+・セクション全体にすき間なく写真を敷く
+<span class="code-c">　写真は中央の見せたい部分が隠れないように、バランスよくトリミング</span>
+・その真ん中に、白や生成り色の四角いカードを置く
+<span class="code-c">　幅は広すぎず控えめに（ページの真ん中にちょこんと）</span>
+<span class="code-c">　中は余白たっぷり、まわりに薄い影をつけて浮いてるみたいに</span>
 ・カードの中に、見出し・小見出し・本文を整理して入れる
 
 【ポイント】
-・写真の上に直接テキストを置くのではなく、
-<span class="code-c">　カードの中にテキストを入れる</span>ことで可読性UP
-・写真はあくまで世界観を作る背景。情報はカードで整理する
-・写真の上に薄い黒オーバーレイを重ねるとカードが際立つ
-<span class="code-c">　例：rgba(20,15,10,.3)</span>
+・写真の上に直接テキストを置かない（読みにくいから）
+<span class="code-c">　カードの中にまとめて入れることで一気に読みやすくなります</span>
+・写真はあくまで世界観を作る「背景」、情報は「カード」で整理する
+・写真の上に薄い黒のフィルターを重ねると、カードがさらに際立ちます
 
 【写真の選び方】
-・業種のイメージに寄せる：
-<span class="code-c">　・春キャンペーン → 桜・菜の花</span>
-<span class="code-c">　・カフェ → コーヒー・木のテーブル</span>
-<span class="code-c">　・女性起業家 → 柔らかい光・自然</span>
-<span class="code-c">　・ビジネス → 都会の夜景・オフィス</span>
+・業種のイメージに合わせる
+<span class="code-c">　春キャンペーン → 桜・菜の花</span>
+<span class="code-c">　カフェ → コーヒー・木のテーブル</span>
+<span class="code-c">　女性起業家 → 柔らかい光・自然</span>
+<span class="code-c">　ビジネス → 都会の夜景・オフィス</span>
+・無料素材は Unsplash が定番
+<span class="code-c">　URLをそのまま貼って使えます</span>
+・ピントがカチッと合いすぎていない、余白が多い写真がおすすめ
+<span class="code-c">　カードが乗る真ん中がごちゃっとしていない写真を選んでください</span>
 
-・無料素材は Unsplash が定番。
-<span class="code-c">　"https://images.unsplash.com/photo-xxxxx" のURLを直貼りできます。</span>
-
-・ピントが合いすぎていない、余白が多い写真が◎
-<span class="code-c">　カードが乗る中央部分が落ち着いている写真がベスト。</span></pre>
+【使う場所】
+キャンペーン告知、イベント案内、プロフィール紹介など
+「写真の雰囲気で引き込みたい」セクションに。</pre>
       </div>
     </article>
 
@@ -981,36 +1017,40 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションの区切りや見出しの下に、単なる横線ではなく
-"あしらい"を入れて整った印象にしてください。
-
-【パターン例 ─ どれかを使ってください】
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+セクションの区切りや見出しの下に、ただの横線じゃなくて"ちょっとした飾り"を入れてください。
+ひとことで言うと「雑誌のページをめくったときの、章と章の間の小さなワンポイント」。
+下の6パターンから選んで使ってください。
 
 A. シンプルライン
-<span class="code-c">　幅60%のオレンジ1pxライン。中央寄せ。最もベーシック。</span>
+<span class="code-c">　細いオレンジの短い横線を真ん中にスッと1本。一番ベーシック</span>
 
-B. 中央ドット
-<span class="code-c">　左右にグレーの短いライン、中央にオレンジの丸ドット。</span>
-<span class="code-c">　見出し直下に合う。</span>
+B. 中央にドット
+<span class="code-c">　左右にうすいグレーの短い線、真ん中にオレンジの丸ぽち</span>
+<span class="code-c">　見出しのすぐ下に合う上品な感じ</span>
 
-C. 筆記体あしらい
-<span class="code-c">　左右にゴールドの細いライン、中央にGreat Vibesの筆記体で</span>
-<span class="code-c">　"and" "&" "since 2020" などを入れる。結婚式・サロン向け。</span>
+C. 筆記体のワンポイント
+<span class="code-c">　左右にゴールドの細い線、真ん中に筆記体で「and」「&」「since 2020」など</span>
+<span class="code-c">　結婚式・サロン・ブライダル系に合う華やかさ</span>
 
-D. ダブルライン
-<span class="code-c">　幅50%の二重線（上下に1pxずつ、間5px）。格式ある印象。</span>
+D. 二重の線
+<span class="code-c">　横線が2本、ちょっとだけ間をあけて並んでる感じ</span>
+<span class="code-c">　きちんとした格式ある雰囲気</span>
 
-E. 三点アスタリスム（・ ・ ・）
-<span class="code-c">　点を3つ並べる。中央の1つだけオレンジで大きめに。</span>
-<span class="code-c">　雑誌や書籍の章区切り風。</span>
+E. 点が3つ
+<span class="code-c">　点々が3つ並んでいて、真ん中の1つだけオレンジで大きめ</span>
+<span class="code-c">　雑誌や本の章区切り風</span>
 
-F. 葉っぱ・花のあしらい
-<span class="code-c">　左右にグリーンの細いライン、中央にSVGの葉っぱアイコン。</span>
-<span class="code-c">　ナチュラル・オーガニック系に。</span>
+F. 葉っぱのイラスト
+<span class="code-c">　左右にグリーンの細い線、真ん中に葉っぱのイラスト</span>
+<span class="code-c">　ナチュラル・オーガニック系にぴったり</span>
 
 【共通ルール】
-・セクション間の区切りに使う場合は、上下に40pxくらいの余白を。
-・色は"本文と同じ or アクセントカラー"で。3色以上使うと散らかります。</pre>
+・セクションの区切りに使うときは、上下にゆったり余白をとる
+・色は本文と同じ色 or アクセントカラー1色で。3色以上使うと散らかります
+
+【使う場所】
+見出しの直下、セクションとセクションの境目、引用文のまわりなど。</pre>
       </div>
     </article>
 
@@ -1037,36 +1077,41 @@ F. 葉っぱ・花のあしらい
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>見出しや本文で強調したいキーワードを目立たせてください。
-太字だけだと弱いので、以下のパターンを組み合わせて使ってください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+見出しや本文の中で、読ませたいキーワードを目立たせてください。
+ひとことで言うと「この言葉だけ見てほしい！を視線で誘導する」。
+太字だけだと弱いので、下の6パターンから選んで使ってください。
 
-A. カラー強調
-<span class="code-c">　アクセントカラー（オレンジ #C96A3A）で太字に。</span>
-<span class="code-c">　一番オーソドックス。LP全体で1〜3箇所まで。</span>
+A. 色を変える
+<span class="code-c">　ブランドカラー（オレンジ #C96A3A）で太字に</span>
+<span class="code-c">　一番オーソドックス。LP全体で1〜3箇所まで</span>
 
-B. 黄色マーカー
-<span class="code-c">　線形グラデで、文字の下半分だけに透明な黄色(#F5D76E)を重ねる。</span>
-<span class="code-c">　手書きマーカーで引いたような雰囲気。親しみ感。</span>
+B. 黄色の手書きマーカー
+<span class="code-c">　文字の下半分だけに、透き通った黄色マーカーを引いたみたいな感じ</span>
+<span class="code-c">　ノートにマーカー引いたような親しみのある雰囲気</span>
 
 C. 太い下線
-<span class="code-c">　border-bottom: 3px solid オレンジ で下線を引く。</span>
-<span class="code-c">　見出しの一部だけ引くと効きます。</span>
+<span class="code-c">　文字の下にオレンジの太めの下線をびしっと</span>
+<span class="code-c">　見出しの一部だけに引くと効きます</span>
 
-D. 背景色で囲む
-<span class="code-c">　オレンジの背景に白文字、小さな角丸(4px)をつけて"タグ風"に。</span>
-<span class="code-c">　キャッチの中でキーワードをロゴ的に見せたいとき。</span>
+D. 背景色で囲んだタグ風
+<span class="code-c">　オレンジの背景に白文字、ちょっとだけ角を丸めて小さなタグっぽく</span>
+<span class="code-c">　キーワードをロゴみたいに見せたいとき</span>
 
-E. フォントを変える
-<span class="code-c">　強調したい単語だけフォントを切り替える。</span>
-<span class="code-c">　例：本文は明朝 → 強調部分はRocknRoll One など。</span>
+E. フォントだけ変える
+<span class="code-c">　その単語だけ文字の形（フォント）を切り替える</span>
+<span class="code-c">　例：本文は明朝、強調したい単語だけ太いゴシック</span>
 
-F. 文字サイズを大きく
-<span class="code-c">　強調したい単語を1.4倍の大きさに。色も変えるとさらに強い。</span>
-<span class="code-c">　見出しの中にもう1段のアクセントを作れる。</span>
+F. 文字サイズを大きくする
+<span class="code-c">　強調したい単語だけ1.4倍くらい大きく。色も変えるとさらに強い</span>
+<span class="code-c">　見出しの中でもう1段のアクセントを作れる</span>
 
 【使い分けのコツ】
-・1文の中に強調は1つまで。
-・同じページで違うパターンを使うと散らかるので、1つのLPで2種類まで。</pre>
+・1文の中に強調は1つまで
+・同じページでいろんなパターンを混ぜると散らかるので、1つのLPで2種類まで
+
+【使う場所】
+見出し、キャッチコピー、本文の中で「ここ見て！」な単語に。</pre>
       </div>
     </article>
 
@@ -1103,30 +1148,37 @@ F. 文字サイズを大きく
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>写真をそのまま貼るのではなく、以下のいずれかの加工をしてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+写真をそのまま貼らず、ちょっと加工して印象を変えてください。
+ひとことで言うと「そのまま貼った写真は素人っぽい、ひと手間で一気にプロっぽく」。
+下の4パターンから1つ選んで使ってください。
 
-A. 丸く切り抜き（真円）
-<span class="code-c">　border-radius: 50% で完全な円形に。</span>
-<span class="code-c">　柔らかい影（box-shadow: 0 8px 20px rgba(0,0,0,.15)）を下に落とす。</span>
-<span class="code-c">　使いどころ：プロフィール写真・お客様の声のアイコン。</span>
+A. 丸く切り抜き（真ん丸）
+<span class="code-c">　写真をコンパスで描いたような真ん丸に切り抜く</span>
+<span class="code-c">　下にふんわり薄い影をつけて、浮いてるみたいに</span>
+<span class="code-c">　使うとこ：プロフィール写真、お客様の声のアイコン</span>
 
-B. 四角の"ずれ影"フレーム
-<span class="code-c">　写真はそのまま角ばらせて、右下方向に8pxずらした位置に</span>
-<span class="code-c">　オレンジ色のベタ影を落とす（box-shadow: 8px 8px 0 オレンジ）。</span>
-<span class="code-c">　ポップで雑貨ショップっぽい印象。</span>
+B. 影をずらした四角フレーム
+<span class="code-c">　写真は四角のまま、後ろにオレンジのベタ塗り影を</span>
+<span class="code-c">　ちょっとだけ右下にずらして置く感じ</span>
+<span class="code-c">　ポップで雑貨ショップっぽい印象</span>
 
-C. 白い縁取りフレーム（ポラロイド風）
-<span class="code-c">　写真の周りに8pxの白い枠をつけて、さらに外側にふんわり影。</span>
-<span class="code-c">　ちょっと傾ける（transform: rotate(-2deg)）とアルバム風。</span>
-<span class="code-c">　使いどころ：ギャラリー、ストーリー、想い出系。</span>
+C. 白い縁取りのポラロイド風
+<span class="code-c">　写真のまわりに太めの白い枠を1周つける</span>
+<span class="code-c">　外側にふんわり影をつけて、少し傾けるとアルバム風</span>
+<span class="code-c">　使うとこ：ギャラリー、想い出系、お客様の声</span>
 
-D. ブロブ型（ぐにゃっと）
-<span class="code-c">　border-radius を8値指定（例：60% 40% 45% 55% / 50% 60% 40% 50%）で</span>
-<span class="code-c">　有機的な形に切り抜く。女性向け・ナチュラル系に。</span>
+D. ぐにゃっとした形（ブロブ型）
+<span class="code-c">　アメーバみたいな、上下左右がちょっとずつ違う曲線の形に切り抜く</span>
+<span class="code-c">　女性向け・ナチュラル系に</span>
 
 【共通ルール】
-・元の写真はアスペクト比1:1（正方形）にクロップしておく。
-・1ページで複数パターンを混ぜない。統一感のために1つに絞る。</pre>
+・元の写真は正方形にトリミングしておく
+・1ページで違うパターンを混ぜない。統一感のために1つに絞ってください
+
+【使う場所】
+プロフィール、お客様の声、ギャラリー、スタッフ紹介など、
+「写真を並べて見せたい」全般に。</pre>
       </div>
     </article>
 
@@ -1159,28 +1211,35 @@ D. ブロブ型（ぐにゃっと）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>CTAボタンを"静止画"のままにせず、目を引く動きをつけてください。
-以下の3パターンから1つ選んでください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+申込みボタン（CTA）をただの静止画じゃなく、ちょっと動かして目を引いてください。
+ひとことで言うと「ボタンが"押したくなる空気"を出す」。
+下の3パターンから1つ選んでください。
 
-A. キラッと光るシャイン
-<span class="code-c">　ボタンの上を、半透明の白いハイライトが左から右へ通過する演出。</span>
-<span class="code-c">　::before 疑似要素で斜めの光の帯を作り、</span>
-<span class="code-c">　animation で2.8秒ごとに left: -60% → 120% へ移動。</span>
-<span class="code-c">　スキューで少し斜めにすると"流れ星"っぽくなる。</span>
+A. キラッと光が横切る
+<span class="code-c">　ボタンの上を、白い光の帯が左から右にスッと通り過ぎる感じ</span>
+<span class="code-c">　2〜3秒ごとにキラッ、キラッと繰り返す</span>
+<span class="code-c">　流れ星みたいでキャッチー</span>
 
-B. 脈打つパルス
-<span class="code-c">　ボタンの周りに、オレンジの影が広がっては消えるを繰り返す演出。</span>
-<span class="code-c">　box-shadow: 0 0 0 0 → 0 0 0 14px の拡大を2秒ループ。</span>
-<span class="code-c">　"クリックして！"を常に訴えかけたいCTAに。</span>
+B. じんわり脈打つパルス
+<span class="code-c">　ボタンのまわりに、オレンジの影がじわっと広がっては消える</span>
+<span class="code-c">　心臓がドクン、ドクンと脈打つような繰り返し</span>
+<span class="code-c">　「押してね！」を常に訴えかけたいCTAに</span>
 
-C. 矢印スライド（ホバー時）
-<span class="code-c">　通常は枠線だけのボタン、ホバー時に背景が濃くなり</span>
-<span class="code-c">　中の矢印が右にスッとずれる。</span>
-<span class="code-c">　落ち着いた上品な動き。サロン・セミナー向け。</span>
+C. ホバーで矢印がスッと動く
+<span class="code-c">　ふだんは枠線だけのシンプルなボタン</span>
+<span class="code-c">　カーソルを乗せると背景が濃くなって、矢印が右にスッとずれる</span>
+<span class="code-c">　落ち着いた上品な動き。サロン・セミナー向け</span>
+
+【動き】
+・速さはゆっくり目に（カクカクせず、なめらかに）
 
 【共通ルール】
-・1ページに動くボタンは1〜2個まで（増やすとチカチカする）。
-・最重要CTAだけに使って、二次ボタンは静止にする。</pre>
+・1ページで動くボタンは1〜2個まで。増やすとチカチカして逆効果
+・一番押してほしいボタンだけに使って、他のボタンは静止のまま
+
+【使う場所】
+申込みボタン、LINE登録ボタン、無料相談ボタンなど。</pre>
       </div>
     </article>
 
@@ -1218,21 +1277,27 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>ページの背景にパララックス（視差スクロール）効果を入れてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+ページをスクロールしたときに、背景の写真だけがその場に留まって、
+文字だけが動いて見える「パララックス」という演出を入れてください。
+ひとことで言うと「背景がピタッと止まって、奥行きが生まれる感じ」。
 
-・指定したセクションの背景に大きめの写真を敷いてください。
-<span class="code-c">　写真はページいっぱいに広がるように（背景のサイズはcoverで、中央寄せ）。</span>
+【見た目のイメージ】
+・指定したセクションの背景に、大きめの写真をすき間なく敷く
+<span class="code-c">　写真はページ幅いっぱいに広がるように、中央を見せる</span>
+・ページをスクロールしても、背景の写真だけその場に固定
+<span class="code-c">　上に乗ってる文字やカードだけが動く</span>
+<span class="code-c">　背景が遅れて動いて見えるから、奥行きが生まれます</span>
+・セクションの高さは画面の6割くらいを目安に
 
-・スクロールしても背景画像はその場に"固定"されて、
-<span class="code-c">　前景のテキストだけが動くようにしてください。</span>
-<span class="code-c">　（背景が遅れて動いて見えるのがパララックスの演出）</span>
+【動き】
+・スクロールのスピードに合わせて、なめらかに
+・スマホでは重くてカクつくので、スマホのときだけ
+<span class="code-c">　パララックスをオフにして、ふつうのスクロールに切り替えてください</span>
 
-・セクションの高さは画面の6割くらい（60vh）を目安に。
-
-・スマホでは重くなるので、画面幅700px以下では
-<span class="code-c">　パララックスを無効にして、普通にスクロールで一緒に動くようにしてください。</span>
-
-使うのはヒーロー（トップ）か、ページの中間の"イメージ写真"セクションがおすすめです。</pre>
+【使う場所】
+ページの一番上（ヒーロー）か、途中の「イメージ写真」セクションがおすすめ。
+1ページに1〜2箇所まで。</pre>
       </div>
     </article>
 
@@ -1271,22 +1336,31 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>要素がスクロールで画面に入ってきたときに、
-"ふわっ"と下から上に浮き上がるアニメーションをつけてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+スクロールしていって、要素が画面に入ってきた瞬間に、
+「ふわっ」と下から上に浮き上がるように表示させてください。
+ひとことで言うと「画面に入ると、下からすーっと登場する」。
 
-・最初は透明かつ少し下にずれた状態（24pxくらい下）にしておく。
+【見た目のイメージ】
+・最初は透明で、少しだけ（指2本分くらい）下にずれた状態でひっそり待機
+・画面の中に入ってきたら
+<span class="code-c">　透明 → はっきり見える、下 → 定位置、へ同時にじわっと移動</span>
+<span class="code-c">　ふわっ感が大事。カクカクしないように</span>
 
-・画面に20%以上入ったタイミングで、
-<span class="code-c">　透明から不透明へ、下から定位置へ、なめらかに動かしてください。</span>
-<span class="code-c">　（0.8秒くらいかけて、最初はゆっくり・最後もゆっくり）</span>
+【動き】
+・スピードは1秒弱くらい。ゆっくり始まって、ゆっくり止まる感じ
+・一度出たら、もう一回スクロールで戻ってきても再発動しない
+<span class="code-c">　（チカチカ繰り返すとうるさくなるので）</span>
 
-・検知にはIntersectionObserverを使ってください（ライブラリは不要）。
+【仕組みの希望】
+・仕組みはブラウザ標準の機能（IntersectionObserver）でOK
+<span class="code-c">　追加のライブラリは不要にしてください</span>
+・動かしたい要素には、あとから自分でクラス名（fade-itemなど）を
+<span class="code-c">　つけるだけで発動する形にしてほしいです</span>
 
-・一度表示されたら、スクロールで戻ってもアニメは再発動しない
-<span class="code-c">　（チカチカしないように）仕様にしてください。</span>
-
-適用したい要素には、あとから自分でクラス名（例：fade-item）を
-つければそれだけで発動する仕組みにしてほしいです。</pre>
+【使う場所】
+セクションのタイトル、ステップの1・2・3、お客様の声カードなど、
+「順番に読ませたい」要素ぜんぶに。</pre>
       </div>
     </article>
 
@@ -1310,24 +1384,24 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>カードやボタンにカーソルを乗せたとき、
-"ふわっと浮く"動きをつけてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+カードやボタンにカーソルを乗せたときに、ふわっと上に浮くようにしてください。
+ひとことで言うと「指を近づけたらカードがスッと浮きあがる感じ」。
 
-・ホバー時にカードを6pxだけ上に持ち上げてください。
+【見た目のイメージ】
+・カーソルが乗ると、カードが指1本分くらい上にスッと持ち上がる
+・同時に下の影が濃く・広く・ちょっと下にずれる
+<span class="code-c">　浮いてるみたいな立体感が出ます</span>
+・カーソルがのると指マーク（クリックできるよのサイン）に変わる
 
-・同時に、影を濃く・広く・下方向にずらしてください。
-<span class="code-c">　（浮いているように見える立体感）</span>
+【動き】
+・速さは一瞬でパッとじゃなく、ふんわり0.3秒くらい
+・カクッとせず、なめらかに。"すっ"と浮くような感じ
+・カーソルを離したら、同じ速さでスーッと元に戻る
 
-・動きは0.3秒くらいで、最初から最後までなめらかに。
-<span class="code-c">　カクッとした動きではなく、"すっ"と浮くような感じ。</span>
-
-・カーソルを離したら、同じ時間で元に戻るようにしてください。
-
-・マウスカーソルが乗ったときは、カーソル形状もポインター（指）に
-<span class="code-c">　変えて「押せる」ことを伝えてください。</span>
-
-適用先は、料金プランカード、メニュー、ボタンなど
-「クリックしてほしい要素」全部に。</pre>
+【使う場所】
+料金プランのカード、メニュー、ボタンなど、
+「押してほしい・クリックしてほしい」もの全部に。</pre>
       </div>
     </article>
 
@@ -1352,26 +1426,27 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>「実績1200件」「満足度98%」などの数字を、
-0からカウントアップする演出にしてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+「実績1200件」「満足度98%」みたいな数字を、0からシュルシュルと増えていく演出にしてください。
+ひとことで言うと「数字が勢いよく上がって、ピタッと止まる」。
 
-・数字はHTML側に"ゴール値"を指定しておけば、
-<span class="code-c">　0からその値までアニメーションする仕組みにしてほしいです。</span>
-<span class="code-c">　（例：data-target="1200" を見に行く）</span>
+【見た目のイメージ】
+・画面にその数字セクションが入ってきた瞬間に動き出す
+・0から目標の数字まで、1.5秒くらいかけて一気にカウントアップ
+・最初は速く数字が動いて、最後はゆっくりピタッと止まる
+<span class="code-c">　このピタッと止まる瞬間の気持ちよさがポイント</span>
+・一度カウントが終わったら、もうスクロールで戻っても動かない
+<span class="code-c">　（何回もチカチカ動かさない）</span>
 
-・アニメの長さは1.6秒くらい。
+【仕組みの希望】
+・数字の「目標の数」をHTMLに書いておいたら、
+<span class="code-c">　そこまで自動でカウントアップする仕組みにしてください</span>
+<span class="code-c">　（例：「1200」と書いておけば0→1200まで増えていく）</span>
+・画面に入った瞬間に発動する検知は、追加ライブラリ不要でOK
 
-・最初は速く、最後はゆっくり止まるイージング（減速カーブ）にしてください。
-<span class="code-c">　ピタッと止まる瞬間の気持ちよさが大事。</span>
-
-・数字セクションが画面に入ってきた瞬間に発動してください。
-<span class="code-c">　（IntersectionObserverで検知。最初から動き出すのは避ける）</span>
-
-・一度カウントが終わった数字は、再びスクロールで戻ってきても
-<span class="code-c">　もう発動しない仕様にしてください。</span>
-
-よく使う場所：LPのヘッダー直下、お客様の声の上、料金表の下など
-「信頼の裏付け」がほしい場所に。</pre>
+【使う場所】
+LPの上のほう、お客様の声の上、料金表の下など、
+「信頼の裏付け」を見せたい場所に。</pre>
       </div>
     </article>
 
@@ -1403,41 +1478,44 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>指定したセクション内で、カーソルの動きに合わせて
-何かのオブジェクトがついてくる演出をつけてください。
-業種・世界観に合わせて"追従するもの"を変えます。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+指定したエリアの中で、カーソルの動きに合わせて、
+何かのオブジェクトがふわっとついてくる演出を入れてください。
+ひとことで言うと「マウスを動かすと、後ろから何かがふわふわ追いかけてくる」。
+業種や世界観に合わせて"追いかけてくるもの"を選んでください。
 
 【パターンの例 ─ どれかを選んで指示してください】
 
-1. 光（ラグジュアリー／IT／コンサル向け）
-<span class="code-c">　カーソル位置に直径260pxのオレンジのぼんやりした光。</span>
-<span class="code-c">　背景は暗めのダークブラウン。近未来的・高級感。</span>
+1. ぼんやり光る玉（ラグジュアリー／IT／コンサル向け）
+<span class="code-c">　カーソル位置に、オレンジのぼんやりした光が追従</span>
+<span class="code-c">　背景は暗めのダークブラウンで、近未来的・高級感</span>
 
 2. 葉っぱ（ナチュラル／オーガニック／ヨガ向け）
-<span class="code-c">　緑のSVGで描いた葉っぱを、カーソルに合わせてふわっと追従。</span>
-<span class="code-c">　背景は明るいベージュや白木で、ナチュラル感を出す。</span>
+<span class="code-c">　グリーンの葉っぱのイラストがカーソルにふわっと追従</span>
+<span class="code-c">　背景は明るいベージュや白木で、ナチュラル感</span>
 
 3. スプーン＆フォーク（飲食店／レシピ／料理教室向け）
-<span class="code-c">　銀色のカトラリーSVG。背景は木目やテーブルクロスの写真。</span>
+<span class="code-c">　銀色のカトラリーのイラストが追従</span>
+<span class="code-c">　背景は木目やテーブルクロスの写真で食卓っぽく</span>
 
 4. 星（キラキラ／占い／女性向けサービス）
-<span class="code-c">　黄金の星を追従。さらに動かすたびに小さな粒子が残像として散る。</span>
-<span class="code-c">　夜空や濃紺背景と合わせる。</span>
+<span class="code-c">　黄金の星が追従、動かすたびに小さな粒がキラキラ残る</span>
+<span class="code-c">　夜空や濃紺の背景と合わせる</span>
 
 5. ハート（女性起業家／恋愛／美容サービス）
-<span class="code-c">　ピンクのハートを追従＋ハートの粒子が少し残る。</span>
+<span class="code-c">　ピンクのハートが追従、小さなハートの粒が少し残る</span>
 
 6. ペン（クリエイター／ライター／デザイナー）
-<span class="code-c">　ペン先がカーソルを追うように描画する演出。</span>
+<span class="code-c">　ペン先がカーソルを追いかけて描いていくような演出</span>
 
-【共通の仕様】
-・追従オブジェクトは pointer-events: none で
-<span class="code-c">　下のリンクやボタンを邪魔しないように。</span>
-・セクション側は overflow: hidden ではみ出し防止。
-・カクつかないよう transition: transform .25s くらいでなめらかに。
+【動き】
+・追いかける動きはカクつかず、じわっとなめらかに
+・追従してくるオブジェクトは、下のリンクやボタンの邪魔をしないように
+<span class="code-c">　（触れないようにすり抜ける仕様）</span>
 
-使いどころ：ヒーロー、CTAセクション、プロフィール紹介など
-"世界観を語りたい"場所に1箇所だけ。使いすぎると邪魔になります。</pre>
+【使う場所】
+ヒーロー、CTAセクション、プロフィール紹介など、
+「世界観を感じさせたい」1箇所だけ。たくさん使うとうるさくなります。</pre>
       </div>
     </article>
 
@@ -1476,26 +1554,25 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>雑誌っぽいレイアウトにしたいので、
-写真とテキストカードを少しだけ重ねて配置してください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+雑誌の表紙みたいに、写真と文字カードを少しだけ重ねて配置してください。
+ひとことで言うと「写真の右下に、文字カードがちょこんと乗っかってる感じ」。
 
-・大きな写真を左側に60%幅・320pxくらいの高さで表示してください。
+【見た目のイメージ】
+・左側に大きめの写真を配置（横幅6割くらい）
+・その右下に文字カード（見出し＋本文）を置いて
+<span class="code-c">　写真と少しだけ重ねる。写真の右下の角に、カードの左上の角が食い込む感じ</span>
+<span class="code-c">　写真とカードがL字に組み合わさってるイメージ</span>
+・カードは白背景に、やわらかい影をつけて浮いてるみたいに
+<span class="code-c">　角はほんの少しだけ丸めてOK</span>
 
-・その下にテキストカード（見出し＋本文）を置いて、
-<span class="code-c">　写真と80pxほど重なるように上に引き上げてください。</span>
-<span class="code-c">　（マイナスマージンで重ねるのがコツ）</span>
+【動き】
+・スマホでは重ねるとぎゅうぎゅうなので、重なりを解除して
+<span class="code-c">　写真の下にカードが普通に縦並びになるようにしてください</span>
 
-・テキストカードは右に寄せてください。
-<span class="code-c">　写真の左半分と、カードの右半分が重なるようなL字の組み合わせに。</span>
-
-・カードは白背景に少しの角丸、やわらかい影をつけて
-<span class="code-c">　"浮いている"印象にしてください。</span>
-
-・スマホでは重なりを解除して、写真の下にカードが普通に並ぶように
-<span class="code-c">　切り替えてください。</span>
-
-使いどころ：ブランド紹介、メニュー紹介、プロフィール、商品特集など
-「雰囲気を見せたい」セクションに。</pre>
+【使う場所】
+ブランド紹介、メニュー紹介、プロフィール、商品特集など、
+「雰囲気で魅せたい」セクションに。</pre>
       </div>
     </article>
 
@@ -1515,22 +1592,23 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションとセクションの境目を、水平な直線ではなく
-"斜めの線"でカットしてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+セクションとセクションの境目を、ただの真横の線じゃなく、斜めにカットしてください。
+ひとことで言うと「紙をななめにハサミで切ったみたいな境目」。
 
-・色付きのセクション（オレンジ〜ゴールドのグラデーションなど）の
-<span class="code-c">　下端を、左から右に向かってゆるく斜めに切ってください。</span>
-<span class="code-c">　（左側は高く、右側は低くなるイメージ）</span>
+【見た目のイメージ】
+・色付きのセクション（オレンジ〜ゴールドのグラデなど）の下のほうが
+<span class="code-c">　左から右に向かってゆるく斜めにカットされてる感じ</span>
+<span class="code-c">　左側は深くて、右側が浅い（あるいはその逆）</span>
+・切り口の下から、次のセクションのベージュ色がちらっと覗く
+・角度はきつすぎず、ゆったりした斜め
 
-・切り口の下には、次のセクションのベージュ色が覗くように。
+【ポイント】
+・斜めに切った分、中の文字が切れないように
+<span class="code-c">　セクションの下に余分な余白を多めに足しておいてください</span>
 
-・切り口の角度はきつすぎず、ゆったりとしたもの。
-<span class="code-c">　clip-path: polygon() を使って三角形や台形で切り抜いてください。</span>
-
-・斜めに切った分、その上のセクションには余分な下余白を
-<span class="code-c">　100pxくらい足しておいてください（中身が切れないように）。</span>
-
-使いどころ：ヒーロー→特徴、特徴→料金、料金→お客様の声など
+【使う場所】
+ヒーロー→特徴、特徴→料金、料金→お客様の声など、
 "流れ"を作りたい境目に1〜2箇所だけ。
 入れすぎるとチカチカするので注意。</pre>
       </div>
@@ -1557,26 +1635,27 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>キーワードが横に流れ続ける"マーキー"（流れる文字帯）を
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+キーワードが横にスーッと流れ続ける帯（マーキー）を、
 セクションの区切りに入れてください。
+ひとことで言うと「電光掲示板みたいに、文字が右から左へエンドレスで流れる」。
 
-・流したいキーワードを4〜6個リストで指定できるようにしてください。
-<span class="code-c">　例：DESIGN / CREATIVITY / AI / WORKSHOP など。</span>
+【見た目のイメージ】
+・流したいキーワードを4〜6個並べる
+<span class="code-c">　例：DESIGN / CREATIVITY / AI / WORKSHOP など</span>
+・同じリストを2回続けて並べて、ループが切れ目なくつながるように
+<span class="code-c">　（1セット流れきったら、2セット目が自然と始まる）</span>
+・文字と文字の間は指1〜2本分くらいのすき間をあける
+<span class="code-c">　ぎゅうぎゅうだと読めないので、1つずつ見えるように</span>
+・帯の上と下に細いオレンジの横線を1本ずつ入れて、「ここが区切り」と伝わるように
+・帯からはみ出た文字は見えないように隠してください
 
-・同じリストを2回連続で並べて、切れ目なくループするようにしてください。
-<span class="code-c">　（1セット分スライドしたら、2セット目が自然につながる）</span>
+【動き】
+・速さは、1周18秒くらいでゆっくり。速すぎると読めない
+・カクつかず、なめらかに流れ続ける
 
-・アニメーションの速度は18秒くらいで一周。
-<span class="code-c">　速すぎると読めないので、ゆっくり目に。</span>
-
-・文字と文字の間は48pxくらい空けて、1つずつ視認できるようにしてください。
-
-・帯の上下に細いボーダー（1pxのオレンジ線など）を入れて、
-<span class="code-c">　"ここが区切り"と伝わるようにしてください。</span>
-
-・横にはみ出る部分は overflow: hidden で隠してください。
-
-使いどころ：ヒーローの下／フッターの上／セクションの区切りなど。</pre>
+【使う場所】
+ヒーローのすぐ下、フッターの上、セクションとセクションの区切りなど。</pre>
       </div>
     </article>
 
@@ -1600,24 +1679,25 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>プロフィール写真や商品画像を、普通の丸や四角ではなく
-"ぐにゃっとした有機的な形（ブロブ型）"で切り抜いてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+プロフィール写真や商品画像を、ふつうの丸や四角じゃなく、
+ぐにゃっとした形（ブロブ型）で切り抜いてください。
+ひとことで言うと「アメーバみたいな、ちょっと歪んだ柔らかい形」。
 
-・正円より少し歪んだ、アメーバのような不規則な曲線の形。
-<span class="code-c">　上下左右の角度がすべて違っていて、手描き風の柔らかさがあるイメージ。</span>
+【見た目のイメージ】
+・真ん丸より少し歪んでいて、上下左右の丸みがそれぞれ違う形
+<span class="code-c">　手描きで描いたような、やさしい不規則さ</span>
+・セクションの中に複数枚並べるときは、2〜3種類の違う形を用意して交互に
+<span class="code-c">　全部同じ形だと単調。少しずつ違う形のバリエーションを</span>
 
-・2〜3パターンの違う形を用意して、セクション内で交互に使ってください。
-<span class="code-c">　全部同じ形だと単調になるので、少しずつ違う形にバリエーションを。</span>
+【形の作り方のヒント】
+・形を考えるのが難しい場合は「blobmaker」という無料のお絵かきツールで
+<span class="code-c">　好きな形を作って、その値を渡してもらえれば反映できます</span>
 
-・実現方法は、border-radius に「8つの値」を指定してください。
-<span class="code-c">　（水平方向4つ / 垂直方向4つ）</span>
-<span class="code-c">　例：60% 40% 45% 55% / 50% 60% 40% 50%</span>
-
-・形を考えるのが難しければ「blobmaker」というジェネレーターで
-<span class="code-c">　好みの形を作って、その値を教えてもらえれば反映できます。</span>
-
-使いどころ：プロフィール写真、お客様の声のアイコン、
-ブランドカラー背景のオブジェクト装飾など。</pre>
+【使う場所】
+プロフィール写真、お客様の声のアイコン、
+背景のオブジェクト装飾、ブランドのイメージカットなど、
+女性向け・ナチュラル系・やわらかい雰囲気を出したいところに。</pre>
       </div>
     </article>
 
@@ -1649,33 +1729,31 @@ C. 矢印スライド（ホバー時）
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>セクションの背景写真（マンションや夜景など）に
-"ザラッとしたノイズ"を重ねて、映画のワンシーンみたいな質感にしてください。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>【やりたいこと】
+セクションの背景の写真に、ザラッとした粒々（ノイズ）を薄く重ねてください。
+ひとことで言うと「ただの写真が、古いフィルム映画のワンシーンっぽくなる」。
 
-【ベース】
-・背景に実写の写真を敷いてください（マンション／夜景／街並みなど）。
-・写真の上から、ダークブラウンの薄いグラデーションを
-<span class="code-c">　mix-blend-mode: multiply で重ねて、少し落ち着かせる。</span>
+【見た目のイメージ】
+・背景に実写の写真を敷く（マンション／夜景／街並みなど）
+・その上に、ダークブラウンの薄いフィルターをかぶせて落ち着かせる
+・さらに、モノクロ（グレー）のザラッとした粒々を薄く重ねる
+<span class="code-c">　フィルムのザラザラ感、昔のポスターみたいな質感</span>
+・ノイズの透き通り具合は半分くらい。濃すぎず、うっすら
 
-【ノイズレイヤー】
-・::after の疑似要素で、SVGのfeTurbulenceフィルタを使って
-<span class="code-c">　モノクロの粒子ノイズを生成してください。</span>
-<span class="code-c">　（baseFrequency 0.9前後、feColorMatrixで完全モノクロに）</span>
-・重ね方は mix-blend-mode: overlay、透明度は45%くらい。
-
-【アニメーション】
-・ノイズレイヤーを translate で微妙に位置ずらししながら
-<span class="code-c">　1.2秒ループで animation を steps(6) で飛ばしてください。</span>
-<span class="code-c">　（なめらかに動くとデジタルっぽくなるので、"カクカク"が正解）</span>
-・この動きで"古いフィルム映写機"っぽい質感が出ます。
+【動き】
+・ノイズの粒々がちょっとずつ位置を変えながらカクカク動く
+<span class="code-c">　1.2秒くらいでループ。なめらかに動くとデジタルっぽくなるので、</span>
+<span class="code-c">　あえて"カクッ、カクッ"と飛ばすのが正解（古い映写機の質感）</span>
 
 【色の工夫】
-・ノイズはモノクロ（グレー）で、写真の色を邪魔しないように。
-・写真全体を少し彩度を落として（ややセピア or グレイッシュに）
-<span class="code-c">　映画っぽいトーンに寄せるとさらに雰囲気が出ます。</span>
+・ノイズはモノクロ（グレー）で、写真の色を邪魔しないように
+・写真全体の色味をちょっと落として（セピアっぽく or グレーっぽく）
+<span class="code-c">　映画っぽいトーンに寄せると、さらに雰囲気が出ます</span>
 
-使いどころ：ヒーロー、ブランドストーリー、プロフィール写真背景。
-ベタ塗り背景より、実写＋ノイズの組み合わせのほうが圧倒的に映えます。</pre>
+【使う場所】
+ヒーロー、ブランドストーリー、プロフィール写真の背景など、
+「世界観で見せたい」場所に。
+ベタ塗り背景より、実写＋ノイズの組み合わせが圧倒的に映えます。</pre>
       </div>
     </article>
 
