@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>加工テクニック見本帳 ─ 初心者がちょっとで垢抜けるLP加工集</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FAF7F2;
@@ -24,6 +24,9 @@
   --shadow-lg:0 16px 40px rgba(60,40,20,.12);
   --font-ja:'Zen Maru Gothic','Noto Sans JP',sans-serif;
   --font-en:'Inter',sans-serif;
+  --font-script:'Great Vibes',cursive;
+  --font-serif:'Playfair Display',serif;
+  --font-mincho:'Shippori Mincho',serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -32,7 +35,7 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 
 /* ═══ Layout ═══ */
-.container{max-width:980px;margin:0 auto;padding:0 24px}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
 .section{padding:80px 0}
 .section-hd{text-align:center;margin-bottom:48px}
 .section-label{font-family:var(--font-en);font-size:12px;letter-spacing:4px;color:var(--orange);font-weight:700;margin-bottom:8px;text-transform:uppercase}
@@ -125,20 +128,50 @@ img{max-width:100%;display:block}
 .d-txt-grad{background:var(--white);padding:48px 24px;border-radius:14px;text-align:center;font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.3;letter-spacing:-.01em}
 .d-txt-grad .g{background:linear-gradient(120deg,var(--orange) 0%,#D97FA3 50%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* ═══ DEMO 5: Parallax ═══ */
-.d-parallax{height:260px;border-radius:14px;overflow:hidden;position:relative;
-  background:
-    linear-gradient(135deg, rgba(42,37,32,.3), rgba(201,106,58,.25)),
-    linear-gradient(180deg,#8B6B4F 0%,#C9A961 40%,#F3EDE2 100%);
-  background-attachment:fixed;background-size:cover;background-position:center;
-  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px;letter-spacing:.05em;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+/* ═══ DEMO 5 (#5 和欧混植): Before/After ═══ */
+.d-fonts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.d-fonts-col{background:var(--white);padding:32px 22px;border-radius:14px;position:relative;overflow:hidden;min-height:260px;display:flex;flex-direction:column;justify-content:center}
+.d-fonts-col.bad{border:1px dashed #C9BDA8}
+.d-fonts-col.good{box-shadow:var(--shadow-md);border:1px solid var(--border)}
+.d-fonts-badge{display:inline-block;padding:3px 10px;border-radius:999px;font-family:var(--font-en);font-size:10px;letter-spacing:.18em;font-weight:700;margin-bottom:14px;align-self:flex-start}
+.d-fonts-badge.bad{background:#F3EDE2;color:#8B7B6B}
+.d-fonts-badge.good{background:var(--orange);color:#fff}
+.d-fonts-en-bad{font-family:var(--font-ja);font-size:13px;font-weight:700;color:var(--ink-light);letter-spacing:0;margin-bottom:8px}
+.d-fonts-h-bad{font-family:var(--font-ja);font-size:20px;font-weight:700;line-height:1.55;color:var(--ink)}
+.d-fonts-h-bad .yr{font-family:var(--font-ja)}
+.d-fonts-en-good{font-family:var(--font-en);font-size:13px;font-weight:700;color:var(--orange);letter-spacing:3px;margin-bottom:10px}
+.d-fonts-h-good{font-family:var(--font-ja);font-size:22px;font-weight:700;line-height:1.55;color:var(--ink)}
+.d-fonts-h-good .yr{font-family:var(--font-en);color:var(--orange);font-weight:900;margin-left:6px}
+.d-fonts-script{font-family:var(--font-script);font-size:42px;line-height:1;color:var(--gold);position:absolute;bottom:10px;right:18px;opacity:.85;transform:rotate(-4deg);pointer-events:none}
+.d-fonts-note{margin-top:14px;text-align:center;font-size:12px;color:var(--ink-light)}
+.d-fonts-note strong{color:var(--orange)}
 
-/* ═══ DEMO 6: Fade in on scroll ═══ */
-.d-fadein{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.d-fadein-item{background:var(--white);padding:32px 20px;border-radius:14px;text-align:center;box-shadow:var(--shadow-sm);opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1)}
-.d-fadein-item.in{opacity:1;transform:translateY(0)}
-.d-fadein-num{font-family:var(--font-en);font-size:28px;font-weight:900;color:var(--orange);margin-bottom:8px}
-.d-fadein-lbl{font-size:12px;color:var(--ink-light)}
+/* ═══ DEMO 6 (#6 Parallax): Real photo with fixed attachment ═══ */
+.d-parallax{height:380px;border-radius:14px;overflow:hidden;position:relative;
+  background-image:
+    linear-gradient(135deg, rgba(42,37,32,.35) 0%, rgba(201,106,58,.35) 100%),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80");
+  background-attachment:fixed;background-size:cover;background-position:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:24px}
+.d-parallax-lbl{font-family:var(--font-en);font-size:11px;letter-spacing:5px;font-weight:700;opacity:.85;margin-bottom:10px}
+.d-parallax-main{font-size:clamp(22px,3.5vw,32px);font-weight:900;line-height:1.5;text-shadow:0 2px 16px rgba(0,0,0,.4);letter-spacing:.03em}
+.d-parallax-sub{margin-top:14px;font-size:12px;opacity:.85;font-weight:500;padding:6px 14px;background:rgba(0,0,0,.25);border-radius:999px;backdrop-filter:blur(4px)}
+.d-parallax-hint{margin-top:10px;text-align:center;font-size:12px;color:var(--ink-light)}
+.d-parallax-hint strong{color:var(--orange)}
+
+/* ═══ DEMO 7 (#7 Fade in on scroll): exaggerated so easy to notice ═══ */
+.d-fadein-wrap{position:relative}
+.d-fadein{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.d-fadein-item{background:var(--white);padding:40px 20px 32px;border-radius:14px;text-align:center;box-shadow:var(--shadow-md);opacity:0;transform:translateY(60px) scale(.92);transition:opacity 1.1s cubic-bezier(.2,.7,.3,1), transform 1.1s cubic-bezier(.2,.7,.3,1);border:1px solid var(--border)}
+.d-fadein-item.in{opacity:1;transform:translateY(0) scale(1)}
+.d-fadein-item:nth-child(2){transition-delay:.18s}
+.d-fadein-item:nth-child(3){transition-delay:.36s}
+.d-fadein-num{font-family:var(--font-en);font-size:40px;font-weight:900;color:var(--orange);margin-bottom:10px;line-height:1}
+.d-fadein-lbl{font-size:14px;color:var(--ink);font-weight:700}
+.d-fadein-replay{position:absolute;top:-8px;right:0;background:var(--orange);color:#fff;border:none;padding:8px 16px;border-radius:999px;font-family:var(--font-ja);font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow-sm);letter-spacing:.05em}
+.d-fadein-replay:hover{background:var(--ink)}
+.d-fadein-hint{margin-top:12px;text-align:center;font-size:12px;color:var(--ink-light)}
+.d-fadein-hint strong{color:var(--orange)}
 
 /* ═══ DEMO 7: Hover lift ═══ */
 .d-hover{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -220,7 +253,9 @@ footer a{color:var(--orange)}
   .tech-hd{padding:20px 18px 16px;flex-direction:column;gap:12px}
   .tech-demo{padding:20px;min-height:160px}
   .tech-code{padding:16px;font-size:11.5px}
-  .d-round,.d-fadein,.d-hover,.d-counter{grid-template-columns:1fr;gap:10px}
+  .d-round,.d-fadein,.d-hover,.d-counter,.d-frame,.d-fonts{grid-template-columns:1fr;gap:10px}
+  .d-fonts-col{min-height:auto}
+  .d-parallax{height:300px}
   .d-counter{grid-template-columns:repeat(3,1fr)}
   .d-overlap-img,.d-overlap-card{width:100%}
   .d-overlap-card{margin-top:-40px;margin-left:0;margin-right:0;width:90%;align-self:center;margin-inline:auto}
@@ -643,29 +678,48 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">DEMO</span>
-        <div style="background:var(--white);padding:32px;border-radius:14px">
-          <div style="font-family:'Inter',sans-serif;font-size:13px;letter-spacing:3px;color:var(--orange);font-weight:700;margin-bottom:8px">FOR WOMEN ENTREPRENEURS</div>
-          <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:24px;font-weight:700;line-height:1.5">女性起業家のための<br>AI活用プログラム <span style="font-family:'Inter',sans-serif;color:var(--orange)">2026</span></div>
+        <span class="demo-label">BEFORE / AFTER ─ 英字部分のフォントだけ変えた比較</span>
+        <div class="d-fonts">
+          <div class="d-fonts-col bad">
+            <span class="d-fonts-badge bad">BEFORE</span>
+            <div class="d-fonts-en-bad">FOR WOMEN ENTREPRENEURS</div>
+            <div class="d-fonts-h-bad">女性起業家のための<br>AI活用プログラム <span class="yr">2026</span></div>
+          </div>
+          <div class="d-fonts-col good">
+            <span class="d-fonts-badge good">AFTER</span>
+            <div class="d-fonts-en-good">FOR WOMEN ENTREPRENEURS</div>
+            <div class="d-fonts-h-good">女性起業家のための<br>AI活用プログラム<span class="yr">2026</span></div>
+            <span class="d-fonts-script">for you</span>
+          </div>
         </div>
+        <p class="d-fonts-note"><strong>BEFORE</strong>は英数字も日本語フォントのまま／<strong>AFTER</strong>は英数字にInter、装飾に筆記体（Great Vibes）を追加</p>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
-        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>日本語と英語で違うフォントを使いたいです（和欧混植）。
+        <pre class="tech-code active"><button class="copy-btn" onclick="copyCode(this)">COPY</button>日本語と英語で別のフォントを使って、"和欧混植"にしてください。
+さらにワンポイントで筆記体も入れて、装飾として見せたいです。
 
-・日本語部分は「Zen Maru Gothic」という丸ゴシックで表示してください。
-<span class="code-c">　やわらかく女性的な印象になります。</span>
+【3種類のフォントを使い分けてください】
 
-・英語や数字の部分は「Inter」という英字専用フォントで表示してください。
-<span class="code-c">　日本語のゴシック体にそのまま英数字を乗せると野暮ったくなるので、</span>
-<span class="code-c">　英数字だけ別フォントにすることで一気にプロっぽくなります。</span>
+1. 日本語部分 → 「Zen Maru Gothic」という丸ゴシック
+<span class="code-c">　やわらかく女性的な印象。見出しも本文もこれで統一。</span>
 
-・英字部分は字間を少しだけ広げてください（0.05em くらい）。
+2. 英語・数字部分 → 「Inter」という英字専用フォント
+<span class="code-c">　日本語フォントで英数字を出すと野暮ったくなるので、</span>
+<span class="code-c">　英字・年号・品番などはInterに切り替えてください。</span>
+<span class="code-c">　字間は 0.05em くらい広めに。</span>
 
-・フォントはGoogle Fontsから読み込んでください。
+3. 装飾ワンポイント → 「Great Vibes」という筆記体
+<span class="code-c">　カードの右下や見出しの背景に、手書き風の短い英字を薄く配置してください。</span>
+<span class="code-c">　例：「for you」「since 2020」「Hello」など。</span>
+<span class="code-c">　フォントサイズ42px前後、ゴールド色、少し傾けて（-4度くらい）。</span>
+<span class="code-c">　あくまで装飾なので、透明度を下げて主張しすぎないように。</span>
 
-・参考に、英字（例：2026, FOR WOMEN ENTREPRENEURS など）は
-<span class="code-c">　オレンジ色（#C96A3A）にすると日本語との対比でさらに映えます。</span></pre>
+【フォントはGoogle Fontsから3つまとめて読み込んでください】
+<span class="code-c">　Zen Maru Gothic / Inter / Great Vibes</span>
+
+ポイントは、英数字だけInterに変え、さらに筆記体をワンポイントで
+添えることです。この"3段構え"で一気にプロっぽく見えます。</pre>
       </div>
     </article>
 
@@ -693,8 +747,13 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">DEMO ─ 下にスクロールしてみて</span>
-        <div class="d-parallax">PARALLAX ─ 背景が遅れて動く</div>
+        <span class="demo-label">DEMO ─ ゆっくり上下にスクロールしてみて（PC推奨）</span>
+        <div class="d-parallax">
+          <span class="d-parallax-lbl">PARALLAX EFFECT</span>
+          <span class="d-parallax-main">背景だけ固定されて<br>文字とズレて動きます</span>
+          <span class="d-parallax-sub">スクロールしてね ↕</span>
+        </div>
+        <p class="d-parallax-hint">写真は<strong>その場に留まり</strong>、周りのテキストだけが動く=奥行きが生まれる演出。スマホでは無効化するのが定番です。</p>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
@@ -727,12 +786,16 @@ AIがデフォルトで出す"全部丸い雰囲気"から抜け出せます。<
         </div>
       </div>
       <div class="tech-demo">
-        <span class="demo-label">DEMO ─ 見えたときにふわっと上がる</span>
-        <div class="d-fadein">
-          <div class="d-fadein-item"><div class="d-fadein-num">1</div><div class="d-fadein-lbl">コピーする</div></div>
-          <div class="d-fadein-item"><div class="d-fadein-num">2</div><div class="d-fadein-lbl">貼り付ける</div></div>
-          <div class="d-fadein-item"><div class="d-fadein-num">3</div><div class="d-fadein-lbl">完成する</div></div>
+        <span class="demo-label">DEMO ─ 見えた瞬間に下から浮き上がる（左→中→右の順）</span>
+        <div class="d-fadein-wrap">
+          <button class="d-fadein-replay" onclick="replayFade(this)">もう一度見る ↻</button>
+          <div class="d-fadein">
+            <div class="d-fadein-item"><div class="d-fadein-num">1</div><div class="d-fadein-lbl">コピーする</div></div>
+            <div class="d-fadein-item"><div class="d-fadein-num">2</div><div class="d-fadein-lbl">貼り付ける</div></div>
+            <div class="d-fadein-item"><div class="d-fadein-num">3</div><div class="d-fadein-lbl">完成する</div></div>
+          </div>
         </div>
+        <p class="d-fadein-hint">60px下・透明状態から<strong>1.1秒かけて</strong>ふわっと浮上。2枚目・3枚目は少し遅れて表示=リズムが生まれます。</p>
       </div>
       <div class="tech-code-wrap">
         <div class="tech-code-tabs"><button class="code-tab active">AIへの指示文（日本語）</button></div>
@@ -1239,8 +1302,17 @@ function copyCode(btn){
 /* Fade in on scroll */
 const fadeIO = new IntersectionObserver(es=>{
   es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); fadeIO.unobserve(e.target); } });
-}, { threshold: 0.2 });
+}, { threshold: 0.15 });
 document.querySelectorAll('.d-fadein-item').forEach(el=>fadeIO.observe(el));
+
+/* Replay fade-in demo */
+function replayFade(btn){
+  const items = btn.parentNode.querySelectorAll('.d-fadein-item');
+  items.forEach(el=>el.classList.remove('in'));
+  // force reflow so transition re-runs
+  void btn.parentNode.offsetWidth;
+  setTimeout(()=>{ items.forEach(el=>el.classList.add('in')); }, 60);
+}
 
 /* Counter up */
 function countUp(el, target, duration=1600){
