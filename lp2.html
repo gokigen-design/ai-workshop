@@ -806,17 +806,38 @@
     .ideal-card { padding: 34px 26px; min-height: 320px; }
   }
 
-  /* WHY US 横書き（3行を縦に積む／カードは左＝ナンバー＋タイトル、右＝本文＋タグ） */
+  /* WHY US 横書き（アイコン＋ナンバー＋タイトル＋本文＋タグ） */
   .edge-asymmetric {
     display: flex; flex-direction: column; gap: 24px;
     max-width: 1180px; margin: 40px auto 0;
   }
   .edge-asymmetric .edge-card {
-    display: grid; grid-template-columns: 0.9fr 1.35fr; gap: 44px;
-    padding: 38px 44px; align-items: center;
+    display: grid;
+    grid-template-columns: 100px 0.8fr 1.35fr;
+    grid-template-areas:
+      "icon num   body"
+      "icon title tags";
+    gap: 6px 38px;
+    padding: 38px 44px;
+    align-items: center;
+  }
+  .edge-asymmetric .edge-card .edge-icon {
+    grid-area: icon;
+    width: 92px; height: 92px;
+    display: flex; align-items: center; justify-content: center;
+    animation: edge-icon-float 4s ease-in-out infinite;
+  }
+  .edge-asymmetric .edge-card .edge-icon svg { width: 100%; height: 100%; display: block; }
+  .edge-asymmetric .edge-card:nth-child(1) .edge-icon { filter: drop-shadow(0 6px 18px rgba(34,211,238,0.45)); animation-delay: 0s; }
+  .edge-asymmetric .edge-card:nth-child(2) .edge-icon { filter: drop-shadow(0 6px 18px rgba(192,132,252,0.5)); animation-delay: 0.6s; }
+  .edge-asymmetric .edge-card:nth-child(3) .edge-icon { filter: drop-shadow(0 6px 18px rgba(244,114,182,0.45)); animation-delay: 1.2s; }
+  @keyframes edge-icon-float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50%      { transform: translateY(-5px) rotate(-3deg); }
   }
   .edge-asymmetric .edge-card .edge-num {
-    margin-bottom: 10px;
+    grid-area: num;
+    margin: 0 0 4px;
     font-size: clamp(14px, 1.4vw, 15px);
   }
   .edge-asymmetric .edge-card .edge-num span {
@@ -826,15 +847,27 @@
     margin-top: 6px;
   }
   .edge-asymmetric .edge-card .edge-title {
+    grid-area: title;
     font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.5;
+    margin: 0;
   }
-  .edge-asymmetric .edge-card .edge-body { margin: 0 0 14px; font-size: 14.5px; line-height: 2; }
-  .edge-asymmetric .edge-card .edge-tags { margin-top: 0; }
+  .edge-asymmetric .edge-card .edge-body { grid-area: body; margin: 0; font-size: 14.5px; line-height: 2; }
+  .edge-asymmetric .edge-card .edge-tags { grid-area: tags; margin-top: 0; }
   .edge-asymmetric .edge-card:nth-child(odd)  { border-left: 3px solid var(--neon-cyan); }
   .edge-asymmetric .edge-card:nth-child(even) { border-left: 3px solid var(--neon-pink); }
   .edge-asymmetric .edge-card:hover { transform: translateX(6px); }
   @media (max-width: 820px) {
-    .edge-asymmetric .edge-card { grid-template-columns: 1fr; gap: 14px; padding: 28px 22px; }
+    .edge-asymmetric .edge-card {
+      grid-template-columns: 72px 1fr;
+      grid-template-areas:
+        "icon num"
+        "icon title"
+        "body body"
+        "tags tags";
+      gap: 8px 18px;
+      padding: 28px 22px;
+    }
+    .edge-asymmetric .edge-card .edge-icon { width: 72px; height: 72px; }
   }
 
   /* stagger delay */
@@ -3090,56 +3123,90 @@
   }
   .vt-card {
     flex: 0 0 auto;
-    width: 360px;
-    min-height: 200px;
+    width: 400px;
     padding: 26px 28px 24px;
-    background: linear-gradient(135deg, rgba(10,10,30,0.85), rgba(4,4,14,0.95));
-    border: 1px solid rgba(0,212,255,0.2);
-    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(10,10,30,0.88), rgba(4,4,14,0.95));
+    border: 1px solid rgba(0,212,255,0.22);
+    border-radius: 12px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    overflow: hidden;
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    transition: border-color 0.3s, transform 0.3s;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   }
-  .vt-card:hover {
-    border-color: rgba(244,114,182,0.45);
-    transform: translateY(-3px);
-  }
-  .vt-card:nth-child(even) { border-color: rgba(192,132,252,0.22); }
-  .vt-card .vt-quote {
+  .vt-card::before {
+    content: '"';
+    position: absolute;
+    top: -8px; right: 16px;
     font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    line-height: 0.8;
-    color: var(--neon-cyan);
+    font-size: 3.2rem;
+    line-height: 1;
+    color: var(--neon-pink);
     opacity: 0.4;
-    margin-bottom: 6px;
   }
-  .vt-card .vt-text {
-    font-size: 14px;
-    line-height: 2;
-    color: var(--text-light);
-    margin: 0 0 18px;
+  .vt-card:nth-child(odd)  { border-left: 3px solid var(--neon-cyan); }
+  .vt-card:nth-child(even) { border-left: 3px solid var(--neon-pink); }
+  .vt-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(244,114,182,0.45);
+    box-shadow: 0 12px 30px rgba(244,114,182,0.15);
   }
-  .vt-card .vt-text strong { color: var(--neon-pink); font-weight: 700; }
-  .vt-card .vt-who {
-    display: flex;
+  .vt-card-head {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 14px;
     align-items: center;
-    gap: 10px;
-    padding-top: 14px;
-    border-top: 1px solid rgba(0,212,255,0.15);
-    font-size: 13px;
-    font-weight: 700;
-    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed rgba(0,212,255,0.2);
   }
-  .vt-card .vt-who span {
-    font-size: 11px;
-    font-weight: 400;
-    color: rgba(232,232,255,0.6);
+  .vt-card-avatar {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(34,211,238,0.3), rgba(244,114,182,0.3));
+    border: 2px solid rgba(0,212,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .vt-card-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vt-card-avatar .placeholder-avatar {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.55);
+  }
+  .vt-card-title {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--neon-pink);
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+  .vt-card-who {
+    font-size: 11.5px;
+    color: rgba(232,232,255,0.7);
+  }
+  .vt-card-who strong {
+    color: #fff;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .vt-card-body {
+    font-size: 13px;
+    line-height: 1.95;
+    color: var(--text-light);
+    margin: 0;
+  }
+  .vt-card-body strong {
+    color: var(--neon-pink);
+    font-weight: 700;
+    background: linear-gradient(transparent 60%, rgba(244,114,182,0.15) 60%);
   }
   @media (max-width: 640px) {
-    .vt-card { width: 280px; padding: 22px 22px 20px; }
+    .vt-card { width: 300px; padding: 22px 22px 20px; }
+    .vt-card-head { grid-template-columns: 52px 1fr; gap: 12px; }
+    .vt-card-avatar { width: 52px; height: 52px; }
+    .vt-card-title { font-size: 0.85rem; }
     .voices-ticker .vt-head .vt-sub { font-size: 1rem; }
   }
 
@@ -3737,76 +3804,6 @@
   </div>
 </section>
 
-<!-- 受講生の声：横スクロールティッカー（言葉だけ・4人分） -->
-<section class="voices-ticker">
-  <div class="vt-head reveal">
-    <div class="section-en">STUDENT VOICES</div>
-    <span class="vt-sub">受講生のリアルな声が、流れています。</span>
-  </div>
-  <div class="vt-stage">
-    <div class="vt-track">
-      <!-- 1セット目 -->
-      <div class="vt-card">
-        <div>
-          <div class="vt-quote">"</div>
-          <p class="vt-text">ずっと独学で迷子でしたが、<strong>3人のデザイナー視点で「惜しい」が「伝わる」に変わる瞬間</strong>が何度もあって、毎回"お土産"が大きい講座でした。</p>
-        </div>
-        <div class="vt-who">Yさん<span>30代・WEBデザイナー</span></div>
-      </div>
-      <div class="vt-card">
-        <div>
-          <div class="vt-quote">"</div>
-          <p class="vt-text">AIに任せきりだと出てこない<strong>"人の目線で見てどうか"のフィードバック</strong>が入るので、公開前に迷いなく"これで出す"と言い切れました。</p>
-        </div>
-        <div class="vt-who">Mさん<span>40代・コーチ業</span></div>
-      </div>
-      <div class="vt-card">
-        <div>
-          <div class="vt-quote">"</div>
-          <p class="vt-text">PC苦手で心配だったのに、<strong>事前のキックオフMTGで環境がちゃんと整う</strong>ので、当日は手を動かすことだけに集中できました。安心感が違います。</p>
-        </div>
-        <div class="vt-who">Sさん<span>30代・フリーランス</span></div>
-      </div>
-      <div class="vt-card">
-        <div>
-          <div class="vt-quote">"</div>
-          <p class="vt-text">Slackでいつでも聞ける環境が本当にありがたく、<strong>「詰まる→翌日にはもう動けている」</strong>の連続。独学の"止まる時間"がゼロになりました。</p>
-        </div>
-        <div class="vt-who">Tさん<span>40代・ハンドメイド作家</span></div>
-      </div>
-      <!-- 2セット目（シームレスループ用） -->
-      <div class="vt-card" aria-hidden="true">
-        <div>
-          <div class="vt-quote">"</div>
-          <p class="vt-text">ずっと独学で迷子でしたが、<strong>3人のデザイナー視点で「惜しい」が「伝わる」に変わる瞬間</strong>が何度もあって、毎回"お土産"が大きい講座でした。</p>
-        </div>
-        <div class="vt-who">Yさん<span>30代・WEBデザイナー</span></div>
-      </div>
-      <div class="vt-card" aria-hidden="true">
-        <div>
-          <div class="vt-quote">"</div>
-          <p class="vt-text">AIに任せきりだと出てこない<strong>"人の目線で見てどうか"のフィードバック</strong>が入るので、公開前に迷いなく"これで出す"と言い切れました。</p>
-        </div>
-        <div class="vt-who">Mさん<span>40代・コーチ業</span></div>
-      </div>
-      <div class="vt-card" aria-hidden="true">
-        <div>
-          <div class="vt-quote">"</div>
-          <p class="vt-text">PC苦手で心配だったのに、<strong>事前のキックオフMTGで環境がちゃんと整う</strong>ので、当日は手を動かすことだけに集中できました。安心感が違います。</p>
-        </div>
-        <div class="vt-who">Sさん<span>30代・フリーランス</span></div>
-      </div>
-      <div class="vt-card" aria-hidden="true">
-        <div>
-          <div class="vt-quote">"</div>
-          <p class="vt-text">Slackでいつでも聞ける環境が本当にありがたく、<strong>「詰まる→翌日にはもう動けている」</strong>の連続。独学の"止まる時間"がゼロになりました。</p>
-        </div>
-        <div class="vt-who">Tさん<span>40代・ハンドメイド作家</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 悩み -->
 <section class="worry">
   <div class="noise-overlay"></div>
@@ -3888,6 +3885,48 @@
     </p>
     <div class="edge-asymmetric">
       <div class="edge-card reveal delay-1">
+        <div class="edge-icon">
+          <svg viewBox="0 0 96 96" width="92" height="92" aria-hidden="true">
+            <defs>
+              <radialGradient id="edge-grad-1" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="25%" stop-color="#a5f3fc"/>
+                <stop offset="60%" stop-color="#22d3ee"/>
+                <stop offset="100%" stop-color="#0891b2"/>
+              </radialGradient>
+              <radialGradient id="edge-grad-1-pupil" cx="40%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#f472b6"/>
+                <stop offset="70%" stop-color="#7c3aed"/>
+                <stop offset="100%" stop-color="#1e1b4b"/>
+              </radialGradient>
+              <linearGradient id="edge-grad-1-shine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- outer glow ring -->
+            <circle cx="48" cy="48" r="44" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.35"/>
+            <!-- eye shape -->
+            <path d="M8 48 Q48 14 88 48 Q48 82 8 48 Z" fill="url(#edge-grad-1)" stroke="#0e7490" stroke-width="1.2"/>
+            <!-- iris -->
+            <circle cx="48" cy="48" r="18" fill="url(#edge-grad-1-pupil)"/>
+            <!-- pupil -->
+            <circle cx="48" cy="48" r="7" fill="#0b0b22"/>
+            <!-- eye highlight -->
+            <ellipse cx="42" cy="42" rx="6" ry="4" fill="#ffffff" opacity="0.95"/>
+            <ellipse cx="54" cy="52" rx="2.2" ry="1.6" fill="#ffffff" opacity="0.7"/>
+            <!-- top shine -->
+            <path d="M18 40 Q48 22 78 40" fill="none" stroke="url(#edge-grad-1-shine)" stroke-width="3" stroke-linecap="round"/>
+            <!-- sparkle -->
+            <g transform="translate(78 18)">
+              <path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z" fill="#ffffff"/>
+              <circle cx="0" cy="0" r="1.5" fill="#a5f3fc"/>
+            </g>
+            <g transform="translate(16 20)" opacity="0.7">
+              <path d="M0 -5 L1 -1 L5 0 L1 1 L0 5 L-1 1 L-5 0 L-1 -1 Z" fill="#ffffff"/>
+            </g>
+          </svg>
+        </div>
         <div class="edge-num"><span>01</span>DESIGN EYE</div>
         <h3 class="edge-title">心を動かす<br><span class="hi">デザインの視点</span>を乗せる</h3>
         <p class="edge-body">
@@ -3899,6 +3938,47 @@
         </div>
       </div>
       <div class="edge-card reveal delay-2">
+        <div class="edge-icon">
+          <svg viewBox="0 0 96 96" width="92" height="92" aria-hidden="true">
+            <defs>
+              <radialGradient id="edge-grad-2" cx="35%" cy="30%" r="80%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="20%" stop-color="#e9d5ff"/>
+                <stop offset="55%" stop-color="#c084fc"/>
+                <stop offset="100%" stop-color="#6b21a8"/>
+              </radialGradient>
+              <linearGradient id="edge-grad-2-bolt" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#fef08a"/>
+                <stop offset="50%" stop-color="#fde047"/>
+                <stop offset="100%" stop-color="#f59e0b"/>
+              </linearGradient>
+              <linearGradient id="edge-grad-2-shine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- radar arcs -->
+            <circle cx="48" cy="48" r="44" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.35"/>
+            <circle cx="48" cy="48" r="34" fill="none" stroke="#c084fc" stroke-width="0.6" opacity="0.25" stroke-dasharray="3 3"/>
+            <!-- sphere base -->
+            <circle cx="48" cy="48" r="30" fill="url(#edge-grad-2)" stroke="#4c1d95" stroke-width="1"/>
+            <!-- lightning bolt -->
+            <path d="M50 22 L34 52 L46 52 L42 74 L62 42 L50 42 Z"
+                  fill="url(#edge-grad-2-bolt)"
+                  stroke="#b45309" stroke-width="1" stroke-linejoin="round"/>
+            <!-- bolt highlight -->
+            <path d="M48 24 L38 48 L44 48" fill="none" stroke="#fffbeb" stroke-width="1.5" stroke-linecap="round" opacity="0.9"/>
+            <!-- sphere top shine -->
+            <ellipse cx="40" cy="36" rx="10" ry="5" fill="url(#edge-grad-2-shine)"/>
+            <!-- orbit dots -->
+            <circle cx="82" cy="32" r="2.5" fill="#e9d5ff"/>
+            <circle cx="14" cy="60" r="2" fill="#c084fc"/>
+            <!-- sparkle -->
+            <g transform="translate(78 70)">
+              <path d="M0 -6 L1.2 -1.2 L6 0 L1.2 1.2 L0 6 L-1.2 1.2 L-6 0 L-1.2 -1.2 Z" fill="#ffffff"/>
+            </g>
+          </svg>
+        </div>
         <div class="edge-num"><span>02</span>LATEST INTEL</div>
         <h3 class="edge-title">最新情報を<br><span class="hi">実務で検証済み</span></h3>
         <p class="edge-body">
@@ -3910,6 +3990,50 @@
         </div>
       </div>
       <div class="edge-card reveal delay-3">
+        <div class="edge-icon">
+          <svg viewBox="0 0 96 96" width="92" height="92" aria-hidden="true">
+            <defs>
+              <radialGradient id="edge-grad-3" cx="35%" cy="30%" r="75%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="25%" stop-color="#fbcfe8"/>
+                <stop offset="60%" stop-color="#f472b6"/>
+                <stop offset="100%" stop-color="#be185d"/>
+              </radialGradient>
+              <linearGradient id="edge-grad-3-diamond" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="40%" stop-color="#fbcfe8"/>
+                <stop offset="100%" stop-color="#f59e0b"/>
+              </linearGradient>
+              <linearGradient id="edge-grad-3-shine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- glow ring -->
+            <circle cx="48" cy="48" r="44" fill="none" stroke="#f472b6" stroke-width="0.8" opacity="0.35"/>
+            <!-- infinity loop body -->
+            <path d="M22 48 C22 34 38 34 48 48 C58 62 74 62 74 48 C74 34 58 34 48 48 C38 62 22 62 22 48 Z"
+                  fill="url(#edge-grad-3)"
+                  stroke="#9d174d"
+                  stroke-width="1.2"/>
+            <!-- infinity inner highlight -->
+            <path d="M28 44 C30 38 40 38 46 46" fill="none" stroke="url(#edge-grad-3-shine)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M52 46 C58 38 68 38 70 44" fill="none" stroke="url(#edge-grad-3-shine)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+            <!-- diamond -->
+            <g transform="translate(48 26)">
+              <path d="M0 -10 L7 -2 L0 12 L-7 -2 Z" fill="url(#edge-grad-3-diamond)" stroke="#be185d" stroke-width="0.8"/>
+              <path d="M-7 -2 L7 -2" stroke="#be185d" stroke-width="0.6" opacity="0.6"/>
+              <path d="M0 -10 L0 -2" stroke="#ffffff" stroke-width="0.8" opacity="0.8"/>
+            </g>
+            <!-- sparkles -->
+            <g transform="translate(18 74)">
+              <path d="M0 -5 L1 -1 L5 0 L1 1 L0 5 L-1 1 L-5 0 L-1 -1 Z" fill="#ffffff"/>
+            </g>
+            <g transform="translate(80 76)" opacity="0.85">
+              <path d="M0 -4 L0.8 -0.8 L4 0 L0.8 0.8 L0 4 L-0.8 0.8 L-4 0 L-0.8 -0.8 Z" fill="#fbcfe8"/>
+            </g>
+          </svg>
+        </div>
         <div class="edge-num"><span>03</span>LIFELONG SKILL</div>
         <h3 class="edge-title">今後の制作物<strong>すべてに効く、</strong><br><span class="hi">一生モノの知見</span></h3>
         <p class="edge-body">
@@ -4625,6 +4749,100 @@
           <p class="baof-comment">
             <strong>「つまずいても置いていかれない」</strong>——独学じゃ絶対に得られない価値でした。参加費以上の安心感が"仕上げる力"になります。
           </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 受講生の声：横スクロールティッカー（写真＋見出し＋本文） -->
+    <div class="voices-ticker" style="margin: 80px -20px 0; padding: 60px 0 70px;">
+      <div class="vt-head reveal">
+        <div class="section-en">STUDENT VOICES</div>
+        <span class="vt-sub">受講生のリアルな声が、流れています。</span>
+      </div>
+      <div class="vt-stage">
+        <div class="vt-track">
+          <!-- 1セット目 -->
+          <div class="vt-card">
+            <div class="vt-card-head">
+              <div class="vt-card-avatar"><span class="placeholder-avatar">Y</span></div>
+              <div>
+                <h4 class="vt-card-title">独学の迷子から、<br>"伝わる"への転換点。</h4>
+                <div class="vt-card-who"><strong>Yさん</strong>30代・WEBデザイナー</div>
+              </div>
+            </div>
+            <p class="vt-card-body">ずっと独学で迷子でしたが、<strong>3人のデザイナー視点で「惜しい」が「伝わる」に変わる瞬間</strong>が何度もあって、毎回"お土産"が大きい講座でした。</p>
+          </div>
+          <div class="vt-card">
+            <div class="vt-card-head">
+              <div class="vt-card-avatar"><span class="placeholder-avatar">M</span></div>
+              <div>
+                <h4 class="vt-card-title">"これで出す"と言い切れる、<br>公開前の最後の仕上げ。</h4>
+                <div class="vt-card-who"><strong>Mさん</strong>40代・コーチ業</div>
+              </div>
+            </div>
+            <p class="vt-card-body">AIに任せきりだと出てこない<strong>"人の目線で見てどうか"のフィードバック</strong>が入るので、公開前に迷いなく"これで出す"と言い切れました。</p>
+          </div>
+          <div class="vt-card">
+            <div class="vt-card-head">
+              <div class="vt-card-avatar"><span class="placeholder-avatar">S</span></div>
+              <div>
+                <h4 class="vt-card-title">PC苦手でも置いていかれない、<br>当日に集中できる設計。</h4>
+                <div class="vt-card-who"><strong>Sさん</strong>30代・フリーランス</div>
+              </div>
+            </div>
+            <p class="vt-card-body">PC苦手で心配だったのに、<strong>事前のキックオフMTGで環境がちゃんと整う</strong>ので、当日は手を動かすことだけに集中できました。安心感が違います。</p>
+          </div>
+          <div class="vt-card">
+            <div class="vt-card-head">
+              <div class="vt-card-avatar"><span class="placeholder-avatar">T</span></div>
+              <div>
+                <h4 class="vt-card-title">"止まる時間"がゼロになる、<br>Slack聞き放題の安心感。</h4>
+                <div class="vt-card-who"><strong>Tさん</strong>40代・ハンドメイド作家</div>
+              </div>
+            </div>
+            <p class="vt-card-body">Slackでいつでも聞ける環境が本当にありがたく、<strong>「詰まる→翌日にはもう動けている」</strong>の連続。独学の"止まる時間"がゼロになりました。</p>
+          </div>
+          <!-- 2セット目（シームレスループ用） -->
+          <div class="vt-card" aria-hidden="true">
+            <div class="vt-card-head">
+              <div class="vt-card-avatar"><span class="placeholder-avatar">Y</span></div>
+              <div>
+                <h4 class="vt-card-title">独学の迷子から、<br>"伝わる"への転換点。</h4>
+                <div class="vt-card-who"><strong>Yさん</strong>30代・WEBデザイナー</div>
+              </div>
+            </div>
+            <p class="vt-card-body">ずっと独学で迷子でしたが、<strong>3人のデザイナー視点で「惜しい」が「伝わる」に変わる瞬間</strong>が何度もあって、毎回"お土産"が大きい講座でした。</p>
+          </div>
+          <div class="vt-card" aria-hidden="true">
+            <div class="vt-card-head">
+              <div class="vt-card-avatar"><span class="placeholder-avatar">M</span></div>
+              <div>
+                <h4 class="vt-card-title">"これで出す"と言い切れる、<br>公開前の最後の仕上げ。</h4>
+                <div class="vt-card-who"><strong>Mさん</strong>40代・コーチ業</div>
+              </div>
+            </div>
+            <p class="vt-card-body">AIに任せきりだと出てこない<strong>"人の目線で見てどうか"のフィードバック</strong>が入るので、公開前に迷いなく"これで出す"と言い切れました。</p>
+          </div>
+          <div class="vt-card" aria-hidden="true">
+            <div class="vt-card-head">
+              <div class="vt-card-avatar"><span class="placeholder-avatar">S</span></div>
+              <div>
+                <h4 class="vt-card-title">PC苦手でも置いていかれない、<br>当日に集中できる設計。</h4>
+                <div class="vt-card-who"><strong>Sさん</strong>30代・フリーランス</div>
+              </div>
+            </div>
+            <p class="vt-card-body">PC苦手で心配だったのに、<strong>事前のキックオフMTGで環境がちゃんと整う</strong>ので、当日は手を動かすことだけに集中できました。安心感が違います。</p>
+          </div>
+          <div class="vt-card" aria-hidden="true">
+            <div class="vt-card-head">
+              <div class="vt-card-avatar"><span class="placeholder-avatar">T</span></div>
+              <div>
+                <h4 class="vt-card-title">"止まる時間"がゼロになる、<br>Slack聞き放題の安心感。</h4>
+                <div class="vt-card-who"><strong>Tさん</strong>40代・ハンドメイド作家</div>
+              </div>
+            </div>
+            <p class="vt-card-body">Slackでいつでも聞ける環境が本当にありがたく、<strong>「詰まる→翌日にはもう動けている」</strong>の連続。独学の"止まる時間"がゼロになりました。</p>
+          </div>
         </div>
       </div>
     </div>
