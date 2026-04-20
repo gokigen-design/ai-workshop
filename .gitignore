@@ -1,0 +1,6 @@
+.vercel
+.DS_Store
+.claude/
+# 元動画（未圧縮・大容量） — 圧縮済みworkshop-0418.mp4のみ公開
+video/hero-bg.mp4
+video/０４１８*.mov
