@@ -3042,6 +3042,228 @@
   }
 
   /* ================================ */
+  /* NEW: 受講生の声 横スクロールティッカー（WHAT WE BELIEVE直下） */
+  /* ================================ */
+  .voices-ticker {
+    position: relative;
+    padding: 70px 0 80px;
+    background: linear-gradient(180deg, #050510 0%, #0a0a1a 50%, #050510 100%);
+    border-block: 1px solid rgba(0,212,255,0.12);
+    overflow: hidden;
+  }
+  .voices-ticker .vt-head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .voices-ticker .vt-head .section-en {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    color: var(--neon-cyan);
+    opacity: 0.85;
+  }
+  .voices-ticker .vt-head .vt-sub {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+  .vt-stage {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .vt-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: vt-scroll 48s linear infinite;
+    will-change: transform;
+  }
+  .vt-stage:hover .vt-track { animation-play-state: paused; }
+  @keyframes vt-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-50% - 10px)); }
+  }
+  .vt-card {
+    flex: 0 0 auto;
+    width: 360px;
+    min-height: 200px;
+    padding: 26px 28px 24px;
+    background: linear-gradient(135deg, rgba(10,10,30,0.85), rgba(4,4,14,0.95));
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .vt-card:hover {
+    border-color: rgba(244,114,182,0.45);
+    transform: translateY(-3px);
+  }
+  .vt-card:nth-child(even) { border-color: rgba(192,132,252,0.22); }
+  .vt-card .vt-quote {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    line-height: 0.8;
+    color: var(--neon-cyan);
+    opacity: 0.4;
+    margin-bottom: 6px;
+  }
+  .vt-card .vt-text {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--text-light);
+    margin: 0 0 18px;
+  }
+  .vt-card .vt-text strong { color: var(--neon-pink); font-weight: 700; }
+  .vt-card .vt-who {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(0,212,255,0.15);
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .vt-card .vt-who span {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(232,232,255,0.6);
+  }
+  @media (max-width: 640px) {
+    .vt-card { width: 280px; padding: 22px 22px 20px; }
+    .voices-ticker .vt-head .vt-sub { font-size: 1rem; }
+  }
+
+  /* ================================ */
+  /* NEW: 受講生の声カード（写真＋コメント4枚） */
+  /* ================================ */
+  .voice-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 70px auto 0;
+  }
+  .vcard {
+    position: relative;
+    background: linear-gradient(180deg, rgba(10,10,30,0.88), rgba(4,4,14,0.95));
+    border: 1px solid rgba(0,212,255,0.22);
+    border-radius: 14px;
+    padding: 32px 32px 30px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s, box-shadow 0.4s;
+  }
+  .vcard::before {
+    content: '"';
+    position: absolute;
+    top: -10px; right: 22px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--neon-pink);
+    opacity: 0.45;
+  }
+  .vcard:nth-child(odd) { border-left: 3px solid var(--neon-cyan); }
+  .vcard:nth-child(even) { border-left: 3px solid var(--neon-pink); }
+  .vcard:hover {
+    transform: translateY(-4px);
+    border-color: rgba(244,114,182,0.4);
+    box-shadow: 0 12px 30px rgba(244,114,182,0.12);
+  }
+  .vcard-head {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px dashed rgba(0,212,255,0.2);
+  }
+  .vcard-avatar {
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(34,211,238,0.25), rgba(244,114,182,0.25));
+    border: 2px solid rgba(0,212,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .vcard-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vcard-avatar .placeholder-avatar {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.5);
+  }
+  .vcard-headline {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .vcard-headline h3 {
+    font-size: 1.02rem;
+    line-height: 1.5;
+    color: var(--neon-pink);
+    font-weight: 700;
+    margin: 0;
+  }
+  .vcard-who {
+    font-size: 12.5px;
+    color: rgba(232,232,255,0.75);
+  }
+  .vcard-who strong {
+    color: #fff;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .vcard-body {
+    font-size: 13.5px;
+    line-height: 2;
+    color: var(--text-light);
+    margin: 0 0 22px;
+  }
+  .vcard-body strong {
+    color: var(--neon-pink);
+    font-weight: 700;
+    background: linear-gradient(transparent 60%, rgba(244,114,182,0.15) 60%);
+  }
+  .vcard-msg-header {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(244,114,182,0.8), rgba(192,132,252,0.7), rgba(251,191,36,0.7));
+    margin-bottom: 16px;
+  }
+  .vcard-msg {
+    font-size: 13.5px;
+    line-height: 2;
+    color: var(--text-light);
+    margin: 0;
+  }
+  @media (max-width: 860px) {
+    .voice-cards { grid-template-columns: 1fr; gap: 20px; }
+  }
+  @media (max-width: 560px) {
+    .vcard { padding: 26px 22px 24px; }
+    .vcard-head { grid-template-columns: 70px 1fr; gap: 14px; margin-bottom: 18px; padding-bottom: 18px; }
+    .vcard-avatar { width: 70px; height: 70px; }
+    .vcard-headline h3 { font-size: 0.95rem; }
+  }
+
+  /* ================================ */
   /* NEW: 活動風景ギャラリー */
   /* ================================ */
   .scene {
@@ -3060,16 +3282,32 @@
     pointer-events: none;
   }
   .scene .inner { position: relative; z-index: 2; }
-  .scene-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 150px;
-    gap: 14px;
-    max-width: 1180px;
-    margin: 50px auto 0;
+  /* 無限横スクロールマーキー */
+  .scene-marquee {
+    position: relative;
+    margin: 50px 0 0;
+    overflow: hidden;
+    padding: 20px 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .scene-marquee-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: scene-scroll 60s linear infinite;
+    will-change: transform;
+  }
+  .scene-marquee:hover .scene-marquee-track { animation-play-state: paused; }
+  @keyframes scene-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-50% - 9px)); }
   }
   .scene-tile {
     position: relative;
+    flex: 0 0 auto;
+    width: 340px;
+    height: 230px;
     border-radius: 14px;
     overflow: hidden;
     background: linear-gradient(135deg, #1a1a2e, #0a0a1a);
@@ -3077,10 +3315,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s, border-color 0.4s;
+    transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
   }
-  .scene-tile:hover { transform: translateY(-4px); border-color: rgba(236,72,153,0.4); }
-  .scene-tile img { width: 100%; height: 100%; object-fit: cover; }
+  .scene-tile:hover {
+    transform: translateY(-4px);
+    border-color: rgba(236,72,153,0.5);
+    box-shadow: 0 10px 30px rgba(236,72,153,0.2);
+  }
+  .scene-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .scene-tile .scene-label {
     position: absolute;
     left: 14px; bottom: 12px;
@@ -3102,15 +3344,14 @@
     text-align: center;
     padding: 20px;
   }
-  /* bento tile sizes */
-  .scene-tile.t1 { grid-column: span 6; grid-row: span 2; }
-  .scene-tile.t2 { grid-column: span 3; grid-row: span 1; }
-  .scene-tile.t3 { grid-column: span 3; grid-row: span 1; }
-  .scene-tile.t4 { grid-column: span 3; grid-row: span 1; }
-  .scene-tile.t5 { grid-column: span 3; grid-row: span 1; }
-  .scene-tile.t6 { grid-column: span 4; grid-row: span 2; }
-  .scene-tile.t7 { grid-column: span 4; grid-row: span 2; }
-  .scene-tile.t8 { grid-column: span 4; grid-row: span 2; }
+  /* 縦長タイルを少し混ぜてリズムを出す */
+  .scene-tile.wide { width: 440px; }
+  .scene-tile.tall { width: 280px; }
+  @media (max-width: 640px) {
+    .scene-tile { width: 260px; height: 180px; }
+    .scene-tile.wide { width: 340px; }
+    .scene-tile.tall { width: 220px; }
+  }
 
   /* 動画差し込み用 */
   .scene-video {
@@ -3493,6 +3734,76 @@
       でも"心が動くLP"になるかは、最後の仕上げ次第。<br>
       <strong style="color:#fff;">私たちは、そこに"デザインの視点"を乗せる3人です。</strong>
     </p>
+  </div>
+</section>
+
+<!-- 受講生の声：横スクロールティッカー（言葉だけ・4人分） -->
+<section class="voices-ticker">
+  <div class="vt-head reveal">
+    <div class="section-en">STUDENT VOICES</div>
+    <span class="vt-sub">受講生のリアルな声が、流れています。</span>
+  </div>
+  <div class="vt-stage">
+    <div class="vt-track">
+      <!-- 1セット目 -->
+      <div class="vt-card">
+        <div>
+          <div class="vt-quote">"</div>
+          <p class="vt-text">ずっと独学で迷子でしたが、<strong>3人のデザイナー視点で「惜しい」が「伝わる」に変わる瞬間</strong>が何度もあって、毎回"お土産"が大きい講座でした。</p>
+        </div>
+        <div class="vt-who">Yさん<span>30代・WEBデザイナー</span></div>
+      </div>
+      <div class="vt-card">
+        <div>
+          <div class="vt-quote">"</div>
+          <p class="vt-text">AIに任せきりだと出てこない<strong>"人の目線で見てどうか"のフィードバック</strong>が入るので、公開前に迷いなく"これで出す"と言い切れました。</p>
+        </div>
+        <div class="vt-who">Mさん<span>40代・コーチ業</span></div>
+      </div>
+      <div class="vt-card">
+        <div>
+          <div class="vt-quote">"</div>
+          <p class="vt-text">PC苦手で心配だったのに、<strong>事前のキックオフMTGで環境がちゃんと整う</strong>ので、当日は手を動かすことだけに集中できました。安心感が違います。</p>
+        </div>
+        <div class="vt-who">Sさん<span>30代・フリーランス</span></div>
+      </div>
+      <div class="vt-card">
+        <div>
+          <div class="vt-quote">"</div>
+          <p class="vt-text">Slackでいつでも聞ける環境が本当にありがたく、<strong>「詰まる→翌日にはもう動けている」</strong>の連続。独学の"止まる時間"がゼロになりました。</p>
+        </div>
+        <div class="vt-who">Tさん<span>40代・ハンドメイド作家</span></div>
+      </div>
+      <!-- 2セット目（シームレスループ用） -->
+      <div class="vt-card" aria-hidden="true">
+        <div>
+          <div class="vt-quote">"</div>
+          <p class="vt-text">ずっと独学で迷子でしたが、<strong>3人のデザイナー視点で「惜しい」が「伝わる」に変わる瞬間</strong>が何度もあって、毎回"お土産"が大きい講座でした。</p>
+        </div>
+        <div class="vt-who">Yさん<span>30代・WEBデザイナー</span></div>
+      </div>
+      <div class="vt-card" aria-hidden="true">
+        <div>
+          <div class="vt-quote">"</div>
+          <p class="vt-text">AIに任せきりだと出てこない<strong>"人の目線で見てどうか"のフィードバック</strong>が入るので、公開前に迷いなく"これで出す"と言い切れました。</p>
+        </div>
+        <div class="vt-who">Mさん<span>40代・コーチ業</span></div>
+      </div>
+      <div class="vt-card" aria-hidden="true">
+        <div>
+          <div class="vt-quote">"</div>
+          <p class="vt-text">PC苦手で心配だったのに、<strong>事前のキックオフMTGで環境がちゃんと整う</strong>ので、当日は手を動かすことだけに集中できました。安心感が違います。</p>
+        </div>
+        <div class="vt-who">Sさん<span>30代・フリーランス</span></div>
+      </div>
+      <div class="vt-card" aria-hidden="true">
+        <div>
+          <div class="vt-quote">"</div>
+          <p class="vt-text">Slackでいつでも聞ける環境が本当にありがたく、<strong>「詰まる→翌日にはもう動けている」</strong>の連続。独学の"止まる時間"がゼロになりました。</p>
+        </div>
+        <div class="vt-who">Tさん<span>40代・ハンドメイド作家</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -4131,39 +4442,75 @@
       添削会・会員サイトデモ・Slackサポートまで、一緒に走る"空気感"を覗いてみてください。
     </p>
 
-    <div class="scene-grid">
-      <!-- 大：リアル会場全体 -->
-      <div class="scene-tile t1 reveal delay-1">
-        <div class="placeholder-big">REAL VENUE<br><span style="font-size:11px; opacity:0.7;">当日の会場ワイドショット</span></div>
-        <span class="scene-label">VENUE</span>
-      </div>
-      <div class="scene-tile t2 reveal delay-2">
-        <div class="placeholder-big">KICKOFF<br>ZOOM</div>
-        <span class="scene-label">ZOOM</span>
-      </div>
-      <div class="scene-tile t3 reveal delay-2">
-        <div class="placeholder-big">HANDS ON</div>
-        <span class="scene-label">HANDS-ON</span>
-      </div>
-      <div class="scene-tile t4 reveal delay-3">
-        <div class="placeholder-big">PRESENTATION</div>
-        <span class="scene-label">SHARE</span>
-      </div>
-      <div class="scene-tile t5 reveal delay-3">
-        <div class="placeholder-big">添削 SESSION</div>
-        <span class="scene-label">FEEDBACK</span>
-      </div>
-      <div class="scene-tile t6 reveal delay-1">
-        <div class="placeholder-big">MEMBER SITE<br>DEMO</div>
-        <span class="scene-label">MEMBER-SITE</span>
-      </div>
-      <div class="scene-tile t7 reveal delay-2">
-        <div class="placeholder-big">SLACK<br>COMMUNITY</div>
-        <span class="scene-label">SLACK</span>
-      </div>
-      <div class="scene-tile t8 reveal delay-3">
-        <div class="placeholder-big">SMILES &<br>APPLAUSE</div>
-        <span class="scene-label">MOMENT</span>
+    <!-- 無限横スクロール（ホバーで一時停止） -->
+    <div class="scene-marquee reveal delay-1">
+      <div class="scene-marquee-track">
+        <!-- 1セット目（画像差し替え時はplaceholder-bigを<img src="..." alt="...">に置換） -->
+        <div class="scene-tile wide">
+          <div class="placeholder-big">REAL VENUE<br><span style="font-size:11px; opacity:0.7;">当日の会場ワイドショット</span></div>
+          <span class="scene-label">VENUE</span>
+        </div>
+        <div class="scene-tile">
+          <div class="placeholder-big">KICKOFF<br>ZOOM</div>
+          <span class="scene-label">ZOOM</span>
+        </div>
+        <div class="scene-tile tall">
+          <div class="placeholder-big">HANDS ON</div>
+          <span class="scene-label">HANDS-ON</span>
+        </div>
+        <div class="scene-tile">
+          <div class="placeholder-big">PRESENTATION</div>
+          <span class="scene-label">SHARE</span>
+        </div>
+        <div class="scene-tile">
+          <div class="placeholder-big">添削 SESSION</div>
+          <span class="scene-label">FEEDBACK</span>
+        </div>
+        <div class="scene-tile wide">
+          <div class="placeholder-big">MEMBER SITE<br>DEMO</div>
+          <span class="scene-label">MEMBER-SITE</span>
+        </div>
+        <div class="scene-tile">
+          <div class="placeholder-big">SLACK<br>COMMUNITY</div>
+          <span class="scene-label">SLACK</span>
+        </div>
+        <div class="scene-tile tall">
+          <div class="placeholder-big">SMILES &<br>APPLAUSE</div>
+          <span class="scene-label">MOMENT</span>
+        </div>
+        <!-- 2セット目（シームレスループ用に同内容を複製） -->
+        <div class="scene-tile wide" aria-hidden="true">
+          <div class="placeholder-big">REAL VENUE<br><span style="font-size:11px; opacity:0.7;">当日の会場ワイドショット</span></div>
+          <span class="scene-label">VENUE</span>
+        </div>
+        <div class="scene-tile" aria-hidden="true">
+          <div class="placeholder-big">KICKOFF<br>ZOOM</div>
+          <span class="scene-label">ZOOM</span>
+        </div>
+        <div class="scene-tile tall" aria-hidden="true">
+          <div class="placeholder-big">HANDS ON</div>
+          <span class="scene-label">HANDS-ON</span>
+        </div>
+        <div class="scene-tile" aria-hidden="true">
+          <div class="placeholder-big">PRESENTATION</div>
+          <span class="scene-label">SHARE</span>
+        </div>
+        <div class="scene-tile" aria-hidden="true">
+          <div class="placeholder-big">添削 SESSION</div>
+          <span class="scene-label">FEEDBACK</span>
+        </div>
+        <div class="scene-tile wide" aria-hidden="true">
+          <div class="placeholder-big">MEMBER SITE<br>DEMO</div>
+          <span class="scene-label">MEMBER-SITE</span>
+        </div>
+        <div class="scene-tile" aria-hidden="true">
+          <div class="placeholder-big">SLACK<br>COMMUNITY</div>
+          <span class="scene-label">SLACK</span>
+        </div>
+        <div class="scene-tile tall" aria-hidden="true">
+          <div class="placeholder-big">SMILES &<br>APPLAUSE</div>
+          <span class="scene-label">MOMENT</span>
+        </div>
       </div>
     </div>
 
@@ -4280,6 +4627,86 @@
           </p>
         </div>
       </div>
+    </div>
+
+    <!-- 受講生の声：写真＋コメントカード 4人分（差し替え想定） -->
+    <div class="voice-cards">
+      <article class="vcard reveal-left delay-1">
+        <div class="vcard-head">
+          <div class="vcard-avatar">
+            <!-- 画像差し替え： <img src="images/voice-01.jpg" alt="..."> -->
+            <span class="placeholder-avatar">A</span>
+          </div>
+          <div class="vcard-headline">
+            <h3>構成の迷子から抜け出して、<br>LPが"自分の手"で仕上がるように。</h3>
+            <div class="vcard-who"><strong>Aさん</strong>30代女性・ハンドメイド作家</div>
+          </div>
+        </div>
+        <p class="vcard-body">
+          もともと独学でCanvaを触っていましたが、<strong>「構成のどこから手を付けていいかわからない」</strong>状態が続いていました。今回のワークショップでは、Claudeの使い方だけでなく、<strong>デザイナー3人の"視点"を直接もらえる</strong>のが本当に大きくて、途中で何度も"あ、こういうことか"という気づきがありました。
+        </p>
+        <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+        <p class="vcard-msg">
+          「AIを使える人になりたい」だけでなく、<strong>"伝わるデザイン"も一緒に欲しい方</strong>にぜひ受けてほしい講座です。3人がかりで見てもらえる環境は他ではなかなか無いと思います。
+        </p>
+      </article>
+
+      <article class="vcard reveal-right delay-2">
+        <div class="vcard-head">
+          <div class="vcard-avatar">
+            <span class="placeholder-avatar">B</span>
+          </div>
+          <div class="vcard-headline">
+            <h3>AI任せで止まっていた人にこそ、<br>デザイナーの目線が響きます。</h3>
+            <div class="vcard-who"><strong>Bさん</strong>40代男性・コーチ業</div>
+          </div>
+        </div>
+        <p class="vcard-body">
+          ChatGPTでもLPらしきものは作れていたのですが、<strong>どこか"他人事"なデザインに見えてしまう</strong>のが悩みでした。この講座では、Claudeで組んだ素体に対して<strong>「なぜここが惜しいのか」を言語化してもらえる</strong>ので、自分でも判断軸が残ります。
+        </p>
+        <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+        <p class="vcard-msg">
+          独学でAIを触ってきた方ほど刺さる講座だと思います。「なんとなく作れる」を「<strong>自分の言葉で説明できる</strong>」に変えたい方に特におすすめです。
+        </p>
+      </article>
+
+      <article class="vcard reveal-left delay-3">
+        <div class="vcard-head">
+          <div class="vcard-avatar">
+            <span class="placeholder-avatar">C</span>
+          </div>
+          <div class="vcard-headline">
+            <h3>事前MTG・当日・添削・Slack、<br>"置いていかれない"設計が安心。</h3>
+            <div class="vcard-who"><strong>Cさん</strong>30代女性・フリーランス</div>
+          </div>
+        </div>
+        <p class="vcard-body">
+          PCが苦手な自覚があったので、最初は不安しかなかったです。でも<strong>事前キックオフで環境を整えてくれる</strong>ので、当日は手を動かすことにだけ集中できました。仕上げの添削会でさらに磨かれて、<strong>"公開できる状態"にきちんと辿り着けた</strong>のが何より嬉しかったです。
+        </p>
+        <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+        <p class="vcard-msg">
+          「一人だと絶対に途中で止まる」タイプの方こそ、<strong>Slackで聞き放題・添削会あり</strong>のこの講座が合っていると思います。小さい質問も遠慮なくできる雰囲気でした。
+        </p>
+      </article>
+
+      <article class="vcard reveal-right delay-4">
+        <div class="vcard-head">
+          <div class="vcard-avatar">
+            <span class="placeholder-avatar">D</span>
+          </div>
+          <div class="vcard-headline">
+            <h3>LP以外にも応用が効くから、<br>今後の"仕事の武器"になります。</h3>
+            <div class="vcard-who"><strong>Dさん</strong>40代女性・WEBデザイナー</div>
+          </div>
+        </div>
+        <p class="vcard-body">
+          元々デザイナーとして活動していましたが、Claude Codeは初めてでした。<strong>1日で"自分でLPが組める状態"まで辿り着ける</strong>のは、かなり衝撃でした。LPだけでなく、診断ツール・会員サイト・スライドと、<strong>仕事の幅がそのまま広がる実感</strong>があります。
+        </p>
+        <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+        <p class="vcard-msg">
+          デザイナーさんにこそおすすめしたいです。"自分の手札"が一気に増える感覚があります。未経験の方はもちろん、<strong>経験者の方の"次の一手"</strong>にもぴったりな講座です。
+        </p>
+      </article>
     </div>
   </div>
 </section>
