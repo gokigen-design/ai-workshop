@@ -424,7 +424,7 @@
   }
 
   /* ===== 5つのサポート section ===== */
-  .support5 { padding: 100px 20px; background: var(--dark-bg); position: relative; overflow: hidden; }
+  .support5 { padding: 60px 20px; background: var(--dark-bg); position: relative; overflow: hidden; }
   .support5::before {
     content: ''; position: absolute; inset: 0; pointer-events: none;
     background:
@@ -1226,6 +1226,50 @@
     text-shadow: 0 0 10px #00d4ff, 0 0 25px rgba(0,212,255,0.8);
   }
 
+  /* 中間CTA（5カリキュラムの後 & 受講生の声の後） */
+  .mid-cta {
+    margin: 48px auto 0;
+    text-align: center;
+    padding: 40px 24px;
+    max-width: 780px;
+    border-radius: 18px;
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(244,114,182,0.12), transparent 60%),
+      radial-gradient(120% 120% at 100% 100%, rgba(34,211,238,0.12), transparent 60%),
+      linear-gradient(180deg, rgba(10,10,30,0.55), rgba(4,4,14,0.75));
+    border: 1px solid rgba(192,132,252,0.28);
+    box-shadow: 0 0 24px rgba(192,132,252,0.12), inset 0 0 30px rgba(34,211,238,0.06);
+  }
+  .mid-cta-lead {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--text-light);
+    margin: 0 0 22px;
+  }
+  .mid-cta-lead strong { color: #fff; font-weight: 700; }
+  .mid-cta-accent {
+    display: inline-block;
+    padding: 3px 12px;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, rgba(244,114,182,0.25), rgba(192,132,252,0.25));
+    border: 1px solid rgba(244,114,182,0.5);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+  }
+  .mid-cta-sub {
+    margin: 16px 0 0;
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    color: rgba(232,232,255,0.65);
+  }
+  @media (max-width: 560px) {
+    .mid-cta { padding: 28px 18px; margin-top: 32px; }
+    .mid-cta-lead { font-size: 0.92rem; line-height: 1.8; }
+    .mid-cta-accent { font-size: 0.74rem; padding: 2px 10px; }
+  }
+
   .cta-btn {
     display: inline-block;
     background: linear-gradient(120deg, #ec4899 0%, #a855f7 40%, #00d4ff 100%);
@@ -1286,7 +1330,7 @@
   /* ================================ */
   /* セクション共通 */
   /* ================================ */
-  section { padding: 100px 20px; position: relative; }
+  section { padding: 60px 20px; position: relative; }
   .inner { max-width: 680px; margin: 0 auto; }
 
   /* 斜めカット区切り */
@@ -1724,7 +1768,7 @@
   /* ================================ */
   /* FAQ */
   /* ================================ */
-  .faq { background: var(--dark-bg); padding: 100px 20px 80px; }
+  .faq { background: var(--dark-bg); padding: 60px 20px 50px; }
   .faq-item {
     background: var(--dark-card); border: 1px solid rgba(0,212,255,0.06);
     padding: 24px; margin-bottom: 12px;
@@ -2263,30 +2307,34 @@
     text-shadow: 0 0 16px rgba(255,255,255,0.6);
     text-align: center;
   }
-  /* 中央の選択スライドだけネオン発光＋拡大 */
+  /* 中央の選択スライドだけネオン発光＋拡大
+     2026/4/20：ぼかし量を減らしてエッジをくっきり表現に変更 */
   .phone-swiper .swiper-slide-active .phone-mock {
     transform: scale(1.18);
-    border-color: rgba(0,212,255,0.6);
+    border-color: rgba(0,212,255,0.9);
     box-shadow:
-      0 0 0 2px rgba(0,212,255,0.3),
-      0 0 40px rgba(0,212,255,0.6),
-      0 0 80px rgba(192,132,252,0.5),
-      0 30px 60px rgba(0,0,0,0.7);
+      0 0 0 1.5px rgba(0,212,255,0.85),
+      0 0 0 3px rgba(192,132,252,0.45),
+      0 20px 40px rgba(0,0,0,0.7);
   }
+  /* グラデーションのハロー（外側リング）：ぼかしゼロでクリーンな縁取りに */
   .phone-swiper .swiper-slide-active .phone-mock::after {
     content: '';
     position: absolute;
-    inset: -8px;
-    border-radius: 44px;
-    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+    inset: -4px;
+    border-radius: 40px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple) 50%, var(--neon-pink));
+    -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
     z-index: -1;
-    filter: blur(18px);
-    opacity: 0.7;
+    opacity: 0.95;
     animation: phone-halo 3s ease-in-out infinite;
   }
   @keyframes phone-halo {
-    0%, 100% { opacity: 0.6; }
-    50%      { opacity: 0.95; }
+    0%, 100% { opacity: 0.75; }
+    50%      { opacity: 1; }
   }
   .phone-label {
     margin-top: 28px;
@@ -3214,14 +3262,29 @@
   /* NEW: 受講生の声カード（写真＋コメント4枚） */
   /* ================================ */
   .voice-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-    max-width: 1100px;
-    margin: 70px auto 0;
+    position: relative;
+    max-width: 100%;
+    margin: 50px auto 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .vcards-track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    animation: vcards-scroll 80s linear infinite;
+    will-change: transform;
+  }
+  .voice-cards:hover .vcards-track { animation-play-state: paused; }
+  @keyframes vcards-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
   .vcard {
     position: relative;
+    flex: 0 0 auto;
+    width: 400px;
     background: linear-gradient(180deg, rgba(10,10,30,0.88), rgba(4,4,14,0.95));
     border: 1px solid rgba(0,212,255,0.22);
     border-radius: 14px;
@@ -3321,13 +3384,18 @@
     margin: 0;
   }
   @media (max-width: 860px) {
-    .voice-cards { grid-template-columns: 1fr; gap: 20px; }
+    .vcards-track { gap: 18px; animation-duration: 70s; }
+    .vcard { width: 320px; }
   }
   @media (max-width: 560px) {
-    .vcard { padding: 26px 22px 24px; }
-    .vcard-head { grid-template-columns: 70px 1fr; gap: 14px; margin-bottom: 18px; padding-bottom: 18px; }
-    .vcard-avatar { width: 70px; height: 70px; }
-    .vcard-headline h3 { font-size: 0.95rem; }
+    .voice-cards { margin-top: 32px; }
+    .vcards-track { gap: 14px; animation-duration: 60s; }
+    .vcard { width: 280px; padding: 24px 20px 22px; }
+    .vcard-head { grid-template-columns: 60px 1fr; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; }
+    .vcard-avatar { width: 60px; height: 60px; }
+    .vcard-headline h3 { font-size: 0.9rem; line-height: 1.45; }
+    .vcard-body, .vcard-msg { font-size: 12.5px; line-height: 1.85; }
+    .vcard-msg-header { font-size: 10.5px; padding: 8px 10px; }
   }
 
   /* ================================ */
@@ -3551,7 +3619,7 @@
     .scene-tile.t1 { grid-column: span 6; grid-row: span 2; }
     .scene-tile.t2, .scene-tile.t3, .scene-tile.t4, .scene-tile.t5 { grid-column: span 3; grid-row: span 1; }
     .scene-tile.t6, .scene-tile.t7, .scene-tile.t8 { grid-column: span 6; grid-row: span 2; }
-    .ideal, .baof, .scene { padding: 90px 0; }
+    .ideal, .baof, .scene { padding: 50px 0; }
   }
 
   /* ============================================================
@@ -3567,6 +3635,13 @@
     .inner { padding-left: 20px; padding-right: 20px; }
     /* support5 / worry / solution 等、自前の inner 余白を持つセクションは二重にならないよう0に */
     .support5 .inner { padding-left: 0; padding-right: 0; }
+
+    /* 上下余白を全体的にさらに縮小（スマホは情報量が多く縦長になるため） */
+    section { padding-top: 40px; padding-bottom: 40px; }
+    .support5, .faq, .ideal, .baof, .scene, .gallery, .worry, .edge, .voices { padding-top: 40px; padding-bottom: 40px; }
+    .section-header { margin-bottom: 22px !important; }
+    /* 中央に浮かぶバッジ（"それ、全部解決できます"等）の上下マージン縮小 */
+    .claude-speech { margin: 16px auto !important; }
 
     /* セクションタイトル（英語大文字）が画面からはみ出すのを防ぐ */
     .section-en {
@@ -3779,7 +3854,7 @@
       <h2 class="section-title slam-chop" style="margin-top:8px;">受講生の変化、<br><span class="em">スマホで体感してください。</span></h2>
     </div>
     <p class="gallery-lead reveal delay-2">
-      「わずか1日のワークショップで、ここまで作れるんだ」——<br>
+      「わずか1日のワークショップで、<br>ここまで作れるんだ」——<br>
       <strong>動くLP・アニメーション・縦スクロール演出</strong>まで、<br>
       AIとデザインの視点を組み合わせることで、昨日まで何も作れなかった人が"自分だけのLP"を生み出せるようになります。
     </p>
@@ -3942,7 +4017,7 @@
     <div class="reveal" style="font-family:'Orbitron',sans-serif; font-size:0.75rem; letter-spacing:0.28em; color: var(--neon-cyan); margin-bottom:18px; opacity:0.9;">— WHAT WE BELIEVE —</div>
     <h2 class="videobg-headline reveal delay-1">
       AIが作ったLPに、<br>
-      <span class="shine-text">&quot;デザインの視点&quot;</span>を乗せる。
+      <span class="shine-text">&quot;デザインの視点&quot;</span>を<br>乗せる。
     </h2>
     <p class="reveal delay-2" style="margin-top: 32px; font-size: clamp(14px, 1.6vw, 17px); color: var(--text-light); line-height: 2.2; max-width: 720px; margin-inline: auto;">
       Claudeは、指示した通りのLPを出してくれます。<br>
@@ -3981,7 +4056,7 @@
         <div class="wz-no">02</div>
         <div class="wz-body">
           <h3>指示と修正を繰り返すうちに、<br>1枚のLPに何日もかかる</h3>
-          <p>「もう少しかわいく」「配色を変えて」「行間を詰めて」——。<br>言葉での微調整だけでは仕上がりが近づかず、気づいたら数日が経っている。"AIで時短"のはずが、逆に疲れていませんか？</p>
+          <p>「もう少しかわいく」「配色を変えて」「行間を詰めて」——。<br>言葉での微調整だけでは仕上がりが近づかず、気づいたら数日が経っている。<br>"AIで時短"のはずが、<br>逆に疲れていませんか？</p>
         </div>
       </div>
       <div class="wz-item wz-left reveal-left">
@@ -4028,8 +4103,10 @@
     <p class="edge-lead reveal delay-2">
       Claudeに「LPを作って」と頼むだけなら、誰でもできます。<br>
       でも出てくるのは、<em>情報を詰めただけの"AIっぽい"ページ</em>。<br>
-      これからは、心が動かないLPがどんどん増えていきます。<br>
-      私たちは、そこに<strong style="color:var(--neon-cyan);">デザイナーの視点</strong>を乗せることで、"伝わる・動かす・信頼される"アウトプットに引き上げます。
+      これからは心が動かないLPがどんどん増えていきます。<br>
+      私たちはそこに<strong style="color:var(--neon-cyan);">デザイナー視点</strong>を載せることで、<br>
+      <strong>"伝わる、動かす、信頼される"</strong><br>
+      アウトプットに引き上げます。
     </p>
     <div class="edge-asymmetric">
       <div class="edge-card reveal delay-1">
@@ -4444,7 +4521,7 @@
         </div>
         <div class="sup5-body">
           <div class="sup5-when">2時間・Zoomオンライン・開催前</div>
-          <h3 class="sup5-title">プレップセッション</h3>
+          <h3 class="sup5-title">スタートアップミーティング</h3>
           <p class="sup5-desc">
             当日に置いてけぼりにならないよう、環境構築・初期設定・全体の流れを事前にみんなで揃えます。PC操作に不安がある方も、ここでまず"同じスタートライン"に立てます。
           </p>
@@ -4461,7 +4538,7 @@
         </div>
         <div class="sup5-body">
           <div class="sup5-when">1日集中・リアル会場</div>
-          <h3 class="sup5-title">ワンデイビルド</h3>
+          <h3 class="sup5-title">リアル会場・リアルサポート</h3>
           <p class="sup5-desc">
             講師3人が横につく、1日集中のリアルワークショップ。その場で手を動かして、その場でフィードバックをもらえる——動画教材では絶対に体験できない"濃さ"が、ここにあります。
           </p>
@@ -4476,7 +4553,7 @@
         </div>
         <div class="sup5-body">
           <div class="sup5-when">後日開催・Zoomオンライン</div>
-          <h3 class="sup5-title">リフトレッスン</h3>
+          <h3 class="sup5-title">アフターサポート</h3>
           <p class="sup5-desc">
             当日に作ったLPを、プロのデザイナー3人の目線でもう一段引き上げる時間。「惜しい」を「伝わる」に変える"判断軸"を、自分のLPに直接かけて持ち帰れます。
           </p>
@@ -4505,13 +4582,23 @@
           <img src="images/LIFETIME%20ACCESS.png" alt="ライフタイムアクセス：ずっと見返せる会員サイト">
         </div>
         <div class="sup5-body">
-          <div class="sup5-when">永久アクセス・受講後いつでも</div>
-          <h3 class="sup5-title">ライフタイムアクセス</h3>
+          <div class="sup5-when">受講後いつでも・専用会員サイト</div>
+          <h3 class="sup5-title">会員サイト</h3>
           <p class="sup5-desc">
-            Claudeの使い方・デザインの視点・つまずきどころ——ワークショップで扱った内容をまるごと保管した会員サイトに、受講後も<strong style="color:var(--neon-pink);">永久アクセス</strong>できます。あなた一人ひとりに合わせた進捗管理も用意。迷った時にいつでも戻れる"資産"です。
+            Claudeの使い方・デザインの視点・つまずきどころ——ワークショップで扱った内容をまるごと保管した<strong style="color:var(--neon-pink);">専用会員サイト</strong>をご用意。あなた一人ひとりに合わせた進捗管理も用意。迷った時にいつでも戻れる"資産"です。
           </p>
         </div>
       </article>
+    </div>
+
+    <!-- 中間CTA：5カリキュラムの直後 -->
+    <div class="mid-cta reveal delay-2">
+      <p class="mid-cta-lead">
+        <span class="mid-cta-accent">少人数・3人体制</span>で、<br>
+        <strong>"あなたのLPが仕上がるところ"</strong>まで伴走します。
+      </p>
+      <a href="https://forms.gle/1SVzry659Jj6jN4X6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
+      <p class="mid-cta-sub">お申し込み受付中 ／ 所要 3分</p>
     </div>
   </div>
 </section>
@@ -4901,8 +4988,8 @@
       </div>
     </div>
 
-    <!-- 受講生の声：横スクロールティッカー（写真＋見出し＋本文） -->
-    <div class="voices-ticker" style="margin: 80px -20px 0; padding: 60px 0 70px;">
+    <!-- 受講生の声：横スクロールティッカー（写真＋見出し＋本文）2026/4/20 非表示：vcardを横流しに刷新したため -->
+    <div class="voices-ticker" style="display:none; margin: 80px -20px 0; padding: 60px 0 70px;">
       <div class="vt-head reveal">
         <div class="section-en">STUDENT VOICES</div>
         <span class="vt-sub">受講生のリアルな声が、流れています。</span>
@@ -4995,84 +5082,164 @@
       </div>
     </div>
 
-    <!-- 受講生の声：写真＋コメントカード 4人分（差し替え想定） -->
+    <!-- 受講生の声：写真＋コメントカード 4人分（横にスクロール） -->
     <div class="voice-cards">
-      <article class="vcard reveal-left delay-1">
-        <div class="vcard-head">
-          <div class="vcard-avatar">
-            <!-- 画像差し替え： <img src="images/voice-01.jpg" alt="..."> -->
-            <span class="placeholder-avatar">A</span>
+      <div class="vcards-track">
+        <article class="vcard">
+          <div class="vcard-head">
+            <div class="vcard-avatar">
+              <span class="placeholder-avatar">A</span>
+            </div>
+            <div class="vcard-headline">
+              <h3>構成の迷子から抜け出して、<br>LPが"自分の手"で仕上がるように。</h3>
+              <div class="vcard-who"><strong>Aさん</strong>30代女性・ハンドメイド作家</div>
+            </div>
           </div>
-          <div class="vcard-headline">
-            <h3>構成の迷子から抜け出して、<br>LPが"自分の手"で仕上がるように。</h3>
-            <div class="vcard-who"><strong>Aさん</strong>30代女性・ハンドメイド作家</div>
-          </div>
-        </div>
-        <p class="vcard-body">
-          もともと独学でCanvaを触っていましたが、<strong>「構成のどこから手を付けていいかわからない」</strong>状態が続いていました。今回のワークショップでは、Claudeの使い方だけでなく、<strong>デザイナー3人の"視点"を直接もらえる</strong>のが本当に大きくて、途中で何度も"あ、こういうことか"という気づきがありました。
-        </p>
-        <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
-        <p class="vcard-msg">
-          「AIを使える人になりたい」だけでなく、<strong>"伝わるデザイン"も一緒に欲しい方</strong>にぜひ受けてほしい講座です。3人がかりで見てもらえる環境は他ではなかなか無いと思います。
-        </p>
-      </article>
+          <p class="vcard-body">
+            もともと独学でCanvaを触っていましたが、<strong>「構成のどこから手を付けていいかわからない」</strong>状態が続いていました。今回のワークショップでは、Claudeの使い方だけでなく、<strong>デザイナー3人の"視点"を直接もらえる</strong>のが本当に大きくて、途中で何度も"あ、こういうことか"という気づきがありました。
+          </p>
+          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+          <p class="vcard-msg">
+            「AIを使える人になりたい」だけでなく、<strong>"伝わるデザイン"も一緒に欲しい方</strong>にぜひ受けてほしい講座です。3人がかりで見てもらえる環境は他ではなかなか無いと思います。
+          </p>
+        </article>
 
-      <article class="vcard reveal-right delay-2">
-        <div class="vcard-head">
-          <div class="vcard-avatar">
-            <span class="placeholder-avatar">B</span>
+        <article class="vcard">
+          <div class="vcard-head">
+            <div class="vcard-avatar">
+              <span class="placeholder-avatar">B</span>
+            </div>
+            <div class="vcard-headline">
+              <h3>AI任せで止まっていた人にこそ、<br>デザイナーの目線が響きます。</h3>
+              <div class="vcard-who"><strong>Bさん</strong>40代男性・コーチ業</div>
+            </div>
           </div>
-          <div class="vcard-headline">
-            <h3>AI任せで止まっていた人にこそ、<br>デザイナーの目線が響きます。</h3>
-            <div class="vcard-who"><strong>Bさん</strong>40代男性・コーチ業</div>
-          </div>
-        </div>
-        <p class="vcard-body">
-          ChatGPTでもLPらしきものは作れていたのですが、<strong>どこか"他人事"なデザインに見えてしまう</strong>のが悩みでした。この講座では、Claudeで組んだ素体に対して<strong>「なぜここが惜しいのか」を言語化してもらえる</strong>ので、自分でも判断軸が残ります。
-        </p>
-        <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
-        <p class="vcard-msg">
-          独学でAIを触ってきた方ほど刺さる講座だと思います。「なんとなく作れる」を「<strong>自分の言葉で説明できる</strong>」に変えたい方に特におすすめです。
-        </p>
-      </article>
+          <p class="vcard-body">
+            ChatGPTでもLPらしきものは作れていたのですが、<strong>どこか"他人事"なデザインに見えてしまう</strong>のが悩みでした。この講座では、Claudeで組んだ素体に対して<strong>「なぜここが惜しいのか」を言語化してもらえる</strong>ので、自分でも判断軸が残ります。
+          </p>
+          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+          <p class="vcard-msg">
+            独学でAIを触ってきた方ほど刺さる講座だと思います。「なんとなく作れる」を「<strong>自分の言葉で説明できる</strong>」に変えたい方に特におすすめです。
+          </p>
+        </article>
 
-      <article class="vcard reveal-left delay-3">
-        <div class="vcard-head">
-          <div class="vcard-avatar">
-            <span class="placeholder-avatar">C</span>
+        <article class="vcard">
+          <div class="vcard-head">
+            <div class="vcard-avatar">
+              <span class="placeholder-avatar">C</span>
+            </div>
+            <div class="vcard-headline">
+              <h3>事前MTG・当日・添削・Slack、<br>"置いていかれない"設計が安心。</h3>
+              <div class="vcard-who"><strong>Cさん</strong>30代女性・フリーランス</div>
+            </div>
           </div>
-          <div class="vcard-headline">
-            <h3>事前MTG・当日・添削・Slack、<br>"置いていかれない"設計が安心。</h3>
-            <div class="vcard-who"><strong>Cさん</strong>30代女性・フリーランス</div>
-          </div>
-        </div>
-        <p class="vcard-body">
-          PCが苦手な自覚があったので、最初は不安しかなかったです。でも<strong>事前キックオフで環境を整えてくれる</strong>ので、当日は手を動かすことにだけ集中できました。仕上げの添削会でさらに磨かれて、<strong>"公開できる状態"にきちんと辿り着けた</strong>のが何より嬉しかったです。
-        </p>
-        <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
-        <p class="vcard-msg">
-          「一人だと絶対に途中で止まる」タイプの方こそ、<strong>Slackで聞き放題・添削会あり</strong>のこの講座が合っていると思います。小さい質問も遠慮なくできる雰囲気でした。
-        </p>
-      </article>
+          <p class="vcard-body">
+            PCが苦手な自覚があったので、最初は不安しかなかったです。でも<strong>事前キックオフで環境を整えてくれる</strong>ので、当日は手を動かすことにだけ集中できました。仕上げの添削会でさらに磨かれて、<strong>"公開できる状態"にきちんと辿り着けた</strong>のが何より嬉しかったです。
+          </p>
+          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+          <p class="vcard-msg">
+            「一人だと絶対に途中で止まる」タイプの方こそ、<strong>Slackで聞き放題・添削会あり</strong>のこの講座が合っていると思います。小さい質問も遠慮なくできる雰囲気でした。
+          </p>
+        </article>
 
-      <article class="vcard reveal-right delay-4">
-        <div class="vcard-head">
-          <div class="vcard-avatar">
-            <span class="placeholder-avatar">D</span>
+        <article class="vcard">
+          <div class="vcard-head">
+            <div class="vcard-avatar">
+              <span class="placeholder-avatar">D</span>
+            </div>
+            <div class="vcard-headline">
+              <h3>LP以外にも応用が効くから、<br>今後の"仕事の武器"になります。</h3>
+              <div class="vcard-who"><strong>Dさん</strong>40代女性・WEBデザイナー</div>
+            </div>
           </div>
-          <div class="vcard-headline">
-            <h3>LP以外にも応用が効くから、<br>今後の"仕事の武器"になります。</h3>
-            <div class="vcard-who"><strong>Dさん</strong>40代女性・WEBデザイナー</div>
+          <p class="vcard-body">
+            元々デザイナーとして活動していましたが、Claude Codeは初めてでした。<strong>1日で"自分でLPが組める状態"まで辿り着ける</strong>のは、かなり衝撃でした。LPだけでなく、診断ツール・会員サイト・スライドと、<strong>仕事の幅がそのまま広がる実感</strong>があります。
+          </p>
+          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+          <p class="vcard-msg">
+            デザイナーさんにこそおすすめしたいです。"自分の手札"が一気に増える感覚があります。未経験の方はもちろん、<strong>経験者の方の"次の一手"</strong>にもぴったりな講座です。
+          </p>
+        </article>
+
+        <!-- 無限ループ用の複製 -->
+        <article class="vcard" aria-hidden="true">
+          <div class="vcard-head">
+            <div class="vcard-avatar"><span class="placeholder-avatar">A</span></div>
+            <div class="vcard-headline">
+              <h3>構成の迷子から抜け出して、<br>LPが"自分の手"で仕上がるように。</h3>
+              <div class="vcard-who"><strong>Aさん</strong>30代女性・ハンドメイド作家</div>
+            </div>
           </div>
-        </div>
-        <p class="vcard-body">
-          元々デザイナーとして活動していましたが、Claude Codeは初めてでした。<strong>1日で"自分でLPが組める状態"まで辿り着ける</strong>のは、かなり衝撃でした。LPだけでなく、診断ツール・会員サイト・スライドと、<strong>仕事の幅がそのまま広がる実感</strong>があります。
-        </p>
-        <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
-        <p class="vcard-msg">
-          デザイナーさんにこそおすすめしたいです。"自分の手札"が一気に増える感覚があります。未経験の方はもちろん、<strong>経験者の方の"次の一手"</strong>にもぴったりな講座です。
-        </p>
-      </article>
+          <p class="vcard-body">
+            もともと独学でCanvaを触っていましたが、<strong>「構成のどこから手を付けていいかわからない」</strong>状態が続いていました。今回のワークショップでは、Claudeの使い方だけでなく、<strong>デザイナー3人の"視点"を直接もらえる</strong>のが本当に大きくて、途中で何度も"あ、こういうことか"という気づきがありました。
+          </p>
+          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+          <p class="vcard-msg">
+            「AIを使える人になりたい」だけでなく、<strong>"伝わるデザイン"も一緒に欲しい方</strong>にぜひ受けてほしい講座です。3人がかりで見てもらえる環境は他ではなかなか無いと思います。
+          </p>
+        </article>
+
+        <article class="vcard" aria-hidden="true">
+          <div class="vcard-head">
+            <div class="vcard-avatar"><span class="placeholder-avatar">B</span></div>
+            <div class="vcard-headline">
+              <h3>AI任せで止まっていた人にこそ、<br>デザイナーの目線が響きます。</h3>
+              <div class="vcard-who"><strong>Bさん</strong>40代男性・コーチ業</div>
+            </div>
+          </div>
+          <p class="vcard-body">
+            ChatGPTでもLPらしきものは作れていたのですが、<strong>どこか"他人事"なデザインに見えてしまう</strong>のが悩みでした。この講座では、Claudeで組んだ素体に対して<strong>「なぜここが惜しいのか」を言語化してもらえる</strong>ので、自分でも判断軸が残ります。
+          </p>
+          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+          <p class="vcard-msg">
+            独学でAIを触ってきた方ほど刺さる講座だと思います。「なんとなく作れる」を「<strong>自分の言葉で説明できる</strong>」に変えたい方に特におすすめです。
+          </p>
+        </article>
+
+        <article class="vcard" aria-hidden="true">
+          <div class="vcard-head">
+            <div class="vcard-avatar"><span class="placeholder-avatar">C</span></div>
+            <div class="vcard-headline">
+              <h3>事前MTG・当日・添削・Slack、<br>"置いていかれない"設計が安心。</h3>
+              <div class="vcard-who"><strong>Cさん</strong>30代女性・フリーランス</div>
+            </div>
+          </div>
+          <p class="vcard-body">
+            PCが苦手な自覚があったので、最初は不安しかなかったです。でも<strong>事前キックオフで環境を整えてくれる</strong>ので、当日は手を動かすことにだけ集中できました。仕上げの添削会でさらに磨かれて、<strong>"公開できる状態"にきちんと辿り着けた</strong>のが何より嬉しかったです。
+          </p>
+          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+          <p class="vcard-msg">
+            「一人だと絶対に途中で止まる」タイプの方こそ、<strong>Slackで聞き放題・添削会あり</strong>のこの講座が合っていると思います。小さい質問も遠慮なくできる雰囲気でした。
+          </p>
+        </article>
+
+        <article class="vcard" aria-hidden="true">
+          <div class="vcard-head">
+            <div class="vcard-avatar"><span class="placeholder-avatar">D</span></div>
+            <div class="vcard-headline">
+              <h3>LP以外にも応用が効くから、<br>今後の"仕事の武器"になります。</h3>
+              <div class="vcard-who"><strong>Dさん</strong>40代女性・WEBデザイナー</div>
+            </div>
+          </div>
+          <p class="vcard-body">
+            元々デザイナーとして活動していましたが、Claude Codeは初めてでした。<strong>1日で"自分でLPが組める状態"まで辿り着ける</strong>のは、かなり衝撃でした。LPだけでなく、診断ツール・会員サイト・スライドと、<strong>仕事の幅がそのまま広がる実感</strong>があります。
+          </p>
+          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
+          <p class="vcard-msg">
+            デザイナーさんにこそおすすめしたいです。"自分の手札"が一気に増える感覚があります。未経験の方はもちろん、<strong>経験者の方の"次の一手"</strong>にもぴったりな講座です。
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <!-- 中間CTA②：受講生の声の後 -->
+    <div class="mid-cta reveal delay-2">
+      <p class="mid-cta-lead">
+        <span class="mid-cta-accent">次は、あなたの番です</span><br>
+        <strong>"伝わるLP"を、あなたの手で</strong>仕上げにいきませんか？
+      </p>
+      <a href="https://forms.gle/1SVzry659Jj6jN4X6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
+      <p class="mid-cta-sub">お申し込み受付中 ／ 所要 3分</p>
     </div>
   </div>
 </section>
