@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="preload" href="bg-fv.jpg" as="image">
-<link rel="preload" href="hero.png" as="image">
+<link rel="preload" href="images/sitetop.png" as="image">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -962,7 +962,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    background: url('images/hero.png') top center / cover no-repeat;
+    background: url('images/sitetop.png') top center / cover no-repeat;
     filter: brightness(1.12) contrast(1.18) saturate(1.15);
     animation: heroBloomIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
     z-index: 2;
@@ -3357,6 +3357,38 @@
     background: linear-gradient(180deg, #3a3a4a, #1a1a2a, #2a2a3a);
   }
   .baof-phone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* LPをライブ表示する iframe（クリックは親のaタグへ通す） */
+  .baof-phone-link {
+    display: inline-block;
+    text-decoration: none;
+    transition: transform 0.3s;
+  }
+  .baof-phone-link:hover { transform: translateY(-4px); }
+  .baof-phone-iframe {
+    width: 1200px;
+    height: 2600px;
+    border: 0;
+    display: block;
+    transform: scale(0.205);
+    transform-origin: top left;
+    pointer-events: none;
+    background: #fff;
+  }
+  .baof-phone-badge {
+    position: absolute;
+    bottom: 12px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    padding: 4px 10px;
+    background: rgba(10,10,30,0.85);
+    color: var(--neon-cyan);
+    border: 1px solid rgba(34,211,238,0.5);
+    border-radius: 2px;
+    z-index: 4;
+    pointer-events: none;
+  }
   .baof-phone-screen .placeholder-txt {
     font-family: 'Orbitron', sans-serif;
     font-size: 13px;
@@ -4023,6 +4055,8 @@
     .baof-phone.before::before { width: 40px; height: 10px; top: 6px; border-radius: 7px; }
     .baof-phone.before .baof-phone-screen { border-radius: 16px; }
     .baof-phone.after { width: 175px; height: 370px; padding: 6px; border-radius: 24px; }
+    .baof-phone-iframe { transform: scale(0.135); }
+    .baof-phone-badge { font-size: 0.5rem; padding: 3px 7px; bottom: 8px; }
     .baof-phone.after::before { width: 58px; height: 14px; top: 8px; border-radius: 10px; }
     .baof-phone.after .baof-phone-screen { border-radius: 18px; }
     .baof-arrow { padding-bottom: 120px; }
@@ -4234,7 +4268,7 @@
     </div>
     <!-- 女性画像＋タイトル完全重ね -->
     <div class="fv-hero-wrap">
-      <img src="images/hero.png" alt="デザイナー3人" class="fv-hero-img">
+      <img src="images/sitetop.png" alt="Claude Code AIワークショップ" class="fv-hero-img">
       <!-- ボトムブロック：タイトル＋proof＋CTA を1つに -->
       <div class="fv-bottom-block">
         <div class="fv-title-band">
@@ -5320,18 +5354,18 @@
     </div>
 
     <div class="baof-list">
-      <!-- ROW 01 -->
+      <!-- ROW 01：はぬさん（羽沼 景子） -->
       <div class="baof-row reveal delay-1">
         <div class="baof-row-no">01</div>
         <h3 class="baof-row-title">
-          Canvaを開いては閉じる日々から、<br><span class="hl">販売導線まで整ったLP</span>へ。
+          「誰に何を聞けばいいか分からない」状態から、<br><span class="hl">自分のLPを公開</span>するまで。
         </h3>
         <div class="baof-phones-duo">
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">構成迷子<br>（写真差し替え予定）</div>
+                <div class="placeholder-txt">AIに<br>乗り遅れ…</div>
               </div>
             </div>
           </div>
@@ -5341,30 +5375,38 @@
           </div>
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
-            <div class="baof-phone after">
-              <div class="baof-phone-screen">
-                <div class="placeholder-txt">Aさんの<br>完成LP</div>
+            <a href="https://hanu-lp.vercel.app/?pc=1" target="_blank" rel="noopener" class="baof-phone-link" aria-label="はぬさんの完成LPを開く">
+              <div class="baof-phone after">
+                <div class="baof-phone-screen">
+                  <iframe src="https://hanu-lp.vercel.app/?pc=1" loading="lazy" title="はぬさんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
+                  <span class="baof-phone-badge">TAP TO OPEN</span>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>A</div></div>
+            <div class="baof-person-avatar"><div>はぬ</div></div>
             <div>
-              <div class="baof-person-name">Aさん</div>
-              <div class="baof-person-role">HANDMADE / 40代</div>
+              <div class="baof-person-name">はぬさん（羽沼 景子）</div>
+              <div class="baof-person-role">PARTY PRODUCER / パーティープロデューサー</div>
             </div>
           </div>
           <div class="baof-ba">
             <div class="baof-chip before">
               <span class="lbl">BEFORE</span>
-              構成すら思いつかず、Canvaを開いては閉じる日々…
+              そもそも極度のメカ音痴・AI音痴。AIに至っては<strong style="color:#fff;">もう乗り遅れてしまった感</strong>が物凄くあり、既に誰に何を聞いていいかわからない状況…でも若干の興味はあるｗ、という厄介さ。
             </div>
           </div>
           <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
-          <p class="baof-comment">
-            パソコンが苦手すぎて半泣きで参加しました。でも<strong>3人のサポートが本当に手厚くて</strong>、気づいたらLPが出来ていて…魔法みたい。ローンチ前に間に合った！
+          <p class="baof-comment" data-placeholder="true">
+            <em style="color:rgba(232,232,255,0.55); font-style:normal;">※ ご感想コピー受け取り次第、ここに反映します。</em>
+          </p>
+          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
+            <a href="https://hanu-lp.vercel.app/?pc=1" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(34,211,238,0.5); padding-bottom:2px;">
+              → はぬさんの完成LPを別タブで見る
+            </a>
           </p>
         </div>
       </div>
