@@ -4,6 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claude Codeで叶える！デザイナー視点もりもりのAI制作ワークショップ ¥55,000版</title>
+<script>
+  // イントロ演出判定（レンダリング前に実行してFOUC防止）
+  (function(){
+    try {
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (sessionStorage.getItem('ws_intro_played') !== '1' && !reduced) {
+        document.documentElement.classList.add('intro-playing');
+      } else {
+        document.documentElement.classList.add('intro-done');
+      }
+    } catch(e) {
+      document.documentElement.classList.add('intro-done');
+    }
+  })();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="preload" href="bg-fv.jpg" as="image">
@@ -955,6 +970,226 @@
   @keyframes textRise {
     0%   { opacity: 0; transform: translateY(28px); }
     100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* =========================================================
+     A. 常時の奥行き演出
+     ========================================================= */
+  /* 放射状パースライン（奥から手前へ伸びる光） */
+  .fv-perspective-lines {
+    position: absolute; inset: -20%;
+    z-index: 0; pointer-events: none;
+    background:
+      repeating-conic-gradient(from 0deg at 50% 62%,
+        rgba(34,211,238,0.10) 0deg 0.4deg,
+        transparent 0.4deg 6deg,
+        rgba(192,132,252,0.07) 6deg 6.4deg,
+        transparent 6.4deg 12deg);
+    animation: perspectiveSpin 80s linear infinite;
+    mix-blend-mode: screen;
+    opacity: 0.65;
+  }
+  @keyframes perspectiveSpin {
+    to { transform: rotate(360deg); }
+  }
+  /* 中心に向かうビネット（奥行きの窪み） */
+  .fv-depth-vignette {
+    position: absolute; inset: 0;
+    z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 60%,
+      transparent 0%,
+      transparent 30%,
+      rgba(5,5,20,0.55) 85%,
+      rgba(5,5,20,0.85) 100%);
+    mix-blend-mode: multiply;
+  }
+  /* 星屑パーティクル */
+  .fv-stars {
+    position: absolute; inset: 0;
+    z-index: 1; pointer-events: none;
+    overflow: hidden;
+  }
+  .fv-star {
+    position: absolute; bottom: -12px;
+    width: 3px; height: 3px; border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 6px #22d3ee, 0 0 14px rgba(34,211,238,0.6);
+    animation: starRise linear infinite;
+    opacity: 0;
+  }
+  @keyframes starRise {
+    0%   { transform: translateY(0) scale(0.4); opacity: 0; }
+    10%  { opacity: 1; }
+    85%  { opacity: 0.9; }
+    100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+  }
+  /* 女性画像の微呼吸 */
+  @keyframes heroBreath {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50%      { transform: scale(1.022) translateY(-4px); }
+  }
+
+  /* =========================================================
+     B. イントロ演出（初回訪問のみ）
+     ========================================================= */
+  /* 吸い込みオーバーレイ */
+  .fv-intro-overlay {
+    position: fixed; inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: #000;
+    opacity: 0;
+    display: none;
+  }
+  .fv-intro-overlay::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 55%,
+      rgba(255,255,255,0.95) 0%,
+      rgba(34,211,238,0.7) 8%,
+      rgba(147,51,234,0.5) 22%,
+      rgba(0,0,0,0.98) 55%,
+      #000 100%);
+  }
+  html.intro-playing { overflow: hidden; }
+  html.intro-playing .fv-intro-overlay {
+    display: block;
+    animation: introTunnel 1.1s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+  }
+  @keyframes introTunnel {
+    0%   { opacity: 1; transform: scale(1); filter: blur(0); }
+    40%  { opacity: 1; }
+    100% { opacity: 0; transform: scale(14); filter: blur(20px); }
+  }
+
+  /* 女性画像：イントロ中は奥から飛び出す */
+  html.intro-playing .fv-hero-photo {
+    animation: heroBurst 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.95s both;
+  }
+  html.intro-done .fv-hero-photo {
+    animation: heroBreath 7s ease-in-out infinite;
+  }
+  @keyframes heroBurst {
+    0%   { transform: scale(0.12) translateY(30px); filter: blur(30px) brightness(0.2); opacity: 0; }
+    30%  { opacity: 0.6; }
+    60%  { transform: scale(1.18) translateY(-8px); filter: blur(0) brightness(1.6) saturate(1.4) drop-shadow(0 0 40px rgba(34,211,238,0.9)); opacity: 1; }
+    78%  { transform: scale(0.95) translateY(2px); }
+    90%  { transform: scale(1.03) translateY(0); }
+    100% { transform: scale(1) translateY(0); filter: brightness(1.12) contrast(1.18) saturate(1.15) drop-shadow(0 0 20px rgba(34,211,238,0.25)); opacity: 1; }
+  }
+
+  /* ステージ3：文字ストンプ */
+  .main-title .stomp-part {
+    display: inline-block;
+    transform-origin: center;
+  }
+  html.intro-playing .fv-top-badge,
+  html.intro-playing .fv-sub-heading,
+  html.intro-playing .fv-catch-sub,
+  html.intro-playing .fv-title-date,
+  html.intro-playing .fv-content {
+    opacity: 0;
+  }
+  html.intro-playing .main-title .stomp-part {
+    opacity: 0;
+    animation: stompIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  html.intro-playing .main-title .stomp-part.p1 { animation-delay: 1.80s; --from-x: -350%; --from-y: 0; }
+  html.intro-playing .main-title .stomp-part.p2 { animation-delay: 2.05s; --from-x: 350%; --from-y: 0; }
+  html.intro-playing .main-title .stomp-part.p3 { animation-delay: 2.30s; --from-x: 0; --from-y: 180%; }
+  @keyframes stompIn {
+    0%   { opacity: 0; transform: translate(var(--from-x, 0), var(--from-y, 0)) scale(3); filter: blur(12px); }
+    40%  { opacity: 1; }
+    60%  { opacity: 1; transform: translate(0,0) scale(1.35); filter: blur(0) drop-shadow(0 0 16px rgba(34,211,238,0.8)); }
+    80%  { transform: scale(0.88); }
+    92%  { transform: scale(1.06); }
+    100% { opacity: 1; transform: scale(1); filter: none; }
+  }
+
+  /* 着弾後、他要素を順次フェードイン */
+  html.intro-playing .fv-top-badge   { animation: fvFadeUp 0.55s ease-out 2.45s both; }
+  html.intro-playing .fv-sub-heading { animation: fvFadeUp 0.55s ease-out 2.55s both; }
+  html.intro-playing .fv-catch-sub   { animation: fvFadeUp 0.55s ease-out 2.65s both; }
+  html.intro-playing .fv-title-date  { animation: fvFadeUp 0.55s ease-out 2.75s both; }
+  html.intro-playing .fv-content     { animation: fvFadeUp 0.6s ease-out 2.9s both; }
+  @keyframes fvFadeUp {
+    0%   { opacity: 0; transform: translateY(18px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 着弾時のカメラシェイク */
+  html.intro-playing .fv-hero-wrap {
+    animation: heroBloomIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0s both,
+               camShake 0.35s ease-out 2.15s;
+  }
+  @keyframes camShake {
+    0%, 100% { translate: 0 0; }
+    20% { translate: -7px 3px; }
+    40% { translate: 6px -4px; }
+    60% { translate: -4px 2px; }
+    80% { translate: 3px -2px; }
+  }
+
+  /* 衝撃波リング */
+  .fv-shockwave {
+    position: absolute;
+    top: 55%; left: 50%;
+    width: 0; height: 0;
+    border-radius: 50%;
+    border: 3px solid rgba(34,211,238,0.9);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 20;
+    pointer-events: none;
+    box-shadow: 0 0 40px rgba(34,211,238,0.6), inset 0 0 20px rgba(244,114,182,0.4);
+  }
+  html.intro-playing .fv-shockwave {
+    animation: shockwave 0.9s ease-out 2.15s;
+  }
+  @keyframes shockwave {
+    0%   { width: 0; height: 0; opacity: 1; border-width: 5px; }
+    100% { width: 160vmax; height: 160vmax; opacity: 0; border-width: 1px; }
+  }
+
+  /* スキップボタン */
+  .fv-intro-skip {
+    position: fixed;
+    top: 18px; right: 18px;
+    z-index: 10000;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    color: #22d3ee;
+    background: rgba(5,5,20,0.7);
+    border: 1px solid rgba(34,211,238,0.5);
+    border-radius: 999px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    display: none;
+    transition: all 0.2s;
+  }
+  .fv-intro-skip:hover { background: rgba(34,211,238,0.2); }
+  html.intro-playing .fv-intro-skip { display: block; }
+
+  /* アクセシビリティ：モーション低減設定を尊重 */
+  @media (prefers-reduced-motion: reduce) {
+    .fv-perspective-lines, .fv-star { animation: none !important; }
+    html.intro-playing .fv-intro-overlay,
+    html.intro-playing .fv-hero-photo,
+    html.intro-playing .main-title .stomp-part,
+    html.intro-playing .fv-hero-wrap,
+    html.intro-playing .fv-shockwave,
+    html.intro-playing .fv-top-badge,
+    html.intro-playing .fv-sub-heading,
+    html.intro-playing .fv-catch-sub,
+    html.intro-playing .fv-title-date,
+    html.intro-playing .fv-content {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    html.intro-playing .fv-intro-overlay { display: none; }
   }
 
   /* ── 女性画像コンテナ：フル画面（動画背景＋透過PNG重ね） ── */
@@ -4307,15 +4542,36 @@
       <video class="fv-hero-video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
         <source src="images/fv-bg.mp4" type="video/mp4">
       </video>
+      <!-- 常時の奥行き演出：放射状パースライン -->
+      <div class="fv-perspective-lines" aria-hidden="true"></div>
+      <!-- 常時の奥行き演出：星屑パーティクル -->
+      <div class="fv-stars" aria-hidden="true">
+        <span class="fv-star" style="left:5%;  animation-duration:11s; animation-delay:0s;"></span>
+        <span class="fv-star" style="left:12%; animation-duration:14s; animation-delay:2s; width:2px;height:2px;"></span>
+        <span class="fv-star" style="left:19%; animation-duration:9s;  animation-delay:4s;"></span>
+        <span class="fv-star" style="left:26%; animation-duration:13s; animation-delay:1s; width:2px;height:2px;"></span>
+        <span class="fv-star" style="left:33%; animation-duration:10s; animation-delay:6s;"></span>
+        <span class="fv-star" style="left:40%; animation-duration:15s; animation-delay:3s; width:4px;height:4px;"></span>
+        <span class="fv-star" style="left:47%; animation-duration:12s; animation-delay:0.5s;"></span>
+        <span class="fv-star" style="left:54%; animation-duration:11s; animation-delay:5s; width:2px;height:2px;"></span>
+        <span class="fv-star" style="left:61%; animation-duration:13s; animation-delay:7s;"></span>
+        <span class="fv-star" style="left:68%; animation-duration:10s; animation-delay:2.5s;"></span>
+        <span class="fv-star" style="left:75%; animation-duration:14s; animation-delay:4.5s; width:2px;height:2px;"></span>
+        <span class="fv-star" style="left:82%; animation-duration:12s; animation-delay:1.5s;"></span>
+        <span class="fv-star" style="left:89%; animation-duration:11s; animation-delay:6.5s; width:4px;height:4px;"></span>
+        <span class="fv-star" style="left:95%; animation-duration:13s; animation-delay:3.5s;"></span>
+      </div>
       <img class="fv-hero-photo" src="images/sitetop.png" alt="Claude Code AIワークショップ 講師3人">
       <img src="images/sitetop.png" alt="" class="fv-hero-img">
+      <!-- イントロ用：衝撃波リング -->
+      <div class="fv-shockwave" aria-hidden="true"></div>
       <!-- ボトムブロック：タイトル＋proof＋CTA を1つに -->
       <div class="fv-bottom-block">
         <div class="fv-title-band">
           <div class="fv-title-line">
             <span class="fv-sub-heading">デザイナー視点もりもりの</span>
           </div>
-          <div class="main-title"><span class="fv-ai">AI</span>ワークショップ</div>
+          <div class="main-title"><span class="stomp-part p1"><span class="fv-ai">AI</span></span><span class="stomp-part p2">ワーク</span><span class="stomp-part p3">ショップ</span></div>
           <div class="fv-catch-sub">非デザイナーでも LP が作れる！</div>
           <div class="fv-title-date">2026.05.09 SAT &nbsp;|&nbsp; 10:00–18:00 &nbsp;|&nbsp; TOKYO</div>
         </div>
@@ -4328,7 +4584,7 @@
           <a href="https://forms.gle/1SVzry659Jj6jN4X6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
           <p class="fv-urgency">
             <span class="fv-urgency-dot"></span>
-            <strong>少人数制</strong>・応募多数の場合は<strong>抽選</strong>／お早めにお申し込みください
+            <strong>少人数制</strong>・お席に限りがありますので、<strong>お早めに</strong>お申し込みください
           </p>
         </div>
       </div>
@@ -5094,10 +5350,9 @@
         <span class="urgency-badge">LIMITED SEATS</span>
         <ul>
           <li><strong>少人数制</strong>で、おひとりおひとりをしっかりサポートします</li>
-          <li>応募多数の場合は<strong>抽選</strong>とさせていただきます</li>
-          <li>定員に達した時点で、<strong>募集を途中で締め切る場合</strong>があります</li>
+          <li>ご応募多数の場合、<strong>申込期限前に募集を締め切る</strong>可能性があります</li>
         </ul>
-        <p class="urgency-push">抽選になる可能性があります。お早めにお申し込みください。</p>
+        <p class="urgency-push">お席に限りがありますので、お早めにお申し込みください。</p>
       </div>
     </div>
   </div>
@@ -5996,10 +6251,9 @@
         <span class="urgency-badge">LIMITED SEATS</span>
         <ul>
           <li><strong>少人数制</strong>で、おひとりおひとりをしっかりサポートします</li>
-          <li>応募多数の場合は<strong>抽選</strong>とさせていただきます</li>
-          <li>定員に達した時点で、<strong>募集を途中で締め切る場合</strong>があります</li>
+          <li>ご応募多数の場合、<strong>申込期限前に募集を締め切る</strong>可能性があります</li>
         </ul>
-        <p class="urgency-push">抽選になる可能性があります。お早めにお申し込みください。</p>
+        <p class="urgency-push">お席に限りがありますので、お早めにお申し込みください。</p>
       </div>
     </div>
   </div>
@@ -6173,7 +6427,7 @@
       <div class="overview-row"><div class="overview-label">PRICE</div><div class="overview-value"><strong style="color: var(--neon-cyan); font-size: 1.2rem;">¥55,000</strong><span class="note">事前MTG（2h）＋当日ハンズオン＋添削会＋Slackサポート</span></div></div>
       <div class="overview-row"><div class="overview-label">BRING</div><div class="overview-value">パソコン（Mac推奨・Windows可）<span class="note" style="color:var(--neon-pink);">※ スペック要件・動作環境を必ずご確認ください（下記「REQUIREMENTS」参照）</span></div></div>
       <div class="overview-row"><div class="overview-label">TARGET</div><div class="overview-value"><strong style="color:#fff;">対象者：</strong>ご自身の講座やサービスをお持ちの方<span class="note" style="margin-top:8px; color:var(--neon-pink);">※ ご自身のサービスをお持ちでない方は対象外となります</span></div></div>
-      <div class="overview-row"><div class="overview-label">定員</div><div class="overview-value"><strong style="color:#fff;">少人数制</strong><span class="note" style="margin-top:8px; color:var(--neon-pink);">※ 応募多数の場合は抽選とさせていただきます</span></div></div>
+      <div class="overview-row"><div class="overview-label">定員</div><div class="overview-value"><strong style="color:#fff;">少人数制</strong><span class="note" style="margin-top:8px; color:var(--neon-pink);">※ お席に限りがありますので、お早めにお申し込みください</span></div></div>
     </div>
     <div class="condition-box reveal">
       <h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="g-camera" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><rect x="2" y="6" width="20" height="14" rx="2" fill="none" stroke="url(#g-camera)" stroke-width="1.5"/><rect x="2" y="6" width="20" height="14" rx="2" fill="url(#g-camera)" opacity="0.08"/><circle cx="12" cy="13" r="4" fill="none" stroke="url(#g-camera)" stroke-width="1.5"/><circle cx="12" cy="13" r="2" fill="url(#g-camera)" opacity="0.3"/><path d="M8 6l1-3h6l1 3" fill="none" stroke="url(#g-camera)" stroke-width="1.5" stroke-linejoin="round"/></svg> ご協力いただけると嬉しいこと</h3>
@@ -6646,6 +6900,28 @@
       }
     });
   });
+</script>
+
+<!-- イントロ演出用オーバーレイ＋スキップボタン -->
+<div class="fv-intro-overlay" aria-hidden="true"></div>
+<button class="fv-intro-skip" type="button" aria-label="イントロをスキップ">SKIP ▶</button>
+<script>
+  (function(){
+    var html = document.documentElement;
+    if (!html.classList.contains('intro-playing')) return;
+    try { sessionStorage.setItem('ws_intro_played', '1'); } catch(e) {}
+
+    var INTRO_DURATION = 3800;
+    var t = setTimeout(finish, INTRO_DURATION);
+
+    function finish(){
+      clearTimeout(t);
+      html.classList.remove('intro-playing');
+      html.classList.add('intro-done');
+    }
+    var skipBtn = document.querySelector('.fv-intro-skip');
+    if (skipBtn) skipBtn.addEventListener('click', finish);
+  })();
 </script>
 </body>
 </html>
