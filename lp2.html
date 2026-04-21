@@ -4744,10 +4744,10 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <iframe class="phone-iframe" src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP"></iframe>
+            <div class="phone-scroll-img"><img src="images/zoe-after.png" alt="ゾエさんの完成LP" loading="lazy"></div>
           </div>
         </div>
-        <div class="phone-label">CASE 01<span class="name">さーやん / 自己理解コーチ</span></div>
+        <div class="phone-label">CASE 01<span class="name">ゾエさん / セールス伴走コーチ</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4755,7 +4755,7 @@
             <iframe class="phone-iframe" src="https://hanu-lp.vercel.app/" loading="lazy" title="ハヌさんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 02<span class="name">ハヌさん / ブランディングプロデューサー</span></div>
+        <div class="phone-label">CASE 02<span class="name">ハヌさん / パーティープロデューサー</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4768,10 +4768,18 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
+            <iframe class="phone-iframe" src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP"></iframe>
+          </div>
+        </div>
+        <div class="phone-label">CASE 04<span class="name">さーやん / 自己理解コーチ</span></div>
+      </div>
+      <div class="swiper-slide">
+        <div class="phone-mock">
+          <div class="phone-screen">
             <iframe class="phone-iframe" src="https://petit-atelier.vercel.app/" loading="lazy" title="あゆみんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 04<span class="name">あゆみん / WEBデザイナー</span></div>
+        <div class="phone-label">CASE 05<span class="name">あゆみん / WEBデザイナー</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4779,7 +4787,7 @@
             <iframe class="phone-iframe" src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" title="ともみさんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 05<span class="name">ともみさん / イメージコンサル</span></div>
+        <div class="phone-label">CASE 06<span class="name">ともみさん / イメージコンサル</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4787,7 +4795,7 @@
             <iframe class="phone-iframe" src="https://lp-premiere-seminar.vercel.app/" loading="lazy" title="えびちゃんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 06<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
+        <div class="phone-label">CASE 07<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
       </div>
     </div>
   </div>
@@ -5895,7 +5903,7 @@
             <div class="baof-person-avatar"><div>ハヌ</div></div>
             <div>
               <div class="baof-person-name">ハヌさん</div>
-              <div class="baof-person-role">ブランディングプロデューサー</div>
+              <div class="baof-person-role">パーティープロデューサー</div>
             </div>
           </div>
           <div class="baof-ba">
@@ -7017,7 +7025,7 @@
       slidesPerView: 'auto',
       spaceBetween: 30,
       loop: true,
-      initialSlide: 0,
+      initialSlide: 3,
       speed: 700,
       touchAngle: 35,
       coverflowEffect: {
@@ -7038,8 +7046,8 @@
         }
       },
       on: {
-        init() { this.slideToLoop(0, 0, false); },
-        afterInit() { this.slideToLoop(0, 0, false); }
+        init() { this.slideToLoop(3, 0, false); },
+        afterInit() { this.slideToLoop(3, 0, false); }
       }
     });
 
