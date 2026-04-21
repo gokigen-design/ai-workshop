@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="preload" href="bg-fv.jpg" as="image">
 <link rel="preload" href="images/sitetop.png" as="image">
+<link rel="preload" href="images/fv-bg.mp4" as="video" type="video/mp4">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -956,17 +957,52 @@
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── 女性画像コンテナ：フル画面 ── */
+  /* ── 女性画像コンテナ：フル画面（動画背景＋透過PNG重ね） ── */
   .fv-hero-wrap {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    background: url('images/sitetop.png') top center / cover no-repeat;
-    filter: brightness(1.12) contrast(1.18) saturate(1.15);
+    background: #05050f;
     animation: heroBloomIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
     z-index: 2;
     overflow: hidden;
+  }
+  /* 背景動画レイヤー（最背面） */
+  .fv-hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.8;
+    filter: saturate(1.25) contrast(1.05) brightness(0.9);
+  }
+  /* 動画の上にかぶせる色味オーバーレイ（シアン/マゼンタのネオン感） */
+  .fv-hero-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(34,211,238,0.22), transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(244,114,182,0.22), transparent 55%),
+      linear-gradient(135deg, rgba(5,5,20,0.35) 0%, rgba(5,5,20,0.15) 50%, rgba(5,5,20,0.4) 100%);
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+  /* 女性たちの透過PNG（動画の前面） */
+  .fv-hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    z-index: 2;
+    filter: brightness(1.12) contrast(1.18) saturate(1.15) drop-shadow(0 0 20px rgba(34,211,238,0.25));
+    pointer-events: none;
   }
   /* 人物オーバーレイなし。足元だけグラデでフェード */
   .fv-hero-wrap::after {
@@ -982,10 +1018,10 @@
       rgba(0,5,20,1)    100%
     );
     pointer-events: none;
-    z-index: 1;
+    z-index: 3;
   }
 
-  /* 画像タグは非表示 */
+  /* 旧画像タグは非表示 */
   .fv-hero-img { display: none; }
 
   /* ── バッジWrapper：絶対配置で中央固定 ── */
@@ -3219,9 +3255,9 @@
     overflow: hidden;
     transition: border-color .4s, box-shadow .4s, transform .4s;
   }
-  .baof-row:nth-child(1) { border-left: 3px solid var(--neon-cyan); }
-  .baof-row:nth-child(2) { border-left: 3px solid var(--neon-pink); }
-  .baof-row:nth-child(3) { border-left: 3px solid var(--neon-purple); }
+  .baof-row:nth-child(3n+1) { border-left: 3px solid var(--neon-cyan); }
+  .baof-row:nth-child(3n+2) { border-left: 3px solid var(--neon-pink); }
+  .baof-row:nth-child(3n)   { border-left: 3px solid var(--neon-purple); }
   .baof-row:hover {
     border-color: rgba(34,211,238,0.45);
     box-shadow: 0 18px 60px rgba(34,211,238,0.10), 0 0 30px rgba(244,114,182,0.08);
@@ -3242,11 +3278,11 @@
     user-select: none;
     z-index: 0;
   }
-  .baof-row:nth-child(2) .baof-row-no {
+  .baof-row:nth-child(3n+2) .baof-row-no {
     background: linear-gradient(135deg, rgba(244,114,182,0.25), rgba(192,132,252,0.2));
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .baof-row:nth-child(3) .baof-row-no {
+  .baof-row:nth-child(3n) .baof-row-no {
     background: linear-gradient(135deg, rgba(192,132,252,0.25), rgba(34,211,238,0.2));
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
@@ -3266,10 +3302,10 @@
     background: linear-gradient(transparent 60%, rgba(34,211,238,0.35) 60%);
     padding: 0 4px;
   }
-  .baof-row:nth-child(2) .baof-row-title .hl {
+  .baof-row:nth-child(3n+2) .baof-row-title .hl {
     background: linear-gradient(transparent 60%, rgba(244,114,182,0.35) 60%);
   }
-  .baof-row:nth-child(3) .baof-row-title .hl {
+  .baof-row:nth-child(3n) .baof-row-title .hl {
     background: linear-gradient(transparent 60%, rgba(192,132,252,0.35) 60%);
   }
 
@@ -3334,11 +3370,11 @@
     content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
     width: 85px; height: 20px; background: #000; border-radius: 14px; z-index: 3;
   }
-  .baof-row:nth-child(2) .baof-phone.after {
+  .baof-row:nth-child(3n+2) .baof-phone.after {
     border-color: rgba(244,114,182,0.55);
     box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 50px rgba(244,114,182,0.28);
   }
-  .baof-row:nth-child(3) .baof-phone.after {
+  .baof-row:nth-child(3n) .baof-phone.after {
     border-color: rgba(192,132,252,0.55);
     box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 50px rgba(192,132,252,0.28);
   }
@@ -4268,7 +4304,11 @@
     </div>
     <!-- 女性画像＋タイトル完全重ね -->
     <div class="fv-hero-wrap">
-      <img src="images/sitetop.png" alt="Claude Code AIワークショップ" class="fv-hero-img">
+      <video class="fv-hero-video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
+        <source src="images/fv-bg.mp4" type="video/mp4">
+      </video>
+      <img class="fv-hero-photo" src="images/sitetop.png" alt="Claude Code AIワークショップ 講師3人">
+      <img src="images/sitetop.png" alt="" class="fv-hero-img">
       <!-- ボトムブロック：タイトル＋proof＋CTA を1つに -->
       <div class="fv-bottom-block">
         <div class="fv-title-band">
@@ -5400,29 +5440,31 @@
             </div>
           </div>
           <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
-          <p class="baof-comment" data-placeholder="true">
-            <em style="color:rgba(232,232,255,0.55); font-style:normal;">※ ご感想コピー受け取り次第、ここに反映します。</em>
+          <p class="baof-comment">
+            そもそもAIも今何が流行っているのかも分からないし、パソコンも決して得意な方ではなかったけれど、<strong>こんな私でもクラウドコードでLPを作ることができました。</strong>設定に苦労したものの、そこを乗り越えると、あとは自分で表現したい世界をAIに伝えるだけで、こんなにもすごくできるのかっていうのを感動しました。<br><br>
+            同時に、<strong>ハンズオンで実際一人一人に個別でアドバイス</strong>をしてくださって、私もそれを取り入れたらすごく素敵なサイトが出来上がり、自分の世界観も表現できたのもとっても嬉しいです。<br><br>
+            機械音痴だったけど、すごいサイトができたっていうのはもちろんのこと、まず<strong>自分のデザインや自分のサービスについてちょっと深掘りする機会</strong>をいただけたのが、すごい嬉しかったです。事前キックオフで自分のサービスと向き合う時間が持てたのも、すごい良かったです。
           </p>
           <p style="margin-top:14px; font-size:12.5px; text-align:center;">
             <a href="https://hanu-lp.vercel.app/?pc=1" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(34,211,238,0.5); padding-bottom:2px;">
-              → はぬさんの完成LPを別タブで見る
+              → はぬちゃんの完成LPを別タブで見る
             </a>
           </p>
         </div>
       </div>
 
-      <!-- ROW 02 -->
+      <!-- ROW 02：はなさん（村上 華） -->
       <div class="baof-row reveal delay-2">
         <div class="baof-row-no">02</div>
         <h3 class="baof-row-title">
-          「結局どう使うの？」が、<br><span class="hl">次の講座の売上</span>に変わった。
+          「なんかやってみたい」で参加したら、<br><span class="hl">"一生作れなかった"LP</span>ができた。
         </h3>
         <div class="baof-phones-duo">
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">見せ方が<br>伝わらない…</div>
+                <div class="placeholder-txt">焼き菓子の<br>次の展開へ</div>
               </div>
             </div>
           </div>
@@ -5432,46 +5474,237 @@
           </div>
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
-            <div class="baof-phone after">
-              <div class="baof-phone-screen" style="background: linear-gradient(180deg, #22d3ee, #0f172a, #ec4899);">
-                <div class="placeholder-txt">Bさんの<br>講座LP</div>
+            <a href="https://hana-okashi-lp.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="はなさんの完成LPを開く">
+              <div class="baof-phone after">
+                <div class="baof-phone-screen">
+                  <iframe src="https://hana-okashi-lp.vercel.app/" loading="lazy" title="はなさんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
+                  <span class="baof-phone-badge">TAP TO OPEN</span>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>B</div></div>
+            <div class="baof-person-avatar"><div>はな</div></div>
             <div>
-              <div class="baof-person-name">Bさん</div>
-              <div class="baof-person-role">COOKING / 30代</div>
+              <div class="baof-person-name">はなさん（村上 華）</div>
+              <div class="baof-person-role">BAKE ARTIST / がんばるママに「お疲れ様」を届ける焼き菓子作家</div>
             </div>
           </div>
           <div class="baof-ba">
             <div class="baof-chip before">
               <span class="lbl">BEFORE</span>
-              他のAI講座では「で、結局どう使うの？」が埋まらず…
+              焼き菓子の定期販売、今年中に焼き菓子の講座を作りたい──そんな次の展開を描いていた段階でした。
             </div>
           </div>
           <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
           <p class="baof-comment">
-            <strong>デザイナー視点</strong>が入るから、ただAIで作るだけでは辿り着けない"伝わるLP"になりました。すぐ売上に繋がって驚きました。
+            静的サイトだけを作っていたけれども、<strong>動的サイトができて視覚的に非常に見やすくなった</strong>サイトができた。遊び心を入れた世界観が出ているサイトが作れた。<br><br>
+            今絶対に作らなきゃいけないLPがあったわけでは無いのですが、なんかやってみたい！と。思った以上の仕上がりの素晴らしいものが出来上がって本当に感激しています。<strong>自分だけでは一生作れなかった</strong>と思います。<br><br>
+            この宿題をしている最中に講師とのセッションもあって、今後が明確になって、<strong>秋頃講座をはじめることに！</strong>お三方のサポート、アイディアをもらえて、周りの講座生さんとも教え合ったり、素晴らしい環境でした。<br><br>
+            自分で作り上げて、形になっていくワクワク感、できた時の達成感。<strong>1日があっという間</strong>でした！
+          </p>
+          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
+            <a href="https://hana-okashi-lp.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(244,114,182,0.5); padding-bottom:2px;">
+              → はなさんの完成LPを別タブで見る
+            </a>
           </p>
         </div>
       </div>
 
-      <!-- ROW 03 -->
-      <div class="baof-row reveal delay-3">
+      <!-- ROW 03：あゆみん（和田 あゆみ） -->
+      <div class="baof-row reveal delay-1">
         <div class="baof-row-no">03</div>
         <h3 class="baof-row-title">
-          ずっと下書きのままだったLPが、<br><span class="hl">"公開"まで辿り着いた。</span>
+          デザイナーの私も、<br><span class="hl">"何でも作れそう"</span>な感覚に。
         </h3>
         <div class="baof-phones-duo">
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">独学で<br>止まったまま</div>
+                <div class="placeholder-txt">スピードと<br>サポート力を</div>
+              </div>
+            </div>
+          </div>
+          <div class="baof-arrow">
+            <span class="baof-arrow-line">→</span>
+            <span class="baof-arrow-txt">1 DAY</span>
+          </div>
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag after">AFTER</span>
+            <a href="https://petit-atelier.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="あゆみんの完成LPを開く">
+              <div class="baof-phone after">
+                <div class="baof-phone-screen">
+                  <iframe src="https://petit-atelier.vercel.app/" loading="lazy" title="あゆみんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
+                  <span class="baof-phone-badge">TAP TO OPEN</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="baof-body">
+          <div class="baof-person">
+            <div class="baof-person-avatar"><div>あゆ</div></div>
+            <div>
+              <div class="baof-person-name">あゆみん（和田 あゆみ）</div>
+              <div class="baof-person-role">WEB DESIGNER / WEBデザイナー</div>
+            </div>
+          </div>
+          <div class="baof-ba">
+            <div class="baof-chip before">
+              <span class="lbl">BEFORE</span>
+              デザイナーだけど、私もサクッと作れるようになって<strong style="color:#fff;">サポート力とスピードを上げたい！！</strong>
+            </div>
+          </div>
+          <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
+          <p class="baof-comment">
+            クラウドコードを導入することがまず分からなかったし、思ったよりも難しかったので、<strong>一人では導入がまずできなかった</strong>と思います。ハンズオンで教えてもらったのがとても心強かったので、<strong>これからは何でも作れそうな気がして</strong>なりません。<br><br>
+            「ついていけるかな」と不安もありましたが、キックオフから当日まで手厚くサポートしてもらえ、すごくわかりやすいのと、そのための<strong>準備物を完璧に作ってくださっていた</strong>のがありがたかったです。<br><br>
+            家だと仕事に追われて自分のことは後回しになりがちですが、この環境があったから集中できて、さらにみんなの制作も一緒に見ることができ学びが深まりました。<strong>AIに苦手意識がある人にこそおすすめなワークショップです！！</strong>
+          </p>
+          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
+            <a href="https://petit-atelier.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(192,132,252,0.5); padding-bottom:2px;">
+              → あゆみんの完成LPを別タブで見る
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- ROW 04：ともみさん（藤葉 ともみ） -->
+      <div class="baof-row reveal delay-2">
+        <div class="baof-row-no">04</div>
+        <h3 class="baof-row-title">
+          課金してたのに使いこなせなかった。<br>→ <span class="hl">"伝わるLP"</span>が作れるように。
+        </h3>
+        <div class="baof-phones-duo">
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag before">BEFORE</span>
+            <div class="baof-phone before">
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt">課金してても<br>使えない…</div>
+              </div>
+            </div>
+          </div>
+          <div class="baof-arrow">
+            <span class="baof-arrow-line">→</span>
+            <span class="baof-arrow-txt">1 DAY</span>
+          </div>
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag after">AFTER</span>
+            <a href="https://lp-fujiba-tomomi.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="ともみさんの完成LPを開く">
+              <div class="baof-phone after">
+                <div class="baof-phone-screen">
+                  <iframe src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" title="ともみさんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
+                  <span class="baof-phone-badge">TAP TO OPEN</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="baof-body">
+          <div class="baof-person">
+            <div class="baof-person-avatar"><div>とも</div></div>
+            <div>
+              <div class="baof-person-name">ともみさん（藤葉 ともみ）</div>
+              <div class="baof-person-role">IMAGE CONSULTANT / イメージコンサルタント・集客コンサルタント</div>
+            </div>
+          </div>
+          <div class="baof-ba">
+            <div class="baof-chip before">
+              <span class="lbl">BEFORE</span>
+              Claudeには登録し課金もしているのですが、<strong style="color:#fff;">いまいち使い方が分からなくて使いこなせている気がせず、悩んでいます。</strong>マンツーマン受講生を10名以上抱えてキャパオーバー…LP制作の時短と、AIでコンテンツサイトの仕組み化をやっていきたい。
+            </div>
+          </div>
+          <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
+          <p class="baof-comment">
+            Claude Codeの設定に想像以上に時間がかかってしまい、途中とても不安になりましたが、<strong>あのセットアップは一人では絶対にできなかった</strong>と思います。リアル会場で直接サポートしていただけたことで、安心して進めることができ、本当に参加して良かったと感じています。<br><br>
+            また、デザイン面でもプロの視点からサポートをいただけたことで、<strong>「どうすれば見てもらいやすいか」「どうすれば自分のサービスの魅力が伝わるか」</strong>といった部分まで具体的に学ぶことができました。以前よりもずっと伝わりやすいLPが作れたと実感しています。<br><br>
+            私はイメコンなので、パッと見た時にどうやってわかりやすいサイトを作るかが分かりませんでした。アドバイスいただいた方法を試したら、<strong>もうそのサイトを見るだけですぐに想像をかきたてる</strong>ことができるサイトができたのがすごく良かったです。自分だけではこのアイデアは出なかったと思います。
+          </p>
+          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
+            <a href="https://lp-fujiba-tomomi.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(244,114,182,0.5); padding-bottom:2px;">
+              → ともみさんの完成LPを別タブで見る
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- ROW 05：えびちゃん（海老原 愛） -->
+      <div class="baof-row reveal delay-1">
+        <div class="baof-row-no">05</div>
+        <h3 class="baof-row-title">
+          外注していたLPを、<br><span class="hl">自分で作れる人</span>へ。
+        </h3>
+        <div class="baof-phones-duo">
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag before">BEFORE</span>
+            <div class="baof-phone before">
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt">バナーもLPも<br>外注…</div>
+              </div>
+            </div>
+          </div>
+          <div class="baof-arrow">
+            <span class="baof-arrow-line">→</span>
+            <span class="baof-arrow-txt">1 DAY</span>
+          </div>
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag after">AFTER</span>
+            <a href="https://lp-premiere-seminar.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="えびちゃんの完成LPを開く">
+              <div class="baof-phone after">
+                <div class="baof-phone-screen">
+                  <iframe src="https://lp-premiere-seminar.vercel.app/" loading="lazy" title="えびちゃんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
+                  <span class="baof-phone-badge">TAP TO OPEN</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="baof-body">
+          <div class="baof-person">
+            <div class="baof-person-avatar"><div>えび</div></div>
+            <div>
+              <div class="baof-person-name">えびちゃん（海老原 愛）</div>
+              <div class="baof-person-role">VIDEO EDITOR / 動画編集コミュニティ主宰</div>
+            </div>
+          </div>
+          <div class="baof-ba">
+            <div class="baof-chip before">
+              <span class="lbl">BEFORE</span>
+              講座のバナーや、LPを外注していたけど。<strong style="color:#fff;">自分で作れるようになりたい！</strong>クロードコード、マスターしたい！
+            </div>
+          </div>
+          <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
+          <p class="baof-comment">
+            Claude Codeが<strong>全くわからない状態から、初期設定から触れる状態</strong>を作ってもらい、LPを完成させるところまで持っていってくれたことが良かったです。<br><br>
+            ちょっと個性的なサイトを作りたかったけれども、そのままやると全然個性的にならなかったんです。逆に子供っぽくなっちゃったりして、途中で少しつまずきました。でも、<strong>アドバイスをいただいてからは個性的なサイトが作れて、"こういうこともできるんだ"</strong>と思えて、自分でサクサク進めるようになりました。<br><br>
+            今回の収穫は<br>
+            ・ひとまず<strong>LPを完成させられた</strong>こと<br>
+            ・<strong>Claude Codeのスタートラインに立てた</strong>こと<br>
+            ・色んな方と自然に交流ができて、純粋に楽しかった（あの場の雰囲気が楽しかったです）
+          </p>
+          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
+            <a href="https://lp-premiere-seminar.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(34,211,238,0.5); padding-bottom:2px;">
+              → えびちゃんの完成LPを別タブで見る
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- ROW 06：ぞえさん（川副 真理子） -->
+      <div class="baof-row reveal delay-2">
+        <div class="baof-row-no">06</div>
+        <h3 class="baof-row-title">
+          ある程度できていた人も、<br><span class="hl">さらに深まる学び</span>が。
+        </h3>
+        <div class="baof-phones-duo">
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag before">BEFORE</span>
+            <div class="baof-phone before">
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt">エバーグリーン<br>導線設計</div>
               </div>
             </div>
           </div>
@@ -5482,29 +5715,90 @@
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
-              <div class="baof-phone-screen" style="background: linear-gradient(180deg, #f59e0b, #ec4899, #0f172a, #a855f7);">
-                <div class="placeholder-txt">Cさんの<br>セッションLP</div>
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt" style="color:rgba(255,255,255,0.7);">LP公開準備中<br>（スクショ反映予定）</div>
+                <span class="baof-phone-badge">COMING SOON</span>
               </div>
             </div>
           </div>
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>C</div></div>
+            <div class="baof-person-avatar"><div>ぞえ</div></div>
             <div>
-              <div class="baof-person-name">Cさん</div>
-              <div class="baof-person-role">COACH / 40代</div>
+              <div class="baof-person-name">ぞえさん（川副 真理子）</div>
+              <div class="baof-person-role">SALES COACH / 売れる流れを作るセールス伴走コーチ</div>
             </div>
           </div>
           <div class="baof-ba">
             <div class="baof-chip before">
               <span class="lbl">BEFORE</span>
-              独学で詰まると止まってしまい、ずっと下書きのまま…
+              インスタでフォロワーが増えてきたが公式LINEを活用できていない方向けに、<strong style="color:#fff;">エバーグリーンの構築で個別相談までの導線</strong>を作ります。最近この事業に決め、提案書までは完成しています。場合によってはLP制作もここに入れたくて、AIでやれるなら全部盛り込んでいきたい。
             </div>
           </div>
           <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
           <p class="baof-comment">
-            <strong>「つまずいても置いていかれない」</strong>——独学じゃ絶対に得られない価値でした。参加費以上の安心感が"仕上げる力"になります。
+            CloudCodeはある程度分かっていたつもりで、そもそもLPの仕事もやっていましたが、<strong>このワークショップではさらにそこを深めることができました。</strong>実際にハンズオンで教えていただくことで、自分の気づきも得られたのも大きかったです。<br><br>
+            とにかく御三方の<strong>人間力がすばらしくて</strong>、トラブルが起きても真摯にひとつひとつの問題を解決しようとする姿にとても感動しました！デザイナーとしての長年の知見もあるからこそ、<strong>様々なデザインの引出しがある</strong>こともまたすごいなーーーーー！と心から感動しましたし、本当にほんとーーに参加できてよかった！ラッキーでした！！！<br><br>
+            御三方を見て集まった<strong>参加者の熱量もとても高くて</strong>とても良いワークショップでした！本当に感謝です。
+          </p>
+        </div>
+      </div>
+
+      <!-- ROW 07：さーやん（西脇 さやか） -->
+      <div class="baof-row reveal delay-1">
+        <div class="baof-row-no">07</div>
+        <h3 class="baof-row-title">
+          LPだけじゃない。<br><span class="hl">自動ツール・提案書</span>まで作れるようになった。
+        </h3>
+        <div class="baof-phones-duo">
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag before">BEFORE</span>
+            <div class="baof-phone before">
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt">AIは使うけど<br>LPは未経験</div>
+              </div>
+            </div>
+          </div>
+          <div class="baof-arrow">
+            <span class="baof-arrow-line">→</span>
+            <span class="baof-arrow-txt">1 DAY</span>
+          </div>
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag after">AFTER</span>
+            <a href="https://sayan-lp.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="さーやんの完成LPを開く">
+              <div class="baof-phone after">
+                <div class="baof-phone-screen">
+                  <iframe src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
+                  <span class="baof-phone-badge">TAP TO OPEN</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="baof-body">
+          <div class="baof-person">
+            <div class="baof-person-avatar"><div>さー</div></div>
+            <div>
+              <div class="baof-person-name">さーやん（西脇 さやか）</div>
+              <div class="baof-person-role">SELF-UNDERSTANDING COACH / 優等生の鎧を脱がせる人・自己理解／潜在意識コーチ</div>
+            </div>
+          </div>
+          <div class="baof-ba">
+            <div class="baof-chip before">
+              <span class="lbl">BEFORE</span>
+              普段からAIを活用してはいるものの、<strong style="color:#fff;">LPを作れるほどではありません。</strong>デザイン力のうすい自分にとって、このワークショップで自分でもLPができるようになること、デザイナー講師の手厚いサポートにものすごく魅力を感じています♡
+            </div>
+          </div>
+          <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
+          <p class="baof-comment">
+            ある程度事前に自分では進めていましたが、実際にハンズオンして教えてもらうことで、<strong>自分の魅力あふれるサイトができあがったのは本当にびっくり</strong>です。こんなのもできるのか、あんなのもできるのかといったことが自分の中でどんどん湧いてきて、<strong>それが形になった時の感動は忘れません。</strong><br><br>
+            さらには<strong>LPだけではなくて、自分で自動ツールを作ったり、提案書を作ったりとか、別のことにもつながっている</strong>のが今回の収穫になります。
+          </p>
+          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
+            <a href="https://sayan-lp.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(34,211,238,0.5); padding-bottom:2px;">
+              → さーやんの完成LPを別タブで見る
+            </a>
           </p>
         </div>
       </div>
