@@ -1,5 +1,7 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/lp.html", "permanent": false }
+    { "source": "/lp.html", "destination": "/closed.html", "permanent": false },
+    { "source": "/lp-preview.html", "destination": "/closed.html", "permanent": false },
+    { "source": "/", "destination": "/closed.html", "permanent": false }
   ]
 }

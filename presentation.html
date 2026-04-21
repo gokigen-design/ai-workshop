@@ -4,25 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LP制作ストーリー — AIとの会話だけで作りました</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --neon-blue: #00d4ff;
-    --neon-purple: #a855f7;
-    --neon-pink: #ec4899;
-    --neon-cyan: #22d3ee;
-    --dark-bg: #0a0a1a;
-    --dark-card: #111128;
-    --text: #e0e0f0;
-    --text-light: #dcdcf0;
+    --claude-orange: #D97706;
+    --claude-orange-light: #F59E0B;
+    --claude-orange-bg: rgba(217, 119, 6, 0.08);
+    --claude-orange-border: rgba(217, 119, 6, 0.2);
+    --bg: #F9F7F4;
+    --bg-white: #FFFFFF;
+    --bg-warm: #F3F0EB;
+    --text-primary: #1A1A1A;
+    --text-secondary: #6B6B6B;
+    --text-tertiary: #9B9B9B;
+    --border: #E8E4DE;
+    --border-light: #F0EDE8;
+    --user-bubble-bg: #F3F0EB;
+    --ai-bubble-bg: #FFFFFF;
   }
 
   html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
   body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: var(--dark-bg);
-    color: var(--text);
+    font-family: 'Noto Sans JP', 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
     line-height: 1.8;
   }
 
@@ -38,18 +44,6 @@
     overflow: hidden;
   }
 
-  /* Background grid */
-  .slide::before {
-    content: '';
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background:
-      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px),
-      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none;
-  }
-
   .slide-inner {
     max-width: 640px;
     width: 100%;
@@ -59,101 +53,117 @@
 
   /* Typography */
   .font-en {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    letter-spacing: 3px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
 
   .slide-num {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.7rem;
-    color: rgba(0,212,255,0.5);
-    letter-spacing: 4px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 2px;
     margin-bottom: 16px;
+    text-transform: uppercase;
   }
 
   h1 {
     font-size: 1.6rem;
     font-weight: 900;
-    color: #fff;
+    color: var(--text-primary);
     line-height: 1.5;
     margin-bottom: 24px;
   }
-  h1 .neon {
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  h1 .accent {
+    color: var(--claude-orange);
   }
 
   h2 {
     font-size: 1.3rem;
     font-weight: 900;
-    color: #fff;
+    color: var(--text-primary);
     margin-bottom: 20px;
     line-height: 1.5;
   }
   h2 .em {
-    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    color: var(--claude-orange);
   }
 
-  /* Chat bubble */
+  /* Chat bubbles - Claude desktop style */
   .chat-bubble {
-    background: rgba(168,85,247,0.08);
-    border: 1px solid rgba(168,85,247,0.25);
-    border-radius: 16px 16px 16px 4px;
+    background: var(--user-bubble-bg);
+    border-radius: 18px 18px 18px 4px;
     padding: 16px 20px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     position: relative;
     font-size: 0.9rem;
     line-height: 1.8;
   }
   .chat-bubble .label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.6rem;
-    color: var(--neon-purple);
-    letter-spacing: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 1px;
     margin-bottom: 6px;
     display: block;
+    text-transform: uppercase;
   }
 
   .chat-response {
-    background: rgba(0,212,255,0.06);
-    border: 1px solid rgba(0,212,255,0.2);
-    border-radius: 16px 16px 4px 16px;
+    background: var(--ai-bubble-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px 18px 4px 18px;
     padding: 16px 20px;
     margin-bottom: 20px;
     font-size: 0.9rem;
     line-height: 1.8;
   }
   .chat-response .label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.6rem;
-    color: var(--neon-cyan);
-    letter-spacing: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--claude-orange);
+    letter-spacing: 1px;
     margin-bottom: 6px;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+  }
+  .chat-response .label::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: var(--claude-orange);
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
   /* Mini LP preview */
   .lp-preview {
     width: 100%;
-    border: 1px solid rgba(0,212,255,0.15);
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
     overflow: hidden;
     margin: 16px 0;
     position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
   .lp-preview-header {
-    background: rgba(0,212,255,0.08);
-    padding: 6px 12px;
+    background: var(--bg-warm);
+    padding: 8px 12px;
     display: flex;
     gap: 6px;
     align-items: center;
+    border-bottom: 1px solid var(--border-light);
   }
   .lp-preview-header .dot {
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.2);
+    background: #D1D1D1;
   }
   .lp-preview-header .dot:first-child { background: #ff5f57; }
   .lp-preview-header .dot:nth-child(2) { background: #ffbd2e; }
@@ -224,7 +234,7 @@
     color: #fff;
     font-size: 0.75rem;
     font-weight: 700;
-    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    border-radius: 6px;
   }
   .v2 .lp-badge {
     background: rgba(0,212,255,0.15);
@@ -234,6 +244,7 @@
     padding: 3px 12px;
     display: inline-block;
     margin-bottom: 8px;
+    border-radius: 4px;
   }
   .v2 .neon-text {
     background: linear-gradient(135deg, #00d4ff, #a855f7);
@@ -244,9 +255,9 @@
     background: linear-gradient(180deg, #0a0a1a, #111128);
   }
   .v3 .lp-title {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.7rem;
-    font-weight: 900;
+    font-weight: 700;
     letter-spacing: 3px;
     background: linear-gradient(135deg, #00d4ff, #a855f7);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -278,11 +289,11 @@
     color: #fff;
     font-size: 0.75rem;
     font-weight: 700;
-    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    border-radius: 6px;
     box-shadow: 0 0 20px rgba(168,85,247,0.4);
   }
   .v3 .lp-badge {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, rgba(168,85,247,0.3), rgba(0,212,255,0.3));
     border: 1px solid rgba(0,212,255,0.4);
     color: #22d3ee;
@@ -292,15 +303,16 @@
     letter-spacing: 2px;
     display: inline-block;
     margin-bottom: 8px;
-    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+    border-radius: 4px;
   }
 
   /* Arrow indicator */
   .arrow-down {
     margin-top: 16px;
     text-align: center;
-    color: rgba(0,212,255,0.4);
-    font-size: 1.2rem;
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+    font-weight: 500;
     animation: bounce 2s ease-in-out infinite;
   }
   @keyframes bounce {
@@ -311,14 +323,17 @@
   /* Feedback tag */
   .feedback-tag {
     display: inline-block;
-    background: rgba(236,72,153,0.12);
-    border: 1px solid rgba(236,72,153,0.3);
-    color: var(--neon-pink);
-    font-size: 0.7rem;
+    background: var(--claude-orange-bg);
+    border: 1px solid var(--claude-orange-border);
+    color: var(--claude-orange);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
     font-weight: 700;
     padding: 4px 14px;
+    border-radius: 20px;
     margin-bottom: 12px;
-    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
   /* Stats grid */
@@ -329,22 +344,21 @@
     margin-top: 20px;
   }
   .stat-card {
-    background: var(--dark-card);
-    border: 1px solid rgba(0,212,255,0.1);
-    padding: 16px;
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px;
     text-align: center;
-    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
   }
   .stat-card .num {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1.5rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    font-weight: 700;
+    color: var(--claude-orange);
   }
   .stat-card .desc {
     font-size: 0.7rem;
-    color: var(--text-light);
+    color: var(--text-secondary);
     margin-top: 4px;
   }
 
@@ -352,25 +366,16 @@
   .v4-frame {
     width: 100%;
     height: 70vh;
-    border: 1px solid rgba(0,212,255,0.2);
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   }
   .v4-frame iframe {
     width: 100%;
     height: 100%;
     border: none;
   }
-
-  /* Orb decorations */
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-  }
-  .orb-1 { width: 200px; height: 200px; background: rgba(168,85,247,0.15); top: -50px; right: -50px; }
-  .orb-2 { width: 180px; height: 180px; background: rgba(0,212,255,0.12); bottom: -30px; left: -30px; }
 
   /* Slide indicator */
   .slide-nav {
@@ -386,38 +391,75 @@
   .slide-nav a {
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.15);
+    background: var(--border);
     display: block;
     transition: all 0.3s;
   }
   .slide-nav a.active {
-    background: var(--neon-cyan);
-    box-shadow: 0 0 8px rgba(0,212,255,0.5);
+    background: var(--claude-orange);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
   }
 
-  /* CTA section */
+  /* Big title */
   .big-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple), var(--neon-blue));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    font-family: 'Inter', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--claude-orange);
     text-align: center;
     margin-bottom: 12px;
-    filter: drop-shadow(0 0 20px rgba(168,85,247,0.3));
   }
 
-  /* Claude character */
-  .claude-mini {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 4px;
+  /* Warm accent line */
+  .divider {
+    width: 40px;
+    height: 3px;
+    background: var(--claude-orange);
+    border-radius: 2px;
+    margin: 0 auto 20px;
+  }
+
+  /* Claude icon */
+  .claude-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #D97706, #F59E0B);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+  }
+  .claude-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Summary box */
+  .summary-box {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--bg-white);
+    border: 1px solid var(--claude-orange-border);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.06);
+  }
+  .summary-box .highlight {
+    font-size: 0.95rem;
+    color: var(--claude-orange);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .summary-box p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
   }
 
   @media (max-width: 480px) {
     h1 { font-size: 1.3rem; }
     h2 { font-size: 1.1rem; }
-    .big-title { font-size: 1.4rem; }
+    .big-title { font-size: 1.6rem; }
     .stats { grid-template-columns: 1fr 1fr; gap: 8px; }
     .stat-card .num { font-size: 1.2rem; }
   }
@@ -431,40 +473,31 @@
   <a href="#s1"></a>
   <a href="#s2"></a>
   <a href="#s3"></a>
+  <a href="#s3b"></a>
+  <a href="#s3c"></a>
   <a href="#s4"></a>
   <a href="#s5"></a>
 </nav>
 
 <!-- SLIDE 0: Title -->
 <section class="slide" id="s0">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
   <div class="slide-inner" style="text-align: center;">
-    <div style="margin-bottom: 24px;">
-      <svg width="80" height="80" viewBox="0 0 60 60">
-        <defs>
-          <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#a855f7"/>
-            <stop offset="100%" stop-color="#00d4ff"/>
-          </linearGradient>
-          <filter id="cglow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <polygon points="30,2 56,16 56,44 30,58 4,44 4,16" fill="url(#cg)" opacity="0.9" filter="url(#cglow)"/>
-        <text x="30" y="36" text-anchor="middle" fill="#fff" font-family="Orbitron, monospace" font-size="16" font-weight="900">&gt;_</text>
+    <div class="claude-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
       </svg>
     </div>
-    <h1 style="font-size: 1.8rem;">このLP、<br><span class="neon">AIとの会話だけ</span>で<br>作りました</h1>
-    <p style="color: var(--text-light); font-size: 0.85rem; margin-bottom: 8px;">制作時間: 約40分 / 会話回数: 4回</p>
-    <p style="color: rgba(255,255,255,0.5); font-size: 0.75rem;">使ったツール: Claude Code</p>
+    <h1 style="font-size: 1.8rem;">このLP、<br><span class="accent">AIとの会話だけ</span>で<br>作りました</h1>
+    <div class="divider"></div>
+    <p style="color: var(--text-tertiary); font-size: 0.75rem;">使ったツール: Claude Code</p>
     <div class="arrow-down">scroll</div>
   </div>
 </section>
 
-<!-- SLIDE 1: First prompt → v1 -->
+<!-- SLIDE 1: First prompt - v1 -->
 <section class="slide" id="s1">
-  <div class="orb orb-1"></div>
   <div class="slide-inner">
-    <div class="slide-num">STEP 01 / 04</div>
+    <div class="slide-num">STEP 01 / 06</div>
     <h2><span class="em">最初の指示</span>を出してみた</h2>
 
     <div class="chat-bubble">
@@ -486,29 +519,20 @@
         <div class="lp-title">デザイナーと一緒に学ぶ<br>AI制作ワークショップ</div>
         <div class="lp-sub">パソコン苦手でも大丈夫。<br>6時間で2つの成果物が完成。</div>
         <div class="lp-btn">詳しく見る</div>
-        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(139,69,19,0.15); width: 100%;">
-          <div style="font-size: 0.65rem; color: #a0522d; margin-bottom: 6px;">こんなお悩みありませんか？</div>
-          <div style="font-size: 0.6rem; color: #8b6914; text-align: left; line-height: 1.8;">
-            ・LP外注すると15〜30万円かかる...<br>
-            ・修正のたびに連絡するのが面倒<br>
-            ・AIを使いたいけど何から始めれば...
-          </div>
-        </div>
       </div>
     </div>
 
     <div class="feedback-tag">FIRST OUTPUT</div>
-    <p style="font-size: 0.8rem; color: var(--text-light);">出てきたのは普通の暖色系LP。悪くはないけど......なんか普通すぎる。もっと攻めたい！</p>
+    <p style="font-size: 0.8rem; color: var(--text-secondary);">出てきたのは普通の暖色系LP。悪くはないけど......なんか普通すぎる。もっと攻めたい！</p>
     <div class="arrow-down">scroll</div>
   </div>
 </section>
 
-<!-- SLIDE 2: Feedback → v2 neon -->
+<!-- SLIDE 2: Feedback - v2 neon -->
 <section class="slide" id="s2">
-  <div class="orb orb-2"></div>
   <div class="slide-inner">
-    <div class="slide-num">STEP 02 / 04</div>
-    <h2><span class="em">フィードバック①</span><br>もっとサイバー感が欲しい</h2>
+    <div class="slide-num">STEP 02 / 06</div>
+    <h2><span class="em">フィードバック(1)</span><br>もっとサイバー感が欲しい</h2>
 
     <div class="chat-bubble">
       <span class="label">あや</span>
@@ -528,26 +552,25 @@
         <div class="lp-badge">WORKSHOP</div>
         <div class="lp-title"><span class="neon-text">デザイナー視点もりもり</span>の<br>AI制作ワークショップ</div>
         <div class="lp-sub">プログラミング不要。<br>パソコン苦手でも大丈夫。</div>
-        <div class="lp-btn">参加を申し込む →</div>
+        <div class="lp-btn">参加を申し込む</div>
         <div style="margin-top: 16px; display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
-          <span style="font-size: 0.55rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: #00d4ff; padding: 3px 10px;">CODE SKILL 0</span>
-          <span style="font-size: 0.55rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: #00d4ff; padding: 3px 10px;">6H / 2 OUTPUTS</span>
+          <span style="font-size: 0.55rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: #00d4ff; padding: 3px 10px; border-radius: 4px;">CODE SKILL 0</span>
+          <span style="font-size: 0.55rem; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: #00d4ff; padding: 3px 10px; border-radius: 4px;">6H / 2 OUTPUTS</span>
         </div>
       </div>
     </div>
 
     <div class="feedback-tag">SECOND OUTPUT</div>
-    <p style="font-size: 0.8rem; color: var(--text-light);">おおー！ガラッと変わった！でもフォントがまだ普通だな......もっと攻めたい。</p>
+    <p style="font-size: 0.8rem; color: var(--text-secondary);">おおー！ガラッと変わった！でもフォントがまだ普通だな......もっと攻めたい。</p>
     <div class="arrow-down">scroll</div>
   </div>
 </section>
 
-<!-- SLIDE 3: Feedback → v3 Orbitron -->
+<!-- SLIDE 3: Feedback - v3 Orbitron -->
 <section class="slide" id="s3">
-  <div class="orb orb-1"></div>
   <div class="slide-inner">
-    <div class="slide-num">STEP 03 / 04</div>
-    <h2><span class="em">フィードバック②</span><br>フォントを変えて、もっと攻めて</h2>
+    <div class="slide-num">STEP 03 / 06</div>
+    <h2><span class="em">フィードバック(2)</span><br>フォントを変えて、もっと攻めて</h2>
 
     <div class="chat-bubble">
       <span class="label">あや</span>
@@ -569,34 +592,89 @@
         <div class="lp-main"><span style="background: linear-gradient(135deg, #00d4ff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">デザイナー視点もりもり</span>の<br>AI制作ワークショップ</div>
         <div class="lp-catch">「これも私が<br>つくれるの！？」</div>
         <div class="lp-sub">デザイナー3人がサポート。AI臭くない仕上がり。</div>
-        <div class="lp-btn">参加を申し込む →</div>
+        <div class="lp-btn">参加を申し込む</div>
       </div>
     </div>
 
     <div class="feedback-tag">THIRD OUTPUT</div>
-    <p style="font-size: 0.8rem; color: var(--text-light);">めっちゃいい！フォント変えたら一気にプロっぽくなった。あとは細かい読みやすさとか調整して完成！</p>
+    <p style="font-size: 0.8rem; color: var(--text-secondary);">めっちゃいい！フォント変えたら一気にプロっぽくなった。あとは細かい読みやすさとか調整して完成！</p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 3b: Hexagon floating version (actual LP) -->
+<section class="slide" id="s3b">
+  <div class="slide-inner">
+    <div class="slide-num">STEP 04 / 06</div>
+    <h2><span class="em">ヘキサゴンの中で</span><br>女性がぷかぷか浮いてる版</h2>
+
+    <div class="chat-bubble">
+      <span class="label">あや</span>
+      講師の写真をヘキサゴンの中に入れて、ぷかぷか浮いてる感じにして！背景はサイバーシティで。
+    </div>
+
+    <div class="chat-response">
+      <span class="label">CLAUDE CODE</span>
+      ヘキサゴンマスクで写真を切り抜き、フロートアニメーションを付けました！
+    </div>
+
+    <div class="v4-frame" style="height: 50vh; overflow: hidden;">
+      <iframe src="making-screenshots/v1-initial.html" loading="lazy" scrolling="no" style="pointer-events: none;"></iframe>
+    </div>
+
+    <div class="feedback-tag">HEXAGON VERSION</div>
+    <p style="font-size: 0.8rem; color: var(--text-secondary);">六角形の中に3人が浮遊するデザイン。</p>
+    <div class="arrow-down">scroll</div>
+  </div>
+</section>
+
+<!-- SLIDE 3c: Gate animation version -->
+<section class="slide" id="s3c">
+  <div class="slide-inner">
+    <div class="slide-num">STEP 05 / 06</div>
+    <h2>5秒の<span class="em">オープニング演出</span>をつけた版</h2>
+
+    <div class="chat-bubble">
+      <span class="label">あや</span>
+      LPを開いた瞬間に、かっこいいオープニングを入れたい！5秒くらいのゲートが開く演出で、ロゴが光ってスパークルが散って、そこからLPの本編に入るようにして！
+    </div>
+
+    <div class="chat-response">
+      <span class="label">CLAUDE CODE</span>
+      5秒間のオープニングゲートアニメーションを追加しました！ロゴ表示 → スパークルエフェクト → フェードアウトで本編が現れる演出です。
+    </div>
+
+    <div class="v4-frame" style="height: 50vh; overflow: hidden;">
+      <iframe id="gate-iframe" src="making-screenshots/v-gate.html" loading="lazy" scrolling="no"></iframe>
+    </div>
+
+    <div style="text-align: center; margin-top: 12px;">
+      <button onclick="document.getElementById('gate-iframe').src = document.getElementById('gate-iframe').src" style="background: var(--claude-orange); color: #fff; border: none; padding: 10px 28px; border-radius: 24px; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: 'Noto Sans JP', sans-serif; box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);">もう一度オープニングを見る</button>
+    </div>
+
+    <div class="feedback-tag">OPENING ANIMATION</div>
+    <p style="font-size: 0.8rem; color: var(--text-secondary);">LPを開いた瞬間の5秒間のオープニング演出。ヘキサゴンの中にいた女性たちが画面いっぱいに飛び出し、一気にリッチな体験に！</p>
     <div class="arrow-down">scroll</div>
   </div>
 </section>
 
 <!-- SLIDE 4: Final version -->
 <section class="slide" id="s4">
-  <div class="orb orb-2"></div>
   <div class="slide-inner">
-    <div class="slide-num">STEP 04 / 04</div>
+    <div class="slide-num">STEP 06 / 06</div>
     <h2><span class="em">完成版</span> — 細部を仕上げて公開</h2>
 
     <div class="chat-bubble">
       <span class="label">あや</span>
-      英語の見出しが暗くて読めないから明るくして！グレーの文字も白に近くして。あとアイコンにもっと光らせて、Claudeのキャラもっと増やして！あ、あとミーティングで決まった料金とか時間も入れてね。
+      英語の見出しが暗くて読めないから明るくして！グレーの文字も白に近くして。あとアイコンにもっと光らせて、Claudeのキャラもっと増やして！
     </div>
 
-    <div class="v4-frame">
-      <iframe src="lp.html" loading="lazy"></iframe>
+    <div class="v4-frame" style="overflow: hidden;">
+      <iframe src="lp.html" loading="lazy" scrolling="no" style="pointer-events: none;"></iframe>
     </div>
 
-    <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 12px; text-align: center;">
-      <a href="lp.html" target="_blank" style="color: var(--neon-cyan); text-decoration: none;">完成版をフルスクリーンで見る →</a>
+    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 12px; text-align: center;">
+      <a href="lp.html" target="_blank" style="color: var(--claude-orange); text-decoration: none; font-weight: 600;">完成版をフルスクリーンで見る →</a>
     </p>
     <div class="arrow-down">scroll</div>
   </div>
@@ -604,34 +682,14 @@
 
 <!-- SLIDE 5: Summary -->
 <section class="slide" id="s5">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
   <div class="slide-inner" style="text-align: center;">
-    <div class="big-title">4 TALKS<br>= 1 LP</div>
-    <p style="color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 24px;">「こうして！」「もっと攻めて！」<br>を4回伝えたらLPが完成しました。</p>
+    <div class="big-title">「こうして！」を<br>伝えるだけ。</div>
+    <div class="divider"></div>
+    <p style="color: var(--text-secondary); font-size: 1rem; font-weight: 500; line-height: 2;">フィードバックを重ねるたびに<br>どんどんイメージに近づいていく。<br>それがAIとの制作です。</p>
 
-    <div class="stats">
-      <div class="stat-card">
-        <div class="num">4</div>
-        <div class="desc">会話の回数</div>
-      </div>
-      <div class="stat-card">
-        <div class="num">~40min</div>
-        <div class="desc">制作時間</div>
-      </div>
-      <div class="stat-card">
-        <div class="num">¥0</div>
-        <div class="desc">外注費</div>
-      </div>
-      <div class="stat-card">
-        <div class="num">100%</div>
-        <div class="desc">自分のイメージ通り</div>
-      </div>
-    </div>
-
-    <div style="margin-top: 32px; padding: 20px; background: rgba(236,72,153,0.06); border: 1px solid rgba(236,72,153,0.15); border-radius: 8px;">
-      <p style="font-size: 0.9rem; color: var(--neon-pink); font-weight: 700; margin-bottom: 8px;">これが今日、皆さんにもできるようになります。</p>
-      <p style="font-size: 0.8rem; color: var(--text-light);">LP、診断ツール、スライド......<br>「こういうの作りたい」を伝えるだけ。</p>
+    <div class="summary-box">
+      <p class="highlight">これが今日、皆さんにもできるようになります。</p>
+      <p>LP、診断ツール、スライド......<br>「こういうの作りたい」を伝えるだけ。</p>
     </div>
   </div>
 </section>

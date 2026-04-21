@@ -65,6 +65,10 @@ img{max-width:100%;display:block}
 .lv-btn{padding:10px 18px;border:1px solid var(--border);background:var(--white);border-radius:999px;font-family:inherit;font-size:13px;color:var(--ink-light);cursor:pointer;transition:all .2s;font-weight:500;white-space:nowrap}
 .lv-btn:hover{border-color:var(--orange);color:var(--orange)}
 .lv-btn.active{background:var(--orange);color:var(--white);border-color:var(--orange)}
+.lv-btn-ba{background:linear-gradient(92deg,var(--orange) 0%,#E89B5F 50%,var(--gold) 100%);color:var(--white);border-color:transparent;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-weight:700;box-shadow:0 4px 14px rgba(224,122,79,.28)}
+.lv-btn-ba::before{content:'';width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35);animation:ba-blink 1.8s ease-in-out infinite}
+.lv-btn-ba:hover{color:var(--white);transform:translateY(-1px);box-shadow:0 6px 18px rgba(224,122,79,.4)}
+@keyframes ba-blink{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* ═══ Technique Card ═══ */
 .tech{background:var(--white);border:1px solid var(--border);border-radius:18px;margin-bottom:32px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .3s}
@@ -431,6 +435,7 @@ footer a{color:var(--orange)}
       <button class="lv-btn" onclick="scrollTo2('lv2')">レベル2 ─ 動きをつける</button>
       <button class="lv-btn" onclick="scrollTo2('lv3')">レベル3 ─ 構造で差をつける</button>
       <button class="lv-btn" onclick="scrollTo2('ref')">参考サイト</button>
+      <a class="lv-btn lv-btn-ba" href="./before-after-yoshimi.html">Before/After ─ 実例プロセス</a>
     </div>
   </div>
 </nav>

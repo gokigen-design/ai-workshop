@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ワークショップ タイトル案 v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #faf9f7;
+    color: #333;
+    padding: 24px 16px;
+    line-height: 1.8;
+  }
+  .container { max-width: 640px; margin: 0 auto; }
+
+  h1 { font-size: 1.1rem; text-align: center; margin-bottom: 8px; }
+  .subtitle { text-align: center; font-size: 0.8rem; color: #999; margin-bottom: 12px; }
+
+  /* 制作物まとめ */
+  .info-box {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    font-size: 0.85rem;
+  }
+  .info-box h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #DA7756;
+    margin-bottom: 10px;
+  }
+  .info-box .item {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    align-items: flex-start;
+  }
+  .info-box .emoji { flex-shrink: 0; }
+  .info-box .label { font-weight: 700; }
+  .info-box .desc { color: #888; font-size: 0.8rem; }
+
+  .category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+    background: #DA7756;
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+  .category:first-of-type { margin-top: 0; }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid transparent;
+    transition: all 0.2s;
+  }
+  .card:hover {
+    border-left-color: #DA7756;
+    transform: translateX(4px);
+  }
+  .card .num { font-size: 0.7rem; color: #DA7756; font-weight: 700; margin-bottom: 4px; }
+  .card .title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .card .sub { font-size: 0.78rem; color: #999; line-height: 1.7; }
+  .card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .card .tags span {
+    font-size: 0.68rem;
+    background: #f5f0ec;
+    color: #DA7756;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  .recommend {
+    border-left-color: #DA7756;
+    background: #fffaf7;
+  }
+  .recommend::after {
+    content: '★ おすすめ';
+    display: inline-block;
+    background: #DA7756;
+    color: #fff;
+    font-size: 0.65rem;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px dashed #e0e0e0;
+    margin: 32px 0 8px;
+  }
+
+  .combo {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .combo h3 { font-size: 0.9rem; margin-bottom: 12px; color: #1a1a1a; }
+  .combo-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .combo-item:last-child { border-bottom: none; }
+  .combo-item .main {
+    font-weight: 900;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+    line-height: 1.6;
+  }
+  .combo-item .desc { font-size: 0.78rem; color: #999; }
+
+  .note {
+    background: #fffde7;
+    border: 1px dashed #f9a825;
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 32px;
+    font-size: 0.82rem;
+    color: #f57f17;
+    line-height: 2;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🎨 ワークショップ タイトル案 v2</h1>
+<p class="subtitle">Claude Code入り ＋ 制作物を反映した最新版</p>
+
+<!-- 制作物まとめ -->
+<div class="info-box">
+  <h3>📦 持ち帰れるもの（確定情報）</h3>
+  <div class="item">
+    <span class="emoji">🎁</span>
+    <div>
+      <span class="label">LINEプレゼント</span><br>
+      <span class="desc">診断ツール・占い等 → LINEに設置できる完成品を持ち帰り</span>
+    </div>
+  </div>
+  <div class="item">
+    <span class="emoji">📄</span>
+    <div>
+      <span class="label">LP / スライド制作スキル</span><br>
+      <span class="desc">Claude Codeで作れるようになる → 帰ったあとも自分で量産可能</span>
+    </div>
+  </div>
+  <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0f0f0; font-size: 0.8rem; color: #888;">
+    💰 18,000円（モニター価格）｜⏰ 10:00〜16:00（7時間）｜👩‍🎨 デザイナー3人体制
+  </div>
+</div>
+
+<!-- ================================ -->
+<!-- A. デザイナー × Claude Code -->
+<!-- ================================ -->
+<div class="category">A. デザイナー視点 × Claude Code</div>
+
+<div class="card recommend">
+  <div class="num">A-1</div>
+  <div class="title">「ダサい」から卒業する<br>Claude Code ワークショップ<br><span style="font-size:0.8rem; color:#888; font-weight:400;">── デザイナー3人が教える、AI臭ゼロのものづくり</span></div>
+  <div class="sub">→ 「ダサい卒業」のパンチ + Claude Code + デザイナー3人。全部入り</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>ダサい卒業</span>
+    <span>3人体制</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">A-2</div>
+  <div class="title">AI臭、ゼロ。<br>デザイナーが教える Claude Code 実践DAY</div>
+  <div class="sub">→ 「AI臭ゼロ」の言い切りが強い。DAYのイベント感</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>AI臭ゼロ</span>
+    <span>イベント感</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">A-3</div>
+  <div class="title">デザイナー視点もりもりの<br>Claude Code ワークショップ</div>
+  <div class="sub">→ あやさん案。「もりもり」のゆるさが親しみやすい。シンプルで伝わる</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>あやさん案</span>
+    <span>親しみ</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">A-4</div>
+  <div class="title">あなたの家に1人、デザイナーAI。<br>── Claude Code で叶える "おしゃれ × 時短" ワークショップ</div>
+  <div class="sub">→ Claude Code = 専属デザイナーAI。「おしゃれ × 時短」で価値が明確</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>専属デザイナー</span>
+    <span>おしゃれ×時短</span>
+  </div>
+</div>
+
+<!-- ================================ -->
+<!-- B. 成果物 × Claude Code -->
+<!-- ================================ -->
+<hr class="divider">
+<div class="category">B. 成果物・ビフォーアフター × Claude Code</div>
+
+<div class="card recommend">
+  <div class="num">B-1</div>
+  <div class="title">LINEプレゼントもLPも、<br>7時間で全部できた。<br><span style="font-size:0.8rem; color:#888; font-weight:400;">── デザイナーと始める Claude Code</span></div>
+  <div class="sub">→ 制作物が具体的。「全部できた」の説得力。ホルダーさんが「え、それ欲しい」ってなる</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>制作物が明確</span>
+    <span>7時間</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">B-2</div>
+  <div class="title">外注費30万円が「自分で作れた」に変わる<br>Claude Code ワークショップ</div>
+  <div class="sub">→ 金額インパクトでホルダーさんの目が止まる。「自分で」がキーワード</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>金額インパクト</span>
+    <span>自分でできる</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">B-3</div>
+  <div class="title">診断ツール、LP、スライド ──<br>Claude Code に話しかけたら全部できた件</div>
+  <div class="sub">→ 「〜した件」のSNS感。制作物を列挙して「え、そんなに？」の驚き</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>SNS映え</span>
+    <span>列挙型</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">B-4</div>
+  <div class="title">忙しいホルダーさん、<br>もう外注待ちしなくていいよ。<br><span style="font-size:0.8rem; color:#888; font-weight:400;">── Claude Code × デザイナーの7時間ワークショップ</span></div>
+  <div class="sub">→ ターゲットに直接語りかける。「外注待ち」はホルダーさんの共通の悩み</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>直接語りかけ</span>
+    <span>共感型</span>
+  </div>
+</div>
+
+<!-- ================================ -->
+<!-- C. 爆誕 × Claude Code -->
+<!-- ================================ -->
+<hr class="divider">
+<div class="category">C. ワクワク・爆誕 × Claude Code</div>
+
+<div class="card recommend">
+  <div class="num">C-1</div>
+  <div class="title">Claude Code に話しかけただけで、<br>あなたの「ほしかった」が爆誕する7時間</div>
+  <div class="sub">→ 「話しかけただけ」のハードルの低さ + 「爆誕」のワクワク。Claude Codeの名前も記憶に残る</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>爆誕</span>
+    <span>低ハードル</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">C-2</div>
+  <div class="title">プログラミング？ いりません。<br>Claude Code × デザイナーの "ものづくりDAY"</div>
+  <div class="sub">→ 冒頭の否定が目を引く。「いりません」で安心させてからDAYへ誘う</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>否定形インパクト</span>
+    <span>安心感</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">C-3</div>
+  <div class="title">エクセルも使えない私が、<br>Claude Code で全部作れるようになった話。<br><span style="font-size:0.8rem; color:#888; font-weight:400;">── その方法、7時間で全部教えます</span></div>
+  <div class="sub">→ あやさんのストーリーがそのままタイトルに。共感→興味→参加の流れ</div>
+  <div class="tags">
+    <span>Claude Code</span>
+    <span>ストーリー型</span>
+    <span>共感</span>
+  </div>
+</div>
+
+<!-- ================================ -->
+<!-- 組み合わせベスト5 -->
+<!-- ================================ -->
+<hr class="divider">
+
+<div class="combo">
+  <h3>🏆 おすすめ組み合わせ TOP5</h3>
+
+  <div class="combo-item">
+    <div class="main">① 「ダサい」から卒業する Claude Code ワークショップ</div>
+    <div class="desc">サブ: デザイナー3人が教える、AI臭ゼロのものづくり｜LINEプレゼント＆LP、7時間で持ち帰り</div>
+  </div>
+
+  <div class="combo-item">
+    <div class="main">② LINEプレゼントもLPも、7時間で全部できた。</div>
+    <div class="desc">サブ: デザイナーと始める Claude Code ワークショップ｜10:00-16:00 モニター価格 ¥18,000</div>
+  </div>
+
+  <div class="combo-item">
+    <div class="main">③ Claude Code に話しかけただけで、あなたの「ほしかった」が爆誕する7時間</div>
+    <div class="desc">サブ: デザイナー3人が教える × プログラミング不要 × AI臭ゼロ</div>
+  </div>
+
+  <div class="combo-item">
+    <div class="main">④ デザイナー視点もりもりの Claude Code ワークショップ</div>
+    <div class="desc">サブ: 7時間で LINEプレゼント＆LP制作スキルが手に入る！非エンジニアのためのAI実践DAY</div>
+  </div>
+
+  <div class="combo-item">
+    <div class="main">⑤ エクセルも使えない私が、Claude Code で全部作れるようになった話。</div>
+    <div class="desc">サブ: その方法、7時間で全部教えます｜デザイナー3人 × モニター価格 ¥18,000</div>
+  </div>
+</div>
+
+<div class="note">
+  📝 <strong>ポイント</strong><br><br>
+  ・全案に <strong>Claude Code</strong> を入れ済み<br>
+  ・制作物（<strong>LINEプレゼント・LP・スライド</strong>）を反映<br>
+  ・<strong>デザイナー3人体制</strong>が他にない差別化<br>
+  ・気になるパーツを組み合わせてもOK！<br><br>
+  「この言葉はいい」「ここは変えたい」があれば教えてね！
+</div>
+
+</div>
+</body>
+</html>

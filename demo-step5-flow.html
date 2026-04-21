@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>STEP 05 公開する（デモ版）｜AIワークショップ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1C1D2E;
+    --dark: #2A2B3D;
+    --card: #FFFFFF;
+    --border: #E5E8F0;
+    --orange: #4F7EF7;
+    --orange-dim: rgba(79,126,247,0.07);
+    --orange-border: rgba(79,126,247,0.22);
+    --beige: #F5F7FB;
+    --white: #FFFFFF;
+    --gray: #A0A8BC;
+    --gray-mid: #6B7280;
+    --gray-lt: #9CA3AF;
+    --grad: linear-gradient(135deg, #4F7EF7 0%, #1BC6B4 100%);
+    --grad-soft: linear-gradient(135deg, rgba(79,126,247,0.12) 0%, rgba(27,198,180,0.12) 100%);
+    --green: #10B981;
+    --green-lt: #ECFDF5;
+    --red: #EF4444;
+    --red-lt: #FEF2F2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.8;
+    padding: 40px 20px 80px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .sec-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .sec-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .sec-desc {
+    font-size: 14px;
+    color: var(--gray-lt);
+    text-align: center;
+    margin-bottom: 40px;
+    line-height: 1.9;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px 36px;
+    margin-bottom: 20px;
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .card-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--grad);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Analogy ── */
+  .analogy-card {
+    background: var(--grad-soft);
+    border-radius: 14px;
+    padding: 28px;
+    border: 1px solid var(--orange-border);
+    margin-bottom: 24px;
+  }
+  .analogy-title {
+    font-size: 16px; font-weight: 500;
+    font-family: 'Noto Serif JP', serif;
+    margin-bottom: 8px;
+  }
+  .analogy-sub {
+    font-size: 14px; color: var(--gray-mid);
+    margin-bottom: 18px;
+  }
+  .analogy-grid {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .analogy-item {
+    flex: 1;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px 14px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .analogy-icon { font-size: 32px; margin-bottom: 6px; }
+  .analogy-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .analogy-desc { font-size: 12px; color: var(--gray-mid); line-height: 1.6; }
+  .analogy-arrow { font-size: 20px; color: var(--gray-lt); flex-shrink: 0; }
+
+  /* ── Flow ── */
+  .flow-step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+  }
+  .flow-icon-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flow-icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  .flow-line {
+    width: 2px;
+    flex-grow: 1;
+    min-height: 16px;
+  }
+  .flow-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .flow-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .flow-title {
+    font-size: 16px; font-weight: 500;
+    font-family: 'Noto Serif JP', serif;
+    margin-bottom: 6px;
+  }
+  .flow-desc {
+    font-size: 13px; color: var(--gray-mid); line-height: 1.9;
+  }
+  .flow-note {
+    background: var(--beige);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.8;
+  }
+
+  /* Arrow connector */
+  .flow-connector {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+  }
+  .connector-line-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .connector-line {
+    width: 2px;
+    height: 24px;
+  }
+  .connector-badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .connector-desc {
+    display: flex; align-items: center;
+    font-size: 12px; color: var(--gray-mid);
+  }
+
+  /* Color themes - blue system */
+  .theme-pc .flow-icon { background: var(--orange-dim); border: 2px solid var(--orange); }
+  .theme-pc .flow-line { background: var(--orange); }
+  .theme-pc .flow-label { color: var(--orange); }
+  .theme-pc .flow-title { color: var(--orange); }
+
+  .theme-github .flow-icon { background: rgba(79,126,247,0.15); border: 2px solid #6B8FE8; }
+  .theme-github .flow-line { background: #6B8FE8; }
+  .theme-github .flow-label { color: #6B8FE8; }
+  .theme-github .flow-title { color: #6B8FE8; }
+
+  .theme-vercel .flow-icon { background: rgba(27,198,180,0.12); border: 2px solid #1BC6B4; }
+  .theme-vercel .flow-line { background: #1BC6B4; }
+  .theme-vercel .flow-label { color: #1BC6B4; }
+  .theme-vercel .flow-title { color: #1BC6B4; }
+
+  .theme-web .flow-icon { background: var(--green-lt); border: 2px solid var(--green); }
+  .theme-web .flow-label { color: var(--green); }
+  .theme-web .flow-title { color: var(--green); }
+
+  .conn-orange .connector-line { background: var(--orange); }
+  .conn-orange .connector-badge { background: var(--orange-dim); color: var(--orange); }
+  .conn-blue .connector-line { background: #6B8FE8; }
+  .conn-blue .connector-badge { background: rgba(79,126,247,0.1); color: #6B8FE8; }
+  .conn-purple .connector-line { background: #1BC6B4; }
+  .conn-purple .connector-badge { background: rgba(27,198,180,0.1); color: #1BC6B4; }
+
+  /* ── Steps ── */
+  .step-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--beige);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .step-num {
+    width: 40px; height: 40px;
+    background: var(--grad);
+    border-radius: 50%;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-title {
+    font-size: 15px; font-weight: 500; color: var(--black);
+    margin-bottom: 4px;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--gray-mid); line-height: 1.8;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 36px 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .sec-title { font-size: 20px; }
+    .analogy-grid {
+      flex-direction: column;
+      gap: 6px;
+    }
+    .analogy-arrow { transform: rotate(90deg); font-size: 14px; padding: 2px 0; }
+    .analogy-item { padding: 14px; }
+    .card { padding: 20px 22px; }
+    .flow-card { padding: 14px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sec-eyebrow">Step 05 ／ Deploy</div>
+<div class="sec-title">LPをネットに公開する</div>
+<p class="sec-desc">「自分のパソコンで作ったLPが、どうやってインターネットに公開されるの？」<br>まずは全体の仕組みを知ってから、手順に進みましょう。</p>
+
+<!-- ━━━ PART 1: 全体像を理解する ━━━ -->
+
+<!-- たとえ話 -->
+<div class="analogy-card">
+  <div class="analogy-title">まずはイメージから</div>
+  <div class="analogy-sub">3つの場所を順番に通るだけ。料理に例えるとこんな感じです。</div>
+  <div class="analogy-grid">
+    <div class="analogy-item">
+      <div class="analogy-icon">&#x1F468;&#x200D;&#x1F373;</div>
+      <div class="analogy-name">自分のキッチン</div>
+      <div class="analogy-desc">あなたのパソコン<br>ここでLPを作る</div>
+    </div>
+    <div class="analogy-arrow">&rarr;</div>
+    <div class="analogy-item">
+      <div class="analogy-icon">&#x1F4E6;</div>
+      <div class="analogy-name">冷蔵倉庫</div>
+      <div class="analogy-desc">GitHub<br>作ったものを保管・共有</div>
+    </div>
+    <div class="analogy-arrow">&rarr;</div>
+    <div class="analogy-item">
+      <div class="analogy-icon">&#x1F37D;</div>
+      <div class="analogy-name">レストランのテーブル</div>
+      <div class="analogy-desc">Vercel<br>お客様に届ける（公開）</div>
+    </div>
+  </div>
+</div>
+
+<!-- フロー図 -->
+<div class="card">
+  <div class="card-head">
+    <div class="card-num" style="background:transparent;border:2px solid var(--orange);color:var(--orange);font-size:16px;">&#x21A7;</div>
+    <div class="card-title">公開までの流れ</div>
+  </div>
+
+  <!-- PC -->
+  <div class="flow-step theme-pc">
+    <div class="flow-icon-col">
+      <div class="flow-icon">&#x1F4BB;</div>
+      <div class="flow-line"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-label">Your PC</div>
+      <div class="flow-title">あなたのパソコン</div>
+      <div class="flow-desc">
+        Claudeに話しかけて、LPのHTMLファイルを作ります。<br>
+        <strong style="color:var(--black);">この時点では自分しか見れません。</strong>
+      </div>
+      <div class="flow-note">
+        <strong>使うもの：</strong>Claude Desktop &nbsp;&nbsp; <strong>できるもの：</strong>HTMLファイル
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector 1 -->
+  <div class="flow-connector conn-orange">
+    <div class="connector-line-col">
+      <div class="connector-line"></div>
+      <div class="connector-badge">git push</div>
+      <div class="connector-line"></div>
+    </div>
+    <div class="connector-desc">Claudeが自動でやってくれます</div>
+  </div>
+
+  <!-- GitHub -->
+  <div class="flow-step theme-github">
+    <div class="flow-icon-col">
+      <div class="flow-icon">&#x1F4E6;</div>
+      <div class="flow-line"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-label">GitHub</div>
+      <div class="flow-title">GitHub（保管庫）</div>
+      <div class="flow-desc">
+        インターネット上のファイル倉庫。コードを安全に保管して共有できます。
+      </div>
+      <div class="flow-note">
+        <strong>バックアップ</strong>（PCが壊れても安心）&nbsp;&nbsp;
+        <strong>履歴</strong>（いつ何を変えたか残る）&nbsp;&nbsp;
+        <strong>共有</strong>（チームで同じファイルを見れる）
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector 2 -->
+  <div class="flow-connector conn-blue">
+    <div class="connector-line-col">
+      <div class="connector-line"></div>
+      <div class="connector-badge">自動で公開</div>
+      <div class="connector-line"></div>
+    </div>
+    <div class="connector-desc">Vercelが自動で検知。何もしなくてOK</div>
+  </div>
+
+  <!-- Vercel -->
+  <div class="flow-step theme-vercel">
+    <div class="flow-icon-col">
+      <div class="flow-icon">&#x25B2;</div>
+      <div class="flow-line"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-label">Vercel</div>
+      <div class="flow-title">Vercel（サーバー）</div>
+      <div class="flow-desc">
+        GitHubのファイルをインターネットに公開してくれるサービス。<br>
+        新しいコードが来たら約10秒で自動反映します。
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector 3 -->
+  <div class="flow-connector conn-purple">
+    <div class="connector-line-col">
+      <div class="connector-line"></div>
+      <div class="connector-badge">完成！</div>
+      <div class="connector-line"></div>
+    </div>
+    <div class="connector-desc"></div>
+  </div>
+
+  <!-- Public -->
+  <div class="flow-step theme-web">
+    <div class="flow-icon-col">
+      <div class="flow-icon">&#x1F310;</div>
+    </div>
+    <div class="flow-card" style="border-color:var(--green);background:var(--green-lt);">
+      <div class="flow-label">Your Website</div>
+      <div class="flow-title">あなたのLPが公開！</div>
+      <div class="flow-desc">
+        世界中からアクセスできるURLが発行されます。<br>
+        スマホでもPCでも見れます。
+      </div>
+      <div class="flow-note" style="background:#fff;">
+        <strong>URL例：</strong> https://あなたの名前.vercel.app
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ポイント -->
+<div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:16px 20px;border-radius:6px;font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:20px;">
+  <strong style="color:var(--black);">一度この仕組みを作ってしまえば、あとはClaude に「pushして」と頼むだけ</strong>で自動的にネット上のLPも更新されるようになります。
+</div>
+
+<hr class="divider">
+
+<!-- ━━━ PART 2: 実際の手順 ━━━ -->
+
+<!-- 事前準備 -->
+<div class="card">
+  <div class="card-head">
+    <div class="card-num">0</div>
+    <div class="card-title">事前準備（キックオフまでに）</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">GitHubアカウントを作る</div>
+        <div class="step-desc"><a href="https://github.com/signup" target="_blank" style="color:var(--orange);">github.com/signup</a> からメールアドレスで作成。無料です。</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">Vercelアカウントを作る</div>
+        <div class="step-desc"><a href="https://vercel.com/signup" target="_blank" style="color:var(--orange);">vercel.com/signup</a> で「Continue with GitHub」を選ぶと、GitHubアカウントでそのままサインアップできます。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. GitHub保管庫を作る -->
+<div class="card">
+  <div class="card-head">
+    <div class="card-num">1</div>
+    <div class="card-title">GitHubに「保管庫」を作る</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+    LPを保管する箱（リポジトリ）をGitHub上に作ります。
+  </p>
+
+  <!-- STEP 1-1: New repository -->
+  <div class="step-item" style="margin-bottom:10px;">
+    <div class="step-num">1</div>
+    <div>
+      <div class="step-title">GitHub右上の「+」&rarr;「New repository」をクリック</div>
+      <div class="step-desc">ログイン後、右上のプラスマークから新しいリポジトリ作成画面に進みます。</div>
+    </div>
+  </div>
+  <!-- Mock: GitHub header + dropdown -->
+  <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #d1d5da;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+    <!-- GitHub header bar -->
+    <div style="background:#24292e;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <svg height="24" width="24" viewBox="0 0 16 16" fill="#fff"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        <div style="color:#fff;font-size:13px;">Dashboard</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;position:relative;">
+        <div style="color:#fff;font-size:18px;cursor:pointer;background:#3a3f44;border-radius:6px;padding:2px 10px;border:1px solid #555;">+&nbsp;&#x25BE;</div>
+        <div style="width:28px;height:28px;border-radius:50%;background:#7B6BA5;"></div>
+      </div>
+    </div>
+    <!-- Dropdown -->
+    <div style="background:#fff;display:flex;justify-content:flex-end;padding:0 16px 12px;">
+      <div style="background:#fff;border:1px solid #d1d5da;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.12);width:180px;margin-top:-2px;overflow:hidden;">
+        <div style="padding:8px 14px;font-size:12px;color:#24292e;border-bottom:1px solid #eee;cursor:pointer;">New repository</div>
+        <div style="padding:8px 14px;font-size:12px;color:#666;">Import repository</div>
+        <div style="padding:8px 14px;font-size:12px;color:#666;">New codespace</div>
+        <div style="padding:8px 14px;font-size:12px;color:#666;">New gist</div>
+      </div>
+    </div>
+    <!-- Pointer annotation -->
+    <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
+      &#x1F446; ここの「+」を押して「New repository」を選びます
+    </div>
+  </div>
+
+  <!-- STEP 1-2: Repository name -->
+  <div class="step-item" style="margin-bottom:10px;">
+    <div class="step-num">2</div>
+    <div>
+      <div class="step-title">リポジトリ名を入力</div>
+      <div class="step-desc">英数字・ハイフンのみ。例：<code style="background:#fff;padding:2px 8px;border-radius:4px;">my-lp</code></div>
+    </div>
+  </div>
+  <!-- Mock: Repo name input -->
+  <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #d1d5da;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+    <div style="padding:20px 20px 6px;">
+      <div style="font-size:18px;font-weight:600;color:#24292e;margin-bottom:16px;">Create a new repository</div>
+      <div style="font-size:13px;color:#666;margin-bottom:12px;">A repository contains all project files, including the revision history.</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:12px;color:#24292e;font-weight:600;margin-bottom:4px;">Owner</div>
+          <div style="border:1px solid #d1d5da;border-radius:6px;padding:5px 12px;font-size:13px;color:#24292e;background:#f6f8fa;display:inline-flex;align-items:center;gap:6px;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#7B6BA5;"></div>
+            your-name &#x25BE;
+          </div>
+        </div>
+        <div style="font-size:16px;color:#999;padding-top:18px;">/</div>
+        <div style="flex:1;min-width:140px;">
+          <div style="font-size:12px;color:#24292e;font-weight:600;margin-bottom:4px;">Repository name <span style="color:var(--red);">*</span></div>
+          <div style="border:2px solid #0969da;border-radius:6px;padding:5px 12px;font-size:13px;color:#24292e;background:#fff;">my-lp</div>
+        </div>
+      </div>
+      <div style="margin-top:6px;font-size:11px;color:#1a7f37;">&#x2714; my-lp is available.</div>
+    </div>
+    <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);margin-top:10px;">
+      &#x1F446; 好きな名前を入力。サービス名+lpが分かりやすい（例：my-lp, cafe-site）
+    </div>
+  </div>
+
+  <!-- STEP 1-3: Public / Private（強調デザイン） -->
+  <div style="margin-bottom:20px;border-radius:14px;overflow:hidden;border:2px solid var(--red);background:linear-gradient(135deg,#fff 0%,#FEF2F2 100%);box-shadow:0 12px 32px rgba(239,68,68,0.12);">
+
+    <!-- 警告ヘッダー -->
+    <div style="background:var(--red);padding:18px 24px;display:flex;align-items:center;gap:14px;">
+      <div style="width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--red);flex-shrink:0;font-family:'DM Sans',sans-serif;">!</div>
+      <div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.85);text-transform:uppercase;">Step 3 ／ Most Important</div>
+        <div style="font-size:17px;font-weight:500;color:#fff;font-family:'Noto Serif JP',serif;">必ず「Private」を選んでください</div>
+      </div>
+    </div>
+
+    <!-- 説明 -->
+    <div style="padding:24px 26px;">
+      <p style="font-size:14px;color:var(--black);line-height:1.9;margin-bottom:20px;">
+        GitHubには<strong>Public（公開）</strong>と<strong>Private（非公開）</strong>の2種類があります。<br>
+        ここで間違えると、あなたのコード・お客様情報が<strong style="color:var(--red);">世界中に丸見え</strong>になります。
+      </p>
+
+      <!-- Public / Private 比較 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div style="background:var(--red-lt);border:1.5px solid #FCA5A5;border-radius:12px;padding:20px;position:relative;">
+          <div style="position:absolute;top:-10px;right:12px;background:var(--red);color:#fff;font-size:10px;font-weight:700;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;padding:4px 12px;border-radius:10px;text-transform:uppercase;">選ばない</div>
+          <div style="font-size:26px;margin-bottom:8px;">&#x1F513;</div>
+          <div style="font-size:14px;font-weight:600;color:var(--red);margin-bottom:6px;font-family:'Noto Serif JP',serif;">Public（公開）</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">世界中の誰でもコードを見れる状態。お客様情報・下書きが丸見えに。</div>
+        </div>
+        <div style="background:var(--green-lt);border:1.5px solid #6EE7B7;border-radius:12px;padding:20px;position:relative;">
+          <div style="position:absolute;top:-10px;right:12px;background:var(--green);color:#fff;font-size:10px;font-weight:700;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;padding:4px 12px;border-radius:10px;text-transform:uppercase;">こちらを選ぶ</div>
+          <div style="font-size:26px;margin-bottom:8px;">&#x1F512;</div>
+          <div style="font-size:14px;font-weight:600;color:var(--green);margin-bottom:6px;font-family:'Noto Serif JP',serif;">Private（非公開）</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">あなたしかコードを見れない。LPの見た目だけがVercel経由で公開されます。</div>
+        </div>
+      </div>
+
+      <!-- GitHubモック -->
+      <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;margin-bottom:14px;">
+        <div style="padding:16px;">
+          <!-- Public -->
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:10px;opacity:0.5;position:relative;">
+            <div style="position:absolute;top:-1px;right:-1px;bottom:-1px;left:-1px;border-radius:8px;border:2px dashed #FCA5A5;pointer-events:none;"></div>
+            <div style="margin-top:2px;">
+              <div style="width:16px;height:16px;border-radius:50%;border:2px solid #999;"></div>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="#666"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9z"/></svg>
+                <span style="font-size:14px;font-weight:600;color:#1C1D2E;">Public</span>
+                <span style="font-size:11px;color:var(--red);font-weight:700;background:var(--red-lt);padding:2px 7px;border-radius:4px;">&#x2716; 選ばない</span>
+              </div>
+              <div style="font-size:13px;color:#666;line-height:1.6;">Anyone on the internet can see this repository.</div>
+            </div>
+          </div>
+          <!-- Private (selected) -->
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:2.5px solid var(--orange);border-radius:8px;background:var(--orange-dim);box-shadow:0 0 0 3px rgba(79,126,247,0.12);">
+            <div style="margin-top:2px;">
+              <div style="width:16px;height:16px;border-radius:50%;border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;">
+                <div style="width:8px;height:8px;border-radius:50%;background:var(--orange);"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="#1C1D2E"><path d="M4 4v2h-.25A1.75 1.75 0 002 7.75v5.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-5.5A1.75 1.75 0 0012.25 6H12V4a4 4 0 10-8 0zm6.5 2V4a2.5 2.5 0 00-5 0v2h5z"/></svg>
+                <span style="font-size:14px;font-weight:600;color:#1C1D2E;">Private</span>
+                <span style="font-size:11px;color:var(--green);font-weight:700;background:var(--green-lt);padding:2px 7px;border-radius:4px;">&#x2714; こちら</span>
+              </div>
+              <div style="font-size:13px;color:#666;line-height:1.6;">You choose who can see and commit to this repository.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:10px;padding:14px 20px;font-size:13px;color:var(--gray-mid);line-height:1.9;">
+        &#x1F4AC; 「Privateだと公開できないのでは？」&rarr; <strong style="color:var(--black);">大丈夫です。VercelはPrivateでも無料で公開URLを発行できます。</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 1-4: Create -->
+  <div class="step-item" style="margin-bottom:10px;">
+    <div class="step-num">4</div>
+    <div>
+      <div class="step-title">「Create repository」をクリック</div>
+      <div class="step-desc">空っぽのリポジトリができます。次のステップで中身を入れていきます。</div>
+    </div>
+  </div>
+  <!-- Mock: Create button -->
+  <div style="margin:0 0 10px;border-radius:10px;overflow:hidden;border:1px solid #d1d5da;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+    <div style="padding:20px;display:flex;justify-content:flex-end;">
+      <div style="background:#1a7f37;color:#fff;font-size:13px;font-weight:600;padding:8px 20px;border-radius:6px;cursor:pointer;">Create repository</div>
+    </div>
+    <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
+      &#x1F446; この緑のボタンを押して完了です
+    </div>
+  </div>
+</div>
+
+<!-- 2. ファイルを送る -->
+<div class="card">
+  <div class="card-head">
+    <div class="card-num">2</div>
+    <div class="card-title">LPのファイルをGitHubに送る</div>
+  </div>
+  <div style="background:var(--beige);border-radius:12px;padding:24px 26px;text-align:center;">
+    <div style="font-size:36px;margin-bottom:10px;">&#x1F4AC;</div>
+    <div style="font-size:16px;font-weight:700;color:var(--black);margin-bottom:8px;">Claudeに「GitHubに送って」と伝えるだけ！</div>
+    <div style="font-size:13px;color:var(--gray-mid);line-height:1.9;">
+      難しい操作は一切ありません。<br>Claudeが自動でファイルをGitHubにアップロードしてくれます。
+    </div>
+  </div>
+</div>
+
+<!-- 3. Vercelで公開 -->
+<div class="card">
+  <div class="card-head">
+    <div class="card-num">3</div>
+    <div class="card-title">Vercelに繋いで公開URLを発行する</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+    GitHubに保管したLPを、Vercelで公開します。3クリックで完了。
+  </p>
+
+  <!-- STEP 3-1 -->
+  <div class="step-item" style="margin-bottom:10px;">
+    <div class="step-num">1</div>
+    <div>
+      <div class="step-title"><a href="https://vercel.com/new" target="_blank" style="color:var(--black);border-bottom:1px dotted var(--orange);text-decoration:none;">vercel.com/new</a> を開く</div>
+      <div class="step-desc">ログインした状態で新規プロジェクト作成画面を開きます。</div>
+    </div>
+  </div>
+
+  <!-- STEP 3-2 -->
+  <div class="step-item" style="margin-bottom:10px;">
+    <div class="step-num">2</div>
+    <div>
+      <div class="step-title">「Import Git Repository」からリポジトリを選ぶ</div>
+      <div class="step-desc">Privateリポジトリも表示されます。先ほど作ったものを「Import」。</div>
+    </div>
+  </div>
+  <!-- Mock: Vercel import -->
+  <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+    <div style="background:#000;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="18" height="18" viewBox="0 0 76 65" fill="#fff"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/></svg>
+        <span style="color:#fff;font-size:13px;font-weight:600;">Vercel</span>
+      </div>
+      <div style="width:26px;height:26px;border-radius:50%;background:#333;border:1px solid #555;"></div>
+    </div>
+    <div style="padding:24px 20px;">
+      <div style="font-size:18px;font-weight:700;color:#000;margin-bottom:4px;">Let's build something new.</div>
+      <div style="font-size:13px;color:#888;margin-bottom:20px;">To deploy a new Project, import an existing Git Repository.</div>
+      <div style="font-size:12px;font-weight:600;color:#000;margin-bottom:10px;">Import Git Repository</div>
+      <!-- Repo list -->
+      <div style="border:1px solid #eee;border-radius:8px;overflow:hidden;">
+        <div style="padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="#888"><path d="M4 4v2h-.25A1.75 1.75 0 002 7.75v5.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-5.5A1.75 1.75 0 0012.25 6H12V4a4 4 0 10-8 0zm6.5 2V4a2.5 2.5 0 00-5 0v2h5z"/></svg>
+            <span style="font-size:13px;color:#000;">my-lp</span>
+            <span style="font-size:10px;color:#888;background:#f5f5f5;padding:1px 6px;border-radius:10px;">private</span>
+          </div>
+          <div style="background:#000;color:#fff;font-size:11px;font-weight:600;padding:5px 14px;border-radius:6px;">Import</div>
+        </div>
+        <div style="padding:10px 14px;display:flex;align-items:center;justify-content:space-between;opacity:0.4;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="#888"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9z"/></svg>
+            <span style="font-size:13px;color:#000;">other-project</span>
+          </div>
+          <div style="background:#fff;color:#000;font-size:11px;font-weight:600;padding:5px 14px;border-radius:6px;border:1px solid #ddd;">Import</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
+      &#x1F446; 先ほど作った「my-lp」の横にある「Import」を押します
+    </div>
+  </div>
+
+  <!-- STEP 3-3 -->
+  <div class="step-item" style="margin-bottom:10px;">
+    <div class="step-num">3</div>
+    <div>
+      <div class="step-title">設定はそのまま「Deploy」をクリック</div>
+      <div class="step-desc">何も変更しなくてOK。HTMLだけのサイトはVercelが自動認識します。</div>
+    </div>
+  </div>
+  <!-- Mock: Deploy button -->
+  <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+    <div style="padding:24px 20px;">
+      <div style="font-size:16px;font-weight:700;color:#000;margin-bottom:16px;">Configure Project</div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:600;color:#000;margin-bottom:4px;">Project Name</div>
+        <div style="border:1px solid #ddd;border-radius:6px;padding:8px 12px;font-size:13px;color:#000;">my-lp</div>
+      </div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:600;color:#000;margin-bottom:4px;">Framework Preset</div>
+        <div style="border:1px solid #ddd;border-radius:6px;padding:8px 12px;font-size:13px;color:#888;">Other</div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:20px;">
+        <div style="background:#000;color:#fff;font-size:13px;font-weight:600;padding:8px 28px;border-radius:6px;cursor:pointer;">Deploy</div>
+      </div>
+    </div>
+    <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
+      &#x1F446; 何も変えずに「Deploy」を押すだけでOKです
+    </div>
+  </div>
+
+  <!-- STEP 3-done -->
+  <div class="step-item" style="background:var(--green-lt);border:1px solid #A7F3D0;margin-bottom:10px;">
+    <div class="step-num" style="background:var(--green);">&#x2713;</div>
+    <div>
+      <div class="step-title" style="color:var(--green);">1〜2分待つと公開URLが発行されます</div>
+      <div class="step-desc">これがあなたのLPの公開URLです！</div>
+    </div>
+  </div>
+  <!-- Mock: Success screen -->
+  <div style="margin:0 0 10px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#000;">
+    <div style="padding:30px 20px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:8px;">&#x1F389;</div>
+      <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;">Congratulations!</div>
+      <div style="font-size:13px;color:#888;margin-bottom:20px;">You just deployed a new Project to Vercel.</div>
+      <div style="background:#111;border:1px solid #333;border-radius:8px;padding:12px 16px;display:inline-block;margin-bottom:16px;">
+        <div style="font-size:11px;color:#888;margin-bottom:4px;">YOUR DOMAIN</div>
+        <div style="font-size:15px;color:#0070f3;font-weight:600;">https://my-lp-xxxx.vercel.app</div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;">
+        <div style="background:#fff;color:#000;font-size:12px;font-weight:600;padding:7px 20px;border-radius:6px;">Continue to Dashboard</div>
+        <div style="background:transparent;color:#fff;font-size:12px;font-weight:600;padding:7px 20px;border-radius:6px;border:1px solid #444;">Add Domain</div>
+      </div>
+    </div>
+    <div style="background:var(--green-lt);padding:10px 18px;font-size:12px;color:var(--green);font-weight:600;border-top:1px solid #eee;">
+      &#x2705; この青いURLをクリックすると、あなたのLPが表示されます！
+    </div>
+  </div>
+</div>
+
+<!-- 4. 更新の流れ -->
+<div class="card">
+  <div class="card-head">
+    <div class="card-num">4</div>
+    <div class="card-title">あとはファイルを差し替えるだけで自動更新</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+    ここまで設定すれば、以降の更新は<strong style="color:var(--black);">GitHubにファイルを上げ直すだけ</strong>。<br>
+    Vercelが自動で検知して、数十秒で公開URLにも反映されます。
+  </p>
+  <div style="background:var(--beige);border-radius:10px;padding:18px 22px;">
+    <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.12em;color:var(--orange);font-weight:600;margin-bottom:10px;">UPDATE FLOW</div>
+    <div style="font-size:13px;color:var(--gray-mid);line-height:2;">
+      &#x2460; Claudeに「ここ変えて」と頼む &rarr; 新しいコードを保存<br>
+      &#x2461; GitHubにpush（Claudeが自動でやってくれる）<br>
+      &#x2462; Vercelが自動でデプロイ &rarr; 公開URLが更新（約10秒）
+    </div>
+  </div>
+</div>
+
+<!-- 用語まとめ -->
+<div class="card" style="background:var(--grad-soft);border-color:var(--orange-border);">
+  <div class="card-head">
+    <div class="card-num" style="background:transparent;border:2px solid var(--orange);color:var(--orange);">?</div>
+    <div class="card-title">用語まとめ</div>
+  </div>
+  <div style="display:grid;grid-template-columns:90px 1fr;gap:10px;font-size:13px;">
+    <div style="font-weight:700;color:var(--orange);padding:10px 0;border-bottom:1px solid var(--border);">HTML</div>
+    <div style="color:var(--gray-mid);padding:10px 0;border-bottom:1px solid var(--border);line-height:1.8;">Webページの設計図。Claudeが書いてくれるので覚えなくてOK</div>
+    <div style="font-weight:700;color:var(--orange);padding:10px 0;border-bottom:1px solid var(--border);">git push</div>
+    <div style="color:var(--gray-mid);padding:10px 0;border-bottom:1px solid var(--border);line-height:1.8;">PC &rarr; GitHubにファイルを預けること。Claudeが自動で行います</div>
+    <div style="font-weight:700;color:#6B8FE8;padding:10px 0;border-bottom:1px solid var(--border);">GitHub</div>
+    <div style="color:var(--gray-mid);padding:10px 0;border-bottom:1px solid var(--border);line-height:1.8;">インターネット上のファイル倉庫。バックアップ・共有・履歴管理</div>
+    <div style="font-weight:700;color:#1BC6B4;padding:10px 0;border-bottom:1px solid var(--border);">Vercel</div>
+    <div style="color:var(--gray-mid);padding:10px 0;border-bottom:1px solid var(--border);line-height:1.8;">GitHubのファイルを自動で公開してくれるサービス</div>
+    <div style="font-weight:700;color:#1BC6B4;padding:10px 0;border-bottom:1px solid var(--border);">デプロイ</div>
+    <div style="color:var(--gray-mid);padding:10px 0;border-bottom:1px solid var(--border);line-height:1.8;">「公開する」のIT用語。ファイルをインターネットに置くこと</div>
+    <div style="font-weight:700;color:var(--green);padding:10px 0;">URL</div>
+    <div style="color:var(--gray-mid);padding:10px 0;line-height:1.8;">Webページの住所。共有すれば誰でもLPを見れます</div>
+  </div>
+</div>
+
+<!-- 独自ドメイン -->
+<div class="card" style="border-color:var(--orange-border);">
+  <div class="card-head">
+    <div class="card-num" style="background:transparent;border:1px solid var(--orange);color:var(--orange);">+</div>
+    <div class="card-title">独自ドメインをお持ちの方へ</div>
+  </div>
+  <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+    取得済みの独自ドメイン（例：<code style="background:var(--beige);padding:2px 8px;border-radius:4px;">yourname.com</code>）をお持ちの方は、Vercelの公開URLに繋げることができます。
+  </p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--beige);border-radius:8px;">
+      <div style="font-size:14px;line-height:1.7;color:var(--gray-mid);"><strong style="color:var(--black);">&#x2460;</strong> Vercelプロジェクトの「Settings &rarr; Domains」で独自ドメインを入力</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--beige);border-radius:8px;">
+      <div style="font-size:14px;line-height:1.7;color:var(--gray-mid);"><strong style="color:var(--black);">&#x2461;</strong> 表示されるDNSレコードをドメイン会社の管理画面に設定</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--beige);border-radius:8px;">
+      <div style="font-size:14px;line-height:1.7;color:var(--gray-mid);"><strong style="color:var(--black);">&#x2462;</strong> 数分〜数時間で反映。HTTPS（SSL）も無料で自動対応</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--gray-lt);line-height:1.8;">ドメインをお持ちでない方は、Vercelの無料URLでまず公開 &rarr; 後から繋げることもできます。当日サポートしますので講師に声をかけてください。</p>
+</div>
+
+<div style="text-align:center;font-size:12px;color:var(--gray-lt);margin-top:40px;">
+  AI Leader Camp 2026 ／ STEP 05 公開する（デモ版）
+</div>
+
+</body>
+</html>

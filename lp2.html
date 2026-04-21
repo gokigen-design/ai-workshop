@@ -2789,60 +2789,6 @@
     100% { transform: translateY(0); }
   }
   /* 受講生LPのライブ埋め込み（スクロール可） */
-  /* TODAY'S VIBE：当日写真の横スクロール */
-  .today-section {
-    background: linear-gradient(180deg, var(--dark-bg) 0%, #0c1020 50%, var(--dark-bg) 100%);
-    position: relative;
-    padding-bottom: 0;
-    overflow: hidden;
-  }
-  .today-marquee {
-    overflow: hidden;
-    padding: 28px 0;
-    position: relative;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
-            mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
-  }
-  .today-track {
-    display: flex;
-    gap: 18px;
-    width: max-content;
-    animation: today-scroll 48s linear infinite;
-  }
-  .today-track:hover { animation-play-state: paused; }
-  .today-card {
-    flex: 0 0 auto;
-    width: 280px;
-    height: 400px;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid rgba(34,211,238,0.25);
-    box-shadow: 0 14px 30px rgba(0,0,0,0.5), 0 0 20px rgba(192,132,252,0.18);
-    background: #111;
-  }
-  .today-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  @keyframes today-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  .today-wide {
-    margin: 56px auto 0;
-    max-width: 1200px;
-    padding: 0 20px 96px;
-  }
-  .today-wide img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 18px;
-    border: 1px solid rgba(34,211,238,0.3);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(192,132,252,0.25);
-  }
-  @media (max-width: 640px) {
-    .today-card { width: 200px; height: 280px; }
-    .today-track { gap: 12px; animation-duration: 36s; }
-    .today-wide { padding: 0 16px 64px; margin-top: 36px; }
-  }
   .phone-scroller-iframe {
     width: 1200px;
     height: 2600px;
@@ -4348,6 +4294,13 @@
     border-left: 28px solid #fff;
     margin-left: 6px;
   }
+  .scene-video .scene-video-img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .scene-video .vlabel {
     position: absolute;
     bottom: 20px; left: 24px;
@@ -4919,33 +4872,6 @@
     <span class="solid">BUILD / VERIFY / SHIP</span>
     <span>¥55,000 WORKSHOP</span>
     <span class="solid">KICK-OFF / REAL / AFTER</span>
-  </div>
-</section>
-
-<!-- TODAY'S VIBE：当日の様子を横スクロール -->
-<section class="today-section">
-  <div class="section-header" style="text-align:center; padding: 72px 20px 28px;">
-    <div class="section-en slam">TODAY'S VIBE</div>
-    <h2 class="section-title slam-chop" style="margin-top:8px;">当日は、<br><span class="em">こんな空気で進みます。</span></h2>
-  </div>
-  <div class="today-marquee">
-    <div class="today-track">
-      <div class="today-card"><img src="images/today/IMG_4033.jpg" alt="当日の様子" loading="lazy"></div>
-      <div class="today-card"><img src="images/today/IMG_4037.jpg" alt="当日の様子" loading="lazy"></div>
-      <div class="today-card"><img src="images/today/IMG_9624.jpg" alt="当日の様子" loading="lazy"></div>
-      <div class="today-card"><img src="images/today/IMG_4034.jpg" alt="当日の様子" loading="lazy"></div>
-      <div class="today-card"><img src="images/today/IMG_4040.jpg" alt="当日の様子" loading="lazy"></div>
-      <!-- ループ用複製 -->
-      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_4033.jpg" alt="" loading="lazy"></div>
-      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_4037.jpg" alt="" loading="lazy"></div>
-      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_9624.jpg" alt="" loading="lazy"></div>
-      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_4034.jpg" alt="" loading="lazy"></div>
-      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_4040.jpg" alt="" loading="lazy"></div>
-    </div>
-  </div>
-  <!-- 横長ビジュアル：本来動画を配置予定の場所、素材未着なのでAI.pngを配置 -->
-  <div class="today-wide">
-    <img src="images/AI.png" alt="講師とClaudeで生み出すAIワークショップ" loading="lazy">
   </div>
 </section>
 
@@ -5755,82 +5681,66 @@
     <!-- 無限横スクロール（ホバーで一時停止） -->
     <div class="scene-marquee reveal delay-1">
       <div class="scene-marquee-track">
-        <!-- 1セット目（画像差し替え時はplaceholder-bigを<img src="..." alt="...">に置換） -->
+        <!-- 1セット目：当日の実写真 -->
         <div class="scene-tile wide">
-          <div class="placeholder-big">REAL VENUE<br><span style="font-size:11px; opacity:0.7;">当日の会場ワイドショット</span></div>
+          <img src="images/today/IMG_4033.jpg" alt="当日の会場の様子" loading="lazy">
           <span class="scene-label">VENUE</span>
         </div>
         <div class="scene-tile">
-          <div class="placeholder-big">KICKOFF<br>ZOOM</div>
-          <span class="scene-label">ZOOM</span>
-        </div>
-        <div class="scene-tile tall">
-          <div class="placeholder-big">HANDS ON</div>
+          <img src="images/today/IMG_4037.jpg" alt="ワークショップ進行中" loading="lazy">
           <span class="scene-label">HANDS-ON</span>
         </div>
-        <div class="scene-tile">
-          <div class="placeholder-big">PRESENTATION</div>
-          <span class="scene-label">SHARE</span>
+        <div class="scene-tile tall">
+          <img src="images/today/IMG_9624.jpg" alt="受講生の取り組み" loading="lazy">
+          <span class="scene-label">FOCUS</span>
         </div>
         <div class="scene-tile">
-          <div class="placeholder-big">添削 SESSION</div>
-          <span class="scene-label">FEEDBACK</span>
+          <img src="images/today/IMG_4034.jpg" alt="当日のワンショット" loading="lazy">
+          <span class="scene-label">MOMENT</span>
+        </div>
+        <div class="scene-tile">
+          <img src="images/today/IMG_4040.jpg" alt="当日の空気感" loading="lazy">
+          <span class="scene-label">VIBE</span>
         </div>
         <div class="scene-tile wide">
-          <div class="placeholder-big">MEMBER SITE<br>DEMO</div>
-          <span class="scene-label">MEMBER-SITE</span>
-        </div>
-        <div class="scene-tile">
-          <div class="placeholder-big">SLACK<br>COMMUNITY</div>
-          <span class="scene-label">SLACK</span>
-        </div>
-        <div class="scene-tile tall">
-          <div class="placeholder-big">SMILES &<br>APPLAUSE</div>
-          <span class="scene-label">MOMENT</span>
+          <img src="images/today/IMG_4042.jpg" alt="発表シーン" loading="lazy">
+          <span class="scene-label">SHARE</span>
         </div>
         <!-- 2セット目（シームレスループ用に同内容を複製） -->
         <div class="scene-tile wide" aria-hidden="true">
-          <div class="placeholder-big">REAL VENUE<br><span style="font-size:11px; opacity:0.7;">当日の会場ワイドショット</span></div>
+          <img src="images/today/IMG_4033.jpg" alt="" loading="lazy">
           <span class="scene-label">VENUE</span>
         </div>
         <div class="scene-tile" aria-hidden="true">
-          <div class="placeholder-big">KICKOFF<br>ZOOM</div>
-          <span class="scene-label">ZOOM</span>
-        </div>
-        <div class="scene-tile tall" aria-hidden="true">
-          <div class="placeholder-big">HANDS ON</div>
+          <img src="images/today/IMG_4037.jpg" alt="" loading="lazy">
           <span class="scene-label">HANDS-ON</span>
         </div>
-        <div class="scene-tile" aria-hidden="true">
-          <div class="placeholder-big">PRESENTATION</div>
-          <span class="scene-label">SHARE</span>
+        <div class="scene-tile tall" aria-hidden="true">
+          <img src="images/today/IMG_9624.jpg" alt="" loading="lazy">
+          <span class="scene-label">FOCUS</span>
         </div>
         <div class="scene-tile" aria-hidden="true">
-          <div class="placeholder-big">添削 SESSION</div>
-          <span class="scene-label">FEEDBACK</span>
+          <img src="images/today/IMG_4034.jpg" alt="" loading="lazy">
+          <span class="scene-label">MOMENT</span>
+        </div>
+        <div class="scene-tile" aria-hidden="true">
+          <img src="images/today/IMG_4040.jpg" alt="" loading="lazy">
+          <span class="scene-label">VIBE</span>
         </div>
         <div class="scene-tile wide" aria-hidden="true">
-          <div class="placeholder-big">MEMBER SITE<br>DEMO</div>
-          <span class="scene-label">MEMBER-SITE</span>
-        </div>
-        <div class="scene-tile" aria-hidden="true">
-          <div class="placeholder-big">SLACK<br>COMMUNITY</div>
-          <span class="scene-label">SLACK</span>
-        </div>
-        <div class="scene-tile tall" aria-hidden="true">
-          <div class="placeholder-big">SMILES &<br>APPLAUSE</div>
-          <span class="scene-label">MOMENT</span>
+          <img src="images/today/IMG_4042.jpg" alt="" loading="lazy">
+          <span class="scene-label">SHARE</span>
         </div>
       </div>
     </div>
 
-    <!-- 当日の雰囲気ダイジェスト動画（差し替え想定） -->
+    <!-- 当日の雰囲気ダイジェスト（動画差し替え想定、現状はAI.pngで代替） -->
     <div class="scene-video reveal delay-4">
-      <div class="play-stub"></div>
+      <img src="images/AI.png" alt="講師とClaudeで生み出すAIワークショップ" loading="lazy" class="scene-video-img">
       <div class="vlabel">WORKSHOP DIGEST / 60s</div>
     </div>
     <p class="reveal delay-4" style="text-align:center; margin-top: 18px; font-size: 12.5px; letter-spacing: 2px; color: rgba(232,232,255,0.55);">
-      ※ 当日のリール・発表シーンを繋いだダイジェスト動画を掲載予定
+      ※ 当日のリール・発表シーンを繋いだダイジェスト動画は近日掲載予定
     </p>
   </div>
 </section>
@@ -6025,7 +5935,9 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <iframe src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" title="ともみさんの完成LP" class="baof-phone-iframe"></iframe>
+                <div class="baof-phone-scroll-img">
+                  <img src="images/tomomi-after.png" alt="ともみさんのAFTER（LPスクリーンショット）">
+                </div>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
@@ -6186,7 +6098,9 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <iframe src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP" class="baof-phone-iframe"></iframe>
+                <div class="baof-phone-scroll-img">
+                  <img src="images/sayan-after.png" alt="さーやんのAFTER（LPスクリーンショット）">
+                </div>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>

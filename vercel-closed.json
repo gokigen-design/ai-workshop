@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/lp.html", "destination": "/closed.html" },
+    { "source": "/lp-preview.html", "destination": "/closed.html" },
+    { "source": "/", "destination": "/closed.html" }
+  ]
+}

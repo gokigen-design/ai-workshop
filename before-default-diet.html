@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>がんばりすぎない、あなたらしい健やかさへ。｜ダイエットコーチ</title>
+
+<!-- ══════════════════════════════════════════════
+  Claude ポン出し「叩き台」LP（Before版）
+  - after-template.html と全く同じテキスト内容
+  - デザインだけを「Claude がざっくり依頼に対して出してくる
+    茶色ベージュ系の地味な叩き台」にしてある
+  - これで「文章は同じでも、デザインだけでこんなに変わる」を
+    ビフォー/アフターで示すサンプル
+═══════════════════════════════════════════════ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --main: #8B5A3C;
+  --main-light: #C9986F;
+  --main-dark: #6B4428;
+  --bg: #FAF7F2;
+  --beige: #F3EDE2;
+  --text: #4A3F35;
+  --text-light: #7A6B5C;
+  --border: #D6C9B5;
+  --white: #fff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Noto Serif JP', serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.85;
+  font-size: 15px;
+}
+img { max-width:100%; display:block; }
+.container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+/* ══ Hero ══ */
+.hero {
+  background: var(--beige);
+  padding: 72px 0 56px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: var(--main-light);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--main);
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+.hero h1 em { font-style: normal; color: var(--main-dark); }
+.hero-desc {
+  font-size: 14.5px;
+  color: var(--text);
+  margin-bottom: 32px;
+  line-height: 1.9;
+}
+.btn {
+  display: inline-block;
+  background: var(--main);
+  color: var(--white);
+  padding: 13px 32px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* ══ Early CTA ══ */
+.cta-early {
+  background: var(--bg);
+  text-align: center;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cta-caption {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* ══ Section 共通 ══ */
+.sec { padding: 56px 0; }
+.sec-title {
+  font-size: 22px;
+  color: var(--main);
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+.sec-title small {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--main-light);
+  margin-top: 6px;
+  font-weight: 400;
+}
+.sec-eyebrow {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--main-light);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.sec-head { margin-bottom: 32px; }
+
+/* ══ Worries ══ */
+.worries { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.worry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.worry-item {
+  background: var(--beige);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+}
+.worry-check {
+  color: var(--main);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ══ Future ══ */
+.future-title {
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 28px;
+  color: var(--main-dark);
+}
+.future-title em { font-style: normal; color: var(--main); font-weight: 700; }
+.future-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.future-point {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 22px 18px;
+  text-align: center;
+}
+.future-point-icon {
+  display: inline-block;
+  width: 24px; height: 24px;
+  color: var(--main-light);
+  margin-bottom: 10px;
+}
+.future-point h3 {
+  font-size: 15px;
+  color: var(--main);
+  margin-bottom: 8px;
+}
+.future-point p {
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+/* ══ Method ══ */
+.method { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.method .lead { text-align: center; font-size: 14px; color: var(--text-light); margin-bottom: 24px; }
+.step-list {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.step-item {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.step-item:last-child { border-bottom: none; }
+.step-num {
+  background: var(--main);
+  color: var(--white);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.step-num-label { font-size: 9px; opacity: 0.8; }
+.step-num-value { font-size: 13px; font-weight: 700; }
+.step-title {
+  font-size: 15px;
+  color: var(--main);
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.step-desc {
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+/* ══ Voice ══ */
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.voice-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 22px 18px;
+}
+.voice-photo {
+  width: 56px; height: 56px;
+  background: var(--main-light);
+  border-radius: 50%;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 11px;
+}
+.voice-name { font-size: 13px; color: var(--main); font-weight: 700; margin-bottom: 2px; }
+.voice-meta { font-size: 11px; color: var(--text-light); margin-bottom: 10px; }
+.voice-text { font-size: 13.5px; color: var(--text); line-height: 1.85; }
+
+/* ══ Profile ══ */
+.profile { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.profile-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.profile-photo {
+  width: 200px; height: 200px;
+  background: var(--main-light);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 13px;
+}
+.profile-name {
+  font-size: 18px;
+  color: var(--main);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.profile-role {
+  font-size: 12px;
+  color: var(--main-light);
+  margin-bottom: 14px;
+  letter-spacing: 0.1em;
+}
+.profile-bio {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.9;
+}
+.profile-list {
+  list-style: none;
+  padding: 0;
+  font-size: 13.5px;
+}
+.profile-list li {
+  padding: 5px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.profile-list li::before {
+  content: '・';
+  position: absolute;
+  left: 0;
+  color: var(--main-light);
+}
+
+/* ══ FAQ ══ */
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.faq-q {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  align-items: center;
+  cursor: pointer;
+}
+.faq-mark {
+  background: var(--main);
+  color: var(--white);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.faq-q-text {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+}
+.faq-toggle {
+  width: 14px; height: 14px;
+  color: var(--main-light);
+  flex-shrink: 0;
+}
+.faq-a {
+  padding: 0 18px 16px 52px;
+  font-size: 13.5px;
+  color: var(--text-light);
+  line-height: 1.9;
+  border-top: 1px dashed var(--border);
+  padding-top: 14px;
+}
+
+/* ══ Thought ══ */
+.thought {
+  background: var(--main-dark);
+  color: #F5EDE0;
+}
+.thought .sec-title { color: #F5EDE0; }
+.thought .sec-eyebrow { color: #E6D3B8; }
+.thought-body {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.thought-body p {
+  margin-bottom: 14px;
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: #F0E4D4;
+}
+.thought-sign {
+  text-align: right;
+  margin-top: 18px;
+  font-size: 13px;
+  color: #E6D3B8;
+  letter-spacing: 0.15em;
+}
+
+/* ══ Final CTA ══ */
+.final-cta {
+  background: var(--main);
+  color: var(--white);
+  text-align: center;
+  padding: 56px 0;
+}
+.final-cta .sec-eyebrow { color: rgba(255,255,255,0.7); }
+.final-cta .sec-title { color: var(--white); margin-bottom: 22px; }
+.final-cta .sec-title small { color: rgba(255,255,255,0.8); }
+.final-cta .btn {
+  background: var(--white);
+  color: var(--main);
+  font-weight: 700;
+}
+.final-cta .cta-caption {
+  color: rgba(255,255,255,0.85);
+  font-size: 12.5px;
+  line-height: 1.85;
+  margin-top: 18px;
+}
+
+/* ══ Footer ══ */
+footer {
+  background: var(--beige);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-light);
+}
+.foot-brand {
+  font-size: 13px;
+  color: var(--main);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+/* ══ レスポンシブ ══ */
+@media (max-width: 720px) {
+  .worry-grid { grid-template-columns: 1fr; }
+  .future-points { grid-template-columns: 1fr; }
+  .voice-grid { grid-template-columns: 1fr; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .profile-photo { width: 100%; height: 220px; }
+  .hero h1 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ Hero ══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">for your own beauty</div>
+    <h1>
+      がんばりすぎない、<br>
+      <em>あなたらしい</em>健やかさへ。
+    </h1>
+    <p class="hero-desc">
+      食事も運動も、我慢じゃなくて選ぶもの。<br>
+      今日から始める「続けられる美しさ」を、<br>
+      あなたのペースで一緒に育てていきましょう。
+    </p>
+    <a href="#cta" class="btn">無料カウンセリングに申し込む →</a>
+  </div>
+</section>
+
+<!-- ══ Early CTA ══ -->
+<section class="cta-early">
+  <div class="container">
+    <a href="#cta" class="btn">まずは無料で話を聞いてみる →</a>
+    <span class="cta-caption">お申し込みは30秒で完了します</span>
+  </div>
+</section>
+
+<!-- ══ Worries ══ -->
+<section class="sec worries">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Worries</div>
+      <h2 class="sec-title">
+        こんなお悩みありませんか？
+        <small>YOUR CONCERNS</small>
+      </h2>
+    </div>
+
+    <div class="worry-grid">
+      <div class="worry-item"><div class="worry-check">✓</div>ダイエットを何度も挫折してしまう</div>
+      <div class="worry-item"><div class="worry-check">✓</div>食事制限がつらくて長続きしない</div>
+      <div class="worry-item"><div class="worry-check">✓</div>運動する時間が取れない</div>
+      <div class="worry-item"><div class="worry-check">✓</div>自分に合う方法がわからない</div>
+      <div class="worry-item"><div class="worry-check">✓</div>体型だけでなく心も軽くなりたい</div>
+      <div class="worry-item"><div class="worry-check">✓</div>一人だと続かない気がする</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Future ══ -->
+<section class="sec">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Your Future</div>
+      <h2 class="sec-title">
+        だいじょうぶ、<br>
+        あなたの未来はこんなにやさしい。
+        <small>IDEAL FUTURE</small>
+      </h2>
+    </div>
+
+    <p class="future-title">3ヶ月後、<em>自分を好きになれる</em>自分に。</p>
+
+    <div class="future-points">
+      <div class="future-point">
+        <svg class="future-point-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+        <h3>自信ある自分</h3>
+        <p>鏡を見るのが楽しみになる、そんな自分に出会えます。</p>
+      </div>
+      <div class="future-point">
+        <svg class="future-point-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+        <h3>続けられる習慣</h3>
+        <p>我慢ではなく、心地よく続けられる習慣が身につきます。</p>
+      </div>
+      <div class="future-point">
+        <svg class="future-point-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M4 12l8-8 8 8"/></svg>
+        <h3>軽やかな毎日</h3>
+        <p>体だけでなく、心までふっと軽くなる変化を感じます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Method ══ -->
+<section class="sec method">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Method</div>
+      <h2 class="sec-title">
+        わたしと進む、5つのステップ
+        <small>HOW WE GO TOGETHER</small>
+      </h2>
+    </div>
+
+    <p class="lead">一人ひとりの生活にそっと寄り添う、続けやすいメソッドです。</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num"><span class="step-num-label">step</span><span class="step-num-value">01</span></div>
+        <div class="step-body">
+          <div class="step-title">ていねいなカウンセリング</div>
+          <div class="step-desc">まずはお話を聞かせてください。体型のことだけでなく、生活リズム・お仕事・好きなこと。あなたらしさを一緒に整理します。</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num"><span class="step-num-label">step</span><span class="step-num-value">02</span></div>
+        <div class="step-body">
+          <div class="step-title">あなた専用のプラン設計</div>
+          <div class="step-desc">無理なく続けられる食事・運動・メンタルケアのプランを一緒に組み立てます。極端なルールは作りません。</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num"><span class="step-num-label">step</span><span class="step-num-value">03</span></div>
+        <div class="step-body">
+          <div class="step-title">週1の伴走セッション</div>
+          <div class="step-desc">オンラインで週1回30分。上手くいったことも、うまくいかなかったことも、安心して共有できる時間です。</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num"><span class="step-num-label">step</span><span class="step-num-value">04</span></div>
+        <div class="step-body">
+          <div class="step-title">日々の寄り添いサポート</div>
+          <div class="step-desc">LINEでいつでも相談OK。食事の写真を送っていただければ、その日のうちにコメントとアドバイスをお返しします。</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num"><span class="step-num-label">step</span><span class="step-num-value">05</span></div>
+        <div class="step-body">
+          <div class="step-title">習慣化と自立</div>
+          <div class="step-desc">3ヶ月後には、自分で判断して選べる自分に。サポート卒業後も続く「一生ものの習慣」を手に入れます。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Voice ══ -->
+<section class="sec">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Voices</div>
+      <h2 class="sec-title">
+        先にはじめた方たちの声
+        <small>TESTIMONIALS</small>
+      </h2>
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="voice-photo">PHOTO</div>
+        <div class="voice-name">Aさん / 30代 / 会社員</div>
+        <div class="voice-meta">3ヶ月受講</div>
+        <div class="voice-text">「我慢するダイエット」から卒業できました。食べることが楽しくなって、自然と体が軽くなっていく感覚。一番の変化は、自分を責めなくなったことです。</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-photo">PHOTO</div>
+        <div class="voice-name">Bさん / 40代 / フリーランス</div>
+        <div class="voice-meta">6ヶ月受講</div>
+        <div class="voice-text">運動が大の苦手だった私が、今では週3回ウォーキングを続けています。「頑張らなくていい」が合言葉。小さな習慣が自分を変えていくことを実感しました。</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-photo">PHOTO</div>
+        <div class="voice-name">Cさん / 20代 / 学生</div>
+        <div class="voice-meta">3ヶ月受講</div>
+        <div class="voice-text">体型の数字ばかりを追っていた私が、今は「気分がいいかどうか」で自分を測れるように。心の軸ができた感じがします。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Profile ══ -->
+<section class="sec profile">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Profile</div>
+      <h2 class="sec-title">
+        講師プロフィール
+        <small>ABOUT ME</small>
+      </h2>
+    </div>
+
+    <div class="profile-grid">
+      <div class="profile-photo">PHOTO</div>
+      <div>
+        <div class="profile-name">山田 花子</div>
+        <div class="profile-role">Your Coach</div>
+        <p class="profile-bio">
+          「ダイエットは、自分を好きになる旅」。<br>
+          10年以上の指導経験で、のべ500名以上の女性のダイエットに伴走してきました。食事制限や激しい運動を強いる従来のダイエットではなく、あなたの生活に自然に溶け込む「やさしい習慣づくり」を大切にしています。
+        </p>
+        <ul class="profile-list">
+          <li>管理栄養士／健康運動指導士</li>
+          <li>女性のためのダイエット指導歴 10年以上</li>
+          <li>著書『食べて、動いて、好きになる』（仮）</li>
+          <li>雑誌『〇〇』『〇〇』等で専門家として監修</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="sec">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">FAQ</div>
+      <h2 class="sec-title">
+        よくあるご質問
+        <small>FREQUENTLY ASKED QUESTIONS</small>
+      </h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">運動がとても苦手でも大丈夫ですか？</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a">はい、全く問題ありません。受講生の多くが「運動嫌い」からスタートしています。ウォーキング1日5分といった、日常の延長から始めますので、ご安心ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">仕事が忙しくて時間が取れません。</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a">あなたのライフスタイルに合わせたプランを作ります。週1の30分セッションと、LINEでの軽やかなやり取りが中心ですので、忙しい方こそ続けやすい仕組みです。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">オンラインのみですか？</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a">はい、全てオンラインで完結します。全国どこからでも受講いただけますし、通う時間もかかりません。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">料金はどのくらいですか？</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a">プランにより異なりますので、無料カウンセリングの際にあなたに合ったプランをご提案いたします。分割払いも可能です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">40代でも効果はありますか？</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a">むしろ40代以降の方にこそお伝えしたいメソッドです。年齢に合わせた無理のない習慣づくりで、多くの方が体と心の変化を実感されています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Thought ══ -->
+<section class="sec thought">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">My Thought</div>
+      <h2 class="sec-title">わたしが、この仕事をする理由。</h2>
+    </div>
+
+    <div class="thought-body">
+      <p>かつて私も、厳しいダイエットで心を壊しかけた一人でした。数字に追われ、自分を責めて、食べることが怖くなった時期がありました。</p>
+      <p>そんな私を救ってくれたのは、「体はあなたの味方だよ」と言ってくれた一人の先生でした。それから少しずつ、自分の体と向き合う旅が始まりました。</p>
+      <p>今、同じように苦しんでいる方に、私が受け取った言葉を届けたい。「がんばらなくていい」「あなたはそのままで大丈夫」という言葉を、経験と知識に乗せて渡していきたい。</p>
+      <p>ダイエットは、自分を変える修行ではなく、自分を好きになる旅。そう信じています。</p>
+      <div class="thought-sign">Your Coach</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Final CTA ══ -->
+<section class="final-cta" id="cta">
+  <div class="container">
+    <div class="sec-eyebrow">Start Here</div>
+    <h2 class="sec-title">
+      まずは、話すことから始めませんか？<br>
+      <small>30分の無料カウンセリング受付中</small>
+    </h2>
+    <a href="#" class="btn">無料カウンセリングに申し込む →</a>
+    <div class="cta-caption">
+      しつこい勧誘は一切ありません。<br>お気軽にお申し込みください。
+    </div>
+  </div>
+</section>
+
+<!-- ══ Footer ══ -->
+<footer>
+  <div class="container">
+    <div class="foot-brand">Your Brand</div>
+    <div>© 2026 Your Name. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* FAQ アコーディオン（操作できる最低限） */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const a = q.nextElementSibling;
+    if (a.style.display === 'block') { a.style.display = 'none'; }
+    else { a.style.display = 'block'; }
+  });
+});
+/* 初期表示：FAQの答えは閉じておく */
+document.querySelectorAll('.faq-a').forEach(a => { a.style.display = 'none'; });
+</script>
+
+</body>
+</html>

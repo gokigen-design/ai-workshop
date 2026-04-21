@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>受講生素材 管理ルール｜AIワークショップ</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+    background: #FAFAF7;
+    color: #263238;
+    line-height: 1.9;
+    font-size: 15px;
+    padding: 32px 20px 80px;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 32px 20px;
+    background: linear-gradient(135deg, #E3F2FD 0%, #FCE4EC 50%, #FFF9C4 100%);
+    border-radius: 20px;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  header h1 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: #1E293B;
+  }
+  header p { font-size: 0.95rem; color: #546E7A; }
+
+  section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  section h2 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    padding-left: 16px;
+    border-left: 6px solid #EC407A;
+    color: #1E293B;
+  }
+  section h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    color: #37474F;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 18px;
+    padding: 16px;
+    background: #FAFAFA;
+    border-radius: 12px;
+    border-left: 4px solid #42A5F5;
+  }
+  .step-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #42A5F5, #AB47BC);
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-body h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .step-body p { font-size: 0.9rem; color: #455A64; }
+
+  .id-box {
+    background: linear-gradient(90deg, #263238, #455A64);
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 24px 20px;
+    border-radius: 12px;
+    margin: 16px 0;
+    letter-spacing: 2px;
+  }
+  .id-box .part { display: inline-block; padding: 0 6px; }
+  .id-box .ws    { color: #81D4FA; }
+  .id-box .num   { color: #F48FB1; }
+  .id-box .name  { color: #FFF59D; }
+
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .legend-item {
+    text-align: center;
+    padding: 12px 10px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+  }
+  .legend-item strong { display: block; font-size: 0.95rem; margin-bottom: 4px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  table th {
+    background: #1E293B;
+    color: #fff;
+    padding: 10px 8px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+  table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #ECEFF1;
+    vertical-align: top;
+  }
+  tr.cat-basic  td { background: #E3F2FD; }
+  tr.cat-image  td { background: #FCE4EC; }
+  tr.cat-text   td { background: #FFF9C4; }
+  tr.cat-manage td { background: #E8F5E9; }
+  table td:first-child { font-weight: 700; white-space: nowrap; }
+
+  .folder-tree {
+    background: #263238;
+    color: #CFD8DC;
+    padding: 24px 24px 24px 28px;
+    border-radius: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88rem;
+    line-height: 1.9;
+    margin: 16px 0;
+  }
+  .folder-tree .folder { color: #81D4FA; font-weight: 700; }
+  .folder-tree .id     { color: #F48FB1; }
+  .folder-tree .file   { color: #FFF59D; }
+  .folder-tree .comment { color: #78909C; font-style: italic; }
+
+  .rule-card {
+    border: 2px dashed #EC407A;
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin: 16px 0;
+    background: #FFF5F8;
+  }
+  .rule-card strong { color: #C2185B; }
+
+  .ok-ng {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .ok, .ng {
+    padding: 16px 18px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+  }
+  .ok { background: #E8F5E9; border-left: 4px solid #43A047; }
+  .ng { background: #FFEBEE; border-left: 4px solid #E53935; }
+  .ok strong { color: #2E7D32; }
+  .ng strong { color: #C62828; }
+
+  .callout {
+    background: #FFFDE7;
+    border: 2px solid #FBC02D;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    font-size: 0.92rem;
+  }
+  .callout strong { color: #F57F17; }
+
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 24px;
+    color: #78909C;
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 640px) {
+    .legend { grid-template-columns: 1fr; }
+    .ok-ng { grid-template-columns: 1fr; }
+    .id-box { font-size: 1rem; letter-spacing: 1px; }
+    header h1 { font-size: 1.4rem; }
+    section { padding: 24px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <h1>受講生素材 管理ルール</h1>
+  <p>AIワークショップ 運用ガイド（チーム共有用）</p>
+</header>
+
+<!-- ========== 1. なぜこの仕組みが必要？ ========== -->
+<section>
+  <h2>1. なぜこの仕組みを作るの？</h2>
+  <p>
+    感想はスプレッドシート、画像はGoogleドライブ、個人情報はまた別のスプレッドシート——と<strong>バラバラに散らかっているので、「この人どこ？」が分からなくなるから</strong>です。
+  </p>
+  <p style="margin-top: 10px;">
+    これから何度も開催していくワークショップなので、<strong>"誰がやっても同じ形で整う"</strong>仕組みにして、チーム全員がラクに扱えるようにします。
+  </p>
+
+  <div class="callout">
+    <strong>解決策はひとつだけ：</strong>
+    全員に<strong>「受講生ID」</strong>という背番号をつけて、スプシ・ドライブ・LPのすべてをそのIDで串刺しにする。
+  </div>
+</section>
+
+<!-- ========== 2. 受講生IDのルール ========== -->
+<section>
+  <h2>2. 受講生ID の付け方</h2>
+
+  <div class="id-box">
+    <span class="part ws">WS01</span>-<span class="part num">01</span>-<span class="part name">yamada</span>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item" style="background: #E1F5FE;">
+      <strong style="color: #0277BD;">WS01</strong>
+      何期の子か<br>（第1回）
+    </div>
+    <div class="legend-item" style="background: #FCE4EC;">
+      <strong style="color: #C2185B;">01</strong>
+      何人目か<br>（出席順）
+    </div>
+    <div class="legend-item" style="background: #FFFDE7;">
+      <strong style="color: #F57F17;">yamada</strong>
+      誰か一目で分かる<br>（ローマ字姓）
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <strong>ルールはこの3つだけ：</strong>
+    <ol style="margin-top: 10px; padding-left: 20px;">
+      <li>回次は <strong>WS01 / WS02 / WS03…</strong> と増やす</li>
+      <li>連番は <strong>01 / 02 / 03…</strong> ゼロ埋め2桁</li>
+      <li>名前は <strong>ローマ字・小文字・姓のみ</strong>（同姓がいたら下の名前を追加）</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== 3. マスタースプシ ========== -->
+<section>
+  <h2>3. 受講生マスター スプレッドシート</h2>
+  <p>情報の"正解の置き場所"は<strong>ここ1枚だけ</strong>。色で4つのカテゴリに分けてあります。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 18%;">カテゴリ</th>
+        <th>中身</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cat-basic">
+        <td>■ 基本情報<br><small style="color:#0277BD;">（薄いブルー）</small></td>
+        <td>ID／回次／名前／肩書き</td>
+      </tr>
+      <tr class="cat-image">
+        <td>■ 画像・URL<br><small style="color:#C2185B;">（薄いピンク）</small></td>
+        <td>アイコン画像／Before画像／After画像／完成LP URL</td>
+      </tr>
+      <tr class="cat-text">
+        <td>■ 感想文<br><small style="color:#F57F17;">（薄いイエロー）</small></td>
+        <td>感想（短・チップ用）／感想（長・LP本文用）／メッセージ（受けたい人へ）</td>
+      </tr>
+      <tr class="cat-manage">
+        <td>■ LP管理<br><small style="color:#2E7D32;">（薄いグリーン）</small></td>
+        <td>LP掲載OK（◯△×）／LP反映済みチェック／備考</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>スプシの作り方</h3>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Googleスプシを新規作成</h4>
+      <p>タイトルを<strong>「AIワークショップ 受講生マスター」</strong>にする</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>拡張機能 &gt; Apps Script を開く</h4>
+      <p>画面上部のメニュー。初めてだと少しビビるけど大丈夫です</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>受講生マスター_セットアップGAS.js の中身を全部コピペ</h4>
+      <p>保存（Ctrl/Cmd + S）して、関数 <strong>setupMasterSheet</strong> を選んで「実行」</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>色・罫線・ヘッダーが一発で完成！</h4>
+      <p>あとは3行目のサンプルを上書き or 削除して、受講生情報を追加していくだけ</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 4. Googleドライブのフォルダ ========== -->
+<section>
+  <h2>4. Googleドライブの整理</h2>
+  <p>フォルダ名は<strong>必ずID</strong>、ファイル名は<strong>必ず決まった名前</strong>——この2つだけ守ります。</p>
+
+  <div class="folder-tree">
+<span class="folder">受講生素材/</span>
+  <span class="folder">WS01_2026-04_第1回/</span>
+    <span class="id">WS01-01-yamada/</span>
+      <span class="file">icon.png</span>       <span class="comment"># 顔写真・アイコン</span>
+      <span class="file">before.png</span>     <span class="comment"># 受講前のLPスクショ</span>
+      <span class="file">after.png</span>      <span class="comment"># 受講後のLPスクショ</span>
+      <span class="file">lp-url.txt</span>     <span class="comment"># 完成LPのURL（メモ）</span>
+    <span class="id">WS01-02-tanaka/</span>
+      <span class="file">icon.png</span>
+      <span class="file">before.png</span>
+      <span class="file">after.png</span>
+  <span class="folder">WS02_2026-XX_第2回/</span>
+    <span class="comment"># ↑ 次回はこの階層に追加するだけ</span>
+  </div>
+
+  <div class="ok-ng">
+    <div class="ok">
+      <strong>◯ OK な名前</strong>
+      <ul style="margin-top: 8px; padding-left: 18px;">
+        <li>icon.png</li>
+        <li>before.png</li>
+        <li>after.png</li>
+      </ul>
+    </div>
+    <div class="ng">
+      <strong>× NG な名前</strong>
+      <ul style="margin-top: 8px; padding-left: 18px;">
+        <li>IMG_3822.jpg</li>
+        <li>山田さん顔.png</li>
+        <li>スクリーンショット 2026-04-18.png</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>ポイント：</strong>
+    ファイル名はみんな同じ。違うのは<strong>"どのIDフォルダに入っているか"</strong>だけ。これで迷子になりません。
+  </div>
+</section>
+
+<!-- ========== 5. 運用の流れ ========== -->
+<section>
+  <h2>5. 1回分の運用の流れ</h2>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>ワークショップ当日 or 直後</h4>
+      <p>スプシの次の空き行に受講生ID・名前・肩書きを入れる（基本情報だけ先に入れとく）</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>受講生から画像・感想が届いたら</h4>
+      <p>ドライブに<strong>IDフォルダ</strong>を作って、icon/before/after で保存<br>→ スプシの画像URL欄にそのドライブリンクを貼る</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>感想文はフォームから自動で入る</h4>
+      <p>フォーム → 別スプシ → マスターシートに <strong>IMPORTRANGE</strong> で引っ張る設定にしておけば、手動コピペ不要</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>LPに掲載してOKか確認</h4>
+      <p>L列「LP掲載OK」を <strong>◯ / △ / ×</strong> で記録<br>（受講生に確認を取るのはこのタイミング）</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h4>LPに反映したらM列のチェックを入れる</h4>
+      <p>これで「誰がLPに載ってて、誰がまだか」が一目で分かる</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 6. チームで気をつけたいこと ========== -->
+<section>
+  <h2>6. チーム運用のお願い</h2>
+  <ul style="padding-left: 20px;">
+    <li>編集する前に、<strong>スプシの右上で「他の人が開いていないか」</strong>を確認</li>
+    <li>列の追加・削除は、事前にチームに一言</li>
+    <li>ドライブのファイル名は<strong>絶対に変えない</strong>（LPが壊れます）</li>
+    <li>迷ったら、IDが最強の道しるべ——検索すれば全部つながる</li>
+  </ul>
+</section>
+
+<footer>
+  AI WORKSHOP — STUDENT ASSET OPS v1.0 / 2026.4
+</footer>
+
+</div>
+
+</body>
+</html>

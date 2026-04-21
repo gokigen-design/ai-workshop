@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>あなたの講座LP｜After テンプレート</title>
+
+<!-- ======================================================
+  AFTER TEMPLATE ／ ワークショップ用LPテンプレート
+  作成: 2026/4/17
+  方向性: WillCan × OCHA YOGA × Bouquet の系統
+  使い方: セクション単位で削除・並べ替えOK。コメント内の★箇所を書き換えてください。
+====================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Serif+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ========================================================
+   CSS VARIABLES ／ 色・フォント・余白の一括管理
+   ★ここを書き換えると全体の雰囲気が変わります★
+======================================================== */
+:root {
+  /* ── カラーテーマ：柔らか系（ベージュ・ブラウン）デフォルト ── */
+  --main: #c9986f;          /* メインカラー */
+  --main-dark: #8b5a3c;     /* 濃いめ（テキスト・アクセント） */
+  --sub: #f5ead7;           /* サブ（背景のベージュ） */
+  --bg: #faf7f2;            /* 全体背景（ほぼ白） */
+  --text: #3a2e1f;          /* 本文テキスト */
+  --text-mute: #8a7862;     /* 補足テキスト */
+  --accent: #d4a574;        /* 差し色 */
+  --white: #ffffff;
+  --border: #e8dfd1;
+
+  /* ── フォント ── */
+  --font-sans: 'Zen Maru Gothic', sans-serif;
+  --font-serif: 'Noto Serif JP', serif;
+  --font-script: 'Great Vibes', cursive;
+
+  /* ── サイズ・余白 ── */
+  --container: 1100px;
+  --gutter: 20px;
+  --section-pad: 110px;
+}
+
+/*
+  ▼別のカラーテーマに切替えたい場合は、上の :root の色を以下から選んでコピペ
+
+  【信頼系（ネイビー・クリーム）】
+  --main: #2c3e50; --main-dark: #1a2332; --sub: #ecf0f1; --bg: #fbfaf7; --text: #1a2332;
+  --text-mute: #6b7785; --accent: #7fa7c9; --border: #d5dde3;
+
+  【元気系（オレンジ・クリーム）】
+  --main: #ff6b35; --main-dark: #c94e22; --sub: #fff2e0; --bg: #fffaf3; --text: #2b1810;
+  --text-mute: #8a6e5e; --accent: #ffb380; --border: #ffd9b8;
+
+  【シック系（墨・ゴールド）】
+  --main: #b08d57; --main-dark: #7a5e36; --sub: #f5f0e8; --bg: #faf8f4; --text: #1c1c1c;
+  --text-mute: #6b5d49; --accent: #c9a876; --border: #e8ddc5;
+*/
+
+/* ========================================================
+   BASE ／ 全体リセットと基本スタイル
+======================================================== */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* 共通コンテナ */
+.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* セクション基本 */
+section { padding: var(--section-pad) 0; position: relative; }
+
+/* 英字飾り見出し（全セクションで使用） */
+.eyebrow {
+  font-family: var(--font-script);
+  font-size: 42px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* 日本語見出し */
+.sec-title {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--main-dark);
+  line-height: 1.5;
+  margin-bottom: 18px;
+  letter-spacing: 0.08em;
+}
+.sec-title small {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-mute);
+  margin-top: 8px;
+  letter-spacing: 0.12em;
+}
+
+/* セクションのヘッダーブロック（中央寄せ用） */
+.sec-head {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* 本文 */
+.lead {
+  font-size: 15.5px;
+  line-height: 2.0;
+  color: var(--text);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* スクロールフェードイン用クラス */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================================
+   BUTTON ／ 共通ボタン
+======================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 42px;
+  background: var(--main-dark);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  border-radius: 999px;
+  border: 2px solid var(--main-dark);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(139, 90, 60, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover {
+  background: var(--main);
+  border-color: var(--main);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(139, 90, 60, 0.25);
+}
+.btn-arrow { display: inline-block; transition: transform 0.3s; }
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+/* 大きい CTA ボタンの囲み */
+.cta-block {
+  text-align: center;
+  padding: 40px 0;
+}
+.cta-block .btn { font-size: 16px; padding: 22px 54px; }
+.cta-caption {
+  display: block;
+  font-size: 13px;
+  color: var(--text-mute);
+  margin-top: 14px;
+  letter-spacing: 0.1em;
+}
+
+/* ========================================================
+   1. FIRST VIEW ／ ファーストビュー
+   ★写真3枚切替＋キャッチ＋CTA★
+======================================================== */
+.fv {
+  padding: 80px 0 100px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--sub) 0%, var(--bg) 100%);
+}
+.fv-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.fv-copy { position: relative; }
+.fv-eyebrow {
+  font-family: var(--font-script);
+  font-size: 36px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.fv-title {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--main-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: 22px;
+}
+.fv-title em {
+  font-style: normal;
+  background: linear-gradient(transparent 60%, var(--sub) 60%);
+  padding: 0 4px;
+}
+.fv-desc {
+  font-size: 15.5px;
+  line-height: 2.0;
+  color: var(--text);
+  margin-bottom: 36px;
+}
+
+/* 3枚写真切替（自動 + クリック） */
+.fv-photos {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(139, 90, 60, 0.2);
+}
+.fv-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.fv-photo.active { opacity: 1; }
+
+/* ★写真の差し替え：下の3つのURLを実写に差し替えてください★ */
+.fv-photo-1 { background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80'); }
+.fv-photo-2 { background-image: url('https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80'); }
+.fv-photo-3 { background-image: url('https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=800&q=80'); }
+
+/* 写真切替ドット */
+.fv-dots {
+  position: absolute;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+.fv-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+.fv-dot.active { background: var(--white); transform: scale(1.4); }
+
+/* 写真ラベル（キャプション） */
+.fv-photo-label {
+  position: absolute;
+  top: 20px; left: 20px;
+  background: rgba(255,255,255,0.92);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--main-dark);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.3s;
+}
+.fv-photo.active .fv-photo-label { opacity: 1; }
+
+/* ========================================================
+   2. CTA ／ FV直下のボタン
+======================================================== */
+.cta-early { background: var(--bg); padding: 30px 0 40px; }
+
+/* ========================================================
+   3. WORRIES ／ こんなお悩みありませんか？
+======================================================== */
+.worries { background: var(--sub); }
+.worry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 50px;
+}
+.worry-item {
+  background: var(--white);
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(139, 90, 60, 0.08);
+  position: relative;
+  font-size: 15px;
+  line-height: 1.85;
+  transition: transform 0.3s;
+}
+.worry-item:nth-child(1) { transform: rotate(-2.8deg); }
+.worry-item:nth-child(2) { transform: rotate(2deg); }
+.worry-item:nth-child(3) { transform: rotate(-1.3deg); }
+.worry-item:nth-child(4) { transform: rotate(2.5deg); }
+.worry-item:nth-child(5) { transform: rotate(-2deg); }
+.worry-item:nth-child(6) { transform: rotate(1.6deg); }
+.worry-item:hover { transform: rotate(0deg) translateY(-4px); }
+
+.worry-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  background: var(--main);
+  color: var(--white);
+  border-radius: 50%;
+  margin-bottom: 14px;
+}
+.worry-check svg { width: 16px; height: 16px; }
+.worry-text { font-weight: 500; }
+
+/* ========================================================
+   4. FUTURE ／ 理想の未来
+======================================================== */
+.future {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--sub) 100%);
+  text-align: center;
+}
+.future-title {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  line-height: 1.6;
+  color: var(--main-dark);
+  max-width: 820px;
+  margin: 0 auto 50px;
+  letter-spacing: 0.08em;
+}
+.future-title em {
+  font-style: normal;
+  color: var(--main);
+  position: relative;
+}
+.future-title em::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.future-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 30px;
+}
+.future-point {
+  text-align: center;
+  padding: 24px 18px;
+}
+.future-point-icon {
+  width: 60px; height: 60px;
+  margin: 0 auto 18px;
+  color: var(--main);
+}
+.future-point h3 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--main-dark);
+}
+.future-point p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text-mute);
+}
+
+/* ========================================================
+   5. METHOD / STEPS ／ 具体的な解決方法
+   ★ステップ数は3〜7個まで対応。いらない .step-item は削除★
+======================================================== */
+.method { background: var(--bg); }
+.step-list {
+  max-width: 860px;
+  margin: 60px auto 0;
+  position: relative;
+}
+/* 縦の線 */
+.step-list::before {
+  content: '';
+  position: absolute;
+  left: 35px; top: 20px; bottom: 20px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--sub) 100%);
+  z-index: 0;
+}
+
+.step-item {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 30px;
+  align-items: flex-start;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 1;
+}
+.step-num {
+  width: 70px; height: 70px;
+  background: var(--white);
+  border: 3px solid var(--main);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  color: var(--main-dark);
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(139, 90, 60, 0.1);
+}
+.step-num-label {
+  font-family: var(--font-script);
+  font-size: 15px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.step-num-value {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+.step-body {
+  background: var(--white);
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(139, 90, 60, 0.06);
+}
+.step-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  margin-bottom: 8px;
+  color: var(--main-dark);
+  font-weight: 500;
+}
+.step-desc {
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: var(--text);
+}
+
+/* ========================================================
+   6. VOICE ／ 受講生の実績・お客様の声
+======================================================== */
+.voice { background: var(--sub); }
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 50px;
+}
+.voice-card {
+  background: var(--white);
+  padding: 30px 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(139, 90, 60, 0.08);
+  position: relative;
+}
+.voice-card::before {
+  content: '"';
+  position: absolute;
+  top: 14px; right: 22px;
+  font-family: var(--font-serif);
+  font-size: 60px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.3;
+}
+.voice-photo {
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid var(--sub);
+}
+.voice-name {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  margin-bottom: 2px;
+  color: var(--main-dark);
+}
+.voice-meta {
+  font-size: 12px;
+  color: var(--text-mute);
+  margin-bottom: 14px;
+  letter-spacing: 0.1em;
+}
+.voice-text {
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: var(--text);
+}
+
+/* ========================================================
+   7. PROFILE ／ 講師プロフィール
+======================================================== */
+.profile { background: var(--bg); }
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 960px;
+  margin: 40px auto 0;
+}
+.profile-photo-wrap {
+  position: relative;
+}
+.profile-photo {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 20px;
+  background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 40px rgba(139, 90, 60, 0.15);
+}
+.profile-photo-wrap::before {
+  content: '';
+  position: absolute;
+  top: 20px; left: -20px;
+  width: 100%; height: 100%;
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  z-index: -1;
+}
+.profile-name {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--main-dark);
+  margin-bottom: 4px;
+  letter-spacing: 0.06em;
+}
+.profile-role {
+  font-family: var(--font-script);
+  font-size: 24px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.profile-bio {
+  font-size: 15px;
+  line-height: 2.0;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.profile-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+.profile-list li {
+  padding: 8px 0;
+  padding-left: 26px;
+  position: relative;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.profile-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 16px;
+  width: 14px; height: 2px;
+  background: var(--main);
+}
+
+/* ========================================================
+   8. FAQ ／ よくある質問（アコーディオン）
+======================================================== */
+.faq { background: var(--sub); }
+.faq-list {
+  max-width: 780px;
+  margin: 50px auto 0;
+}
+.faq-item {
+  background: var(--white);
+  border-radius: 12px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(139, 90, 60, 0.06);
+}
+.faq-q {
+  padding: 22px 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--main-dark);
+  transition: background 0.3s;
+}
+.faq-q:hover { background: var(--bg); }
+.faq-mark {
+  width: 28px; height: 28px;
+  background: var(--main);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.faq-q-text { flex: 1; }
+.faq-toggle {
+  width: 18px; height: 18px;
+  color: var(--main);
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-toggle { transform: rotate(180deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 28px;
+}
+.faq-item.open .faq-a {
+  max-height: 400px;
+  padding: 0 28px 22px 28px;
+}
+.faq-a-inner {
+  padding-left: 44px;
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: var(--text);
+}
+
+/* ========================================================
+   9. THOUGHT ／ 私の想い
+======================================================== */
+.thought {
+  background: var(--main-dark);
+  color: var(--white);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.thought::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.thought .eyebrow { color: var(--accent); }
+.thought .sec-title { color: var(--white); }
+.thought-body {
+  max-width: 720px;
+  margin: 40px auto 0;
+  font-size: 15.5px;
+  line-height: 2.1;
+  color: rgba(255,255,255,0.92);
+  text-align: left;
+}
+.thought-body p { margin-bottom: 20px; }
+.thought-sign {
+  margin-top: 40px;
+  font-family: var(--font-script);
+  font-size: 34px;
+  color: var(--accent);
+  text-align: right;
+}
+
+/* ========================================================
+   10. FINAL CTA ／ 最後の背中押し
+======================================================== */
+.final-cta {
+  background: var(--bg);
+  text-align: center;
+  padding: 100px 0;
+}
+.final-cta .sec-title {
+  margin-bottom: 30px;
+}
+.final-cta .btn {
+  font-size: 17px;
+  padding: 24px 60px;
+}
+
+/* ========================================================
+   FOOTER
+======================================================== */
+footer {
+  background: var(--main-dark);
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+footer .foot-brand {
+  font-family: var(--font-script);
+  font-size: 24px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+/* ========================================================
+   MOBILE ／ スマホ対応
+======================================================== */
+@media (max-width: 820px) {
+  :root {
+    --section-pad: 70px;
+  }
+  body { font-size: 14px; }
+  .eyebrow { font-size: 34px; }
+  .sec-title { font-size: 22px; }
+
+  /* FV */
+  .fv { padding: 50px 0 70px; }
+  .fv-grid { grid-template-columns: 1fr; gap: 40px; }
+  .fv-title { font-size: 28px; }
+  .fv-copy { order: 2; }
+  .fv-photos { order: 1; max-width: 380px; margin: 0 auto; }
+
+  /* 悩み */
+  .worry-grid { grid-template-columns: 1fr; gap: 18px; }
+
+  /* 理想の未来 */
+  .future-title { font-size: 24px; }
+  .future-points { grid-template-columns: 1fr; gap: 24px; }
+
+  /* ステップ */
+  .step-item { grid-template-columns: 56px 1fr; gap: 16px; }
+  .step-num { width: 56px; height: 56px; }
+  .step-list::before { left: 27px; }
+
+  /* 声 */
+  .voice-grid { grid-template-columns: 1fr; gap: 18px; }
+
+  /* プロフィール */
+  .profile-grid { grid-template-columns: 1fr; gap: 40px; }
+  .profile-photo-wrap::before { display: none; }
+  .profile-name { font-size: 22px; }
+
+  /* FAQ */
+  .faq-q { padding: 18px 20px; font-size: 14px; gap: 12px; }
+  .faq-item.open .faq-a { padding: 0 20px 18px 20px; }
+  .faq-a-inner { padding-left: 0; }
+
+  /* CTA */
+  .cta-block .btn, .final-cta .btn { font-size: 14px; padding: 18px 36px; }
+}
+
+/* ========================================================
+   ENHANCEMENT ／ 動き・装飾・セクション境界の追加
+======================================================== */
+
+/* ── 筆記体見出しにグラデーション ── */
+.eyebrow, .fv-eyebrow, .profile-role, .thought-sign,
+.step-num-label, .foot-brand {
+  background: linear-gradient(92deg, var(--main) 0%, var(--accent) 45%, var(--main-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── 見出しの下線drawアニメ ── */
+.sec-head .sec-title { position: relative; display: inline-block; }
+.sec-head .sec-title::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 14px auto 0;
+  transition: width 1.2s ease 0.3s;
+}
+.sec-head.visible .sec-title::after { width: 160px; }
+
+/* ── Stagger fade-in（順番にふわっ） ── */
+.worry-grid .fade-in:nth-child(1),
+.future-points .fade-in:nth-child(1),
+.step-list .fade-in:nth-child(1),
+.voice-grid .fade-in:nth-child(1),
+.faq-list .fade-in:nth-child(1) { transition-delay: 0.06s; }
+.worry-grid .fade-in:nth-child(2),
+.future-points .fade-in:nth-child(2),
+.step-list .fade-in:nth-child(2),
+.voice-grid .fade-in:nth-child(2),
+.faq-list .fade-in:nth-child(2) { transition-delay: 0.16s; }
+.worry-grid .fade-in:nth-child(3),
+.future-points .fade-in:nth-child(3),
+.step-list .fade-in:nth-child(3),
+.voice-grid .fade-in:nth-child(3),
+.faq-list .fade-in:nth-child(3) { transition-delay: 0.26s; }
+.worry-grid .fade-in:nth-child(4),
+.step-list .fade-in:nth-child(4),
+.faq-list .fade-in:nth-child(4) { transition-delay: 0.36s; }
+.worry-grid .fade-in:nth-child(5),
+.step-list .fade-in:nth-child(5),
+.faq-list .fade-in:nth-child(5) { transition-delay: 0.46s; }
+.worry-grid .fade-in:nth-child(6),
+.step-list .fade-in:nth-child(6) { transition-delay: 0.56s; }
+.step-list .fade-in:nth-child(7) { transition-delay: 0.66s; }
+
+/* ── 装飾パーツのゆらゆらfloat ── */
+@keyframes floaty {
+  0%, 100% { transform: translate(0, 0) rotate(var(--r, 0deg)); }
+  50%     { transform: translate(0, -14px) rotate(var(--r, 0deg)); }
+}
+.deco-float      { animation: floaty 6s ease-in-out infinite; }
+.deco-float-slow { animation: floaty 9s ease-in-out infinite; }
+
+.deco-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+.deco-ring {
+  position: absolute;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+.deco-blob {
+  position: absolute;
+  background: var(--sub);
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 波形セクション仕切り ── */
+.wave-divider {
+  display: block;
+  width: 100%;
+  height: 70px;
+  line-height: 0;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+.wave-divider svg { width: 100%; height: 100%; display: block; }
+/* 上下で隣接するセクションの padding を詰める用 */
+section.has-wave-top    { padding-top: 40px; }
+section.has-wave-bottom { padding-bottom: 40px; }
+
+/* ── 筆記体マーキー（流れる英字リボン） ── */
+.script-marquee {
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--sub) 100%);
+  padding: 28px 0;
+  position: relative;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.script-marquee-track {
+  display: flex;
+  gap: 70px;
+  white-space: nowrap;
+  animation: marquee 36s linear infinite;
+  font-family: var(--font-script);
+  font-size: 72px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.55;
+  letter-spacing: 0.01em;
+  will-change: transform;
+  width: max-content;
+}
+.script-marquee-track span::after {
+  content: '✦';
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: var(--main);
+  opacity: 0.6;
+  margin-left: 70px;
+  vertical-align: middle;
+}
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ========================================================
+   FV OVERLAY版 ／ 背景写真スライダー + 文字オーバーレイ
+   （WillCan系：画像と文字を重ねるレイアウト）
+======================================================== */
+.fv--overlay {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 80px 0 100px;
+  overflow: hidden;
+  background: var(--sub);
+}
+.fv-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.fv-bg .fv-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  transform: scale(1.08);
+  border-radius: 0;
+  box-shadow: none;
+}
+.fv-bg .fv-photo.active {
+  opacity: 1;
+  animation: kenburns 9s ease-out forwards;
+}
+@keyframes kenburns {
+  0%   { transform: scale(1.12); }
+  100% { transform: scale(1.0); }
+}
+/* 写真上の柔らかいベージュベール */
+.fv-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(110deg,
+      rgba(250, 247, 242, 0.95) 0%,
+      rgba(245, 234, 215, 0.78) 38%,
+      rgba(245, 234, 215, 0.2) 70%,
+      rgba(139, 90, 60, 0.25) 100%);
+  pointer-events: none;
+}
+.fv--overlay .container {
+  position: relative;
+  z-index: 3;
+  max-width: 1100px;
+}
+.fv--overlay .fv-copy {
+  max-width: 580px;
+  padding: 40px 0;
+}
+.fv--overlay .fv-eyebrow { font-size: 40px; }
+.fv--overlay .fv-title { font-size: 48px; }
+.fv--overlay .fv-title em {
+  background: linear-gradient(transparent 58%, rgba(212, 165, 116, 0.4) 58%);
+}
+.fv--overlay .fv-dots {
+  position: static;
+  transform: none;
+  margin-top: 40px;
+  justify-content: flex-start;
+}
+.fv--overlay .fv-dot {
+  width: 36px; height: 3px;
+  border-radius: 2px;
+  background: rgba(139, 90, 60, 0.25);
+}
+.fv--overlay .fv-dot.active {
+  background: var(--main-dark);
+  transform: none;
+}
+
+/* ========================================================
+   SEC-HEAD FLANKED ／ 筆記体見出しの左右に写真を配置
+======================================================== */
+.sec-head--flanked {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 44px;
+  max-width: 1080px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+.sec-head--flanked .eyebrow { font-size: 58px; }
+.sec-head--flanked .sec-title { font-size: 28px; }
+.flank-photo {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 4/3;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 14px 32px rgba(139, 90, 60, 0.2);
+}
+.flank-photo--left  { justify-self: end;   transform: rotate(-2.5deg); }
+.flank-photo--right { justify-self: start; transform: rotate(2.5deg); }
+
+/* ========================================================
+   PROFILE：写真の上に筆記体文字を重ねる（画像と文字オーバーレイ）
+======================================================== */
+.profile-photo-wrap { position: relative; }
+.profile-photo-overlay-script {
+  position: absolute;
+  bottom: -18px; right: -12px;
+  font-family: var(--font-script);
+  font-size: 56px;
+  color: var(--white);
+  text-shadow: 0 6px 20px rgba(139, 90, 60, 0.5);
+  line-height: 1;
+  background: linear-gradient(92deg, var(--main) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 2;
+  pointer-events: none;
+  letter-spacing: 0.02em;
+}
+
+/* ========================================================
+   モバイル追加調整
+======================================================== */
+@media (max-width: 820px) {
+  .fv--overlay { min-height: auto; padding: 60px 0 80px; }
+  .fv--overlay .fv-title { font-size: 28px; }
+  .fv--overlay .fv-eyebrow { font-size: 32px; }
+  .sec-head--flanked { grid-template-columns: 1fr; gap: 18px; }
+  .sec-head--flanked .eyebrow { font-size: 42px; }
+  .flank-photo--left, .flank-photo--right {
+    transform: rotate(-1.5deg); max-width: 160px; margin: 0 auto;
+  }
+  .flank-photo--right { transform: rotate(1.5deg); }
+  .script-marquee-track { font-size: 48px; gap: 48px; }
+  .script-marquee-track span::after { font-size: 20px; margin-left: 48px; }
+  .wave-divider { height: 40px; }
+  .profile-photo-overlay-script { font-size: 38px; bottom: -10px; right: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+  1. FIRST VIEW ／ ファーストビュー（背景写真オーバーレイ版）
+  ★WillCan系：背景に大きな写真が自動で切り替わり、文字がその上に重なる★
+  ★書き換え箇所：キャッチコピー・背景写真3枚★
+═══════════════════════════════════════════════════ -->
+<section class="fv fv--overlay">
+
+  <!-- 背景の写真スライダー（自動で切り替わる／Ken Burnsで微ズーム） -->
+  <div class="fv-bg">
+    <!-- ★写真1：本人（先生）or 象徴的カット -->
+    <div class="fv-photo fv-photo-1 active"></div>
+    <!-- ★写真2：BEFORE/AFTER、受講風景、プロセス など -->
+    <div class="fv-photo fv-photo-2"></div>
+    <!-- ★写真3：理想の姿・ゴール・未来 -->
+    <div class="fv-photo fv-photo-3"></div>
+  </div>
+
+  <!-- 装飾パーツ（ゆらゆら浮遊する） -->
+  <div class="deco-ring deco-float"      style="width:160px; height:160px; top:14%; right:7%;"></div>
+  <div class="deco-dot  deco-float-slow" style="width:20px;  height:20px;  bottom:22%; left:8%;"></div>
+  <div class="deco-dot  deco-float"      style="width:10px;  height:10px;  top:28%; left:16%;"></div>
+  <div class="deco-blob"                 style="width:320px; height:320px; bottom:-80px; right:-60px;"></div>
+
+  <div class="container">
+    <div class="fv-copy fade-in">
+      <!-- ★英字キャッチ（自由に変更） -->
+      <div class="fv-eyebrow">for your own beauty</div>
+
+      <!-- ★メインキャッチ -->
+      <h1 class="fv-title">
+        がんばりすぎない、<br>
+        <em>あなたらしい</em>健やかさへ。
+      </h1>
+
+      <!-- ★サブキャッチ -->
+      <p class="fv-desc">
+        食事も運動も、我慢じゃなくて選ぶもの。<br>
+        今日から始める「続けられる美しさ」を、<br>
+        あなたのペースで一緒に育てていきましょう。
+      </p>
+
+      <!-- ボタン -->
+      <a href="#cta" class="btn">
+        無料カウンセリングに申し込む
+        <span class="btn-arrow">&rarr;</span>
+      </a>
+
+      <!-- 写真切替ドット（横長バー式） -->
+      <div class="fv-dots">
+        <button class="fv-dot active" data-idx="0" aria-label="写真1"></button>
+        <button class="fv-dot" data-idx="1" aria-label="写真2"></button>
+        <button class="fv-dot" data-idx="2" aria-label="写真3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+  2. EARLY CTA ／ FV直下のボタン
+═══════════════════════════════════════════════════ -->
+<section class="cta-early">
+  <div class="container cta-block fade-in">
+    <a href="#cta" class="btn">
+      まずは無料で話を聞いてみる
+      <span class="btn-arrow">&rarr;</span>
+    </a>
+    <span class="cta-caption">お申し込みは30秒で完了します</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+  3. WORRIES ／ こんなお悩みありませんか？
+  ★悩みを3個〜6個まで。不要な .worry-item は削除★
+═══════════════════════════════════════════════════ -->
+<section class="worries" id="worries">
+  <div class="container">
+
+    <div class="sec-head fade-in">
+      <div class="eyebrow">Worries</div>
+      <h2 class="sec-title">
+        こんなお悩みありませんか？
+        <small>YOUR CONCERNS</small>
+      </h2>
+    </div>
+
+    <div class="worry-grid">
+      <!-- ★悩み1 -->
+      <div class="worry-item fade-in">
+        <div class="worry-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="worry-text">ダイエットを何度も挫折してしまう</div>
+      </div>
+      <!-- ★悩み2 -->
+      <div class="worry-item fade-in">
+        <div class="worry-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="worry-text">食事制限がつらくて長続きしない</div>
+      </div>
+      <!-- ★悩み3 -->
+      <div class="worry-item fade-in">
+        <div class="worry-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="worry-text">運動する時間が取れない</div>
+      </div>
+      <!-- ★悩み4 -->
+      <div class="worry-item fade-in">
+        <div class="worry-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="worry-text">自分に合う方法がわからない</div>
+      </div>
+      <!-- ★悩み5 -->
+      <div class="worry-item fade-in">
+        <div class="worry-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="worry-text">体型だけでなく心も軽くなりたい</div>
+      </div>
+      <!-- ★悩み6 -->
+      <div class="worry-item fade-in">
+        <div class="worry-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="worry-text">一人だと続かない気がする</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 波形仕切り：sub → bg（worriesからfutureへ） -->
+<div class="wave-divider" style="background: var(--sub);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,70 720,0 1080,30 C1260,45 1380,25 1440,35 L1440,70 L0,70 Z" style="fill: var(--bg);"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  4. FUTURE ／ 理想の未来
+═══════════════════════════════════════════════════ -->
+<section class="future has-wave-top">
+  <div class="container">
+
+    <div class="sec-head fade-in">
+      <div class="eyebrow">Your Future</div>
+      <h2 class="sec-title">
+        だいじょうぶ、<br>
+        あなたの未来はこんなにやさしい。
+        <small>IDEAL FUTURE</small>
+      </h2>
+    </div>
+
+    <p class="future-title fade-in">
+      3ヶ月後、<em>自分を好きになれる</em>自分に。
+    </p>
+
+    <div class="future-points">
+      <!-- ★ポイント1 -->
+      <div class="future-point fade-in">
+        <svg class="future-point-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M32 8c-10 0-18 8-18 18 0 13 18 30 18 30s18-17 18-30c0-10-8-18-18-18z" stroke-linejoin="round"/>
+          <circle cx="32" cy="26" r="6"/>
+        </svg>
+        <h3>自信ある自分</h3>
+        <p>鏡を見るのが楽しみになる、そんな自分に出会えます。</p>
+      </div>
+      <!-- ★ポイント2 -->
+      <div class="future-point fade-in">
+        <svg class="future-point-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="32" cy="32" r="20"/>
+          <path d="M20 32l10 10 14-18" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>続けられる習慣</h3>
+        <p>我慢ではなく、心地よく続けられる習慣が身につきます。</p>
+      </div>
+      <!-- ★ポイント3 -->
+      <div class="future-point fade-in">
+        <svg class="future-point-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M32 10v44M14 28l18-18 18 18" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>軽やかな毎日</h3>
+        <p>体だけでなく、心までふっと軽くなる変化を感じます。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+  5. METHOD ／ 具体的な解決方法（STEPs）
+  ★ステップ数は自由。不要な .step-item は削除、必要なら複製★
+  ★現在5つ。3つ〜7つまでデザインがきれいに対応します★
+  ★見出しは「左右に写真が挟まる」flanked版を使用★
+═══════════════════════════════════════════════════ -->
+<section class="method">
+  <div class="container">
+
+    <!-- 筆記体見出し（グラデ）を2枚の写真で挟むパターン -->
+    <div class="sec-head sec-head--flanked fade-in">
+      <!-- ★左の装飾写真（小さめ） -->
+      <div class="flank-photo flank-photo--left"
+           style="background-image:url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=400&q=80');"></div>
+
+      <div>
+        <div class="eyebrow">Method</div>
+        <h2 class="sec-title">
+          わたしと進む、5つのステップ
+          <small>HOW WE GO TOGETHER</small>
+        </h2>
+      </div>
+
+      <!-- ★右の装飾写真（小さめ） -->
+      <div class="flank-photo flank-photo--right"
+           style="background-image:url('https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80');"></div>
+    </div>
+
+    <p class="lead fade-in" style="text-align:center;">一人ひとりの生活にそっと寄り添う、続けやすいメソッドです。</p>
+
+    <div class="step-list">
+
+      <!-- STEP 1 -->
+      <div class="step-item fade-in">
+        <div class="step-num">
+          <span class="step-num-label">step</span>
+          <span class="step-num-value">01</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">ていねいなカウンセリング</div>
+          <div class="step-desc">まずはお話を聞かせてください。体型のことだけでなく、生活リズム・お仕事・好きなこと。あなたらしさを一緒に整理します。</div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-item fade-in">
+        <div class="step-num">
+          <span class="step-num-label">step</span>
+          <span class="step-num-value">02</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">あなた専用のプラン設計</div>
+          <div class="step-desc">無理なく続けられる食事・運動・メンタルケアのプランを一緒に組み立てます。極端なルールは作りません。</div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-item fade-in">
+        <div class="step-num">
+          <span class="step-num-label">step</span>
+          <span class="step-num-value">03</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">週1の伴走セッション</div>
+          <div class="step-desc">オンラインで週1回30分。上手くいったことも、うまくいかなかったことも、安心して共有できる時間です。</div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step-item fade-in">
+        <div class="step-num">
+          <span class="step-num-label">step</span>
+          <span class="step-num-value">04</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">日々の寄り添いサポート</div>
+          <div class="step-desc">LINEでいつでも相談OK。食事の写真を送っていただければ、その日のうちにコメントとアドバイスをお返しします。</div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step-item fade-in">
+        <div class="step-num">
+          <span class="step-num-label">step</span>
+          <span class="step-num-value">05</span>
+        </div>
+        <div class="step-body">
+          <div class="step-title">習慣化と自立</div>
+          <div class="step-desc">3ヶ月後には、自分で判断して選べる自分に。サポート卒業後も続く「一生ものの習慣」を手に入れます。</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 波形仕切り：bg → sub（method → voice） -->
+<div class="wave-divider" style="background: var(--bg);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C240,10 540,60 900,30 C1140,10 1320,50 1440,25 L1440,70 L0,70 Z" style="fill: var(--sub);"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  6. VOICE ／ 受講生の実績・お客様の声
+  ★人数自由。voice-card を追加・削除★
+═══════════════════════════════════════════════════ -->
+<section class="voice has-wave-top">
+  <div class="container">
+
+    <div class="sec-head fade-in">
+      <div class="eyebrow">Voices</div>
+      <h2 class="sec-title">
+        先にはじめた方たちの声
+        <small>TESTIMONIALS</small>
+      </h2>
+    </div>
+
+    <div class="voice-grid">
+
+      <!-- ★お客様の声1 -->
+      <div class="voice-card fade-in">
+        <div class="voice-photo" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80');"></div>
+        <div class="voice-name">Aさん / 30代 / 会社員</div>
+        <div class="voice-meta">3ヶ月受講</div>
+        <div class="voice-text">「我慢するダイエット」から卒業できました。食べることが楽しくなって、自然と体が軽くなっていく感覚。一番の変化は、自分を責めなくなったことです。</div>
+      </div>
+
+      <!-- ★お客様の声2 -->
+      <div class="voice-card fade-in">
+        <div class="voice-photo" style="background-image:url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&q=80');"></div>
+        <div class="voice-name">Bさん / 40代 / フリーランス</div>
+        <div class="voice-meta">6ヶ月受講</div>
+        <div class="voice-text">運動が大の苦手だった私が、今では週3回ウォーキングを続けています。「頑張らなくていい」が合言葉。小さな習慣が自分を変えていくことを実感しました。</div>
+      </div>
+
+      <!-- ★お客様の声3 -->
+      <div class="voice-card fade-in">
+        <div class="voice-photo" style="background-image:url('https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=200&q=80');"></div>
+        <div class="voice-name">Cさん / 20代 / 学生</div>
+        <div class="voice-meta">3ヶ月受講</div>
+        <div class="voice-text">体型の数字ばかりを追っていた私が、今は「気分がいいかどうか」で自分を測れるように。心の軸ができた感じがします。</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 波形仕切り：sub → bg（voice → profile） -->
+<div class="wave-divider" style="background: var(--sub);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C300,60 600,10 960,40 C1200,55 1320,20 1440,35 L1440,70 L0,70 Z" style="fill: var(--bg);"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  7. PROFILE ／ 講師プロフィール
+  ★写真・名前・経歴を書き換え★
+  ★写真の上に筆記体の "Your Coach" をオーバーレイ★
+═══════════════════════════════════════════════════ -->
+<section class="profile has-wave-top">
+  <div class="container">
+
+    <div class="sec-head fade-in">
+      <div class="eyebrow">Profile</div>
+      <h2 class="sec-title">
+        講師プロフィール
+        <small>ABOUT ME</small>
+      </h2>
+    </div>
+
+    <div class="profile-grid">
+      <div class="profile-photo-wrap fade-in">
+        <div class="profile-photo"></div>
+        <!-- ★写真に重ねる筆記体 -->
+        <div class="profile-photo-overlay-script">Your Coach</div>
+      </div>
+
+      <div class="profile-copy fade-in">
+        <div class="profile-name">山田 花子</div>
+        <div class="profile-role">Your Coach</div>
+        <p class="profile-bio">
+          「ダイエットは、自分を好きになる旅」。<br>
+          10年以上の指導経験で、のべ500名以上の女性のダイエットに伴走してきました。
+          食事制限や激しい運動を強いる従来のダイエットではなく、あなたの生活に自然に溶け込む「やさしい習慣づくり」を大切にしています。
+        </p>
+        <ul class="profile-list">
+          <li>管理栄養士／健康運動指導士</li>
+          <li>女性のためのダイエット指導歴 10年以上</li>
+          <li>著書『食べて、動いて、好きになる』（仮）</li>
+          <li>雑誌『〇〇』『〇〇』等で専門家として監修</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 波形仕切り：bg → sub（profile → faq） -->
+<div class="wave-divider" style="background: var(--bg);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,10 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,70 L0,70 Z" style="fill: var(--sub);"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  8. FAQ ／ よくある質問（アコーディオン）
+  ★質問数自由。faq-item を複製★
+═══════════════════════════════════════════════════ -->
+<section class="faq has-wave-top">
+  <div class="container">
+
+    <div class="sec-head fade-in">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="sec-title">
+        よくあるご質問
+        <small>FREQUENTLY ASKED QUESTIONS</small>
+      </h2>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">運動がとても苦手でも大丈夫ですか？</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">はい、全く問題ありません。受講生の多くが「運動嫌い」からスタートしています。ウォーキング1日5分といった、日常の延長から始めますので、ご安心ください。</div></div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">仕事が忙しくて時間が取れません。</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">あなたのライフスタイルに合わせたプランを作ります。週1の30分セッションと、LINEでの軽やかなやり取りが中心ですので、忙しい方こそ続けやすい仕組みです。</div></div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">オンラインのみですか？</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">はい、全てオンラインで完結します。全国どこからでも受講いただけますし、通う時間もかかりません。</div></div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">料金はどのくらいですか？</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">プランにより異なりますので、無料カウンセリングの際にあなたに合ったプランをご提案いたします。分割払いも可能です。</div></div>
+      </div>
+
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <div class="faq-mark">Q</div>
+          <div class="faq-q-text">40代でも効果はありますか？</div>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">むしろ40代以降の方にこそお伝えしたいメソッドです。年齢に合わせた無理のない習慣づくりで、多くの方が体と心の変化を実感されています。</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 斜め仕切り：sub → dark（faq → thought、ドラマチックに） -->
+<div class="wave-divider" style="background: var(--sub); height: 90px;">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,90 L1440,10 L1440,90 Z" style="fill: var(--main-dark);"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  9. THOUGHT ／ 私の想い
+═══════════════════════════════════════════════════ -->
+<section class="thought has-wave-top">
+  <div class="container">
+
+    <div class="sec-head fade-in">
+      <div class="eyebrow">My Thought</div>
+      <h2 class="sec-title">
+        わたしが、この仕事をする理由。
+      </h2>
+    </div>
+
+    <div class="thought-body fade-in">
+      <p>かつて私も、厳しいダイエットで心を壊しかけた一人でした。数字に追われ、自分を責めて、食べることが怖くなった時期がありました。</p>
+
+      <p>そんな私を救ってくれたのは、「体はあなたの味方だよ」と言ってくれた一人の先生でした。それから少しずつ、自分の体と向き合う旅が始まりました。</p>
+
+      <p>今、同じように苦しんでいる方に、私が受け取った言葉を届けたい。「がんばらなくていい」「あなたはそのままで大丈夫」という言葉を、経験と知識に乗せて渡していきたい。</p>
+
+      <p>ダイエットは、自分を変える修行ではなく、自分を好きになる旅。そう信じています。</p>
+
+      <div class="thought-sign">Your Coach</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 斜め仕切り：dark → bg（thought → final-ctaへ戻す） -->
+<div class="wave-divider" style="background: var(--main-dark); height: 90px;">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,10 L1440,90 L1440,90 L0,90 Z" style="fill: var(--bg);"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  筆記体マーキー ／ 流れる英字リボン（動きのアクセント）
+═══════════════════════════════════════════════════ -->
+<div class="script-marquee">
+  <div class="script-marquee-track">
+    <span>for your own beauty</span>
+    <span>gentle &amp; sustainable</span>
+    <span>your own pace</span>
+    <span>be yourself</span>
+    <span>step by step</span>
+    <!-- 2セット目（途切れないように繰り返し） -->
+    <span>for your own beauty</span>
+    <span>gentle &amp; sustainable</span>
+    <span>your own pace</span>
+    <span>be yourself</span>
+    <span>step by step</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  10. FINAL CTA ／ 最後の背中押し
+═══════════════════════════════════════════════════ -->
+<section class="final-cta" id="cta">
+  <div class="container">
+    <div class="fade-in">
+      <div class="eyebrow">Start Here</div>
+      <h2 class="sec-title">
+        まずは、話すことから始めませんか？<br>
+        <small>30分の無料カウンセリング受付中</small>
+      </h2>
+      <a href="#" class="btn">
+        無料カウンセリングに申し込む
+        <span class="btn-arrow">&rarr;</span>
+      </a>
+      <div class="cta-caption" style="margin-top:20px;">
+        しつこい勧誘は一切ありません。<br>お気軽にお申し込みください。
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+  FOOTER
+═══════════════════════════════════════════════════ -->
+<footer>
+  <div class="foot-brand">Your Brand</div>
+  <div>&copy; 2026 Your Name. All rights reserved.</div>
+</footer>
+
+
+<script>
+/* ========================================================
+   スクロールでフェードイン
+======================================================== */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+/* ========================================================
+   ファーストビュー：写真3枚の自動＆手動切替
+======================================================== */
+(function(){
+  const photos = document.querySelectorAll('.fv-photo');
+  const dots   = document.querySelectorAll('.fv-dot');
+  let idx = 0;
+  let timer;
+
+  const show = (i) => {
+    photos.forEach((p, n) => p.classList.toggle('active', n === i));
+    dots.forEach((d, n) => d.classList.toggle('active', n === i));
+    idx = i;
+  };
+  const next = () => show((idx + 1) % photos.length);
+  const start = () => { timer = setInterval(next, 4000); };
+  const stop  = () => clearInterval(timer);
+
+  dots.forEach((d) => {
+    d.addEventListener('click', () => {
+      stop();
+      show(parseInt(d.dataset.idx, 10));
+      start();
+    });
+  });
+
+  start();
+})();
+
+/* ========================================================
+   FAQ アコーディオン
+======================================================== */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>

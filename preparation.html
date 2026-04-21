@@ -2345,6 +2345,75 @@
 
     <div class="callout">セットアップに不安がある方は、事前オンライン会で一緒に確認します。わからなくても大丈夫です。</div>
 
+    <!-- ─── Card 0: 事前スペックチェック（最重要・2026/4/18ワークショップを踏まえて追加） ─── -->
+    <div class="card" style="border:2px solid var(--orange);background:#fff8f3;">
+      <div class="card-head">
+        <div class="card-num" style="background:var(--orange);color:#fff;">!</div>
+        <div class="card-title">はじめに：パソコンの事前チェック（必ずお読みください）</div>
+      </div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">
+        過去のワークショップで、<strong style="color:var(--black);">古いパソコン・中古パソコンをお使いの方がClaude Codeを動かせないケース</strong>が確認されました。当日スムーズに進めるために、まず下記をご確認ください。
+      </p>
+
+      <!-- チェック1：IntelかApple Silicon -->
+      <div style="margin-bottom:20px;padding:18px 20px;background:#fff;border:1px solid var(--orange-border);border-radius:12px;">
+        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px;">チェック1 ／ お使いのMacは「Intel」？それとも「Apple Silicon」？</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:10px;">
+          特に<strong style="color:var(--black);">中古で購入したMac</strong>の場合、自分のMacがどちらか分からないことが多いです。下記手順で必ずご確認ください。
+        </div>
+        <div style="background:var(--beige);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--gray-mid);line-height:2;">
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:4px;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">1</span>
+            <div>画面左上の<strong style="color:var(--black);">アップルマーク</strong>をクリック</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:4px;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">2</span>
+            <div>「<strong style="color:var(--black);">このMacについて</strong>」を選択</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">3</span>
+            <div>表示を確認：<br>
+              <span style="display:inline-block;margin-top:4px;padding:2px 8px;background:#f0fdf4;color:#16a34a;border-radius:4px;font-weight:600;font-size:11px;">チップ：Apple M1 / M2 / M3 / M4</span> → Apple Silicon（推奨）<br>
+              <span style="display:inline-block;margin-top:4px;padding:2px 8px;background:#fef2f2;color:#dc2626;border-radius:4px;font-weight:600;font-size:11px;">プロセッサ：Intel Core i5 / i7...</span> → Intel（要注意）
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:12px 14px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;font-size:11px;color:#991b1b;line-height:1.8;">
+          <strong>Intel Macをお使いの方へ：</strong>Intel Mac + 古いmacOSの組み合わせで、開発ツール（Git）のインストール不可エラーが確認されています。必ず下のチェック2も行ってください。
+        </div>
+      </div>
+
+      <!-- チェック2：macOSバージョン -->
+      <div style="margin-bottom:20px;padding:18px 20px;background:#fff;border:1px solid var(--orange-border);border-radius:12px;">
+        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px;">チェック2 ／ macOSは最新版になっている？</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:10px;">
+          同じ「このMacについて」画面で、<strong style="color:var(--black);">macOSのバージョン</strong>を確認できます。<strong style="color:var(--black);">macOS Sonoma（14）以降</strong>を推奨します。
+        </div>
+        <div style="padding:10px 14px;background:var(--beige);border-radius:8px;font-size:11px;color:var(--gray-mid);line-height:1.8;">
+          更新方法：<strong style="color:var(--black);">システム設定</strong> → <strong style="color:var(--black);">一般</strong> → <strong style="color:var(--black);">ソフトウェア・アップデート</strong>
+        </div>
+      </div>
+
+      <!-- チェック3：Claude Code事前動作確認 -->
+      <div style="margin-bottom:16px;padding:18px 20px;background:#fff;border:1px solid var(--orange-border);border-radius:12px;">
+        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px;">チェック3 ／ 当日までにClaude Codeが動くことを確認</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:10px;">
+          このあとのCard 1〜3のセットアップを<strong style="color:var(--black);">ワークショップ当日までに必ず完了</strong>させ、Claude Codeの「Select folder」画面まで到達できることをご確認ください。
+        </div>
+        <div style="padding:10px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;font-size:11px;color:#15803d;line-height:1.8;">
+          うまくいかない場合は、<strong>当日ではなく事前に</strong>スタッフにご相談ください（当日の会場での解決は難しいケースがあります）。
+        </div>
+      </div>
+
+      <!-- 5年以上前の機種 -->
+      <div style="padding:16px 18px;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;">
+        <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:8px;">5年以上前に購入されたパソコンについて</div>
+        <div style="font-size:11px;color:#7f1d1d;line-height:1.9;">
+          5年以上前の機種（特にIntel Mac）では、Apple側の配信サーバーの問題で開発ツール（Command Line Tools）がインストールできないケースがあります。その場合、残念ながら当日Claude Codeをご利用いただけません。買い替えをご検討ください。
+        </div>
+      </div>
+    </div>
+
     <!-- ─── Card 1: サブスクリプション加入 ─── -->
     <div class="card">
       <div class="card-head"><div class="card-num">1</div><div class="card-title">サブスクリプション加入</div></div>
@@ -2488,6 +2557,40 @@
           </div>
           <div style="margin-top:12px;padding:10px 14px;background:var(--beige);border-radius:8px;font-size:11px;color:var(--gray-mid);line-height:1.8;">
             <strong style="color:var(--black);">それでも解決しない時は</strong> → エラー画面のスクリーンショット（<code style="background:#fff;padding:1px 5px;border-radius:3px;">⌘ + shift + 4</code> でドラッグ範囲指定）を撮って、Claude のチャットに貼り付けて「このエラーを直したい」と聞いてください。Claude が一緒に解決してくれます。
+          </div>
+
+          <!-- 追加：Apple Serverエラーの対処 -->
+          <div style="margin-top:14px;padding:14px 16px;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;">
+            <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:8px;">「このソフトウェアは現在ソフトウェアアップデートサーバーから入手できないため、インストールできません」と出たら？</div>
+            <div style="font-size:11px;color:#7f1d1d;line-height:1.9;">
+              これはApple側の配信サーバーの問題で、<strong>ユーザー側では解決できない</strong>エラーです。特にIntel Mac × 古いmacOSの組み合わせで発生します。<br><br>
+              対処法：<br>
+              ① macOSを最新版にアップデート（システム設定 → 一般 → ソフトウェア・アップデート）<br>
+              ② それでも直らない場合は、残念ながらこのパソコンではClaude Codeが使えません。買い替えをご検討いただくか、スタッフにご相談ください。
+            </div>
+          </div>
+
+          <!-- 追加：F3キーがない機種への代替操作 -->
+          <div style="margin-top:14px;padding:14px 16px;background:#fff8f3;border:1px solid var(--orange-border);border-radius:10px;">
+            <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:8px;">F3キーがないMacの場合（Touch Bar搭載モデル等）</div>
+            <div style="font-size:11px;color:var(--gray-mid);line-height:1.9;">
+              Mission Controlを開きたい時：<br>
+              ・トラックパッドで<strong>3本指を置いて上にスワイプ</strong><br>
+              ・<strong>Control + ↑（上矢印）</strong><br>
+              ・アプリ切替は<strong>⌘ + Tab</strong>
+            </div>
+          </div>
+
+          <!-- 追加：アプリケーションフォルダとLaunchpadの違い -->
+          <div style="margin-top:14px;padding:14px 16px;background:var(--beige);border:1px solid var(--border);border-radius:10px;">
+            <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:8px;">「アプリケーションフォルダ」と「Launchpad」は別物です</div>
+            <div style="font-size:11px;color:var(--gray-mid);line-height:1.9;">
+              ドックにある「9個のカラフルな四角が並んだアイコン」は<strong style="color:var(--black);">Launchpad</strong>（アプリの一覧画面）で、<strong style="color:var(--black);">アプリケーションフォルダ</strong>とは別物です。<br><br>
+              <strong style="color:var(--black);">アプリケーションフォルダの開き方：</strong><br>
+              ・Finderを開く → サイドバーの「アプリケーション」をクリック<br>
+              ・またはFinder上で<strong>⌘ + Shift + A</strong><br>
+              ・またはFinderメニューの「移動」→「アプリケーション」
+            </div>
           </div>
         </div>
       </div>
@@ -3318,6 +3421,113 @@
       </div>
     </div>
 
+    <!-- グループ①-B: パソコンの環境・ハードウェア（2026/4/18ワークショップ振り返りで追加） -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:4px;height:20px;background:#d97706;border-radius:2px;flex-shrink:0;"></div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#d97706;">パソコンの環境・ハードウェア</div>
+      </div>
+      <div class="glossary-grid">
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Apple Silicon</div>
+            <div class="gloss-ja">アップルシリコン</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Hardware</div>
+            <div class="gloss-one">2020年以降のMacに搭載された、Apple独自の新しいチップ</div>
+            <div class="gloss-desc">M1・M2・M3・M4などの名前がついています。Claude Codeはこちらで動作するのが一番安定します。自分のMacがどちらか確認する方法：画面左上のアップルマーク →「このMacについて」→ 「チップ：Apple M◯」と書かれていればApple Silicon。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Intel Mac</div>
+            <div class="gloss-ja">インテル マック</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Hardware</div>
+            <div class="gloss-one">2020年以前の、Intelチップ搭載のMac</div>
+            <div class="gloss-desc">Claude Codeは動作しますが、開発ツール（Command Line Tools）のインストールでエラーが起きやすく、古いmacOSとの組み合わせでは動かないケースがあります。「このMacについて」で「プロセッサ：Intel Core i5/i7...」と表示されたらIntel Macです。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Command Line Tools</div>
+            <div class="gloss-ja">コマンドライン ツール</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Tool</div>
+            <div class="gloss-one">Macで開発作業をするために必要な「開発ツール一式」</div>
+            <div class="gloss-desc">Gitなどが含まれています。Claude Codeを初めて起動すると自動で「インストールしますか？」と聞かれます。通常は「インストール」を押せば進みますが、古いMacではApple側のサーバー問題でインストールできないケースがあります。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Git</div>
+            <div class="gloss-ja">ギット</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">Tool</div>
+            <div class="gloss-one">ファイルの変更履歴を記録する仕組み</div>
+            <div class="gloss-desc">「昨日の状態に戻したい」「誰が何を変更したか知りたい」が実現できます。Claude Codeはこの仕組みを使うため、Gitがインストールされていないと動きません。Macは「Command Line Tools」に含まれ、WindowsはGit for Windowsを別途インストールします。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Applications Folder</div>
+            <div class="gloss-ja">アプリケーションフォルダ</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">macOS</div>
+            <div class="gloss-one">Macにインストールされたアプリが入っている場所</div>
+            <div class="gloss-desc">ドックにある「9個のカラフルな四角が並んだアイコン」は<strong>Launchpad</strong>（アプリの一覧表示画面）で、アプリケーションフォルダとは別物です。アプリケーションフォルダを開くには：Finder → サイドバーの「アプリケーション」／ または ⌘ + Shift + A。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Finder</div>
+            <div class="gloss-ja">ファインダー</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">macOS</div>
+            <div class="gloss-one">Macでファイルやフォルダを見るためのアプリ</div>
+            <div class="gloss-desc">ドックの一番左にある「青と白のにこにこ顔」のアイコンです。左のサイドバーから「デスクトップ」「ダウンロード」「アプリケーション」などの場所にすぐアクセスできます。Windowsの「エクスプローラー」に相当します。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Folder</div>
+            <div class="gloss-ja">フォルダ</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">macOS</div>
+            <div class="gloss-one">ファイルをまとめて入れておく「入れ物」</div>
+            <div class="gloss-desc">現実の書類ケースと同じ考え方です。Claude Codeに作業させるときは「このフォルダの中を見てね」と指定します（Select folder）。そのため、ワークショップ用の作業フォルダを1つ作っておくのがおすすめです。</div>
+          </div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-term">
+            <div class="gloss-en">Mission Control</div>
+            <div class="gloss-ja">ミッションコントロール</div>
+          </div>
+          <div class="gloss-body">
+            <div class="gloss-tag web">macOS</div>
+            <div class="gloss-one">開いているウィンドウを一覧表示する機能</div>
+            <div class="gloss-desc">F3キーで開きます。F3キーがない機種（Touch Bar搭載モデル等）では、トラックパッドで「3本指を上にスワイプ」または「Control + ↑」で開けます。</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- グループ②: セキュリティ・プライバシー -->
     <div style="margin-bottom:32px;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
@@ -3994,6 +4204,63 @@
     <div class="sec-eyebrow">Step 05 ／ AIに指示する</div>
     <div class="sec-title">Claude Codeへの指示テンプレ</div>
     <p class="sec-desc">穴埋めしてコピペするだけでLPが完成します。当日はこのテンプレを使います。</p>
+
+    <!-- ▼ 役割設定プロンプト（2026/4/18ワークショップ振り返りで追加） -->
+    <div class="card" style="border:1px solid var(--orange-border);background:var(--orange-dim);">
+      <div class="card-head">
+        <div class="card-num" style="background:var(--orange);color:#fff;border:none;">★</div>
+        <div class="card-title">まず使える「魔法の一文」 ／ 役割を決めるだけで精度が上がる</div>
+      </div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+        Claude Codeへの最初の一文に<strong style="color:var(--black);">「あなたは〇〇の凄腕〜です」</strong>と役割を伝えるだけで、提案の質がぐっと上がります。
+      </p>
+
+      <!-- テンプレート本体 -->
+      <div style="background:#1a1d2e;color:#e8ecf7;padding:18px 22px;border-radius:10px;font-size:13px;line-height:2;margin-bottom:16px;font-family:'Noto Sans JP',sans-serif;">
+        あなたは<span style="color:#fbbf24;font-weight:600;">〇〇</span>の凄腕<span style="color:#fbbf24;font-weight:600;">△△</span>です。<br>
+        <br>
+        【お願いしたいこと】<br>
+        <span style="color:#a0e7c5;">（何を作ってほしいか）</span><br>
+        <br>
+        【ターゲット】<br>
+        <span style="color:#a0e7c5;">（誰に向けた内容か）</span><br>
+        <br>
+        【トーン・雰囲気】<br>
+        <span style="color:#a0e7c5;">（やわらかい／上品／元気　など）</span><br>
+        <br>
+        【含めたい要素】<br>
+        <span style="color:#a0e7c5;">（箇条書きで）</span>
+      </div>
+
+      <!-- 具体例 -->
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">使用例</div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-size:13px;color:var(--gray-mid);line-height:2;">
+        あなたは<strong style="color:var(--black);">女性起業家向けLP制作の凄腕デザイナー</strong>です。<br>
+        <br>
+        【お願いしたいこと】<br>
+        40代女性起業家向けのヨガサロンのLPを1枚のHTMLで作ってください。<br>
+        <br>
+        【ターゲット】<br>
+        忙しい日々に疲れを感じている40代の働く女性<br>
+        <br>
+        【トーン・雰囲気】<br>
+        ナチュラルで癒し系、アースカラーの配色<br>
+        <br>
+        【含めたい要素】<br>
+        ・ファーストビュー（キャッチコピー + CTAボタン）<br>
+        ・お悩み共感セクション<br>
+        ・サービス内容<br>
+        ・お客様の声<br>
+        ・料金案内<br>
+        ・申し込みフォーム
+      </div>
+
+      <!-- なぜ効くのか -->
+      <div style="margin-top:16px;padding:14px 16px;background:var(--beige);border-radius:8px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+        <strong style="color:var(--black);">なぜ役割を伝えるといい？</strong><br>
+        AIは「どの視点で考えればいいか」がはっきりすると、的外れな提案が減ります。「デザイナーとして」「コピーライターとして」「SEOライターとして」など、依頼内容に合わせて役割を変えてみてください。
+      </div>
+    </div>
 
     <!-- 日本語指示ガイド -->
     <div class="card">

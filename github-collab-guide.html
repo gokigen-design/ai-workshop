@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHubで一緒にファイルをいじる方法</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #C96A3A;
+      --orange-dim: rgba(201,106,58,0.09);
+      --orange-border: rgba(201,106,58,0.28);
+      --beige: #F5EFE4;
+      --beige-mid: #EDE4D6;
+      --white: #FAF8F5;
+      --black: #1A1A1A;
+      --gray: #7A7068;
+      --gray-lt: #A09088;
+      --border: #E4DDD4;
+      --green: #3A9C6A;
+      --green-dim: rgba(58,156,106,0.09);
+      --blue: #3A6AC9;
+      --blue-dim: rgba(58,106,201,0.09);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* スライド形式 */
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .slide:last-child { border-bottom: none; }
+
+    .slide-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--orange);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .slide-title {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .slide-title em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .slide-lead {
+      font-size: 15px;
+      color: var(--gray);
+      margin-bottom: 48px;
+      max-width: 560px;
+      line-height: 1.9;
+    }
+
+    /* 図解エリア */
+    .diagram {
+      background: var(--beige);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px;
+      margin-bottom: 32px;
+    }
+
+    /* コード */
+    .code-block {
+      background: #1A1A1A;
+      border-radius: 10px;
+      padding: 20px 24px;
+      font-family: 'DM Sans', 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 2;
+      color: #F5EFE4;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .code-block .comment {
+      color: #7A7068;
+      font-size: 12px;
+    }
+
+    .code-block .cmd {
+      color: #E07A52;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      color: #A09088;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover { color: #FAF8F5; }
+
+    /* ステップ */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step-row {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+
+    .step-row:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 19px; top: 44px; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .step-dot {
+      width: 40px; height: 40px;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--orange);
+      flex-shrink: 0;
+      background: var(--white);
+    }
+
+    .step-body { padding: 8px 0 36px; }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.85;
+    }
+
+    /* タグ */
+    .tag {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .tag-aya { background: var(--orange-dim); color: var(--orange); }
+    .tag-client { background: var(--blue-dim); color: var(--blue); }
+    .tag-both { background: var(--green-dim); color: var(--green); }
+
+    /* カード */
+    .card-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .card-head {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-body {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    /* チェックリスト */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .dot {
+      width: 7px; height: 7px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* callout */
+    .callout {
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.85;
+      margin-top: 24px;
+    }
+
+    .callout strong { color: var(--black); }
+
+    /* ナビ（固定） */
+    .nav-dots {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .nav-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .nav-dot.active {
+      background: var(--orange);
+      transform: scale(1.3);
+    }
+
+    @media (max-width: 640px) {
+      .slide { padding: 48px 20px; }
+      .card-row { grid-template-columns: 1fr; }
+      .nav-dots { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ナビドット -->
+<div class="nav-dots" id="nav-dots"></div>
+
+<!-- ═══ スライド 1: タイトル ═══ -->
+<section class="slide" id="slide-1">
+  <div class="slide-num">GitHub 共同編集ガイド</div>
+  <h1 class="slide-title">クライアントと<br><em>同じファイルを</em><br>一緒にいじる方法</h1>
+  <p class="slide-lead">GitHubを使えば、離れた場所にいる人と同じファイルを安全に編集できます。このガイドで全体の流れを掴みましょう。</p>
+
+  <!-- 図解: 全体イメージ -->
+  <div class="diagram">
+    <svg viewBox="0 0 700 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:0 auto;">
+      <!-- あや -->
+      <rect x="20" y="70" width="140" height="80" rx="12" fill="white" stroke="#E4DDD4" stroke-width="1.5"/>
+      <circle cx="90" cy="96" r="18" fill="#F5EFE4" stroke="#C96A3A" stroke-width="1.5"/>
+      <text x="90" y="101" text-anchor="middle" font-family="Noto Sans JP" font-size="13" fill="#C96A3A" font-weight="500">あや</text>
+      <text x="90" y="130" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#7A7068">Claude Code</text>
+      <text x="90" y="145" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#7A7068">で編集</text>
+
+      <!-- 矢印 あや→GitHub -->
+      <path d="M165 110 L240 110" stroke="#C96A3A" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <polygon points="240,105 252,110 240,115" fill="#C96A3A"/>
+      <text x="203" y="103" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#C96A3A" letter-spacing="0.05em">push</text>
+
+      <!-- GitHub -->
+      <rect x="255" y="55" width="190" height="110" rx="14" fill="#F5EFE4" stroke="#C96A3A" stroke-width="1.5"/>
+      <text x="350" y="90" text-anchor="middle" font-family="DM Sans" font-size="13" fill="#C96A3A" font-weight="600" letter-spacing="0.05em">GITHUB</text>
+      <text x="350" y="112" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#7A7068">インターネット上の</text>
+      <text x="350" y="128" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#7A7068">共有フォルダ</text>
+      <rect x="290" y="140" width="120" height="16" rx="4" fill="white" stroke="#E4DDD4"/>
+      <text x="350" y="152" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#A09088">preparation.html</text>
+
+      <!-- 矢印 GitHub→クライアント -->
+      <path d="M450 110 L525 110" stroke="#3A6AC9" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <polygon points="525,105 537,110 525,115" fill="#3A6AC9"/>
+      <text x="488" y="103" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#3A6AC9" letter-spacing="0.05em">pull</text>
+
+      <!-- クライアント -->
+      <rect x="540" y="70" width="140" height="80" rx="12" fill="white" stroke="#E4DDD4" stroke-width="1.5"/>
+      <circle cx="610" cy="96" r="18" fill="#EDF1FB" stroke="#3A6AC9" stroke-width="1.5"/>
+      <text x="610" y="101" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#3A6AC9" font-weight="500">ゆみさん</text>
+      <text x="610" y="130" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#7A7068">Claude Code</text>
+      <text x="610" y="145" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#7A7068">で編集</text>
+
+      <!-- 双方向矢印の説明 -->
+      <text x="350" y="200" text-anchor="middle" font-family="Noto Sans JP" font-size="12" fill="#A09088">どちらが変更しても、GitHubを通じて相手に届く</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ スライド 2: GitHubとは ═══ -->
+<section class="slide" id="slide-2">
+  <div class="slide-num">01 — GitHubとは</div>
+  <h2 class="slide-title">GitHubは<br>「<em>インターネット上の共有フォルダ</em>」</h2>
+  <p class="slide-lead">Dropboxや共有Googleドライブに近いイメージです。ただしファイルの「変更履歴」も全部残ります。</p>
+
+  <div class="card-row">
+    <div class="card">
+      <div class="card-head">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="3" stroke="#C96A3A" stroke-width="1.3"/><path d="M6 7h8M6 10h5" stroke="#C96A3A" stroke-width="1.3" stroke-linecap="round"/></svg>
+        普通のフォルダと同じこと
+      </div>
+      <div class="card-body">ファイルを入れる・取り出す・編集する。基本的な操作はフォルダと同じです。</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#C96A3A" stroke-width="1.3"/><path d="M10 6v4l3 2" stroke="#C96A3A" stroke-width="1.3" stroke-linecap="round"/></svg>
+        変更履歴が残る
+      </div>
+      <div class="card-body">「誰が・いつ・何を変えたか」がすべて記録されます。間違えても前の状態に戻せます。</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="7" cy="10" r="3" stroke="#C96A3A" stroke-width="1.3"/><circle cx="15" cy="6" r="2.5" stroke="#C96A3A" stroke-width="1.3"/><circle cx="15" cy="14" r="2.5" stroke="#C96A3A" stroke-width="1.3"/><path d="M10 10 L12.5 7M10 10 L12.5 13" stroke="#C96A3A" stroke-width="1.3"/></svg>
+        複数人で使える
+      </div>
+      <div class="card-body">Collaborator（共同作業者）として招待した人だけが編集できます。</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="#C96A3A" stroke-width="1.3"/><path d="M7 10h6M10 7v6" stroke="#C96A3A" stroke-width="1.3" stroke-linecap="round"/></svg>
+        無料で使える
+      </div>
+      <div class="card-body">基本機能は無料。プライベート（非公開）リポジトリも無料で作れます。</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>合言葉：</strong>「GitHubにpushする」＝「保存してみんなと共有する」<br>
+    「GitHubからcloneする」＝「共有フォルダを自分のPCにコピーする」
+  </div>
+</section>
+
+<!-- ═══ スライド 3: 招待する側の手順 ═══ -->
+<section class="slide" id="slide-3">
+  <div class="slide-num">02 — 招待する側（あや）の手順</div>
+  <h2 class="slide-title"><em>一緒に編集したい人</em>を<br>招待する</h2>
+  <p class="slide-lead">GitHubの設定画面から相手を招待するだけ。ここはブラウザ操作のみで完結します。</p>
+
+  <div class="tag tag-aya">あやがやること</div>
+  <div class="steps">
+    <div class="step-row">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <div class="step-title">GitHubでリポジトリを開く</div>
+        <div class="step-desc">github.com → 対象のリポジトリ（例：gokigen-design/ai-workshop）を開く</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <div class="step-title">Settings → Collaborators を開く</div>
+        <div class="step-desc">上部タブの「Settings」→ 左メニュー「Collaborators（協力者）」をクリック</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <div class="step-title">「人を追加する」→ ユーザー名を入力</div>
+        <div class="step-desc">相手のGitHubユーザー名を入力して選択 → 「Add」をクリック</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-dot">4</div>
+      <div class="step-body">
+        <div class="step-title">相手に「招待メール送ったよ」と連絡する</div>
+        <div class="step-desc">GitHubから招待メールが自動で届きます。LINEで一言「承認してね」と送るとスムーズ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ スライド 4: 招待された側の手順 ═══ -->
+<section class="slide" id="slide-4">
+  <div class="slide-num">03 — 招待された側（クライアント）の手順</div>
+  <h2 class="slide-title">招待を受け取ったら<br><em>自分のPCにコピーする</em></h2>
+  <p class="slide-lead">「clone（クローン）」とは、GitHubのフォルダを自分のパソコンにコピーすることです。1回やるだけです。</p>
+
+  <div class="tag tag-client">クライアント・チームがやること</div>
+  <div class="steps">
+    <div class="step-row">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <div class="step-title">招待メールを承認する</div>
+        <div class="step-desc">GitHubからのメールを開いて「Accept invitation」をクリック</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <div class="step-title">ターミナルを開いてcloneする</div>
+        <div class="step-desc">以下のコマンドをコピペして実行。フォルダが自動で作られます。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">コピー</button>
+    <span class="comment"># 共有フォルダを自分のPCにコピーする（1回だけ）</span><br>
+    <span class="cmd">git clone</span> https://github.com/gokigen-design/ai-workshop.git
+  </div>
+
+  <div class="steps" style="margin-top:24px;">
+    <div class="step-row">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <div class="step-title">フォルダに移動してClaude Codeを起動</div>
+        <div class="step-desc">cloneしたフォルダの中に入って、Claude Codeを起動します</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">コピー</button>
+    <span class="comment"># フォルダに入る</span><br>
+    <span class="cmd">cd</span> ai-workshop<br>
+    <span class="comment"># Claude Codeを起動</span><br>
+    <span class="cmd">claude</span>
+  </div>
+</section>
+
+<!-- ═══ スライド 5: 編集してpushする ═══ -->
+<section class="slide" id="slide-5">
+  <div class="slide-num">04 — 編集して保存・共有する</div>
+  <h2 class="slide-title">変更したら<br>「<em>push</em>」で全員に届ける</h2>
+  <p class="slide-lead">Claude Codeで編集したら、pushでGitHubに送ります。これが「保存して共有」の操作です。</p>
+
+  <div class="tag tag-both">あや・クライアント共通</div>
+
+  <!-- 図解: 編集の流れ -->
+  <div class="diagram" style="margin-bottom:28px;">
+    <svg viewBox="0 0 660 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:660px;display:block;margin:0 auto;">
+      <rect x="0" y="20" width="120" height="60" rx="10" fill="white" stroke="#E4DDD4" stroke-width="1.2"/>
+      <text x="60" y="47" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#C96A3A" font-weight="500">Claude Code</text>
+      <text x="60" y="65" text-anchor="middle" font-family="Noto Sans JP" font-size="10" fill="#7A7068">で編集する</text>
+
+      <path d="M126 50 L180 50" stroke="#C96A3A" stroke-width="1.5"/>
+      <polygon points="180,45 192,50 180,55" fill="#C96A3A"/>
+      <text x="159" y="43" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#C96A3A">git add</text>
+
+      <rect x="195" y="20" width="120" height="60" rx="10" fill="white" stroke="#E4DDD4" stroke-width="1.2"/>
+      <text x="255" y="47" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#C96A3A" font-weight="500">ステージング</text>
+      <text x="255" y="65" text-anchor="middle" font-family="Noto Sans JP" font-size="10" fill="#7A7068">「保存する準備」</text>
+
+      <path d="M321 50 L375 50" stroke="#C96A3A" stroke-width="1.5"/>
+      <polygon points="375,45 387,50 375,55" fill="#C96A3A"/>
+      <text x="354" y="43" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#C96A3A">git commit</text>
+
+      <rect x="390" y="20" width="120" height="60" rx="10" fill="white" stroke="#E4DDD4" stroke-width="1.2"/>
+      <text x="450" y="47" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#C96A3A" font-weight="500">コミット</text>
+      <text x="450" y="65" text-anchor="middle" font-family="Noto Sans JP" font-size="10" fill="#7A7068">「変更を記録」</text>
+
+      <path d="M516 50 L552 50" stroke="#C96A3A" stroke-width="1.5"/>
+      <polygon points="552,45 564,50 552,55" fill="#C96A3A"/>
+      <text x="540" y="43" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#C96A3A">git push</text>
+
+      <rect x="567" y="20" width="88" height="60" rx="10" fill="#F5EFE4" stroke="#C96A3A" stroke-width="1.5"/>
+      <text x="611" y="47" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#C96A3A" font-weight="500">GitHub</text>
+      <text x="611" y="65" text-anchor="middle" font-family="Noto Sans JP" font-size="10" fill="#C96A3A">に届く！</text>
+    </svg>
+  </div>
+
+  <div class="code-block">
+    <button class="copy-btn" onclick="copyCode(this)">コピー</button>
+    <span class="comment"># 変更したファイルを指定（preparation.htmlの場合）</span><br>
+    <span class="cmd">git add</span> preparation.html<br><br>
+    <span class="comment"># 「何を変えたか」のメモをつけて記録</span><br>
+    <span class="cmd">git commit -m</span> "〇〇を修正した"<br><br>
+    <span class="comment"># GitHubに送って全員と共有</span><br>
+    <span class="cmd">git push</span>
+  </div>
+
+  <div class="callout">
+    <strong>覚え方：</strong><br>
+    add＝「このファイルを持っていく」<br>
+    commit＝「メモと一緒にカバンに詰める」<br>
+    push＝「GitHubに送る」
+  </div>
+</section>
+
+<!-- ═══ スライド 6: コマンド早見表 ═══ -->
+<section class="slide" id="slide-6">
+  <div class="slide-num">05 — まとめ</div>
+  <h2 class="slide-title">コマンド<em>早見表</em></h2>
+  <p class="slide-lead">この4つだけ覚えれば大丈夫。迷ったらここに戻ってきてください。</p>
+
+  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+    <div style="display:flex;gap:16px;align-items:center;padding:18px 20px;background:var(--beige);border-radius:10px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--orange);min-width:120px;">git clone</div>
+      <div style="font-size:13px;color:var(--gray);">GitHubのフォルダを自分のPCにコピーする<span style="color:var(--gray-lt);margin-left:8px;">（初回1回だけ）</span></div>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;padding:18px 20px;background:var(--beige);border-radius:10px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--orange);min-width:120px;">git add</div>
+      <div style="font-size:13px;color:var(--gray);">保存するファイルを選ぶ</div>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;padding:18px 20px;background:var(--beige);border-radius:10px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--orange);min-width:120px;">git commit</div>
+      <div style="font-size:13px;color:var(--gray);">「何を変えたか」のメモをつけて記録する</div>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;padding:18px 20px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:10px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--orange);min-width:120px;">git push</div>
+      <div style="font-size:13px;color:var(--gray);">GitHubに送って全員と共有する<span style="color:var(--orange);margin-left:8px;font-weight:500;">← 一番大事</span></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>注意点：</strong>同時に同じファイルを編集するとぶつかる（コンフリクト）ことがあります。<br>
+    「私が今編集するね」とLINEで一言声かけし合うのがベストです。
+  </div>
+</section>
+
+<script>
+  // ナビドット生成
+  const slides = document.querySelectorAll('.slide');
+  const navDots = document.getElementById('nav-dots');
+
+  slides.forEach((slide, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => slide.scrollIntoView({ behavior: 'smooth' });
+    navDots.appendChild(dot);
+  });
+
+  // スクロールで現在スライドを検出
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(slides).indexOf(entry.target);
+        document.querySelectorAll('.nav-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === idx);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(s => observer.observe(s));
+
+  // コピー
+  function copyCode(btn) {
+    const block = btn.closest('.code-block');
+    const text = block.innerText.replace('コピー', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '完了';
+      setTimeout(() => btn.textContent = 'コピー', 2000);
+    });
+  }
+</script>
+
+</body>
+</html>

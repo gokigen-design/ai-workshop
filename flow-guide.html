@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>LP公開までの流れ｜AIワークショップ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #2C2C2C;
+    --gray-mid: #7A7A7A;
+    --gray-lt: #B0B0B0;
+    --beige: #FAF5EC;
+    --orange: #D2691E;
+    --orange-dim: #FFF5EB;
+    --orange-border: #E8D5C0;
+    --border: #EDEAE5;
+    --blue: #4A6FA5;
+    --blue-lt: #EDF2F8;
+    --green: #5A9E6F;
+    --green-lt: #EDF8F0;
+    --purple: #7B6BA5;
+    --purple-lt: #F3F0F8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    background: var(--beige);
+    color: var(--black);
+    line-height: 1.8;
+    padding: 40px 20px 80px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .header-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+  .header-sub {
+    font-size: 14px;
+    color: var(--gray-mid);
+  }
+
+  /* ── Flow Diagram ── */
+  .flow-section {
+    margin-bottom: 50px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--orange);
+    display: inline-block;
+  }
+
+  .flow-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .flow-step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    position: relative;
+  }
+
+  .flow-icon-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flow-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .flow-line {
+    width: 2px;
+    flex-grow: 1;
+    min-height: 20px;
+  }
+
+  .flow-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+
+  .flow-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .flow-card-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .flow-card-desc {
+    font-size: 13px;
+    color: var(--gray-mid);
+    line-height: 1.9;
+  }
+
+  .flow-card-example {
+    background: var(--beige);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.7;
+  }
+
+  /* Colors per step */
+  .step-pc .flow-icon { background: var(--orange-dim); border: 2px solid var(--orange); }
+  .step-pc .flow-line { background: var(--orange); }
+  .step-pc .flow-card-sub { color: var(--orange); }
+  .step-pc .flow-card-title { color: var(--orange); }
+
+  .step-github .flow-icon { background: var(--blue-lt); border: 2px solid var(--blue); }
+  .step-github .flow-line { background: var(--blue); }
+  .step-github .flow-card-sub { color: var(--blue); }
+  .step-github .flow-card-title { color: var(--blue); }
+
+  .step-vercel .flow-icon { background: var(--purple-lt); border: 2px solid var(--purple); }
+  .step-vercel .flow-line { background: var(--purple); }
+  .step-vercel .flow-card-sub { color: var(--purple); }
+  .step-vercel .flow-card-title { color: var(--purple); }
+
+  .step-web .flow-icon { background: var(--green-lt); border: 2px solid var(--green); }
+  .step-web .flow-card-sub { color: var(--green); }
+  .step-web .flow-card-title { color: var(--green); }
+
+  /* ── Arrow between steps ── */
+  .flow-arrow {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+  }
+  .flow-arrow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flow-arrow-line {
+    width: 2px;
+    height: 30px;
+  }
+  .flow-arrow-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin: 4px 0;
+  }
+
+  .arrow-orange .flow-arrow-line { background: var(--orange); }
+  .arrow-orange .flow-arrow-label { background: var(--orange-dim); color: var(--orange); }
+
+  .arrow-blue .flow-arrow-line { background: var(--blue); }
+  .arrow-blue .flow-arrow-label { background: var(--blue-lt); color: var(--blue); }
+
+  .arrow-purple .flow-arrow-line { background: var(--purple); }
+  .arrow-purple .flow-arrow-label { background: var(--purple-lt); color: var(--purple); }
+
+  /* ── Summary Card ── */
+  .summary-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    margin-bottom: 30px;
+  }
+  .summary-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .summary-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label {
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .summary-value {
+    color: var(--gray-mid);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  /* ── Analogy Section ── */
+  .analogy-card {
+    background: linear-gradient(135deg, #FAF5EC 0%, #F5EFE4 100%);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--orange-border);
+    margin-bottom: 40px;
+  }
+  .analogy-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .analogy-grid {
+    display: grid;
+    grid-template-columns: 1fr 30px 1fr 30px 1fr;
+    gap: 8px;
+    align-items: center;
+  }
+  .analogy-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .analogy-icon { font-size: 28px; margin-bottom: 6px; }
+  .analogy-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .analogy-desc { font-size: 11px; color: var(--gray-mid); line-height: 1.6; }
+  .analogy-arrow { text-align: center; font-size: 18px; color: var(--gray-lt); }
+
+  /* ── Workshop Flow ── */
+  .ws-timeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .ws-step {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .ws-step.active {
+    border-color: var(--orange);
+    background: var(--orange-dim);
+  }
+  .ws-num {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--gray-lt);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+  }
+  .ws-step.active .ws-num { background: var(--orange); }
+  .ws-name { font-size: 11px; font-weight: 700; line-height: 1.5; }
+  .ws-tool { font-size: 10px; color: var(--gray-mid); margin-top: 4px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .analogy-grid {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .analogy-arrow { transform: rotate(90deg); font-size: 14px; }
+    .analogy-item { padding: 14px; }
+    .analogy-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+    }
+    .analogy-arrow {
+      transform: rotate(90deg);
+      padding: 2px 0;
+    }
+    .ws-timeline { grid-template-columns: 1fr 1fr; }
+    .ws-timeline .ws-step:last-child { grid-column: span 2; }
+    body { padding: 24px 16px 60px; }
+    .header-title { font-size: 22px; }
+    .flow-card-example { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ━━━ Header ━━━ -->
+<div class="header">
+  <div class="header-eyebrow">How It Works</div>
+  <div class="header-title">LP公開までの全体像</div>
+  <div class="header-sub">「自分のパソコンで作ったLPが、どうやってインターネットに公開されるの？」を図解します</div>
+</div>
+
+<!-- ━━━ たとえ話 ━━━ -->
+<div class="analogy-card">
+  <div class="analogy-title">まずはイメージから</div>
+  <div style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.8;">
+    3つの場所を順番に通るだけ。料理に例えるとこんな感じです。
+  </div>
+  <div class="analogy-grid">
+    <div class="analogy-item">
+      <div class="analogy-icon">&#x1F468;&#x200D;&#x1F373;</div>
+      <div class="analogy-name">自分のキッチン</div>
+      <div class="analogy-desc">あなたのパソコン<br>ここでLPを作る</div>
+    </div>
+    <div class="analogy-arrow">&rarr;</div>
+    <div class="analogy-item">
+      <div class="analogy-icon">&#x1F4E6;</div>
+      <div class="analogy-name">冷蔵倉庫</div>
+      <div class="analogy-desc">GitHub<br>作ったものを保管・共有</div>
+    </div>
+    <div class="analogy-arrow">&rarr;</div>
+    <div class="analogy-item">
+      <div class="analogy-icon">&#x1F37D;</div>
+      <div class="analogy-name">レストランのテーブル</div>
+      <div class="analogy-desc">Vercel<br>お客様に届ける（公開）</div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━ メインフロー図 ━━━ -->
+<div class="flow-section">
+  <div class="section-title">全体の流れ</div>
+
+  <!-- STEP 1: PC -->
+  <div class="flow-step step-pc">
+    <div class="flow-icon-col">
+      <div class="flow-icon">&#x1F4BB;</div>
+      <div class="flow-line"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-sub">Your PC</div>
+      <div class="flow-card-title">あなたのパソコン</div>
+      <div class="flow-card-desc">
+        Claudeに話しかけて、LPのHTMLファイルを作ります。<br>
+        できたファイルはパソコンの中に保存されます。<br>
+        <strong style="color:var(--black);">この時点では自分しか見れません。</strong>
+      </div>
+      <div class="flow-card-example">
+        <strong>使うもの：</strong> Claude Desktop アプリ<br>
+        <strong>できるもの：</strong> HTMLファイル（LPの設計図）
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow 1 -->
+  <div class="flow-arrow arrow-orange">
+    <div class="flow-arrow-col">
+      <div class="flow-arrow-line"></div>
+      <div class="flow-arrow-label">git push（預ける）</div>
+      <div class="flow-arrow-line"></div>
+    </div>
+    <div style="display:flex;align-items:center;">
+      <div style="font-size:12px;color:var(--gray-mid);background:#fff;border-radius:10px;padding:10px 16px;border:1px solid var(--border);line-height:1.7;">
+        Claudeが自動でやってくれます。<br>あなたが操作する必要はありません。
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: GitHub -->
+  <div class="flow-step step-github">
+    <div class="flow-icon-col">
+      <div class="flow-icon">&#x1F4E6;</div>
+      <div class="flow-line"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-sub">GitHub</div>
+      <div class="flow-card-title">GitHub（ギットハブ）</div>
+      <div class="flow-card-desc">
+        インターネット上のファイル倉庫。<br>
+        作ったコードを安全に保管して、他の人と共有できます。
+      </div>
+      <div class="flow-card-example">
+        <strong>役割 1：</strong> バックアップ（PCが壊れても大丈夫）<br>
+        <strong>役割 2：</strong> 共有（チームメイトも同じファイルを見れる）<br>
+        <strong>役割 3：</strong> 履歴（いつ何を変えたか全部残る）
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow 2 -->
+  <div class="flow-arrow arrow-blue">
+    <div class="flow-arrow-col">
+      <div class="flow-arrow-line"></div>
+      <div class="flow-arrow-label">自動デプロイ（公開）</div>
+      <div class="flow-arrow-line"></div>
+    </div>
+    <div style="display:flex;align-items:center;">
+      <div style="font-size:12px;color:var(--gray-mid);background:#fff;border-radius:10px;padding:10px 16px;border:1px solid var(--border);line-height:1.7;">
+        GitHubに届いたら、Vercelが自動で検知。<br>何もしなくてOK。
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: Vercel -->
+  <div class="flow-step step-vercel">
+    <div class="flow-icon-col">
+      <div class="flow-icon">&#x25B2;</div>
+      <div class="flow-line"></div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-sub">Vercel</div>
+      <div class="flow-card-title">Vercel（バーセル）</div>
+      <div class="flow-card-desc">
+        GitHubに預けたファイルを、インターネットに公開してくれるサービス。<br>
+        GitHubを常に見張っていて、新しいコードが来たら自動で公開します。
+      </div>
+      <div class="flow-card-example">
+        <strong>やること：</strong> HTMLファイルをURLで見れるようにする<br>
+        <strong>速さ：</strong> pushしてから約10秒で反映
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrow 3 -->
+  <div class="flow-arrow arrow-purple">
+    <div class="flow-arrow-col">
+      <div class="flow-arrow-line"></div>
+      <div class="flow-arrow-label">完成！</div>
+      <div class="flow-arrow-line"></div>
+    </div>
+    <div></div>
+  </div>
+
+  <!-- STEP 4: Public -->
+  <div class="flow-step step-web">
+    <div class="flow-icon-col">
+      <div class="flow-icon">&#x1F310;</div>
+    </div>
+    <div class="flow-card" style="border-color:var(--green);background:var(--green-lt);">
+      <div class="flow-card-sub">Your Website</div>
+      <div class="flow-card-title">あなたのLPが公開！</div>
+      <div class="flow-card-desc">
+        世界中の誰でもアクセスできる、あなただけのURLが発行されます。<br>
+        スマホでもPCでも見れます。
+      </div>
+      <div class="flow-card-example" style="background:#fff;">
+        <strong>URL例：</strong> https://あなたの名前.vercel.app
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━ ワークショップでの流れ ━━━ -->
+<div class="flow-section">
+  <div class="section-title">ワークショップ当日の流れ</div>
+  <div style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.8;">
+    5つのステップでLPを完成させます。Claudeが全部手伝ってくれるので、コードを書く必要はありません。
+  </div>
+  <div class="ws-timeline">
+    <div class="ws-step">
+      <div class="ws-num">1</div>
+      <div class="ws-name">セットアップ</div>
+      <div class="ws-tool">Claude Desktop<br>を準備</div>
+    </div>
+    <div class="ws-step active">
+      <div class="ws-num">2</div>
+      <div class="ws-name">内容を<br>整理する</div>
+      <div class="ws-tool">LPの中身を<br>考える</div>
+    </div>
+    <div class="ws-step active">
+      <div class="ws-num">3</div>
+      <div class="ws-name">デザインを<br>学ぶ</div>
+      <div class="ws-tool">色・フォント<br>レイアウト</div>
+    </div>
+    <div class="ws-step">
+      <div class="ws-num">4</div>
+      <div class="ws-name">AIに<br>指示する</div>
+      <div class="ws-tool">Claudeに<br>貼り付けるだけ</div>
+    </div>
+    <div class="ws-step">
+      <div class="ws-num">5</div>
+      <div class="ws-name">公開する</div>
+      <div class="ws-tool">Vercelで<br>URLを発行</div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--orange-dim);border-left:3px solid var(--orange);padding:14px 18px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+    <strong style="color:var(--black);">STEP 2・3 はキックオフで紹介します。</strong><br>
+    4/18までに素材を集めておくと、当日のLP完成度がグッと上がります！
+  </div>
+</div>
+
+<!-- ━━━ 用語まとめ ━━━ -->
+<div class="flow-section">
+  <div class="section-title">用語まとめ</div>
+  <div class="summary-card">
+    <div class="summary-row">
+      <div class="summary-label" style="color:var(--orange);">HTML</div>
+      <div class="summary-value">Webページの設計図。Claudeが書いてくれるので、あなたが書く必要はありません。</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-label" style="color:var(--orange);">git push</div>
+      <div class="summary-value">「自分のPCからGitHubにファイルを預ける」こと。Claudeが自動で行います。</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-label" style="color:var(--blue);">GitHub</div>
+      <div class="summary-value">インターネット上のファイル倉庫。バックアップ・共有・履歴管理ができます。</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-label" style="color:var(--purple);">Vercel</div>
+      <div class="summary-value">GitHubのファイルをインターネットに自動公開してくれるサービス。pushしたら約10秒で反映。</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-label" style="color:var(--purple);">デプロイ</div>
+      <div class="summary-value">「公開する」のIT用語。deploy = 配置する。ファイルをインターネットに置くこと。</div>
+    </div>
+    <div class="summary-row">
+      <div class="summary-label" style="color:var(--green);">URL</div>
+      <div class="summary-value">Webページの住所。これを共有すれば誰でもあなたのLPを見れます。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━ FAQ ━━━ -->
+<div class="flow-section">
+  <div class="section-title">よくある質問</div>
+  <div class="summary-card">
+    <div class="summary-row" style="grid-template-columns:1fr;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;">Q. 自分でコードを書く必要はある？</div>
+        <div class="summary-value">ありません。Claudeに日本語で話しかけるだけでHTMLファイルを作ってくれます。</div>
+      </div>
+    </div>
+    <div class="summary-row" style="grid-template-columns:1fr;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;">Q. GitHub / Vercelの操作は難しい？</div>
+        <div class="summary-value">Claudeが全部やってくれます。アカウント作成だけ事前に済ませておけばOKです。</div>
+      </div>
+    </div>
+    <div class="summary-row" style="grid-template-columns:1fr;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;">Q. 公開した後に修正できる？</div>
+        <div class="summary-value">何度でもできます。Claudeに「ここ変えて」と言うだけで、修正→再公開まで自動です。</div>
+      </div>
+    </div>
+    <div class="summary-row" style="grid-template-columns:1fr;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;">Q. 公開したLPを消したい時は？</div>
+        <div class="summary-value">Vercelの管理画面から削除できます。講師に相談してください。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;font-size:11px;color:var(--gray-lt);margin-top:40px;">
+  AI Leader Camp 2026 ／ LP公開までの流れ
+</div>
+
+</body>
+</html>
