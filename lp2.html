@@ -4768,18 +4768,10 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroll-img"><img src="images/zoe-after.png" alt="ゾエさんの完成LP" loading="lazy"></div>
-          </div>
-        </div>
-        <div class="phone-label">CASE 04<span class="name">ゾエさん / 発達障害サポート</span></div>
-      </div>
-      <div class="swiper-slide">
-        <div class="phone-mock">
-          <div class="phone-screen">
             <iframe class="phone-iframe" src="https://petit-atelier.vercel.app/" loading="lazy" title="あゆみんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 05<span class="name">あゆみん / WEBデザイナー</span></div>
+        <div class="phone-label">CASE 04<span class="name">あゆみん / WEBデザイナー</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4787,7 +4779,7 @@
             <iframe class="phone-iframe" src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" title="ともみさんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 06<span class="name">ともみさん / イメージコンサル</span></div>
+        <div class="phone-label">CASE 05<span class="name">ともみさん / イメージコンサル</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4795,7 +4787,7 @@
             <iframe class="phone-iframe" src="https://lp-premiere-seminar.vercel.app/" loading="lazy" title="えびちゃんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 07<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
+        <div class="phone-label">CASE 06<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
       </div>
     </div>
   </div>
@@ -7020,13 +7012,14 @@
     if (typeof Swiper === 'undefined') return;
     new Swiper('.phone-swiper', {
       effect: 'coverflow',
-      grabCursor: true,
+      grabCursor: false,
       centeredSlides: true,
       slidesPerView: 'auto',
       spaceBetween: 30,
       loop: true,
       initialSlide: 0,
       speed: 700,
+      touchAngle: 35,
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
@@ -7043,6 +7036,10 @@
         768: {
           spaceBetween: 40,
         }
+      },
+      on: {
+        init() { this.slideToLoop(0, 0, false); },
+        afterInit() { this.slideToLoop(0, 0, false); }
       }
     });
 
