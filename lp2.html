@@ -2771,6 +2771,20 @@
     55%  { transform: translateY(-50%); }
     100% { transform: translateY(0); }
   }
+  /* 受講生LPのライブ埋め込み（スクロール可） */
+  .phone-scroller-iframe {
+    width: 1200px;
+    height: 2600px;
+    border: 0;
+    display: block;
+    transform: scale(0.235);
+    transform-origin: top left;
+    pointer-events: auto;
+    background: #fff;
+  }
+  @media (max-width: 640px) {
+    .phone-scroller-iframe { transform: scale(0.22); }
+  }
   /* プレースホルダ用背景（受講生画像未到着時） */
   .phone-scroller-inner.placeholder {
     height: 200%;
@@ -3642,8 +3656,32 @@
     display: block;
     transform: scale(0.205);
     transform-origin: top left;
-    pointer-events: none;
+    pointer-events: auto;
     background: #fff;
+  }
+  /* 長尺スクリーンショット画像をスマホ画面内でスクロール表示 */
+  .baof-phone-scroll-img {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border-radius: inherit;
+  }
+  .baof-phone-scroll-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .baof-phone-scroll-img::-webkit-scrollbar { width: 4px; }
+  .baof-phone-scroll-img::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.5); border-radius: 2px; }
+  /* BEFORE側の実画像 */
+  .baof-phone.before .baof-phone-screen img.baof-phone-before-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .baof-phone-badge {
     position: absolute;
@@ -4614,62 +4652,50 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroller">
-              <div class="phone-scroller-inner placeholder" style="background: linear-gradient(180deg,#ff6b9d 0%,#c084fc 25%,#0f172a 50%,#ec4899 75%,#0f172a 100%);"></div>
-            </div>
+            <iframe src="https://hanu-lp.vercel.app/?pc=1" loading="lazy" class="phone-scroller-iframe" title="ハヌさんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 01<span class="name">Aさん / ハンドメイド作家</span></div>
+        <div class="phone-label">CASE 01<span class="name">ハヌさん / ブランディングプロデューサー</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroller">
-              <div class="phone-scroller-inner placeholder" style="background: linear-gradient(180deg,#22d3ee 0%,#0ea5e9 25%,#6366f1 50%,#0f172a 75%,#a855f7 100%);"></div>
-            </div>
+            <iframe src="https://hana-okashi-lp.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="はなさんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 02<span class="name">Bさん / 料理講師</span></div>
+        <div class="phone-label">CASE 02<span class="name">はなさん / 焼き菓子作家</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroller">
-              <div class="phone-scroller-inner placeholder" style="background: linear-gradient(180deg,#f59e0b 0%,#ec4899 25%,#a855f7 50%,#0f172a 75%,#22d3ee 100%);"></div>
-            </div>
+            <iframe src="https://petit-atelier.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="あゆみんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 03<span class="name">Cさん / カラーセラピスト</span></div>
+        <div class="phone-label">CASE 03<span class="name">あゆみん / WEBデザイナー</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroller">
-              <div class="phone-scroller-inner placeholder" style="background: linear-gradient(180deg,#10b981 0%,#22d3ee 25%,#0f172a 50%,#c084fc 75%,#0f172a 100%);"></div>
-            </div>
+            <iframe src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="ともみさんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 04<span class="name">Dさん / コーチ</span></div>
+        <div class="phone-label">CASE 04<span class="name">ともみさん / イメージコンサル</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroller">
-              <div class="phone-scroller-inner placeholder" style="background: linear-gradient(180deg,#fb7185 0%,#f472b6 25%,#a855f7 50%,#0f172a 75%,#22d3ee 100%);"></div>
-            </div>
+            <iframe src="https://lp-premiere-seminar.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="えびちゃんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 05<span class="name">Eさん / ライター</span></div>
+        <div class="phone-label">CASE 05<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroller">
-              <div class="phone-scroller-inner placeholder" style="background: linear-gradient(180deg,#7c3aed 0%,#22d3ee 25%,#ec4899 50%,#0f172a 75%,#a855f7 100%);"></div>
-            </div>
+            <iframe src="https://sayan-lp.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="さーやんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 06<span class="name">Fさん / ヨガ講師</span></div>
+        <div class="phone-label">CASE 06<span class="name">さーやん / 自己理解コーチ</span></div>
       </div>
     </div>
   </div>
@@ -5670,22 +5696,20 @@
           </div>
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
-            <a href="https://hanu-lp.vercel.app/?pc=1" target="_blank" rel="noopener" class="baof-phone-link" aria-label="はぬさんの完成LPを開く">
-              <div class="baof-phone after">
-                <div class="baof-phone-screen">
-                  <iframe src="https://hanu-lp.vercel.app/?pc=1" loading="lazy" title="はぬさんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
-                  <span class="baof-phone-badge">TAP TO OPEN</span>
-                </div>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen">
+                <iframe src="https://hanu-lp.vercel.app/?pc=1" loading="lazy" title="ハヌさんの完成LP" class="baof-phone-iframe"></iframe>
+                <span class="baof-phone-badge">SCROLL</span>
               </div>
-            </a>
+            </div>
           </div>
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>はぬ</div></div>
+            <div class="baof-person-avatar"><div>ハヌ</div></div>
             <div>
-              <div class="baof-person-name">はぬさん（羽沼 景子）</div>
-              <div class="baof-person-role">PARTY PRODUCER / パーティープロデューサー</div>
+              <div class="baof-person-name">ハヌさん</div>
+              <div class="baof-person-role">ブランディングプロデューサー</div>
             </div>
           </div>
           <div class="baof-ba">
@@ -5699,11 +5723,6 @@
             そもそもAIも今何が流行っているのかも分からないし、パソコンも決して得意な方ではなかったけれど、<strong>こんな私でもクラウドコードでLPを作ることができました。</strong>設定に苦労したものの、そこを乗り越えると、あとは自分で表現したい世界をAIに伝えるだけで、こんなにもすごくできるのかっていうのを感動しました。<br><br>
             同時に、<strong>ハンズオンで実際一人一人に個別でアドバイス</strong>をしてくださって、私もそれを取り入れたらすごく素敵なサイトが出来上がり、自分の世界観も表現できたのもとっても嬉しいです。<br><br>
             機械音痴だったけど、すごいサイトができたっていうのはもちろんのこと、まず<strong>自分のデザインや自分のサービスについてちょっと深掘りする機会</strong>をいただけたのが、すごい嬉しかったです。事前キックオフで自分のサービスと向き合う時間が持てたのも、すごい良かったです。
-          </p>
-          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
-            <a href="https://hanu-lp.vercel.app/?pc=1" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(34,211,238,0.5); padding-bottom:2px;">
-              → はぬちゃんの完成LPを別タブで見る
-            </a>
           </p>
         </div>
       </div>
@@ -5719,7 +5738,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">焼き菓子の<br>次の展開へ</div>
+                <img src="images/hana-before.png" alt="はなさんのBEFORE" class="baof-phone-before-img">
               </div>
             </div>
           </div>
@@ -5729,14 +5748,12 @@
           </div>
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
-            <a href="https://hana-okashi-lp.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="はなさんの完成LPを開く">
-              <div class="baof-phone after">
-                <div class="baof-phone-screen">
-                  <iframe src="https://hana-okashi-lp.vercel.app/" loading="lazy" title="はなさんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
-                  <span class="baof-phone-badge">TAP TO OPEN</span>
-                </div>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen">
+                <iframe src="https://hana-okashi-lp.vercel.app/" loading="lazy" title="はなさんの完成LP" class="baof-phone-iframe"></iframe>
+                <span class="baof-phone-badge">SCROLL</span>
               </div>
-            </a>
+            </div>
           </div>
         </div>
         <div class="baof-body">
@@ -5759,11 +5776,6 @@
             今絶対に作らなきゃいけないLPがあったわけでは無いのですが、なんかやってみたい！と。思った以上の仕上がりの素晴らしいものが出来上がって本当に感激しています。<strong>自分だけでは一生作れなかった</strong>と思います。<br><br>
             この宿題をしている最中に講師とのセッションもあって、今後が明確になって、<strong>秋頃講座をはじめることに！</strong>お三方のサポート、アイディアをもらえて、周りの講座生さんとも教え合ったり、素晴らしい環境でした。<br><br>
             自分で作り上げて、形になっていくワクワク感、できた時の達成感。<strong>1日があっという間</strong>でした！
-          </p>
-          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
-            <a href="https://hana-okashi-lp.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(244,114,182,0.5); padding-bottom:2px;">
-              → はなさんの完成LPを別タブで見る
-            </a>
           </p>
         </div>
       </div>
@@ -5789,14 +5801,12 @@
           </div>
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
-            <a href="https://petit-atelier.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="あゆみんの完成LPを開く">
-              <div class="baof-phone after">
-                <div class="baof-phone-screen">
-                  <iframe src="https://petit-atelier.vercel.app/" loading="lazy" title="あゆみんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
-                  <span class="baof-phone-badge">TAP TO OPEN</span>
-                </div>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen">
+                <iframe src="https://petit-atelier.vercel.app/" loading="lazy" title="あゆみんの完成LP" class="baof-phone-iframe"></iframe>
+                <span class="baof-phone-badge">SCROLL</span>
               </div>
-            </a>
+            </div>
           </div>
         </div>
         <div class="baof-body">
@@ -5818,11 +5828,6 @@
             クラウドコードを導入することがまず分からなかったし、思ったよりも難しかったので、<strong>一人では導入がまずできなかった</strong>と思います。ハンズオンで教えてもらったのがとても心強かったので、<strong>これからは何でも作れそうな気がして</strong>なりません。<br><br>
             「ついていけるかな」と不安もありましたが、キックオフから当日まで手厚くサポートしてもらえ、すごくわかりやすいのと、そのための<strong>準備物を完璧に作ってくださっていた</strong>のがありがたかったです。<br><br>
             家だと仕事に追われて自分のことは後回しになりがちですが、この環境があったから集中できて、さらにみんなの制作も一緒に見ることができ学びが深まりました。<strong>AIに苦手意識がある人にこそおすすめなワークショップです！！</strong>
-          </p>
-          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
-            <a href="https://petit-atelier.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(192,132,252,0.5); padding-bottom:2px;">
-              → あゆみんの完成LPを別タブで見る
-            </a>
           </p>
         </div>
       </div>
@@ -5848,14 +5853,12 @@
           </div>
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
-            <a href="https://lp-fujiba-tomomi.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="ともみさんの完成LPを開く">
-              <div class="baof-phone after">
-                <div class="baof-phone-screen">
-                  <iframe src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" title="ともみさんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
-                  <span class="baof-phone-badge">TAP TO OPEN</span>
-                </div>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen">
+                <iframe src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" title="ともみさんの完成LP" class="baof-phone-iframe"></iframe>
+                <span class="baof-phone-badge">SCROLL</span>
               </div>
-            </a>
+            </div>
           </div>
         </div>
         <div class="baof-body">
@@ -5878,11 +5881,6 @@
             また、デザイン面でもプロの視点からサポートをいただけたことで、<strong>「どうすれば見てもらいやすいか」「どうすれば自分のサービスの魅力が伝わるか」</strong>といった部分まで具体的に学ぶことができました。以前よりもずっと伝わりやすいLPが作れたと実感しています。<br><br>
             私はイメコンなので、パッと見た時にどうやってわかりやすいサイトを作るかが分かりませんでした。アドバイスいただいた方法を試したら、<strong>もうそのサイトを見るだけですぐに想像をかきたてる</strong>ことができるサイトができたのがすごく良かったです。自分だけではこのアイデアは出なかったと思います。
           </p>
-          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
-            <a href="https://lp-fujiba-tomomi.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(244,114,182,0.5); padding-bottom:2px;">
-              → ともみさんの完成LPを別タブで見る
-            </a>
-          </p>
         </div>
       </div>
 
@@ -5897,7 +5895,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">バナーもLPも<br>外注…</div>
+                <img src="images/ebi-before.png" alt="えびちゃんのBEFORE" class="baof-phone-before-img">
               </div>
             </div>
           </div>
@@ -5907,14 +5905,12 @@
           </div>
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
-            <a href="https://lp-premiere-seminar.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="えびちゃんの完成LPを開く">
-              <div class="baof-phone after">
-                <div class="baof-phone-screen">
-                  <iframe src="https://lp-premiere-seminar.vercel.app/" loading="lazy" title="えびちゃんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
-                  <span class="baof-phone-badge">TAP TO OPEN</span>
-                </div>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen">
+                <iframe src="https://lp-premiere-seminar.vercel.app/" loading="lazy" title="えびちゃんの完成LP" class="baof-phone-iframe"></iframe>
+                <span class="baof-phone-badge">SCROLL</span>
               </div>
-            </a>
+            </div>
           </div>
         </div>
         <div class="baof-body">
@@ -5940,11 +5936,6 @@
             ・<strong>Claude Codeのスタートラインに立てた</strong>こと<br>
             ・色んな方と自然に交流ができて、純粋に楽しかった（あの場の雰囲気が楽しかったです）
           </p>
-          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
-            <a href="https://lp-premiere-seminar.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(34,211,238,0.5); padding-bottom:2px;">
-              → えびちゃんの完成LPを別タブで見る
-            </a>
-          </p>
         </div>
       </div>
 
@@ -5959,7 +5950,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">エバーグリーン<br>導線設計</div>
+                <img src="images/zoe-before.png" alt="ぞえさんのBEFORE" class="baof-phone-before-img">
               </div>
             </div>
           </div>
@@ -5971,8 +5962,10 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt" style="color:rgba(255,255,255,0.7);">LP公開準備中<br>（スクショ反映予定）</div>
-                <span class="baof-phone-badge">COMING SOON</span>
+                <div class="baof-phone-scroll-img">
+                  <img src="images/zoe-after.png" alt="ぞえさんのAFTER（LPスクリーンショット）">
+                </div>
+                <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
           </div>
@@ -6011,7 +6004,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">AIは使うけど<br>LPは未経験</div>
+                <img src="images/sayan-before.jpg" alt="さーやんのBEFORE" class="baof-phone-before-img">
               </div>
             </div>
           </div>
@@ -6021,14 +6014,12 @@
           </div>
           <div class="baof-phone-wrap">
             <span class="baof-phone-tag after">AFTER</span>
-            <a href="https://sayan-lp.vercel.app/" target="_blank" rel="noopener" class="baof-phone-link" aria-label="さーやんの完成LPを開く">
-              <div class="baof-phone after">
-                <div class="baof-phone-screen">
-                  <iframe src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP" class="baof-phone-iframe" scrolling="no"></iframe>
-                  <span class="baof-phone-badge">TAP TO OPEN</span>
-                </div>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen">
+                <iframe src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP" class="baof-phone-iframe"></iframe>
+                <span class="baof-phone-badge">SCROLL</span>
               </div>
-            </a>
+            </div>
           </div>
         </div>
         <div class="baof-body">
@@ -6049,11 +6040,6 @@
           <p class="baof-comment">
             ある程度事前に自分では進めていましたが、実際にハンズオンして教えてもらうことで、<strong>自分の魅力あふれるサイトができあがったのは本当にびっくり</strong>です。こんなのもできるのか、あんなのもできるのかといったことが自分の中でどんどん湧いてきて、<strong>それが形になった時の感動は忘れません。</strong><br><br>
             さらには<strong>LPだけではなくて、自分で自動ツールを作ったり、提案書を作ったりとか、別のことにもつながっている</strong>のが今回の収穫になります。
-          </p>
-          <p style="margin-top:14px; font-size:12.5px; text-align:center;">
-            <a href="https://sayan-lp.vercel.app/" target="_blank" rel="noopener" style="color:var(--neon-cyan); text-decoration:none; border-bottom:1px dashed rgba(34,211,238,0.5); padding-bottom:2px;">
-              → さーやんの完成LPを別タブで見る
-            </a>
           </p>
         </div>
       </div>

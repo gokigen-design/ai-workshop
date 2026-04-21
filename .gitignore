@@ -4,3 +4,13 @@
 # 元動画（未圧縮・大容量） — 圧縮済みworkshop-0418.mp4のみ公開
 video/hero-bg.mp4
 video/０４１８*.mov
+
+# 大容量ファイル・作業素材（Gitに含めない）
+video/
+images/today/
+making-screenshots/
+*.mov
+*.MOV
+*.HEIC
+*.heic
+*.pptx
