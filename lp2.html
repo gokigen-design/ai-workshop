@@ -2460,9 +2460,14 @@
     .fv-catch-sub { font-size: 0.88rem; }
     .fv-title-date { font-size: 0.72rem; letter-spacing: 2px; margin-top: 8px; }
     .fv-title-band { padding: 8px 0 4px; }
-    .fv-proof { gap: 4px; margin-bottom: 10px; }
-    .fv-proof span { font-size: 0.62rem; padding: 5px 8px; }
-    .cta-btn { font-size: 0.95rem; padding: 14px 36px; }
+    /* 女性3人を80px下にずらす（顔がバッジに近すぎる対策） */
+    .fv-hero-photo { object-position: center 80px; }
+    .fv-proof { gap: 6px; margin-bottom: 12px; flex-wrap: nowrap; justify-content: center; }
+    .fv-proof span { font-size: 0.6rem; padding: 5px 8px; white-space: nowrap; }
+    /* 申込ボタンを2回り大きく */
+    .cta-btn { font-size: 1.15rem; padding: 18px 48px; font-weight: 900; }
+    /* 少人数制の注釈を1行に収める */
+    .fv-urgency { font-size: 0.65rem !important; white-space: nowrap; letter-spacing: 0; padding: 0 8px; }
     .fv-catch-sub { font-size: 0.82rem; margin-bottom: 4px; }
     .fv-title-date { font-size: 0.68rem; margin-top: 4px; }
     .fv-content { text-align: center; }
@@ -4615,14 +4620,13 @@
         </div>
         <div class="fv-content">
           <div class="fv-proof">
-            <span>CODE SKILL 0 でOK</span>
-            <span>事前MTG＋当日＋添削＋Slack</span>
-            <span>¥55,000</span>
+            <span>プログラミング経験 0 でOK</span>
+            <span>リアルサポート ¥55,000</span>
           </div>
           <a href="https://forms.gle/1SVzry659Jj6jN4X6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
           <p class="fv-urgency">
             <span class="fv-urgency-dot"></span>
-            <strong>少人数制</strong>・お席に限りがありますので、<strong>お早めに</strong>お申し込みください
+            <strong>少人数制</strong>・お席に限りがあります。<strong>お早めに</strong>
           </p>
         </div>
       </div>
@@ -4639,11 +4643,6 @@
       <span class="section-line reveal delay-1"></span>
       <h2 class="section-title slam-chop" style="margin-top:8px;">受講生の変化、<br><span class="em">スマホで体感してください。</span></h2>
     </div>
-    <p class="gallery-lead reveal delay-2">
-      「わずか1日のワークショップで、<br>ここまで作れるんだ」——<br>
-      <strong>動くLP・アニメーション・縦スクロール演出</strong>まで、<br>
-      AIとデザインの視点を組み合わせることで、昨日まで何も作れなかった人が"自分だけのLP"を生み出せるようになります。
-    </p>
   </div>
 
   <!-- Swiper: 左右見切れ／中央ズーム／内部縦スクロール -->
