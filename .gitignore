@@ -7,7 +7,11 @@ video/０４１８*.mov
 
 # 大容量ファイル・作業素材（Gitに含めない）
 video/
-images/today/
+images/today/*
+!images/today/*.jpg
+!images/today/*.JPG
+!images/today/*.png
+!images/today/*.mp4
 making-screenshots/
 *.mov
 *.MOV

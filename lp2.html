@@ -2789,6 +2789,60 @@
     100% { transform: translateY(0); }
   }
   /* 受講生LPのライブ埋め込み（スクロール可） */
+  /* TODAY'S VIBE：当日写真の横スクロール */
+  .today-section {
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #0c1020 50%, var(--dark-bg) 100%);
+    position: relative;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+  .today-marquee {
+    overflow: hidden;
+    padding: 28px 0;
+    position: relative;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  .today-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: today-scroll 48s linear infinite;
+  }
+  .today-track:hover { animation-play-state: paused; }
+  .today-card {
+    flex: 0 0 auto;
+    width: 280px;
+    height: 400px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(34,211,238,0.25);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.5), 0 0 20px rgba(192,132,252,0.18);
+    background: #111;
+  }
+  .today-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @keyframes today-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .today-wide {
+    margin: 56px auto 0;
+    max-width: 1200px;
+    padding: 0 20px 96px;
+  }
+  .today-wide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    border: 1px solid rgba(34,211,238,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 30px rgba(192,132,252,0.25);
+  }
+  @media (max-width: 640px) {
+    .today-card { width: 200px; height: 280px; }
+    .today-track { gap: 12px; animation-duration: 36s; }
+    .today-wide { padding: 0 16px 64px; margin-top: 36px; }
+  }
   .phone-scroller-iframe {
     width: 1200px;
     height: 2600px;
@@ -4706,7 +4760,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <iframe src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="ともみさんの完成LP"></iframe>
+            <div class="phone-scroll-img"><img src="images/tomomi-after.png" alt="ともみさんの完成LP" loading="lazy"></div>
           </div>
         </div>
         <div class="phone-label">CASE 05<span class="name">ともみさん / イメージコンサル</span></div>
@@ -4722,7 +4776,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <iframe src="https://sayan-lp.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="さーやんの完成LP"></iframe>
+            <div class="phone-scroll-img"><img src="images/sayan-after.png" alt="さーやんの完成LP" loading="lazy"></div>
           </div>
         </div>
         <div class="phone-label">CASE 07<span class="name">さーやん / 自己理解コーチ</span></div>
@@ -4865,6 +4919,33 @@
     <span class="solid">BUILD / VERIFY / SHIP</span>
     <span>¥55,000 WORKSHOP</span>
     <span class="solid">KICK-OFF / REAL / AFTER</span>
+  </div>
+</section>
+
+<!-- TODAY'S VIBE：当日の様子を横スクロール -->
+<section class="today-section">
+  <div class="section-header" style="text-align:center; padding: 72px 20px 28px;">
+    <div class="section-en slam">TODAY'S VIBE</div>
+    <h2 class="section-title slam-chop" style="margin-top:8px;">当日は、<br><span class="em">こんな空気で進みます。</span></h2>
+  </div>
+  <div class="today-marquee">
+    <div class="today-track">
+      <div class="today-card"><img src="images/today/IMG_4033.jpg" alt="当日の様子" loading="lazy"></div>
+      <div class="today-card"><img src="images/today/IMG_4037.jpg" alt="当日の様子" loading="lazy"></div>
+      <div class="today-card"><img src="images/today/IMG_9624.jpg" alt="当日の様子" loading="lazy"></div>
+      <div class="today-card"><img src="images/today/IMG_4034.jpg" alt="当日の様子" loading="lazy"></div>
+      <div class="today-card"><img src="images/today/IMG_4040.jpg" alt="当日の様子" loading="lazy"></div>
+      <!-- ループ用複製 -->
+      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_4033.jpg" alt="" loading="lazy"></div>
+      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_4037.jpg" alt="" loading="lazy"></div>
+      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_9624.jpg" alt="" loading="lazy"></div>
+      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_4034.jpg" alt="" loading="lazy"></div>
+      <div class="today-card" aria-hidden="true"><img src="images/today/IMG_4040.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+  <!-- 横長ビジュアル：本来動画を配置予定の場所、素材未着なのでAI.pngを配置 -->
+  <div class="today-wide">
+    <img src="images/AI.png" alt="講師とClaudeで生み出すAIワークショップ" loading="lazy">
   </div>
 </section>
 
