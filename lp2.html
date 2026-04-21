@@ -2812,6 +2812,14 @@
     cursor: pointer;
   }
   .phone-scroll-img img { width: 100%; height: auto; display: block; }
+  .phone-iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0;
+    background: #fff;
+    border-radius: inherit;
+    display: block;
+  }
   .phone-scroll-img::-webkit-scrollbar { width: 4px; }
   .phone-scroll-img::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.5); border-radius: 2px; }
   @media (max-width: 640px) {
@@ -3712,6 +3720,14 @@
   }
   .baof-phone-scroll-img::-webkit-scrollbar { width: 4px; }
   .baof-phone-scroll-img::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.5); border-radius: 2px; }
+  .baof-phone-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+    border-radius: inherit;
+    display: block;
+  }
   /* BEFORE側の実画像 */
   .baof-phone.before .baof-phone-screen img.baof-phone-before-img {
     width: 100%;
@@ -4689,7 +4705,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <a class="phone-scroll-img" href="https://hanu-lp.vercel.app/" target="_blank" rel="noopener"><img src="images/hanu-after.png" alt="ハヌさんの完成LP" loading="lazy"></a>
+            <iframe class="phone-iframe" src="https://hanu-lp.vercel.app/" loading="lazy" title="ハヌさんの完成LP"></iframe>
           </div>
         </div>
         <div class="phone-label">CASE 01<span class="name">ハヌさん / ブランディングプロデューサー</span></div>
@@ -4697,7 +4713,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <a class="phone-scroll-img" href="https://hana-okashi-lp.vercel.app/" target="_blank" rel="noopener"><img src="images/hana-after.jpg" alt="はなさんの完成LP" loading="lazy"></a>
+            <iframe class="phone-iframe" src="https://hana-okashi-lp.vercel.app/" loading="lazy" title="はなさんの完成LP"></iframe>
           </div>
         </div>
         <div class="phone-label">CASE 02<span class="name">はなさん / 焼き菓子作家</span></div>
@@ -4713,7 +4729,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <a class="phone-scroll-img" href="https://petit-atelier.vercel.app/" target="_blank" rel="noopener"><img src="images/ayumi-after.jpg" alt="あゆみんの完成LP" loading="lazy"></a>
+            <iframe class="phone-iframe" src="https://petit-atelier.vercel.app/" loading="lazy" title="あゆみんの完成LP"></iframe>
           </div>
         </div>
         <div class="phone-label">CASE 04<span class="name">あゆみん / WEBデザイナー</span></div>
@@ -4721,7 +4737,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <a class="phone-scroll-img" href="https://lp-fujiba-tomomi.vercel.app/" target="_blank" rel="noopener"><img src="images/tomomi-after.png" alt="ともみさんの完成LP" loading="lazy"></a>
+            <iframe class="phone-iframe" src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" title="ともみさんの完成LP"></iframe>
           </div>
         </div>
         <div class="phone-label">CASE 05<span class="name">ともみさん / イメージコンサル</span></div>
@@ -4729,7 +4745,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <a class="phone-scroll-img" href="https://lp-premiere-seminar.vercel.app/" target="_blank" rel="noopener"><img src="images/ebi-after.jpg" alt="えびちゃんの完成LP" loading="lazy"></a>
+            <iframe class="phone-iframe" src="https://lp-premiere-seminar.vercel.app/" loading="lazy" title="えびちゃんの完成LP"></iframe>
           </div>
         </div>
         <div class="phone-label">CASE 06<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
@@ -4737,7 +4753,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <a class="phone-scroll-img" href="https://sayan-lp.vercel.app/" target="_blank" rel="noopener"><img src="images/sayan-after.png" alt="さーやんの完成LP" loading="lazy"></a>
+            <iframe class="phone-iframe" src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP"></iframe>
           </div>
         </div>
         <div class="phone-label">CASE 07<span class="name">さーやん / 自己理解コーチ</span></div>
@@ -5784,9 +5800,7 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <a class="baof-phone-scroll-img" href="https://hanu-lp.vercel.app/" target="_blank" rel="noopener">
-                  <img src="images/hanu-after.png" alt="ハヌさんのAFTER（LPスクリーンショット）">
-                </a>
+                <iframe class="baof-phone-iframe" src="https://hanu-lp.vercel.app/" loading="lazy" title="ハヌさんのAFTER（実LP）"></iframe>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
@@ -5838,9 +5852,7 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <a class="baof-phone-scroll-img" href="https://hana-okashi-lp.vercel.app/" target="_blank" rel="noopener">
-                  <img src="images/hana-after.jpg" alt="はなさんのAFTER（LPスクリーンショット）">
-                </a>
+                <iframe class="baof-phone-iframe" src="https://hana-okashi-lp.vercel.app/" loading="lazy" title="はなさんのAFTER（実LP）"></iframe>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
@@ -5850,7 +5862,7 @@
           <div class="baof-person">
             <div class="baof-person-avatar"><div>はな</div></div>
             <div>
-              <div class="baof-person-name">はなさん（村上 華）</div>
+              <div class="baof-person-name">はなさん</div>
               <div class="baof-person-role">BAKE ARTIST / がんばるママに「お疲れ様」を届ける焼き菓子作家</div>
             </div>
           </div>
@@ -5893,9 +5905,7 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <a class="baof-phone-scroll-img" href="https://petit-atelier.vercel.app/" target="_blank" rel="noopener">
-                  <img src="images/ayumi-after.jpg" alt="あゆみんのAFTER（LPスクリーンショット）">
-                </a>
+                <iframe class="baof-phone-iframe" src="https://petit-atelier.vercel.app/" loading="lazy" title="あゆみんのAFTER（実LP）"></iframe>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
@@ -5905,7 +5915,7 @@
           <div class="baof-person">
             <div class="baof-person-avatar"><div>あゆ</div></div>
             <div>
-              <div class="baof-person-name">あゆみん（和田 あゆみ）</div>
+              <div class="baof-person-name">あゆみん</div>
               <div class="baof-person-role">WEB DESIGNER / WEBデザイナー</div>
             </div>
           </div>
@@ -5947,9 +5957,7 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <a class="baof-phone-scroll-img" href="https://lp-fujiba-tomomi.vercel.app/" target="_blank" rel="noopener">
-                  <img src="images/tomomi-after.png" alt="ともみさんのAFTER（LPスクリーンショット）">
-                </a>
+                <iframe class="baof-phone-iframe" src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" title="ともみさんのAFTER（実LP）"></iframe>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
@@ -5959,7 +5967,7 @@
           <div class="baof-person">
             <div class="baof-person-avatar"><div>とも</div></div>
             <div>
-              <div class="baof-person-name">ともみさん（藤葉 ともみ）</div>
+              <div class="baof-person-name">ともみさん</div>
               <div class="baof-person-role">IMAGE CONSULTANT / イメージコンサルタント・集客コンサルタント</div>
             </div>
           </div>
@@ -6001,9 +6009,7 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <a class="baof-phone-scroll-img" href="https://lp-premiere-seminar.vercel.app/" target="_blank" rel="noopener">
-                  <img src="images/ebi-after.jpg" alt="えびちゃんのAFTER（LPスクリーンショット）">
-                </a>
+                <iframe class="baof-phone-iframe" src="https://lp-premiere-seminar.vercel.app/" loading="lazy" title="えびちゃんのAFTER（実LP）"></iframe>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
@@ -6013,7 +6019,7 @@
           <div class="baof-person">
             <div class="baof-person-avatar"><div>えび</div></div>
             <div>
-              <div class="baof-person-name">えびちゃん（海老原 愛）</div>
+              <div class="baof-person-name">えびちゃん</div>
               <div class="baof-person-role">VIDEO EDITOR / 動画編集コミュニティ主宰</div>
             </div>
           </div>
@@ -6035,8 +6041,8 @@
         </div>
       </div>
 
-      <!-- ROW 06：ぞえさん（川副 真理子） -->
-      <div class="baof-row reveal delay-2">
+      <!-- ROW 06：ぞえさん（LP未完成のため一時非表示） -->
+      <div class="baof-row reveal delay-2" style="display:none;">
         <div class="baof-row-no">06</div>
         <h3 class="baof-row-title">
           ある程度できていた人も、<br><span class="hl">さらに深まる学び</span>が。
@@ -6070,7 +6076,7 @@
           <div class="baof-person">
             <div class="baof-person-avatar"><div>ぞえ</div></div>
             <div>
-              <div class="baof-person-name">ぞえさん（川副 真理子）</div>
+              <div class="baof-person-name">ぞえさん</div>
               <div class="baof-person-role">SALES COACH / 売れる流れを作るセールス伴走コーチ</div>
             </div>
           </div>
@@ -6112,9 +6118,7 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <a class="baof-phone-scroll-img" href="https://sayan-lp.vercel.app/" target="_blank" rel="noopener">
-                  <img src="images/sayan-after.png" alt="さーやんのAFTER（LPスクリーンショット）">
-                </a>
+                <iframe class="baof-phone-iframe" src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんのAFTER（実LP）"></iframe>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
@@ -6124,7 +6128,7 @@
           <div class="baof-person">
             <div class="baof-person-avatar"><div>さー</div></div>
             <div>
-              <div class="baof-person-name">さーやん（西脇 さやか）</div>
+              <div class="baof-person-name">さーやん</div>
               <div class="baof-person-role">SELF-UNDERSTANDING COACH / 優等生の鎧を脱がせる人・自己理解／潜在意識コーチ</div>
             </div>
           </div>
