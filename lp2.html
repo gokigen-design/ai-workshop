@@ -455,8 +455,8 @@
   .sup5-list { display: flex; flex-direction: column; gap: 52px; }
   .sup5-card {
     display: grid;
-    grid-template-columns: 110px 380px 1fr;
-    gap: 44px;
+    grid-template-columns: 150px 380px 1fr;
+    gap: 60px;
     align-items: center;
     padding: 34px 40px;
     background: linear-gradient(135deg, rgba(10,10,30,0.65), rgba(4,4,14,0.9));
@@ -3648,7 +3648,7 @@
     background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1e 100%);
   }
   .baof-phone.before {
-    width: 180px; height: 380px;
+    width: 220px; height: 460px;
     border: 1.5px solid rgba(255,255,255,0.18);
     box-shadow: 0 12px 30px rgba(0,0,0,0.55);
     opacity: 0.88;
@@ -3659,7 +3659,7 @@
     width: 60px; height: 15px; background: #000; border-radius: 10px; z-index: 3;
   }
   .baof-phone.after {
-    width: 260px; height: 560px;
+    width: 220px; height: 460px;
     border: 2px solid rgba(34,211,238,0.55);
     box-shadow:
       0 25px 60px rgba(0,0,0,0.7),
@@ -3701,11 +3701,14 @@
   }
   .baof-phone-link:hover { transform: translateY(-4px); }
   .baof-phone-iframe {
-    width: 1200px;
-    height: 2600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1060px;
+    height: 2230px;
     border: 0;
     display: block;
-    transform: scale(0.205);
+    transform: scale(0.2);
     transform-origin: top left;
     pointer-events: auto;
     background: #fff;
@@ -4447,11 +4450,11 @@
     .ideal-grid { grid-template-columns: 1fr; gap: 18px; }
     .baof-row { padding: 40px 20px 36px; gap: 28px; }
     .baof-phones-duo { grid-template-columns: 0.8fr auto 1fr; gap: 10px; }
-    .baof-phone.before { width: 115px; height: 240px; padding: 5px; border-radius: 20px; }
-    .baof-phone.before::before { width: 40px; height: 10px; top: 6px; border-radius: 7px; }
+    .baof-phone.before { width: 155px; height: 330px; padding: 5px; border-radius: 20px; }
+    .baof-phone.before::before { width: 50px; height: 12px; top: 7px; border-radius: 7px; }
     .baof-phone.before .baof-phone-screen { border-radius: 16px; }
-    .baof-phone.after { width: 175px; height: 370px; padding: 6px; border-radius: 24px; }
-    .baof-phone-iframe { transform: scale(0.135); }
+    .baof-phone.after { width: 155px; height: 330px; padding: 6px; border-radius: 24px; }
+    .baof-phone-iframe { width: 1060px; height: 2230px; transform: scale(0.135); }
     .baof-phone-badge { font-size: 0.5rem; padding: 3px 7px; bottom: 8px; }
     .baof-phone.after::before { width: 58px; height: 14px; top: 8px; border-radius: 10px; }
     .baof-phone.after .baof-phone-screen { border-radius: 18px; }
@@ -6545,7 +6548,6 @@
         <div style="margin-top:14px; background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(192,132,252,0.1)); border: 1px solid rgba(0,212,255,0.5); border-radius:10px; padding:14px 16px; text-align:center; line-height:1.8;">
           <div style="font-size:0.7rem; font-family:'Orbitron',sans-serif; letter-spacing:0.15em; color:var(--neon-cyan); margin-bottom:6px;">MADE WITH CLAUDE CODE</div>
           <div style="font-size:1.05rem; font-weight:900; color:#fff;">このLPは私が作りました</div>
-          <div style="font-size:0.78rem; color:var(--text-light); margin-top:4px;">制作時間 <strong style="color:var(--neon-cyan); font-size:1rem;">約3時間</strong></div>
         </div>
       </div>
       <div class="instructor-card reveal delay-2" style="border-color: rgba(0,212,255,0.4); box-shadow: 0 0 30px rgba(0,212,255,0.15);">
@@ -6585,7 +6587,7 @@
       <h2 class="section-title slam-chop" style="margin-top:8px;">開催概要</h2>
     </div>
     <div class="overview-table reveal">
-      <div class="overview-row"><div class="overview-label">DATE</div><div class="overview-value"><strong style="color:#fff;">2026.05.09 SAT</strong>　10:00–18:00<span class="note" style="margin-top:6px;"><strong style="color:var(--neon-cyan);">事前キックオフMTG（オンライン・2時間）：</strong>2026.05.01 FRI 8:30〜</span></div></div>
+      <div class="overview-row"><div class="overview-label">DATE</div><div class="overview-value"><strong style="color:#fff;">2026.05.09 SAT</strong>　10:00–18:00<span class="note" style="margin-top:6px;"><strong style="color:var(--neon-cyan);">事前キックオフMTG（オンライン・2時間）：</strong>2026.05.01 FRI 20:30〜</span></div></div>
       <div class="overview-row"><div class="overview-label">PLACE</div><div class="overview-value">都内会場<span class="note">※詳細はお申し込み後にご案内</span></div></div>
       <div class="overview-row"><div class="overview-label">PRICE</div><div class="overview-value"><strong style="color: var(--neon-cyan); font-size: 1.2rem;">¥55,000</strong><span class="note">事前MTG（2h）＋当日ハンズオン＋添削会＋Slackサポート</span></div></div>
       <div class="overview-row"><div class="overview-label">BRING</div><div class="overview-value">パソコン（Mac推奨・Windows可）<span class="note" style="color:var(--neon-pink);">※ スペック要件・動作環境を必ずご確認ください（下記「REQUIREMENTS」参照）</span></div></div>
