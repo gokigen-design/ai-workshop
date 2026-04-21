@@ -452,7 +452,7 @@
     max-width: 760px; margin: 28px auto 56px;
     text-align: center; font-size: 15px; line-height: 2.1; color: var(--text-light);
   }
-  .sup5-list { display: flex; flex-direction: column; gap: 28px; }
+  .sup5-list { display: flex; flex-direction: column; gap: 52px; }
   .sup5-card {
     display: grid;
     grid-template-columns: 110px 380px 1fr;
@@ -582,8 +582,8 @@
     border-color: rgba(244,114,182,0.4); color: var(--neon-pink);
   }
   .sup5-title {
-    font-size: clamp(1.2rem, 2.2vw, 1.55rem); font-weight: 900; color: #fff;
-    line-height: 1.5; letter-spacing: 0.01em; margin: 0 0 14px;
+    font-size: clamp(1.3rem, 2.3vw, 1.65rem); font-weight: 700; color: #fff;
+    line-height: 1.55; letter-spacing: 0.02em; margin: 0 0 14px;
   }
   .sup5-desc {
     font-size: 14.5px; line-height: 2; color: var(--text-light); margin: 0;
@@ -608,7 +608,7 @@
       padding: 24px 20px; gap: 16px;
     }
     .sup5-no { font-size: 2.6rem; }
-    .sup5-title { font-size: 1.1rem; }
+    .sup5-title { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.03em; }
     .sup5-desc { font-size: 13.5px; line-height: 1.9; }
   }
 
@@ -2074,6 +2074,17 @@
     font-family:'Orbitron',sans-serif; font-weight:900;
     font-size: 0.75rem; letter-spacing: 0.2em;
     color: var(--neon-cyan); margin-bottom: 10px;
+  }
+  .impact-case-icon {
+    width: 64px; height: 64px;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 8px 20px rgba(34,211,238,0.35)) drop-shadow(0 0 14px rgba(244,114,182,0.3));
+    animation: impact-icon-float 3.2s ease-in-out infinite;
+  }
+  .impact-case-icon svg { width: 100%; height: 100%; }
+  @keyframes impact-icon-float {
+    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+    50%      { transform: translateY(-5px) rotate(1.5deg); }
   }
   .impact-case:nth-child(2) .impact-case-no { color: var(--neon-pink); }
   .impact-case h3 {
@@ -3720,6 +3731,31 @@
   }
   .baof-phone-scroll-img::-webkit-scrollbar { width: 4px; }
   .baof-phone-scroll-img::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.5); border-radius: 2px; }
+  /* 実際のサイトを見るボタン（AFTERスマホ直下） */
+  .baof-live-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 16px;
+    padding: 10px 18px;
+    font-family: 'Orbitron', 'Zen Maru Gothic', sans-serif;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em;
+    color: #fff;
+    background: linear-gradient(135deg, #22d3ee 0%, #c084fc 60%, #f472b6 100%);
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(34,211,238,0.25), 0 0 18px rgba(192,132,252,0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    white-space: nowrap;
+  }
+  .baof-live-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(34,211,238,0.35), 0 0 28px rgba(244,114,182,0.35);
+  }
+  .baof-live-btn .arr {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px; line-height: 1;
+    transition: transform 0.25s ease;
+  }
+  .baof-live-btn:hover .arr { transform: translateX(3px); }
   /* BEFORE側の実画像 */
   .baof-phone.before .baof-phone-screen img.baof-phone-before-img {
     width: 100%;
@@ -5796,6 +5832,7 @@
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
+            <a class="baof-live-btn" href="https://hanu-lp.vercel.app/" target="_blank" rel="noopener">実際のサイトを見る<span class="arr">→</span></a>
           </div>
         </div>
         <div class="baof-body">
@@ -5848,6 +5885,7 @@
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
+            <a class="baof-live-btn" href="https://hana-okashi-lp.vercel.app/" target="_blank" rel="noopener">実際のサイトを見る<span class="arr">→</span></a>
           </div>
         </div>
         <div class="baof-body">
@@ -5901,6 +5939,7 @@
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
+            <a class="baof-live-btn" href="https://petit-atelier.vercel.app/" target="_blank" rel="noopener">実際のサイトを見る<span class="arr">→</span></a>
           </div>
         </div>
         <div class="baof-body">
@@ -5953,6 +5992,7 @@
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
+            <a class="baof-live-btn" href="https://lp-fujiba-tomomi.vercel.app/" target="_blank" rel="noopener">実際のサイトを見る<span class="arr">→</span></a>
           </div>
         </div>
         <div class="baof-body">
@@ -6005,6 +6045,7 @@
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
+            <a class="baof-live-btn" href="https://lp-premiere-seminar.vercel.app/" target="_blank" rel="noopener">実際のサイトを見る<span class="arr">→</span></a>
           </div>
         </div>
         <div class="baof-body">
@@ -6114,6 +6155,7 @@
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
             </div>
+            <a class="baof-live-btn" href="https://sayan-lp.vercel.app/" target="_blank" rel="noopener">実際のサイトを見る<span class="arr">→</span></a>
           </div>
         </div>
         <div class="baof-body">
@@ -6233,8 +6275,8 @@
       </div>
     </div>
 
-    <!-- 受講生の声：写真＋コメントカード 4人分（横にスクロール） -->
-    <div class="voice-cards">
+    <!-- 受講生の声：写真＋コメントカード 4人分（横にスクロール） ※感想が届き次第復活。デザインは気に入っているので構成は保持 -->
+    <div class="voice-cards" style="display:none;">
       <div class="vcards-track">
         <article class="vcard">
           <div class="vcard-head">
@@ -6356,6 +6398,26 @@
     <!-- 成果事例 -->
     <div class="impact-cases">
       <article class="impact-case reveal delay-1">
+        <div class="impact-case-icon" aria-hidden="true">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="impact-icon-1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#22d3ee"/>
+                <stop offset="0.55" stop-color="#c084fc"/>
+                <stop offset="1" stop-color="#f472b6"/>
+              </linearGradient>
+            </defs>
+            <!-- 札束モチーフ（受注＝報酬イメージ） -->
+            <rect x="10" y="22" width="60" height="38" rx="6" fill="url(#impact-icon-1)" opacity="0.18"/>
+            <rect x="14" y="26" width="52" height="30" rx="4" fill="none" stroke="url(#impact-icon-1)" stroke-width="2.5"/>
+            <circle cx="40" cy="41" r="8" fill="none" stroke="url(#impact-icon-1)" stroke-width="2.5"/>
+            <text x="40" y="45" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="11" font-weight="900" fill="url(#impact-icon-1)">¥</text>
+            <circle cx="20" cy="41" r="2" fill="url(#impact-icon-1)"/>
+            <circle cx="60" cy="41" r="2" fill="url(#impact-icon-1)"/>
+            <!-- ピカッと光るライン -->
+            <path d="M 15 15 L 24 22 M 40 10 L 40 20 M 65 15 L 56 22" stroke="url(#impact-icon-1)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
         <div class="impact-case-no">CASE 01</div>
         <h3>キックオフ当日に<br><span class="hl">提案書を受注</span>された方</h3>
         <p>
@@ -6365,6 +6427,27 @@
         <span class="tag">SAME DAY DEAL</span>
       </article>
       <article class="impact-case reveal delay-2">
+        <div class="impact-case-icon" aria-hidden="true">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="impact-icon-2" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stop-color="#f472b6"/>
+                <stop offset="0.55" stop-color="#c084fc"/>
+                <stop offset="1" stop-color="#22d3ee"/>
+              </linearGradient>
+            </defs>
+            <!-- 右肩上がりグラフ（売上アップ） -->
+            <rect x="10" y="14" width="60" height="52" rx="6" fill="url(#impact-icon-2)" opacity="0.14"/>
+            <path d="M 16 58 L 28 46 L 40 52 L 52 32 L 64 22" stroke="url(#impact-icon-2)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="16" cy="58" r="2.8" fill="url(#impact-icon-2)"/>
+            <circle cx="28" cy="46" r="2.8" fill="url(#impact-icon-2)"/>
+            <circle cx="40" cy="52" r="2.8" fill="url(#impact-icon-2)"/>
+            <circle cx="52" cy="32" r="2.8" fill="url(#impact-icon-2)"/>
+            <circle cx="64" cy="22" r="3.5" fill="url(#impact-icon-2)"/>
+            <!-- 矢印 -->
+            <path d="M 58 22 L 64 22 L 64 28" stroke="url(#impact-icon-2)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div class="impact-case-no">CASE 02</div>
         <h3>キックオフでURL公開→<br><span class="hl">販売まで到達</span>された方</h3>
         <p>
