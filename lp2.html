@@ -3617,11 +3617,20 @@
     justify-items: center;
     gap: clamp(18px, 3vw, 34px);
     max-width: 760px;
-    margin: 0 auto;
+    margin: 0 auto 60px;
     width: 100%;
   }
   .baof-phone-wrap {
     display: flex; flex-direction: column; align-items: center; gap: 10px;
+    position: relative;
+  }
+  .baof-phone-wrap .baof-live-btn {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin-top: 0;
   }
   .baof-phone-tag {
     font-family: 'Orbitron', sans-serif;
@@ -3648,7 +3657,7 @@
     background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1e 100%);
   }
   .baof-phone.before {
-    width: 220px; height: 460px;
+    width: 180px; height: 380px;
     border: 1.5px solid rgba(255,255,255,0.18);
     box-shadow: 0 12px 30px rgba(0,0,0,0.55);
     opacity: 0.88;
@@ -3659,7 +3668,7 @@
     width: 60px; height: 15px; background: #000; border-radius: 10px; z-index: 3;
   }
   .baof-phone.after {
-    width: 220px; height: 460px;
+    width: 260px; height: 560px;
     border: 2px solid rgba(34,211,238,0.55);
     box-shadow:
       0 25px 60px rgba(0,0,0,0.7),
@@ -3704,11 +3713,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 1060px;
-    height: 2230px;
+    width: 1000px;
+    height: 2200px;
     border: 0;
     display: block;
-    transform: scale(0.2);
+    transform: scale(0.25);
     transform-origin: top left;
     pointer-events: auto;
     background: #fff;
@@ -4450,11 +4459,11 @@
     .ideal-grid { grid-template-columns: 1fr; gap: 18px; }
     .baof-row { padding: 40px 20px 36px; gap: 28px; }
     .baof-phones-duo { grid-template-columns: 0.8fr auto 1fr; gap: 10px; }
-    .baof-phone.before { width: 155px; height: 330px; padding: 5px; border-radius: 20px; }
-    .baof-phone.before::before { width: 50px; height: 12px; top: 7px; border-radius: 7px; }
+    .baof-phone.before { width: 120px; height: 250px; padding: 5px; border-radius: 20px; }
+    .baof-phone.before::before { width: 42px; height: 10px; top: 6px; border-radius: 7px; }
     .baof-phone.before .baof-phone-screen { border-radius: 16px; }
-    .baof-phone.after { width: 155px; height: 330px; padding: 6px; border-radius: 24px; }
-    .baof-phone-iframe { width: 1060px; height: 2230px; transform: scale(0.135); }
+    .baof-phone.after { width: 175px; height: 370px; padding: 6px; border-radius: 24px; }
+    .baof-phone-iframe { width: 1000px; height: 2200px; transform: scale(0.165); }
     .baof-phone-badge { font-size: 0.5rem; padding: 3px 7px; bottom: 8px; }
     .baof-phone.after::before { width: 58px; height: 14px; top: 8px; border-radius: 10px; }
     .baof-phone.after .baof-phone-screen { border-radius: 18px; }
@@ -6601,9 +6610,9 @@
         （あくまでお願いベースです。難しいものがあれば遠慮なくご相談ください。）
       </p>
       <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
-        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span>ワークショップの様子を<strong style="color:#fff;">ストーリーズでご紹介</strong>いただけると嬉しいです</span></li>
-        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span>当日の<strong style="color:#fff;">写真撮影</strong>にご協力いただけると嬉しいです</span></li>
-        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span><strong style="color:#fff;">ご感想</strong>をお聞かせいただけると嬉しいです（お客様の声として紹介させていただく場合があります）</span></li>
+        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span>ワークショップの様子を<strong style="color:#fff;">ストーリーズでご紹介</strong>いただけると励みになります</span></li>
+        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span>当日の<strong style="color:#fff;">写真撮影</strong>にご協力いただけると助かります</span></li>
+        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span><strong style="color:#fff;">ご感想</strong>をお聞かせください（お客様の声として紹介させていただく場合があります）</span></li>
       </ul>
       <p style="margin-top:12px; font-size:0.78rem; color:var(--text-light);">※ 顔出しNG等は事前にご相談ください</p>
     </div>
