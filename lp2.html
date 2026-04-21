@@ -1264,6 +1264,70 @@
     letter-spacing: 0.08em;
     color: rgba(232,232,255,0.65);
   }
+
+  /* FV CTA直下の1行アラート */
+  .fv-urgency {
+    margin: 14px 0 0; font-size: 12.5px; line-height: 1.7;
+    color: #fff; letter-spacing: 0.04em;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .fv-urgency strong { color: var(--neon-pink); font-weight: 900; }
+  .fv-urgency-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+    animation: urgencyPulse 1.6s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes urgencyPulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%     { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* ===== 先着・抽選アラート ===== */
+  .urgency-note {
+    margin: 18px auto 0;
+    max-width: 560px;
+    background: linear-gradient(135deg, rgba(244,114,182,0.10), rgba(192,132,252,0.08));
+    border: 1px solid rgba(244,114,182,0.4);
+    border-left: 3px solid var(--neon-pink);
+    border-radius: 4px;
+    padding: 14px 18px;
+    text-align: left;
+  }
+  .urgency-note .urgency-badge {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+    background: var(--neon-pink);
+    color: #0a0a1e;
+    font-weight: 900;
+    border-radius: 2px;
+  }
+  .urgency-note ul {
+    list-style: none; padding: 0; margin: 0;
+    font-size: 12.5px; line-height: 1.9; color: #fff;
+  }
+  .urgency-note ul li {
+    padding-left: 16px; position: relative;
+  }
+  .urgency-note ul li::before {
+    content: '▸'; position: absolute; left: 0; top: 0;
+    color: var(--neon-pink); font-size: 0.8rem;
+  }
+  .urgency-note .urgency-push {
+    margin-top: 10px;
+    font-size: 13px; font-weight: 700; color: var(--neon-cyan);
+    line-height: 1.7;
+  }
+  @media (max-width: 560px) {
+    .urgency-note { padding: 12px 14px; }
+    .urgency-note ul { font-size: 12px; }
+  }
   @media (max-width: 560px) {
     .mid-cta { padding: 28px 18px; margin-top: 32px; }
     .mid-cta-lead { font-size: 0.92rem; line-height: 1.8; }
@@ -1686,6 +1750,165 @@
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }
   .lunch-break .text { font-size: 0.9rem; color: var(--text-light); }
+
+  /* ================================ */
+  /* 導入成果（IMPACT）セクション */
+  /* ================================ */
+  .impact {
+    background: var(--dark-bg);
+    padding: 120px 20px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .impact::before {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(34,211,238,0.06), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(244,114,182,0.06), transparent 45%);
+  }
+  .impact .inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .impact-lead {
+    text-align:center; font-size:15px; line-height:2.0; color:var(--text-light);
+    max-width: 720px; margin: 24px auto 50px;
+  }
+  .impact-lead strong { color:#fff; font-weight:900; }
+  .impact-lead .accent { color: var(--neon-cyan); }
+
+  /* 成果事例カード */
+  .impact-cases { display:grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 70px; }
+  .impact-case {
+    background: linear-gradient(135deg, rgba(10,10,30,0.7), rgba(4,4,14,0.9));
+    border: 1px solid rgba(34,211,238,0.25);
+    border-left: 3px solid var(--neon-cyan);
+    border-radius: 6px;
+    padding: 32px 30px;
+    position: relative;
+    transition: transform .4s, border-color .4s, box-shadow .4s;
+  }
+  .impact-case:nth-child(2) { border-left-color: var(--neon-pink); border-color: rgba(244,114,182,0.25); }
+  .impact-case:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(34,211,238,0.12); }
+  .impact-case-no {
+    font-family:'Orbitron',sans-serif; font-weight:900;
+    font-size: 0.75rem; letter-spacing: 0.2em;
+    color: var(--neon-cyan); margin-bottom: 10px;
+  }
+  .impact-case:nth-child(2) .impact-case-no { color: var(--neon-pink); }
+  .impact-case h3 {
+    font-size: 1.15rem; font-weight: 900; color:#fff;
+    line-height: 1.6; margin-bottom: 14px;
+  }
+  .impact-case h3 .hl {
+    background: linear-gradient(transparent 60%, rgba(34,211,238,0.35) 60%);
+    padding: 0 3px;
+  }
+  .impact-case:nth-child(2) h3 .hl {
+    background: linear-gradient(transparent 60%, rgba(244,114,182,0.35) 60%);
+  }
+  .impact-case p {
+    font-size: 0.88rem; line-height: 2.0; color: var(--text-light);
+  }
+  .impact-case .tag {
+    display:inline-block; font-size: 0.72rem; font-family:'Orbitron',sans-serif;
+    padding: 4px 10px; border: 1px solid rgba(34,211,238,0.5);
+    color: var(--neon-cyan); border-radius: 999px; margin-top: 16px;
+    letter-spacing: 0.1em;
+  }
+  .impact-case:nth-child(2) .tag { border-color: rgba(244,114,182,0.5); color: var(--neon-pink); }
+
+  /* 作れるものグリッド */
+  .impact-sub-title {
+    text-align:center; font-size: 1.2rem; font-weight: 900; color:#fff;
+    margin-bottom: 10px;
+  }
+  .impact-sub-title .em {
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .impact-sub-sub {
+    text-align:center; font-size: 13px; color: var(--text-light);
+    margin-bottom: 30px; line-height: 1.9;
+  }
+  .impact-items {
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-bottom: 70px;
+  }
+  .impact-item {
+    background: rgba(10,10,30,0.6);
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 4px;
+    padding: 22px 14px;
+    text-align:center;
+    transition: border-color .3s, transform .3s;
+  }
+  .impact-item:hover { border-color: rgba(192,132,252,0.55); transform: translateY(-3px); }
+  .impact-item-label {
+    font-family:'Orbitron',sans-serif; font-size: 0.62rem;
+    letter-spacing: 0.15em; color: var(--neon-purple); margin-bottom: 8px;
+  }
+  .impact-item-name { font-size: 0.9rem; font-weight: 700; color:#fff; line-height: 1.5; }
+
+  /* 外注 vs 月額 比較 */
+  .impact-compare {
+    display:grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: stretch;
+    margin-bottom: 20px;
+  }
+  .impact-compare-col {
+    padding: 32px 26px;
+    border-radius: 6px;
+    position: relative;
+  }
+  .impact-compare-col.out {
+    background: rgba(20,10,10,0.5);
+    border: 1px solid rgba(255,120,120,0.25);
+  }
+  .impact-compare-col.ws {
+    background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(192,132,252,0.08));
+    border: 1px solid rgba(34,211,238,0.5);
+    box-shadow: 0 0 30px rgba(34,211,238,0.12);
+  }
+  .impact-compare-label {
+    font-family:'Orbitron',sans-serif; font-size: 0.7rem;
+    letter-spacing: 0.2em; margin-bottom: 12px;
+  }
+  .impact-compare-col.out .impact-compare-label { color: #ff9999; }
+  .impact-compare-col.ws .impact-compare-label { color: var(--neon-cyan); }
+  .impact-compare-title {
+    font-size: 0.95rem; font-weight: 700; color:#fff; line-height:1.7; margin-bottom: 18px;
+  }
+  .impact-compare-price {
+    font-family:'Orbitron',sans-serif; font-weight:900;
+    font-size: 2.2rem; line-height: 1.1; color:#fff; margin-bottom: 8px;
+  }
+  .impact-compare-col.out .impact-compare-price {
+    color: #ff9999;
+    text-decoration: line-through; text-decoration-thickness: 2px;
+  }
+  .impact-compare-col.ws .impact-compare-price {
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .impact-compare-note { font-size: 0.8rem; color: var(--text-light); line-height: 1.9; }
+  .impact-compare-arrow {
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Orbitron',sans-serif; font-weight:900;
+    font-size: 1.6rem; color: var(--neon-purple);
+    padding: 0 4px;
+  }
+  .impact-bridge {
+    text-align:center; margin-top: 40px;
+    font-size: 1rem; line-height: 2.0; color: #fff; font-weight: 700;
+  }
+  .impact-bridge .small { display:block; font-size: 0.85rem; color: var(--text-light); font-weight:400; margin-top:8px; }
+
+  @media (max-width: 900px) {
+    .impact { padding: 80px 18px 60px; }
+    .impact-cases { grid-template-columns: 1fr; gap: 16px; margin-bottom: 50px; }
+    .impact-case { padding: 26px 22px; }
+    .impact-items { grid-template-columns: repeat(2, 1fr); margin-bottom: 50px; }
+    .impact-compare { grid-template-columns: 1fr; gap: 14px; }
+    .impact-compare-arrow { transform: rotate(90deg); padding: 4px 0; }
+    .impact-compare-price { font-size: 1.8rem; }
+  }
 
   /* ================================ */
   /* 講師 */
@@ -2980,46 +3203,149 @@
   .baof-list {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 70px;
     max-width: 1080px;
     margin: 60px auto 0;
   }
   .baof-row {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 44px;
-    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 50px 40px 44px;
+    background: linear-gradient(135deg, rgba(10,10,30,0.55), rgba(4,4,14,0.85));
+    border: 1px solid rgba(168,85,247,0.18);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color .4s, box-shadow .4s, transform .4s;
   }
-  .baof-row.reverse { grid-template-columns: 1.2fr 1fr; direction: rtl; }
-  .baof-row.reverse > * { direction: ltr; }
-  /* 左：スマホモック */
+  .baof-row:nth-child(1) { border-left: 3px solid var(--neon-cyan); }
+  .baof-row:nth-child(2) { border-left: 3px solid var(--neon-pink); }
+  .baof-row:nth-child(3) { border-left: 3px solid var(--neon-purple); }
+  .baof-row:hover {
+    border-color: rgba(34,211,238,0.45);
+    box-shadow: 0 18px 60px rgba(34,211,238,0.10), 0 0 30px rgba(244,114,182,0.08);
+    transform: translateY(-4px);
+  }
+  /* 大きなゴースト番号（スクロールさせない吸引力） */
+  .baof-row-no {
+    position: absolute;
+    top: -18px; right: 14px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(6rem, 14vw, 10rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, rgba(34,211,238,0.22), rgba(192,132,252,0.22) 55%, rgba(244,114,182,0.22));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .baof-row:nth-child(2) .baof-row-no {
+    background: linear-gradient(135deg, rgba(244,114,182,0.25), rgba(192,132,252,0.2));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .baof-row:nth-child(3) .baof-row-no {
+    background: linear-gradient(135deg, rgba(192,132,252,0.25), rgba(34,211,238,0.2));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .baof-row > * { position: relative; z-index: 1; }
+
+  /* 見出し（行単位のタイトル） */
+  .baof-row-title {
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 720px;
+  }
+  .baof-row-title .hl {
+    background: linear-gradient(transparent 60%, rgba(34,211,238,0.35) 60%);
+    padding: 0 4px;
+  }
+  .baof-row:nth-child(2) .baof-row-title .hl {
+    background: linear-gradient(transparent 60%, rgba(244,114,182,0.35) 60%);
+  }
+  .baof-row:nth-child(3) .baof-row-title .hl {
+    background: linear-gradient(transparent 60%, rgba(192,132,252,0.35) 60%);
+  }
+
+  /* Before + After スマホを横並び */
+  .baof-phones-duo {
+    display: grid;
+    grid-template-columns: 0.7fr auto 1fr;
+    align-items: end;
+    justify-items: center;
+    gap: clamp(18px, 3vw, 34px);
+    max-width: 760px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .baof-phone-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .baof-phone-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+  .baof-phone-tag.before {
+    background: rgba(255,255,255,0.08);
+    color: rgba(232,232,255,0.7);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .baof-phone-tag.after {
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+    color: #0a0a1e;
+  }
   .baof-phone {
     position: relative;
-    width: 240px;
-    height: 500px;
     margin: 0 auto;
-    border-radius: 34px;
-    padding: 10px;
+    border-radius: 30px;
+    padding: 8px;
     background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1e 100%);
-    border: 2px solid rgba(0,212,255,0.3);
-    box-shadow:
-      0 20px 50px rgba(0,0,0,0.6),
-      0 0 40px rgba(0,212,255,0.2);
   }
-  .baof-phone::before {
-    content: '';
-    position: absolute;
-    top: 12px; left: 50%;
-    transform: translateX(-50%);
-    width: 80px; height: 20px;
-    background: #000;
-    border-radius: 14px;
-    z-index: 3;
+  .baof-phone.before {
+    width: 180px; height: 380px;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+    opacity: 0.88;
+    filter: saturate(0.85);
+  }
+  .baof-phone.before::before {
+    content: ''; position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 15px; background: #000; border-radius: 10px; z-index: 3;
+  }
+  .baof-phone.after {
+    width: 260px; height: 560px;
+    border: 2px solid rgba(34,211,238,0.55);
+    box-shadow:
+      0 25px 60px rgba(0,0,0,0.7),
+      0 0 50px rgba(34,211,238,0.28),
+      0 0 80px rgba(244,114,182,0.12);
+  }
+  .baof-phone.after::before {
+    content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 85px; height: 20px; background: #000; border-radius: 14px; z-index: 3;
+  }
+  .baof-row:nth-child(2) .baof-phone.after {
+    border-color: rgba(244,114,182,0.55);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 50px rgba(244,114,182,0.28);
+  }
+  .baof-row:nth-child(3) .baof-phone.after {
+    border-color: rgba(192,132,252,0.55);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 50px rgba(192,132,252,0.28);
   }
   .baof-phone-screen {
     width: 100%;
     height: 100%;
-    border-radius: 26px;
+    border-radius: 22px;
     overflow: hidden;
     background: linear-gradient(180deg, #c084fc, #0f172a, #22d3ee);
     position: relative;
@@ -3027,13 +3353,47 @@
     align-items: center;
     justify-content: center;
   }
+  .baof-phone.before .baof-phone-screen {
+    background: linear-gradient(180deg, #3a3a4a, #1a1a2a, #2a2a3a);
+  }
+  .baof-phone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .baof-phone-screen .placeholder-txt {
     font-family: 'Orbitron', sans-serif;
-    font-size: 14px;
-    letter-spacing: 3px;
+    font-size: 13px;
+    letter-spacing: 2px;
     color: rgba(255,255,255,0.75);
     text-align: center;
     padding: 20px;
+    line-height: 1.6;
+  }
+  .baof-phone.before .baof-phone-screen .placeholder-txt {
+    color: rgba(255,255,255,0.45);
+    font-size: 11px;
+  }
+  /* 矢印 */
+  .baof-arrow {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px;
+    padding-bottom: 180px; /* afterの中央あたりに揃える */
+  }
+  .baof-arrow-line {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    animation: arrowPulse 1.8s ease-in-out infinite;
+  }
+  .baof-arrow-txt {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: var(--neon-cyan);
+  }
+  @keyframes arrowPulse {
+    0%,100% { transform: translateX(0); opacity: 1; }
+    50%     { transform: translateX(6px); opacity: 0.6; }
   }
   /* 右：Before/After＋顔写真＋コメント */
   .baof-body {
@@ -3079,8 +3439,25 @@
   }
   .baof-ba {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 14px;
+  }
+  .baof-after-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    padding: 5px 12px;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+    color: #0a0a1e;
+    border-radius: 2px;
+  }
+  .baof-after-label .jp {
+    font-family: 'Zen Maru Gothic','Noto Sans JP',sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
   }
   .baof-chip {
     padding: 14px 16px;
@@ -3265,21 +3642,48 @@
     position: relative;
     max-width: 100%;
     margin: 50px auto 0;
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    /* 手動スクロールに変更：左右マスクで端のフェードを残しつつ、スクロール自体は自由に */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
   }
   .vcards-track {
     display: flex;
     gap: 24px;
-    width: max-content;
-    animation: vcards-scroll 80s linear infinite;
-    will-change: transform;
+    padding: 6px 20px 20px;
+    /* 手動横スクロール＋スナップ */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* スクロールバーを消す（手触りを軽くする） */
+    scrollbar-width: none;
   }
-  .voice-cards:hover .vcards-track { animation-play-state: paused; }
-  @keyframes vcards-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+  .vcards-track::-webkit-scrollbar { display: none; }
+  .vcards-track > .vcard { scroll-snap-align: center; }
+  /* スクロールのヒント（下部のインジケーター） */
+  .voice-cards-hint {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 14px auto 0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: rgba(232,232,255,0.55);
+  }
+  .voice-cards-hint .arrow {
+    display: inline-block;
+    animation: swipeHint 1.6s ease-in-out infinite;
+    color: var(--neon-cyan);
+    font-size: 0.9rem;
+  }
+  .voice-cards-hint .arrow:first-child { animation-name: swipeHintL; }
+  @keyframes swipeHint {
+    0%,100% { transform: translateX(0); opacity: 0.6; }
+    50%     { transform: translateX(6px); opacity: 1; }
+  }
+  @keyframes swipeHintL {
+    0%,100% { transform: translateX(0); opacity: 0.6; }
+    50%     { transform: translateX(-6px); opacity: 1; }
   }
   .vcard {
     position: relative;
@@ -3613,8 +4017,18 @@
 
   @media (max-width: 768px) {
     .ideal-grid { grid-template-columns: 1fr; gap: 18px; }
-    .baof-row, .baof-row.reverse { grid-template-columns: 1fr; direction: ltr; gap: 28px; }
-    .baof-phone { width: 220px; height: 450px; }
+    .baof-row { padding: 40px 20px 36px; gap: 28px; }
+    .baof-phones-duo { grid-template-columns: 0.8fr auto 1fr; gap: 10px; }
+    .baof-phone.before { width: 115px; height: 240px; padding: 5px; border-radius: 20px; }
+    .baof-phone.before::before { width: 40px; height: 10px; top: 6px; border-radius: 7px; }
+    .baof-phone.before .baof-phone-screen { border-radius: 16px; }
+    .baof-phone.after { width: 175px; height: 370px; padding: 6px; border-radius: 24px; }
+    .baof-phone.after::before { width: 58px; height: 14px; top: 8px; border-radius: 10px; }
+    .baof-phone.after .baof-phone-screen { border-radius: 18px; }
+    .baof-arrow { padding-bottom: 120px; }
+    .baof-arrow-line { font-size: 1.5rem; }
+    .baof-arrow-txt { font-size: 0.55rem; }
+    .baof-row-no { font-size: 5rem; top: -10px; right: 8px; }
     .scene-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 120px; }
     .scene-tile.t1 { grid-column: span 6; grid-row: span 2; }
     .scene-tile.t2, .scene-tile.t3, .scene-tile.t4, .scene-tile.t5 { grid-column: span 3; grid-row: span 1; }
@@ -3829,15 +4243,19 @@
           </div>
           <div class="main-title"><span class="fv-ai">AI</span>ワークショップ</div>
           <div class="fv-catch-sub">非デザイナーでも LP が作れる！</div>
-          <div class="fv-title-date">2026.04.18 SAT &nbsp;|&nbsp; 10:00–17:00 &nbsp;|&nbsp; TOKYO</div>
+          <div class="fv-title-date">2026.05.09 SAT &nbsp;|&nbsp; 10:00–18:00 &nbsp;|&nbsp; TOKYO</div>
         </div>
         <div class="fv-content">
           <div class="fv-proof">
             <span>CODE SKILL 0 でOK</span>
             <span>事前MTG＋当日＋添削＋Slack</span>
-            <span>¥55,000（税込）</span>
+            <span>¥55,000</span>
           </div>
           <a href="https://forms.gle/1SVzry659Jj6jN4X6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
+          <p class="fv-urgency">
+            <span class="fv-urgency-dot"></span>
+            <strong>少人数制</strong>・応募多数の場合は<strong>抽選</strong>／お早めにお申し込みください
+          </p>
         </div>
       </div>
     </div>
@@ -4048,7 +4466,7 @@
       <div class="wz-item wz-left reveal-left">
         <div class="wz-no">01</div>
         <div class="wz-body">
-          <h3>AIで作ったのがバレるデザインで、<br>ちょっと恥ずかしい</h3>
+          <h3>AI感が出てしまって、<br>他のサイトに埋もれてしまう</h3>
           <p>Claudeに頼んでも、出てくるのはどこかで見たテンプレ風の配色とフォント。<br>発信できる水準に届かず、結局"下書き"で止まってしまう——。そんな方がとても多いです。</p>
         </div>
       </div>
@@ -4598,7 +5016,15 @@
         <strong>"あなたのLPが仕上がるところ"</strong>まで伴走します。
       </p>
       <a href="https://forms.gle/1SVzry659Jj6jN4X6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
-      <p class="mid-cta-sub">お申し込み受付中 ／ 所要 3分</p>
+      <div class="urgency-note">
+        <span class="urgency-badge">LIMITED SEATS</span>
+        <ul>
+          <li><strong>少人数制</strong>で、おひとりおひとりをしっかりサポートします</li>
+          <li>応募多数の場合は<strong>抽選</strong>とさせていただきます</li>
+          <li>定員に達した時点で、<strong>募集を途中で締め切る場合</strong>があります</li>
+        </ul>
+        <p class="urgency-push">抽選になる可能性があります。お早めにお申し込みください。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -4896,9 +5322,30 @@
     <div class="baof-list">
       <!-- ROW 01 -->
       <div class="baof-row reveal delay-1">
-        <div class="baof-phone">
-          <div class="baof-phone-screen">
-            <div class="placeholder-txt">Aさんの<br>LP — FV</div>
+        <div class="baof-row-no">01</div>
+        <h3 class="baof-row-title">
+          Canvaを開いては閉じる日々から、<br><span class="hl">販売導線まで整ったLP</span>へ。
+        </h3>
+        <div class="baof-phones-duo">
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag before">BEFORE</span>
+            <div class="baof-phone before">
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt">構成迷子<br>（写真差し替え予定）</div>
+              </div>
+            </div>
+          </div>
+          <div class="baof-arrow">
+            <span class="baof-arrow-line">→</span>
+            <span class="baof-arrow-txt">1 DAY</span>
+          </div>
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag after">AFTER</span>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt">Aさんの<br>完成LP</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="baof-body">
@@ -4914,22 +5361,40 @@
               <span class="lbl">BEFORE</span>
               構成すら思いつかず、Canvaを開いては閉じる日々…
             </div>
-            <div class="baof-chip after">
-              <span class="lbl">AFTER</span>
-              自分の手で"動くLP"を1枚完成。販売導線まで整いました。
-            </div>
           </div>
+          <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
           <p class="baof-comment">
             パソコンが苦手すぎて半泣きで参加しました。でも<strong>3人のサポートが本当に手厚くて</strong>、気づいたらLPが出来ていて…魔法みたい。ローンチ前に間に合った！
           </p>
         </div>
       </div>
 
-      <!-- ROW 02 (reverse) -->
-      <div class="baof-row reverse reveal delay-2">
-        <div class="baof-phone">
-          <div class="baof-phone-screen" style="background: linear-gradient(180deg, #22d3ee, #0f172a, #ec4899);">
-            <div class="placeholder-txt">Bさんの<br>講座LP</div>
+      <!-- ROW 02 -->
+      <div class="baof-row reveal delay-2">
+        <div class="baof-row-no">02</div>
+        <h3 class="baof-row-title">
+          「結局どう使うの？」が、<br><span class="hl">次の講座の売上</span>に変わった。
+        </h3>
+        <div class="baof-phones-duo">
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag before">BEFORE</span>
+            <div class="baof-phone before">
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt">見せ方が<br>伝わらない…</div>
+              </div>
+            </div>
+          </div>
+          <div class="baof-arrow">
+            <span class="baof-arrow-line">→</span>
+            <span class="baof-arrow-txt">1 DAY</span>
+          </div>
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag after">AFTER</span>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen" style="background: linear-gradient(180deg, #22d3ee, #0f172a, #ec4899);">
+                <div class="placeholder-txt">Bさんの<br>講座LP</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="baof-body">
@@ -4945,11 +5410,8 @@
               <span class="lbl">BEFORE</span>
               他のAI講座では「で、結局どう使うの？」が埋まらず…
             </div>
-            <div class="baof-chip after">
-              <span class="lbl">AFTER</span>
-              商品の"見せ方"まで変わり、次の講座の告知まで自分で。
-            </div>
           </div>
+          <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
           <p class="baof-comment">
             <strong>デザイナー視点</strong>が入るから、ただAIで作るだけでは辿り着けない"伝わるLP"になりました。すぐ売上に繋がって驚きました。
           </p>
@@ -4958,9 +5420,30 @@
 
       <!-- ROW 03 -->
       <div class="baof-row reveal delay-3">
-        <div class="baof-phone">
-          <div class="baof-phone-screen" style="background: linear-gradient(180deg, #f59e0b, #ec4899, #0f172a, #a855f7);">
-            <div class="placeholder-txt">Cさんの<br>セッションLP</div>
+        <div class="baof-row-no">03</div>
+        <h3 class="baof-row-title">
+          ずっと下書きのままだったLPが、<br><span class="hl">"公開"まで辿り着いた。</span>
+        </h3>
+        <div class="baof-phones-duo">
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag before">BEFORE</span>
+            <div class="baof-phone before">
+              <div class="baof-phone-screen">
+                <div class="placeholder-txt">独学で<br>止まったまま</div>
+              </div>
+            </div>
+          </div>
+          <div class="baof-arrow">
+            <span class="baof-arrow-line">→</span>
+            <span class="baof-arrow-txt">1 DAY</span>
+          </div>
+          <div class="baof-phone-wrap">
+            <span class="baof-phone-tag after">AFTER</span>
+            <div class="baof-phone after">
+              <div class="baof-phone-screen" style="background: linear-gradient(180deg, #f59e0b, #ec4899, #0f172a, #a855f7);">
+                <div class="placeholder-txt">Cさんの<br>セッションLP</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="baof-body">
@@ -4976,11 +5459,8 @@
               <span class="lbl">BEFORE</span>
               独学で詰まると止まってしまい、ずっと下書きのまま…
             </div>
-            <div class="baof-chip after">
-              <span class="lbl">AFTER</span>
-              Slackでいつでも相談でき、公開までちゃんと辿り着けた。
-            </div>
           </div>
+          <div class="baof-after-label"><span>AFTER</span><span class="jp">感想</span></div>
           <p class="baof-comment">
             <strong>「つまずいても置いていかれない」</strong>——独学じゃ絶対に得られない価値でした。参加費以上の安心感が"仕上げる力"になります。
           </p>
@@ -5161,74 +5641,11 @@
           </p>
         </article>
 
-        <!-- 無限ループ用の複製 -->
-        <article class="vcard" aria-hidden="true">
-          <div class="vcard-head">
-            <div class="vcard-avatar"><span class="placeholder-avatar">A</span></div>
-            <div class="vcard-headline">
-              <h3>構成の迷子から抜け出して、<br>LPが"自分の手"で仕上がるように。</h3>
-              <div class="vcard-who"><strong>Aさん</strong>30代女性・ハンドメイド作家</div>
-            </div>
-          </div>
-          <p class="vcard-body">
-            もともと独学でCanvaを触っていましたが、<strong>「構成のどこから手を付けていいかわからない」</strong>状態が続いていました。今回のワークショップでは、Claudeの使い方だけでなく、<strong>デザイナー3人の"視点"を直接もらえる</strong>のが本当に大きくて、途中で何度も"あ、こういうことか"という気づきがありました。
-          </p>
-          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
-          <p class="vcard-msg">
-            「AIを使える人になりたい」だけでなく、<strong>"伝わるデザイン"も一緒に欲しい方</strong>にぜひ受けてほしい講座です。3人がかりで見てもらえる環境は他ではなかなか無いと思います。
-          </p>
-        </article>
-
-        <article class="vcard" aria-hidden="true">
-          <div class="vcard-head">
-            <div class="vcard-avatar"><span class="placeholder-avatar">B</span></div>
-            <div class="vcard-headline">
-              <h3>AI任せで止まっていた人にこそ、<br>デザイナーの目線が響きます。</h3>
-              <div class="vcard-who"><strong>Bさん</strong>40代男性・コーチ業</div>
-            </div>
-          </div>
-          <p class="vcard-body">
-            ChatGPTでもLPらしきものは作れていたのですが、<strong>どこか"他人事"なデザインに見えてしまう</strong>のが悩みでした。この講座では、Claudeで組んだ素体に対して<strong>「なぜここが惜しいのか」を言語化してもらえる</strong>ので、自分でも判断軸が残ります。
-          </p>
-          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
-          <p class="vcard-msg">
-            独学でAIを触ってきた方ほど刺さる講座だと思います。「なんとなく作れる」を「<strong>自分の言葉で説明できる</strong>」に変えたい方に特におすすめです。
-          </p>
-        </article>
-
-        <article class="vcard" aria-hidden="true">
-          <div class="vcard-head">
-            <div class="vcard-avatar"><span class="placeholder-avatar">C</span></div>
-            <div class="vcard-headline">
-              <h3>事前MTG・当日・添削・Slack、<br>"置いていかれない"設計が安心。</h3>
-              <div class="vcard-who"><strong>Cさん</strong>30代女性・フリーランス</div>
-            </div>
-          </div>
-          <p class="vcard-body">
-            PCが苦手な自覚があったので、最初は不安しかなかったです。でも<strong>事前キックオフで環境を整えてくれる</strong>ので、当日は手を動かすことにだけ集中できました。仕上げの添削会でさらに磨かれて、<strong>"公開できる状態"にきちんと辿り着けた</strong>のが何より嬉しかったです。
-          </p>
-          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
-          <p class="vcard-msg">
-            「一人だと絶対に途中で止まる」タイプの方こそ、<strong>Slackで聞き放題・添削会あり</strong>のこの講座が合っていると思います。小さい質問も遠慮なくできる雰囲気でした。
-          </p>
-        </article>
-
-        <article class="vcard" aria-hidden="true">
-          <div class="vcard-head">
-            <div class="vcard-avatar"><span class="placeholder-avatar">D</span></div>
-            <div class="vcard-headline">
-              <h3>LP以外にも応用が効くから、<br>今後の"仕事の武器"になります。</h3>
-              <div class="vcard-who"><strong>Dさん</strong>40代女性・WEBデザイナー</div>
-            </div>
-          </div>
-          <p class="vcard-body">
-            元々デザイナーとして活動していましたが、Claude Codeは初めてでした。<strong>1日で"自分でLPが組める状態"まで辿り着ける</strong>のは、かなり衝撃でした。LPだけでなく、診断ツール・会員サイト・スライドと、<strong>仕事の幅がそのまま広がる実感</strong>があります。
-          </p>
-          <div class="vcard-msg-header">— AIワークショップを受けたい人へのメッセージ —</div>
-          <p class="vcard-msg">
-            デザイナーさんにこそおすすめしたいです。"自分の手札"が一気に増える感覚があります。未経験の方はもちろん、<strong>経験者の方の"次の一手"</strong>にもぴったりな講座です。
-          </p>
-        </article>
+      </div>
+      <div class="voice-cards-hint" aria-hidden="true">
+        <span class="arrow">‹</span>
+        <span>SWIPE&nbsp;/&nbsp;DRAG</span>
+        <span class="arrow">›</span>
       </div>
     </div>
 
@@ -5239,8 +5656,123 @@
         <strong>"伝わるLP"を、あなたの手で</strong>仕上げにいきませんか？
       </p>
       <a href="https://forms.gle/1SVzry659Jj6jN4X6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
-      <p class="mid-cta-sub">お申し込み受付中 ／ 所要 3分</p>
+      <div class="urgency-note">
+        <span class="urgency-badge">LIMITED SEATS</span>
+        <ul>
+          <li><strong>少人数制</strong>で、おひとりおひとりをしっかりサポートします</li>
+          <li>応募多数の場合は<strong>抽選</strong>とさせていただきます</li>
+          <li>定員に達した時点で、<strong>募集を途中で締め切る場合</strong>があります</li>
+        </ul>
+        <p class="urgency-push">抽選になる可能性があります。お早めにお申し込みください。</p>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- 導入成果：受講生がすでに出している成果 -->
+<section class="impact">
+  <div class="inner">
+    <div class="section-header">
+      <div class="section-en slam">IMPACT</div>
+      <span class="section-line reveal delay-1"></span>
+      <h2 class="section-title slam-chop" style="margin-top:8px;">導入後、すでに<span class="em">売上</span>が出ています</h2>
+    </div>
+
+    <p class="impact-lead reveal delay-1">
+      第1回キックオフの当日、<strong>学んだその日のうちに</strong>成果を出した受講生が<strong class="accent">すでに複数名</strong>いらっしゃいます。<br>
+      「学んで終わり」じゃない。<strong>"使える"から、動き出す。</strong>それがこのワークショップです。
+    </p>
+
+    <!-- 成果事例 -->
+    <div class="impact-cases">
+      <article class="impact-case reveal delay-1">
+        <div class="impact-case-no">CASE 01</div>
+        <h3>キックオフ当日に<br><span class="hl">提案書を受注</span>された方</h3>
+        <p>
+          Claude Codeで提案書を作成し、そのままクライアントへ提出。<br>
+          <strong style="color:#fff;">学んだその日のうちに受注</strong>という、最速の成果が生まれました。
+        </p>
+        <span class="tag">SAME DAY DEAL</span>
+      </article>
+      <article class="impact-case reveal delay-2">
+        <div class="impact-case-no">CASE 02</div>
+        <h3>キックオフでURL公開→<br><span class="hl">販売まで到達</span>された方</h3>
+        <p>
+          当日のうちにLPを公開し、ご自身のサービス販売までつなげた受講生も。<br>
+          <strong style="color:#fff;">"作って終わり"ではなく"売上"まで</strong>。Claude Codeの破壊力を体感されました。
+        </p>
+        <span class="tag">LIVE LAUNCH</span>
+      </article>
+    </div>
+
+    <!-- 作れるものグリッド -->
+    <h3 class="impact-sub-title reveal delay-1">
+      作れるのは、<span class="em">LPだけじゃない。</span>
+    </h3>
+    <p class="impact-sub-sub reveal delay-1">
+      Claude Codeは、あなたの"作りたい"をほぼ全部カタチにできる万能ツール。<br>
+      LP・提案書・診断ツール・会員サイト……<strong style="color:#fff;">ありとあらゆる制作</strong>が可能です。
+    </p>
+    <div class="impact-items">
+      <div class="impact-item reveal delay-1">
+        <div class="impact-item-label">01 / LP</div>
+        <div class="impact-item-name">ランディングページ</div>
+      </div>
+      <div class="impact-item reveal delay-1">
+        <div class="impact-item-label">02 / DOC</div>
+        <div class="impact-item-name">提案書・企画書</div>
+      </div>
+      <div class="impact-item reveal delay-2">
+        <div class="impact-item-label">03 / TOOL</div>
+        <div class="impact-item-name">診断ツール</div>
+      </div>
+      <div class="impact-item reveal delay-2">
+        <div class="impact-item-label">04 / SITE</div>
+        <div class="impact-item-name">会員サイト</div>
+      </div>
+      <div class="impact-item reveal delay-1">
+        <div class="impact-item-label">05 / SLIDE</div>
+        <div class="impact-item-name">スライド・セミナー資料</div>
+      </div>
+      <div class="impact-item reveal delay-1">
+        <div class="impact-item-label">06 / FORM</div>
+        <div class="impact-item-name">予約・申込フォーム</div>
+      </div>
+      <div class="impact-item reveal delay-2">
+        <div class="impact-item-label">07 / APP</div>
+        <div class="impact-item-name">ミニWEBアプリ</div>
+      </div>
+      <div class="impact-item reveal delay-2">
+        <div class="impact-item-label">08 / etc.</div>
+        <div class="impact-item-name">その他ほぼ何でも</div>
+      </div>
+    </div>
+
+    <!-- 外注 vs 月額 比較 -->
+    <div class="impact-compare">
+      <div class="impact-compare-col out reveal delay-1">
+        <div class="impact-compare-label">IF YOU OUTSOURCE</div>
+        <div class="impact-compare-title">これを全部、<br>プロに依頼した場合</div>
+        <div class="impact-compare-price">¥300,000〜</div>
+        <div class="impact-compare-note">
+          LP1本で10〜30万円が相場。<br>提案書・診断ツール・会員サイトまで入れると、<strong style="color:#ffb3b3;">数十万円〜数百万円</strong>かかることも。
+        </div>
+      </div>
+      <div class="impact-compare-arrow reveal delay-2">VS</div>
+      <div class="impact-compare-col ws reveal delay-2">
+        <div class="impact-compare-label">WITH CLAUDE CODE</div>
+        <div class="impact-compare-title">これ全部、<br>自分の手で作れる状態に</div>
+        <div class="impact-compare-price">月額 約¥3,000〜</div>
+        <div class="impact-compare-note">
+          Claude Codeの利用料だけ。<br><strong style="color:#fff;">1度身につけたら、何個作っても追加費用なし。</strong>思いついたものを、その日のうちに形にできます。
+        </div>
+      </div>
+    </div>
+
+    <p class="impact-bridge reveal delay-2">
+      この"自分で作れる状態"に、<br>たった1日で連れていく講師陣がこちらです。
+      <span class="small">— デザイナー歴15〜22年の、AIオタク3人組。 —</span>
+    </p>
   </div>
 </section>
 
@@ -5300,19 +5832,23 @@
       <h2 class="section-title slam-chop" style="margin-top:8px;">開催概要</h2>
     </div>
     <div class="overview-table reveal">
-      <div class="overview-row"><div class="overview-label">DATE</div><div class="overview-value">後日発表<span class="note">事前キックオフMTG（オンライン）＋当日リアル会場</span></div></div>
+      <div class="overview-row"><div class="overview-label">DATE</div><div class="overview-value"><strong style="color:#fff;">2026.05.09 SAT</strong>　10:00–18:00<span class="note" style="margin-top:6px;"><strong style="color:var(--neon-cyan);">事前キックオフMTG（オンライン・2時間）：</strong>2026.05.02 SAT 20:00〜</span></div></div>
       <div class="overview-row"><div class="overview-label">PLACE</div><div class="overview-value">都内会場<span class="note">※詳細はお申し込み後にご案内</span></div></div>
-      <div class="overview-row"><div class="overview-label">PRICE</div><div class="overview-value"><strong style="color: var(--neon-cyan); font-size: 1.2rem;">¥55,000</strong>（税込）<span class="note">事前MTG（2h）＋当日ハンズオン＋添削会＋Slackサポート</span></div></div>
+      <div class="overview-row"><div class="overview-label">PRICE</div><div class="overview-value"><strong style="color: var(--neon-cyan); font-size: 1.2rem;">¥55,000</strong><span class="note">事前MTG（2h）＋当日ハンズオン＋添削会＋Slackサポート</span></div></div>
       <div class="overview-row"><div class="overview-label">BRING</div><div class="overview-value">パソコン（Mac推奨・Windows可）<span class="note" style="color:var(--neon-pink);">※ スペック要件・動作環境を必ずご確認ください（下記「REQUIREMENTS」参照）</span></div></div>
       <div class="overview-row"><div class="overview-label">TARGET</div><div class="overview-value"><strong style="color:#fff;">対象者：</strong>ご自身の講座やサービスをお持ちの方<span class="note" style="margin-top:8px; color:var(--neon-pink);">※ ご自身のサービスをお持ちでない方は対象外となります</span></div></div>
       <div class="overview-row"><div class="overview-label">定員</div><div class="overview-value"><strong style="color:#fff;">少人数制</strong><span class="note" style="margin-top:8px; color:var(--neon-pink);">※ 応募多数の場合は抽選とさせていただきます</span></div></div>
     </div>
     <div class="condition-box reveal">
-      <h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="g-camera" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><rect x="2" y="6" width="20" height="14" rx="2" fill="none" stroke="url(#g-camera)" stroke-width="1.5"/><rect x="2" y="6" width="20" height="14" rx="2" fill="url(#g-camera)" opacity="0.08"/><circle cx="12" cy="13" r="4" fill="none" stroke="url(#g-camera)" stroke-width="1.5"/><circle cx="12" cy="13" r="2" fill="url(#g-camera)" opacity="0.3"/><path d="M8 6l1-3h6l1 3" fill="none" stroke="url(#g-camera)" stroke-width="1.5" stroke-linejoin="round"/></svg> モニター参加の条件</h3>
+      <h3><svg viewBox="0 0 24 24" width="20" height="20" style="vertical-align:-3px;margin-right:6px;"><defs><linearGradient id="g-camera" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><rect x="2" y="6" width="20" height="14" rx="2" fill="none" stroke="url(#g-camera)" stroke-width="1.5"/><rect x="2" y="6" width="20" height="14" rx="2" fill="url(#g-camera)" opacity="0.08"/><circle cx="12" cy="13" r="4" fill="none" stroke="url(#g-camera)" stroke-width="1.5"/><circle cx="12" cy="13" r="2" fill="url(#g-camera)" opacity="0.3"/><path d="M8 6l1-3h6l1 3" fill="none" stroke="url(#g-camera)" stroke-width="1.5" stroke-linejoin="round"/></svg> ご協力いただけると嬉しいこと</h3>
+      <p style="margin:0 0 14px; font-size:0.85rem; line-height:1.9; color:var(--text-light);">
+        よりよいワークショップにしていくため、もし可能であれば<strong style="color:#fff;">下記にご協力いただけると、とても嬉しいです</strong>。<br>
+        （あくまでお願いベースです。難しいものがあれば遠慮なくご相談ください。）
+      </p>
       <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
-        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span>ワークショップの様子を<strong style="color:#fff;">ストーリーズでご紹介</strong>いただくこと</span></li>
-        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span>当日の<strong style="color:#fff;">写真撮影</strong>にご協力いただくこと</span></li>
-        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span><strong style="color:#fff;">ご感想</strong>をいただくこと（お客様の声として紹介させていただく場合があります）</span></li>
+        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span>ワークショップの様子を<strong style="color:#fff;">ストーリーズでご紹介</strong>いただけると嬉しいです</span></li>
+        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span>当日の<strong style="color:#fff;">写真撮影</strong>にご協力いただけると嬉しいです</span></li>
+        <li style="display:flex; align-items:flex-start; gap:8px;"><span style="color:var(--neon-cyan); font-size:1rem; margin-top:2px;">✦</span><span><strong style="color:#fff;">ご感想</strong>をお聞かせいただけると嬉しいです（お客様の声として紹介させていただく場合があります）</span></li>
       </ul>
       <p style="margin-top:12px; font-size:0.78rem; color:var(--text-light);">※ 顔出しNG等は事前にご相談ください</p>
     </div>
@@ -5566,7 +6102,7 @@
       <span class="section-line reveal delay-1"></span>
       <h2 class="section-title slam-chop" style="margin-top:8px;">よくある質問</h2>
     </div>
-    <div class="faq-item reveal delay-1"><div class="faq-q">¥55,000 の内訳を教えてください。</div><div class="faq-a">(1) 事前キックオフMTG（オンライン2時間）＋ (2) 当日リアル会場（1日・3名体制ハンズオン）＋ (3) 後日の添削会（提出者対象／3人からフィードバック）＋ (4) 期間中のSlack質問サポート、の一貫パッケージです。金額の内訳よりも、"置いてけぼりを作らない全行程サポート"として設計しています。</div></div>
+    <div class="faq-item reveal delay-1"><div class="faq-q">事前キックオフMTGに参加できないのですが、大丈夫ですか？</div><div class="faq-a"><strong>アーカイブ受講が可能</strong>ですので、ご安心ください。後日、録画をご覧いただきながらキャッチアップしていただけます。<br>※ <strong>当日のリアル会場のみアーカイブはございません</strong>ので、その点はあらかじめご了承ください。</div></div>
     <div class="faq-item reveal delay-2"><div class="faq-q">プログラミングの知識は本当に要りませんか？</div><div class="faq-a">本当に不要です。講師自身も経験ゼロからスタートしました。日本語で話しかけるだけで大丈夫です。</div></div>
     <div class="faq-item reveal delay-3"><div class="faq-q">古いパソコン（Intel Mac等）でも参加できますか？</div><div class="faq-a">5年以上前の機種は動作保証対象外です。Intel Macと古いmacOSの組み合わせでは、当日Claude Codeが使えないケースが確認されています。ご不安な方は申し込み前に<strong>事前確認</strong>をおすすめします（Windowsもご参加可能です）。</div></div>
     <div class="faq-item reveal delay-1"><div class="faq-q">Claude Codeの利用料はかかりますか？</div><div class="faq-a">月額 約3,000円〜（$20〜）です。登録方法もワークショップ内でご案内します。使用モデルによっては$100プランへのアップグレードが必要になる場合があります。</div></div>
@@ -5600,10 +6136,18 @@
   <div class="inner">
     <h2><span class="highlight">「これも私が<br>つくれるの！？」</span><br>を体験しよう</h2>
     <div class="date">事前MTG（オンライン）＋ 当日リアル会場 ＋ 添削会 ＋ Slackサポート</div>
-    <div class="price"><span class="current">¥55,000（税込）</span></div>
+    <div class="price"><span class="current">¥55,000</span></div>
     <a href="https://forms.gle/1SVzry659Jj6jN4X6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
-    <div class="note">※ 中古PC／古いMac／メモリが極端に少ないPCをお使いの方は、事前にご相談ください</div>
-    <div class="note" style="margin-top:8px;">※ 少人数制のため、応募多数の場合は抽選とさせていただきます。ご了承ください。</div>
+    <div class="urgency-note">
+      <span class="urgency-badge">LIMITED SEATS</span>
+      <ul>
+        <li><strong>少人数制</strong>で、おひとりおひとりをしっかりサポートします</li>
+        <li>応募多数の場合は<strong>抽選</strong>とさせていただきます</li>
+        <li>定員に達した時点で、<strong>募集を途中で締め切る場合</strong>があります</li>
+      </ul>
+      <p class="urgency-push">抽選になる可能性があります。お早めにお申し込みください。</p>
+    </div>
+    <div class="note" style="margin-top:14px;">※ 中古PC／古いMac／メモリが極端に少ないPCをお使いの方は、事前にご相談ください</div>
   </div>
 </section>
 
