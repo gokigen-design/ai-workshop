@@ -2799,6 +2799,17 @@
     pointer-events: auto;
     background: #fff;
   }
+  /* 縦長スクショを内部スクロール表示（Vercel iframe 不可のLP向け） */
+  .phone-scroll-img {
+    position: absolute; inset: 0;
+    overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border-radius: inherit;
+  }
+  .phone-scroll-img img { width: 100%; height: auto; display: block; }
+  .phone-scroll-img::-webkit-scrollbar { width: 4px; }
+  .phone-scroll-img::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.5); border-radius: 2px; }
   @media (max-width: 640px) {
     .phone-scroller-iframe { transform: scale(0.22); }
   }
@@ -4679,10 +4690,18 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
+            <div class="phone-scroll-img"><img src="images/zoe-after.png" alt="ゾエさんの完成LP" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="phone-label">CASE 03<span class="name">ゾエさん / 発達障害サポート</span></div>
+      </div>
+      <div class="swiper-slide">
+        <div class="phone-mock">
+          <div class="phone-screen">
             <iframe src="https://petit-atelier.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="あゆみんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 03<span class="name">あゆみん / WEBデザイナー</span></div>
+        <div class="phone-label">CASE 04<span class="name">あゆみん / WEBデザイナー</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4690,7 +4709,7 @@
             <iframe src="https://lp-fujiba-tomomi.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="ともみさんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 04<span class="name">ともみさん / イメージコンサル</span></div>
+        <div class="phone-label">CASE 05<span class="name">ともみさん / イメージコンサル</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4698,7 +4717,7 @@
             <iframe src="https://lp-premiere-seminar.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="えびちゃんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 05<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
+        <div class="phone-label">CASE 06<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4706,7 +4725,7 @@
             <iframe src="https://sayan-lp.vercel.app/" loading="lazy" class="phone-scroller-iframe" title="さーやんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 06<span class="name">さーやん / 自己理解コーチ</span></div>
+        <div class="phone-label">CASE 07<span class="name">さーやん / 自己理解コーチ</span></div>
       </div>
     </div>
   </div>
