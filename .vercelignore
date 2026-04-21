@@ -1,6 +1,8 @@
 .git
 .DS_Store
 .claude/
+# 第1回¥33,000モニター版LPは非公開にする（ファイル自体は参考のため残す）
+lp.html
 *.mov
 # 動画素材ファイル（圧縮版 images/fv-bg.mp4 のみ使用）
 video/
