@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="ja" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q&A Session - 4/23 質疑応答会 事前資料</title>
+
+  <!-- パスワードゲート -->
+  <style id="pw-gate-style">
+    html.pw-locked > body { visibility: hidden; }
+    #pw-gate {
+      position: fixed; inset: 0; z-index: 999999;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #EEF1FB 0%, #E8F5F3 100%);
+      font-family: 'Noto Serif JP', serif;
+      visibility: visible;
+    }
+    #pw-gate .pw-card {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(79,126,247,0.15);
+      border-radius: 24px;
+      padding: 56px 48px 48px;
+      max-width: 420px;
+      width: calc(100% - 40px);
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(79,126,247,0.10);
+    }
+    #pw-gate .pw-orn {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 4px;
+      background: linear-gradient(135deg, #4F7EF7, #1BC6B4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: block;
+    }
+    #pw-gate .pw-orn::before, #pw-gate .pw-orn::after {
+      content: '─'; margin: 0 10px; opacity: 0.4;
+    }
+    #pw-gate h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 44px;
+      color: #1C1D2E;
+      margin: 0 0 14px;
+      line-height: 1.2;
+    }
+    #pw-gate .pw-sub {
+      font-size: 12px;
+      color: #6B7280;
+      letter-spacing: 1px;
+      margin: 0 0 36px;
+      line-height: 1.8;
+    }
+    #pw-gate input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 16px 20px;
+      border: 1px solid rgba(79,126,247,0.25);
+      border-radius: 100px;
+      background: rgba(255,255,255,0.8);
+      font-family: inherit;
+      font-size: 15px;
+      color: #1C1D2E;
+      text-align: center;
+      letter-spacing: 2px;
+      outline: none;
+    }
+    #pw-gate input:focus { border-color: #4F7EF7; background: #fff; box-shadow: 0 0 0 4px rgba(79,126,247,0.1); }
+    #pw-gate button {
+      margin-top: 16px; width: 100%; padding: 16px 24px;
+      border: none; border-radius: 100px;
+      background: linear-gradient(135deg, #4F7EF7 0%, #1BC6B4 100%);
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 17px; letter-spacing: 3px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(79,126,247,0.25);
+    }
+    #pw-gate .pw-err { min-height: 18px; margin-top: 14px; font-size: 11px; color: #4F7EF7; letter-spacing: 1px; opacity: 0; }
+    #pw-gate .pw-err.show { opacity: 1; }
+    #pw-gate .pw-foot { margin-top: 28px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 11px; letter-spacing: 2px; color: #B8A590; }
+  </style>
+  <script>
+    (function(){
+      if (sessionStorage.getItem('aiws_auth') === 'ok') return;
+      document.documentElement.classList.add('pw-locked');
+      document.addEventListener('DOMContentLoaded', function(){
+        var gate = document.createElement('div');
+        gate.id = 'pw-gate';
+        gate.innerHTML =
+          '<div class="pw-card">' +
+            '<div class="pw-orn">Private</div>' +
+            '<h1>Welcome</h1>' +
+            '<p class="pw-sub">こちらはワークショップ受講生さま限定のページです<br>パスワードをご入力ください</p>' +
+            '<form id="pw-form" autocomplete="off">' +
+              '<input type="password" id="pw-input" placeholder="password" autofocus />' +
+              '<div class="pw-err" id="pw-err">パスワードが違います</div>' +
+              '<button type="submit">Enter</button>' +
+            '</form>' +
+            '<div class="pw-foot">AI Workshop</div>' +
+          '</div>';
+        document.body.appendChild(gate);
+        var form = document.getElementById('pw-form');
+        var input = document.getElementById('pw-input');
+        var err = document.getElementById('pw-err');
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          if (input.value === 'otaku2026') {
+            sessionStorage.setItem('aiws_auth','ok');
+            document.documentElement.classList.remove('pw-locked');
+            gate.remove();
+          } else {
+            err.classList.add('show');
+            input.value = ''; input.focus();
+          }
+        });
+      });
+    })();
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black:      #1C1D2E;
+      --dark:       #2A2B3D;
+      --card:       #FFFFFF;
+      --border:     #E5E8F0;
+      --blue:       #4F7EF7;
+      --teal:       #1BC6B4;
+      --blue-dim:   rgba(79,126,247,0.07);
+      --blue-border: rgba(79,126,247,0.22);
+      --beige:      #F5F7FB;
+      --beige-mid:  #EBEEf5;
+      --white:      #FFFFFF;
+      --gray:       #A0A8BC;
+      --gray-mid:   #6B7280;
+      --gray-lt:    #9CA3AF;
+      --grad:       linear-gradient(135deg, #4F7EF7 0%, #1BC6B4 100%);
+      --grad-soft:  linear-gradient(135deg, rgba(79,126,247,0.08) 0%, rgba(27,198,180,0.08) 100%);
+      --green:      #10B981;
+      --green-lt:   #ECFDF5;
+      --red:        #EF4444;
+      --red-lt:     #FEF2F2;
+      --yellow:     #F59E0B;
+      --yellow-lt:  #FEF3C7;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.9;
+      min-height: 100vh;
+    }
+
+    /* ─── TOP NAV (sticky) ─── */
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .top-nav-inner {
+      max-width: 1080px; margin: 0 auto;
+      padding: 14px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .top-nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+    .top-nav-links {
+      display: flex; gap: 4px; overflow-x: auto; flex-wrap: nowrap;
+      scrollbar-width: none;
+    }
+    .top-nav-links::-webkit-scrollbar { display: none; }
+    .top-nav-links a {
+      font-size: 12px; color: var(--gray-mid);
+      text-decoration: none;
+      padding: 6px 12px; border-radius: 100px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .top-nav-links a:hover {
+      background: var(--blue-dim);
+      color: var(--blue);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, #EEF1FB 0%, #E8F5F3 100%);
+      padding: 100px 40px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(79,126,247,0.08), transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(27,198,180,0.08), transparent 40%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(56px, 10vw, 100px);
+      letter-spacing: 0.02em;
+      line-height: 1.0;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .hero-date {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gray-lt);
+    }
+
+    /* ─── 冒頭メッセージ ─── */
+    .intro-section {
+      max-width: 760px; margin: 0 auto;
+      padding: 80px 40px 40px;
+    }
+    .intro-lead {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.8;
+      letter-spacing: 0.03em;
+      color: var(--black);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .intro-lead em {
+      font-style: normal;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 500;
+    }
+    .intro-text {
+      font-size: 15px;
+      line-height: 2.0;
+      color: var(--gray-mid);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .voice-card {
+      background: var(--grad-soft);
+      border-radius: 20px;
+      padding: 32px 36px;
+      margin: 48px auto 0;
+      max-width: 640px;
+      border: 1px solid var(--blue-border);
+    }
+    .voice-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      display: block;
+      text-align: center;
+    }
+    .voice-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      line-height: 1.9;
+      color: var(--dark);
+      text-align: center;
+      font-weight: 400;
+    }
+    .voice-quote + .voice-quote {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(79,126,247,0.2);
+    }
+
+    /* ─── TOC ─── */
+    .toc-wrap {
+      max-width: 900px; margin: 0 auto;
+      padding: 40px 40px 60px;
+    }
+    .toc {
+      background: var(--beige);
+      border-radius: 20px;
+      padding: 40px 44px;
+    }
+    .toc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .toc-sub {
+      font-size: 12px;
+      color: var(--gray-lt);
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+      list-style: none;
+    }
+    .toc-list a {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--black);
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .toc-list a:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(79,126,247,0.10);
+    }
+    .toc-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    /* ─── SECTION ─── */
+    .section {
+      max-width: 900px; margin: 0 auto;
+      padding: 80px 40px 40px;
+    }
+    .sec-head { margin-bottom: 48px; }
+    .sec-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    .sec-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .sec-desc {
+      font-size: 15px;
+      color: var(--gray-mid);
+      line-height: 1.9;
+      max-width: 660px;
+    }
+
+    /* ─── SUBSECTION ─── */
+    .subsec {
+      margin-bottom: 56px;
+    }
+    .subsec-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 1.6;
+      color: var(--black);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .subsec-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      width: 38px; height: 38px;
+      background: var(--grad);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .subsec-body p {
+      font-size: 15px;
+      line-height: 2.0;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+    .subsec-body p:last-child { margin-bottom: 0; }
+    .subsec-body strong {
+      font-weight: 600;
+      color: var(--black);
+      background: linear-gradient(transparent 60%, rgba(79,126,247,0.15) 60%);
+    }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 20px 0;
+    }
+    .card-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 17px;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+
+    /* ─── CALLOUT types ─── */
+    .callout {
+      border-radius: 14px;
+      padding: 20px 26px;
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .callout-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .callout-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+    }
+    .callout-info {
+      background: var(--blue-dim);
+      border: 1px solid var(--blue-border);
+      color: var(--dark);
+    }
+    .callout-info .callout-title { color: var(--blue); }
+    .callout-warn {
+      background: var(--yellow-lt);
+      border: 1px solid #FCD34D;
+      color: #78350F;
+    }
+    .callout-warn .callout-title { color: #B45309; }
+    .callout-tip {
+      background: var(--green-lt);
+      border: 1px solid #A7F3D0;
+      color: #065F46;
+    }
+    .callout-tip .callout-title { color: var(--green); }
+    .callout-danger {
+      background: var(--red-lt);
+      border: 1px solid #FCA5A5;
+      color: #7F1D1D;
+    }
+    .callout-danger .callout-title { color: var(--red); }
+
+    /* ─── TABLE ─── */
+    .tbl-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: var(--white);
+    }
+    thead th {
+      background: var(--beige);
+      color: var(--black);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      text-align: left;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--dark);
+      vertical-align: top;
+      line-height: 1.8;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) { background: rgba(245,247,251,0.4); }
+
+    /* ─── LISTS ─── */
+    .check-list, .cross-list, .dot-list {
+      list-style: none;
+      margin: 16px 0;
+    }
+    .check-list li,
+    .cross-list li,
+    .dot-list li {
+      position: relative;
+      padding: 6px 0 6px 30px;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--dark);
+    }
+    .check-list li::before {
+      content: ''; position: absolute;
+      left: 4px; top: 14px;
+      width: 14px; height: 14px;
+      background: var(--grad);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(79,126,247,0.12);
+    }
+    .check-list li::after {
+      content: ''; position: absolute;
+      left: 7px; top: 18px;
+      width: 4px; height: 7px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .cross-list li::before {
+      content: '×';
+      position: absolute;
+      left: 0; top: 4px;
+      width: 22px; height: 22px;
+      background: var(--red-lt);
+      color: var(--red);
+      border-radius: 50%;
+      font-size: 14px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .dot-list li::before {
+      content: ''; position: absolute;
+      left: 8px; top: 16px;
+      width: 6px; height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+
+    /* ─── DIAGRAM (フロー図) ─── */
+    .flow-diagram {
+      background: var(--beige);
+      border-radius: 16px;
+      padding: 40px 32px;
+      margin: 24px 0;
+    }
+    .flow-row {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .flow-box {
+      flex: 1;
+      min-width: 140px;
+      max-width: 200px;
+      background: var(--white);
+      border: 1.5px solid var(--blue-border);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .flow-box-icon {
+      width: 40px; height: 40px;
+      margin: 0 auto 10px;
+      background: var(--grad-soft);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .flow-box-icon svg { width: 22px; height: 22px; }
+    .flow-box-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .flow-box-desc {
+      font-size: 12px;
+      color: var(--gray-mid);
+      line-height: 1.7;
+    }
+    .flow-arrow {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+      font-size: 20px;
+      min-width: 20px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 720px) {
+      .flow-row { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); min-height: 20px; }
+      .flow-box { max-width: 100%; width: 100%; }
+    }
+
+    /* ─── 2カラム比較 ─── */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .compare-box {
+      padding: 22px 24px;
+      border-radius: 14px;
+    }
+    .compare-good {
+      background: var(--green-lt);
+      border: 1px solid #A7F3D0;
+    }
+    .compare-bad {
+      background: var(--red-lt);
+      border: 1px solid #FCA5A5;
+    }
+    .compare-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .compare-good .compare-label { color: var(--green); }
+    .compare-bad .compare-label { color: var(--red); }
+    .compare-box p,
+    .compare-box li {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--dark);
+    }
+    .compare-box ul { list-style: none; }
+    .compare-box li {
+      padding: 4px 0 4px 20px;
+      position: relative;
+    }
+    .compare-good li::before {
+      content: '○'; position: absolute; left: 0;
+      color: var(--green); font-weight: 700;
+    }
+    .compare-bad li::before {
+      content: '×'; position: absolute; left: 0;
+      color: var(--red); font-weight: 700;
+    }
+    @media (max-width: 680px) {
+      .compare { grid-template-columns: 1fr; }
+    }
+
+    /* ─── ステップリスト ─── */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      margin: 20px 0;
+    }
+    .steps > li {
+      counter-increment: step;
+      position: relative;
+      padding: 16px 0 16px 56px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .steps > li:last-child { border-bottom: none; }
+    .steps > li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0; top: 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      width: 38px; height: 38px;
+      background: var(--grad);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .steps-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .steps-desc {
+      font-size: 14px;
+      color: var(--gray-mid);
+      line-height: 1.9;
+    }
+
+    /* ─── FAQ item ─── */
+    .faq {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 14px 0;
+    }
+    .faq-q {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--black);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+    .faq-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 100px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .faq-q .faq-badge {
+      background: var(--grad);
+      color: #fff;
+    }
+    .faq-a {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 14px;
+      color: var(--dark);
+      line-height: 2.0;
+      padding-left: 2px;
+    }
+    .faq-a .faq-badge {
+      background: var(--beige);
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+    }
+    .faq-a > div { flex: 1; }
+    .faq-from {
+      font-size: 11px;
+      color: var(--gray-lt);
+      margin-top: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── TAG ─── */
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 100px;
+      background: var(--beige);
+      color: var(--gray-mid);
+      margin-right: 6px;
+      letter-spacing: 0.05em;
+    }
+    .tag-win { background: #DBEAFE; color: #1E40AF; }
+    .tag-mac { background: #F3E8FF; color: #6B21A8; }
+    .tag-both { background: var(--grad-soft); color: var(--blue); }
+
+    /* ─── GLOSSARY ─── */
+    .glossary {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .glossary-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+    }
+    .glossary-term {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--black);
+      margin-bottom: 6px;
+      display: flex; align-items: baseline; gap: 8px;
+      flex-wrap: wrap;
+    }
+    .glossary-en {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--blue);
+      letter-spacing: 0.05em;
+    }
+    .glossary-def {
+      font-size: 13px;
+      color: var(--gray-mid);
+      line-height: 1.8;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      margin-top: 80px;
+      padding: 60px 40px 80px;
+      background: linear-gradient(135deg, #F5F7FB 0%, #EEF1FB 100%);
+      text-align: center;
+    }
+    .footer-message {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      line-height: 2.0;
+      color: var(--dark);
+      max-width: 580px;
+      margin: 0 auto 32px;
+    }
+    .footer-sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 0.15em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .footer-meta {
+      font-size: 11px;
+      color: var(--gray-lt);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── Divider ─── */
+    .divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px;
+      margin: 20px 0 40px;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-border), transparent);
+    }
+    .divider-icon {
+      width: 8px; height: 8px;
+      background: var(--grad);
+      border-radius: 50%;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 720px) {
+      .top-nav-inner { padding: 12px 20px; }
+      .hero { padding: 60px 24px 50px; }
+      .intro-section, .toc-wrap, .section { padding-left: 24px; padding-right: 24px; }
+      .toc { padding: 28px 24px; }
+      .sec-title { font-size: 26px; }
+      .subsec-title { font-size: 19px; }
+      .card { padding: 22px 20px; }
+      .faq { padding: 20px 22px; }
+      .voice-card { padding: 24px 22px; }
+      .intro-lead { font-size: 19px; }
+      .flow-diagram { padding: 28px 18px; }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Top Nav ─── -->
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <div class="top-nav-brand">Q&amp;A Session</div>
+    <div class="top-nav-links">
+      <a href="#part1">全体像</a>
+      <a href="#part2">セットアップ</a>
+      <a href="#part3">画像・ファイル</a>
+      <a href="#part4">フォルダ整理</a>
+      <a href="#part5">できること</a>
+      <a href="#part6">セキュリティ</a>
+      <a href="#part7">用語辞典</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">For Workshop Members</span>
+    <h1>Q&amp;A Session</h1>
+    <p class="hero-sub">4/23 質疑応答会 事前資料</p>
+    <p class="hero-date">AI Workshop — 2026.04.23</p>
+  </div>
+</section>
+
+<!-- ─── 冒頭メッセージ ─── -->
+<section class="intro-section">
+  <p class="intro-lead">
+    この資料は、<em>みなさんからいただいた質問</em>と、<br>
+    4/23の質疑応答会の<em>ベースになる基礎情報</em>をまとめたものです。
+  </p>
+  <p class="intro-text">
+    当日は、この資料を読んでもなお残る「深い質問」に集中できるように、<br>
+    まず一度目を通してみてください。<br>
+    何度でも見返せるように作っています。
+  </p>
+
+  <div class="voice-card">
+    <span class="voice-label">Voices from the first workshop</span>
+    <p class="voice-quote">「クロードコード、使える気がしない」<br>→ 「クロードコード、楽しくて一日中やってたい」</p>
+    <p class="voice-quote">AIワークショップの参加前と参加後では、<br>事務仕事の質も速さも効率も、まるで変わりました。</p>
+  </div>
+
+  <p class="intro-text" style="margin-top: 32px;">
+    最初は全員が不安でした。<br>
+    初歩的な質問こそ、みんなの財産になります。
+  </p>
+</section>
+
+<!-- ─── TOC ─── -->
+<section class="toc-wrap">
+  <div class="toc">
+    <h2 class="toc-title">Contents</h2>
+    <p class="toc-sub">この資料の目次</p>
+    <ul class="toc-list">
+      <li><a href="#part1"><span class="toc-num">01</span><span>まず知っておくこと（全体像）</span></a></li>
+      <li><a href="#part2"><span class="toc-num">02</span><span>セットアップでつまずくポイント</span></a></li>
+      <li><a href="#part3"><span class="toc-num">03</span><span>画像・ファイル名のコツ</span></a></li>
+      <li><a href="#part4"><span class="toc-num">04</span><span>フォルダ整理の考え方</span></a></li>
+      <li><a href="#part5"><span class="toc-num">05</span><span>Claude Codeでできること</span></a></li>
+      <li><a href="#part6"><span class="toc-num">06</span><span>セキュリティ・連携</span></a></li>
+      <li><a href="#part7"><span class="toc-num">07</span><span>用語ミニ辞典</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 1：全体像 -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part1">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 01</span>
+    <h2 class="sec-title">まず知っておくこと<br>― Claudeの全体像 ―</h2>
+    <p class="sec-desc">
+      「なぜこの操作が必要なの？」がわかると、トラブルが起きたときも自分で判断できます。
+      まずは全体の地図を頭に入れましょう。
+    </p>
+  </div>
+
+  <!-- 1-1 Claudeは3つある -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">1-1</span>Claudeは「3種類」あります</h3>
+    <div class="subsec-body">
+      <p>みなさんが「Claude」と呼んでいるものは、実は<strong>3つの別物</strong>です。それぞれ得意なことが違います。</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>種類</th>
+              <th>何ができる？</th>
+              <th>どんな時に使う？</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Claude（ブラウザ）</strong><br><span class="tag">claude.ai</span></td>
+              <td>文章を書く・要約・アイデア出し・画像の説明</td>
+              <td>ちょっと調べたい時・壁打ち</td>
+            </tr>
+            <tr>
+              <td><strong>Claude Desktop</strong><br><span class="tag">アプリ版</span></td>
+              <td>ブラウザ版とほぼ同じ。スマホアプリもここに近い</td>
+              <td>PCにアプリとして常駐させたい時</td>
+            </tr>
+            <tr>
+              <td><strong>Claude Code</strong><br><span class="tag tag-both">本命</span></td>
+              <td>PCのファイルを直接さわれる・LPを作れる・フォルダを読める</td>
+              <td>ワークショップで使うのはコレ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">大事なのはココ</div>
+        チャットのClaudeとClaude Codeは<strong>別アプリだけど、同じアカウントで動いている</strong>。
+        そしてProプランの場合、<strong>トークン（使える量）は共通の財布から減っていきます</strong>。
+        詳しくは 1-3 で説明します。
+      </div>
+    </div>
+  </div>
+
+  <!-- 1-2 関係図 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">1-2</span>Claude × GitHub × Vercel の関係図</h3>
+    <div class="subsec-body">
+      <p>
+        「なぜGitHubを入れるの？」「Vercelって何？」という疑問の答えがこの図です。<br>
+        <strong>役割が違うから、全部が必要</strong>なのです。
+      </p>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+            </div>
+            <div class="flow-box-title">あなたのPC</div>
+            <div class="flow-box-desc">Claude Codeで<br>ファイルを作る場所</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="1.6"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1 .8-.2 1.6-.3 2.5-.3.8 0 1.7.1 2.5.3 1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.6 4.9.4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5C19.1 20.2 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>
+            </div>
+            <div class="flow-box-title">GitHub</div>
+            <div class="flow-box-desc">ファイルを<br>保管する倉庫</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1BC6B4" stroke-width="1.6"><path d="M12 2L2 20h20L12 2z"/></svg>
+            </div>
+            <div class="flow-box-title">Vercel</div>
+            <div class="flow-box-desc">GitHubから読み取って<br>世界に公開する</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1BC6B4" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+            </div>
+            <div class="flow-box-title">公開URL</div>
+            <div class="flow-box-desc">お客様が見られる<br>あなたのLP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ツール</th>
+              <th>たとえるなら</th>
+              <th>役割</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Claude Code</strong></td>
+              <td>あなたの相棒のデザイナー</td>
+              <td>あなたの代わりにHTMLファイルを書いてくれる</td>
+            </tr>
+            <tr>
+              <td><strong>GitHub</strong></td>
+              <td>作品の保管庫・バックアップ先</td>
+              <td>作ったファイルを預ける。履歴も残るので安心</td>
+            </tr>
+            <tr>
+              <td><strong>Vercel</strong></td>
+              <td>配達人</td>
+              <td>GitHubの中身を世界中のネットに配達してくれる</td>
+            </tr>
+            <tr>
+              <td><strong>Git</strong> <span class="tag tag-win">Windowsのみ</span></td>
+              <td>郵便の仕組みそのもの</td>
+              <td>PCからGitHubに送るための仕組み（Macは最初から入ってる）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">つまり</div>
+        「PCで作る → GitHubに保管 → Vercelが世界に配達」の3段階で、<br>
+        あなたのLPがURL1つで誰でも見られるようになります。
+      </div>
+    </div>
+  </div>
+
+  <!-- 1-3 プラン・課金・制限 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">1-3</span>プラン・課金・制限の仕組み</h3>
+    <div class="subsec-body">
+      <p>第1回で一番つまずいた「<strong>気づいたら制限がきた</strong>」問題。ここを丁寧に解説します。</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>プラン</th>
+              <th>料金（月）</th>
+              <th>使えるモデル</th>
+              <th>向いている人</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Free</strong></td>
+              <td>0円</td>
+              <td>Sonnet（制限あり）</td>
+              <td>お試しだけ</td>
+            </tr>
+            <tr>
+              <td><strong>Pro</strong></td>
+              <td>約3,000円<br>($20)</td>
+              <td>Sonnet / Opus<br>（量に上限あり）</td>
+              <td>ワークショップ参加者の基本</td>
+            </tr>
+            <tr>
+              <td><strong>Max</strong></td>
+              <td>約15,000円<br>($100)〜</td>
+              <td>Opus常用OK<br>（制限ほぼ気にならない）</td>
+              <td>毎日がっつり使う人</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">超重要：チャットとCodeは「同じ財布」です</div>
+        Proプランでは、<strong>チャットで使ったトークン</strong>も <strong>Claude Codeで使ったトークン</strong>も、
+        <strong>同じ上限からカウント</strong>されます。<br><br>
+        「チャットでたくさん壁打ち」→「Codeで作業しようとしたら制限」というパターンに注意。
+      </div>
+
+      <div class="card">
+        <div class="card-title">トークンを節約する3つのコツ</div>
+
+        <p style="margin-bottom: 16px;"><strong>① 使い分け戦略（他の無料AIと組み合わせる）</strong></p>
+        <div class="tbl-wrap" style="margin-top: 8px;">
+          <table>
+            <thead>
+              <tr>
+                <th>目的</th>
+                <th>おすすめツール</th>
+                <th>理由</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>壁打ち・アイデア出し</td>
+                <td>ChatGPT（無料）</td>
+                <td>雑談や発想はこっちで消費</td>
+              </tr>
+              <tr>
+                <td>既存資料の整理・要約</td>
+                <td>NotebookLM（無料）</td>
+                <td>PDF・資料を読ませる系はこっちが得意</td>
+              </tr>
+              <tr>
+                <td>最終仕上げ・コード</td>
+                <td>Claude Code</td>
+                <td>トークンを温存して本番で使う</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="margin-top: 24px; margin-bottom: 8px;"><strong>② モデル切り替え</strong></p>
+        <ul class="dot-list" style="margin-top: 0;">
+          <li>普段の作業は <strong>Sonnet</strong>（早い・トークン消費少ない）</li>
+          <li>なかなか良い回答が出ないとき → <strong>Opus</strong>に切り替える（精度優先）</li>
+        </ul>
+
+        <p style="margin-top: 24px; margin-bottom: 8px;"><strong>③ Maxプランという選択肢</strong></p>
+        <p style="font-size: 14px; color: var(--gray-mid);">
+          「節約するより、気にせず使いたい」なら Max へ。常に Opus が使えて、<br>
+          制限をほぼ気にせず1日中動かせます。
+        </p>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">制限がきた時の対処法</div>
+        <ul class="dot-list">
+          <li><strong>待つ</strong>：約5時間でリセットされます（Proの場合）</li>
+          <li><strong>別のAIで下準備</strong>：ChatGPTやNotebookLMで続きを</li>
+          <li><strong>プランを上げる</strong>：毎日制限がくるならMaxへ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1-4 cowork/code/チャット -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">1-4</span>cowork / code / チャット の切り替え</h3>
+    <div class="subsec-body">
+      <p>
+        Claude Desktopを開くと、画面の左上に<strong>3つの切り替えボタン</strong>があります。
+        消えたように見えても、ちゃんとそこにあります。
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>モード</th>
+              <th>何をするところ？</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>チャット</strong></td>
+              <td>普通に会話する。アイデア出し・文章書き・画像を見せて聞く</td>
+            </tr>
+            <tr>
+              <td><strong>Code</strong></td>
+              <td>PCのファイルやフォルダを直接読んで、HTMLやコードを作る</td>
+            </tr>
+            <tr>
+              <td><strong>cowork</strong></td>
+              <td>共同作業モード（今回のワークショップでは使いません）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">よくある迷子</div>
+        「cowork や code が消えた」と感じたら、Claude Desktop の<strong>左上の切り替えボタン</strong>を確認してみてください。
+        再インストールは必要ないことがほとんどです。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 2：セットアップつまずき -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part2">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 02</span>
+    <h2 class="sec-title">セットアップで<br>つまずくポイント</h2>
+    <p class="sec-desc">
+      第1回でみなさんが実際にハマったところを、原因と対処をセットで全部書いておきます。
+      OSごとに分けているので、自分のPCに合わせて読んでください。
+    </p>
+  </div>
+
+  <!-- 2-1 Windows Sモード -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">2-1</span>Windows：アプリを開こうとすると設定画面に飛ばされる</h3>
+    <div class="subsec-body">
+      <p><span class="tag tag-win">Windowsのみ</span></p>
+      <p>
+        <strong>原因：</strong>Windowsが「Sモード」という制限付きモードになっていて、
+        Microsoft Store以外のアプリ（Claude Desktopなど）が入れられない状態です。<br>
+        購入時から有効になっているPCがあるので、<strong>あなたのせいではありません</strong>。
+      </p>
+
+      <div class="card">
+        <div class="card-title">確認方法</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">設定を開く</div>
+            <div class="steps-desc">スタート → 設定（歯車アイコン）</div>
+          </li>
+          <li>
+            <div class="steps-title">システム → バージョン情報</div>
+            <div class="steps-desc">「Windowsの仕様」欄を確認</div>
+          </li>
+          <li>
+            <div class="steps-title">「Sモード」と書かれているか？</div>
+            <div class="steps-desc">書かれていたらSモードです</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Sモードを解除する手順（無料）</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">設定 → システム → ライセンス認証</div>
+          </li>
+          <li>
+            <div class="steps-title">「Microsoft Storeに移動」をクリック</div>
+          </li>
+          <li>
+            <div class="steps-title">「Sモードをオフにする」ページで「入手」</div>
+          </li>
+          <li>
+            <div class="steps-title">PCを再起動</div>
+          </li>
+          <li>
+            <div class="steps-title">ダウンロード済みのセットアップファイルを実行</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">安心ポイント</div>
+        解除は無料です。一度解除すると元には戻せませんが、<br>
+        「特別な保護を外す」というよりは「普通のWindowsに戻す」イメージ。
+        ほとんどのWindows PCはこのモードなしで使われています。
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">Sモードじゃなかったら</div>
+        セットアップファイルを<strong>右クリック → 「管理者として実行」</strong>を試してください。
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-2 管理者として実行 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">2-2</span>「デバイスに変更を加えることを許可しますか？」</h3>
+    <div class="subsec-body">
+      <p><span class="tag tag-win">Windowsのみ</span></p>
+      <p>インストール中にこの確認が出たら、<strong>「はい」で大丈夫</strong>です。これは「このアプリを入れていいですか？」という普通の確認です。</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">ただし</div>
+        このメッセージは<strong>信頼できるアプリを入れるとき</strong>だけ「はい」にしてください。
+        知らないアプリで出たら一度立ち止まって確認を。
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-3 Mac git -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">2-3</span>Mac：Gitを入れようとして詰まった</h3>
+    <div class="subsec-body">
+      <p><span class="tag tag-mac">Macのみ</span></p>
+      <div class="callout callout-tip">
+        <div class="callout-title">結論：Macは Git を自分で入れる必要はありません</div>
+        Macには最初から Git が入っています。<br>
+        Windowsユーザー向けの手順を見て混乱しないよう、<strong>STEP01のMac手順</strong>だけ見てください。
+      </div>
+      <p>
+        Xcode Command Line Tools を入れようとして「macOSのバージョンが新しすぎる」と出た場合も、
+        <strong>無視してOK</strong>です。Claude CodeをMacで使うのに必須ではありません。
+      </p>
+      <p>
+        参考：<a href="https://ai-workshop-ebjs.vercel.app/preparation.html" style="color: var(--blue);">事前準備ガイド（preparation.html）</a>のMac手順
+      </p>
+    </div>
+  </div>
+
+  <!-- 2-4 拡張機能 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">2-4</span>ブラウザ拡張機能が入らない</h3>
+    <div class="subsec-body">
+      <p><span class="tag tag-both">Win / Mac</span></p>
+      <p>ChromeやEdgeの拡張機能（GoFullPageなど）が入らない場合のチェックポイント：</p>
+      <ul class="dot-list">
+        <li>ブラウザが<strong>最新バージョン</strong>か確認</li>
+        <li><strong>シークレットモード</strong>では拡張は入らないことがある → 通常モードで</li>
+        <li>会社や学校のPCは<strong>管理者が制限</strong>していることがある</li>
+        <li>Chromeウェブストアから入れようとしているか（他サイトからは危険）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2-5 ログイン -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">2-5</span>スマホはProなのにPCでログインできない</h3>
+    <div class="subsec-body">
+      <p>
+        「スマホでProに課金しているのに、PCでログインしたらアカウント作成画面が出る」
+        というケース。これは<strong>ログイン方法が違う</strong>可能性が高いです。
+      </p>
+
+      <div class="card">
+        <div class="card-title">解決ステップ</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">スマホのClaudeアプリを開く</div>
+          </li>
+          <li>
+            <div class="steps-title">設定 or アカウント情報を確認</div>
+            <div class="steps-desc">登録に使っているメールアドレスをメモ</div>
+          </li>
+          <li>
+            <div class="steps-title">PCでは同じ方法でログイン</div>
+            <div class="steps-desc">Google / Apple / メール のうち同じもの</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">特に注意：Appleでサインイン</div>
+        iPhoneで「Appleでサインイン」を使っていた場合、<br>
+        <strong>@privaterelay.appleid.com</strong> みたいな非公開メールになっていることがあります。<br>
+        その場合はPCでも必ず「Appleでサインイン」を選んでください。
+      </div>
+
+      <p>同じアカウントでログインできれば、<strong>すでにProなので追加課金は不要</strong>です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 3：画像・ファイル名 -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part3">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 03</span>
+    <h2 class="sec-title">画像・ファイル名のコツ</h2>
+    <p class="sec-desc">
+      地味だけど、ここでつまずくとLPが表示されなかったり、文字化けしたり…。
+      最初に「型」を身につけておくと、あとがラクです。
+    </p>
+  </div>
+
+  <!-- 3-1 ファイル名は英語 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-1</span>ファイル名は「英語」で書く</h3>
+    <div class="subsec-body">
+      <p><strong>なぜ？</strong> 日本語ファイル名はWeb上で<strong>文字化け</strong>したり、<strong>URLが壊れたり</strong>するから。<br>英語なら世界中のどのサーバーでも確実に動きます。</p>
+
+      <div class="compare">
+        <div class="compare-box compare-good">
+          <div class="compare-label">Good</div>
+          <ul>
+            <li>hero-image.jpg</li>
+            <li>logo.png</li>
+            <li>customer-voice-01.jpg</li>
+            <li>about-photo.webp</li>
+          </ul>
+        </div>
+        <div class="compare-box compare-bad">
+          <div class="compare-label">Bad</div>
+          <ul>
+            <li>トップ画像.jpg</li>
+            <li>ロゴ.png</li>
+            <li>お客様の声①.jpg</li>
+            <li>プロフィール写真.webp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-2 空白 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-2</span>空白は入れない。代わりにハイフン（-）</h3>
+    <div class="subsec-body">
+      <p>
+        ファイル名に<strong>半角スペース・全角スペース</strong>を入れると、URLが途中で切れたり、正しく読み込めないことがあります。
+      </p>
+
+      <div class="compare">
+        <div class="compare-box compare-good">
+          <div class="compare-label">Good</div>
+          <ul>
+            <li>hero-image.jpg（ハイフン）</li>
+            <li>hero_image.jpg（アンダースコア）</li>
+            <li>heroImage.jpg（大文字区切り）</li>
+          </ul>
+        </div>
+        <div class="compare-box compare-bad">
+          <div class="compare-label">Bad</div>
+          <ul>
+            <li>hero image.jpg（空白あり）</li>
+            <li>hero　image.jpg（全角空白）</li>
+            <li>hero(1).jpg（カッコは避ける）</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">迷ったら</div>
+        <strong>全部小文字・ハイフン区切り</strong>が一番安全。<br>
+        例：<code>aya-profile-01.jpg</code> / <code>service-menu-top.png</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-3 フォーマット -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-3</span>画像フォーマットの使い分け（PNG / JPG / WebP）</h3>
+    <div class="subsec-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>形式</th>
+              <th>得意</th>
+              <th>苦手</th>
+              <th>こんな時に</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>JPG</strong><br><span class="tag">.jpg / .jpeg</span></td>
+              <td>写真・グラデーション。軽い</td>
+              <td>透過できない</td>
+              <td>お客様写真・風景・FV背景</td>
+            </tr>
+            <tr>
+              <td><strong>PNG</strong><br><span class="tag">.png</span></td>
+              <td>文字入り画像・ロゴ・透過</td>
+              <td>写真に使うと重い</td>
+              <td>ロゴ・スクショ・アイコン</td>
+            </tr>
+            <tr>
+              <td><strong>WebP</strong><br><span class="tag">.webp</span></td>
+              <td>JPGより軽くて、透過もOK</td>
+              <td>一部古いブラウザで見えない</td>
+              <td>サイトを軽くしたい時の切り札</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">サイズの目安</div>
+        LP1ページに使う画像は、<strong>1枚あたり500KB以下</strong>を目標に。<br>
+        3MBの写真をそのまま入れると、スマホで開くのに5秒かかることも。
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-4 スクショ -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-4</span>スクリーンショットの撮り方</h3>
+    <div class="subsec-body">
+      <div class="compare">
+        <div class="compare-box" style="background: #F3E8FF; border-color: #D8B4FE;">
+          <div class="compare-label" style="color: #6B21A8;">Mac</div>
+          <p style="color: var(--dark);">
+            <strong>Command + Shift + 4</strong><br>
+            → ドラッグして範囲選択で保存<br><br>
+            <strong>Command + Shift + 5</strong><br>
+            → 細かいオプション（画面録画も）
+          </p>
+        </div>
+        <div class="compare-box" style="background: #DBEAFE; border-color: #93C5FD;">
+          <div class="compare-label" style="color: #1E40AF;">Windows</div>
+          <p style="color: var(--dark);">
+            <strong>Windows + Shift + S</strong><br>
+            → Snipping Toolが起動<br><br>
+            <strong>Print Screen</strong><br>
+            → 画面全体を撮影
+          </p>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">撮ったらすぐ名前を変える</div>
+        <code>スクリーンショット 2026-04-18 13.24.51.png</code> のまま置いておくと、
+        あとで「どれが何のスクショだっけ…」となります。
+        撮った直後に<strong>英語の意味のある名前</strong>に変えるクセを。
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-5 拡張機能 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-5</span>LPの参考にしたい時の拡張ツール</h3>
+    <div class="subsec-body">
+      <p>他の素敵なLPを見つけたとき、<strong>全体を1枚の画像として保存</strong>できるツールがあります。</p>
+
+      <div class="card">
+        <div class="card-title">GoFullPage（Chrome拡張）</div>
+        <p style="color: var(--gray-mid); font-size: 14px;">
+          Chromeウェブストアで無料で入れられます。<br>
+          ボタン1つで、縦に長いLP全体をスクショできます。<br>
+          「この参考LPの全体像を残したい」というときに便利。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-6 素材集め -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-6</span>素材はどこから集める？</h3>
+    <div class="subsec-body">
+      <p>「いい素材がない…」がLP制作の一番の詰まりポイント。<strong>日頃から集めておく</strong>と差がつきます。</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ソース</th>
+              <th>特徴</th>
+              <th>URL / 場所</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Unsplash</strong></td>
+              <td>海外写真の王道・商用OK・無料</td>
+              <td>unsplash.com</td>
+            </tr>
+            <tr>
+              <td><strong>Pexels</strong></td>
+              <td>写真＆動画どちらも無料</td>
+              <td>pexels.com</td>
+            </tr>
+            <tr>
+              <td><strong>O-DAN</strong></td>
+              <td>日本語で海外サイトを横断検索</td>
+              <td>o-dan.net</td>
+            </tr>
+            <tr>
+              <td><strong>Canva Pro素材</strong></td>
+              <td>課金者は数百万点の素材が使える</td>
+              <td>Canva内で直接検索</td>
+            </tr>
+            <tr>
+              <td><strong>AI画像生成</strong></td>
+              <td>ブランドに合わせて生成できる</td>
+              <td>Midjourney / ChatGPT画像</td>
+            </tr>
+            <tr>
+              <td><strong>自分で撮影</strong></td>
+              <td>「その人らしさ」が一番出る</td>
+              <td>スマホ＋自然光で十分</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">プロの習慣</div>
+        <strong>「素敵だな」と思ったらその場でスクショ</strong>・URLを保存。<br>
+        専用フォルダ（例：<code>inspiration/</code>）を作って、<br>
+        気に入ったLP・写真・配色を片っ端から入れておくと、いざという時の引き出しになります。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 4：フォルダ整理 -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part4">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 04</span>
+    <h2 class="sec-title">フォルダ整理の考え方</h2>
+    <p class="sec-desc">
+      「images/ って何？」「新LPごとにフォルダ分けるべき？」
+      第1回で実際にあった質問への答えをまとめました。
+    </p>
+  </div>
+
+  <!-- 4-1 引き出し -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">4-1</span>フォルダ＝引き出しのイメージ</h3>
+    <div class="subsec-body">
+      <p>
+        パソコンのフォルダは、<strong>机の引き出し</strong>と同じ。<br>
+        「何がどこにあるか」を<strong>あなた自身が説明できる</strong>状態にしておくのが目標です。
+      </p>
+      <div class="callout callout-info">
+        <div class="callout-title">Claude Codeの視点</div>
+        Claude Codeは、<strong>あなたが指定したフォルダの中だけ</strong>が見えます。<br>
+        だから、1つのLPに使う素材は<strong>1つのフォルダにまとめる</strong>のが基本。
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-2 プロジェクト単位 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">4-2</span>プロジェクト単位で分ける</h3>
+    <div class="subsec-body">
+      <p>お仕事ごと・LPごとに<strong>別フォルダ</strong>。これが基本ルールです。</p>
+
+      <div class="card">
+        <div class="card-title">推奨フォルダ構成の例</div>
+        <pre style="font-family: 'DM Sans', monospace; font-size: 13px; line-height: 1.9; background: var(--beige); padding: 20px; border-radius: 10px; overflow-x: auto; color: var(--dark);">デスクトップ/
+├── lp-aya-main/          ← 本命LP（あや）
+│   ├── index.html
+│   └── images/
+│       ├── hero.jpg
+│       └── profile.jpg
+├── lp-aya-front/         ← フロントLP（あや）
+│   ├── index.html
+│   └── images/
+└── lp-yumi-service/      ← ゆみさんサービスLP
+    ├── index.html
+    └── images/</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-3 images/ -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">4-3</span>「images/」 って何？</h3>
+    <div class="subsec-body">
+      <p>
+        <strong>images/</strong> は「画像をまとめて入れておくフォルダ」という意味の<strong>慣習名</strong>です。<br>
+        Claude Codeにも、HTMLから画像を読み込むときにも、この名前が使われます。
+      </p>
+
+      <div class="compare">
+        <div class="compare-box compare-good">
+          <div class="compare-label">推奨</div>
+          <p><strong>プロジェクトフォルダの中</strong>に images/ を作る</p>
+          <p style="margin-top: 8px; font-size: 13px;">
+            lp-front/<br>
+            ├── index.html<br>
+            └── images/ ← ここに画像
+          </p>
+        </div>
+        <div class="compare-box compare-bad">
+          <div class="compare-label">混乱しがち</div>
+          <p>デスクトップに直接「写真素材」フォルダを作って、そこに入れる</p>
+          <p style="margin-top: 8px; font-size: 13px;">
+            LPが画像を探せず表示されないことがある
+          </p>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">ルール</div>
+        <strong>HTMLファイルと同じフォルダの中に、images/ を作る</strong>。<br>
+        これだけ守れば迷いません。
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-4 新LP -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">4-4</span>新しいLPを作るとき、フォルダは別にする？</h3>
+    <div class="subsec-body">
+      <p><strong>はい、別フォルダにするのが基本です。</strong></p>
+      <ul class="check-list">
+        <li>本命LPとフロントLPは別フォルダに</li>
+        <li>クライアントAの案件とクライアントBの案件は別フォルダに</li>
+        <li>理由：素材が混ざらない・Claude Codeが混乱しない・あとで見返しやすい</li>
+      </ul>
+
+      <div class="card">
+        <div class="card-title">新しいLPを始めるときの型</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">デスクトップ（か専用の場所）に新フォルダを作る</div>
+            <div class="steps-desc">例：<code>lp-yoshimi-front/</code></div>
+          </li>
+          <li>
+            <div class="steps-title">その中に images/ フォルダを作る</div>
+          </li>
+          <li>
+            <div class="steps-title">使いたい画像をimages/に入れる</div>
+            <div class="steps-desc">ファイル名は英語で、空白なしで</div>
+          </li>
+          <li>
+            <div class="steps-title">提案書・原稿があれば同じフォルダの中に</div>
+            <div class="steps-desc">例：<code>brief.md</code> や <code>copy.txt</code></div>
+          </li>
+          <li>
+            <div class="steps-title">Claude Codeでそのフォルダを開く</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-5 日付 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">4-5</span>日付の入れ方</h3>
+    <div class="subsec-body">
+      <p>日付をフォルダ名やファイル名に入れるときは、<strong>並び替えやすい形式</strong>で。</p>
+
+      <div class="compare">
+        <div class="compare-box compare-good">
+          <div class="compare-label">Good</div>
+          <ul>
+            <li>20260423-qa-session/</li>
+            <li>2026-04-23_meeting.md</li>
+            <li>202604_monthly-report/</li>
+          </ul>
+          <p style="font-size: 12px; margin-top: 8px; color: var(--gray-mid);">並び替えると日付順に揃う</p>
+        </div>
+        <div class="compare-box compare-bad">
+          <div class="compare-label">Bad</div>
+          <ul>
+            <li>4月23日_打合せ/</li>
+            <li>23-4-2026.md</li>
+            <li>最新版_ver2_final.md</li>
+          </ul>
+          <p style="font-size: 12px; margin-top: 8px; color: var(--dark);">並び替えがバラバラになる</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-6 事前準備 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">4-6</span>当日までに用意しておくと差がつくもの</h3>
+    <div class="subsec-body">
+      <p>第1回の受講生から「これがあれば当日もっと進んだ」と聞いた項目です。</p>
+
+      <div class="card">
+        <div class="card-title">事前に揃えておく7つのもの</div>
+        <ul class="check-list">
+          <li><strong>使いたい写真</strong>を10〜20枚（プロフィール・サービス風景・雰囲気写真）</li>
+          <li><strong>参考にしたいLP</strong>のURL 3〜5本（雰囲気のモデリング先）</li>
+          <li><strong>キャッチコピー</strong>の候補（10個くらい書き出しておく）</li>
+          <li><strong>サービス説明文</strong>（長くてOK、あとで整える）</li>
+          <li><strong>お客様の声</strong>（あれば2〜3件）</li>
+          <li><strong>ロゴ</strong>（PNGの透過版があるとベスト）</li>
+          <li><strong>ブランドカラー</strong>（3色くらい決めておく）</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">これらを入れるフォルダ</div>
+        1つのプロジェクトフォルダにまとめて、その中で<br>
+        <code>images/</code>、<code>copy/</code>（文章）、<code>brief/</code>（提案書）などに整理しておくとClaude Codeがスムーズに読めます。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 5：Claude Codeでできること -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part5">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 05</span>
+    <h2 class="sec-title">Claude Codeでできること</h2>
+    <p class="sec-desc">
+      できること / できないこと / チャットとの使い分け。
+      「何を頼めばいいか」の全体像がわかると、活用の幅が一気に広がります。
+    </p>
+  </div>
+
+  <!-- 5-1 できること -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">5-1</span>できること一覧</h3>
+    <div class="subsec-body">
+      <ul class="check-list">
+        <li><strong>LP・HPの制作</strong>（HTML / CSS）</li>
+        <li><strong>既存サイトの修正</strong>（色・文字・レイアウト変更）</li>
+        <li>ブログ・会員サイトの作成</li>
+        <li><strong>LINE/メール配信の自動化</strong>スクリプト作成</li>
+        <li>スプレッドシート連携（Google Apps Script）</li>
+        <li>フォルダ内の書類を<strong>横断的に読んで要約</strong></li>
+        <li>大量ファイルの一括リネーム・整理</li>
+        <li>PDF・画像からの文字起こし</li>
+        <li>GitHubへのアップ・Vercelデプロイ</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 5-2 できないこと -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">5-2</span>できないこと（苦手なこと）</h3>
+    <div class="subsec-body">
+      <ul class="cross-list">
+        <li><strong>画像そのものを作る</strong>（生成はChatGPTやMidjourneyで）</li>
+        <li><strong>動画編集</strong>（Canva・CapCutなど専門ツールへ）</li>
+        <li>有料ツールの<strong>自動ログイン操作</strong></li>
+        <li>リアルタイムな<strong>株価・天気</strong>など最新情報の取得（Web検索は限定的）</li>
+        <li>あなたの<strong>確認なしに重要な削除</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 5-3 チャットとの使い分け -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">5-3</span>チャット × Claude Code の使い分け</h3>
+    <div class="subsec-body">
+      <p>受講生から多かった質問：「チャットで話した内容はCodeに引き継がれる？」</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">答え：引き継がれません</div>
+        チャットとCodeは別アプリです。チャットでの会話はCode側には見えません。<br>
+        <strong>大事な設定や人物像は、ファイルに書いて保存</strong>しておく必要があります。
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>やりたいこと</th>
+              <th>使うべきは</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>アイデア出し・雑談・壁打ち</td>
+              <td>チャット（またはChatGPTで節約）</td>
+            </tr>
+            <tr>
+              <td>文章を整える</td>
+              <td>チャット</td>
+            </tr>
+            <tr>
+              <td>画像を見せて意見を聞く</td>
+              <td>チャット</td>
+            </tr>
+            <tr>
+              <td>LP・HPを作る</td>
+              <td>Claude Code</td>
+            </tr>
+            <tr>
+              <td>既存ファイルを編集する</td>
+              <td>Claude Code</td>
+            </tr>
+            <tr>
+              <td>フォルダの中身を理解させる</td>
+              <td>Claude Code</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">事前課題のとき、どっちで壁打ちする？</div>
+        <p style="margin-bottom: 12px;">受講生のよくある迷い：「ステップ2の内容整理は、Codeと先に壁打ちしてから埋める？ 埋めてから壁打ちする？」</p>
+        <p><strong>おすすめの順番：</strong></p>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">まずはチャット（またはChatGPT）で壁打ち</div>
+            <div class="steps-desc">アイデアがぐちゃぐちゃな段階はここで整理（トークン節約）</div>
+          </li>
+          <li>
+            <div class="steps-title">ある程度まとまったらステップ2を書く</div>
+            <div class="steps-desc">完璧じゃなくてOK</div>
+          </li>
+          <li>
+            <div class="steps-title">Claude Codeで実際にLP化しながら調整</div>
+            <div class="steps-desc">ここでトークンをしっかり使う</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 6：セキュリティ・連携 -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part6">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 06</span>
+    <h2 class="sec-title">セキュリティ・連携</h2>
+    <p class="sec-desc">
+      お客様の情報を扱うからこそ、気になるところ。<br>
+      「連携」「許可」「個人情報」の3つのポイントを押さえましょう。
+    </p>
+  </div>
+
+  <!-- 6-1 Drive連携 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">6-1</span>Google Drive連携：3つの選択肢</h3>
+    <div class="subsec-body">
+      <p>Drive連携で出てくる選択肢、迷いますよね。<strong>あなたのやりたいこと別</strong>にまとめました。</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>あなたの使い方</th>
+              <th>選ぶもの</th>
+              <th>注意点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Driveの大量資料をまとめて読ませたい</td>
+              <td>①すべてのファイルの表示・DL</td>
+              <td>Drive全体が見える状態に。機密ファイルがあれば注意</td>
+            </tr>
+            <tr>
+              <td>特定ファイルだけ読ませたい</td>
+              <td>②特定のファイルのみ</td>
+              <td>一番安全。使うときに都度選ぶ</td>
+            </tr>
+            <tr>
+              <td>Driveとは連携せずローカルで作業</td>
+              <td>どちらもチェックせずスキップ</td>
+              <td>Claude CodeでLPを作るだけなら、これで十分</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">迷ったら</div>
+        まずは<strong>「チェックせずスキップ」</strong>でOK。
+        あとからGoogleアカウントの設定でいつでも変更できます。
+      </div>
+    </div>
+  </div>
+
+  <!-- 6-2 許可 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">6-2</span>「許可しますか？」と聞かれたとき</h3>
+    <div class="subsec-body">
+      <p>Claude Codeで作業中、<strong>「このファイルを変更していい？」</strong>と確認されることがあります。これは<strong>大事な安全機構</strong>です。</p>
+
+      <div class="card">
+        <div class="card-title">判断のポイント</div>
+        <ul class="check-list">
+          <li><strong>許可していい</strong>：自分のプロジェクトフォルダ内のファイル（HTML、images/内など）</li>
+          <li><strong>ちょっと待って</strong>：見慣れないフォルダ、システム関連、消せないファイル</li>
+          <li><strong>断ってOK</strong>：意図しない場所を触ろうとしている、意味がわからない操作</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">わからない時の鉄則</div>
+        <strong>「わかりません、どういう操作ですか？」</strong>と Claude Codeに聞いてみてください。<br>
+        丁寧に説明してくれます。急いで「はい」と押さないで大丈夫。
+      </div>
+    </div>
+  </div>
+
+  <!-- 6-3 個人情報 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">6-3</span>お客様の個人情報を扱うとき</h3>
+    <div class="subsec-body">
+      <div class="callout callout-danger">
+        <div class="callout-title">基本ルール</div>
+        お客様の<strong>氏名・電話番号・住所・決済情報</strong>などの個人情報は、<br>
+        AIに直接貼り付ける前に<strong>匿名化</strong>するのが基本です。
+      </div>
+
+      <div class="card">
+        <div class="card-title">安全に扱うための3ステップ</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">本当に必要か確認する</div>
+            <div class="steps-desc">LPを作るのに個人情報は本来不要。「お客様の声」として掲載する場合は事前に本人の許可を</div>
+          </li>
+          <li>
+            <div class="steps-title">匿名化する</div>
+            <div class="steps-desc">「Aさん・40代女性・東京都」のように情報を抽象化</div>
+          </li>
+          <li>
+            <div class="steps-title">Drive連携は「特定のファイルのみ」に</div>
+            <div class="steps-desc">全体を見せず、渡したいファイルだけ明示的に選ぶ</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">参考：Anthropic（Claudeの会社）のポリシー</div>
+        Claudeに入力した内容は、デフォルトでは<strong>AIの学習には使われない</strong>設定になっています。
+        ただし100%安心ではないので、機密情報は一般論として扱うのがおすすめ。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 7：用語辞典 -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part7">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 07</span>
+    <h2 class="sec-title">用語ミニ辞典</h2>
+    <p class="sec-desc">
+      「パララックスって何？」「レスポンシブって何？」
+      よく出てくる言葉を、ふんわりイメージで掴んでおきましょう。
+    </p>
+  </div>
+
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">A</span>デザイン・見た目の用語</h3>
+    <div class="glossary">
+      <div class="glossary-item">
+        <div class="glossary-term">ファーストビュー <span class="glossary-en">First View / FV</span></div>
+        <div class="glossary-def">LPを開いた瞬間、スクロール前に見える画面。ここで「お？」と思わせる</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">CTA <span class="glossary-en">Call To Action</span></div>
+        <div class="glossary-def">「申込み」「LINE登録」などの行動ボタン</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">パララックス <span class="glossary-en">Parallax</span></div>
+        <div class="glossary-def">スクロールすると背景と文字が違う速度で動く奥行き演出</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">アニメーション <span class="glossary-en">Animation</span></div>
+        <div class="glossary-def">要素がふわっと出る・動く演出全般</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">グラデーション <span class="glossary-en">Gradient</span></div>
+        <div class="glossary-def">色が徐々に変わる背景（例：青→緑）</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">ホバー <span class="glossary-en">Hover</span></div>
+        <div class="glossary-def">マウスを乗せた時に色が変わる・動く反応</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">モーダル <span class="glossary-en">Modal</span></div>
+        <div class="glossary-def">画面の上に重なるように出てくるポップアップウィンドウ</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">アンカーリンク <span class="glossary-en">Anchor Link</span></div>
+        <div class="glossary-def">目次から飛べるリンク。このページの目次もこれ</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">B</span>構造・仕組みの用語</h3>
+    <div class="glossary">
+      <div class="glossary-item">
+        <div class="glossary-term">レスポンシブ <span class="glossary-en">Responsive</span></div>
+        <div class="glossary-def">PC・タブレット・スマホで<br>それぞれ見やすく自動調整されること</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">ファビコン <span class="glossary-en">Favicon</span></div>
+        <div class="glossary-def">ブラウザのタブに表示される小さなアイコン</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">OGP画像 <span class="glossary-en">OGP Image</span></div>
+        <div class="glossary-def">SNSでURLシェアした時に表示される画像</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">ドメイン <span class="glossary-en">Domain</span></div>
+        <div class="glossary-def">URLの「◯◯.com」部分。サイトの住所</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">デプロイ <span class="glossary-en">Deploy</span></div>
+        <div class="glossary-def">作ったサイトを「公開状態にする」こと</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">リポジトリ <span class="glossary-en">Repository / Repo</span></div>
+        <div class="glossary-def">GitHubでの作品1つ分のフォルダのこと</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">コミット <span class="glossary-en">Commit</span></div>
+        <div class="glossary-def">変更を「保存ポイント」として記録すること</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">プッシュ <span class="glossary-en">Push</span></div>
+        <div class="glossary-def">PCの変更をGitHubに送ること</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">C</span>AI関連の用語</h3>
+    <div class="glossary">
+      <div class="glossary-item">
+        <div class="glossary-term">トークン <span class="glossary-en">Token</span></div>
+        <div class="glossary-def">AIが読み書きする文字の単位。多く使うほど課金・制限の対象</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">プロンプト <span class="glossary-en">Prompt</span></div>
+        <div class="glossary-def">AIに出す指示・お願い文</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Sonnet / Opus</div>
+        <div class="glossary-def">Claudeのモデル名。Sonnetは普段使い、Opusは頭脳派</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">アーティファクト <span class="glossary-en">Artifact</span></div>
+        <div class="glossary-def">チャット版で作ったHTMLやコードを右側に表示するプレビュー機能</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">ハルシネーション <span class="glossary-en">Hallucination</span></div>
+        <div class="glossary-def">AIがもっともらしい嘘をつくこと。事実は必ず確認を</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">コンテキスト <span class="glossary-en">Context</span></div>
+        <div class="glossary-def">AIが一度に覚えていられる会話・情報の量</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="divider-icon"></div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- Footer -->
+<!-- ═══════════════════════════════ -->
+<footer class="footer">
+  <p class="footer-message">
+    この資料は「読んで終わり」ではなく、<br>
+    何度でも見返せるストック資産として用意しました。<br>
+    当日は、ここに書かれていないことを<br>
+    どんどん聞いてください。
+  </p>
+  <div class="footer-sig">AI Workshop</div>
+  <div class="footer-meta">Q&amp;A Session — 2026.04.23</div>
+</footer>
+
+</body>
+</html>
