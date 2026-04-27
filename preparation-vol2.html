@@ -4208,75 +4208,6 @@
 
     <div class="callout">セットアップに不安がある方は、事前オンライン会で一緒に確認します。わからなくても大丈夫です。</div>
 
-    <!-- ─── Card 0: 事前スペックチェック（最重要・2026/4/18ワークショップを踏まえて追加） ─── -->
-    <div class="card" style="border:2px solid var(--orange);background:#fff8f3;">
-      <div class="card-head">
-        <div class="card-num" style="background:var(--orange);color:#fff;">!</div>
-        <div class="card-title">はじめに：パソコンの事前チェック（必ずお読みください）</div>
-      </div>
-      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">
-        過去のワークショップで、<strong style="color:var(--black);">古いパソコン・中古パソコンをお使いの方がClaude Codeを動かせないケース</strong>が確認されました。当日スムーズに進めるために、まず下記をご確認ください。
-      </p>
-
-      <!-- チェック1：IntelかApple Silicon -->
-      <div style="margin-bottom:20px;padding:18px 20px;background:#fff;border:1px solid var(--orange-border);border-radius:12px;">
-        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px;">チェック1 ／ お使いのMacは「Intel」？それとも「Apple Silicon」？</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:10px;">
-          特に<strong style="color:var(--black);">中古で購入したMac</strong>の場合、自分のMacがどちらか分からないことが多いです。下記手順で必ずご確認ください。
-        </div>
-        <div style="background:var(--beige);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--gray-mid);line-height:2;">
-          <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:4px;">
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">1</span>
-            <div>画面左上の<strong style="color:var(--black);">アップルマーク</strong>をクリック</div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:4px;">
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">2</span>
-            <div>「<strong style="color:var(--black);">このMacについて</strong>」を選択</div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--orange);color:#fff;border-radius:50%;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;">3</span>
-            <div>表示を確認：<br>
-              <span style="display:inline-block;margin-top:4px;padding:2px 8px;background:#f0fdf4;color:#16a34a;border-radius:4px;font-weight:600;font-size:11px;">チップ：Apple M1 / M2 / M3 / M4</span> → Apple Silicon（推奨）<br>
-              <span style="display:inline-block;margin-top:4px;padding:2px 8px;background:#fef2f2;color:#dc2626;border-radius:4px;font-weight:600;font-size:11px;">プロセッサ：Intel Core i5 / i7...</span> → Intel（要注意）
-            </div>
-          </div>
-        </div>
-        <div style="margin-top:12px;padding:12px 14px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;font-size:11px;color:#991b1b;line-height:1.8;">
-          <strong>Intel Macをお使いの方へ：</strong>Intel Mac + 古いmacOSの組み合わせで、開発ツール（Git）のインストール不可エラーが確認されています。必ず下のチェック2も行ってください。
-        </div>
-      </div>
-
-      <!-- チェック2：macOSバージョン -->
-      <div style="margin-bottom:20px;padding:18px 20px;background:#fff;border:1px solid var(--orange-border);border-radius:12px;">
-        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px;">チェック2 ／ macOSは最新版になっている？</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:10px;">
-          同じ「このMacについて」画面で、<strong style="color:var(--black);">macOSのバージョン</strong>を確認できます。<strong style="color:var(--black);">macOS Sonoma（14）以降</strong>を推奨します。
-        </div>
-        <div style="padding:10px 14px;background:var(--beige);border-radius:8px;font-size:11px;color:var(--gray-mid);line-height:1.8;">
-          更新方法：<strong style="color:var(--black);">システム設定</strong> → <strong style="color:var(--black);">一般</strong> → <strong style="color:var(--black);">ソフトウェア・アップデート</strong>
-        </div>
-      </div>
-
-      <!-- チェック3：Claude Code事前動作確認 -->
-      <div style="margin-bottom:16px;padding:18px 20px;background:#fff;border:1px solid var(--orange-border);border-radius:12px;">
-        <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px;">チェック3 ／ 当日までにClaude Codeが動くことを確認</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:10px;">
-          このあとのCard 1〜3のセットアップを<strong style="color:var(--black);">ワークショップ当日までに必ず完了</strong>させ、Claude Codeの「Select folder」画面まで到達できることをご確認ください。
-        </div>
-        <div style="padding:10px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;font-size:11px;color:#15803d;line-height:1.8;">
-          うまくいかない場合は、<strong>当日ではなく事前に</strong>スタッフにご相談ください（当日の会場での解決は難しいケースがあります）。
-        </div>
-      </div>
-
-      <!-- 5年以上前の機種 -->
-      <div style="padding:16px 18px;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;">
-        <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:8px;">5年以上前に購入されたパソコンについて</div>
-        <div style="font-size:11px;color:#7f1d1d;line-height:1.9;">
-          5年以上前の機種（特にIntel Mac）では、Apple側の配信サーバーの問題で開発ツール（Command Line Tools）がインストールできないケースがあります。その場合、残念ながら当日Claude Codeをご利用いただけません。買い替えをご検討ください。
-        </div>
-      </div>
-    </div>
-
     <!-- ─── Card 1: サブスクリプション加入 ─── -->
     <div class="card">
       <div class="card-head"><div class="card-num">1</div><div class="card-title">サブスクリプション加入</div></div>
@@ -4422,25 +4353,11 @@
             <strong style="color:var(--black);">それでも解決しない時は</strong> → エラー画面のスクリーンショット（<code style="background:#fff;padding:1px 5px;border-radius:3px;">⌘ + shift + 4</code> でドラッグ範囲指定）を撮って、Claude のチャットに貼り付けて「このエラーを直したい」と聞いてください。Claude が一緒に解決してくれます。
           </div>
 
-          <!-- 追加：Apple Serverエラーの対処 -->
-          <div style="margin-top:14px;padding:14px 16px;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;">
-            <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:8px;">「このソフトウェアは現在ソフトウェアアップデートサーバーから入手できないため、インストールできません」と出たら？</div>
-            <div style="font-size:11px;color:#7f1d1d;line-height:1.9;">
-              これはApple側の配信サーバーの問題で、<strong>ユーザー側では解決できない</strong>エラーです。特にIntel Mac × 古いmacOSの組み合わせで発生します。<br><br>
-              対処法：<br>
-              ① macOSを最新版にアップデート（システム設定 → 一般 → ソフトウェア・アップデート）<br>
-              ② それでも直らない場合は、残念ながらこのパソコンではClaude Codeが使えません。買い替えをご検討いただくか、スタッフにご相談ください。
-            </div>
-          </div>
-
-          <!-- 追加：F3キーがない機種への代替操作 -->
-          <div style="margin-top:14px;padding:14px 16px;background:#fff8f3;border:1px solid var(--orange-border);border-radius:10px;">
-            <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:8px;">F3キーがないMacの場合（Touch Bar搭載モデル等）</div>
+          <!-- 補足：詰まったら -->
+          <div style="margin-top:14px;padding:14px 16px;background:var(--beige);border:1px solid var(--border);border-radius:10px;">
             <div style="font-size:11px;color:var(--gray-mid);line-height:1.9;">
-              Mission Controlを開きたい時：<br>
-              ・トラックパッドで<strong>3本指を置いて上にスワイプ</strong><br>
-              ・<strong>Control + ↑（上矢印）</strong><br>
-              ・アプリ切替は<strong>⌘ + Tab</strong>
+              <strong style="color:var(--black);">F3キーがないMacの場合（Touch Bar搭載モデル等）：</strong><br>
+              Mission Controlを開きたい時は、トラックパッドで<strong>3本指を置いて上にスワイプ</strong>、または<strong>Control + ↑（上矢印）</strong>。アプリ切替は<strong>⌘ + Tab</strong>
             </div>
           </div>
 
@@ -5502,24 +5419,30 @@
 
   </section>
 
-  <!-- ═══ TAB 8: ワークシート（ワークショップ） ═══ -->
+  <!-- ═══ TAB: 内容を整理する（チーム分け後に再構築予定） ═══ -->
   <section class="tab-content" id="tab-worksheet">
-    <div class="sec-eyebrow">Step 02 ／ 内容を整理する</div>
-    <div class="sec-title">LPに載せる情報を入力する</div>
-    <p class="sec-desc">自分の名前を選んで、LP制作に必要な情報を入力してください。入力した内容はスプレッドシートに保存されます。</p>
+    <div class="sec-eyebrow">内容を整理する</div>
+    <div class="sec-title">LPに載せる情報を整理する</div>
+    <p class="sec-desc">チーム分けが済み次第、ここに各メンバー専用のワークシートをご用意します。今回は新しい仕組みでお届けする予定です。</p>
 
-    <div class="callout">完璧でなくてOKです。「仮」でも埋めておくことで、当日の制作スピードが大きく変わります。</div>
-
-    <!-- 名前選択 -->
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-head"><div class="card-num">1</div><div class="card-title">あなたの名前を選んでください</div></div>
-      <div id="ws-member-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px;"></div>
-    </div>
-
-    <!-- 個人フォーム（名前選択後に動的生成） -->
-    <div id="ws-form-area" style="display:none;">
-      <div id="ws-selected-name" style="font-size:18px;font-weight:700;color:var(--black);margin-bottom:18px;padding:14px 20px;background:var(--beige);border-radius:10px;text-align:center;"></div>
-      <div id="ws-form-content"></div>
+    <!-- プレースホルダーカード -->
+    <div class="card" style="border:2px dashed var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));text-align:center;padding:48px 32px;">
+      <div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:var(--grad-soft);margin-bottom:20px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C96A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          <line x1="9" y1="10" x2="15" y2="10"/>
+          <line x1="9" y1="14" x2="13" y2="14"/>
+        </svg>
+      </div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">Coming Soon</div>
+      <div style="font-size:18px;font-weight:600;color:var(--black);line-height:1.7;margin-bottom:14px;">チーム分けが済んだら<br>こちらに準備します</div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:2;max-width:520px;margin:0 auto 22px;">
+        今回はワークシートを新しい形でお届けします。<br>
+        チーム分けが完了次第、<strong style="color:var(--black);">専用のスプレッドシートを共有</strong>させていただきます。
+      </p>
+      <div style="display:inline-block;padding:14px 28px;background:var(--beige);border-radius:24px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+        準備が整い次第、別途ご連絡します
+      </div>
     </div>
   </section>
 
@@ -7369,6 +7292,20 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       <div style="margin-top:24px;padding:18px 20px;background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:10px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
         <strong style="color:var(--black);">このページは随時アップデートしていきます。</strong><br>
         当日や事前に出てきた新しい質問は、ここに追加していきます。「こんなこと聞いてもいいのかな？」と思ったことも、ぜひ気軽にお声がけください。
+      </div>
+
+      <!-- ─── パソコン環境に関する注意書き ─── -->
+      <div style="margin-top:18px;padding:20px 22px;background:#fef9f3;border:1px solid #f3d9b8;border-radius:12px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;">!</div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:8px;">パソコン環境について（念のためのご案内）</div>
+            <p style="font-size:12px;color:var(--gray-mid);line-height:2;margin:0;">
+              ごく稀に、<strong style="color:var(--black);">Macの古いモデル</strong>（特に5年以上前のIntel Mac）や<strong style="color:var(--black);">特殊な環境</strong>のパソコンで Claude Code のセットアップがうまく進まないケースがありました。<br>
+              <strong style="color:var(--black);">当日までに導入が完了しない方／キックオフまでに準備が進まない方は、お気軽にご連絡ください。</strong>事前に一緒に確認させていただきます。
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
