@@ -3284,23 +3284,61 @@
       <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;">外注なし・コードの知識なし・デザインソフトなし。<br>Claude Codeに話しかけるだけで、本物のLPが完成します。</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;">
-      <div class="card" style="margin-bottom:0;text-align:center;padding:24px 16px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:300;color:var(--orange);margin-bottom:8px;">¥0</div>
-        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">外注費</div>
-        <div style="font-size:11px;color:var(--gray-lt);">LP制作を自分でできる</div>
+    <div class="stats-3col">
+      <div class="stat-item">
+        <div class="stat-circle">0円</div>
+        <div class="stat-label">外注費</div>
       </div>
-      <div class="card" style="margin-bottom:0;text-align:center;padding:24px 16px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:300;color:var(--orange);margin-bottom:8px;">1日</div>
-        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">制作時間</div>
-        <div style="font-size:11px;color:var(--gray-lt);">8時間で完成・公開まで</div>
+      <div class="stat-item">
+        <div class="stat-circle">1日</div>
+        <div class="stat-label">制作時間</div>
       </div>
-      <div class="card" style="margin-bottom:0;text-align:center;padding:24px 16px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:32px;font-weight:300;color:var(--orange);margin-bottom:8px;">∞</div>
-        <div style="font-size:12px;font-weight:500;margin-bottom:4px;">修正回数</div>
-        <div style="font-size:11px;color:var(--gray-lt);">いつでも自分で直せる</div>
+      <div class="stat-item">
+        <div class="stat-circle stat-circle--small">修正回数</div>
+        <div class="stat-label">いつでも自分で</div>
       </div>
     </div>
+
+    <style>
+      .stats-3col {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-circle {
+        width: 100%;
+        max-width: 110px;
+        aspect-ratio: 1 / 1;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: var(--grad-soft);
+        border: 1.5px solid var(--orange-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-size: clamp(18px, 5vw, 26px);
+        font-weight: 500;
+        color: var(--orange);
+        letter-spacing: 0.02em;
+        box-shadow: 0 4px 12px rgba(201,106,58,0.08);
+      }
+      .stat-circle--small { font-size: clamp(11px, 3vw, 14px); }
+      .stat-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--black);
+      }
+      @media (max-width: 420px) {
+        .stats-3col { gap: 8px; }
+        .stat-circle { max-width: 92px; }
+        .stat-label { font-size: 11px; }
+      }
+    </style>
 
     <!-- LP制作過程カード -->
     <a href="presentation.html" target="_blank" style="display:block;text-decoration:none;color:inherit;margin-bottom:20px;">
