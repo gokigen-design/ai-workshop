@@ -1377,6 +1377,29 @@
       .tab-content [style*="grid-template-columns: 1fr 1fr 1fr"] {
         grid-template-columns: 1fr !important;
       }
+      /* flex レイアウト内のテキスト折り返し */
+      .tab-content [style*="display:flex"] > div,
+      .tab-content [style*="display: flex"] > div {
+        min-width: 0;
+      }
+      /* 横スクロール系の4カラム（事前準備/AM/PM/公開）は縦積みに */
+      .tab-content [style*="overflow-x:auto"],
+      .tab-content [style*="overflow-x: auto"] {
+        overflow-x: visible !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+      .tab-content [style*="overflow-x:auto"] > div,
+      .tab-content [style*="overflow-x: auto"] > div {
+        min-width: 100% !important;
+        border-radius: 10px !important;
+      }
+      /* 4カラム間の矢印（›）は縦時には90度回転して中央に */
+      .tab-content [style*="overflow-x:auto"] > div[style*="color:var(--border)"] {
+        transform: rotate(90deg);
+        padding: 4px 0 !important;
+        text-align: center;
+      }
     }
     @media (max-width: 420px) {
       .main-layout { padding: 0 14px 80px; }
