@@ -8066,9 +8066,131 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <div class="callout-title">プランとモデルの関係</div>
         <strong>プラン（Pro / Max）</strong>は「どれだけ使えるか」の契約。<br>
         <strong>モデル（Sonnet / Opus / Haiku）</strong>はその中で選べるAIの種類。<br>
-        Claude Code の中では基本 <strong>Sonnet ⇔ Opus</strong> を切り替えて使います。<br>
-        <span style="font-size: 13px; color: var(--gray-mid);">※ Haiku は軽量・高速なモデルですが、Claude Code での普段使いでは選びません（API向け）。</span>
+        Claude Code の中では基本 <strong>Sonnet ⇔ Opus</strong> を切り替えて使います。
       </div>
+
+      <!-- ─── 3モデル比較ビジュアル ─── -->
+      <div class="model-compare">
+        <div class="model-compare-title">3つのモデル ─ 賢さと消費量の関係</div>
+        <div class="model-compare-row">
+          <div class="model-card model-haiku">
+            <div class="model-shape model-shape--small"></div>
+            <div class="model-name">Haiku</div>
+            <div class="model-level">軽い</div>
+            <div class="model-desc">速い・消費少ない<br><span class="model-note">※API向け、CCでは選ばない</span></div>
+          </div>
+          <div class="model-card model-sonnet">
+            <div class="model-shape model-shape--mid"></div>
+            <div class="model-name">Sonnet</div>
+            <div class="model-level">標準</div>
+            <div class="model-desc">バランス◎<br>普段の作業はこれ</div>
+          </div>
+          <div class="model-card model-opus">
+            <div class="model-shape model-shape--large"></div>
+            <div class="model-name">Opus</div>
+            <div class="model-level">高性能</div>
+            <div class="model-desc">賢い・消費大きい<br>こだわりたい時に</div>
+          </div>
+        </div>
+        <div class="model-compare-bar">
+          <span class="bar-label-left">消費量・賢さ</span>
+          <span class="bar-arrow">→</span>
+          <span class="bar-label-right">大きい</span>
+        </div>
+      </div>
+
+      <style>
+        .qa-imported .model-compare {
+          margin: 28px 0;
+          padding: 22px 20px 18px;
+          background: linear-gradient(135deg, #fff 60%, rgba(79,126,247,0.04));
+          border: 1px solid rgba(79,126,247,0.18);
+          border-radius: 14px;
+        }
+        .qa-imported .model-compare-title {
+          font-family: 'Zen Maru Gothic', sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          color: #1C1D2E;
+          text-align: center;
+          margin-bottom: 18px;
+        }
+        .qa-imported .model-compare-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 10px;
+          align-items: end;
+        }
+        .qa-imported .model-card {
+          text-align: center;
+          padding: 12px 8px;
+          background: #fff;
+          border-radius: 10px;
+          border: 1px solid #E5E8F0;
+          transition: transform 0.15s ease;
+        }
+        .qa-imported .model-sonnet { border-color: rgba(79,126,247,0.35); background: linear-gradient(180deg, #fff, rgba(79,126,247,0.04)); }
+        .qa-imported .model-opus { border-color: rgba(168,85,247,0.35); background: linear-gradient(180deg, #fff, rgba(168,85,247,0.05)); }
+        .qa-imported .model-shape {
+          margin: 0 auto 10px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #4F7EF7, #1BC6B4);
+          box-shadow: 0 4px 12px rgba(79,126,247,0.18);
+        }
+        .qa-imported .model-haiku .model-shape { background: linear-gradient(135deg, #94A3B8, #CBD5E1); box-shadow: 0 3px 8px rgba(148,163,184,0.25); }
+        .qa-imported .model-opus .model-shape { background: linear-gradient(135deg, #A855F7, #EC4899); box-shadow: 0 6px 18px rgba(168,85,247,0.25); }
+        .qa-imported .model-shape--small { width: 30px; height: 30px; }
+        .qa-imported .model-shape--mid { width: 48px; height: 48px; }
+        .qa-imported .model-shape--large { width: 66px; height: 66px; }
+        .qa-imported .model-name {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #1C1D2E;
+          letter-spacing: 0.02em;
+        }
+        .qa-imported .model-level {
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.15em;
+          color: #6B7280;
+          margin: 2px 0 6px;
+        }
+        .qa-imported .model-sonnet .model-level { color: #4F7EF7; }
+        .qa-imported .model-opus .model-level { color: #A855F7; }
+        .qa-imported .model-desc {
+          font-size: 11px;
+          line-height: 1.7;
+          color: #6B7280;
+        }
+        .qa-imported .model-note {
+          display: inline-block;
+          margin-top: 4px;
+          font-size: 10px;
+          color: #9CA3AF;
+        }
+        .qa-imported .model-compare-bar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          margin-top: 16px;
+          padding-top: 14px;
+          border-top: 1px dashed rgba(79,126,247,0.2);
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          letter-spacing: 0.15em;
+          color: #9CA3AF;
+        }
+        .qa-imported .bar-arrow { color: #4F7EF7; font-size: 14px; }
+        @media (max-width: 480px) {
+          .qa-imported .model-shape--small { width: 24px; height: 24px; }
+          .qa-imported .model-shape--mid { width: 38px; height: 38px; }
+          .qa-imported .model-shape--large { width: 54px; height: 54px; }
+          .qa-imported .model-name { font-size: 13px; }
+          .qa-imported .model-desc { font-size: 10px; }
+        }
+      </style>
 
       <div class="callout callout-warn">
         <div class="callout-title">超重要：チャットとCodeは「同じ財布」です</div>
