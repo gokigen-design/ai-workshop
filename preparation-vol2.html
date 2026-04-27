@@ -1394,11 +1394,26 @@
         min-width: 100% !important;
         border-radius: 10px !important;
       }
-      /* 4カラム間の矢印（›）は縦時には90度回転して中央に */
-      .tab-content [style*="overflow-x:auto"] > div[style*="color:var(--border)"] {
-        transform: rotate(90deg);
-        padding: 4px 0 !important;
-        text-align: center;
+      /* 4カラム間の矢印 → 見える▼三角に置き換え（モバイル時） */
+      .tab-content [style*="overflow-x:auto"] > div[style*="color:var(--border)"],
+      .tab-content [style*="overflow-x: auto"] > div[style*="color:var(--border)"] {
+        font-size: 0 !important;
+        color: transparent !important;
+        padding: 6px 0 !important;
+        height: auto !important;
+        min-width: 100% !important;
+        text-align: center !important;
+        position: relative;
+      }
+      .tab-content [style*="overflow-x:auto"] > div[style*="color:var(--border)"]::before,
+      .tab-content [style*="overflow-x: auto"] > div[style*="color:var(--border)"]::before {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-top: 12px solid #C96A3A;
       }
     }
     @media (max-width: 420px) {
@@ -3285,17 +3300,17 @@
     </div>
 
     <div class="stats-3col">
-      <div class="stat-item">
-        <div class="stat-circle">0円</div>
-        <div class="stat-label">外注費</div>
+      <div class="stat-circle">
+        <div class="stat-cap">外注費</div>
+        <div class="stat-num">0円</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-circle">1日</div>
-        <div class="stat-label">制作時間</div>
+      <div class="stat-circle">
+        <div class="stat-cap">制作時間</div>
+        <div class="stat-num">1時間</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-circle stat-circle--small">修正回数</div>
-        <div class="stat-label">いつでも自分で</div>
+      <div class="stat-circle">
+        <div class="stat-cap">修正回数</div>
+        <div class="stat-num">無制限</div>
       </div>
     </div>
 
@@ -3304,39 +3319,46 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 12px;
-        margin-bottom: 24px;
+        margin: 0 auto 28px;
+        max-width: 520px;
+        width: 100%;
       }
-      .stat-item {
-        text-align: center;
-      }
+      .stats-3col > * { min-width: 0; }
       .stat-circle {
         width: 100%;
-        max-width: 110px;
         aspect-ratio: 1 / 1;
-        margin: 0 auto 10px;
+        max-width: 150px;
+        margin: 0 auto;
         border-radius: 50%;
-        background: var(--grad-soft);
-        border: 1.5px solid var(--orange-border);
+        background: linear-gradient(135deg, #fff 60%, rgba(201,106,58,0.04));
+        border: 1.5px solid rgba(201,106,58,0.18);
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        font-family: 'Zen Maru Gothic', sans-serif;
-        font-size: clamp(18px, 5vw, 26px);
-        font-weight: 500;
-        color: var(--orange);
-        letter-spacing: 0.02em;
-        box-shadow: 0 4px 12px rgba(201,106,58,0.08);
+        gap: 4px;
+        padding: 8px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+        text-align: center;
+        box-sizing: border-box;
       }
-      .stat-circle--small { font-size: clamp(11px, 3vw, 14px); }
-      .stat-label {
-        font-size: 12px;
+      .stat-cap {
+        font-size: clamp(10px, 2.8vw, 12px);
         font-weight: 500;
-        color: var(--black);
+        color: var(--gray-mid);
+        letter-spacing: 0.05em;
+      }
+      .stat-num {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-size: clamp(15px, 4.4vw, 20px);
+        font-weight: 500;
+        color: #C96A3A;
+        line-height: 1.2;
+        letter-spacing: 0.02em;
       }
       @media (max-width: 420px) {
         .stats-3col { gap: 8px; }
-        .stat-circle { max-width: 92px; }
-        .stat-label { font-size: 11px; }
+        .stat-circle { padding: 8px; }
       }
     </style>
 
@@ -7405,8 +7427,21 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     function switchTab(tabId, btn) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-      document.getElementById('tab-' + tabId).classList.add('active');
+      var target = document.getElementById('tab-' + tabId);
+      target.classList.add('active');
       btn.classList.add('active');
+
+      /* タップ時、本文の見出しまでスムーズにスクロール（特にスマホで目次が長いため） */
+      try {
+        var isMobile = window.matchMedia('(max-width: 768px)').matches;
+        if (isMobile) {
+          var rect = target.getBoundingClientRect();
+          var top = rect.top + window.scrollY - 12;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        } else {
+          target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
+      } catch (e) {}
     }
 
     function v(id) {
