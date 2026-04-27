@@ -4,8 +4,13 @@
 # 第1回¥33,000モニター版LPは非公開にする（ファイル自体は参考のため残す）
 lp.html
 *.mov
-# 動画素材ファイル（圧縮版 images/fv-bg.mp4 のみ使用）
+# 動画素材ファイル（hero.mp4 はFV用なので残す）
 video/
-hero.mp4
 making-screenshots/
 *.pptx
+# バックアップの原本画像（デプロイには軽量版のみ使用）
+images/*-original.png
+images/*-original.jpg
+images/bg-fv-original.jpg.bak
+# 削除した背景動画
+images/fv-bg.mp4
