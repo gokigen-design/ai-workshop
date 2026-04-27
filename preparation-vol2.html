@@ -1359,15 +1359,24 @@
         box-shadow: 0 4px 12px rgba(79,126,247,0.25);
       }
       .tab-btn.active span { color: rgba(255,255,255,0.85); }
-      .hero-wrapper { height: 200vh; }
-      .site-header { height: 100vh; min-height: 480px; }
+      /* スマホはヒーローの空白を詰める：sticky解除＋wrapper=100vh */
+      .hero-wrapper { height: 100vh; min-height: 480px; }
+      .site-header { position: relative; height: 100vh; min-height: 480px; }
       .row-2 { grid-template-columns: 1fr; }
       .palette-grid { grid-template-columns: 1fr 1fr; }
       .rules-grid { grid-template-columns: 1fr; }
-      .card { padding: 24px 20px; }
+      .card { padding: 24px 20px; max-width: 100%; box-sizing: border-box; word-wrap: break-word; overflow-wrap: break-word; }
       .prompt-box { font-size: 12px; }
       .gloss-card { flex-direction: column; gap: 8px; }
       .gloss-term { min-width: unset; }
+      /* タブ内コンテンツ全体に折り返し許可 */
+      .tab-content { word-wrap: break-word; overflow-wrap: break-word; }
+      .tab-content * { max-width: 100%; }
+      /* 3カラムグリッドはモバイルで縦積み */
+      .tab-content [style*="grid-template-columns:1fr 1fr 1fr"],
+      .tab-content [style*="grid-template-columns: 1fr 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
     }
     @media (max-width: 420px) {
       .main-layout { padding: 0 14px 80px; }
