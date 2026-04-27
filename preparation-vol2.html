@@ -3204,36 +3204,36 @@
         <button class="tab-btn active" onclick="switchTab('overview', this)"><span>01</span>全体像</button>
         <button class="tab-btn" onclick="switchTab('ai-agent', this)"><span>02</span>AIエージェントとは何か</button>
         <button class="tab-btn" onclick="switchTab('claude-features', this)"><span>03</span>Claude Codeでできること</button>
+        <button class="tab-btn" onclick="switchTab('designer', this)"><span>04</span>デザイナー視点（LPの目的）</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">環境を整える</div>
-        <button class="tab-btn" onclick="switchTab('setup', this)"><span>04</span>環境を整える</button>
+        <button class="tab-btn" onclick="switchTab('setup', this)"><span>05</span>環境を整える</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">当日に備える</div>
-        <button class="tab-btn" onclick="switchTab('worksheet', this)"><span>05</span>内容を整理する</button>
-        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>06</span>当日に備える</button>
-        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>07</span>AIに指示する</button>
+        <button class="tab-btn" onclick="switchTab('worksheet', this)"><span>06</span>内容を整理する</button>
+        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>07</span>当日に備える</button>
+        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>08</span>AIに指示する</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">当日</div>
-        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>08</span>5/1 キックオフ（2時間）</button>
-        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>09</span>当日のスケジュール</button>
-        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>10</span>公開する</button>
+        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>09</span>5/1 キックオフ（2時間）</button>
+        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>10</span>当日のスケジュール</button>
+        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>11</span>公開する</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">デザイン資料</div>
-        <button class="tab-btn" onclick="switchTab('design', this)"><span>11</span>デザインを学ぶ</button>
-        <button class="tab-btn" onclick="switchTab('design-aiish', this)"><span>12-A</span>AI臭いデザインとは</button>
-        <button class="tab-btn" onclick="switchTab('design-glow', this)"><span>12-B</span>垢抜けの実例</button>
-        <button class="tab-btn" onclick="switchTab('design-parallax', this)"><span>12-C</span>パララックス</button>
-        <button class="tab-btn" onclick="switchTab('design-motion', this)"><span>12-D</span>動き・アニメーション</button>
-        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>13</span>用語集</button>
+        <button class="tab-btn" onclick="switchTab('design', this)"><span>12</span>デザインを学ぶ</button>
+        <button class="tab-btn" onclick="switchTab('design-aiish', this)"><span>13-A</span>AIっぽいデザインの正体</button>
+        <button class="tab-btn" onclick="switchTab('design-glow', this)"><span>13-B</span>プロンプトで変わるBefore/After</button>
+        <button class="tab-btn" onclick="switchTab('design-motion', this)"><span>13-C</span>動きで魅せる（アニメ）</button>
+        <button class="tab-btn" onclick="switchTab('design-parallax', this)"><span>13-D</span>パララックスで奥行きを</button>
+        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>14</span>用語集</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">みんなの声</div>
-        <button class="tab-btn" onclick="switchTab('team', this)"><span>14</span>チーム一覧</button>
-        <button class="tab-btn" onclick="switchTab('designer', this)"><span>15</span>デザイナー視点</button>
+        <button class="tab-btn" onclick="switchTab('team', this)"><span>15</span>チーム一覧</button>
         <button class="tab-btn" onclick="switchTab('feedback', this)"><span>16</span>当日の感想</button>
         <button class="tab-btn" onclick="switchTab('qa', this)"><span>17</span>Q &amp; A</button>
       </div>
@@ -3383,362 +3383,24 @@
       </div>
     </div>
 
-    <!-- ═══ 参加者セクション ═══ -->
+    <!-- ═══ 参加者セクション（チーム分け後に再構築予定） ═══ -->
     <div style="border-top:1px solid var(--border);margin:36px 0 28px;"></div>
     <div class="sec-eyebrow">受講生のみなさん</div>
-    <div style="font-size:14px;font-weight:500;margin-bottom:6px;">参加者ページ</div>
-    <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:24px;">グループを選んで自分の名前をタップ。LP情報を事前に埋めておくと、当日ボタン1つでClaudeへの指示文がコピーできます。</p>
-
-    <style>
-      .grp-nav{display:flex;gap:8px;margin-bottom:20px;}
-      .grp-btn{flex:1;padding:11px 6px;border:1px solid var(--border);border-radius:10px;background:var(--beige);font-size:13px;font-weight:500;cursor:pointer;text-align:center;transition:all 0.2s;font-family:inherit;}
-      .grp-btn.active{background:var(--grad);color:#fff;border-color:transparent;}
-      .grp-panel{display:none;}
-      .grp-panel.active{display:block;}
-      .mbr-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
-      .mbr-btn{padding:8px 18px;border:1px solid var(--border);border-radius:20px;background:var(--beige);font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
-      .mbr-btn.practice{border-color:var(--orange);color:var(--orange);background:#fff;}
-      .mbr-btn.active{background:var(--orange);color:#fff;border-color:transparent;}
-      .mbr-btn.practice.active{background:var(--orange) !important;color:#fff !important;border-color:var(--orange) !important;}
-      .kw{display:inline-block;padding:2px 10px;margin:0 2px;background:#fff;border:1px solid var(--orange-border);border-radius:4px;font-size:13px;font-weight:500;color:var(--orange);}
-      .mbr-page{display:none;}
-      .mbr-page.active{display:block;}
-      .lp-row{margin-bottom:14px;}
-      .lp-label{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;color:var(--orange);margin-bottom:4px;text-transform:uppercase;}
-      .lp-hint{display:block;font-size:11px;color:var(--gray-lt);margin-bottom:6px;line-height:1.6;}
-      .lp-input,.lp-ta{width:100%;box-sizing:border-box;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;line-height:1.7;font-family:inherit;color:var(--black);background:var(--white);transition:border-color 0.15s;}
-      .lp-input:focus,.lp-ta:focus{outline:none;border-color:var(--orange);}
-      .lp-ta{resize:vertical;min-height:80px;}
-      .prompt-box{background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:11px;line-height:1.8;color:var(--gray-mid);white-space:pre-wrap;max-height:280px;overflow-y:auto;margin-top:12px;display:none;font-family:'DM Sans',monospace;}
-      .copy-btn{display:block;width:100%;padding:14px;background:var(--grad);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:background 0.2s;position:static;top:auto;right:auto;}
-    </style>
-
-    <div class="grp-nav">
-      <button class="grp-btn active" onclick="switchGrp('ga',this)">🟡 Group A<br><span style="font-size:11px;font-weight:400;opacity:0.85;">4名</span></button>
-      <button class="grp-btn" onclick="switchGrp('gb',this)">🔴 Group B<br><span style="font-size:11px;font-weight:400;opacity:0.85;">5名</span></button>
-      <button class="grp-btn" onclick="switchGrp('gc',this)">🔵 Group C<br><span style="font-size:11px;font-weight:400;opacity:0.85;">5名</span></button>
-    </div>
-
-    <!-- Group A -->
-    <div class="grp-panel active" id="ga">
-      <div style="font-size:11px;color:var(--gray-lt);margin-bottom:12px;">リーダー：海老原愛 ／ サブリーダー：藤葉ともみ</div>
-      <div class="mbr-nav">
-        <button class="mbr-btn active" onclick="switchMbr('m-ebihara',this,'ga')">海老原愛</button>
-        <button class="mbr-btn" onclick="switchMbr('m-fujiba',this,'ga')">藤葉ともみ</button>
-        <button class="mbr-btn" onclick="switchMbr('m-tsuruka',this,'ga')">鶴岡好美</button>
-        <button class="mbr-btn" onclick="switchMbr('m-ariel',this,'ga')">アリエル</button>
-        <button class="mbr-btn practice" onclick="switchMbr('m-cyber',this,'ga')">サイバー女子</button>
-        <button class="mbr-btn practice" onclick="switchMbr('m-chakana',this,'ga')">ちゃかな</button>
-        <button class="mbr-btn practice" onclick="switchMbr('m-yumi',this,'ga')">ゆみ</button>
+    <div class="card" style="border:2px dashed var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));text-align:center;padding:40px 28px;margin-top:8px;">
+      <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--grad-soft);margin-bottom:16px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C96A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+        </svg>
       </div>
-      <div id="m-ebihara" class="mbr-page active" data-id="ebihara"></div>
-      <div id="m-fujiba"  class="mbr-page" data-id="fujiba"></div>
-      <div id="m-tsuruka" class="mbr-page" data-id="tsuruka"></div>
-      <div id="m-ariel"   class="mbr-page" data-id="ariel"></div>
-      <div id="m-cyber"   class="mbr-page" data-id="cyber"></div>
-      <div id="m-chakana" class="mbr-page" data-id="chakana"></div>
-      <div id="m-yumi"    class="mbr-page" data-id="yumi"></div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:12px;">Coming Soon</div>
+      <div style="font-size:16px;font-weight:600;color:var(--black);line-height:1.7;margin-bottom:12px;">チーム分けが済んだら<br>こちらに各メンバーをご紹介します</div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:2;max-width:480px;margin:0 auto;">
+        今回の1期生は新しくスタートされたばかりの皆さんなので、チーム分けの確定後にメンバー一覧をこちらに掲載します。
+      </p>
     </div>
 
-    <!-- Group B -->
-    <div class="grp-panel" id="gb">
-      <div style="font-size:11px;color:var(--gray-lt);margin-bottom:12px;">リーダー：川副真理子 ／ サブリーダー：ぬん（大森真里亜）</div>
-      <div class="mbr-nav">
-        <button class="mbr-btn active" onclick="switchMbr('m-kawasoe',this,'gb')">川副真理子</button>
-        <button class="mbr-btn" onclick="switchMbr('m-nun',this,'gb')">ぬん</button>
-        <button class="mbr-btn" onclick="switchMbr('m-nagaoka',this,'gb')">長岡篤子</button>
-        <button class="mbr-btn" onclick="switchMbr('m-nakamura',this,'gb')">中村知代已</button>
-        <button class="mbr-btn" onclick="switchMbr('m-koga',this,'gb')">古賀明美</button>
-      </div>
-      <div id="m-kawasoe"  class="mbr-page active" data-id="kawasoe"></div>
-      <div id="m-nun"      class="mbr-page" data-id="nun"></div>
-      <div id="m-nagaoka"  class="mbr-page" data-id="nagaoka"></div>
-      <div id="m-nakamura" class="mbr-page" data-id="nakamura"></div>
-      <div id="m-koga"     class="mbr-page" data-id="koga"></div>
-    </div>
-
-    <!-- Group C -->
-    <div class="grp-panel" id="gc">
-      <div style="font-size:11px;color:var(--gray-lt);margin-bottom:12px;">リーダー：和田あゆみ ／ サブリーダー：西脇さやか</div>
-      <div class="mbr-nav">
-        <button class="mbr-btn active" onclick="switchMbr('m-wada',this,'gc')">和田あゆみ</button>
-        <button class="mbr-btn" onclick="switchMbr('m-nishiwaki',this,'gc')">西脇さやか</button>
-        <button class="mbr-btn" onclick="switchMbr('m-murakami',this,'gc')">村上華</button>
-        <button class="mbr-btn" onclick="switchMbr('m-hirano',this,'gc')">平野那奈</button>
-        <button class="mbr-btn" onclick="switchMbr('m-hanuma',this,'gc')">羽沼景子</button>
-      </div>
-      <div id="m-wada"      class="mbr-page active" data-id="wada"></div>
-      <div id="m-nishiwaki" class="mbr-page" data-id="nishiwaki"></div>
-      <div id="m-murakami"  class="mbr-page" data-id="murakami"></div>
-      <div id="m-hirano"    class="mbr-page" data-id="hirano"></div>
-      <div id="m-hanuma"    class="mbr-page" data-id="hanuma"></div>
-    </div>
-
-    <script>
-    // ─── メンバーデータ ───
-    var MEMBERS = {
-      ebihara:  {name:'海老原愛',       ig:'https://www.instagram.com/ebi.styling/',        service:'映像制作・運用代行・動画編集講座',                  level:'A（上級）',   group:'A', role:'リーダー'},
-      fujiba:   {name:'藤葉ともみ',     ig:'@tomomi_fujiha',      service:'起業家向けファッション・ショッピング同行',           level:'A（上級）',   group:'A', role:'サブリーダー'},
-      tsuruka:  {name:'鶴岡好美',       ig:'@yoshimi_diet_',      service:'食べ痩せダイエット3ヶ月プログラム',                  level:'C（中級）',   group:'A', role:'メンバー'},
-      ariel:    {name:'アリエル（富樫亜純）', ig:'@trinityariel_', service:'魂の設計書の鑑定と個人セッション',                  level:'D（初中級）', group:'A', role:'メンバー'},
-      cyber:    {name:'サイバー女子',        ig:'',                service:'デザイナー向けLP制作サービス',                        level:'',            group:'A', role:'練習用'},
-      chakana:  {name:'ちゃかな',            ig:'',                service:'',                                                    level:'',            group:'A', role:'練習用'},
-      yumi:     {name:'ゆみ',                ig:'',                service:'',                                                    level:'',            group:'A', role:'練習用'},
-      kawasoe:  {name:'川副真理子',     ig:'@zoe_yanagimind',     service:'クライアントワーカー・プロモサポート・LP制作',       level:'A（上級）',   group:'B', role:'リーダー'},
-      nun:      {name:'ぬん（大森真里亜）', ig:'https://www.instagram.com/nunn_diet/',                service:'ダイエット講座・講師養成講座・インスタコンサル',      level:'B（中上級）', group:'B', role:'サブリーダー'},
-      nagaoka:  {name:'長岡篤子',       ig:'@stylist_atsuko',     service:'パーソナルスタイリスト・ショッピング同行',           level:'C（中級）',   group:'B', role:'メンバー'},
-      nakamura: {name:'中村知代已',     ig:'@sugar_tree_2021',    service:'フラワーケーキ教室・お花絞りレッスン',               level:'D（初中級）', group:'B', role:'メンバー'},
-      koga:     {name:'古賀明美',       ig:'@akemi.koga_mind',    service:'優等生タイプ向け6ヶ月個別セッション',               level:'C（中級）',   group:'B', role:'メンバー'},
-      wada:     {name:'和田あゆみ',     ig:'https://www.instagram.com/_ayumi_support/',                    service:'デザイナー・プロモーションサポート・LP/HP制作',      level:'A（上級）',   group:'C', role:'リーダー'},
-      nishiwaki:{name:'西脇さやか',     ig:'@sayaka_nishiwaki',   service:'劇あそび・表現教育ファシリテーター',                level:'B（中上級）', group:'C', role:'サブリーダー'},
-      murakami: {name:'村上華',         ig:'@hananookashi',        service:'焼き菓子販売・オンラインレッスン',                  level:'B（中上級）', group:'C', role:'メンバー'},
-      hirano:   {name:'平野那奈',       ig:'@yours.7ms',          service:'クライアントワーカー・SNS運用代行',                 level:'C（中級）',   group:'C', role:'メンバー'},
-      hanuma:   {name:'羽沼景子',       ig:'@hanu_party',         service:'パーティープロデュース・トータルプロデュース',       level:'E（初級）',   group:'C', role:'メンバー'},
-    };
-
-    // ─── グループ / メンバー切り替え ───
-    function switchGrp(id, btn) {
-      document.querySelectorAll('.grp-panel').forEach(function(p){p.classList.remove('active');});
-      document.querySelectorAll('.grp-btn').forEach(function(b){b.classList.remove('active');});
-      document.getElementById(id).classList.add('active');
-      btn.classList.add('active');
-      var grp = document.getElementById(id);
-      var first = grp.querySelector('.mbr-page.active');
-      if (first) renderMember(first);
-    }
-    function switchMbr(id, btn, grpId) {
-      var grp = document.getElementById(grpId);
-      grp.querySelectorAll('.mbr-page').forEach(function(p){p.classList.remove('active');});
-      grp.querySelectorAll('.mbr-btn').forEach(function(b){b.classList.remove('active');});
-      document.getElementById(id).classList.add('active');
-      btn.classList.add('active');
-      renderMember(document.getElementById(id));
-    }
-
-    // ─── メンバーページ描画 ───
-    function renderMember(el) {
-      if (!el || el.dataset.rendered) return;
-      el.dataset.rendered = '1';
-      var id = el.dataset.id;
-      var m = MEMBERS[id];
-      if (!m) return;
-      function sv(f, def) { return (localStorage.getItem('lp-'+id+'-'+f)||def||'').replace(/"/g,'&quot;'); }
-
-      var roleCol = m.role==='リーダー' ? 'var(--orange)' : m.role==='サブリーダー' ? '#1BC6B4' : 'var(--gray-mid)';
-      var igUrl = m.ig ? (m.ig.startsWith('http') ? m.ig : 'https://instagram.com/'+m.ig.replace('@','')) : '';
-      var igDisplay = m.ig ? (m.ig.startsWith('http') ? m.ig.replace('https://www.instagram.com/','@').replace('https://instagram.com/','@').replace(/\/$/,'') : m.ig) : '';
-      var igLink = m.ig ? '<a href="'+igUrl+'" target="_blank" style="color:var(--orange);text-decoration:none;font-weight:500;">'+igDisplay+'</a>' : '—';
-
-      var h = '';
-      var reported = localStorage.getItem('reported-'+id) === '1';
-
-      // プロフィール
-      h += '<div class="card" style="margin-bottom:16px;">';
-      h += '<div class="card-head"><div class="card-num" style="font-size:10px;padding:0 10px;width:auto;min-width:auto;">Group '+m.group+'</div><div class="card-title">'+m.name+'</div><span style="margin-left:auto;font-size:11px;font-weight:600;color:'+roleCol+';">'+m.role+'</span></div>';
-      h += '<div style="background:var(--beige);border-radius:8px;padding:11px 14px;margin-top:12px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">INSTAGRAM</div><div style="font-size:13px;">'+igLink+'</div></div>';
-      h += '<div style="margin-top:10px;padding:11px 14px;background:var(--beige);border-radius:8px;"><div style="font-size:10px;color:var(--gray-lt);margin-bottom:3px;">SERVICE</div><div style="font-size:13px;">'+m.service+'</div></div>';
-      h += '</div>';
-
-      el.innerHTML = h;
-    }
-
-    // ─── Google Spreadsheet 報告 ───
-    var GAS_URL = 'https://script.google.com/macros/s/AKfycbxb9zRl362b-ygbf1ADILogE3tjzyH7vV9hPemGfy3HTtbf5ZJg7z06pbqaZ8UvHvUj/exec';
-    function reportDone(id) {
-      var m = MEMBERS[id];
-      var serviceEl = document.querySelector('[data-key="'+id+'-service"]');
-      var service = serviceEl ? serviceEl.value.trim() : m.service;
-      var btn = document.getElementById(id+'-report-btn');
-      btn.disabled = true;
-      btn.textContent = '送信中...';
-      function fv(f){ var el=document.querySelector('[data-key="'+id+'-'+f+'"]'); return el?el.value.trim():''; }
-      var url = GAS_URL
-        + '?name='    + encodeURIComponent(m.name)
-        + '&group='   + encodeURIComponent(m.group)
-        + '&service=' + encodeURIComponent(fv('service')||m.service)
-        + '&title='   + encodeURIComponent(fv('title'))
-        + '&price='   + encodeURIComponent(fv('price'))
-        + '&target='  + encodeURIComponent(fv('target'))
-        + '&catch='   + encodeURIComponent(fv('catch'))
-        + '&p1='      + encodeURIComponent(fv('p1'))
-        + '&p2='      + encodeURIComponent(fv('p2'))
-        + '&p3='      + encodeURIComponent(fv('p3'))
-        + '&b1='      + encodeURIComponent(fv('b1'))
-        + '&b2='      + encodeURIComponent(fv('b2'))
-        + '&b3='      + encodeURIComponent(fv('b3'))
-        + '&bio='     + encodeURIComponent(fv('bio'))
-        + '&color='   + encodeURIComponent(fv('color'))
-        + '&cta='     + encodeURIComponent(fv('cta'))
-        + '&sns='     + encodeURIComponent(fv('sns'))
-        + '&existlp=' + encodeURIComponent(fv('existlp'))
-        + '&modeling=' + encodeURIComponent(fv('modeling'))
-        + '&ref1='    + encodeURIComponent(fv('ref1'))
-        + '&ref2='    + encodeURIComponent(fv('ref2'))
-        + '&ref3='    + encodeURIComponent(fv('ref3'))
-        + '&design2=' + encodeURIComponent(fv('design2'))
-        + '&design3=' + encodeURIComponent(fv('design3'));
-      fetch(url, { mode: 'no-cors' }).then(function(){
-        btn.textContent = '✅ 報告済！ありがとうございます';
-        btn.style.background = '#1BC6B4';
-        localStorage.setItem('reported-'+id, '1');
-      }).catch(function(){
-        btn.disabled = false;
-        btn.textContent = '⚠️ 送信エラー。もう一度試してください';
-        btn.style.background = '#e55';
-      });
-    }
-
-    // ─── 報告リセット ───
-    function resetReport(id) {
-      localStorage.removeItem('reported-'+id);
-      var btn = document.getElementById(id+'-report-btn');
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = '📩 準備完了を報告する';
-        btn.style.background = '#1BC6B4';
-      }
-      // リセットリンクを非表示に
-      var p = btn && btn.nextElementSibling;
-      if (p) p.remove();
-    }
-
-    // ─── localStorage 自動保存 ───
-    document.addEventListener('input', function(e){
-      var key = e.target.dataset.key;
-      if (!key) return;
-      localStorage.setItem('lp-'+key, e.target.value);
-    });
-    document.addEventListener('change', function(e){
-      var key = e.target.dataset.key;
-      if (!key || !e.target.dataset.ck) return;
-      localStorage.setItem('lp-'+key, e.target.checked ? '1' : '');
-    });
-
-    // ─── プロンプト生成 ───
-    function copyPrompt(id) {
-      try {
-      function fv(f){ var el=document.querySelector('[data-key="'+id+'-'+f+'"]'); return el?el.value.trim():''; }
-      var m = MEMBERS[id];
-      var lines = [
-        'あなたはプロのLP制作デザイナーです。以下の情報をもとに、集客力の高いLP（ランディングページ）のHTMLを1ファイルで作成してください。',
-        '',
-        '【基本情報】',
-        '氏名：'+m.name,
-        '肩書き：'+(fv('title')||'（未記入）'),
-        'Instagram：'+(m.ig||fv('sns')||'未記入'),
-        '',
-        '【サービス情報】',
-        'サービス名：'+(fv('service')||'（未記入）'),
-        '料金：'+(fv('price')||'（未記入）'),
-        '形式・回数：'+(fv('format')||'（未記入）'),
-        '対象者：'+(fv('target')||'（未記入）'),
-        'LPのゴール：'+(fv('goal')||'（未記入）'),
-        '',
-        '【キャッチコピー】',
-        'メインキャッチ：'+(fv('catch')||'（未記入）'),
-        'サブコピー：'+(fv('sub')||'（未記入）'),
-        '',
-        '【参加者の悩み】',
-        '悩み1：'+(fv('p1')||'（未記入）'),
-        '悩み2：'+(fv('p2')||'（未記入）'),
-        '悩み3：'+(fv('p3')||'（未記入）'),
-        '',
-        '【参加後に得られること】',
-        '得られること1：'+(fv('b1')||'（未記入）'),
-        '得られること2：'+(fv('b2')||'（未記入）'),
-        '得られること3：'+(fv('b3')||'（未記入）'),
-        '',
-        '【自己紹介】',
-        fv('bio')||'（未記入）',
-        '',
-        '【デザイン指定】',
-        'カラーテイスト：'+(fv('color')||'（未記入）'),
-        'フォント：'+(fv('font')||'（未記入）'),
-        '顔写真ファイル名：'+(fv('photo')||'profile.jpg'),
-      ];
-      if(fv('existlp')) lines.push('既存LP：'+fv('existlp'));
-      if(fv('modeling')||fv('ref1')||fv('ref2')) {
-        lines.push('【構成参考】');
-        if(fv('modeling')) lines.push('・'+fv('modeling'));
-        if(fv('ref1')) lines.push('・'+fv('ref1'));
-        if(fv('ref2')) lines.push('・'+fv('ref2'));
-      }
-      if(fv('ref3')||fv('design2')||fv('design3')) {
-        lines.push('【デザイン参考】');
-        if(fv('ref3')) lines.push('・'+fv('ref3'));
-        if(fv('design2')) lines.push('・'+fv('design2'));
-        if(fv('design3')) lines.push('・'+fv('design3'));
-      }
-      lines = lines.concat([
-        '',
-        '【申し込み先URL（CTAボタンの飛び先）】',
-        fv('cta')||'（未記入）',
-        '',
-        '【SNS URL（フッター表示）】',
-        fv('sns')||'（未記入）',
-        '',
-        '【LP構成の指示】',
-        '1. ファーストビュー（キャッチコピー＋プロフィール写真）',
-        '2. ターゲットへの共感セクション（お悩み）',
-        '3. サービス内容・得られること',
-        '4. 料金・申し込みCTAボタン',
-        '5. プロフィール（自己紹介）',
-        '6. フッター（SNSリンク）',
-        '',
-        '・デザインは女性向け、洗練されたイメージで作成してください',
-        '・モバイル対応（レスポンシブ）にしてください',
-        '・写真は images/ フォルダから読み込んでください',
-        '・CSSはHTMLファイル内に記述してください',
-        '・ファイルはデスクトップに lp.html という名前で保存してください',
-      ]);
-      var prompt = lines.join('\n');
-      var box = document.getElementById(id+'-prompt');
-      var btn = document.getElementById(id+'-copybtn');
-      var copy2 = document.getElementById(id+'-copy2');
-      box.value = prompt;
-      box.style.display = 'block';
-      if (copy2) copy2.style.display = 'block';
-      box.scrollIntoView({behavior:'smooth', block:'center'});
-      box.focus();
-      box.select();
-      tryClipboard(prompt, btn);
-      } catch(err) {
-        alert('エラー: ' + err.message);
-      }
-    }
-
-    function copyOnly(id) {
-      var box = document.getElementById(id+'-prompt');
-      var btn = document.getElementById(id+'-copybtn');
-      box.focus();
-      box.select();
-      tryClipboard(box.value, btn);
-    }
-
-    function tryClipboard(text, btn) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function(){
-          showCopied(btn);
-        }).catch(function(){
-          try { document.execCommand('copy'); showCopied(btn); } catch(e) {}
-        });
-      } else {
-        try { document.execCommand('copy'); showCopied(btn); } catch(e) {}
-      }
-    }
-
-    function showCopied(btn) {
-      if (!btn) return;
-      btn.textContent = '✅ コピー完了！Claude Desktopに貼り付けてください';
-      btn.style.background = '#1BC6B4';
-      setTimeout(function(){ btn.textContent = '📋 プロンプトを生成してコピー'; btn.style.background='linear-gradient(135deg,#4a86c8,#1BC6B4)'; }, 4000);
-    }
-
-    // ─── 初期描画 ───
-    (function(){
-      document.querySelectorAll('.mbr-page.active').forEach(function(el){ renderMember(el); });
-    })();
-    </script>
 
   </section>
 
@@ -3881,17 +3543,17 @@
         </div>
       </div>
 
-      <!-- 0:15 自己紹介 35分 -->
+      <!-- 0:15 自己紹介 30分 -->
       <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);">
         <div style="text-align:right;">
           <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">0:15</div>
-          <div style="font-size:11px;color:var(--gray-lt);">35 min</div>
+          <div style="font-size:11px;color:var(--gray-lt);">30 min</div>
         </div>
         <div>
           <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">自己紹介</div>
           <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">講師＆受講生の自己紹介タイム</div>
           <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">
-            お互いを知ることから2期がスタート。お一人ずつ「お名前・お仕事・このワークショップで作りたいLP・AIでやってみたいこと」を共有します。<br>
+            お互いを知ることから1期がスタート。お一人ずつ「お名前・お仕事・このワークショップで作りたいLP・AIでやってみたいこと」を共有します。<br>
             ここでつながった顔が、当日Slackやリアル会場での距離を一気に縮めてくれます。
           </div>
           <div style="background:var(--beige);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
@@ -3904,32 +3566,17 @@
         </div>
       </div>
 
-      <!-- 0:50 休憩 5分 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(201,106,58,0.04),transparent);">
-        <div style="text-align:right;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">0:50</div>
-          <div style="font-size:11px;color:var(--gray-lt);">5 min</div>
-        </div>
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">休憩</div>
-          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">ひと息タイム</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">
-            お手洗い・お水・伸びをしてリフレッシュ。後半の集中力をしっかり残しましょう。
-          </div>
-        </div>
-      </div>
-
-      <!-- 0:55 CC基本 25分 -->
+      <!-- 0:45 Claude Codeとは 25分 -->
       <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);">
         <div style="text-align:right;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">0:55</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">0:45</div>
           <div style="font-size:11px;color:var(--gray-lt);">25 min</div>
         </div>
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">Claude Code基本</div>
-          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">Claude Codeの基本操作</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">Claude Codeとは</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">Claude Codeとは何か・基本の操作</div>
           <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">
-            「AIエージェントとは何か」「Claude Codeで何ができるのか」を、画面を共有しながら一緒に確認します。<br>
+            「AIエージェントって何？」「Claude Codeで何ができるの？」を、画面を共有しながら一緒に確認します。<br>
             プラン／モデル（Sonnet・Opus）／トークンの仕組み／許可の確認画面など、当日つまずきがちなポイントをまとめて押さえます。
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
@@ -3956,11 +3603,36 @@
         </div>
       </div>
 
-      <!-- 1:20 LPの書き方 30分 -->
+      <!-- 1:10 LPの目的・デザイナー視点 20分 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(201,106,58,0.04),transparent);">
+        <div style="text-align:right;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">1:10</div>
+          <div style="font-size:11px;color:var(--gray-lt);">20 min</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">LPの目的・デザイナー視点</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">そもそもLPって何のためにあるの？</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">
+            「とりあえず作ってみよう」の前に、<strong style="color:var(--black);">LPの目的</strong>を共有させてください。<br>
+            "なんとなくきれいな1ページ" ではなく、<strong style="color:var(--black);">読み手を行動させるための1枚</strong>。だからこそ、デザイナーの視点が必要になります。
+          </div>
+          <div style="background:var(--beige);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+            <strong style="color:var(--black);">この時間にお伝えすること</strong><br>
+            ① LPの役割：告知・申込・信頼形成を1枚でやる<br>
+            ② 「AIっぽい」を避けるための心構え（角丸・絶妙ベージュ・既視感）<br>
+            ③ デザイナーが見ているポイント：余白・配色・写真の選び方
+          </div>
+          <div style="background:var(--beige);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
+            参照 → <a href="#" onclick="switchTab('designer',document.querySelector('[onclick*=designer]'));return false;" style="color:var(--orange);font-weight:500;">「デザイナー視点」ページ</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1:30 LPの書き方 20分 -->
       <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);">
         <div style="text-align:right;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">1:20</div>
-          <div style="font-size:11px;color:var(--gray-lt);">30 min</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">1:30</div>
+          <div style="font-size:11px;color:var(--gray-lt);">20 min</div>
         </div>
         <div>
           <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">LPの書き方</div>
@@ -3974,9 +3646,6 @@
             ① ファーストビュー（FV）の作り方：3秒で離脱されない見出し<br>
             ② 悩み訴求の書き方：読み手の心を掴む言い回し<br>
             ③ CTAボタンの設計：「申し込みたくなる」配置と文言
-          </div>
-          <div style="background:var(--beige);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
-            参照 → <a href="#" onclick="switchTab('worksheet',document.querySelector('[onclick*=worksheet]'));return false;" style="color:var(--orange);font-weight:500;">「内容を整理する」ページ</a>
           </div>
         </div>
       </div>
@@ -8748,69 +8417,81 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
   </section>
 
 
-  <!-- ═══ TAB: 12-A AI臭いデザインとは ═══ -->
+  <!-- ═══ TAB: 13-A AIっぽいデザインの正体 ═══ -->
   <section class="tab-content" id="tab-design-aiish">
-    <div class="sec-eyebrow">デザインの落とし穴</div>
-    <div class="sec-title">12-A ─ AI臭いデザインとは</div>
-    <p class="sec-desc">「Claudeに頼んだら、なんか既視感のあるLPが出てきた…」その正体を分解します。AIが得意げに出してくる定番パターンを知って、ひと工夫で抜け出しましょう。</p>
+    <div class="sec-eyebrow">AIっぽさを見抜く</div>
+    <div class="sec-title">13-A ─ AIっぽいデザインの正体</div>
+    <p class="sec-desc">「Claudeに頼んだら、なんか既視感のあるLPが出てきた…」その違和感の正体は、実は<strong>たった6つの特徴</strong>に集約できます。これを知っているだけで、出来上がったLPの"AIっぽさ"を自分でチェックできるようになります。</p>
 
     <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
-      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">AI Design 5 Sins</div>
-      <div style="font-size:18px;font-weight:600;line-height:1.7;margin-bottom:10px;">この5つに当てはまったら「AI臭い」サイン</div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:0;">指示をざっくり投げると、Claudeは必ずと言っていいほど同じ雰囲気に寄ります。「なんか既視感ある」の正体はここ。</p>
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">よくある6つの特徴</div>
+      <div style="font-size:18px;font-weight:600;line-height:1.7;margin-bottom:10px;">この6つに当てはまったら「AIっぽい」サイン</div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:0;">ざっくり指示すると、Claudeはほぼ毎回この組み合わせで返してきます。<strong style="color:var(--black);">パッと見「悪くないけど、なんか普通…」</strong>と感じたら、たいていここに該当しています。</p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:24px;">
       <div class="card" style="margin-bottom:0;padding:22px 20px;">
         <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">01</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">グラデ多用</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">紫→ピンクの斜めグラデが至るところに。配色全体が「AIっぽさ」の源。</div>
+        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">角がぜんぶ丸い</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">カード・ボタン・画像、すべての角が同じくらいの丸み。柔らかく見えるけど、印象がのっぺりして"優しすぎる"見た目に。</div>
       </div>
       <div class="card" style="margin-bottom:0;padding:22px 20px;">
         <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">02</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">中央寄せ・等間隔</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">全部のセクションが中央寄せ＋同じ余白。リズムがなく、印象に残らない。</div>
+        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">絶妙なベージュ・パステル</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">一見オシャレに見える、薄いベージュやパステル系の絶妙な配色。色に強弱がなく、印象に残らないトーンに収まる。</div>
       </div>
       <div class="card" style="margin-bottom:0;padding:22px 20px;">
         <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">03</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">フォントサイズが平坦</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">見出しと本文の差が小さく、ジャンプ率が低い。「読まされてる感」が出る。</div>
+        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">3カラム＋丸アイコン</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">「特徴3つ」を3カラムで並べ、それぞれに丸い線アイコンが乗る構成。テンプレ感がもっとも出やすい組み合わせ。</div>
       </div>
       <div class="card" style="margin-bottom:0;padding:22px 20px;">
         <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">04</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">アイコンに頼りすぎ</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">3カラム＋丸アイコンの組み合わせが多発。「AI生成テンプレ感」全開に。</div>
+        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">紫→ピンクのグラデ</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">FVや見出しに敷かれる、紫からピンクへの斜めグラデ。「AIに作らせました」と言わんばかりの定番カラー。</div>
       </div>
       <div class="card" style="margin-bottom:0;padding:22px 20px;">
         <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">05</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">写真が"フリー素材"丸出し</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">海外モデルの笑顔・握手の写真がそのまま貼られている。空気感がブランドと合わない。</div>
+        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">中央寄せ・等間隔</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">どのセクションも同じ余白で中央寄せ。リズムや強弱がないため、スクロールしても記憶に残らない。</div>
+      </div>
+      <div class="card" style="margin-bottom:0;padding:22px 20px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">06</div>
+        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">フリー素材丸出し</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">海外モデルの笑顔・握手の写真がそのまま使われている。サービスの空気感とちぐはぐで、距離を感じさせる。</div>
       </div>
     </div>
 
     <div class="card" style="background:var(--beige);border:none;">
-      <div class="card-head"><div class="card-num">!</div><div class="card-title">脱出の方向性</div></div>
+      <div class="card-head"><div class="card-num">→</div><div class="card-title">逆に言えば、ここを変えれば一気に脱出できる</div></div>
       <ul class="check-list" style="margin:8px 0 0;padding-left:0;list-style:none;">
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>グラデは1色＋ベース色だけに絞る（多色グラデは禁じ手）</li>
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>セクションごとに「左寄せ」「右寄せ」「アシメ」を混ぜてリズムを作る</li>
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>見出しと本文のサイズ差を3倍以上に（ジャンプ率を上げる）</li>
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>アイコンの代わりに数字（01・02）や日本語の見出しで構造化する</li>
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>自分で撮った写真や、サービスらしい雰囲気の素材を1〜2枚入れる</li>
+        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>角の丸みを<strong style="color:var(--black);">場所によって変える</strong>（FVは直線、カードは角丸4px、ボタンは大きく丸める など）</li>
+        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span><strong style="color:var(--black);">ブランドカラー</strong>（自分のサービスらしい色）を1色決めて軸に。グラデは禁じ手、もしくは1色＋ベース色だけ</li>
+        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>アイコンの代わりに、<strong style="color:var(--black);">数字（01・02）や大きめの日本語見出し</strong>で構造化</li>
+        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>セクションごとに<strong style="color:var(--black);">「左寄せ」「右寄せ」「アシメ」</strong>を混ぜてリズムを作る</li>
+        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>自分で撮った写真や、<strong style="color:var(--black);">サービスらしい雰囲気の素材</strong>を最低1〜2枚入れる</li>
       </ul>
     </div>
 
     <div style="text-align:center;margin:32px 0 16px;">
       <a href="design-tips.html#lv1" target="_blank" style="display:inline-block;padding:14px 32px;background:var(--orange);color:#fff;border-radius:24px;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.05em;">詳しい解説 → 加工テクニック見本帳を開く</a>
     </div>
-
-    <iframe src="design-tips.html#lv1" style="width:100%;height:800px;border:1px solid var(--border);border-radius:14px;background:#fff;" loading="lazy"></iframe>
   </section>
 
-  <!-- ═══ TAB: 12-B 垢抜けの実例 ═══ -->
+  <!-- ═══ TAB: 13-B プロンプトで変わるBefore/After ═══ -->
   <section class="tab-content" id="tab-design-glow">
-    <div class="sec-eyebrow">垢抜け実例集</div>
-    <div class="sec-title">12-B ─ 垢抜けの実例</div>
-    <p class="sec-desc">受講生のLPを使った Before / After 集。「AI臭い」状態から、ひと手間でどこまで変わるかを実例で見られます。それぞれのサンプルから「どこが効いたのか」を学びましょう。</p>
+    <div class="sec-eyebrow">プロンプトで変わる</div>
+    <div class="sec-title">13-B ─ プロンプトで変わる Before / After</div>
+    <p class="sec-desc">同じClaudeでも、<strong>指示（プロンプト）の出し方</strong>と<strong>モデリング（参考にしたいLPを見せる）</strong>を変えるだけで、出てくるデザインは別物になります。受講生のLPを使った実例で、「どこを変えたら何が変わるか」を見ていきましょう。</p>
+
+    <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">Before / After の見方</div>
+      <div style="font-size:16px;font-weight:600;line-height:1.7;margin-bottom:10px;">"AI臭さ"はプロンプトとモデリングで抜けます</div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:0;">
+        Before（受講前のLPやClaudeのデフォルト出力）は<strong style="color:var(--black);">13-A の6つの特徴</strong>がそのまま出ています。<br>
+        After は<strong style="color:var(--black);">参考LPを2〜3本見せて</strong>「この雰囲気で」と指示し、ブランドカラー・写真・余白を整えた状態。同じ素材から、まったく違う印象になります。
+      </p>
+    </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:24px;">
 
@@ -8869,26 +8550,36 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div>
 
     <div class="card" style="background:var(--beige);border:none;">
-      <div class="card-head"><div class="card-num">★</div><div class="card-title">「コピペで垢抜ける」5つの基本テクニック</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">受講生のBefore→Afterで何度も使われた、効きやすい5つの加工テクニックです。</p>
+      <div class="card-head"><div class="card-num">＞</div><div class="card-title">Before → After を分ける、3つのプロンプトの違い</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">同じClaudeでも、指示の出し方をこう変えるだけで結果が大きく変わります。</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.18em;color:var(--gray-lt);margin-bottom:8px;">Before（雑な指示）</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;font-family:'Noto Sans JP',sans-serif;">「LPを作ってください。サービス名は◯◯です。」</div>
+          <div style="margin-top:10px;font-size:11px;color:var(--gray-lt);line-height:1.8;">→ デフォルトの紫グラデ・3カラムアイコン・絶妙ベージュが返ってくる</div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--orange-border);border-radius:10px;padding:16px 18px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.18em;color:var(--orange);margin-bottom:8px;">After（モデリング指示）</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;font-family:'Noto Sans JP',sans-serif;">「以下3本のLPの雰囲気を参考に、ブランドカラーは◯色、写真はこれを使って…」</div>
+          <div style="margin-top:10px;font-size:11px;color:var(--orange);line-height:1.8;">→ 参考LPの空気感を引き継いだ、自分らしいデザインが返ってくる</div>
+        </div>
+      </div>
       <ol style="margin:0;padding-left:20px;font-size:13px;color:var(--gray-mid);line-height:2;">
-        <li><strong style="color:var(--black);">写真にグラデーションを重ねる</strong>（一気にプロっぽく）</li>
-        <li><strong style="color:var(--black);">縁に装飾を入れて額縁の表情をつける</strong></li>
-        <li><strong style="color:var(--black);">文字サイズのジャンプ率を大きく</strong>（見出し vs 本文）</li>
-        <li><strong style="color:var(--black);">文字にグラデーションを塗る</strong></li>
-        <li><strong style="color:var(--black);">和欧混植（わおうこんしょく）</strong>で日本語と英語のフォントを使い分ける</li>
+        <li><strong style="color:var(--black);">参考LPを2〜3本見せる</strong>（モデリング）→ 雰囲気の方向性が決まる</li>
+        <li><strong style="color:var(--black);">ブランドカラーを1色指定する</strong> → デフォルトのグラデから抜けられる</li>
+        <li><strong style="color:var(--black);">使う写真を最初から渡しておく</strong> → フリー素材感を防げる</li>
       </ol>
       <div style="margin-top:18px;text-align:center;">
-        <a href="design-tips.html#lv2" target="_blank" style="display:inline-block;padding:12px 28px;background:var(--orange);color:#fff;border-radius:22px;font-size:13px;font-weight:600;text-decoration:none;">詳しい解説 → 加工テクニック見本帳</a>
+        <a href="design-tips.html#lv2" target="_blank" style="display:inline-block;padding:12px 28px;background:var(--orange);color:#fff;border-radius:22px;font-size:13px;font-weight:600;text-decoration:none;">詳しい加工テクニック → 加工テクニック見本帳</a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ TAB: 12-C パララックス ═══ -->
+  <!-- ═══ TAB: 13-D パララックスで奥行きを ═══ -->
   <section class="tab-content" id="tab-design-parallax">
-    <div class="sec-eyebrow">スクロール演出</div>
-    <div class="sec-title">12-C ─ パララックス</div>
-    <p class="sec-desc">スクロールすると背景と文字が違う速度で動く、奥行きを生む演出。CSS一行で実装できる定番テクニックです。</p>
+    <div class="sec-eyebrow">奥行きを足す</div>
+    <div class="sec-title">13-D ─ パララックスで奥行きを</div>
+    <p class="sec-desc">スクロールすると背景と文字が違う速度で動く、<strong>奥行き</strong>を生む演出。"なんかオシャレ"の正体はだいたいこれ。CSS一行で実装できる、いちばん効きやすいテクニックです。</p>
 
     <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
       <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">Parallax Effect</div>
@@ -8927,11 +8618,11 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div>
   </section>
 
-  <!-- ═══ TAB: 12-D 動き・アニメーション ═══ -->
+  <!-- ═══ TAB: 13-C 動きで魅せる（アニメ） ═══ -->
   <section class="tab-content" id="tab-design-motion">
-    <div class="sec-eyebrow">動きとアニメーション</div>
-    <div class="sec-title">12-D ─ 動き・アニメーション</div>
-    <p class="sec-desc">ふわっと出てくる・浮かび上がる・カウントアップする。動きを少し足すだけで、LPは一気に「生きた」印象になります。</p>
+    <div class="sec-eyebrow">動きで魅せる</div>
+    <div class="sec-title">13-C ─ 動きで魅せる（アニメーション）</div>
+    <p class="sec-desc">ふわっと出てくる・浮かび上がる・カウントアップする。動きを少し足すだけで、LPは一気に<strong>「生きた」印象</strong>になります。"目の止まるLP" は、たいてい動きが効いています。</p>
 
     <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
       <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">Motion Library</div>
