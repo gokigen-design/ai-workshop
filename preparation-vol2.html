@@ -8782,5 +8782,96 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div><!-- /content-area -->
   </div><!-- /main-layout -->
 
+  <!-- ═══ フローティング ナビゲーション ═══ -->
+  <button id="back-to-top" aria-label="目次に戻る" onclick="scrollToTop()">
+    <span class="btt-arrow"></span>
+    <span class="btt-text">目次へ戻る</span>
+  </button>
+  <style>
+    #back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      width: 64px;
+      height: 64px;
+      border: none;
+      border-radius: 50%;
+      background: #C96A3A;
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(201,106,58,0.35), 0 2px 6px rgba(0,0,0,0.12);
+      cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transform: translateY(12px) scale(0.92);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    #back-to-top.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    #back-to-top:hover { background: #B45828; }
+    #back-to-top:active { transform: translateY(0) scale(0.95); }
+    #back-to-top .btt-arrow {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 9px solid #fff;
+    }
+    #back-to-top .btt-text {
+      font-size: 9px;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    @media (max-width: 420px) {
+      #back-to-top {
+        right: 16px;
+        bottom: 18px;
+        width: 56px;
+        height: 56px;
+      }
+      #back-to-top .btt-text { font-size: 8px; }
+    }
+  </style>
+  <script>
+    /* スクロールでトップへ戻るボタンを出し入れ */
+    (function () {
+      var btn = document.getElementById('back-to-top');
+      var threshold = 320;
+      function update() {
+        if (window.scrollY > threshold) {
+          btn.classList.add('show');
+        } else {
+          btn.classList.remove('show');
+        }
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+    function scrollToTop() {
+      /* サイドバー（目次）の先頭まで戻す。スマホはヒーローを越えた地点 */
+      var nav = document.querySelector('.sidebar-nav');
+      if (nav) {
+        var rect = nav.getBoundingClientRect();
+        var top = rect.top + window.scrollY - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  </script>
+
 </body>
 </html>
