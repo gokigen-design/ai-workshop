@@ -3315,25 +3315,26 @@
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">3. LPについて</div>
-        <button class="tab-btn" onclick="switchTab('designer', this)"><span>05</span>デザイナー視点</button>
+        <button class="tab-btn" onclick="switchTab('lp-intro', this)"><span>05</span>LPとは</button>
+        <button class="tab-btn" onclick="switchTab('designer', this)"><span>06</span>デザイナー視点</button>
         <button class="tab-btn tab-work" onclick="switchTab('worksheet', this)"><span class="tab-badge">WORK</span>内容を整理する</button>
-        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>06</span>当日に備える</button>
-        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>07</span>AIに指示する</button>
-        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>08</span>公開する</button>
+        <button class="tab-btn" onclick="switchTab('prompt', this)"><span>07</span>AIに指示する（Claudeに投げる）</button>
+        <button class="tab-btn" onclick="switchTab('design', this)"><span>08</span>デザインを学ぶ（垢抜けさせる）</button>
+        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>09</span>当日に備える</button>
+        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>10</span>公開する</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">4. 当日</div>
-        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>09</span>キックオフ（2時間）</button>
-        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>10</span>当日のスケジュール</button>
+        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>11</span>キックオフ（2時間）</button>
+        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>12</span>当日のスケジュール</button>
       </div>
       <div class="sidebar-group">
-        <div class="sidebar-label">デザイン資料</div>
-        <button class="tab-btn" onclick="switchTab('design', this)"><span>11</span>デザインを学ぶ</button>
-        <button class="tab-btn" onclick="switchTab('design-aiish', this)"><span>12-A</span>AIっぽいデザインの正体</button>
-        <button class="tab-btn" onclick="switchTab('design-glow', this)"><span>12-B</span>プロンプトで変わるBefore/After</button>
-        <button class="tab-btn" onclick="switchTab('design-motion', this)"><span>12-C</span>動きで魅せる（アニメ）</button>
-        <button class="tab-btn" onclick="switchTab('design-parallax', this)"><span>12-D</span>パララックスで奥行きを</button>
-        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>13</span>用語集</button>
+        <div class="sidebar-label">デザイン資料（補足）</div>
+        <button class="tab-btn" onclick="switchTab('design-aiish', this)"><span>13-A</span>AIっぽいデザインの正体</button>
+        <button class="tab-btn" onclick="switchTab('design-glow', this)"><span>13-B</span>プロンプトで変わるBefore/After</button>
+        <button class="tab-btn" onclick="switchTab('design-motion', this)"><span>13-C</span>動きで魅せる（アニメ）</button>
+        <button class="tab-btn" onclick="switchTab('design-parallax', this)"><span>13-D</span>パララックスで奥行きを</button>
+        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>14</span>用語集</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">スペシャルコンテンツ</div>
@@ -3341,9 +3342,9 @@
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">みんなの声</div>
-        <button class="tab-btn" onclick="switchTab('team', this)"><span>14</span>チーム一覧</button>
-        <button class="tab-btn" onclick="switchTab('feedback', this)"><span>15</span>当日の感想</button>
-        <button class="tab-btn" onclick="switchTab('qa', this)"><span>16</span>Q &amp; A</button>
+        <button class="tab-btn" onclick="switchTab('team', this)"><span>15</span>チーム一覧</button>
+        <button class="tab-btn" onclick="switchTab('feedback', this)"><span>16</span>当日の感想</button>
+        <button class="tab-btn" onclick="switchTab('qa', this)"><span>17</span>Q &amp; A</button>
       </div>
     </nav>
 
@@ -3555,6 +3556,118 @@
     </div>
 
 
+  </section>
+
+  <!-- ═══ TAB: LPとは ═══ -->
+  <section class="tab-content" id="tab-lp-intro">
+    <div class="sec-eyebrow">LPとは</div>
+    <div class="sec-title">そもそも、ランディングページって何？</div>
+    <p class="sec-desc">「LPを作る」と言われても、何を作るのか・なぜ必要なのか、ピンと来ていない方も多いはず。まずはここを揃えてから、自分のサービスをLPに落とし込んでいきましょう。</p>
+
+    <!-- 1. 1ページ・1ゴール -->
+    <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(79,126,247,0.04));">
+      <div class="card-head"><div class="card-num">!</div><div class="card-title">LP＝「1つのゴール」を達成するための1ページ</div></div>
+      <p style="font-size:14px;color:var(--gray-mid);line-height:1.95;margin-bottom:16px;">
+        LP（ランディングページ）とは、訪問してきた人に<strong style="color:var(--black);">たった1つの行動</strong>を取ってもらうために作られた、縦長の1ページのこと。<br>
+        申込み・LINE登録・お問い合わせ・予約──ゴールはひとつ、それに向かって全ての要素が連携しています。
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+        <div style="padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:10px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.18em;color:var(--gray-lt);margin-bottom:6px;">HOMEPAGE</div>
+          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">ホームページ</div>
+          <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;">複数ページに情報を網のように広げる。<strong>会社の名刺</strong>。</div>
+        </div>
+        <div style="padding:14px 16px;background:linear-gradient(135deg,#fff,rgba(79,126,247,0.05));border:1.5px solid rgba(79,126,247,0.3);border-radius:10px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.18em;color:var(--orange);margin-bottom:6px;">LANDING PAGE</div>
+          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">LP（ランディングページ）</div>
+          <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;">1ページに動線を集中。<strong>申込みへの一本道</strong>。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 「全部載せ」しない勇気 -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">!</div><div class="card-title">「全部載せ」をしない勇気が、LPの肝</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        サービスを伝えようとすると、つい「あれもこれも書きたい」となります。でもLPに全部詰め込むと、<strong style="color:var(--black);">どこを見ればいいか分からなくなり、結果として何も伝わりません</strong>。<br>
+        伝える情報を絞る、優先順位をつける——これがLP制作の最初のハードルです。
+      </p>
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="flex:1;padding:14px 16px;background:var(--beige);border:1px solid var(--border);border-radius:10px 0 0 10px;text-align:center;">
+          <div style="font-size:12px;color:var(--gray-mid);margin-bottom:4px;">情報を全部書く</div>
+          <div style="font-size:13px;font-weight:500;line-height:1.6;color:var(--black);">読まれずに離脱</div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 6px;color:var(--orange);font-size:18px;flex-shrink:0;">→</div>
+        <div style="flex:1;padding:14px 16px;background:rgba(201,106,58,0.06);border:1.5px solid var(--orange-border);border-radius:0 10px 10px 0;text-align:center;">
+          <div style="font-size:12px;color:var(--orange);margin-bottom:4px;">1つのゴールに絞る</div>
+          <div style="font-size:13px;font-weight:500;line-height:1.6;color:var(--black);">読まれて行動につながる</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. LPの基本構造 -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">!</div><div class="card-title">LPの基本構造（黄金パターン）</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        LPには「読み手を行動に導く」ための型があります。順番が大事で、これを外すと途中で読み手が離脱します。
+      </p>
+      <ol style="margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">01</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.85;"><strong style="color:var(--black);">FV（ファーストビュー）</strong>：最初の3秒で「自分のことだ」と思わせる</div>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">02</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.85;"><strong style="color:var(--black);">悩み（共感）</strong>：「そうそう、それで困ってる」と頷かせる</div>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">03</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.85;"><strong style="color:var(--black);">解決策（あなたのサービス）</strong>：その悩みをこう解決します、と提示</div>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">04</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.85;"><strong style="color:var(--black);">得られる未来</strong>：このサービスを受けたらこうなる、を見せる</div>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">05</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.85;"><strong style="color:var(--black);">講師紹介・実績</strong>：「この人なら大丈夫そう」と信頼を積む</div>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">06</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.85;"><strong style="color:var(--black);">料金・FAQ</strong>：申込み前の不安をすべて潰す</div>
+        </li>
+        <li style="display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:linear-gradient(135deg,#fff,rgba(79,126,247,0.06));border:1.5px solid rgba(79,126,247,0.3);border-radius:8px;">
+          <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">07</span>
+          <div style="font-size:13px;color:var(--black);line-height:1.85;font-weight:600;">CTA（申込みボタン）：1つのゴールへ</div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- 4. このワークショップでやる流れ -->
+    <div class="card" style="background:linear-gradient(135deg,#FAF5EC 0%,#F5EFE4 100%);border:1px solid var(--orange-border);">
+      <div class="card-head"><div class="card-num">＞</div><div class="card-title">このワークショップでLPを作る流れ</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        いきなりClaudeに「LPを作って」と頼んでも、なんとなくのデザインが返ってきます。今回のワークショップでは、<strong style="color:var(--black);">きちんと自分のサービスを言語化してから、Claudeに渡す</strong>方法でやります。
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:12px 14px;background:#fff;border-radius:8px;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.05em;">STEP1</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.7;"><strong style="color:var(--black);">内容を整理するワーク</strong>：自分のサービスを書き出す（次のWORKタブ）</div>
+        </div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:12px 14px;background:#fff;border-radius:8px;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.05em;">STEP2</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.7;"><strong style="color:var(--black);">Claudeに投げてみる</strong>：ワークの内容をプロンプトに変換して渡す</div>
+        </div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:12px 14px;background:#fff;border-radius:8px;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.05em;">STEP3</span>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.7;"><strong style="color:var(--black);">最初は「ぽん出し」のまま</strong>：垢抜けないLPがまず1本できる</div>
+        </div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:12px 14px;background:linear-gradient(135deg,#fff,rgba(201,106,58,0.06));border:1.5px solid var(--orange-border);border-radius:8px;">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;background:var(--grad);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.05em;">STEP4</span>
+          <div style="font-size:13px;color:var(--black);line-height:1.7;font-weight:600;">そこから「デザインを学ぶ」を見ながら、垢抜けさせていく</div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ═══ TAB 3: デザイナー視点 ═══ -->
