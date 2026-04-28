@@ -1364,31 +1364,27 @@
         box-shadow: 0 4px 12px rgba(79,126,247,0.25);
       }
       .tab-btn.active span { color: rgba(255,255,255,0.85); }
-      /* メイン4グループの強調 */
-      .sidebar-group--main { padding: 16px 14px 16px; background: #fff; border: 1.5px solid var(--orange-border); box-shadow: 0 2px 10px rgba(79,126,247,0.06); }
-      .sidebar-group--main .sidebar-label { font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 0.05em; margin-bottom: 12px; }
-      .sidebar-group--main .tab-btn { min-height: 44px; font-size: 12.5px; }
-      /* セットアップ：作業強調（オレンジ反転） */
+      /* セットアップ：作業強調（青→ティールのグラデ） */
       .tab-btn.tab-action {
-        background: linear-gradient(135deg, #C96A3A, #E08456);
+        background: linear-gradient(135deg, #4F7EF7, #1BC6B4);
         color: #fff;
-        box-shadow: 0 4px 14px rgba(201,106,58,0.25);
-        border: 1.5px solid #C96A3A;
-        font-weight: 700;
-        font-size: 13px !important;
-        min-height: 52px !important;
+        box-shadow: 0 4px 14px rgba(79,126,247,0.18);
+        border: none;
+        font-weight: 600;
+        font-size: 12.5px !important;
+        min-height: 46px !important;
       }
-      .tab-btn.tab-action span { color: rgba(255,255,255,0.92); font-weight: 600; }
-      .tab-btn.tab-action.active { background: #B45828; }
-      /* WORKタブ：自分でやる作業（深いブルー強調） */
+      .tab-btn.tab-action span { color: rgba(255,255,255,0.85); font-weight: 600; }
+      .tab-btn.tab-action.active { box-shadow: 0 6px 18px rgba(79,126,247,0.32); }
+      /* WORKタブ：自分でやる作業（同じ青→ティールのグラデ＋WORKバッジ） */
       .tab-btn.tab-work {
-        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        background: linear-gradient(135deg, #4F7EF7, #1BC6B4);
         color: #fff;
-        box-shadow: 0 4px 14px rgba(30,58,138,0.25);
-        border: 1.5px solid #1e3a8a;
-        font-weight: 700;
-        font-size: 13px !important;
-        min-height: 52px !important;
+        box-shadow: 0 4px 14px rgba(79,126,247,0.18);
+        border: none;
+        font-weight: 600;
+        font-size: 12.5px !important;
+        min-height: 46px !important;
         position: relative;
       }
       .tab-btn.tab-work .tab-badge {
@@ -1396,25 +1392,24 @@
         font-size: 9px;
         font-weight: 700;
         letter-spacing: 0.18em;
-        background: #fbbf24;
-        color: #1e3a8a;
+        background: rgba(255,255,255,0.92);
+        color: #4F7EF7;
         padding: 2px 7px;
         border-radius: 4px;
         margin-right: 4px;
         min-width: auto !important;
       }
-      .tab-btn.tab-work.active { background: #1e40af; }
-      /* スペシャルタブ */
+      .tab-btn.tab-work.active { box-shadow: 0 6px 18px rgba(79,126,247,0.32); }
+      /* スペシャルタブ：シンプルにベース色＋小さなSOONチップ */
       .tab-btn.tab-special {
-        background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(236,72,153,0.08));
-        border: 1.5px dashed rgba(168,85,247,0.5);
-        color: #6b21a8;
-        font-weight: 600;
+        background: var(--beige);
+        border: 1px dashed var(--orange-border);
+        color: var(--gray-mid);
       }
-      .tab-btn.tab-special span { color: #a855f7; }
+      .tab-btn.tab-special span:first-of-type { color: var(--orange); }
       .tab-btn.tab-special .tab-badge {
         font-size: 8px;
-        background: #a855f7;
+        background: var(--orange);
         color: #fff;
         padding: 2px 6px;
         border-radius: 4px;
@@ -3308,17 +3303,17 @@
   <div class="main-layout">
 
     <nav class="sidebar-nav">
-      <div class="sidebar-group sidebar-group--main">
+      <div class="sidebar-group">
         <div class="sidebar-label">1. クロードコードとは</div>
         <button class="tab-btn active" onclick="switchTab('overview', this)"><span>01</span>全体像</button>
         <button class="tab-btn" onclick="switchTab('ai-agent', this)"><span>02</span>AIエージェントとは何か</button>
         <button class="tab-btn" onclick="switchTab('claude-features', this)"><span>03</span>Claude Codeでできること</button>
       </div>
-      <div class="sidebar-group sidebar-group--main">
+      <div class="sidebar-group">
         <div class="sidebar-label">2. セットアップしよう</div>
         <button class="tab-btn tab-action" onclick="switchTab('setup', this)"><span>04</span>環境を整える</button>
       </div>
-      <div class="sidebar-group sidebar-group--main">
+      <div class="sidebar-group">
         <div class="sidebar-label">3. LPについて</div>
         <button class="tab-btn" onclick="switchTab('designer', this)"><span>05</span>デザイナー視点</button>
         <button class="tab-btn tab-work" onclick="switchTab('worksheet', this)"><span class="tab-badge">WORK</span>内容を整理する</button>
@@ -3326,7 +3321,7 @@
         <button class="tab-btn" onclick="switchTab('prompt', this)"><span>07</span>AIに指示する</button>
         <button class="tab-btn" onclick="switchTab('deploy', this)"><span>08</span>公開する</button>
       </div>
-      <div class="sidebar-group sidebar-group--main">
+      <div class="sidebar-group">
         <div class="sidebar-label">4. 当日</div>
         <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>09</span>キックオフ（2時間）</button>
         <button class="tab-btn" onclick="switchTab('schedule', this)"><span>10</span>当日のスケジュール</button>
@@ -8972,42 +8967,11 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
   <section class="tab-content" id="tab-special">
     <div class="sec-eyebrow">スペシャルコンテンツ</div>
     <div class="sec-title">ChatGPT 活用法</div>
-    <p class="sec-desc">Claude Code とあわせて使える、ChatGPT の便利な活用テクニックを当日までにまとめます。<strong>0期生（モニター回）の方も、ぜひ新しい視点でチェックしてみてください。</strong></p>
+    <p class="sec-desc">Claude Code とあわせて使える ChatGPT の活用テクニックを、当日までにこちらに掲載します。</p>
 
-    <div class="card" style="border:2px dashed rgba(168,85,247,0.5);background:linear-gradient(135deg,#fff 60%,rgba(168,85,247,0.05));text-align:center;padding:48px 32px;">
-      <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#A855F7,#EC4899);margin-bottom:22px;box-shadow:0 8px 22px rgba(168,85,247,0.25);">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2l2.39 4.84L20 7.59l-3.84 3.74L17 17l-5-2.63L7 17l.84-5.67L4 7.59l5.61-.75z"/>
-        </svg>
-      </div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.25em;color:#a855f7;text-transform:uppercase;margin-bottom:14px;font-weight:600;">Coming Soon</div>
-      <div style="font-size:20px;font-weight:600;color:var(--black);line-height:1.7;margin-bottom:16px;">ChatGPT × Claude Code の<br>使い分けテクニックを準備中です</div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:2;max-width:520px;margin:0 auto 22px;">
-        当日までに、<strong style="color:var(--black);">壁打ち・アイデア出しは ChatGPT</strong>、<br>
-        <strong style="color:var(--black);">最終的なLPコードは Claude Code</strong> のように、<br>
-        2つのAIをうまく使い分けるノウハウをこちらに掲載します。
-      </p>
-      <div style="display:inline-block;padding:14px 28px;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.25);border-radius:24px;font-size:12px;color:#6b21a8;line-height:1.8;font-weight:500;">
-        ✨ 0期生のみなさんもおたのしみに ✨
-      </div>
-    </div>
-
-    <div class="card" style="background:var(--beige);border:none;">
-      <div class="card-head"><div class="card-num">!</div><div class="card-title">公開予定の内容（プレビュー）</div></div>
-      <ul style="margin:8px 0 0;padding-left:0;list-style:none;">
-        <li style="padding:10px 0 10px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;">
-          <span style="position:absolute;left:0;top:13px;width:18px;height:18px;border-radius:50%;background:#a855f7;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">1</span>
-          <strong style="color:var(--black);">ChatGPT × Claude Code 役割分担</strong>：壁打ち／資料整理／コード生成のベストな組み合わせ
-        </li>
-        <li style="padding:10px 0 10px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;">
-          <span style="position:absolute;left:0;top:13px;width:18px;height:18px;border-radius:50%;background:#a855f7;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">2</span>
-          <strong style="color:var(--black);">ChatGPT のおすすめプロンプト集</strong>：LP用キャッチコピー・お悩み洗い出し・サービス整理など
-        </li>
-        <li style="padding:10px 0 10px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;">
-          <span style="position:absolute;left:0;top:13px;width:18px;height:18px;border-radius:50%;background:#a855f7;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">3</span>
-          <strong style="color:var(--black);">無料 vs Plus どっちを使う？</strong>：Claude との合わせ技で消費を節約するコツ
-        </li>
-      </ul>
+    <div class="card" style="border:2px dashed var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));text-align:center;padding:44px 28px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.25em;color:var(--orange);text-transform:uppercase;margin-bottom:12px;font-weight:600;">Coming Soon</div>
+      <div style="font-size:18px;font-weight:600;color:var(--black);line-height:1.7;">準備中です。<br>当日までに公開します。</div>
     </div>
   </section>
 
