@@ -3320,20 +3320,22 @@
         <button class="tab-btn" onclick="switchTab('prompt', this)"><span>06</span>AIに指示する（Claudeに投げる）</button>
         <button class="tab-btn" onclick="switchTab('aiish-intro', this)"><span style="font-size:9px;letter-spacing:0;">AI</span>AIっぽいデザインの正体</button>
         <button class="tab-btn" onclick="switchTab('design', this)"><span>07</span>デザインを学ぶ（垢抜けさせる）</button>
-        <button class="tab-btn" onclick="switchTab('checklist', this)"><span>08</span>当日に備える</button>
-        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>09</span>公開する</button>
+        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>08</span>公開する</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">4. 当日</div>
-        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>10</span>キックオフ（2時間）</button>
-        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>11</span>当日のスケジュール</button>
+        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>09</span>キックオフ（2時間）</button>
+        <button class="tab-btn tab-action" onclick="switchTab('checklist', this)"><span class="tab-badge">宿題</span>これをやってきてね</button>
+        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>10</span>当日のスケジュール</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-label">垢抜けのコツ</div>
+        <button class="tab-btn" onclick="switchTab('glow-step1', this)"><span>STEP1</span>垢抜けさせる</button>
+        <button class="tab-btn" onclick="switchTab('glow-step2', this)"><span>STEP2</span>動きをつける</button>
+        <button class="tab-btn" onclick="switchTab('glow-step3', this)"><span>STEP3</span>構造で差をつける</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">デザイン資料（補足）</div>
-        <button class="tab-btn" onclick="switchTab('design-aiish', this)"><span>12-A</span>AIっぽいデザインの正体</button>
-        <button class="tab-btn" onclick="switchTab('design-glow', this)"><span>12-B</span>プロンプトで変わるBefore/After</button>
-        <button class="tab-btn" onclick="switchTab('design-motion', this)"><span>12-C</span>動きで魅せる（アニメ）</button>
-        <button class="tab-btn" onclick="switchTab('design-parallax', this)"><span>12-D</span>パララックスで奥行きを</button>
         <button class="tab-btn" onclick="switchTab('glossary', this)"><span>13</span>用語集</button>
       </div>
       <div class="sidebar-group">
@@ -5913,59 +5915,6 @@
       </div>
     </div>
 
-    <!-- ▼ Before/After（BLOCK B） -->
-    <div class="card">
-      <div class="card-head"><div class="card-num">BA</div><div class="card-title">ポン出しデザインをこう変える</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:20px;">AIがポン出ししたデザインは「素材」です。3点直すだけで、一気に垢抜けます。</p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-        <!-- BEFORE -->
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.12em;color:#999;margin-bottom:8px;">BEFORE — AIそのまま</div>
-          <div style="border:1px solid #e0d0c0;border-radius:12px;overflow:hidden;background:#fff;">
-            <div style="background:linear-gradient(135deg,#FF6B6B,#FFD700,#7B2FBE,#00CFFD);padding:14px;text-align:center;">
-              <div style="font-size:8px;color:#fff;font-weight:700;font-family:serif;line-height:1.3;margin-bottom:6px;">【期間限定】あなたのビジネスを3倍成長させる秘密の方法を大公開！！！</div>
-              <div style="background:#FF0000;border-radius:3px;padding:3px 8px;font-size:7px;color:#fff;font-weight:700;display:inline-block;">今すぐ申し込む！無料！</div>
-            </div>
-            <div style="padding:10px;background:#fffbe0;">
-              <div style="font-size:6px;color:#333;line-height:1.8;">あなたは今、こんな悩みを抱えていませんか？毎日一生懸命働いているのに結果が出ない、時間もお金も不足している、このままでいいのか不安で夜も眠れない…そんなあなたに朗報です！私のプログラムなら解決できます！なぜなら…</div>
-            </div>
-          </div>
-          <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;">
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#999;"><span style="color:#c0392b;font-weight:600;">×</span> 色が多すぎる</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#999;"><span style="color:#c0392b;font-weight:600;">×</span> 文章が長くて読む気がしない</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#999;"><span style="color:#c0392b;font-weight:600;">×</span> 余白がなく詰め込みすぎ</div>
-          </div>
-        </div>
-
-        <!-- AFTER -->
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.12em;color:var(--orange);margin-bottom:8px;">AFTER — 3点直した</div>
-          <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;">
-            <div style="background:#1A1A1A;padding:14px;text-align:center;">
-              <div style="font-size:6px;color:#C96A3A;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;margin-bottom:4px;">YOUR SERVICE</div>
-              <div style="font-size:9px;color:#fff;font-weight:500;line-height:1.5;margin-bottom:8px;">3ヶ月で<br>ビジネスを立て直す</div>
-              <div style="background:#C96A3A;border-radius:3px;padding:3px 8px;font-size:7px;color:#fff;display:inline-block;">無料相談を予約する</div>
-            </div>
-            <div style="padding:10px;background:#FAF8F5;">
-              <div style="font-size:6px;color:#7A7068;margin-bottom:4px;">こんなお悩み、ありませんか？</div>
-              <div style="display:flex;flex-direction:column;gap:3px;">
-                <div style="font-size:6px;color:#1A1A1A;padding:3px 5px;background:#fff;border-radius:3px;border-left:2px solid #C96A3A;">結果が出なくて焦っている</div>
-                <div style="font-size:6px;color:#1A1A1A;padding:3px 5px;background:#fff;border-radius:3px;border-left:2px solid #C96A3A;">何から手をつければいいかわからない</div>
-              </div>
-            </div>
-          </div>
-          <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;">
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;font-weight:600;">✓</span> 色を2色に絞った</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;font-weight:600;">✓</span> 文章を短く端的に</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;font-weight:600;">✓</span> 余白を確保した</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="callout">デザインの「やり直し」は当然の工程です。ポン出しを育てていく感覚で取り組みましょう。</div>
-    </div>
-
     <div class="card">
       <div class="card-head"><div class="card-num">4</div><div class="card-title">デザインの4つのルール</div></div>
       <p style="font-size:13px;color:var(--gray-lt);margin-bottom:24px;">これだけ押さえれば「ダサい」は回避できます。</p>
@@ -6626,174 +6575,205 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#FFF0E8;border-radius:8px;border-left:3px solid var(--orange);">
           <div style="font-size:16px;flex-shrink:0;">c</div>
-          <div style="font-size:13px;color:var(--black);line-height:1.7;"><strong>見る人が見れば一発でわかります。</strong>「あ、ArtifactsでそのままLP作ったな」と。特にデザインを学んでいる人や、同じ受講生同士では丸わかり。</div>
+          <div style="font-size:13px;color:var(--black);line-height:1.7;">デザインに詳しい人や、同じワークショップ仲間が見ると「AIっぽいな」と感じやすい。<strong>せっかくの内容が、デザインの第一印象で損をしてしまう</strong>のがもったいない。</div>
         </div>
       </div>
 
-      <div class="callout">このままでも「動くLP」にはなります。でも、<strong>「あなたらしさ」は0点</strong>。次のカードで、何が「AI臭さ」を作っているのか正体を見ていきましょう。垢抜けの実例は「ちょっとの加工で垢抜けるLP」のタブに揃えています。</div>
+      <div class="callout">このままでも「動くLP」にはなります。ただ、<strong>あなたらしさが出にくい</strong>のが正直なところ。次のカードで、何が「AI臭さ」を作っているのか正体を見ていきましょう。垢抜けの実例は「ちょっとの加工で垢抜けるLP」のタブに揃えています。</div>
     </div>
 
-    <!-- ━━━ (b) デザインが持つ意味 ━━━ -->
+    <!-- ━━━ (B) Claudeのデフォルト：4つの定番パターン ━━━ -->
     <div class="card">
-      <div class="card-head"><div class="card-num">B</div><div class="card-title">デザインが持つ意味 — 見た目はメッセージ</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:18px;">「とりあえずきれいになればいい」と思っていませんか？ デザインはお客さんに対する<strong style="color:var(--black);">無言のメッセージ</strong>です。</p>
+      <div class="card-head"><div class="card-num">B</div><div class="card-title">Claudeがポン出しでよく出すデザイン</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:20px;">指示をざっくり投げると、Claudeは必ずと言っていいほど同じ雰囲気に寄ります。<strong style="color:var(--black);">「AIっぽい」「なんか既視感ある」</strong>の正体はこれ。先ほどのBefore（左側）も、まさにこのパターンです。</p>
 
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
-        <div style="display:grid;grid-template-columns:80px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-          <div style="background:var(--black);display:flex;align-items:center;justify-content:center;padding:14px 8px;text-align:center;">
-            <div style="font-size:11px;color:#fff;font-weight:500;line-height:1.5;">信頼感</div>
+      <!-- 01 COLOR -->
+      <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:14px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);font-weight:700;margin-bottom:12px;">01 — COLOR</div>
+        <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">ベージュ × くすみオレンジ × ゴールド</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">原色・蛍光色・強いコントラストは"ほぼ"出さない。上品・落ち着き・大人の女性感に寄りがち。</div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;">
+          <div style="aspect-ratio:1;background:#FAF7F2;border:1px solid var(--border);border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:'DM Sans',sans-serif;font-size:9px;color:var(--gray-mid);">#FAF7F2</div>
+          <div style="aspect-ratio:1;background:#F3EDE2;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:'DM Sans',sans-serif;font-size:9px;color:var(--gray-mid);">#F3EDE2</div>
+          <div style="aspect-ratio:1;background:#E8DFCF;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:'DM Sans',sans-serif;font-size:9px;color:var(--gray-mid);">#E8DFCF</div>
+          <div style="aspect-ratio:1;background:#C9A961;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:'DM Sans',sans-serif;font-size:9px;color:#fff;">#C9A961</div>
+          <div style="aspect-ratio:1;background:#C96A3A;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:'DM Sans',sans-serif;font-size:9px;color:#fff;">#C96A3A</div>
+          <div style="aspect-ratio:1;background:#2A2520;border-radius:8px;display:flex;align-items:flex-end;padding:6px;font-family:'DM Sans',sans-serif;font-size:9px;color:#fff;">#2A2520</div>
+        </div>
+      </div>
+
+      <!-- 02 TYPOGRAPHY -->
+      <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:14px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);font-weight:700;margin-bottom:12px;">02 — TYPOGRAPHY</div>
+        <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">和文は Zen Maru Gothic、英文は Inter / Playfair / Cormorant</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">見出しserif + 本文sans-serifの組み合わせ。mediumウェイト中心で、極太や極細はあまり使わない。</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.2em;color:var(--orange);margin-bottom:5px;">FOR WOMEN</div>
+            <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:15px;font-weight:700;line-height:1.5;color:var(--black);">女性のための<br>AI活用プログラム</div>
           </div>
-          <div style="padding:14px 16px;background:#fff;">
-            <div style="font-size:13px;color:var(--black);font-weight:500;margin-bottom:4px;">「この人、ちゃんとしてそう」</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">情報の整理・余白・一貫したカラー使いが「プロらしさ」を伝えます。逆にごちゃついたデザインは、サービスの質まで低く見せてしまう。</div>
+          <div style="border:1px solid var(--border);border-radius:10px;padding:14px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.2em;color:#C9A961;margin-bottom:5px;">PREMIUM SERVICE</div>
+            <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:15px;font-weight:700;line-height:1.5;color:var(--black);">上質な体験を、<br>あなたに。</div>
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:80px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-          <div style="background:var(--orange);display:flex;align-items:center;justify-content:center;padding:14px 8px;text-align:center;">
-            <div style="font-size:11px;color:#fff;font-weight:500;line-height:1.5;">個性・<br>親しみやすさ</div>
+        <div style="margin-top:10px;padding:10px 14px;background:var(--beige);border-radius:8px;font-size:11.5px;color:var(--gray-mid);line-height:1.7;">※ このサイト自身も、まさにこのパターンで作られています。</div>
+      </div>
+
+      <!-- 03 LAYOUT -->
+      <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:14px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);font-weight:700;margin-bottom:12px;">03 — LAYOUT &amp; DECORATION</div>
+        <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">角丸12px ＋ 薄い1px枠線 ＋ 小さい英語ラベル</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">余白たっぷり、グリッドきっちり、左右対称、細線SVGアイコン、ピル型バッジ。いわゆる"安全運転"。</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;">
+          <div style="border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;">
+            <div style="width:28px;height:28px;border:1.5px solid var(--orange);border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C96A3A" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <div style="font-size:11px;color:var(--gray-mid);">角丸12px</div>
+            <div style="font-size:11px;color:var(--gray-mid);">細線アイコン</div>
           </div>
-          <div style="padding:14px 16px;background:#fff;">
-            <div style="font-size:13px;color:var(--black);font-weight:500;margin-bottom:4px;">「なんか好きな雰囲気」</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">カラー・フォント・写真の選び方で「この人のセンスが好き」が伝わります。ターゲットが「自分向けだ」と感じる見た目が大事。</div>
+          <div style="border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;">
+            <div style="display:inline-block;padding:2px 10px;background:var(--beige);border-radius:999px;font-size:10px;color:var(--gray-mid);margin-bottom:6px;">PILL BADGE</div>
+            <div style="font-size:11px;color:var(--gray-mid);">ピル型バッジ</div>
           </div>
-        </div>
-        <div style="display:grid;grid-template-columns:80px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-          <div style="background:#2563EB;display:flex;align-items:center;justify-content:center;padding:14px 8px;text-align:center;">
-            <div style="font-size:11px;color:#fff;font-weight:500;line-height:1.5;">読みやすさ</div>
+          <div style="border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.2em;color:var(--orange);font-weight:700;margin-bottom:5px;">EYEBROW</div>
+            <div style="font-size:11px;color:var(--gray-mid);line-height:1.5;">セクション頭の<br>小さい英語ラベル</div>
           </div>
-          <div style="padding:14px 16px;background:#fff;">
-            <div style="font-size:13px;color:var(--black);font-weight:500;margin-bottom:4px;">「するする読める」</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">文字サイズ・行間・コントラストが整っていると、内容がスッと頭に入ります。読んでもらえないLPは、どんなに内容が良くても意味がない。</div>
+          <div style="border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;">
+            <div style="font-size:20px;font-weight:700;line-height:1;margin-bottom:4px;color:var(--black);">1px</div>
+            <div style="font-size:11px;color:var(--gray-mid);">薄い境界線</div>
           </div>
         </div>
       </div>
 
-      <div style="padding:14px 16px;background:var(--beige);border-radius:8px;font-size:13px;color:var(--black);line-height:1.9;">
-        「AIっぽさ」が残るデザインは、<strong>信頼感・個性・読みやすさ</strong>のどれかが欠けていることが多い。次のカードで、その原因を具体的に見ていきます。
+      <!-- 04 COMPOSITION -->
+      <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);font-weight:700;margin-bottom:12px;">04 — COMPOSITION</div>
+        <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">「無難SaaS系LP」型の鉄板フロー</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">指示なしだと8割このパターン。悪くはないけど、他社と似通う。</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+          <div style="padding:7px 13px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600;color:var(--black);">Hero</div>
+          <span style="color:var(--orange);font-weight:700;">→</span>
+          <div style="padding:7px 13px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600;color:var(--black);">悩み</div>
+          <span style="color:var(--orange);font-weight:700;">→</span>
+          <div style="padding:7px 13px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600;color:var(--black);">解決</div>
+          <span style="color:var(--orange);font-weight:700;">→</span>
+          <div style="padding:7px 13px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600;color:var(--black);">特徴</div>
+          <span style="color:var(--orange);font-weight:700;">→</span>
+          <div style="padding:7px 13px;background:var(--beige);border-radius:999px;font-size:12px;font-weight:600;color:var(--black);">お客様の声</div>
+          <span style="color:var(--orange);font-weight:700;">→</span>
+          <div style="padding:7px 13px;background:var(--orange);color:#fff;border-radius:999px;font-size:12px;font-weight:600;">CTA</div>
+        </div>
       </div>
     </div>
 
-    <!-- ━━━ (c) フォント・カラーが与える印象 ━━━ -->
+    <!-- ━━━ (C) なぜそうなる？どう抜け出す？ ━━━ -->
     <div class="card">
-      <div class="card-head"><div class="card-num">C</div><div class="card-title">フォント・カラーが与える印象</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:18px;">AIはデフォルトで「無難なデザイン」を選びます。それがAIっぽさの正体。ターゲットに合わせたフォントとカラーを指定するだけで、一気に「あなたらしさ」が出ます。</p>
+      <div class="card-head"><div class="card-num">C</div><div class="card-title">なぜこうなる？ どう抜け出す？</div></div>
 
-      <!-- フォント早見表 -->
-      <div style="margin-bottom:20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">Font — フォントの印象</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-            <div style="padding:14px;background:var(--beige-mid);display:flex;align-items:center;">
-              <div style="font-family:'Noto Serif JP',serif;font-size:15px;color:var(--black);">明朝体</div>
-            </div>
-            <div style="padding:12px 14px;background:#fff;">
-              <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px;">上品・知的・落ち着き</div>
-              <div style="font-size:11px;color:var(--gray-mid);">高単価・コーチング・士業系に◎</div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-            <div style="padding:14px;background:var(--beige-mid);display:flex;align-items:center;">
-              <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:var(--black);">ゴシック体</div>
-            </div>
-            <div style="padding:12px 14px;background:#fff;">
-              <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px;">読みやすい・モダン・万能</div>
-              <div style="font-size:11px;color:var(--gray-mid);">迷ったらこれ。ほぼ全ジャンルに合う</div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-            <div style="padding:14px;background:var(--beige-mid);display:flex;align-items:center;">
-              <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:15px;color:var(--black);">丸ゴシック</div>
-            </div>
-            <div style="padding:12px 14px;background:#fff;">
-              <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px;">親しみやすさ・やわらかさ</div>
-              <div style="font-size:11px;color:var(--gray-mid);">子育て・美容・ハンドメイド・料理系に◎</div>
-            </div>
-          </div>
-        </div>
+      <!-- WHY -->
+      <div style="background:var(--black);color:var(--beige);border-radius:14px;padding:22px;margin-bottom:14px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:#C9A961;font-weight:700;margin-bottom:12px;">WHY ?</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:10px;">なぜ Claude はこう出すのか？</div>
+        <p style="font-size:13.5px;line-height:1.9;color:#D8CEBE;margin:0;">学習データに「今っぽい無難なWebデザイン」が圧倒的に多いから。指示が曖昧だと、多数派の「可もなく不可もない上品系」に自然と寄る。<br>→ <strong style="color:#C9A961;">悪くはない。でも、同じ業界の他社と似る。</strong></p>
       </div>
 
-      <!-- カラー早見表 -->
-      <div style="margin-bottom:20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">Color — カラーの印象</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-          <div style="text-align:center;padding:10px 6px;background:#faf0ff;border-radius:10px;border:1px solid #c080e0;">
-            <div style="width:22px;height:22px;border-radius:50%;background:#9B59B6;margin:0 auto 5px;"></div>
-            <div style="font-size:11px;font-weight:600;">紫</div>
-            <div style="font-size:10px;color:#6020a0;line-height:1.4;">上品・高級感<br>コーチング</div>
-          </div>
-          <div style="text-align:center;padding:10px 6px;background:#fffbf0;border-radius:10px;border:1px solid #ffd080;">
-            <div style="width:22px;height:22px;border-radius:50%;background:#F4A261;margin:0 auto 5px;"></div>
-            <div style="font-size:11px;font-weight:600;">オレンジ</div>
-            <div style="font-size:10px;color:#b8621a;line-height:1.4;">元気・温かみ<br>行動促進</div>
-          </div>
-          <div style="text-align:center;padding:10px 6px;background:#fef5f0;border-radius:10px;border:1px solid #e0c0b8;">
-            <div style="width:22px;height:22px;border-radius:50%;background:#E8C4B8;margin:0 auto 5px;border:1px solid #d0a898;"></div>
-            <div style="font-size:11px;font-weight:600;">パステル</div>
-            <div style="font-size:10px;color:#a06050;line-height:1.4;">やさしさ・癒し<br>美容・子育て</div>
-          </div>
-          <div style="text-align:center;padding:10px 6px;background:#f0f4ff;border-radius:10px;border:1px solid #80a0e0;">
-            <div style="width:22px;height:22px;border-radius:50%;background:#3498DB;margin:0 auto 5px;"></div>
-            <div style="font-size:11px;font-weight:600;">青</div>
-            <div style="font-size:10px;color:#1a60a0;line-height:1.4;">信頼・誠実<br>士業・教育</div>
-          </div>
-          <div style="text-align:center;padding:10px 6px;background:#fff8f0;border-radius:10px;border:1px solid #d0a080;">
-            <div style="width:22px;height:22px;border-radius:50%;background:#C9A84C;margin:0 auto 5px;"></div>
-            <div style="font-size:11px;font-weight:600;">ゴールド</div>
-            <div style="font-size:10px;color:#806020;line-height:1.4;">プレミアム感<br>高単価商品</div>
-          </div>
-          <div style="text-align:center;padding:10px 6px;background:#f0fff4;border-radius:10px;border:1px solid #80d0a0;">
-            <div style="width:22px;height:22px;border-radius:50%;background:#2ECC71;margin:0 auto 5px;"></div>
-            <div style="font-size:11px;font-weight:600;">緑</div>
-            <div style="font-size:10px;color:#1a8040;line-height:1.4;">健康・安心<br>ナチュラル系</div>
-          </div>
-        </div>
+      <!-- HOW TO BREAK OUT -->
+      <div style="border:2px dashed var(--orange);border-radius:14px;padding:22px;background:#FEF9F3;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);font-weight:700;margin-bottom:12px;">HOW TO BREAK OUT</div>
+        <div style="font-size:15px;font-weight:700;color:var(--black);margin-bottom:12px;">「クセ」から抜け出す4つの方法</div>
+        <ol style="padding-left:20px;font-size:13px;line-height:2;color:var(--black);margin:0;">
+          <li><strong>画像を渡す</strong>：手書きラフ・好きなLPのスクショ → 真似してもらう</li>
+          <li><strong>参考サイトを分けて渡す</strong>：「構成はこっち」「デザインはこっち」と役割を明確に</li>
+          <li><strong>具体の色・フォントを指定する</strong>：「ベージュ禁止」「Playfair禁止」など制約も有効</li>
+          <li><strong>絵文字を使わないでと伝える</strong>：Claudeは放っておくと ✓ ★ などを多用します。「絵文字はNG、SVGアイコンで」と入れると一気に大人っぽくなる</li>
+        </ol>
       </div>
 
-      <div class="callout">「07 デザインを学ぶ」では、これをベースにさらに深く学びます。まずはこの早見表を見ながら、自分のターゲットに合う色とフォントを1つ選んでみてください。</div>
+      <div class="callout" style="margin-top:14px;">具体的な脱出テクニックは「<strong>垢抜けの方法</strong>」と「<strong>デザインの辞書</strong>」のタブで詳しく学べます。</div>
     </div>
 
-    <!-- ━━━ AIっぽさ チェックリスト ━━━ -->
-    <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
-      <div class="card-head"><div class="card-num" style="background:var(--orange);color:#fff;border:none;">!</div><div class="card-title">「AIっぽい」5つのサイン — 当てはまったら直し時</div></div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
-          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">紫〜青のグラデーション</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">AIが一番使いがちな配色。見た瞬間に「AI製」とわかってしまう。</div>
+    <!-- ━━━ (D) Before/After 実例プロセス ━━━ -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">D</div><div class="card-title">Before / After 実例プロセス — 受講生の例で見る</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:20px;">同じClaudeでも、<strong style="color:var(--black);">指示の出し方とモデリング（参考LPを見せる）</strong>を変えるだけで、出てくるデザインは別物になります。受講生さんのLPを使った実例で、「どこを変えたら何が変わるか」を見ていきましょう。</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:20px;">
+
+        <!-- CASE 01 Yoshimi -->
+        <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;">
+          <div style="background:linear-gradient(135deg,#FAF5EC,#F5EFE4);padding:18px 20px;border-bottom:1px solid var(--border);">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:6px;">CASE 01</div>
+            <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:4px;">よしみさん</div>
+            <div style="font-size:11px;color:var(--gray-mid);">サービスLPの Before / After</div>
+          </div>
+          <div style="padding:14px 20px 18px;">
+            <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">フォントの選び方／余白／写真の使い方を変えただけで、印象がガラッと変わった事例。</p>
+            <a href="before-after-yoshimi.html" target="_blank" rel="noopener" style="display:inline-block;padding:9px 20px;background:var(--orange);color:#fff;border-radius:18px;font-size:12px;font-weight:600;text-decoration:none;">Before / After を見る →</a>
           </div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
-          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">あらゆる要素に角丸とボーダー</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">カードに全部 border-radius と border が付いているデザイン。整理感がなく「量で押してる」印象に。</div>
+
+        <!-- CASE 02 Default Diet -->
+        <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;">
+          <div style="background:linear-gradient(135deg,#FAF5EC,#F5EFE4);padding:18px 20px;border-bottom:1px solid var(--border);">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:6px;">CASE 02</div>
+            <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:4px;">ダイエット系LP</div>
+            <div style="font-size:11px;color:var(--gray-mid);">デフォルト出力からの脱却</div>
+          </div>
+          <div style="padding:14px 20px 18px;">
+            <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">Claudeのデフォルト（ベージュ＋中央寄せ）から、ブランドカラー駆動の構成に変える流れ。</p>
+            <a href="before-default-diet.html" target="_blank" rel="noopener" style="display:inline-block;padding:9px 20px;background:var(--orange);color:#fff;border-radius:18px;font-size:12px;font-weight:600;text-decoration:none;">Before を見る →</a>
           </div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
-          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">文章が長くてぎっしり</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">「説明しなきゃ」で文字を詰めすぎた状態。余白がなく、読む気が失せる。</div>
+
+        <!-- CASE 03 Ayumin -->
+        <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;">
+          <div style="background:linear-gradient(135deg,#FAF5EC,#F5EFE4);padding:18px 20px;border-bottom:1px solid var(--border);">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:6px;">CASE 03</div>
+            <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:4px;">あゆみんさん</div>
+            <div style="font-size:11px;color:var(--gray-mid);">Before（受講前のLP）</div>
+          </div>
+          <div style="padding:14px 20px 18px;">
+            <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">受講前の状態を確認 → 当日にClaudeでどう生まれ変わるかを比較する材料に。</p>
+            <a href="ayumin-before.html" target="_blank" rel="noopener" style="display:inline-block;padding:9px 20px;background:var(--orange);color:#fff;border-radius:18px;font-size:12px;font-weight:600;text-decoration:none;">Before を見る →</a>
           </div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
-          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">4</div>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">フォントが3種類以上混在</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">見出し・本文・ボタンでバラバラなフォントを使っているデザイン。統一感がなく素人っぽく見える。</div>
+
+        <!-- CASE 04 Tomomi -->
+        <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;">
+          <div style="background:linear-gradient(135deg,#FAF5EC,#F5EFE4);padding:18px 20px;border-bottom:1px solid var(--border);">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:6px;">CASE 04</div>
+            <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:4px;">ともみさん</div>
+            <div style="font-size:11px;color:var(--gray-mid);">Before（受講前のLP）</div>
+          </div>
+          <div style="padding:14px 20px 18px;">
+            <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">受講前の状態を確認 → 当日にClaudeでどう生まれ変わるかを比較する材料に。</p>
+            <a href="tomomi-before.html" target="_blank" rel="noopener" style="display:inline-block;padding:9px 20px;background:var(--orange);color:#fff;border-radius:18px;font-size:12px;font-weight:600;text-decoration:none;">Before を見る →</a>
           </div>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
-          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">5</div>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">アイコンやデコが多すぎる</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">AIは「賑やか=良いデザイン」と判断しがち。チェックマーク・バッジ・バナーの多用はむしろ散漫な印象に。</div>
-          </div>
-        </div>
+
       </div>
-      <div style="padding:14px 16px;background:rgba(201,106,58,0.06);border:1px solid var(--orange-border);border-radius:8px;font-size:13px;color:var(--black);line-height:1.9;">
-        これらは「07 デザインを学ぶ」の<strong>Before/Afterカード</strong>で、実際に修正する手順を学べます。
+
+      <!-- 3つのプロンプトの違い -->
+      <div style="background:var(--beige);border-radius:12px;padding:20px 22px;">
+        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:14px;">Before → After を分ける、3つのコツ</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+          <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.18em;color:var(--gray-lt);margin-bottom:6px;">Before（雑な指示）</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">「LPを作ってください。サービス名は◯◯です。」</div>
+            <div style="margin-top:8px;font-size:11px;color:var(--gray-lt);line-height:1.7;">→ ベージュ＋角丸＋鉄板フローが返ってくる</div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--orange-border);border-radius:10px;padding:14px 16px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.18em;color:var(--orange);margin-bottom:6px;">After（モデリング指示）</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">「以下3本のLPの雰囲気を参考に、ブランドカラーは◯色、写真はこれを使って…」</div>
+            <div style="margin-top:8px;font-size:11px;color:var(--orange);line-height:1.7;">→ 参考LPの空気感を引き継いだ自分らしいデザイン</div>
+          </div>
+        </div>
+        <ol style="margin:0;padding-left:20px;font-size:13px;color:var(--gray-mid);line-height:2;">
+          <li><strong style="color:var(--black);">参考LPを2〜3本見せる</strong>（モデリング）→ 雰囲気の方向性が決まる</li>
+          <li><strong style="color:var(--black);">ブランドカラーを1色指定する</strong> → デフォルトのトーンから抜けられる</li>
+          <li><strong style="color:var(--black);">使う写真を最初から渡しておく</strong> → フリー素材感を防げる</li>
+        </ol>
       </div>
     </div>
   </section>
@@ -7346,9 +7326,9 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- ═══ TAB 5: チェックリスト ═══ -->
   <section class="tab-content" id="tab-checklist">
-    <div class="sec-eyebrow">Step 03 ／ 当日に備える</div>
-    <div class="sec-title">当日までの準備チェック</div>
-    <p class="sec-desc">全部にチェックがついたら、あなたは準備完了です。</p>
+    <div class="sec-eyebrow">キックオフ後の宿題</div>
+    <div class="sec-title">これをやってきてね</div>
+    <p class="sec-desc">キックオフから当日までに、おうちで準備しておくことをチェックリストにまとめました。<br>全部にチェックがついたら、当日の準備は完了です。</p>
 
     <div class="card">
       <div class="card-head"><div class="card-num">1</div><div class="card-title">コンテンツ（LP素材）</div></div>
@@ -9378,168 +9358,10 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
   </section>
 
 
-  <!-- ═══ TAB: 13-A AIっぽいデザインの正体 ═══ -->
-  <section class="tab-content" id="tab-design-aiish">
-    <div class="sec-eyebrow">AIっぽさを見抜く</div>
-    <div class="sec-title">13-A ─ AIっぽいデザインの正体</div>
-    <p class="sec-desc">「Claudeに頼んだら、なんか既視感のあるLPが出てきた…」その違和感の正体は、実は<strong>たった6つの特徴</strong>に集約できます。これを知っているだけで、出来上がったLPの"AIっぽさ"を自分でチェックできるようになります。</p>
-
-    <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
-      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">よくある6つの特徴</div>
-      <div style="font-size:18px;font-weight:600;line-height:1.7;margin-bottom:10px;">この6つに当てはまったら「AIっぽい」サイン</div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:0;">ざっくり指示すると、Claudeはほぼ毎回この組み合わせで返してきます。<strong style="color:var(--black);">パッと見「悪くないけど、なんか普通…」</strong>と感じたら、たいていここに該当しています。</p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:24px;">
-      <div class="card" style="margin-bottom:0;padding:22px 20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">01</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">角がぜんぶ丸い</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">カード・ボタン・画像、すべての角が同じくらいの丸み。柔らかく見えるけど、印象がのっぺりして"優しすぎる"見た目に。</div>
-      </div>
-      <div class="card" style="margin-bottom:0;padding:22px 20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">02</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">絶妙なベージュ・パステル</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">一見オシャレに見える、薄いベージュやパステル系の絶妙な配色。色に強弱がなく、印象に残らないトーンに収まる。</div>
-      </div>
-      <div class="card" style="margin-bottom:0;padding:22px 20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">03</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">3カラム＋丸アイコン</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">「特徴3つ」を3カラムで並べ、それぞれに丸い線アイコンが乗る構成。テンプレ感がもっとも出やすい組み合わせ。</div>
-      </div>
-      <div class="card" style="margin-bottom:0;padding:22px 20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">04</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">紫→ピンクのグラデ</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">FVや見出しに敷かれる、紫からピンクへの斜めグラデ。「AIに作らせました」と言わんばかりの定番カラー。</div>
-      </div>
-      <div class="card" style="margin-bottom:0;padding:22px 20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">05</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">中央寄せ・等間隔</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">どのセクションも同じ余白で中央寄せ。リズムや強弱がないため、スクロールしても記憶に残らない。</div>
-      </div>
-      <div class="card" style="margin-bottom:0;padding:22px 20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:300;color:var(--orange);margin-bottom:6px;">06</div>
-        <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">フリー素材丸出し</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">海外モデルの笑顔・握手の写真がそのまま使われている。サービスの空気感とちぐはぐで、距離を感じさせる。</div>
-      </div>
-    </div>
-
-    <div class="card" style="background:var(--beige);border:none;">
-      <div class="card-head"><div class="card-num">→</div><div class="card-title">逆に言えば、ここを変えれば一気に脱出できる</div></div>
-      <ul class="check-list" style="margin:8px 0 0;padding-left:0;list-style:none;">
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>角の丸みを<strong style="color:var(--black);">場所によって変える</strong>（FVは直線、カードは角丸4px、ボタンは大きく丸める など）</li>
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span><strong style="color:var(--black);">ブランドカラー</strong>（自分のサービスらしい色）を1色決めて軸に。グラデは禁じ手、もしくは1色＋ベース色だけ</li>
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>アイコンの代わりに、<strong style="color:var(--black);">数字（01・02）や大きめの日本語見出し</strong>で構造化</li>
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>セクションごとに<strong style="color:var(--black);">「左寄せ」「右寄せ」「アシメ」</strong>を混ぜてリズムを作る</li>
-        <li style="padding:8px 0 8px 28px;position:relative;font-size:13px;color:var(--gray-mid);line-height:1.8;"><span style="position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--orange);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">→</span>自分で撮った写真や、<strong style="color:var(--black);">サービスらしい雰囲気の素材</strong>を最低1〜2枚入れる</li>
-      </ul>
-    </div>
-
-    <div style="text-align:center;margin:32px 0 16px;">
-      <a href="design-tips.html#lv1" target="_blank" style="display:inline-block;padding:14px 32px;background:var(--orange);color:#fff;border-radius:24px;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.05em;">詳しい解説 → 加工テクニック見本帳を開く</a>
-    </div>
-  </section>
-
-  <!-- ═══ TAB: 13-B プロンプトで変わるBefore/After ═══ -->
-  <section class="tab-content" id="tab-design-glow">
-    <div class="sec-eyebrow">プロンプトで変わる</div>
-    <div class="sec-title">13-B ─ プロンプトで変わる Before / After</div>
-    <p class="sec-desc">同じClaudeでも、<strong>指示（プロンプト）の出し方</strong>と<strong>モデリング（参考にしたいLPを見せる）</strong>を変えるだけで、出てくるデザインは別物になります。受講生のLPを使った実例で、「どこを変えたら何が変わるか」を見ていきましょう。</p>
-
-    <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
-      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">Before / After の見方</div>
-      <div style="font-size:16px;font-weight:600;line-height:1.7;margin-bottom:10px;">"AI臭さ"はプロンプトとモデリングで抜けます</div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:0;">
-        Before（受講前のLPやClaudeのデフォルト出力）は<strong style="color:var(--black);">13-A の6つの特徴</strong>がそのまま出ています。<br>
-        After は<strong style="color:var(--black);">参考LPを2〜3本見せて</strong>「この雰囲気で」と指示し、ブランドカラー・写真・余白を整えた状態。同じ素材から、まったく違う印象になります。
-      </p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:24px;">
-
-      <!-- Yoshimi -->
-      <div class="card" style="margin-bottom:0;padding:0;overflow:hidden;">
-        <div style="background:linear-gradient(135deg,#FAF5EC,#F5EFE4);padding:20px 22px;border-bottom:1px solid var(--border);">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:6px;">CASE 01</div>
-          <div style="font-size:16px;font-weight:600;color:var(--black);margin-bottom:4px;">よしみさん</div>
-          <div style="font-size:11px;color:var(--gray-mid);">サービスLPの Before / After</div>
-        </div>
-        <div style="padding:16px 22px 22px;">
-          <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">フォントの選び方／余白／写真の使い方を変えただけで、印象がガラッと変わった事例。</p>
-          <a href="before-after-yoshimi.html" target="_blank" style="display:inline-block;padding:10px 22px;background:var(--orange);color:#fff;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;">Before / After を見る →</a>
-        </div>
-      </div>
-
-      <!-- Default Diet -->
-      <div class="card" style="margin-bottom:0;padding:0;overflow:hidden;">
-        <div style="background:linear-gradient(135deg,#FAF5EC,#F5EFE4);padding:20px 22px;border-bottom:1px solid var(--border);">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:6px;">CASE 02</div>
-          <div style="font-size:16px;font-weight:600;color:var(--black);margin-bottom:4px;">ダイエット系LP</div>
-          <div style="font-size:11px;color:var(--gray-mid);">デフォルト出力からの脱却</div>
-        </div>
-        <div style="padding:16px 22px 22px;">
-          <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">Claudeのデフォルト出力（紫グラデ＋中央寄せ）から、ブランドカラー駆動の構成に変える流れ。</p>
-          <a href="before-default-diet.html" target="_blank" style="display:inline-block;padding:10px 22px;background:var(--orange);color:#fff;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;">Before / After を見る →</a>
-        </div>
-      </div>
-
-      <!-- Ayumin -->
-      <div class="card" style="margin-bottom:0;padding:0;overflow:hidden;">
-        <div style="background:linear-gradient(135deg,#FAF5EC,#F5EFE4);padding:20px 22px;border-bottom:1px solid var(--border);">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:6px;">CASE 03</div>
-          <div style="font-size:16px;font-weight:600;color:var(--black);margin-bottom:4px;">あゆみんさん</div>
-          <div style="font-size:11px;color:var(--gray-mid);">Before（受講前のLP）</div>
-        </div>
-        <div style="padding:16px 22px 22px;">
-          <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">受講前の状態を確認 → 当日にClaudeでどう生まれ変わるかを比較する材料に。</p>
-          <a href="ayumin-before.html" target="_blank" style="display:inline-block;padding:10px 22px;background:var(--orange);color:#fff;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;">Before を見る →</a>
-        </div>
-      </div>
-
-      <!-- Tomomi -->
-      <div class="card" style="margin-bottom:0;padding:0;overflow:hidden;">
-        <div style="background:linear-gradient(135deg,#FAF5EC,#F5EFE4);padding:20px 22px;border-bottom:1px solid var(--border);">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:6px;">CASE 04</div>
-          <div style="font-size:16px;font-weight:600;color:var(--black);margin-bottom:4px;">ともみさん</div>
-          <div style="font-size:11px;color:var(--gray-mid);">Before（受講前のLP）</div>
-        </div>
-        <div style="padding:16px 22px 22px;">
-          <p style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">受講前の状態を確認 → 当日にClaudeでどう生まれ変わるかを比較する材料に。</p>
-          <a href="tomomi-before.html" target="_blank" style="display:inline-block;padding:10px 22px;background:var(--orange);color:#fff;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;">Before を見る →</a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="card" style="background:var(--beige);border:none;">
-      <div class="card-head"><div class="card-num">＞</div><div class="card-title">Before → After を分ける、3つのプロンプトの違い</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">同じClaudeでも、指示の出し方をこう変えるだけで結果が大きく変わります。</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
-        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.18em;color:var(--gray-lt);margin-bottom:8px;">Before（雑な指示）</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;font-family:'Noto Sans JP',sans-serif;">「LPを作ってください。サービス名は◯◯です。」</div>
-          <div style="margin-top:10px;font-size:11px;color:var(--gray-lt);line-height:1.8;">→ デフォルトの紫グラデ・3カラムアイコン・絶妙ベージュが返ってくる</div>
-        </div>
-        <div style="background:#fff;border:1px solid var(--orange-border);border-radius:10px;padding:16px 18px;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.18em;color:var(--orange);margin-bottom:8px;">After（モデリング指示）</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;font-family:'Noto Sans JP',sans-serif;">「以下3本のLPの雰囲気を参考に、ブランドカラーは◯色、写真はこれを使って…」</div>
-          <div style="margin-top:10px;font-size:11px;color:var(--orange);line-height:1.8;">→ 参考LPの空気感を引き継いだ、自分らしいデザインが返ってくる</div>
-        </div>
-      </div>
-      <ol style="margin:0;padding-left:20px;font-size:13px;color:var(--gray-mid);line-height:2;">
-        <li><strong style="color:var(--black);">参考LPを2〜3本見せる</strong>（モデリング）→ 雰囲気の方向性が決まる</li>
-        <li><strong style="color:var(--black);">ブランドカラーを1色指定する</strong> → デフォルトのグラデから抜けられる</li>
-        <li><strong style="color:var(--black);">使う写真を最初から渡しておく</strong> → フリー素材感を防げる</li>
-      </ol>
-      <div style="margin-top:18px;text-align:center;">
-        <a href="design-tips.html#lv2" target="_blank" style="display:inline-block;padding:12px 28px;background:var(--orange);color:#fff;border-radius:22px;font-size:13px;font-weight:600;text-decoration:none;">詳しい加工テクニック → 加工テクニック見本帳</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ TAB: 13-D パララックスで奥行きを ═══ -->
+  <!-- ═══ TAB: 12-B パララックスで奥行きを ═══ -->
   <section class="tab-content" id="tab-design-parallax">
     <div class="sec-eyebrow">奥行きを足す</div>
-    <div class="sec-title">13-D ─ パララックスで奥行きを</div>
+    <div class="sec-title">12-B ─ パララックスで奥行きを</div>
     <p class="sec-desc">スクロールすると背景と文字が違う速度で動く、<strong>奥行き</strong>を生む演出。"なんかオシャレ"の正体はだいたいこれ。CSS一行で実装できる、いちばん効きやすいテクニックです。</p>
 
     <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
@@ -9579,10 +9401,10 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div>
   </section>
 
-  <!-- ═══ TAB: 13-C 動きで魅せる（アニメ） ═══ -->
+  <!-- ═══ TAB: 12-A 動きで魅せる（アニメ） ═══ -->
   <section class="tab-content" id="tab-design-motion">
     <div class="sec-eyebrow">動きで魅せる</div>
-    <div class="sec-title">13-C ─ 動きで魅せる（アニメーション）</div>
+    <div class="sec-title">12-A ─ 動きで魅せる（アニメーション）</div>
     <p class="sec-desc">ふわっと出てくる・浮かび上がる・カウントアップする。動きを少し足すだけで、LPは一気に<strong>「生きた」印象</strong>になります。"目の止まるLP" は、たいてい動きが効いています。</p>
 
     <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
@@ -9633,6 +9455,51 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
     <div style="text-align:center;margin:32px 0 16px;">
       <a href="design-tips.html#lv4" target="_blank" style="display:inline-block;padding:14px 32px;background:var(--orange);color:#fff;border-radius:24px;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.05em;">実物デモを見る → 加工テクニック見本帳</a>
+    </div>
+  </section>
+
+  <!-- ═══ TAB: 垢抜けのコツ STEP 1 ═══ -->
+  <section class="tab-content" id="tab-glow-step1">
+    <div class="sec-eyebrow">垢抜けのコツ ／ STEP 1</div>
+    <div class="sec-title">コピペで垢抜けさせる</div>
+    <p class="sec-desc">最初の一歩は「色」「文字サイズ」「写真の見せ方」の3つ。CSS数行のコピペで、AIっぽさが一気に抜けます。</p>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <iframe src="design-tips.html#lv1" loading="lazy" title="垢抜けさせる ─ LEVEL 1" style="width:100%;height:1400px;border:none;display:block;"></iframe>
+    </div>
+
+    <div style="text-align:center;margin:24px 0 16px;">
+      <a href="design-tips.html#lv1" target="_blank" rel="noopener" style="display:inline-block;padding:12px 28px;background:var(--orange);color:#fff;border-radius:22px;font-size:13px;font-weight:600;text-decoration:none;">別タブでフルサイズで開く →</a>
+    </div>
+  </section>
+
+  <!-- ═══ TAB: 垢抜けのコツ STEP 2 ═══ -->
+  <section class="tab-content" id="tab-glow-step2">
+    <div class="sec-eyebrow">垢抜けのコツ ／ STEP 2</div>
+    <div class="sec-title">動きをつける</div>
+    <p class="sec-desc">パララックス、ふわっと表示、ホバーで浮く、カウントアップなど。少しの動きでLPは「生きた」印象になります。</p>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <iframe src="design-tips.html#lv2" loading="lazy" title="動きをつける ─ LEVEL 2" style="width:100%;height:1400px;border:none;display:block;"></iframe>
+    </div>
+
+    <div style="text-align:center;margin:24px 0 16px;">
+      <a href="design-tips.html#lv2" target="_blank" rel="noopener" style="display:inline-block;padding:12px 28px;background:var(--orange);color:#fff;border-radius:22px;font-size:13px;font-weight:600;text-decoration:none;">別タブでフルサイズで開く →</a>
+    </div>
+  </section>
+
+  <!-- ═══ TAB: 垢抜けのコツ STEP 3 ═══ -->
+  <section class="tab-content" id="tab-glow-step3">
+    <div class="sec-eyebrow">垢抜けのコツ ／ STEP 3</div>
+    <div class="sec-title">構造で差をつける</div>
+    <p class="sec-desc">写真と文字を重ねる、セクションを斜めにカット、マーキー（流れる文字帯）。レイアウト構造で勝負するレベル。</p>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <iframe src="design-tips.html#lv3" loading="lazy" title="構造で差をつける ─ LEVEL 3" style="width:100%;height:1400px;border:none;display:block;"></iframe>
+    </div>
+
+    <div style="text-align:center;margin:24px 0 16px;">
+      <a href="design-tips.html#lv3" target="_blank" rel="noopener" style="display:inline-block;padding:12px 28px;background:var(--orange);color:#fff;border-radius:22px;font-size:13px;font-weight:600;text-decoration:none;">別タブでフルサイズで開く →</a>
     </div>
   </section>
 

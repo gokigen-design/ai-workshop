@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AYUMI WEB DESIGN</title>
+<meta name="viewport" content="width=1000">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "游ゴシック", "Yu Gothic", "Helvetica Neue", sans-serif;
+    background: #fff;
+    color: #2a2a2a;
+    width: 1000px;
+    line-height: 1.7;
+  }
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 60px; border-bottom: 1px solid #eee;
+  }
+  .nav .logo { font-size: 24px; font-weight: 700; letter-spacing: 0.1em; }
+  .nav .logo span { color: #7aa8c7; }
+  .nav ul { display: flex; gap: 36px; list-style: none; }
+  .nav ul li { font-size: 16px; color: #555; letter-spacing: 0.1em; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    padding: 80px 60px 70px;
+    gap: 50px;
+    background: #fff;
+  }
+  .hero-copy .tag {
+    font-size: 18px; letter-spacing: 0.3em; color: #7aa8c7;
+    margin-bottom: 24px;
+  }
+  .hero-copy h1 {
+    font-size: 62px; font-weight: 700; margin-bottom: 26px;
+    line-height: 1.35; color: #1a1a1a; letter-spacing: 0.02em;
+  }
+  .hero-copy h1 span { color: #7aa8c7; }
+  .hero-copy p {
+    font-size: 22px; color: #555; margin-bottom: 36px;
+  }
+  .hero-copy .btn {
+    display: inline-block;
+    background: #1a1a1a; color: #fff; padding: 20px 56px;
+    font-size: 20px; text-decoration: none; border-radius: 2px;
+    letter-spacing: 0.2em;
+  }
+  .hero-copy .btn:hover { background: #7aa8c7; }
+
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, #eaf3fa 0%, #f7e9ed 100%);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-visual svg { width: 72%; height: 72%; }
+  .hero-visual .dot1 {
+    position: absolute; top: -30px; right: -30px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: #c7dcea; opacity: 0.6;
+  }
+  .hero-visual .dot2 {
+    position: absolute; bottom: -20px; left: -20px;
+    width: 110px; height: 110px; border-radius: 50%;
+    background: #f5d4de; opacity: 0.7;
+  }
+
+  .section { padding: 70px 60px; background: #fafafa; }
+  .section h2 {
+    font-size: 40px; text-align: center; margin-bottom: 12px;
+    color: #1a1a1a; letter-spacing: 0.1em; font-weight: 700;
+  }
+  .section .sub {
+    text-align: center; font-size: 16px; letter-spacing: 0.3em;
+    color: #7aa8c7; margin-bottom: 44px;
+  }
+
+  .three {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .three .card {
+    background: #fff; padding: 36px 28px;
+    border: 1px solid #eee; border-radius: 6px;
+    text-align: center;
+  }
+  .three .card .thumb {
+    width: 100%; aspect-ratio: 4/3; border-radius: 4px;
+    margin-bottom: 22px;
+    display:flex; align-items:center; justify-content:center;
+    overflow: hidden;
+  }
+  .three .card:nth-child(1) .thumb { background: linear-gradient(135deg, #eaf3fa, #c7dcea); }
+  .three .card:nth-child(2) .thumb { background: linear-gradient(135deg, #fdeef2, #f5c8d4); }
+  .three .card:nth-child(3) .thumb { background: linear-gradient(135deg, #f2efe9, #d9d0bd); }
+  .three .card .thumb svg { width: 54%; height: 54%; }
+  .three .card h3 {
+    font-size: 22px; margin-bottom: 10px; color:#1a1a1a;
+    letter-spacing: 0.08em;
+  }
+  .three .card p { font-size: 16px; color:#666; line-height: 1.9; }
+
+  .footer {
+    padding: 40px; text-align: center;
+    background:#1a1a1a; color:#aaa; font-size: 14px; letter-spacing: 0.2em;
+  }
+</style>
+</head>
+<body>
+  <!-- 戻るナビ -->
+  <div style="padding:14px 24px;border-bottom:1px solid #E0D6C8;background:#fff;font-size:13px;font-family:sans-serif;">
+    <a href="./preparation-vol2.html" style="color:#C96A3A;font-weight:700;text-decoration:none;">&larr; 事前準備ガイドに戻る</a>
+  </div>
+
+  <nav class="nav">
+    <div class="logo">AYUMI<span>.</span>design</div>
+    <ul>
+      <li>ABOUT</li>
+      <li>WORKS</li>
+      <li>SERVICE</li>
+      <li>CONTACT</li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="tag">WEB DESIGN / BRANDING</div>
+      <h1>伝わるデザインで、<br>事業の<span>次の一歩</span>を。</h1>
+      <p>想いをカタチにするフリーランスのWEBデザイナー。<br>LP・WEBサイト・バナーまで一貫してサポートします。</p>
+      <a class="btn" href="#">お問い合わせ</a>
+    </div>
+    <div class="hero-visual">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+      <!-- ノートPCで作業しているイラスト風SVG -->
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- laptop base -->
+        <rect x="30" y="110" width="140" height="10" rx="3" fill="#1a1a1a"/>
+        <!-- laptop screen -->
+        <rect x="42" y="50" width="116" height="64" rx="4" fill="#1a1a1a"/>
+        <rect x="48" y="56" width="104" height="52" rx="2" fill="#fff"/>
+        <!-- screen content -->
+        <rect x="54" y="62" width="30" height="4" rx="1" fill="#7aa8c7"/>
+        <rect x="54" y="70" width="92" height="3" rx="1" fill="#ddd"/>
+        <rect x="54" y="76" width="80" height="3" rx="1" fill="#ddd"/>
+        <rect x="54" y="86" width="40" height="18" rx="2" fill="#eaf3fa"/>
+        <rect x="98" y="86" width="40" height="18" rx="2" fill="#f5d4de"/>
+        <!-- plant -->
+        <rect x="155" y="95" width="14" height="18" fill="#b8906b"/>
+        <path d="M162 95 Q155 80 148 88 Q162 82 162 95 Z" fill="#9bc08e"/>
+        <path d="M162 95 Q169 80 176 88 Q162 82 162 95 Z" fill="#7fae73"/>
+        <path d="M162 95 Q162 72 162 85 Q158 75 162 85 Z" fill="#9bc08e"/>
+        <!-- coffee -->
+        <rect x="20" y="100" width="14" height="14" rx="1" fill="#fff" stroke="#333" stroke-width="1.5"/>
+        <ellipse cx="27" cy="100" rx="7" ry="2" fill="#8b5a3c"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>SERVICE</h2>
+    <div class="sub">3つのサービス</div>
+    <div class="three">
+      <div class="card">
+        <div class="thumb">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="20" width="70" height="50" rx="3" fill="#fff" stroke="#7aa8c7" stroke-width="2"/>
+            <rect x="20" y="26" width="30" height="3" fill="#7aa8c7"/>
+            <rect x="20" y="33" width="60" height="2" fill="#bbb"/>
+            <rect x="20" y="38" width="50" height="2" fill="#bbb"/>
+            <rect x="20" y="48" width="25" height="15" rx="1" fill="#eaf3fa"/>
+            <rect x="50" y="48" width="30" height="15" rx="1" fill="#f5d4de"/>
+            <rect x="40" y="75" width="20" height="3" rx="1" fill="#333"/>
+          </svg>
+        </div>
+        <h3>WEB DESIGN</h3>
+        <p>ブランドに寄り添う<br>WEBサイト制作</p>
+      </div>
+      <div class="card">
+        <div class="thumb">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="30" y="12" width="40" height="76" rx="4" fill="#fff" stroke="#e8a0b8" stroke-width="2"/>
+            <rect x="35" y="20" width="30" height="12" rx="1" fill="#e8a0b8"/>
+            <rect x="35" y="36" width="30" height="3" fill="#bbb"/>
+            <rect x="35" y="42" width="24" height="3" fill="#bbb"/>
+            <rect x="35" y="52" width="30" height="10" rx="1" fill="#fde8ee"/>
+            <rect x="40" y="72" width="20" height="4" rx="2" fill="#e0447a"/>
+          </svg>
+        </div>
+        <h3>LP制作</h3>
+        <p>商品の魅力を伝える<br>ランディングページ</p>
+      </div>
+      <div class="card">
+        <div class="thumb">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="30" width="35" height="22" rx="2" fill="#fff" stroke="#b8956b" stroke-width="2"/>
+            <rect x="20" y="36" width="16" height="3" fill="#b8956b"/>
+            <rect x="20" y="42" width="25" height="2" fill="#ccc"/>
+            <rect x="52" y="45" width="35" height="22" rx="2" fill="#fff" stroke="#b8956b" stroke-width="2"/>
+            <rect x="57" y="51" width="16" height="3" fill="#b8956b"/>
+            <rect x="57" y="57" width="25" height="2" fill="#ccc"/>
+          </svg>
+        </div>
+        <h3>BANNER</h3>
+        <p>SNS用バナー・<br>広告クリエイティブ</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">© AYUMI DESIGN</div>
+</body>
+</html>

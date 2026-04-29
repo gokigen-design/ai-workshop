@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>イメージコンサルティング</title>
+<meta name="viewport" content="width=1000">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "ヒラギノ明朝 ProN", "Yu Mincho", serif;
+    background: #fff0f3;
+    color: #5a2a3a;
+    width: 1000px;
+    line-height: 1.8;
+  }
+  .hero {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255,210,225,0.9) 0%, transparent 55%),
+      radial-gradient(circle at 85% 70%, rgba(255,180,205,0.85) 0%, transparent 50%),
+      linear-gradient(180deg, #ffe0ea 0%, #ffc9dc 100%);
+    padding: 90px 60px 80px;
+    text-align: center;
+    border-bottom: 1px solid #f5a6c0;
+  }
+  .hero .tag {
+    font-size: 22px; letter-spacing: 0.5em; color: #c2396a;
+    margin-bottom: 30px;
+  }
+  .hero h1 {
+    font-size: 60px; font-weight: 400; margin-bottom: 40px;
+    color: #6b2a44; line-height: 1.5;
+  }
+  .hero h1 em {
+    font-style: normal; color: #e0447a; font-weight: 500;
+    border-bottom: 3px solid #f590b0; padding-bottom: 4px;
+  }
+  .hero p {
+    font-size: 24px; color: #7a3a5a; max-width: 720px; margin: 0 auto;
+  }
+  .hero .btn {
+    display:inline-block; margin-top: 50px;
+    background: linear-gradient(135deg, #ff85ab 0%, #e0447a 100%);
+    color: #fff; padding: 24px 80px;
+    font-size: 26px; text-decoration: none; border-radius: 40px;
+    letter-spacing: 0.2em;
+    box-shadow: 0 6px 18px rgba(224,68,122,0.35);
+  }
+  .about {
+    padding: 80px 60px; background: #fff; text-align: center;
+  }
+  .about h2 {
+    font-size: 42px; color: #e0447a; font-weight: 400;
+    margin-bottom: 20px; letter-spacing: 0.2em;
+  }
+  .about .sub { font-size: 20px; color: #c2396a; margin-bottom: 40px; letter-spacing: 0.3em; }
+  .about p { font-size: 22px; color: #5a2a3a; max-width: 740px; margin: 0 auto 16px; }
+  .menu {
+    padding: 80px 60px; background: #ffeaf1;
+  }
+  .menu h2 {
+    font-size: 42px; text-align:center; color: #e0447a;
+    font-weight: 400; margin-bottom: 50px; letter-spacing: 0.2em;
+  }
+  .menu h2::after {
+    content: ''; display:block; width:60px; height:1px;
+    background:#e0447a; margin: 18px auto 0;
+  }
+  .menu-list {
+    max-width: 820px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+  }
+  .menu-item {
+    background: #fff; padding: 32px 28px;
+    border: 1px solid #f5a6c0; border-radius: 6px;
+  }
+  .menu-item .num {
+    color: #e0447a; font-size: 18px; letter-spacing: 0.3em; margin-bottom: 10px;
+  }
+  .menu-item h3 { font-size: 26px; color:#6b2a44; margin-bottom: 12px; font-weight:500; }
+  .menu-item p { font-size: 17px; color:#7a3a5a; line-height: 1.9; }
+  .footer { padding: 40px; text-align: center; background:#6b2a44; color:#ffe0ea; font-size: 16px; }
+</style>
+</head>
+<body>
+  <!-- 戻るナビ -->
+  <div style="padding:14px 24px;border-bottom:1px solid #E0D6C8;background:#fff;font-size:13px;font-family:sans-serif;">
+    <a href="./preparation-vol2.html" style="color:#C96A3A;font-weight:700;text-decoration:none;">&larr; 事前準備ガイドに戻る</a>
+  </div>
+
+  <div class="hero">
+    <div class="tag">IMAGE CONSULTING</div>
+    <h1>"あなたらしさ"で、<br><em>選ばれる私</em>になる</h1>
+    <p>パーソナルカラー × 骨格診断 × 顔タイプ診断で、<br>本当に似合うスタイルを見つけるイメージコンサルティング</p>
+    <a class="btn" href="#">無料診断はこちら</a>
+  </div>
+
+  <div class="about">
+    <h2>ABOUT</h2>
+    <div class="sub">— ごあいさつ —</div>
+    <p>はじめまして、イメージコンサルタントのともみです。</p>
+    <p>「何を着ても似合わない気がする」「自分に自信が持てない」</p>
+    <p>そんなお悩みを、似合うを知ることで解決していきます。</p>
+  </div>
+
+  <div class="menu">
+    <h2>MENU</h2>
+    <div class="menu-list">
+      <div class="menu-item">
+        <div class="num">MENU 01</div>
+        <h3>パーソナルカラー診断</h3>
+        <p>あなたに似合う色を<br>4シーズンからご提案</p>
+      </div>
+      <div class="menu-item">
+        <div class="num">MENU 02</div>
+        <h3>骨格診断</h3>
+        <p>体型に合ったデザイン・<br>素材をお伝えします</p>
+      </div>
+      <div class="menu-item">
+        <div class="num">MENU 03</div>
+        <h3>顔タイプ診断</h3>
+        <p>お顔立ちに合うテイストで<br>印象アップ</p>
+      </div>
+      <div class="menu-item">
+        <div class="num">MENU 04</div>
+        <h3>トータル診断</h3>
+        <p>3つをまとめて診断する<br>人気メニュー</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">© TOMOMI IMAGE CONSULTING</div>
+</body>
+</html>
