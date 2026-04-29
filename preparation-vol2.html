@@ -3318,6 +3318,7 @@
         <button class="tab-btn" onclick="switchTab('lp-intro', this)"><span>05</span>LPとは</button>
         <button class="tab-btn tab-work" onclick="switchTab('worksheet', this)"><span class="tab-badge">WORK</span>内容を整理する</button>
         <button class="tab-btn" onclick="switchTab('prompt', this)"><span>06</span>AIに指示する（Claudeに投げる）</button>
+        <button class="tab-btn" onclick="switchTab('aiish-intro', this)"><span style="font-size:9px;letter-spacing:0;">AI</span>AIっぽいデザインの正体</button>
         <button class="tab-btn" onclick="switchTab('design', this)"><span>07</span>デザインを学ぶ（垢抜けさせる）</button>
         <button class="tab-btn" onclick="switchTab('checklist', this)"><span>08</span>当日に備える</button>
         <button class="tab-btn" onclick="switchTab('deploy', this)"><span>09</span>公開する</button>
@@ -3337,7 +3338,7 @@
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">スペシャルコンテンツ</div>
-        <button class="tab-btn tab-special" onclick="switchTab('special', this)"><span>★</span>ChatGPT活用法<span class="tab-badge">SOON</span></button>
+        <button class="tab-btn tab-special" onclick="switchTab('special', this)"><span>★</span>画像LP×AI×Canva</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">みんなの声</div>
@@ -3689,7 +3690,58 @@
       </p>
     </div>
 
-    <!-- 6. このワークショップでやる流れ -->
+    <!-- 6. AI活用フロー：叩き台の作り方 -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">AI</div><div class="card-title">叩き台の作り方：AIをフル活用する</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:20px;">いきなりClaude Codeに「LPを作って」と頼むと、トークンを大量に消費します。<br><strong style="color:var(--black);">「何を書くか」を決めてからCCに渡す</strong>のが、時間もコストも節約できるコツです。</p>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px;">ChatGPTで文章の叩き台を作る</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">サービス内容・ターゲット・強みをChatGPTに伝えて、LP全体の文章を出してもらう。「完璧じゃなくていい、まず素材を出す」感覚で。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px;">Claude AIチャットで精査・ブラッシュアップ</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">できた文章をClaude（ブラウザ版）に貼り付けて「LP構成として正しいか・刺さるコピーになっているか」を確認してもらう。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:#1A1A1A;border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px;">Claude Codeでコーディング</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">完成した文章をCCに渡して「HTMLでLPにして」と指示する。文章が決まっていれば、CCへの指示が1回で済む。</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+        <div style="font-size:12px;font-weight:500;color:var(--black);margin-bottom:8px;">役割分担のイメージ</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="text-align:center;padding:8px;background:#fff;border-radius:8px;border:1px solid var(--border);">
+            <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:4px;">ChatGPT</div>
+            <div style="font-size:11px;font-weight:500;margin-bottom:2px;">大量に出す</div>
+            <div style="font-size:10px;color:var(--gray-mid);">素材・叩き台</div>
+          </div>
+          <div style="text-align:center;padding:8px;background:#fff;border-radius:8px;border:1px solid var(--border);">
+            <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:4px;">Claude チャット</div>
+            <div style="font-size:11px;font-weight:500;margin-bottom:2px;">精査・洗練</div>
+            <div style="font-size:10px;color:var(--gray-mid);">コピー改善</div>
+          </div>
+          <div style="text-align:center;padding:8px;background:#fff;border-radius:8px;border:1px solid var(--border);">
+            <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:4px;">Claude Code</div>
+            <div style="font-size:11px;font-weight:500;margin-bottom:2px;">形にする</div>
+            <div style="font-size:10px;color:var(--gray-mid);">コーディング</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. このワークショップでやる流れ -->
     <div class="lp-flow-card">
       <div class="lp-flow-head">
         <div class="lp-flow-eyebrow">How to build</div>
@@ -5452,118 +5504,266 @@
   <section class="tab-content" id="tab-worksheet">
     <div class="sec-eyebrow">内容を整理する</div>
     <div class="sec-title">LPに載せる情報を整理する</div>
-    <p class="sec-desc">チーム分けが済み次第、ここに各メンバー専用のワークシートをご用意します。今回は新しい仕組みでお届けする予定です。</p>
+    <p class="sec-desc">ここを埋めてから当日に臨むほど、Claudeへの指示が1回で決まります。灰色の文字は記入例です。あなたのサービスに合う内容を書いてください。</p>
 
-    <!-- プレースホルダーカード -->
-    <div class="card" style="border:2px dashed var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));text-align:center;padding:48px 32px;">
-      <div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:var(--grad-soft);margin-bottom:20px;">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C96A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-          <line x1="9" y1="10" x2="15" y2="10"/>
-          <line x1="9" y1="14" x2="13" y2="14"/>
-        </svg>
+    <!-- 使い方メモ -->
+    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:linear-gradient(135deg,#FAF5EC,#F5EFE4);border:1px solid var(--orange-border);border-radius:10px;margin-bottom:28px;">
+      <div style="width:20px;height:20px;border-radius:50%;background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">!</div>
+      <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">入力した内容は、このページを閉じると消えます。書き終わったら<strong style="color:var(--black);">下のボタンでコピー</strong>して、Claude CodeまたはChatGPTに貼り付けてください。スプレッドシートやメモアプリに控えておくのもおすすめです。</div>
+    </div>
+
+    <!-- ━━━ SECTION 1: 基本情報 ━━━ -->
+    <div style="display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">1</div>
+      <div style="width:1px;height:16px;background:#444;"></div>
+      <div style="font-size:14px;font-weight:600;color:#fff;">基本情報</div>
+      <div style="font-size:11px;color:#888;margin-left:2px;">— LP全体の土台になる情報</div>
+    </div>
+
+    <div class="card">
+      <div class="ws-group">
+        <label class="ws-label">（a）お名前 <span class="ws-req">必須</span></label>
+        <div class="ws-hint">LP上で表示する名前・ニックネーム</div>
+        <input type="text" class="ws-input" placeholder="例：山田さくら / さくら先生">
       </div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">Coming Soon</div>
-      <div style="font-size:18px;font-weight:600;color:var(--black);line-height:1.7;margin-bottom:14px;">チーム分けが済んだら<br>こちらに準備します</div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:2;max-width:520px;margin:0 auto 22px;">
-        今回はワークシートを新しい形でお届けします。<br>
-        チーム分けが完了次第、<strong style="color:var(--black);">専用のスプレッドシートを共有</strong>させていただきます。
-      </p>
-      <div style="display:inline-block;padding:14px 28px;background:var(--beige);border-radius:24px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
-        準備が整い次第、別途ご連絡します
+      <div class="ws-group">
+        <label class="ws-label">（b）インスタグラムURL <span class="ws-opt">任意</span></label>
+        <div class="ws-hint">LP下部にSNSリンクを入れる場合</div>
+        <input type="text" class="ws-input" placeholder="例：https://www.instagram.com/sakura_design">
+      </div>
+      <div class="ws-group">
+        <label class="ws-label">（c）ターゲット <span class="ws-req">必須</span></label>
+        <div class="ws-hint">「どんな人に届けたいか」を具体的に。1人に絞るほどLPが刺さります</div>
+        <textarea class="ws-textarea" rows="3" placeholder="例：30代〜40代の女性で、ハンドメイドが趣味だが副業にしたいと思っている方。パソコンが少し苦手で、SNSは毎日見ている。"></textarea>
+      </div>
+      <div class="ws-group">
+        <label class="ws-label">（d）サービス名・内容 <span class="ws-req">必須</span></label>
+        <div class="ws-hint">何をするサービスか、一言でわかるように</div>
+        <input type="text" class="ws-input" placeholder="例：ハンドメイド作家のためのInstagram集客3ヶ月サポートプログラム">
+        <textarea class="ws-textarea" rows="4" style="margin-top:8px;" placeholder="具体的な内容（箇条書きでもOK）&#10;例：&#10;・月2回のオンライン個別セッション（60分）&#10;・LINE無制限サポート&#10;・Instagramフィード添削&#10;・プロフィール改善&ハイライト設計"></textarea>
+      </div>
+      <div class="ws-group">
+        <label class="ws-label">（e）価格 <span class="ws-req">必須</span></label>
+        <div class="ws-hint">税込み表記・分割対応の有無も書いておくと安心</div>
+        <input type="text" class="ws-input" placeholder="例：¥88,000（税込）／ 分割払い：¥30,000×3回">
+      </div>
+      <div class="ws-group">
+        <label class="ws-label">（f）申込みリンク（遷移先URL） <span class="ws-req">必須</span></label>
+        <div class="ws-hint">MOSHのURL・LINEのリンク・お問い合わせフォームなど</div>
+        <input type="text" class="ws-input" placeholder="例：https://mosh.jp/services/xxxxx">
       </div>
     </div>
+
+    <!-- ━━━ SECTION 2: 導入・ベネフィット ━━━ -->
+    <div style="display:flex;align-items:center;gap:12px;margin:28px 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">2</div>
+      <div style="width:1px;height:16px;background:#444;"></div>
+      <div style="font-size:14px;font-weight:600;color:#fff;">導入・ベネフィット</div>
+      <div style="font-size:11px;color:#888;margin-left:2px;">— 読んだ人が「私のことだ」と感じる部分</div>
+    </div>
+
+    <div class="card">
+      <div class="ws-group">
+        <label class="ws-label">（a）「こんなお悩みありませんか？」3〜5個 <span class="ws-req">必須</span></label>
+        <div class="ws-hint">ターゲットが「そうそう！」と頷くリアルな言葉で。「〜できない」「〜が不安」「〜に悩んでいる」のような形で書くと刺さりやすい</div>
+        <textarea class="ws-textarea" rows="7" placeholder="例：&#10;・頑張って作品を作っても、なかなかフォロワーが増えない&#10;・Instagramを毎日投稿しているのに、問い合わせが来ない&#10;・同じようなハンドメイド作家がたくさんいて、どう差別化したらいいかわからない&#10;・値下げしないと売れない気がして、適正価格で売る自信がない&#10;・副業収入を月5万円にしたいが、どこから手をつければいいか迷っている"></textarea>
+      </div>
+      <div class="ws-group">
+        <label class="ws-label">（b）このサービスを受けると、どんな未来が待っているか？ 3〜5個 <span class="ws-req">必須</span></label>
+        <div class="ws-hint">具体的な数字や変化を入れると伝わりやすい。「〜できるようになる」「〜が手に入る」の形で</div>
+        <textarea class="ws-textarea" rows="7" placeholder="例：&#10;・フォロワーが増えなくても「この人から買いたい」と思ってもらえるプロフィールが完成する&#10;・投稿のたびに問い合わせが来る仕組みができる&#10;・値段交渉されずに、定価で買ってもらえるようになる&#10;・月5万円の副収入が3ヶ月で現実に近づく&#10;・「次は何を作ろう」ではなく「次は誰に届けよう」と考えられるようになる"></textarea>
+      </div>
+    </div>
+
+    <!-- ━━━ SECTION 3: 詳細・信頼性 ━━━ -->
+    <div style="display:flex;align-items:center;gap:12px;margin:28px 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">3</div>
+      <div style="width:1px;height:16px;background:#444;"></div>
+      <div style="font-size:14px;font-weight:600;color:#fff;">詳細・信頼性</div>
+      <div style="font-size:11px;color:#888;margin-left:2px;">— 「本当に大丈夫？」の不安を取り除く部分</div>
+    </div>
+
+    <div class="card">
+      <div class="ws-group">
+        <label class="ws-label">（a）サービスの具体的な内容・カリキュラム <span class="ws-req">必須</span></label>
+        <div class="ws-hint">「何がどう含まれているか」を箇条書きで。サービスの種類によってはタイムテーブルに書いてもOK</div>
+        <textarea class="ws-textarea" rows="6" placeholder="例：&#10;【含まれるもの】&#10;・初回ヒアリングセッション 90分（現状分析＆3ヶ月の設計）&#10;・月2回の個別セッション 60分×6回&#10;・LINE無制限サポート（平日10〜18時対応）&#10;・Instagram投稿添削（月4枚まで）&#10;・プロフィール改善提案書（PDF）"></textarea>
+      </div>
+
+      <div class="ws-divider"></div>
+
+      <div class="ws-group">
+        <label class="ws-label">（b）受講生・お客様の声 <span class="ws-opt">任意・あれば強力</span></label>
+        <div class="ws-hint">名前・肩書き・コメントの3点セットが理想。実名・顔写真があるほど信頼度が上がる</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:var(--beige);border-radius:10px;padding:14px 16px;">
+            <div style="font-size:11px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:8px;letter-spacing:0.1em;">VOICE 1</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <input type="text" class="ws-input" placeholder="お名前・肩書き（例：山本あやか / ハンドメイド作家）">
+              <textarea class="ws-textarea" rows="3" placeholder="コメント（例：3ヶ月で月収5万円を達成しました。何をすればいいかわからなかった私でも、ステップを踏めば結果が出るんだと実感しています。）"></textarea>
+            </div>
+          </div>
+          <div style="background:var(--beige);border-radius:10px;padding:14px 16px;">
+            <div style="font-size:11px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:8px;letter-spacing:0.1em;">VOICE 2</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <input type="text" class="ws-input" placeholder="お名前・肩書き">
+              <textarea class="ws-textarea" rows="3" placeholder="コメント"></textarea>
+            </div>
+          </div>
+          <div style="background:var(--beige);border-radius:10px;padding:14px 16px;">
+            <div style="font-size:11px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:8px;letter-spacing:0.1em;">VOICE 3</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <input type="text" class="ws-input" placeholder="お名前・肩書き">
+              <textarea class="ws-textarea" rows="3" placeholder="コメント"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ws-divider"></div>
+
+      <div class="ws-group">
+        <label class="ws-label">（c）よくある質問（FAQ） <span class="ws-opt">任意・申込み直前の不安解消に効果大</span></label>
+        <div class="ws-hint">「料金は？」「初心者でも大丈夫？」「どんな人向け？」「返金は？」などが典型。3〜5個あると安心</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
+              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q. 例：PCが苦手でも参加できますか？">
+            </div>
+            <div style="padding:10px 14px;">
+              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A. 例：はい、大丈夫です。ゼロからわかりやすく説明しますので、パソコンが苦手な方でも安心してご参加いただけます。"></textarea>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
+              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q. 例：分割払いはできますか？">
+            </div>
+            <div style="padding:10px 14px;">
+              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A. 例：はい、3回分割払い（手数料なし）に対応しています。申込み時にご選択いただけます。"></textarea>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
+              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q.">
+            </div>
+            <div style="padding:10px 14px;">
+              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A."></textarea>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
+              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q.">
+            </div>
+            <div style="padding:10px 14px;">
+              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A."></textarea>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
+              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q.">
+            </div>
+            <div style="padding:10px 14px;">
+              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ws-divider"></div>
+
+      <div class="ws-group">
+        <label class="ws-label">（d）タイムテーブル・スケジュール <span class="ws-opt">任意・単発講座・セミナー系に特に重要</span></label>
+        <div class="ws-hint">「当日何をするの？」がわかると申込みへのハードルが下がる</div>
+        <textarea class="ws-textarea" rows="8" placeholder="例（セミナー形式の場合）：&#10;13:00　開場・受付&#10;13:30　スタート・自己紹介&#10;14:00　第1部：〇〇の基礎知識（60分）&#10;15:00　休憩&#10;15:15　第2部：ワーク・実践（60分）&#10;16:15　質疑応答&#10;16:30　終了&#10;&#10;例（継続サポート型の場合）：&#10;1ヶ月目：現状分析＆戦略設計&#10;2ヶ月目：コンテンツ制作＆投稿開始&#10;3ヶ月目：改善＆仕組み化"></textarea>
+      </div>
+
+      <div class="ws-divider"></div>
+
+      <div class="ws-group">
+        <label class="ws-label">（e）講師の自己紹介・経歴 <span class="ws-req">必須</span></label>
+        <div class="ws-hint">「なぜあなたが教えられるのか」「どんな人なのか」を伝える。資格・実績より"共感できるストーリー"が効く</div>
+        <textarea class="ws-textarea" rows="6" placeholder="例：&#10;はじめまして、山田さくらです。&#10;元会社員で、産後に趣味のハンドメイドを副業にしようとしたものの、最初の1年は全く売れずに悩んでいました。&#10;試行錯誤の末、Instagramの発信を見直したことで月収10万円を達成。その経験をもとに、同じように悩む作家さんのサポートをしています。&#10;現在は受講生50名以上。副業月収5万円以上を達成した方が続出しています。"></textarea>
+      </div>
+    </div>
+
+    <!-- ━━━ SECTION 4: クロージング ━━━ -->
+    <div style="display:flex;align-items:center;gap:12px;margin:28px 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">4</div>
+      <div style="width:1px;height:16px;background:#444;"></div>
+      <div style="font-size:14px;font-weight:600;color:#fff;">クロージング</div>
+      <div style="font-size:11px;color:#888;margin-left:2px;">— 最後の背中を押す部分</div>
+    </div>
+
+    <div class="card">
+      <div class="ws-group">
+        <label class="ws-label">（a）最後に背中を押す文言 <span class="ws-opt">任意・あると申込み率UP</span></label>
+        <div class="ws-hint">残り枠数、締め切り、「迷っているあなたへ」など。嘘はNG、実際の状況を書く</div>
+        <textarea class="ws-textarea" rows="4" placeholder="例：&#10;・残り2席です（2025年5月10日時点）&#10;・5月末までのお申込みで、初回セッションを90分→120分に延長します&#10;・「もう少し考えてから」と思っているなら、まず無料相談だけでも大丈夫です"></textarea>
+      </div>
+      <div class="ws-group">
+        <label class="ws-label">（b）登録プレゼント・特典 <span class="ws-opt">任意</span></label>
+        <div class="ws-hint">LINE登録やメルマガ登録で何かプレゼントがある場合に記入。特典名と内容を具体的に</div>
+        <textarea class="ws-textarea" rows="4" placeholder="例：&#10;LINE登録特典：「Instagramプロフィール改善チェックリスト20項目」PDF無料プレゼント&#10;&#10;早期申込み特典：3ヶ月分の投稿テーマカレンダー（Canvaテンプレート付き）をプレゼント"></textarea>
+      </div>
+    </div>
+
+    <!-- ━━━ コピーボタン ━━━ -->
+    <div style="margin-top:32px;padding:24px 20px;background:linear-gradient(135deg,#FAF5EC,#F5EFE4);border:1.5px solid var(--orange-border);border-radius:14px;text-align:center;">
+      <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:6px;">記入が終わったら</div>
+      <p style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin:0 0 16px;">下のボタンで内容をまとめてコピーし、ChatGPT または Claude に貼り付けてください。<br>「このLP叩き台を作って」と一言添えるだけで、文章の素材が出てきます。</p>
+      <button onclick="copyWorksheet()" style="padding:12px 32px;background:var(--orange);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;">入力内容をまとめてコピー</button>
+      <div id="ws-copy-msg" style="margin-top:10px;font-size:12px;color:var(--orange);min-height:18px;"></div>
+    </div>
+
+    <style>
+      .ws-group { margin-bottom:20px; }
+      .ws-group:last-child { margin-bottom:0; }
+      .ws-label { display:block;font-size:13px;font-weight:600;color:var(--black);margin-bottom:5px;line-height:1.6; }
+      .ws-req { display:inline-block;font-size:10px;font-weight:600;font-family:'DM Sans',sans-serif;color:#fff;background:var(--orange);padding:1px 7px;border-radius:3px;margin-left:6px;vertical-align:middle;letter-spacing:0.05em; }
+      .ws-opt { display:inline-block;font-size:10px;font-weight:500;font-family:'DM Sans',sans-serif;color:var(--gray-mid);background:var(--beige);border:1px solid var(--border);padding:1px 7px;border-radius:3px;margin-left:6px;vertical-align:middle; }
+      .ws-hint { font-size:11px;color:var(--gray-mid);line-height:1.75;margin-bottom:8px; }
+      .ws-input { width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:'Zen Maru Gothic',sans-serif;color:var(--black);background:#fff;box-sizing:border-box;transition:border-color 0.15s; }
+      .ws-input:focus { outline:none;border-color:var(--orange); }
+      .ws-textarea { width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:'Zen Maru Gothic',sans-serif;color:var(--black);background:#fff;box-sizing:border-box;resize:vertical;line-height:1.8;transition:border-color 0.15s; }
+      .ws-textarea:focus { outline:none;border-color:var(--orange); }
+      .ws-divider { height:1px;background:var(--border);margin:24px 0; }
+    </style>
+
+    <script>
+    function copyWorksheet() {
+      const labels = document.querySelectorAll('#tab-worksheet .ws-label');
+      let result = '【LPに載せる情報】\n\n';
+      document.querySelectorAll('#tab-worksheet .ws-group').forEach(group => {
+        const label = group.querySelector('.ws-label');
+        if (!label) return;
+        const labelText = label.textContent.replace(/必須|任意.*$/g, '').trim();
+        const inputs = group.querySelectorAll('input[type=text], textarea');
+        const values = [];
+        inputs.forEach(el => { if (el.value.trim()) values.push(el.value.trim()); });
+        if (values.length) {
+          result += labelText + '\n';
+          values.forEach(v => result += v + '\n');
+          result += '\n';
+        }
+      });
+      if (result.trim() === '【LPに載せる情報】') {
+        document.getElementById('ws-copy-msg').textContent = 'まだ何も入力されていません。';
+        return;
+      }
+      navigator.clipboard.writeText(result).then(() => {
+        const msg = document.getElementById('ws-copy-msg');
+        msg.textContent = 'コピーしました！ChatGPT または Claude に貼り付けてください。';
+        setTimeout(() => { msg.textContent = ''; }, 4000);
+      });
+    }
+    </script>
   </section>
 
   <!-- ═══ TAB 2: デザインガイド ═══ -->
   <section class="tab-content" id="tab-design">
-    <div class="sec-eyebrow">Step 04 ／ デザインを学ぶ</div>
-    <div class="sec-title">デザインを理解して、LPを作る</div>
-    <p class="sec-desc">デザインとは「見た目を整えること」ではありません。まず伝えたいことを整理して、その上で見た目を作ります。</p>
-
-    <!-- ▼ 学習フロー -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:0 0 32px;padding:18px;background:linear-gradient(135deg,#FAF5EC 0%,#F5EFE4 100%);border:1px solid var(--border);border-radius:14px;">
-      <div style="text-align:center;padding:8px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:6px;">PART 1</div>
-        <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">基礎を学ぶ</div>
-        <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">デザインの考え方・<br>カラー・フォント・構成</div>
-      </div>
-      <div style="text-align:center;padding:8px;border-left:1px solid var(--border);border-right:1px solid var(--border);">
-        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:6px;">PART 2</div>
-        <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">真似て応用する</div>
-        <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">参考サイト・<br>モデリングの仕方</div>
-      </div>
-      <div style="text-align:center;padding:8px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:6px;">PART 3</div>
-        <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;">AIに指示する</div>
-        <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">10スタイル別<br>プロンプト集</div>
-      </div>
-    </div>
-
-    <!-- ▼ NEW CARD 0: デザインとは -->
-    <div class="card">
-      <div class="card-head"><div class="card-num">0</div><div class="card-title">デザインとは何か？</div></div>
-
-      <!-- 定義 -->
-      <div style="background:var(--black);border-radius:12px;padding:20px 24px;margin-bottom:20px;">
-        <div style="font-size:11px;font-family:'DM Sans',sans-serif;letter-spacing:0.15em;color:var(--orange);margin-bottom:8px;">DESIGN =</div>
-        <div style="font-size:18px;font-weight:600;color:#fff;line-height:1.6;">情報を整理して、<br>わかりやすく伝えること</div>
-      </div>
-
-      <!-- 2カラム：情報整理が先 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
-        <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:16px 18px;">
-          <div style="font-size:10px;font-family:'DM Sans',sans-serif;letter-spacing:0.12em;color:var(--gray-lt);margin-bottom:8px;">STEP 1（先にやる）</div>
-          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:6px;">情報を出して整理する</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">何を伝えたいか・誰に伝えたいか・何をしてほしいか。これが決まってから、デザインが始まる。</div>
-        </div>
-        <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:16px 18px;">
-          <div style="font-size:10px;font-family:'DM Sans',sans-serif;letter-spacing:0.12em;color:var(--gray-lt);margin-bottom:8px;">STEP 2（後でやる）</div>
-          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:6px;">見た目を整えていく</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">カラー・フォント・レイアウト。情報の優先順位が決まっていれば、自然と整ってくる。</div>
-        </div>
-      </div>
-
-      <!-- なぜデザインが重要か -->
-      <div style="border-left:3px solid var(--orange);padding-left:16px;margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:6px;">人間は視覚情報が優位</div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">人は情報の約83%を視覚から得ています。特に女性は感覚的・視覚的に「好き・嫌い」を判断する傾向が強い。<br>だから「きれいなデザイン」が求められる理由があるんです。</div>
-      </div>
-
-      <!-- ターゲットが一目でわかる -->
-      <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:20px;">
-        <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:10px;">ターゲットが一目でわかるデザインにする</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">ファーストビューを見た瞬間に「これ、私のこと？」と思わせる</div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">カラー・フォント・写真の雰囲気でターゲットのセンスに合わせる</div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:6px;"></div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">「好きな色」より「ターゲットが好きな色」で選ぶ</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div style="background:#fff;border:2px solid var(--orange);border-radius:12px;padding:18px 20px;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:0.1em;">CTA</div>
-          <div style="font-size:13px;font-weight:600;color:var(--black);">Call To Action ＝ 行動を促す一言</div>
-        </div>
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">このLPを読んだ人に<strong style="color:var(--black);">最終的に何をしてほしいか</strong>？これがCTAです。<br>CTAが決まれば、LP全体の内容と構成が自然と決まります。</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-          <div style="text-align:center;padding:8px 4px;background:var(--beige);border-radius:8px;font-size:11px;color:var(--gray-mid);">申し込む</div>
-          <div style="text-align:center;padding:8px 4px;background:var(--beige);border-radius:8px;font-size:11px;color:var(--gray-mid);">無料相談する</div>
-          <div style="text-align:center;padding:8px 4px;background:var(--beige);border-radius:8px;font-size:11px;color:var(--gray-mid);">LINEに登録する</div>
-        </div>
-        <div style="margin-top:10px;font-size:11px;color:var(--orange);">↑ LPを作る前に、どれにするか決めておきましょう</div>
-      </div>
-    </div>
+    <div class="sec-eyebrow">Step 04 ／ デザインを整える</div>
+    <div class="sec-title">ポン出しを垢抜けに変える</div>
+    <p class="sec-desc">AIが出したデザインはそのままでは使えません。カラー・フォント・余白の3つを押さえるだけで、一気に垢抜けます。</p>
 
     <div class="card">
       <div class="card-head"><div class="card-num">1</div><div class="card-title">カラーの考え方</div></div>
@@ -5713,116 +5913,57 @@
       </div>
     </div>
 
+    <!-- ▼ Before/After（BLOCK B） -->
     <div class="card">
-      <div class="card-head"><div class="card-num">3</div><div class="card-title">LPの黄金構成</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:20px;">LPには「読んでもらいやすい順番」があります。この流れに沿って作ると、自然と申込につながりやすくなります。</p>
+      <div class="card-head"><div class="card-num">BA</div><div class="card-title">ポン出しデザインをこう変える</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:20px;">AIがポン出ししたデザインは「素材」です。3点直すだけで、一気に垢抜けます。</p>
 
-      <!-- LP構成サンプル -->
-      <div style="display:flex;gap:16px;align-items:flex-start;">
-        <!-- スマホモック -->
-        <div style="flex-shrink:0;width:120px;">
-          <div style="border:2px solid var(--black);border-radius:16px;overflow:hidden;background:#fff;position:relative;">
-            <div style="height:8px;background:var(--black);border-radius:0;"></div>
-            <!-- FV -->
-            <div style="background:linear-gradient(160deg,#1A1A1A,#3a2a1a);padding:10px 8px 12px;text-align:center;">
-              <div style="font-size:7px;color:#C96A3A;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;margin-bottom:3px;">FIRST VIEW</div>
-              <div style="font-size:8px;color:#fff;font-weight:500;line-height:1.4;margin-bottom:6px;">キャッチコピーが<br>ここに入る</div>
-              <div style="background:#C96A3A;border-radius:4px;padding:4px 8px;font-size:7px;color:#fff;display:inline-block;">申し込む →</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+        <!-- BEFORE -->
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.12em;color:#999;margin-bottom:8px;">BEFORE — AIそのまま</div>
+          <div style="border:1px solid #e0d0c0;border-radius:12px;overflow:hidden;background:#fff;">
+            <div style="background:linear-gradient(135deg,#FF6B6B,#FFD700,#7B2FBE,#00CFFD);padding:14px;text-align:center;">
+              <div style="font-size:8px;color:#fff;font-weight:700;font-family:serif;line-height:1.3;margin-bottom:6px;">【期間限定】あなたのビジネスを3倍成長させる秘密の方法を大公開！！！</div>
+              <div style="background:#FF0000;border-radius:3px;padding:3px 8px;font-size:7px;color:#fff;font-weight:700;display:inline-block;">今すぐ申し込む！無料！</div>
             </div>
-            <!-- お悩み -->
-            <div style="background:#FAF8F5;padding:8px;border-bottom:1px solid #E4DDD4;">
-              <div style="font-size:6px;color:#C96A3A;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;margin-bottom:4px;">PROBLEM</div>
-              <div style="display:flex;flex-direction:column;gap:3px;">
-                <div style="font-size:6px;color:#7A7068;padding:3px 5px;background:#F5EFE4;border-radius:3px;line-height:1.3;">こんなお悩みありませんか？</div>
-                <div style="font-size:6px;color:#7A7068;padding:3px 5px;background:#F5EFE4;border-radius:3px;line-height:1.3;">〇〇で悩んでいる…</div>
-                <div style="font-size:6px;color:#7A7068;padding:3px 5px;background:#F5EFE4;border-radius:3px;line-height:1.3;">なかなか解決しない…</div>
-              </div>
+            <div style="padding:10px;background:#fffbe0;">
+              <div style="font-size:6px;color:#333;line-height:1.8;">あなたは今、こんな悩みを抱えていませんか？毎日一生懸命働いているのに結果が出ない、時間もお金も不足している、このままでいいのか不安で夜も眠れない…そんなあなたに朗報です！私のプログラムなら解決できます！なぜなら…</div>
             </div>
-            <!-- 解決策 -->
-            <div style="background:#fff;padding:8px;border-bottom:1px solid #E4DDD4;">
-              <div style="font-size:6px;color:#C96A3A;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;margin-bottom:4px;">SOLUTION</div>
-              <div style="font-size:6px;color:#1A1A1A;font-weight:500;line-height:1.4;margin-bottom:3px;">こう解決できます</div>
-              <div style="display:flex;flex-direction:column;gap:2px;">
-                <div style="font-size:6px;color:#7A7068;">✓ 得られること①</div>
-                <div style="font-size:6px;color:#7A7068;">✓ 得られること②</div>
-                <div style="font-size:6px;color:#7A7068;">✓ 得られること③</div>
-              </div>
-            </div>
-            <!-- 講師 -->
-            <div style="background:#FAF8F5;padding:8px;border-bottom:1px solid #E4DDD4;">
-              <div style="font-size:6px;color:#C96A3A;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;margin-bottom:4px;">ABOUT ME</div>
-              <div style="display:flex;gap:5px;align-items:center;">
-                <div style="width:20px;height:20px;border-radius:50%;background:#EDE4D6;flex-shrink:0;"></div>
-                <div>
-                  <div style="font-size:6px;font-weight:500;color:#1A1A1A;">名前・肩書き</div>
-                  <div style="font-size:5px;color:#9A9088;line-height:1.3;">自己紹介文が<br>ここに入ります</div>
-                </div>
-              </div>
-            </div>
-            <!-- FAQ -->
-            <div style="background:#fff;padding:8px;border-bottom:1px solid #E4DDD4;">
-              <div style="font-size:6px;color:#C96A3A;font-family:'DM Sans',sans-serif;letter-spacing:0.08em;margin-bottom:4px;">FAQ</div>
-              <div style="display:flex;flex-direction:column;gap:2px;">
-                <div style="font-size:6px;color:#7A7068;padding:2px 4px;border:1px solid #E4DDD4;border-radius:2px;">Q. よくある質問①</div>
-                <div style="font-size:6px;color:#7A7068;padding:2px 4px;border:1px solid #E4DDD4;border-radius:2px;">Q. よくある質問②</div>
-              </div>
-            </div>
-            <!-- CTA -->
-            <div style="background:#1A1A1A;padding:10px 8px;text-align:center;">
-              <div style="font-size:6px;color:#9A9088;margin-bottom:4px;">最後にもう一度</div>
-              <div style="background:#C96A3A;border-radius:4px;padding:5px 8px;font-size:7px;color:#fff;font-weight:500;">今すぐ申し込む →</div>
-            </div>
-            <div style="height:8px;background:var(--black);border-radius:0;"></div>
+          </div>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#999;"><span style="color:#c0392b;font-weight:600;">×</span> 色が多すぎる</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#999;"><span style="color:#c0392b;font-weight:600;">×</span> 文章が長くて読む気がしない</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#999;"><span style="color:#c0392b;font-weight:600;">×</span> 余白がなく詰め込みすぎ</div>
           </div>
         </div>
 
-        <!-- 右側の説明 -->
-        <div style="flex:1;display:flex;flex-direction:column;gap:8px;padding-top:8px;">
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:20px;height:20px;border-radius:50%;background:#1A1A1A;color:#fff;font-size:9px;font-family:'DM Sans',sans-serif;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
-            <div>
-              <div style="font-size:12px;font-weight:500;margin-bottom:2px;">ファーストビュー（FV）</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.5;">3秒で「自分に関係ある」と思わせる。キャッチコピー＋申込ボタンを最初に置く。</div>
+        <!-- AFTER -->
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.12em;color:var(--orange);margin-bottom:8px;">AFTER — 3点直した</div>
+          <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;">
+            <div style="background:#1A1A1A;padding:14px;text-align:center;">
+              <div style="font-size:6px;color:#C96A3A;font-family:'DM Sans',sans-serif;letter-spacing:0.1em;margin-bottom:4px;">YOUR SERVICE</div>
+              <div style="font-size:9px;color:#fff;font-weight:500;line-height:1.5;margin-bottom:8px;">3ヶ月で<br>ビジネスを立て直す</div>
+              <div style="background:#C96A3A;border-radius:3px;padding:3px 8px;font-size:7px;color:#fff;display:inline-block;">無料相談を予約する</div>
+            </div>
+            <div style="padding:10px;background:#FAF8F5;">
+              <div style="font-size:6px;color:#7A7068;margin-bottom:4px;">こんなお悩み、ありませんか？</div>
+              <div style="display:flex;flex-direction:column;gap:3px;">
+                <div style="font-size:6px;color:#1A1A1A;padding:3px 5px;background:#fff;border-radius:3px;border-left:2px solid #C96A3A;">結果が出なくて焦っている</div>
+                <div style="font-size:6px;color:#1A1A1A;padding:3px 5px;background:#fff;border-radius:3px;border-left:2px solid #C96A3A;">何から手をつければいいかわからない</div>
+              </div>
             </div>
           </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:20px;height:20px;border-radius:50%;background:#C96A3A;color:#fff;font-size:9px;font-family:'DM Sans',sans-serif;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
-            <div>
-              <div style="font-size:12px;font-weight:500;margin-bottom:2px;">お悩み訴求</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.5;">「わかってもらえた」と感じさせる。読者の言葉で悩みを言語化する。</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:20px;height:20px;border-radius:50%;background:#C96A3A;color:#fff;font-size:9px;font-family:'DM Sans',sans-serif;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
-            <div>
-              <div style="font-size:12px;font-weight:500;margin-bottom:2px;">解決策・得られること</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.5;">「これで解決できる」と確信させる。具体的なベネフィット（変化）を伝える。</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:20px;height:20px;border-radius:50%;background:#C96A3A;color:#fff;font-size:9px;font-family:'DM Sans',sans-serif;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
-            <div>
-              <div style="font-size:12px;font-weight:500;margin-bottom:2px;">講師・私について</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.5;">「この人に頼みたい」と思わせる。実績より"共感できるストーリー"が効く。</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:20px;height:20px;border-radius:50%;background:#C96A3A;color:#fff;font-size:9px;font-family:'DM Sans',sans-serif;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>
-            <div>
-              <div style="font-size:12px;font-weight:500;margin-bottom:2px;">よくある質問（FAQ）</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.5;">申込直前の「迷い」を取り除く。料金・形式・サポートなど不安になりそうな点を先に答える。</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <div style="width:20px;height:20px;border-radius:50%;background:#1A1A1A;color:#fff;font-size:9px;font-family:'DM Sans',sans-serif;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">6</div>
-            <div>
-              <div style="font-size:12px;font-weight:500;margin-bottom:2px;">最後のCTAボタン</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.5;">読んだ人の背中を押す最後のチャンス。ボタンのコピーは「今すぐ申し込む」より具体的に。</div>
-            </div>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;font-weight:600;">✓</span> 色を2色に絞った</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;font-weight:600;">✓</span> 文章を短く端的に</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;font-weight:600;">✓</span> 余白を確保した</div>
           </div>
         </div>
       </div>
-      <div class="callout" style="margin-top:20px;">この順番がすべてではありませんが、まずはこの流れで作るのがいちばん再現性が高いです。</div>
+
+      <div class="callout">デザインの「やり直し」は当然の工程です。ポン出しを育てていく感覚で取り組みましょう。</div>
     </div>
 
     <div class="card">
@@ -6018,7 +6159,66 @@
   <section class="tab-content" id="tab-prompt">
     <div class="sec-eyebrow">Step 05 ／ AIに指示する</div>
     <div class="sec-title">Claude Codeへの指示テンプレ</div>
-    <p class="sec-desc">穴埋めしてコピペするだけでLPが完成します。当日はこのテンプレを使います。</p>
+    <p class="sec-desc">いきなりClaudeに「LPを作って」と頼む前に、まずAIとの賢い役割分担を確認しましょう。</p>
+
+    <!-- ▼ トークン節約ワークフロー -->
+    <div class="card" style="border:1.5px solid #4A90D9;background:linear-gradient(135deg,#fff 60%,rgba(74,144,217,0.04));">
+      <div class="card-head">
+        <div class="card-num" style="background:#2563EB;color:#fff;border:none;font-size:10px;font-family:'DM Sans',sans-serif;letter-spacing:0.05em;">TIP</div>
+        <div class="card-title">どのAIをどう使う？ — トークンを賢く使うワークフロー</div>
+      </div>
+
+      <div style="padding:14px 16px;background:rgba(74,144,217,0.06);border:1px solid rgba(74,144,217,0.2);border-radius:10px;margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:600;color:#1d4ed8;margin-bottom:6px;">知っておきたいこと</div>
+        <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin:0;">ClaudeのチャットとProject（Artifacts）は<strong style="color:var(--black);">トークンを共有しています。</strong>チャットで何度も壁打ちを繰り返すと、あっという間に上限に達してしまいます。</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:#F59E0B;border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px;">まずGemini / ChatGPTで「壁打ち」する</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">ターゲット・悩み・ベネフィット・構成など、LPに入れる内容を普段使いのAIで出し切る。GeminiとChatGPTは無料枠が広いので気兼ねなく使える。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:#F59E0B;border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px;">内容が固まったら Claude に投げる</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">「何を書くか」が決まった状態で1回だけClaudeに渡す。「整理済みの内容をHTMLのLPにして」と一言添えればOK。この1回でほぼ完成形が出てくる。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:36px;height:36px;background:#1A1A1A;border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:4px;">あとはClaude Codeで細かく調整</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">「色を変えて」「この文章を直して」など、具体的な修正は Claude Code に。テキスト量が少ない修正指示はトークンをほとんど消費しない。</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
+        <div style="text-align:center;padding:10px 8px;background:#fff;border-radius:8px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:#F59E0B;font-weight:600;margin-bottom:3px;">Gemini / ChatGPT</div>
+          <div style="font-size:11px;font-weight:500;margin-bottom:2px;">壁打ち・素材出し</div>
+          <div style="font-size:10px;color:var(--gray-mid);">無制限で使える</div>
+        </div>
+        <div style="text-align:center;padding:10px 8px;background:#fff;border-radius:8px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:#2563EB;font-weight:600;margin-bottom:3px;">Claude チャット</div>
+          <div style="font-size:11px;font-weight:500;margin-bottom:2px;">仕上げ・1回投げる</div>
+          <div style="font-size:10px;color:var(--gray-mid);">トークン節約で使う</div>
+        </div>
+        <div style="text-align:center;padding:10px 8px;background:#fff;border-radius:8px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:var(--orange);font-weight:600;margin-bottom:3px;">Claude Code</div>
+          <div style="font-size:11px;font-weight:500;margin-bottom:2px;">コーディング・修正</div>
+          <div style="font-size:10px;color:var(--gray-mid);">指示は短く具体的に</div>
+        </div>
+      </div>
+
+      <div style="padding:12px 16px;background:var(--beige);border-radius:8px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+        <strong style="color:var(--black);">ポイント：</strong>壁打ちに使ったAIへの指示文（プロンプト）も、そのままClaudeへのインプットとして使えます。「このやり取りを参考に、HTMLのLPを作って」と貼るだけでOKです。
+      </div>
+    </div>
 
     <!-- ▼ 役割設定プロンプト（2026/4/18ワークショップ振り返りで追加） -->
     <div class="card" style="border:1px solid var(--orange-border);background:var(--orange-dim);">
@@ -6328,6 +6528,272 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
           <div class="pattern-label">Mobile</div>
           <div class="pattern-text">スマートフォンで見たとき（幅480px以下）にも崩れないようにレスポンシブ対応してください。</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TAB: AIっぽいデザインの正体 ═══ -->
+  <section class="tab-content" id="tab-aiish-intro">
+    <div class="sec-eyebrow">AIっぽいデザインの正体</div>
+    <div class="sec-title">なぜAIのデザインは「それっぽく」見えるのか</div>
+    <p class="sec-desc">Claudeが作ったLPを見た瞬間、「あ、AIっぽいな」と感じることがあります。それには理由があります。正体を知れば、3つのポイントを直すだけで一気に垢抜けます。</p>
+
+    <!-- ━━━ (a) 3ステップ：AIポン出しの落とし穴 ━━━ -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">A</div><div class="card-title">AIポン出しの落とし穴 — 3ステップで体感する</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:20px;">「AIでLP作ってみた」からワークショップに来る方がほとんどです。その流れを振り返ってみましょう。</p>
+
+      <!-- Step 1 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:6px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--black);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">1</div>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:4px;">LP構成案をAIで作る</div>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">ChatGPTやClaudeに「LPを作って」と頼んで、セクションごとの文章を出力してもらう。ここまでは順調。</div>
+        </div>
+      </div>
+
+      <!-- Arrow -->
+      <div style="text-align:center;font-size:20px;color:var(--border);margin:4px 0 4px 42px;">↓</div>
+
+      <!-- Step 2 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:6px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--black);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">2</div>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:4px;">Claude Artifactsに叩き台をコピペする</div>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">出力された文章を「LP化して」とArtifactsに貼り付けると、そのままHTMLで見せてくれる。便利！と感動する。</div>
+        </div>
+      </div>
+
+      <!-- Arrow -->
+      <div style="text-align:center;font-size:20px;color:var(--border);margin:4px 0 4px 42px;">↓</div>
+
+      <!-- Step 3 -->
+      <div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">3</div>
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:600;color:var(--black);margin-bottom:4px;">出力結果を確認する</div>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">このとき、<strong style="color:var(--black);">ほぼ毎回同じようなデザインが出てきます</strong>。</div>
+        </div>
+      </div>
+
+      <!-- Before / After iframe comparison -->
+      <div style="margin-bottom:20px;">
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:start;">
+
+          <!-- Before -->
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:inline-flex;align-items:center;gap:8px;background:#F0E6DB;color:#8B6B4A;font-size:12px;font-weight:700;letter-spacing:0.08em;padding:6px 14px;border-radius:999px;align-self:flex-start;margin-bottom:10px;">
+              <span style="width:18px;height:18px;border-radius:50%;background:rgba(139,107,74,0.2);display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;">B</span>
+              Before ／ Claudeのポン出し叩き台
+            </div>
+            <div style="border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.12);border:1px solid #e0d0c0;background:#fff;height:400px;position:relative;">
+              <iframe src="./before-default-diet.html" loading="lazy" title="Before: Claudeデフォルトの叩き台LP" style="width:100%;height:100%;border:none;display:block;"></iframe>
+            </div>
+            <p style="font-size:11px;color:var(--gray-mid);margin-top:8px;line-height:1.7;padding:0 4px;">ざっくり頼んだだけで出てくる「いつものClaude」。<a href="./before-default-diet.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">別タブで開く &#8599;</a></p>
+          </div>
+
+          <!-- Arrow -->
+          <div style="display:flex;align-items:center;justify-content:center;padding-top:44px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+
+          <!-- After -->
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(120deg,var(--orange),#C96A3A);color:#fff;font-size:12px;font-weight:700;letter-spacing:0.08em;padding:6px 14px;border-radius:999px;align-self:flex-start;margin-bottom:10px;box-shadow:0 4px 12px rgba(201,106,58,0.3);">
+              <span style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.25);display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;">A</span>
+              After ／ ブラッシュアップ後
+            </div>
+            <div style="border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.12);border:1px solid var(--border);background:#fff;height:400px;position:relative;">
+              <iframe src="./after-template.html" loading="lazy" title="After: ブラッシュアップ後" style="width:100%;height:100%;border:none;display:block;"></iframe>
+            </div>
+            <p style="font-size:11px;color:var(--gray-mid);margin-top:8px;line-height:1.7;padding:0 4px;">同じ内容を指示を重ねて垢抜けさせたバージョン。<a href="./after-template.html" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">別タブで開く &#8599;</a></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3つのポイント -->
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--beige);border-radius:8px;border-left:3px solid #C9884A;">
+          <div style="font-size:16px;flex-shrink:0;">a</div>
+          <div style="font-size:13px;color:var(--black);line-height:1.7;">大抵の場合、<strong>ベージュ・ウォームトーン特有のデザイン</strong>が生成される。暖色＋角丸＋明朝体＋ゴールドアクセントの組み合わせ。</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--beige);border-radius:8px;border-left:3px solid #C9884A;">
+          <div style="font-size:16px;flex-shrink:0;">b</div>
+          <div style="font-size:13px;color:var(--black);line-height:1.7;">これは<strong>Claude Artifacts特有の癖</strong>。女性向けサービスを想定すると、このトーンに寄りやすい傾向がある。</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:#FFF0E8;border-radius:8px;border-left:3px solid var(--orange);">
+          <div style="font-size:16px;flex-shrink:0;">c</div>
+          <div style="font-size:13px;color:var(--black);line-height:1.7;"><strong>見る人が見れば一発でわかります。</strong>「あ、ArtifactsでそのままLP作ったな」と。特にデザインを学んでいる人や、同じ受講生同士では丸わかり。</div>
+        </div>
+      </div>
+
+      <div class="callout">このままでも「動くLP」にはなります。でも、<strong>「あなたらしさ」は0点</strong>。次のカードで、何が「AI臭さ」を作っているのか正体を見ていきましょう。垢抜けの実例は「ちょっとの加工で垢抜けるLP」のタブに揃えています。</div>
+    </div>
+
+    <!-- ━━━ (b) デザインが持つ意味 ━━━ -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">B</div><div class="card-title">デザインが持つ意味 — 見た目はメッセージ</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:18px;">「とりあえずきれいになればいい」と思っていませんか？ デザインはお客さんに対する<strong style="color:var(--black);">無言のメッセージ</strong>です。</p>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:var(--black);display:flex;align-items:center;justify-content:center;padding:14px 8px;text-align:center;">
+            <div style="font-size:11px;color:#fff;font-weight:500;line-height:1.5;">信頼感</div>
+          </div>
+          <div style="padding:14px 16px;background:#fff;">
+            <div style="font-size:13px;color:var(--black);font-weight:500;margin-bottom:4px;">「この人、ちゃんとしてそう」</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">情報の整理・余白・一貫したカラー使いが「プロらしさ」を伝えます。逆にごちゃついたデザインは、サービスの質まで低く見せてしまう。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:var(--orange);display:flex;align-items:center;justify-content:center;padding:14px 8px;text-align:center;">
+            <div style="font-size:11px;color:#fff;font-weight:500;line-height:1.5;">個性・<br>親しみやすさ</div>
+          </div>
+          <div style="padding:14px 16px;background:#fff;">
+            <div style="font-size:13px;color:var(--black);font-weight:500;margin-bottom:4px;">「なんか好きな雰囲気」</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">カラー・フォント・写真の選び方で「この人のセンスが好き」が伝わります。ターゲットが「自分向けだ」と感じる見た目が大事。</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:#2563EB;display:flex;align-items:center;justify-content:center;padding:14px 8px;text-align:center;">
+            <div style="font-size:11px;color:#fff;font-weight:500;line-height:1.5;">読みやすさ</div>
+          </div>
+          <div style="padding:14px 16px;background:#fff;">
+            <div style="font-size:13px;color:var(--black);font-weight:500;margin-bottom:4px;">「するする読める」</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">文字サイズ・行間・コントラストが整っていると、内容がスッと頭に入ります。読んでもらえないLPは、どんなに内容が良くても意味がない。</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:14px 16px;background:var(--beige);border-radius:8px;font-size:13px;color:var(--black);line-height:1.9;">
+        「AIっぽさ」が残るデザインは、<strong>信頼感・個性・読みやすさ</strong>のどれかが欠けていることが多い。次のカードで、その原因を具体的に見ていきます。
+      </div>
+    </div>
+
+    <!-- ━━━ (c) フォント・カラーが与える印象 ━━━ -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">C</div><div class="card-title">フォント・カラーが与える印象</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:18px;">AIはデフォルトで「無難なデザイン」を選びます。それがAIっぽさの正体。ターゲットに合わせたフォントとカラーを指定するだけで、一気に「あなたらしさ」が出ます。</p>
+
+      <!-- フォント早見表 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">Font — フォントの印象</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+            <div style="padding:14px;background:var(--beige-mid);display:flex;align-items:center;">
+              <div style="font-family:'Noto Serif JP',serif;font-size:15px;color:var(--black);">明朝体</div>
+            </div>
+            <div style="padding:12px 14px;background:#fff;">
+              <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px;">上品・知的・落ち着き</div>
+              <div style="font-size:11px;color:var(--gray-mid);">高単価・コーチング・士業系に◎</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+            <div style="padding:14px;background:var(--beige-mid);display:flex;align-items:center;">
+              <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:var(--black);">ゴシック体</div>
+            </div>
+            <div style="padding:12px 14px;background:#fff;">
+              <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px;">読みやすい・モダン・万能</div>
+              <div style="font-size:11px;color:var(--gray-mid);">迷ったらこれ。ほぼ全ジャンルに合う</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+            <div style="padding:14px;background:var(--beige-mid);display:flex;align-items:center;">
+              <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:15px;color:var(--black);">丸ゴシック</div>
+            </div>
+            <div style="padding:12px 14px;background:#fff;">
+              <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:2px;">親しみやすさ・やわらかさ</div>
+              <div style="font-size:11px;color:var(--gray-mid);">子育て・美容・ハンドメイド・料理系に◎</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- カラー早見表 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">Color — カラーの印象</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+          <div style="text-align:center;padding:10px 6px;background:#faf0ff;border-radius:10px;border:1px solid #c080e0;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#9B59B6;margin:0 auto 5px;"></div>
+            <div style="font-size:11px;font-weight:600;">紫</div>
+            <div style="font-size:10px;color:#6020a0;line-height:1.4;">上品・高級感<br>コーチング</div>
+          </div>
+          <div style="text-align:center;padding:10px 6px;background:#fffbf0;border-radius:10px;border:1px solid #ffd080;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#F4A261;margin:0 auto 5px;"></div>
+            <div style="font-size:11px;font-weight:600;">オレンジ</div>
+            <div style="font-size:10px;color:#b8621a;line-height:1.4;">元気・温かみ<br>行動促進</div>
+          </div>
+          <div style="text-align:center;padding:10px 6px;background:#fef5f0;border-radius:10px;border:1px solid #e0c0b8;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#E8C4B8;margin:0 auto 5px;border:1px solid #d0a898;"></div>
+            <div style="font-size:11px;font-weight:600;">パステル</div>
+            <div style="font-size:10px;color:#a06050;line-height:1.4;">やさしさ・癒し<br>美容・子育て</div>
+          </div>
+          <div style="text-align:center;padding:10px 6px;background:#f0f4ff;border-radius:10px;border:1px solid #80a0e0;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#3498DB;margin:0 auto 5px;"></div>
+            <div style="font-size:11px;font-weight:600;">青</div>
+            <div style="font-size:10px;color:#1a60a0;line-height:1.4;">信頼・誠実<br>士業・教育</div>
+          </div>
+          <div style="text-align:center;padding:10px 6px;background:#fff8f0;border-radius:10px;border:1px solid #d0a080;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#C9A84C;margin:0 auto 5px;"></div>
+            <div style="font-size:11px;font-weight:600;">ゴールド</div>
+            <div style="font-size:10px;color:#806020;line-height:1.4;">プレミアム感<br>高単価商品</div>
+          </div>
+          <div style="text-align:center;padding:10px 6px;background:#f0fff4;border-radius:10px;border:1px solid #80d0a0;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#2ECC71;margin:0 auto 5px;"></div>
+            <div style="font-size:11px;font-weight:600;">緑</div>
+            <div style="font-size:10px;color:#1a8040;line-height:1.4;">健康・安心<br>ナチュラル系</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">「07 デザインを学ぶ」では、これをベースにさらに深く学びます。まずはこの早見表を見ながら、自分のターゲットに合う色とフォントを1つ選んでみてください。</div>
+    </div>
+
+    <!-- ━━━ AIっぽさ チェックリスト ━━━ -->
+    <div class="card" style="border-color:var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));">
+      <div class="card-head"><div class="card-num" style="background:var(--orange);color:#fff;border:none;">!</div><div class="card-title">「AIっぽい」5つのサイン — 当てはまったら直し時</div></div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">紫〜青のグラデーション</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">AIが一番使いがちな配色。見た瞬間に「AI製」とわかってしまう。</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">あらゆる要素に角丸とボーダー</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">カードに全部 border-radius と border が付いているデザイン。整理感がなく「量で押してる」印象に。</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">文章が長くてぎっしり</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">「説明しなきゃ」で文字を詰めすぎた状態。余白がなく、読む気が失せる。</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">フォントが3種類以上混在</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">見出し・本文・ボタンでバラバラなフォントを使っているデザイン。統一感がなく素人っぽく見える。</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--beige);border-radius:8px;">
+          <div style="width:20px;height:20px;border-radius:50%;background:#c0392b;color:#fff;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">5</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:2px;">アイコンやデコが多すぎる</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.6;">AIは「賑やか=良いデザイン」と判断しがち。チェックマーク・バッジ・バナーの多用はむしろ散漫な印象に。</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:14px 16px;background:rgba(201,106,58,0.06);border:1px solid var(--orange-border);border-radius:8px;font-size:13px;color:var(--black);line-height:1.9;">
+        これらは「07 デザインを学ぶ」の<strong>Before/Afterカード</strong>で、実際に修正する手順を学べます。
       </div>
     </div>
   </section>
@@ -9170,15 +9636,229 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </div>
   </section>
 
-  <!-- ═══ TAB: スペシャルコンテンツ（ChatGPT・Coming Soon） ═══ -->
+  <!-- ═══ TAB: スペシャルコンテンツ ═══ -->
   <section class="tab-content" id="tab-special">
     <div class="sec-eyebrow">スペシャルコンテンツ</div>
-    <div class="sec-title">ChatGPT 活用法</div>
-    <p class="sec-desc">Claude Code とあわせて使える ChatGPT の活用テクニックを、当日までにこちらに掲載します。</p>
+    <div class="sec-title">AI×Canvaで作る<br>画像LPファーストビュー作成講座</div>
+    <p class="sec-desc">Claude Codeの弱点をChatGPT×Canvaで補う「ハイブリッド手法」を学びます。</p>
 
-    <div class="card" style="border:2px dashed var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));text-align:center;padding:44px 28px;">
-      <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.25em;color:var(--orange);text-transform:uppercase;margin-bottom:12px;font-weight:600;">Coming Soon</div>
-      <div style="font-size:18px;font-weight:600;color:var(--black);line-height:1.7;">準備中です。<br>当日までに公開します。</div>
+    <!-- 概要 -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">0</div><div class="card-title">なぜこの講座が必要か</div></div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">これまでのワークショップでは、Claude Codeを使いLPをコードベースで作成してきました。しかし実際に運用していく中で、ある課題が見えてきました。</p>
+      <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:8px;">それは「デザインの自由度」です</div>
+        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">Claude Codeは構造的なLPやアニメーション、動画などのWeb的表現は得意ですが、女性起業家向けに多い<strong style="color:var(--black);">「画像LPのような直感的で華やかなデザイン」はやや苦手</strong>です。<br>また、多くのターゲットユーザーはまだ画像LPに見慣れており、そちらの方が反応が取れる可能性もあります。</div>
+      </div>
+      <div style="background:#1A1A1A;border-radius:12px;padding:18px 20px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.2em;color:var(--orange);margin-bottom:10px;">CONCEPT</div>
+        <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:10px;">Claude Code × ChatGPT × Canva</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="text-align:center;padding:8px;background:rgba(255,255,255,0.06);border-radius:8px;">
+            <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:4px;">Claude Code</div>
+            <div style="font-size:11px;color:#ccc;">構造・コード</div>
+          </div>
+          <div style="text-align:center;padding:8px;background:rgba(255,255,255,0.06);border-radius:8px;">
+            <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:4px;">ChatGPT</div>
+            <div style="font-size:11px;color:#ccc;">画像生成</div>
+          </div>
+          <div style="text-align:center;padding:8px;background:rgba(255,255,255,0.06);border-radius:8px;">
+            <div style="font-size:10px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:4px;">Canva</div>
+            <div style="font-size:11px;color:#ccc;">デザイン仕上げ</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#888;margin-top:10px;text-align:center;">デザイン性・再現性・スピードをすべて実現</div>
+      </div>
+    </div>
+
+    <!-- この講座でやること -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">1</div><div class="card-title">この講座でやること（5ステップ）</div></div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:12px 14px;">
+          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:3px;">ファーストビューの設計</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">キャッチコピー・サブコピー・日付・特徴3つ・CTA・写真（人物）の要素を整理する</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:12px 14px;">
+          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:3px;">LPの型に当てはめる</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">女性起業家向けの定番レイアウト（左テキスト右人物・中央配置・縦レイアウトなど）から選ぶ</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:12px 14px;">
+          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:3px;">ChatGPTで画像生成</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">カラー・世界観・レイアウト・サイズ（1080×1350）を指定して画像を生成する</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:12px 14px;">
+          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:3px;">Canvaで仕上げ</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">自分の写真に差し替え・テキスト再入力・フォント調整・余白調整・CTAボタン作成</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:12px 14px;">
+          <div style="width:28px;height:28px;background:#1A1A1A;border-radius:50%;color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--black);margin-bottom:3px;">LPに組み込む</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">Claude Codeで作成したLPにファーストビュー画像として挿入する</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 実践ステップ -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">2</div><div class="card-title">実践ステップ：具体的な手順</div></div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <!-- STEP1 -->
+        <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+          <div style="background:#1A1A1A;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);">STEP 1</div>
+            <div style="font-size:13px;font-weight:600;color:#fff;">設計（ChatGPT）</div>
+          </div>
+          <div style="padding:14px 16px;background:#FAF8F5;">
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:10px;">以下の内容を整理します：</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+              <div style="font-size:11px;color:var(--black);padding:5px 8px;background:#fff;border-radius:6px;border:1px solid var(--border);">キャッチコピー</div>
+              <div style="font-size:11px;color:var(--black);padding:5px 8px;background:#fff;border-radius:6px;border:1px solid var(--border);">サブコピー</div>
+              <div style="font-size:11px;color:var(--black);padding:5px 8px;background:#fff;border-radius:6px;border:1px solid var(--border);">日付</div>
+              <div style="font-size:11px;color:var(--black);padding:5px 8px;background:#fff;border-radius:6px;border:1px solid var(--border);">特徴 3つ</div>
+              <div style="font-size:11px;color:var(--black);padding:5px 8px;background:#fff;border-radius:6px;border:1px solid var(--border);">CTA</div>
+              <div style="font-size:11px;color:var(--black);padding:5px 8px;background:#fff;border-radius:6px;border:1px solid var(--border);">レイアウト</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP2 -->
+        <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+          <div style="background:#1A1A1A;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);">STEP 2</div>
+            <div style="font-size:13px;font-weight:600;color:#fff;">画像生成（ChatGPT）</div>
+          </div>
+          <div style="padding:14px 16px;background:#FAF8F5;">
+            <div style="font-size:12px;color:var(--gray-mid);margin-bottom:10px;line-height:1.7;">以下のプロンプトを使用します：</div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--gray-mid);line-height:1.9;font-family:'DM Sans',monospace;">
+              女性起業家向けのLPファーストビュー画像を生成してください。<br><br>
+              ・サイズ：1080×1350<br>
+              ・左にテキスト、右に人物<br>
+              ・黒ベース×ピンクのネオンカラー<br>
+              ・AI・近未来の雰囲気<br><br>
+              以下の要素を含めてください：<br>
+              キャッチコピー／サブコピー／日付／特徴3つ／CTAボタン<br><br>
+              画像として生成してください。
+            </div>
+            <div style="margin-top:10px;padding:10px 12px;background:#fff8f0;border-radius:8px;border-left:3px solid var(--orange);">
+              <div style="font-size:11px;font-weight:600;color:var(--orange);margin-bottom:4px;">ポイント</div>
+              <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;">1回で完璧を目指さない。2〜3回生成して調整する。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP3+4+5 -->
+        <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+          <div style="background:#1A1A1A;padding:10px 16px;display:flex;align-items:center;gap:10px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);">STEP 3 〜 5</div>
+            <div style="font-size:13px;font-weight:600;color:#fff;">Canvaで取り込み・編集・仕上げ</div>
+          </div>
+          <div style="padding:14px 16px;background:#FAF8F5;">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div>
+                <div style="font-size:12px;font-weight:500;color:var(--black);margin-bottom:5px;">STEP3：Canvaに取り込み</div>
+                <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;">生成した画像をアップロードしてデザインに配置。文字は後で修正する前提でOK。</div>
+              </div>
+              <div style="height:1px;background:var(--border);"></div>
+              <div>
+                <div style="font-size:12px;font-weight:500;color:var(--black);margin-bottom:5px;">STEP4：Magic Layersで編集</div>
+                <div style="font-size:12px;color:var(--gray-mid);line-height:1.7;margin-bottom:6px;">画像を選択 → Magic Layersを起動 → 変更したい箇所を編集</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);">背景変更</div>
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);">人物変更</div>
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);">色味変更</div>
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);">雰囲気変更</div>
+                </div>
+              </div>
+              <div style="height:1px;background:var(--border);"></div>
+              <div>
+                <div style="font-size:12px;font-weight:500;color:var(--black);margin-bottom:5px;">STEP5：デザイン仕上げ</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);">フォント調整</div>
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);">テキスト再入力</div>
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);">ジャンプ率調整</div>
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);">余白調整</div>
+                  <div style="font-size:11px;padding:4px 8px;background:#fff;border-radius:5px;border:1px solid var(--border);grid-column:1/-1;text-align:center;">CTAボタン強調</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 注意点・メリット・ゴール -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">3</div><div class="card-title">注意点・メリット・ゴール</div></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div style="background:#fff5f0;border:1px solid #f0c8b0;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:600;color:#c0392b;margin-bottom:8px;">注意点（重要）</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#c0392b;flex-shrink:0;">×</span>画像内の文字はそのまま使わない</div>
+            <div style="display:flex;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#c0392b;flex-shrink:0;">×</span>最初から完璧を目指さない</div>
+            <div style="display:flex;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:var(--orange);flex-shrink:0;">→</span>Canvaでテキストを入れ直す</div>
+            <div style="display:flex;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:var(--orange);flex-shrink:0;">→</span>まず構成と雰囲気を優先する</div>
+          </div>
+        </div>
+        <div style="background:#f0fff4;border:1px solid #a0d8b0;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:600;color:#27ae60;margin-bottom:8px;">この手法のメリット</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;flex-shrink:0;">✓</span>CCの弱点（デザイン）を補える</div>
+            <div style="display:flex;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;flex-shrink:0;">✓</span>Canva単体より圧倒的に時短</div>
+            <div style="display:flex;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;flex-shrink:0;">✓</span>誰でも再現しやすい</div>
+            <div style="display:flex;gap:6px;font-size:11px;color:var(--gray-mid);"><span style="color:#27ae60;flex-shrink:0;">✓</span>プロっぽいLPが作れる</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#1A1A1A;border-radius:12px;padding:16px 20px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:8px;">GOAL</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;gap:8px;align-items:center;"><div style="width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0;"></div><div style="font-size:12px;color:#fff;">デザインが苦手でもLPが作れる</div></div>
+          <div style="display:flex;gap:8px;align-items:center;"><div style="width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0;"></div><div style="font-size:12px;color:#fff;">見た目で損しない</div></div>
+          <div style="display:flex;gap:8px;align-items:center;"><div style="width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0;"></div><div style="font-size:12px;color:#fff;">反応が取れるファーストビューが作れる</div></div>
+        </div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid #333;font-size:11px;color:#888;line-height:1.8;">この講座は「デザイナーでなくてもできる」ではなく、<strong style="color:#ccc;">「デザイナー視点を取り入れて作れる」</strong>ことを目的としています。</div>
+      </div>
+    </div>
+
+    <!-- 推奨追加コンテンツ -->
+    <div class="card">
+      <div class="card-head"><div class="card-num">+</div><div class="card-title">今後追加予定のコンテンツ</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="padding:10px 12px;background:var(--beige);border-radius:8px;border:1px dashed var(--border);">
+          <div style="font-size:12px;font-weight:500;margin-bottom:2px;">ファーストビューの型</div>
+          <div style="font-size:11px;color:var(--gray-mid);">5〜10パターン</div>
+        </div>
+        <div style="padding:10px 12px;background:var(--beige);border-radius:8px;border:1px dashed var(--border);">
+          <div style="font-size:12px;font-weight:500;margin-bottom:2px;">画像生成プロンプトテンプレ</div>
+          <div style="font-size:11px;color:var(--gray-mid);">コピペで使える</div>
+        </div>
+        <div style="padding:10px 12px;background:var(--beige);border-radius:8px;border:1px dashed var(--border);">
+          <div style="font-size:12px;font-weight:500;margin-bottom:2px;">Canvaテンプレート</div>
+          <div style="font-size:11px;color:var(--gray-mid);">そのまま使える素材</div>
+        </div>
+        <div style="padding:10px 12px;background:var(--beige);border-radius:8px;border:1px dashed var(--border);">
+          <div style="font-size:12px;font-weight:500;margin-bottom:2px;">ビフォーアフター事例</div>
+          <div style="font-size:11px;color:var(--gray-mid);">実例で学ぶ</div>
+        </div>
+      </div>
     </div>
   </section>
 
