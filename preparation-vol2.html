@@ -192,7 +192,7 @@
 
     /* ─── HEADER ─── */
     .hero-wrapper {
-      height: 250vh;
+      height: 160vh;
       position: relative;
     }
 
@@ -362,7 +362,7 @@
     .main-layout {
       max-width: 1080px;
       margin: 32px auto 0;
-      padding: 0 40px 100px;
+      padding: 0 40px 100px 16px;
       display: flex;
       gap: 48px;
       align-items: flex-start;
@@ -485,7 +485,7 @@
       border: 1px solid var(--orange-border);
       border-radius: 10px;
       padding: 16px 22px;
-      font-size: 13px;
+      font-size: 15px;
       color: var(--gray-mid);
       line-height: 1.8;
       margin-bottom: 28px;
@@ -670,9 +670,9 @@
     }
 
     .rule-desc {
-      font-size: 12px;
+      font-size: 14px;
       color: var(--gray-lt);
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     /* ─── PROMPT BOX ─── */
@@ -746,9 +746,9 @@
     }
 
     .pattern-text {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--gray-mid);
-      line-height: 1.75;
+      line-height: 1.85;
     }
 
     /* ─── STEPS ─── */
@@ -790,7 +790,7 @@
     }
 
     .step-desc {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--gray-lt);
       line-height: 1.85;
     }
@@ -837,7 +837,7 @@
       border-color: var(--orange);
     }
 
-    .check-label { font-size: 14px; line-height: 1.7; }
+    .check-label { font-size: 15px; line-height: 1.8; }
     .checklist li.done .check-label { color: var(--gray-mid); text-decoration: line-through; }
 
     /* ─── TIMELINE ─── */
@@ -865,7 +865,7 @@
       padding-top: 2px;
     }
 
-    .tl-label { font-size: 13px; line-height: 1.6; }
+    .tl-label { font-size: 15px; line-height: 1.7; }
 
     .tl-tag {
       margin-left: auto;
@@ -934,7 +934,7 @@
     }
 
     .gloss-desc {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--gray-mid);
       line-height: 1.85;
     }
@@ -1215,7 +1215,7 @@
       margin-bottom: 6px;
     }
     .flow-desc {
-      font-size: 13px; color: var(--gray-mid); line-height: 1.9;
+      font-size: 15px; color: var(--gray-mid); line-height: 1.9;
     }
     .flow-note {
       background: var(--beige);
@@ -1305,7 +1305,7 @@
     @media (max-width: 768px) {
       .main-layout {
         flex-direction: column;
-        padding: 0 18px 80px;
+        padding: 0 16px 80px;
         gap: 0;
       }
       .sidebar-nav {
@@ -1418,9 +1418,9 @@
         letter-spacing: 0.1em;
         min-width: auto !important;
       }
-      /* スマホはヒーローの空白を詰める：sticky解除＋wrapper=100vh */
-      .hero-wrapper { height: 100vh; min-height: 480px; }
-      .site-header { position: relative; height: 100vh; min-height: 480px; }
+      /* スマホはヒーローをコンパクトに */
+      .hero-wrapper { height: 60vh; min-height: 360px; }
+      .site-header { position: relative; height: 60vh; min-height: 360px; }
       .row-2 { grid-template-columns: 1fr; }
       .palette-grid { grid-template-columns: 1fr 1fr; }
       .rules-grid { grid-template-columns: 1fr; }
