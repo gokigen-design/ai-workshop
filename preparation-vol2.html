@@ -431,6 +431,34 @@
       color: var(--black);
     }
 
+    /* ─── WORK / ACTION ボタン強調（PC・スマホ共通） ─── */
+    .tab-btn.tab-work,
+    .tab-btn.tab-action {
+      background: linear-gradient(135deg, #4F7EF7, #1BC6B4);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(79,126,247,0.18);
+      border: none;
+      font-weight: 600;
+    }
+    .tab-btn.tab-work span,
+    .tab-btn.tab-action span { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .tab-btn.tab-work.active,
+    .tab-btn.tab-action.active { box-shadow: 0 6px 18px rgba(79,126,247,0.32); }
+    .tab-btn.tab-work:hover:not(.active),
+    .tab-btn.tab-action:hover:not(.active) { opacity: 0.88; color: #fff; }
+
+    .tab-btn.tab-work .tab-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      background: rgba(255,255,255,0.92);
+      color: #4F7EF7;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-right: 2px;
+    }
+
     /* ─── CONTENT AREA ─── */
     .content-area { flex: 1; min-width: 0; }
 
