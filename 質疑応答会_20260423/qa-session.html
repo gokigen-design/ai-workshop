@@ -425,6 +425,342 @@
       max-width: 660px;
     }
 
+    /* ─── 4ステップ LP制作フロー ─── */
+    .flow-hero {
+      max-width: 1000px;
+      margin: 80px auto 40px;
+      padding: 56px 48px;
+      background: var(--beige);
+      border-radius: 28px;
+      border: 1px solid var(--border);
+    }
+    .flow-hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .flow-hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .flow-hero-desc {
+      font-size: 14px;
+      color: var(--gray-mid);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+    .flow-steps {
+      display: grid;
+      gap: 20px;
+    }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 28px;
+      align-items: center;
+      background: var(--white);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 24px 28px 24px 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .flow-step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -12px rgba(79,126,247,0.25);
+    }
+    .flow-step-phone {
+      width: 100px;
+      height: 180px;
+      background: #1C1D2E;
+      border-radius: 16px;
+      padding: 4px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .flow-step-phone::before {
+      content: '';
+      position: absolute;
+      top: 5px; left: 50%;
+      transform: translateX(-50%);
+      width: 32px; height: 7px;
+      background: #0a0b18;
+      border-radius: 6px;
+      z-index: 2;
+    }
+    .flow-step-screen {
+      width: 100%; height: 100%;
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 8px 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Step 1 — ワイヤー骨組み */
+    .phone-s1 .ps-line { height: 6px; background: #E5E8F0; border-radius: 3px; margin-bottom: 5px; }
+    .phone-s1 .ps-line.short { width: 60%; }
+    .phone-s1 .ps-block { height: 28px; background: #F5F7FB; border: 1px dashed #C7CCD8; border-radius: 4px; margin: 8px 0; }
+    .phone-s1 .ps-btn { height: 12px; background: var(--blue); border-radius: 3px; margin-top: 10px; opacity: 0.5; }
+    /* Step 2 — 画像プレースホルダ */
+    .phone-s2 .ps-line { height: 5px; background: #E5E8F0; border-radius: 3px; margin-bottom: 4px; }
+    .phone-s2 .ps-img {
+      height: 40px;
+      background: linear-gradient(135deg, #C7E8FF 0%, #B5E8DC 100%);
+      border-radius: 6px;
+      margin: 8px 0;
+      position: relative;
+    }
+    .phone-s2 .ps-img::after {
+      content: ''; position: absolute;
+      top: 50%; left: 50%;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #FFE9A8;
+      transform: translate(-140%, -50%);
+    }
+    .phone-s2 .ps-img-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+      margin-top: 6px;
+    }
+    .phone-s2 .ps-img-sm {
+      height: 22px;
+      background: linear-gradient(135deg, #FFD6E7, #FFE5B8);
+      border-radius: 4px;
+    }
+    /* Step 3 — 色・文字装飾 */
+    .phone-s3 .ps-grad {
+      height: 28px;
+      background: var(--grad);
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    .phone-s3 .ps-line { height: 5px; background: #E5E8F0; border-radius: 3px; margin-bottom: 4px; }
+    .phone-s3 .ps-img {
+      height: 30px;
+      background: linear-gradient(135deg, #C7E8FF 0%, #B5E8DC 100%);
+      border-radius: 6px;
+      margin: 6px 0;
+    }
+    .phone-s3 .ps-btn {
+      height: 14px;
+      background: var(--grad);
+      border-radius: 7px;
+      margin-top: 8px;
+    }
+    /* Step 4 — 公開URL */
+    .phone-s4 .ps-url {
+      background: #F5F7FB;
+      border-radius: 6px;
+      padding: 4px 6px;
+      font-family: 'DM Sans', monospace;
+      font-size: 7px;
+      color: var(--blue);
+      text-align: center;
+      margin-bottom: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .phone-s4 .ps-grad { height: 22px; background: var(--grad); border-radius: 6px; margin-bottom: 5px; }
+    .phone-s4 .ps-line { height: 4px; background: #E5E8F0; border-radius: 3px; margin-bottom: 3px; }
+    .phone-s4 .ps-line.short { width: 50%; }
+    .phone-s4 .ps-check {
+      position: absolute;
+      bottom: 10px; left: 50%;
+      transform: translateX(-50%);
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .phone-s4 .ps-check::after {
+      content: '';
+      width: 10px; height: 5px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg);
+      margin-top: -3px;
+    }
+    .flow-step-body {
+      padding: 4px 0;
+    }
+    .flow-step-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--blue);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .flow-step-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .flow-step-items {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      margin-bottom: 12px;
+    }
+    .flow-step-items li {
+      font-size: 12px;
+      color: var(--gray-mid);
+      background: var(--beige);
+      padding: 4px 10px;
+      border-radius: 99px;
+      line-height: 1.5;
+    }
+    .flow-step-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .flow-step-link:hover { text-decoration: underline; }
+    .flow-step-sub {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .flow-step-sub li {
+      font-size: 13.5px;
+      color: var(--dark);
+      line-height: 1.75;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .flow-step-sub .sub-key {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--blue);
+      min-width: 18px;
+      padding-top: 2px;
+    }
+    .phone-s-folder .ps-folder { width: 36px; height: 36px; margin: 4px auto 8px; }
+    .phone-s-folder .ps-folder svg { width: 100%; height: 100%; }
+    .phone-s-folder .ps-folder-label { height: 5px; width: 60%; margin: 0 auto 10px; background: #E5E8F0; border-radius: 3px; }
+    .phone-s-folder .ps-file-chip { height: 10px; background: #F5F7FB; border: 1px solid #E5E8F0; border-radius: 3px; margin-bottom: 5px; }
+    .phone-s-folder .ps-file-chip.short { width: 70%; }
+    .phone-s-send .ps-bubble { max-width: 75%; height: 14px; background: #F5F7FB; border-radius: 10px 10px 10px 2px; margin-bottom: 6px; }
+    .phone-s-send .ps-bubble.right { margin-left: auto; background: var(--grad); border-radius: 10px 10px 2px 10px; }
+    .phone-s-send .ps-input { position: absolute; left: 6px; right: 6px; bottom: 6px; height: 20px; background: #fff; border: 1px solid #E5E8F0; border-radius: 10px; display: flex; align-items: center; padding: 0 4px 0 8px; }
+    .phone-s-send .ps-input-line { flex: 1; height: 3px; background: #E5E8F0; border-radius: 2px; }
+    .phone-s-send .ps-input-send { width: 12px; height: 12px; background: var(--grad); border-radius: 50%; margin-left: 4px; }
+    @media (max-width: 640px) {
+      .flow-hero { margin: 60px 16px 32px; padding: 36px 20px; border-radius: 20px; }
+      .flow-hero-title { font-size: 22px; }
+      .flow-step { grid-template-columns: 80px 1fr; gap: 16px; padding: 16px 18px; }
+      .flow-step-phone { width: 72px; height: 130px; border-radius: 12px; padding: 3px; }
+      .flow-step-phone::before { width: 22px; height: 5px; top: 3px; }
+      .flow-step-screen { border-radius: 9px; padding: 10px 6px 6px; }
+      .flow-step-title { font-size: 16px; }
+      .flow-step-items li { font-size: 11px; padding: 3px 8px; }
+    }
+
+    /* ─── CHAPTER DIVIDER（スライド風の章区切り） ─── */
+    .chapter-divider {
+      max-width: 1100px;
+      margin: 120px auto 40px;
+      padding: 72px 56px;
+      background: var(--grad);
+      border-radius: 28px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px -30px rgba(79,126,247,0.45);
+    }
+    .chapter-divider::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .chapter-divider::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: -60px;
+      width: 260px; height: 260px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .chap-inner { position: relative; z-index: 1; }
+    .chap-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .chap-label::before {
+      content: '';
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.6);
+    }
+    .chap-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 72px;
+      font-weight: 300;
+      line-height: 1;
+      opacity: 0.25;
+      position: absolute;
+      top: 40px; right: 56px;
+      letter-spacing: -0.02em;
+    }
+    .chap-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+    .chap-sub {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 16px;
+      line-height: 1.9;
+      opacity: 0.92;
+      max-width: 720px;
+    }
+    @media (max-width: 640px) {
+      .chapter-divider {
+        margin: 80px 20px 32px;
+        padding: 48px 28px;
+        border-radius: 20px;
+      }
+      .chap-num { font-size: 48px; top: 28px; right: 28px; }
+      .chap-title { font-size: 26px; }
+      .chap-sub { font-size: 14px; }
+      .chap-label { font-size: 10px; }
+    }
+
     /* ─── SUBSECTION ─── */
     .subsec {
       margin-bottom: 56px;
@@ -826,6 +1162,907 @@
     .tag-mac { background: #F3E8FF; color: #6B21A8; }
     .tag-both { background: var(--grad-soft); color: var(--blue); }
 
+    /* ─── File Card Grid (Word/PDF/HTML 風アイコン) ─── */
+    .file-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .file-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--white);
+    }
+    .file-card-icon {
+      width: 44px; height: 54px;
+      border-radius: 6px;
+      background: #fff;
+      position: relative;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 6px;
+    }
+    .file-card-icon::before {
+      content: '';
+      position: absolute;
+      top: -1px; right: -1px;
+      width: 14px; height: 14px;
+      background: #F3F4F6;
+      border-bottom-left-radius: 6px;
+    }
+    .file-card-ext {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .file-card-word .file-card-icon { border: 1px solid #BFDBFE; }
+    .file-card-word .file-card-ext { background: #2B5CE6; }
+    .file-card-photo .file-card-icon { border: 1px solid #A7F3D0; }
+    .file-card-photo .file-card-ext { background: #10B981; }
+    .file-card-pdf .file-card-icon { border: 1px solid #FCA5A5; }
+    .file-card-pdf .file-card-ext { background: #DC2626; }
+    .file-card-html { background: var(--grad-soft); border: 1px solid var(--blue-border); }
+    .file-card-html .file-card-icon { border: 1px solid #FED7AA; }
+    .file-card-html .file-card-ext { background: #EA580C; }
+    .file-card-body { flex: 1; min-width: 0; }
+    .file-card-name {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+    .file-card-html .file-card-name { color: var(--blue); font-weight: 700; }
+    .file-card-meta {
+      font-size: 12px;
+      color: var(--gray-mid);
+      line-height: 1.6;
+    }
+    .file-card-meta code {
+      background: var(--beige);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    /* ─── Feature Grid (アイコンカード) ─── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 18px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(79,126,247,0.08);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      margin: 0 auto 12px;
+      border-radius: 12px;
+      background: var(--grad-soft);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feature-icon svg { width: 24px; height: 24px; stroke: var(--blue); }
+    .feature-card.can-not .feature-icon { background: var(--red-lt); }
+    .feature-card.can-not .feature-icon svg { stroke: var(--red); }
+    .feature-label {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--black);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+    .feature-desc {
+      font-size: 12px;
+      color: var(--gray-mid);
+      line-height: 1.7;
+    }
+
+    /* ─── File Type Icons ─── */
+    .file-types {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .file-type {
+      text-align: center;
+      padding: 20px 14px;
+      border-radius: 14px;
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+    .file-type-icon {
+      width: 56px; height: 72px;
+      margin: 0 auto 12px;
+      background: var(--white);
+      border: 2px solid var(--blue-border);
+      border-radius: 6px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+    }
+    .file-type-icon::before {
+      content: '';
+      position: absolute;
+      top: -2px; right: -2px;
+      width: 18px; height: 18px;
+      background: var(--white);
+      border-left: 2px solid var(--blue-border);
+      border-bottom: 2px solid var(--blue-border);
+      border-radius: 0 0 0 4px;
+      transform: rotate(0);
+    }
+    .file-type-icon span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .file-type.type-jpg .file-type-icon { border-color: #F59E0B; }
+    .file-type.type-jpg .file-type-icon::before { border-color: #F59E0B; }
+    .file-type.type-jpg .file-type-icon span { color: #B45309; }
+    .file-type.type-png .file-type-icon { border-color: #10B981; }
+    .file-type.type-png .file-type-icon::before { border-color: #10B981; }
+    .file-type.type-png .file-type-icon span { color: #065F46; }
+    .file-type.type-webp .file-type-icon { border-color: #4F7EF7; }
+    .file-type.type-webp .file-type-icon::before { border-color: #4F7EF7; }
+    .file-type.type-webp .file-type-icon span { color: #1E40AF; }
+    .file-type-name {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .file-type-desc {
+      font-size: 11px;
+      color: var(--gray-mid);
+      line-height: 1.7;
+    }
+    @media (max-width: 520px) {
+      .file-types { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Shield / Security icon block ─── */
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .security-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 20px;
+    }
+    .security-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--grad);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .security-icon svg { width: 22px; height: 22px; stroke: #fff; }
+    .security-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .security-desc {
+      font-size: 13px;
+      color: var(--gray-mid);
+      line-height: 1.8;
+    }
+
+    /* ─── ターミナル風モックアップ ─── */
+    .terminal {
+      margin: 24px 0;
+      background: #0F172A;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(15,23,42,0.25);
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .terminal-head {
+      background: #1E293B;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .terminal-dots { display: flex; gap: 6px; }
+    .terminal-dots span {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .terminal-dots span:nth-child(1) { background: #FF5F57; }
+    .terminal-dots span:nth-child(2) { background: #FEBC2E; }
+    .terminal-dots span:nth-child(3) { background: #28C840; }
+    .terminal-title {
+      color: #94A3B8;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    .terminal-body {
+      padding: 20px 22px;
+      font-family: 'DM Sans', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.9;
+      color: #E2E8F0;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .term-prompt { color: #4ADE80; }
+    .term-tag { color: #60A5FA; }
+    .term-str { color: #FBBF24; }
+    .term-comment { color: #64748B; font-style: italic; }
+    .term-cursor {
+      display: inline-block;
+      width: 8px; height: 15px;
+      background: #E2E8F0;
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ─── Before / After 比較（エンジニア vs AIエージェント） ─── */
+    .revolution {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: stretch;
+      margin: 24px 0;
+    }
+    .revo-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 20px;
+    }
+    .revo-card.old { background: #FAFAF8; }
+    .revo-card.new { background: var(--grad-soft); border-color: var(--blue-border); }
+    .revo-label {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 99px;
+      margin-bottom: 10px;
+    }
+    .revo-card.old .revo-label { background: #E5E7EB; color: #475569; }
+    .revo-card.new .revo-label { background: var(--blue); color: #fff; }
+    .revo-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--black);
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .revo-desc {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--gray-mid);
+    }
+    .revo-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 24px;
+    }
+    @media (max-width: 640px) {
+      .revolution { grid-template-columns: 1fr; }
+      .revo-arrow { transform: rotate(90deg); }
+    }
+
+    /* ─── 表と裏：きれいな画面 vs コード ─── */
+    .surface-vs-code {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+      margin: 28px 0;
+    }
+    .svc-caption {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 13px;
+      color: var(--gray-mid);
+      text-align: center;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .svc-surface {
+      background: linear-gradient(135deg, #FFF7EC 0%, #FFE4D6 100%);
+      border-radius: 14px;
+      padding: 22px 18px;
+      text-align: center;
+      border: 1px solid #F6D7BA;
+    }
+    .svc-surface-label {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #A56A3A;
+      margin-bottom: 8px;
+    }
+    .svc-surface-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #5B3A1E;
+      margin-bottom: 10px;
+    }
+    .svc-surface-badge {
+      display: inline-block;
+      background: #F08F5E;
+      color: #fff;
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 99px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .svc-surface-date {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #C95B2E;
+      margin: 12px 0 8px;
+      letter-spacing: 0.04em;
+    }
+    .svc-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--gray-mid);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 13px;
+      gap: 6px;
+    }
+    .svc-arrow-line {
+      font-size: 22px;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .svc-code {
+      background: #0F172A;
+      border-radius: 12px;
+      padding: 16px 16px;
+      font-family: 'DM Sans', monospace;
+      font-size: 11px;
+      line-height: 1.75;
+      color: #E2E8F0;
+      overflow: hidden;
+      position: relative;
+    }
+    .svc-code-head {
+      color: #94A3B8;
+      font-size: 10px;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #1E293B;
+    }
+    .svc-code pre {
+      margin: 0;
+      font-family: inherit;
+      white-space: pre;
+      overflow: hidden;
+    }
+    .svc-code .c-tag { color: #60A5FA; }
+    .svc-code .c-attr { color: #C4B5FD; }
+    .svc-code .c-str { color: #FBBF24; }
+    .svc-code .c-com { color: #64748B; }
+    @media (max-width: 640px) {
+      .surface-vs-code { grid-template-columns: 1fr; gap: 10px; }
+      .svc-arrow { transform: rotate(90deg); margin: 4px 0; }
+      .svc-code { font-size: 10px; }
+    }
+
+    /* ─── コードの語源カード（楽譜/プログラム） ─── */
+    .code-meaning {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .meaning-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 18px;
+    }
+    .meaning-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .meaning-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--grad-soft);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .meaning-icon svg { width: 20px; height: 20px; stroke: var(--blue); }
+    .meaning-title {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--black);
+    }
+    .meaning-desc {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--gray-mid);
+    }
+    @media (max-width: 640px) {
+      .code-meaning { grid-template-columns: 1fr; }
+    }
+
+    /* ─── HTMLファイル解剖図 ─── */
+    .html-anatomy {
+      display: grid;
+      grid-template-columns: 1fr 44px 1fr;
+      gap: 16px;
+      margin: 24px 0;
+      align-items: stretch;
+    }
+    .html-anatomy-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .html-anatomy-arrow::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(79,126,247,0.15) 0%, rgba(27,198,180,0.5) 100%);
+      transform: translateY(-50%);
+    }
+    .html-anatomy-arrow-inner {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 8px 20px -6px rgba(79,126,247,0.5);
+    }
+    .html-anatomy-arrow-inner::after {
+      content: '';
+      width: 0; height: 0;
+      border-left: 10px solid #fff;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      margin-left: 3px;
+    }
+    .html-code {
+      background: #0F172A;
+      border-radius: 12px;
+      padding: 18px 20px;
+      font-family: 'DM Sans', monospace;
+      font-size: 12px;
+      line-height: 1.9;
+      color: #E2E8F0;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .html-code .h-tag { color: #60A5FA; }
+    .html-code .h-attr { color: #C4B5FD; }
+    .html-code .h-str { color: #FBBF24; }
+    .html-code .h-text { color: #E2E8F0; }
+    .html-preview {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 20px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .html-preview-browser {
+      font-size: 10px;
+      color: #9CA3AF;
+      font-family: 'DM Sans', sans-serif;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #F1F5F9;
+      margin-bottom: 14px;
+    }
+    .html-preview h1 {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 18px;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .html-preview p {
+      font-size: 13px;
+      color: var(--dark);
+      line-height: 1.7;
+    }
+    @media (max-width: 640px) {
+      .html-anatomy { grid-template-columns: 1fr; }
+      .html-anatomy-arrow { height: 44px; }
+      .html-anatomy-arrow::before {
+        left: 50%; right: auto; top: 0; bottom: 0;
+        width: 2px; height: auto;
+        background: linear-gradient(180deg, rgba(79,126,247,0.15) 0%, rgba(27,198,180,0.5) 100%);
+        transform: translateX(-50%);
+      }
+      .html-anatomy-arrow-inner::after {
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 10px solid #fff;
+        border-bottom: none;
+        margin-left: 0; margin-top: 3px;
+      }
+    }
+
+    /* ─── Claude Desktop スクリーンショット風 ─── */
+    .screenshot {
+      margin: 24px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(28,29,46,0.15);
+      background: #1C1D2E;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .ss-titlebar {
+      background: #2A2B3D;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ss-titlebar-dots {
+      display: flex; gap: 6px;
+    }
+    .ss-titlebar-dots span {
+      width: 12px; height: 12px; border-radius: 50%;
+    }
+    .ss-titlebar-dots span:nth-child(1) { background: #FF6057; }
+    .ss-titlebar-dots span:nth-child(2) { background: #FFBD2E; }
+    .ss-titlebar-dots span:nth-child(3) { background: #27C93F; }
+    .ss-titlebar-title {
+      flex: 1; text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #9CA3AF;
+      letter-spacing: 0.05em;
+    }
+    .ss-body {
+      display: flex;
+      min-height: 400px;
+      background: #F9FAFB;
+    }
+    .ss-sidebar {
+      width: 220px;
+      background: #F3F4F6;
+      border-right: 1px solid #E5E7EB;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .ss-sidebar-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #9CA3AF;
+      padding: 8px 12px 4px;
+      font-weight: 600;
+    }
+    .ss-tab {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      color: #6B7280;
+      cursor: default;
+      position: relative;
+    }
+    .ss-tab-icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+    }
+    .ss-tab-icon svg { width: 100%; height: 100%; }
+    .ss-tab.active {
+      background: #fff;
+      color: #1C1D2E;
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .ss-tab-highlight {
+      background: linear-gradient(135deg, rgba(79,126,247,0.15) 0%, rgba(27,198,180,0.15) 100%);
+      border: 2px solid #4F7EF7;
+      color: #1C1D2E;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(79,126,247,0.25);
+      position: relative;
+    }
+    .ss-tab-pointer {
+      position: absolute;
+      left: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .ss-tab-pointer-label {
+      background: #4F7EF7;
+      color: #fff;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .ss-tab-pointer-arrow {
+      color: #4F7EF7;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .ss-main {
+      flex: 1;
+      padding: 32px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      color: #9CA3AF;
+    }
+    .ss-main-heading {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      color: #6B7280;
+      margin-bottom: 8px;
+    }
+    .ss-main-placeholder {
+      height: 14px;
+      background: #E5E7EB;
+      border-radius: 4px;
+    }
+    .ss-main-placeholder.w80 { width: 80%; }
+    .ss-main-placeholder.w60 { width: 60%; }
+    .ss-main-placeholder.w90 { width: 90%; }
+    .ss-caption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray-lt);
+      margin-top: 10px;
+      font-style: italic;
+    }
+    @media (max-width: 640px) {
+      .ss-sidebar { width: 160px; padding: 10px 8px; }
+      .ss-main { padding: 20px; }
+      .ss-tab { font-size: 12px; padding: 8px 10px; }
+      .ss-tab-pointer { left: -60px; }
+      .ss-tab-pointer-label { font-size: 10px; padding: 3px 8px; }
+    }
+
+    /* ─── Claude アプリ図解 ─── */
+    .claude-app-diagram {
+      margin: 28px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .app-container {
+      background: linear-gradient(135deg, #F5F7FB 0%, #EEF1FB 100%);
+      border: 1.5px solid var(--blue-border);
+      border-radius: 20px;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .app-container-head {
+      background: var(--white);
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .app-dots {
+      display: flex; gap: 6px;
+    }
+    .app-dots span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #E5E8F0;
+    }
+    .app-dots span:nth-child(1) { background: #FF6057; }
+    .app-dots span:nth-child(2) { background: #FFBD2E; }
+    .app-dots span:nth-child(3) { background: #27C93F; }
+    .app-container-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--gray-mid);
+      letter-spacing: 0.1em;
+      flex: 1;
+      text-align: center;
+    }
+    .app-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      padding: 24px 24px 28px;
+    }
+    .app-tab {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 18px;
+      text-align: center;
+      transition: all 0.2s;
+      margin: 0 6px;
+    }
+    .app-tab-icon {
+      width: 52px; height: 52px;
+      margin: 0 auto 14px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-tab-icon svg { width: 28px; height: 28px; }
+    .app-tab-name {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .app-tab-role {
+      font-size: 11px;
+      color: var(--gray-mid);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+    .app-tab.tab-chat .app-tab-icon { background: #DBEAFE; }
+    .app-tab.tab-chat .app-tab-icon svg { stroke: #1E40AF; }
+    .app-tab.tab-cowork .app-tab-icon { background: #F3E8FF; }
+    .app-tab.tab-cowork .app-tab-icon svg { stroke: #6B21A8; }
+    .app-tab.tab-code .app-tab-icon {
+      background: var(--grad);
+    }
+    .app-tab.tab-code .app-tab-icon svg { stroke: #fff; }
+    .app-tab.tab-code {
+      border: 2px solid var(--blue);
+      box-shadow: 0 10px 30px rgba(79,126,247,0.15);
+      position: relative;
+    }
+    .app-tab.tab-code::after {
+      content: 'ワークショップで使うのはコレ';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--grad);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    @media (max-width: 640px) {
+      .app-tabs { grid-template-columns: 1fr; gap: 12px; }
+      .app-tab { margin: 0; }
+    }
+
+    /* ─── スマホ時：本文中の手動改行を無効化（自然に折り返す） ─── */
+    @media (max-width: 640px) {
+      .sec-desc br,
+      .subsec-body p br,
+      .subsec-body > p br,
+      .callout br,
+      .card p br,
+      .access-desc br,
+      .hero-subtitle br,
+      .voice-card-text br,
+      .feature-desc br,
+      .file-type-desc br,
+      .security-desc br,
+      .revo-desc br,
+      .revo-title br,
+      .compare-box p br,
+      .sec-title br {
+        display: none;
+      }
+    }
+
+    .access-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .access-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .access-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--beige);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .access-icon svg { width: 22px; height: 22px; stroke: var(--blue); }
+    .access-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-lt);
+      margin-bottom: 4px;
+    }
+    .access-name {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .access-desc {
+      font-size: 12px;
+      color: var(--gray-mid);
+      line-height: 1.7;
+    }
+    @media (max-width: 640px) {
+      .access-row { grid-template-columns: 1fr; }
+    }
+
     /* ─── GLOSSARY ─── */
     .glossary {
       display: grid;
@@ -927,6 +2164,113 @@
     @media (max-width: 480px) {
       body { font-size: 14px; }
     }
+
+    /* ═══════════════════════════════
+       Mobile Fine-tuning (≤ 720px)
+       ─ 横スクロール回避・要素の読みやすさ
+       ═══════════════════════════════ */
+    @media (max-width: 720px) {
+      /* 全体の横スクロール抑止 */
+      html, body { overflow-x: hidden; }
+
+      /* Top Nav：リンクを隠して、ブランドのみ表示（横スクロール防止） */
+      .top-nav-links { display: none; }
+      .top-nav-inner { padding: 12px 16px; justify-content: center; }
+
+      /* 冒頭メッセージ：<br> を無効化して自然に折り返す（ガタガタ防止） */
+      .intro-lead br,
+      .intro-text br,
+      .voice-quote br { display: none; }
+      .intro-lead { font-size: 17px; line-height: 1.85; }
+      .intro-text { font-size: 14px; line-height: 1.9; }
+      .voice-quote { font-size: 14px; line-height: 1.9; }
+
+      /* Section padding を少し詰める */
+      .intro-section, .toc-wrap, .section { padding-left: 20px; padding-right: 20px; }
+
+      /* Feature Grid：2列に固定・全体的に小さく */
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .feature-card { padding: 14px 10px; border-radius: 12px; }
+      .feature-icon { width: 36px; height: 36px; margin-bottom: 8px; border-radius: 9px; }
+      .feature-icon svg { width: 18px; height: 18px; }
+      .feature-label { font-size: 12.5px; line-height: 1.5; margin-bottom: 4px; }
+      .feature-desc { font-size: 10.5px; line-height: 1.55; }
+      .feature-desc br { display: none; }
+
+      /* Table：横スクロールせずにカード的に積む */
+      .tbl-wrap {
+        overflow-x: visible;
+        border: none;
+        border-radius: 0;
+      }
+      .tbl-wrap table,
+      .tbl-wrap thead,
+      .tbl-wrap tbody,
+      .tbl-wrap tr,
+      .tbl-wrap th,
+      .tbl-wrap td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .tbl-wrap thead { display: none; }
+      .tbl-wrap tr {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 12px;
+        padding: 10px 14px;
+        background: var(--white);
+      }
+      .tbl-wrap tbody tr:nth-child(even) { background: var(--beige); }
+      .tbl-wrap td {
+        padding: 8px 0;
+        border-bottom: 1px dashed var(--border);
+        font-size: 13.5px;
+        line-height: 1.75;
+        white-space: normal;
+        word-break: break-word;
+      }
+      .tbl-wrap td:last-child { border-bottom: none; }
+      /* 1セル目（ラベル的な最初のセル）をタイトルっぽく強調 */
+      .tbl-wrap tbody td:first-child {
+        font-weight: 600;
+        color: var(--blue);
+        font-size: 13.5px;
+        padding-top: 2px;
+        padding-bottom: 6px;
+      }
+
+      /* pre（フォルダツリー等）：横スクロール可にして文字小さく */
+      pre, code {
+        font-size: 11.5px;
+        line-height: 1.65;
+        white-space: pre;
+        word-break: normal;
+      }
+      pre {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+      }
+
+      /* Chapter Divider の chap-num はみ出し対策 */
+      .chapter-divider { overflow: hidden; }
+      .chap-num { font-size: 40px; top: 20px; right: 20px; }
+
+      /* Finder 風図解（インラインstyle利用されている領域）も安全に */
+      .finder-window, .folder-vis { max-width: 100%; box-sizing: border-box; }
+    }
+
+    /* ≤ 400px の小さい端末でさらに詰める */
+    @media (max-width: 400px) {
+      .feature-label { font-size: 11.5px; }
+      .feature-desc { font-size: 10px; }
+      .sec-title { font-size: 22px; }
+      .chap-title { font-size: 22px !important; }
+    }
   </style>
 </head>
 <body>
@@ -937,12 +2281,13 @@
     <div class="top-nav-brand">Q&amp;A Session</div>
     <div class="top-nav-links">
       <a href="#part1">全体像</a>
-      <a href="#part2">セットアップ</a>
-      <a href="#part3">画像・ファイル</a>
-      <a href="#part4">フォルダ整理</a>
-      <a href="#part5">できること</a>
-      <a href="#part6">セキュリティ</a>
+      <a href="#part2">プラン変更</a>
+      <a href="#part3">できること</a>
+      <a href="#part4">セキュリティ</a>
+      <a href="#part5">フォルダ整理</a>
+      <a href="#part6">画像・ファイル</a>
       <a href="#part7">用語辞典</a>
+      <a href="#part8">公開する</a>
     </div>
   </div>
 </nav>
@@ -988,15 +2333,28 @@
     <p class="toc-sub">この資料の目次</p>
     <ul class="toc-list">
       <li><a href="#part1"><span class="toc-num">01</span><span>まず知っておくこと（全体像）</span></a></li>
-      <li><a href="#part2"><span class="toc-num">02</span><span>セットアップでつまずくポイント</span></a></li>
-      <li><a href="#part3"><span class="toc-num">03</span><span>画像・ファイル名のコツ</span></a></li>
-      <li><a href="#part4"><span class="toc-num">04</span><span>フォルダ整理の考え方</span></a></li>
-      <li><a href="#part5"><span class="toc-num">05</span><span>Claude Codeでできること</span></a></li>
-      <li><a href="#part6"><span class="toc-num">06</span><span>セキュリティ・連携</span></a></li>
+      <li><a href="#part2"><span class="toc-num">02</span><span>プラン変更のタイミング（課金しても待たされる理由）</span></a></li>
+      <li><a href="#part3"><span class="toc-num">03</span><span>Claude Codeでできること</span></a></li>
+      <li><a href="#part4"><span class="toc-num">04</span><span>セキュリティ・連携</span></a></li>
+      <li><a href="#part5"><span class="toc-num">05</span><span>フォルダ整理の考え方</span></a></li>
+      <li><a href="#part6"><span class="toc-num">06</span><span>画像・ファイル名のコツ</span></a></li>
       <li><a href="#part7"><span class="toc-num">07</span><span>用語ミニ辞典</span></a></li>
+      <li><a href="#part8"><span class="toc-num">08</span><span>できたものを公開するには（GitHub・Vercel）</span></a></li>
     </ul>
   </div>
 </section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Chapter 1：全体像について -->
+<!-- ═══════════════════════════════ -->
+<div class="chapter-divider" id="chapter1">
+  <span class="chap-num">01</span>
+  <div class="chap-inner">
+    <div class="chap-label">Chapter One</div>
+    <h2 class="chap-title">全体像について</h2>
+    <p class="chap-sub">まずは全体の流れをお話しします。そもそもAIエージェントって何なのか、Claude Codeで何ができるのか。ここで土台を揃えてから、細かい話に進みます。</p>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════ -->
 <!-- Part 1：全体像 -->
@@ -1011,142 +2369,657 @@
     </p>
   </div>
 
-  <!-- 1-1 Claudeは3つある -->
+  <!-- 1-1 AIエージェントとは -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">1-1</span>Claudeは「3種類」あります</h3>
+    <h3 class="subsec-title"><span class="subsec-num">1-1</span>そもそもAIエージェントって何？</h3>
     <div class="subsec-body">
-      <p>みなさんが「Claude」と呼んでいるものは、実は<strong>3つの別物</strong>です。それぞれ得意なことが違います。</p>
+      <p>
+        「Claude Codeってすごそう、でも何がすごいのか説明できない」<br>
+        受講生の多くが感じていたモヤモヤ。ここで土台を揃えておきましょう。
+      </p>
 
-      <div class="tbl-wrap">
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 28px 0 14px; color: var(--black);">
+        AIエージェント＝「自分で手を動かしてくれるAI」
+      </h4>
+      <p>
+        これまでのAI（チャット）は<strong>「答え」を返すだけ</strong>でした。<br>
+        AIエージェントは、<strong>あなたのPCの中で実際に手を動かしてくれる</strong>AIです。<br>
+        ファイルを作る・書き換える・フォルダを整理する・調べる。全部やってくれます。
+      </p>
+
+      <div class="tbl-wrap" style="margin-top: 20px;">
         <table>
           <thead>
             <tr>
               <th>種類</th>
-              <th>何ができる？</th>
-              <th>どんな時に使う？</th>
+              <th>できること</th>
+              <th>イメージ</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Claude（ブラウザ）</strong><br><span class="tag">claude.ai</span></td>
-              <td>文章を書く・要約・アイデア出し・画像の説明</td>
-              <td>ちょっと調べたい時・壁打ち</td>
+              <td><strong>チャット</strong><br><span class="tag">ChatGPT / Claudeブラウザ版</span></td>
+              <td>文章でのやり取り。「こうすればできますよ」と<strong>教えてくれる</strong></td>
+              <td>隣にいる詳しい友達</td>
             </tr>
             <tr>
-              <td><strong>Claude Desktop</strong><br><span class="tag">アプリ版</span></td>
-              <td>ブラウザ版とほぼ同じ。スマホアプリもここに近い</td>
-              <td>PCにアプリとして常駐させたい時</td>
-            </tr>
-            <tr>
-              <td><strong>Claude Code</strong><br><span class="tag tag-both">本命</span></td>
-              <td>PCのファイルを直接さわれる・LPを作れる・フォルダを読める</td>
-              <td>ワークショップで使うのはコレ</td>
+              <td><strong>AIエージェント</strong><br><span class="tag">Claude Code</span></td>
+              <td>PCのファイルを<strong>実際に操作</strong>。サイトを作る・修正する・配信を組む</td>
+              <td>指示通りに動いてくれる有能な部下</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="callout callout-info">
-        <div class="callout-title">大事なのはココ</div>
-        チャットのClaudeとClaude Codeは<strong>別アプリだけど、同じアカウントで動いている</strong>。
-        そしてProプランの場合、<strong>トークン（使える量）は共通の財布から減っていきます</strong>。
-        詳しくは 1-3 で説明します。
+        <div class="callout-title">ここが最大の違い</div>
+        チャットは<strong>「答えを教える」</strong>。<br>
+        エージェントは<strong>「自分でやる」</strong>。<br>
+        だから、LPを「作ってもらう」ことができるんです。
       </div>
     </div>
   </div>
 
-  <!-- 1-2 関係図 -->
+  <!-- 1-2 コードが書けるとは -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">1-2</span>Claude × GitHub × Vercel の関係図</h3>
+    <h3 class="subsec-title"><span class="subsec-num">1-2</span>「コードが書ける」ってどういうこと？</h3>
     <div class="subsec-body">
       <p>
-        「なぜGitHubを入れるの？」「Vercelって何？」という疑問の答えがこの図です。<br>
-        <strong>役割が違うから、全部が必要</strong>なのです。
+        そもそも、私たちが普段見ているWebサイトやアプリは<strong>どうやって作られているのでしょう？</strong><br>
+        答えは「すべて、<strong>コードと呼ばれる文字の羅列</strong>で動いている」です。
       </p>
 
-      <div class="flow-diagram">
-        <div class="flow-row">
-          <div class="flow-box">
-            <div class="flow-box-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
-            </div>
-            <div class="flow-box-title">あなたのPC</div>
-            <div class="flow-box-desc">Claude Codeで<br>ファイルを作る場所</div>
+      <div class="surface-vs-code">
+        <div>
+          <div class="svc-caption">普段、私たちに見えているキレイな画面</div>
+          <div class="svc-surface">
+            <div class="svc-surface-label">LANDING PAGE</div>
+            <div class="svc-surface-title">AIに仕事を奪われるか？<br>使いこなすか？</div>
+            <span class="svc-surface-date">4 / 23</span>
+            <span class="svc-surface-badge">今すぐ申し込む</span>
           </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-box">
-            <div class="flow-box-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="1.6"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1 .8-.2 1.6-.3 2.5-.3.8 0 1.7.1 2.5.3 1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.6 4.9.4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5C19.1 20.2 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>
-            </div>
-            <div class="flow-box-title">GitHub</div>
-            <div class="flow-box-desc">ファイルを<br>保管する倉庫</div>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-box">
-            <div class="flow-box-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1BC6B4" stroke-width="1.6"><path d="M12 2L2 20h20L12 2z"/></svg>
-            </div>
-            <div class="flow-box-title">Vercel</div>
-            <div class="flow-box-desc">GitHubから読み取って<br>世界に公開する</div>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-box">
-            <div class="flow-box-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1BC6B4" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
-            </div>
-            <div class="flow-box-title">公開URL</div>
-            <div class="flow-box-desc">お客様が見られる<br>あなたのLP</div>
+        </div>
+        <div class="svc-arrow">
+          <span>裏側は</span>
+          <span class="svc-arrow-line">→</span>
+        </div>
+        <div>
+          <div class="svc-caption">実はこういう「コード」で動いています</div>
+          <div class="svc-code">
+            <div class="svc-code-head">index.html</div>
+<pre><span class="c-com">&lt;!-- HERO --&gt;</span>
+<span class="c-tag">&lt;section</span> <span class="c-attr">id=</span><span class="c-str">"hero"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">class=</span><span class="c-str">"banner"</span><span class="c-tag">&gt;</span>
+    <span class="c-tag">&lt;img</span> <span class="c-attr">src=</span><span class="c-str">"hero.png"</span>
+         <span class="c-attr">alt=</span><span class="c-str">"LP"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;/div&gt;</span>
+  <span class="c-tag">&lt;a</span> <span class="c-attr">href=</span><span class="c-str">"#form"</span><span class="c-tag">&gt;</span>
+    今すぐ申し込む
+  <span class="c-tag">&lt;/a&gt;</span>
+<span class="c-tag">&lt;/section&gt;</span></pre>
           </div>
         </div>
       </div>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 36px 0 14px; color: var(--black);">
+        そもそも「コード」って何？
+      </h4>
+      <p>
+        「コード」という言葉には、2つのニュアンスがあります。どちらも<strong>同じイメージ</strong>で覚えておくと腑に落ちます。
+      </p>
+
+      <div class="code-meaning">
+        <div class="meaning-card">
+          <div class="meaning-head">
+            <div class="meaning-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="meaning-title">文字の羅列そのもの</div>
+          </div>
+          <div class="meaning-desc">
+            <code>&lt;h1&gt;</code> や <code>class="hero"</code> みたいな、PCへの指示が書かれた<strong>文字列</strong>そのものを「コード」と呼びます。
+          </div>
+        </div>
+        <div class="meaning-card">
+          <div class="meaning-head">
+            <div class="meaning-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            </div>
+            <div class="meaning-title">法則・記述のルール</div>
+          </div>
+          <div class="meaning-desc">
+            楽譜やギターの<strong>コード</strong>と同じ発想。<br>「こう書けばこう鳴る／表示される」という<strong>共通ルール</strong>で世界中のPCと会話します。
+          </div>
+        </div>
+      </div>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 36px 0 14px; color: var(--black);">
+        一昔前：エンジニアが黒い画面で手書きしていた
+      </h4>
+      <p>
+        このコード、少し前までは<strong>エンジニアが「ターミナル」という黒い画面</strong>でカチカチ手打ちしていました。
+      </p>
+
+      <div class="terminal">
+        <div class="terminal-head">
+          <div class="terminal-dots"><span></span><span></span><span></span></div>
+          <div class="terminal-title">Terminal — lp-front — 80×24</div>
+        </div>
+        <div class="terminal-body"><span class="term-comment"># 昔：エンジニアが1行ずつ手打ち</span>
+<span class="term-prompt">$</span> mkdir lp-front
+<span class="term-prompt">$</span> cd lp-front
+<span class="term-prompt">$</span> touch index.html
+<span class="term-prompt">$</span> vim index.html
+<span class="term-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="term-tag">&lt;html&gt;</span>
+  <span class="term-tag">&lt;head&gt;</span>
+    <span class="term-tag">&lt;title&gt;</span>My LP<span class="term-tag">&lt;/title&gt;</span>
+  <span class="term-tag">&lt;/head&gt;</span>
+  <span class="term-tag">&lt;body&gt;</span>
+    <span class="term-tag">&lt;h1&gt;</span>Hello World<span class="term-tag">&lt;/h1&gt;</span>
+  <span class="term-tag">&lt;/body&gt;</span>
+<span class="term-tag">&lt;/html&gt;</span><span class="term-cursor"></span></div>
+      </div>
+
+      <p style="margin-top: 20px;">
+        この<strong>&lt;タグ&gt;</strong>を何百行も、ミスなく書き続ける。<br>
+        1文字ミスしただけでサイトが真っ白になる。<strong>専門家しか触れない世界</strong>でした。
+      </p>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 36px 0 14px; color: var(--black);">
+        それが、日本語で頼むだけで書けるようになった
+      </h4>
+
+      <div class="revolution">
+        <div class="revo-card old">
+          <span class="revo-label">これまで</span>
+          <div class="revo-title">エンジニアが1行ずつ<br>コードを手打ち</div>
+          <div class="revo-desc">
+            専門知識が必要。<br>
+            1文字のミスで動かない。<br>
+            学ぶのに数年かかる。
+          </div>
+        </div>
+        <div class="revo-arrow">→</div>
+        <div class="revo-card new">
+          <span class="revo-label">これから</span>
+          <div class="revo-title">日本語で頼むだけ<br>AIがコードを書く</div>
+          <div class="revo-desc">
+            「こんなLPにして」と伝えれば、<br>
+            AIが数百行のコードを生成。<br>
+            私たちは<strong>完成物を見て指示</strong>するだけ。
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">これが「大革命」と言われる理由</div>
+        本来ならプログラミングを数年学んだ人しか作れなかったWebサイトが、<strong>自然言語（日本語）で作れる</strong>ように。<br>
+        デザイナーが自分の感覚で、直接サイトを生み出せる時代が来ました。
+      </div>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 40px 0 14px; color: var(--black);">
+        ではチャットAI（ChatGPT等）と、何が違うの？
+      </h4>
+      <p>
+        「ChatGPTでもコードの質問には答えてくれるし、何が違うの？」という疑問への答えがここ。
+      </p>
 
       <div class="tbl-wrap">
         <table>
           <thead>
             <tr>
-              <th>ツール</th>
-              <th>たとえるなら</th>
-              <th>役割</th>
+              <th></th>
+              <th>チャットAI<br>（ChatGPT / Claudeブラウザ版）</th>
+              <th>Claude Code<br>（AIエージェント）</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Claude Code</strong></td>
-              <td>あなたの相棒のデザイナー</td>
-              <td>あなたの代わりにHTMLファイルを書いてくれる</td>
+              <td><strong>コードの質問</strong></td>
+              <td>「ここはこう書けばいいよ」と<strong>教えてくれる</strong></td>
+              <td>教えてくれる＋<strong>実際に書く</strong></td>
             </tr>
             <tr>
-              <td><strong>GitHub</strong></td>
-              <td>作品の保管庫・バックアップ先</td>
-              <td>作ったファイルを預ける。履歴も残るので安心</td>
+              <td><strong>実ファイルの操作</strong></td>
+              <td><strong>できない</strong><br>（自分でコピペして反映する必要あり）</td>
+              <td><strong>直接書き換える</strong><br>ファイルを開いて、変更して、保存まで</td>
             </tr>
             <tr>
-              <td><strong>Vercel</strong></td>
-              <td>配達人</td>
-              <td>GitHubの中身を世界中のネットに配達してくれる</td>
+              <td><strong>完成物</strong></td>
+              <td>文字の回答</td>
+              <td><strong>動くWebサイト</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">まとめ</div>
+        チャットAIは<strong>「解説書」</strong>。Claude Codeは<strong>「あなたの代わりに作る職人」</strong>。<br>
+        だから、私たちは日本語で指示を出すだけで、LPが<strong>そのまま完成</strong>するのです。
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- Chapter 2：HTMLファイルについて -->
+  <!-- ═══════════════════════════════ -->
+  </div>
+</section>
+
+<div class="chapter-divider" id="chapter2">
+  <span class="chap-num">02</span>
+  <div class="chap-inner">
+    <div class="chap-label">Chapter Two</div>
+    <h2 class="chap-title">HTMLファイルについて</h2>
+    <p class="chap-sub">Claude Codeの中でも今後よく出てくる、HTMLファイルについての先行説明です。「index.html」って何？ タグって何？ 身近なファイルに例えながら、ゆっくりいきます。</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="sec-head" style="margin-bottom: 0;"></div>
+
+  <!-- 1-3 HTMLファイルとは -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">1-3</span>そもそもHTMLファイルって何？</h3>
+    <div class="subsec-body">
+      <p>
+        「<strong>HTMLファイル</strong>」「<strong>index.html</strong>」という言葉がワークショップでよく出てきますが、そもそも何のことなのか。<br>
+        身近なファイルに例えながら、ゆっくり説明します。
+      </p>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 28px 0 14px; color: var(--black);">
+        今あなたが見ているこのページも、HTMLファイルです
+      </h4>
+      <p>
+        Chromeで開くサイト、LINEのリンクから開くページ、会社のホームページ……<br>
+        これらは全部、<strong>「HTMLファイル」という1つのファイル</strong>を、ブラウザ（Chrome／Safari）が読み取って表示しているだけ。<br>
+        特別なものではなく、<strong>Wordのファイルと同じく「ただのファイル」</strong>です。
+      </p>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 32px 0 14px; color: var(--black);">
+        身近なファイルで例えると
+      </h4>
+
+      <div class="file-card-grid">
+        <div class="file-card file-card-word">
+          <div class="file-card-icon"><span class="file-card-ext">DOC</span></div>
+          <div class="file-card-body">
+            <div class="file-card-name">Word文書</div>
+            <div class="file-card-meta"><code>.docx</code> → Microsoft Word</div>
+          </div>
+        </div>
+        <div class="file-card file-card-photo">
+          <div class="file-card-icon"><span class="file-card-ext">JPG</span></div>
+          <div class="file-card-body">
+            <div class="file-card-name">写真</div>
+            <div class="file-card-meta"><code>.jpg</code> / <code>.png</code> → 写真アプリ・プレビュー</div>
+          </div>
+        </div>
+        <div class="file-card file-card-pdf">
+          <div class="file-card-icon"><span class="file-card-ext">PDF</span></div>
+          <div class="file-card-body">
+            <div class="file-card-name">資料</div>
+            <div class="file-card-meta"><code>.pdf</code> → プレビュー・Acrobat</div>
+          </div>
+        </div>
+        <div class="file-card file-card-html">
+          <div class="file-card-icon"><span class="file-card-ext">HTML</span></div>
+          <div class="file-card-body">
+            <div class="file-card-name">Webページ</div>
+            <div class="file-card-meta"><code>.html</code> → Chrome / Safari（ブラウザ）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">つまりHTMLファイルとは</div>
+        <strong>ブラウザで見るための文章ファイル</strong>。ただそれだけ。<br>
+        Wordを開けばWord文書が表示されるように、ブラウザを開けばHTMLファイルが表示されます。
+      </div>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 36px 0 14px; color: var(--black);">
+        中身は「ただの文字の集まり」です
+      </h4>
+      <p>
+        HTMLファイルを開くと、こんな文字がズラーっと書いてあります。<br>
+        左の<strong>文字（コード）</strong>をブラウザが読み取って、右のような<strong>見た目のページ</strong>を作っています。
+      </p>
+
+      <div class="html-anatomy">
+        <div class="html-code"><span class="h-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="h-tag">&lt;html&gt;</span>
+  <span class="h-tag">&lt;body&gt;</span>
+    <span class="h-tag">&lt;h1&gt;</span><span class="h-text">あなたらしい</span>
+       <span class="h-text">LPを作ろう</span><span class="h-tag">&lt;/h1&gt;</span>
+    <span class="h-tag">&lt;p&gt;</span><span class="h-text">申し込みは</span>
+       <span class="h-text">こちらから。</span><span class="h-tag">&lt;/p&gt;</span>
+  <span class="h-tag">&lt;/body&gt;</span>
+<span class="h-tag">&lt;/html&gt;</span></div>
+        <div class="html-anatomy-arrow"><div class="html-anatomy-arrow-inner"></div></div>
+        <div class="html-preview">
+          <div class="html-preview-browser">● ● ●　localhost/index.html</div>
+          <h1>あなたらしい<br>LPを作ろう</h1>
+          <p>申し込みはこちらから。</p>
+        </div>
+      </div>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 36px 0 14px; color: var(--black);">
+        &lt;h1&gt; とか &lt;p&gt; って何？
+      </h4>
+      <p>
+        左の文字の中にある <code>&lt;h1&gt;</code>、<code>&lt;p&gt;</code> などが<strong>「タグ」</strong>と呼ばれるもの。<br>
+        「ここは見出し」「ここは段落」と書いてある<strong>付箋・ラベル</strong>のような目印です。
+      </p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>タグ</th>
+              <th>意味</th>
+              <th>例えるなら</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>&lt;h1&gt;</code> 〜 <code>&lt;/h1&gt;</code></td>
+              <td>大見出し</td>
+              <td>付箋「ここは大きなタイトル」</td>
             </tr>
             <tr>
-              <td><strong>Git</strong> <span class="tag tag-win">Windowsのみ</span></td>
-              <td>郵便の仕組みそのもの</td>
-              <td>PCからGitHubに送るための仕組み（Macは最初から入ってる）</td>
+              <td><code>&lt;p&gt;</code> 〜 <code>&lt;/p&gt;</code></td>
+              <td>段落（普通の文章）</td>
+              <td>付箋「ここは本文」</td>
+            </tr>
+            <tr>
+              <td><code>&lt;img&gt;</code></td>
+              <td>画像を表示</td>
+              <td>「ここに写真を置いて」</td>
+            </tr>
+            <tr>
+              <td><code>&lt;a&gt;</code> 〜 <code>&lt;/a&gt;</code></td>
+              <td>リンク</td>
+              <td>「タップすると別ページへ」</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top: 16px;">
+        ブラウザはこのタグ（目印）を見て、<br>
+        「じゃあ大見出しは大きく表示しよう」「画像はここに貼ろう」と判断し、<br>
+        <strong>キレイな見た目のページ</strong>を作ります。
+      </p>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 36px 0 14px; color: var(--black);">
+        「index.html」って何？
+      </h4>
+      <p>
+        ワークショップで作るLPは、最終的に <code>index.html</code> という1つのファイルになります。<br>
+        <strong>index</strong>（インデックス）は「入り口・目次」の意味。<br>
+        サイトを開いたときに最初に表示されるページには、伝統的に <code>index.html</code> という名前を付ける習慣があります。
+      </p>
+
+      <div class="card" style="margin-top: 24px;">
+        <div class="card-title">ここまでのまとめ</div>
+        <ul class="check-list">
+          <li>Webページ＝<strong>HTMLファイル</strong>（拡張子 <code>.html</code>）</li>
+          <li>ダブルクリックするとブラウザ（Chrome / Safari）で開ける</li>
+          <li>中身は <strong>&lt;タグ&gt;</strong> だらけの文字の集まり</li>
+          <li>タグは「ここは見出し」「ここは画像」という<strong>目印</strong></li>
+          <li>LPのファイル名はたいてい <code>index.html</code></li>
+        </ul>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">ここでClaude Codeが登場します</div>
+        このタグだらけのHTMLファイルを、あなたに代わって<strong>日本語の指示から直接書いてくれる</strong>のがClaude Code。<br>
+        「申込みボタンの色を赤に変えて」と言えば、中身を書き換えて保存まで。<br>
+        <strong>HTMLの書き方を覚える必要はありません。</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- Chapter 3：Claude Codeの機能説明 -->
+  <!-- ═══════════════════════════════ -->
+  </div>
+</section>
+
+<div class="chapter-divider" id="chapter3">
+  <span class="chap-num">03</span>
+  <div class="chap-inner">
+    <div class="chap-label">Chapter Three</div>
+    <h2 class="chap-title">Claude Codeの機能説明</h2>
+    <p class="chap-sub">ここから本題。実際の操作画面、3つのモードの違い、プランや課金の仕組み、セキュリティ、できること・できないこと。Claude Codeを安心して使うための知識をまとめて解説します。</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="sec-head" style="margin-bottom: 0;"></div>
+
+  <!-- 1-4 Claude Desktopの3モード -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">1-4</span>Claude Desktopの「3つのモード」を見分ける</h3>
+    <div class="subsec-body">
+      <p>
+        Claude Desktopアプリを開くと、画面の上に<strong>3つのボタン</strong>が並んでいます。<br>
+        これが<strong>Claude / Co-work / Code</strong>。それぞれ全く別の仕事をします。
+      </p>
+
+      <div class="claude-app-diagram">
+        <div class="app-container">
+          <div class="app-container-head">
+            <div class="app-dots"><span></span><span></span><span></span></div>
+            <div class="app-container-title">Claude Desktop</div>
+          </div>
+          <div class="app-tabs">
+
+            <div class="app-tab tab-chat">
+              <div class="app-tab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                </svg>
+              </div>
+              <div class="app-tab-name">Claude</div>
+              <div class="app-tab-role">チャット<br>文章・アイデア出し</div>
+            </div>
+
+            <div class="app-tab tab-cowork">
+              <div class="app-tab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+              </div>
+              <div class="app-tab-name">Co-work</div>
+              <div class="app-tab-role">共同作業モード<br>今回は使いません</div>
+            </div>
+
+            <div class="app-tab tab-code">
+              <div class="app-tab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <div class="app-tab-name">Code</div>
+              <div class="app-tab-role">PCのファイルを操作<br>LPやサイトを作る</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 17px; margin: 40px 0 16px; color: var(--black);">
+        ちなみに：Claudeには「アクセス方法」も2つあります
+      </h4>
+
+      <div class="access-row">
+        <div class="access-box">
+          <div class="access-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="access-label">Browser</div>
+            <div class="access-name">ブラウザ版</div>
+            <div class="access-desc">claude.ai をChrome等で開く。<strong>チャットのみ</strong>。インストール不要。</div>
+          </div>
+        </div>
+
+        <div class="access-box">
+          <div class="access-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div>
+            <div class="access-label">Desktop App</div>
+            <div class="access-name">デスクトップアプリ</div>
+            <div class="access-desc">PCにインストールする版。<strong>上記の3モードが使える</strong>。ワークショップで使うのはこちら。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">大事なのはココ</div>
+        チャット（Claude）とClaude Codeは<strong>別モードだけど、同じアカウントで動いている</strong>。
+        そしてProプランの場合、<strong>トークン（使える量）は共通の財布から減っていきます</strong>。
+        詳しくは 1-6 で説明します。
+      </div>
+    </div>
+  </div>
+
+  <!-- 1-5 実際の画面：どこで切り替える？
+  <div class="subsec" id="p1-5">
+    <h3 class="subsec-title"><span class="subsec-num">1-5</span>実際の画面：どこで切り替える？</h3>
+    <div class="subsec-body">
+      <p>
+        Claude Desktopを開くと、<strong>画面の左上に折りたたまれたサイドバー</strong>があります。<br>
+        このサイドバーを開くと、<strong>Claude / Co-work / Code の3つ</strong>が縦に並んでいます。
+      </p>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">ここが見つからない原因No.1</div>
+        初期状態だと<strong>サイドバーが閉じている</strong>ことがあります。<br>
+        画面左上の<strong>三本線（≡）アイコン</strong>、または<strong>小さな矢印</strong>をクリックすると開きます。
+      </div>
+
+      <div class="screenshot">
+        <div class="ss-titlebar">
+          <div class="ss-titlebar-dots"><span></span><span></span><span></span></div>
+          <div class="ss-titlebar-title">Claude</div>
+        </div>
+        <div class="ss-body">
+          <div class="ss-sidebar">
+            <div class="ss-sidebar-label">Modes</div>
+
+            <div class="ss-tab">
+              <div class="ss-tab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <span>Claude（チャット）</span>
+            </div>
+
+            <div class="ss-tab">
+              <div class="ss-tab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <span>Co-work</span>
+            </div>
+
+            <div class="ss-tab ss-tab-highlight">
+              <div class="ss-tab-pointer">
+                <span class="ss-tab-pointer-label">ココ！</span>
+                <span class="ss-tab-pointer-arrow">→</span>
+              </div>
+              <div class="ss-tab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <span>Code</span>
+            </div>
+
+            <div style="margin-top: 16px; height: 1px; background: #E5E7EB;"></div>
+
+            <div class="ss-sidebar-label">Recent</div>
+            <div class="ss-tab">
+              <div class="ss-tab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <span style="font-size: 12px;">LP制作の相談</span>
+            </div>
+            <div class="ss-tab">
+              <div class="ss-tab-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <span style="font-size: 12px;">キャッチコピー...</span>
+            </div>
+          </div>
+          <div class="ss-main">
+            <div class="ss-main-heading">Code モード</div>
+            <div class="ss-main-placeholder w90"></div>
+            <div class="ss-main-placeholder w80"></div>
+            <div class="ss-main-placeholder w60"></div>
+            <div class="ss-main-placeholder w90"></div>
+          </div>
+        </div>
+      </div>
+      <p class="ss-caption">※ Claude Desktop の画面イメージ（実際の配置に準ずる）</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>モード</th>
+              <th>何をするところ？</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Claude（チャット）</strong></td>
+              <td>普通に会話する。アイデア出し・文章書き・画像を見せて聞く</td>
+            </tr>
+            <tr>
+              <td><strong>Co-work</strong></td>
+              <td>共同作業モード（今回のワークショップでは使いません）</td>
+            </tr>
+            <tr>
+              <td><strong>Code</strong></td>
+              <td>PCのファイルやフォルダを直接読んで、HTMLやコードを作る</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="callout callout-tip">
-        <div class="callout-title">つまり</div>
-        「PCで作る → GitHubに保管 → Vercelが世界に配達」の3段階で、<br>
-        あなたのLPがURL1つで誰でも見られるようになります。
+        <div class="callout-title">よくある迷子</div>
+        「cowork や code が消えた」と感じたら、<strong>左サイドバーのモード切り替え</strong>を確認してみてください。
+        今どのモードを開いているかの表示だけが違っています。再インストールは必要ありません。
       </div>
     </div>
   </div>
 
   <!-- 1-3 プラン・課金・制限 -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">1-3</span>プラン・課金・制限の仕組み</h3>
+    <h3 class="subsec-title"><span class="subsec-num">1-6</span>プラン・課金・制限の仕組み</h3>
     <div class="subsec-body">
       <p>第1回で一番つまずいた「<strong>気づいたら制限がきた</strong>」問題。ここを丁寧に解説します。</p>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">まず大前提：Claude Code は Pro プラン以上が必要</div>
+        無料プラン（Free）でも「Claude（ブラウザ版のチャット）」は使えますが、<br>
+        <strong>Claude Code（PCのファイルを操作するモード）は、Pro プラン以上で使えるようになります</strong>。<br>
+        ワークショップ参加者は最低 Pro プランに入っておく必要があります。
+      </div>
 
       <div class="tbl-wrap">
         <table>
@@ -1160,25 +3033,27 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>Free</strong></td>
-              <td>0円</td>
-              <td>Sonnet（制限あり）</td>
-              <td>お試しだけ</td>
-            </tr>
-            <tr>
               <td><strong>Pro</strong></td>
               <td>約3,000円<br>($20)</td>
-              <td>Sonnet / Opus<br>（量に上限あり）</td>
+              <td>Sonnet 中心<br>Opus も少し使える</td>
               <td>ワークショップ参加者の基本</td>
             </tr>
             <tr>
               <td><strong>Max</strong></td>
               <td>約15,000円<br>($100)〜</td>
-              <td>Opus常用OK<br>（制限ほぼ気にならない）</td>
+              <td>Opus を常用OK<br>（制限ほぼ気にならない）</td>
               <td>毎日がっつり使う人</td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">プランとモデルの関係</div>
+        <strong>プラン（Pro / Max）</strong>は「どれだけ使えるか」の契約。<br>
+        <strong>モデル（Sonnet / Opus / Haiku）</strong>はその中で選べるAIの種類。<br>
+        Claude Code の中では基本 <strong>Sonnet ⇔ Opus</strong> を切り替えて使います。<br>
+        <span style="font-size: 13px; color: var(--gray-mid);">※ Haiku は軽量・高速なモデルですが、Claude Code での普段使いでは選びません（API向け）。</span>
       </div>
 
       <div class="callout callout-warn">
@@ -1245,61 +3120,393 @@
     </div>
   </div>
 
-  <!-- 1-4 cowork/code/チャット -->
+
+
+  </section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 2：プラン変更のタイミング -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part2">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 02</span>
+    <h2 class="sec-title">プラン変更のタイミング<br><span style="font-size: 20px; color: var(--gray-mid);">― 課金しても待たされる理由 ―</span></h2>
+    <p class="sec-desc">
+      第1回で実際に起きた事例：ワークショップ当日にトークンが尽きて、
+      Maxプランに課金したのに結局作業再開できずに1日が終わってしまった方が<strong>2名</strong>。<br>
+      これを防ぐために、仕組みを理解しておきましょう。
+    </p>
+  </div>
+
+  <!-- 2-1 なぜ待たされるのか -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">1-4</span>cowork / code / チャット の切り替え</h3>
+    <h3 class="subsec-title"><span class="subsec-num">2-1</span>なぜ「Maxに上げても待たされる」のか</h3>
     <div class="subsec-body">
       <p>
-        Claude Desktopを開くと、画面の左上に<strong>3つの切り替えボタン</strong>があります。
-        消えたように見えても、ちゃんとそこにあります。
+        Claudeの利用制限は、Anthropic公式ヘルプによると<strong>「直近5時間のローリングウィンドウ方式」</strong>で判定されています。
+        つまり<strong>直近5時間の使用履歴</strong>が残り続ける仕組みです。
       </p>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">Maxへアップグレードしても即座に使えない場合があります</div>
+        制限に到達した直後にMaxへアップグレードしても、<strong>直近5時間の使用量はそのまま残る</strong>ため、
+        体感として「課金したのにすぐ使えない」というケースがあります（受講生からの報告ベース）。<br>
+        <span style="font-size: 13px; color: var(--gray-mid);">※ 公式に「リセットされない」と明言されているわけではなく、ウィンドウが動くまでのタイムラグとして発生している現象です。</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">制限にひっかかる主な理由</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">5時間のローリングウィンドウ（公式）</div>
+            <div class="steps-desc">直近5時間の使用量がカウントされ続ける。一番多い原因。</div>
+          </li>
+          <li>
+            <div class="steps-title">週次制限（Weekly Cap）</div>
+            <div class="steps-desc">5時間ウィンドウとは別に「1週間単位」の上限もあり、Opus多用で届きやすい。</div>
+          </li>
+          <li>
+            <div class="steps-title">モデル別の制限</div>
+            <div class="steps-desc">Opusは Sonnet より制限が厳しい。Maxでも Opus ばかりだと早く到達します。</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-2 判断基準 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">2-2</span>Pro と Max、どっちを選ぶ？判断の目安</h3>
+    <div class="subsec-body">
+
+      <p>月額3,000円と15,000円では差が大きいので、<strong>自分の使い方から判断するのが一番</strong>です。正解は一つではありません。</p>
 
       <div class="tbl-wrap">
         <table>
           <thead>
             <tr>
-              <th>モード</th>
-              <th>何をするところ？</th>
+              <th>こんな使い方なら</th>
+              <th>おすすめプラン</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>チャット</strong></td>
-              <td>普通に会話する。アイデア出し・文章書き・画像を見せて聞く</td>
+              <td>月に数回触る程度（趣味・学習）</td>
+              <td><strong>Pro で十分</strong><br>ChatGPTやNotebookLMと使い分けて節約</td>
             </tr>
             <tr>
-              <td><strong>Code</strong></td>
-              <td>PCのファイルやフォルダを直接読んで、HTMLやコードを作る</td>
+              <td>週1〜2回、数時間ずつ使う</td>
+              <td><strong>Pro で運用 → 足りなければMax検討</strong></td>
             </tr>
             <tr>
-              <td><strong>cowork</strong></td>
-              <td>共同作業モード（今回のワークショップでは使いません）</td>
+              <td>制限に毎日のようにひっかかる</td>
+              <td><strong>Max の方が快適</strong><br>時間単価で考えると差額が回収できる</td>
+            </tr>
+            <tr>
+              <td>仕事で毎日Opusを使い倒したい</td>
+              <td><strong>Max 一択</strong><br>制限を気にせず集中できる</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="callout callout-tip">
-        <div class="callout-title">よくある迷子</div>
-        「cowork や code が消えた」と感じたら、Claude Desktop の<strong>左上の切り替えボタン</strong>を確認してみてください。
-        再インストールは必要ないことがほとんどです。
+      <div class="callout callout-info">
+        <div class="callout-title">ワークショップ当日のコツ</div>
+        制限の仕組み上、<strong>当日にプランを上げても直近5時間の履歴は残る</strong>ので、
+        すぐには快適にならない場合があります。Maxに切り替える場合は<strong>数日前に変えておく</strong>と安心。<br>
+        当日制限が来たら、<strong>ChatGPT / NotebookLM で下準備</strong>を進めながら5時間待つのも有効な選択肢です。
+      </div>
+
+      <div class="card">
+        <div class="card-title">制限が来たときの対処一覧</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>状況</th>
+                <th>対処</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Opusを使っていて制限</td>
+                <td><strong>Sonnetに切り替える</strong>とまだ使えることが多い</td>
+              </tr>
+              <tr>
+                <td>アップグレードしたのに変わらない</td>
+                <td>一度<strong>ログアウト → 再ログイン</strong>で反映されることがある</td>
+              </tr>
+              <tr>
+                <td>週次制限に到達</td>
+                <td>その週は Sonnet 中心に。週が明けるまで待つ</td>
+              </tr>
+              <tr>
+                <td>5時間ウィンドウで制限</td>
+                <td>ChatGPT / NotebookLMで下準備を進めながら待つ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-3 AI分業 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">2-3</span>制限を食らわないための「AI分業」</h3>
+    <div class="subsec-body">
+      <p>
+        全部を Claude で完結させるのはもったいない。<br>
+        <strong>他の無料AIと分業</strong>するのがプロの使い方です。
+      </p>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div class="flow-box-title">① 壁打ち</div>
+            <div class="flow-box-desc">ChatGPT（無料）<br>雑談・アイデア出し</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="flow-box-title">② 資料整理</div>
+            <div class="flow-box-desc">NotebookLM（無料）<br>PDF・資料を要約</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box" style="border-color: var(--blue); box-shadow: 0 8px 24px rgba(79,126,247,0.15);">
+            <div class="flow-box-icon" style="background: var(--grad);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="flow-box-title">③ 最終仕上げ</div>
+            <div class="flow-box-desc">Claude Code（本命）<br>LP・コード生成</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top: 20px;">
+        壁打ちや資料整理は<strong>無料の別AI</strong>に任せて、<br>
+        Claudeのトークンは<strong>最終仕上げのために温存</strong>する。<br>
+        これだけで、同じProプランでも<strong>3〜5倍作業できる</strong>ようになります。
+      </p>
+
+      <div class="tbl-wrap" style="margin-top: 24px;">
+        <table>
+          <thead>
+            <tr>
+              <th>やりたいこと</th>
+              <th>使うべきは</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>アイデア出し・雑談・壁打ち</td><td>チャット（またはChatGPTで節約）</td></tr>
+            <tr><td>文章を整える</td><td>チャット</td></tr>
+            <tr><td>画像を見せて意見を聞く</td><td>チャット</td></tr>
+            <tr><td>LP・HPを作る</td><td>Claude Code</td></tr>
+            <tr><td>既存ファイルを編集する</td><td>Claude Code</td></tr>
+            <tr><td>フォルダの中身を理解させる</td><td>Claude Code</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-warn" style="margin-top: 20px;">
+        <div class="callout-title">チャットとCodeは会話が引き継がれません</div>
+        別アプリなので、チャットでの会話はCode側には見えません。<br>
+        <strong>大事な設定や人物像は、ファイルに書いて保存</strong>しておく必要があります。
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">セットアップで詰まった個別の事象は</div>
+        Windows Sモード問題・Macのgit問題・ブラウザ拡張機能・Google Drive連携など、
+        <strong>個別のつまずき</strong>は、会員サイトの「よくある質問集」にまとめています。該当する方はそちらを参照してください。
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════ -->
-<!-- Part 2：セットアップつまずき -->
+<!-- Part 3：Claude Codeでできること -->
 <!-- ═══════════════════════════════ -->
-<section class="section" id="part2">
+<section class="section" id="part3">
   <div class="sec-head">
-    <span class="sec-eyebrow">Part 02</span>
-    <h2 class="sec-title">セットアップで<br>つまずくポイント</h2>
+    <span class="sec-eyebrow">Part 03</span>
+    <h2 class="sec-title">Claude Codeでできること</h2>
     <p class="sec-desc">
-      第1回でみなさんが実際にハマったところを、原因と対処をセットで全部書いておきます。
-      OSごとに分けているので、自分のPCに合わせて読んでください。
+      できること / できないこと / チャットとの使い分け。
+      「何を頼めばいいか」の全体像がわかると、活用の幅が一気に広がります。
     </p>
   </div>
+
+  <!-- 5-1 できること -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">5-1</span>できること一覧</h3>
+    <div class="subsec-body">
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18"/></svg></div>
+          <div class="feature-label">LP・HPの制作</div>
+          <div class="feature-desc">HTML / CSS で一から</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L20 8l-4-4L4 16v4z"/><path d="M14 6l4 4"/></svg></div>
+          <div class="feature-label">既存サイトの修正</div>
+          <div class="feature-desc">色・文字・レイアウト変更</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M8 13h5"/></svg></div>
+          <div class="feature-label">ブログ・会員サイト</div>
+          <div class="feature-desc">ログイン機能付きも</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+          <div class="feature-label">LINE/メール自動配信</div>
+          <div class="feature-desc">スクリプト作成</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></div>
+          <div class="feature-label">スプレッドシート連携</div>
+          <div class="feature-desc">Google Apps Script</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
+          <div class="feature-label">書類の横断要約</div>
+          <div class="feature-desc">フォルダ内を一気に</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></div>
+          <div class="feature-label">一括リネーム・整理</div>
+          <div class="feature-desc">大量ファイルも一瞬</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13l2 2 4-4"/></svg></div>
+          <div class="feature-label">PDF・画像の文字起こし</div>
+          <div class="feature-desc">読み取って整形</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></div>
+          <div class="feature-label">GitHub・Vercel公開</div>
+          <div class="feature-desc">URLで世界に出す</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5-2 できないこと -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">5-2</span>できないこと（苦手なこと）</h3>
+    <div class="subsec-body">
+      <div class="feature-grid">
+        <div class="feature-card can-not">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>
+          <div class="feature-label">画像生成そのもの</div>
+          <div class="feature-desc">ChatGPT / Midjourney へ</div>
+        </div>
+        <div class="feature-card can-not">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+          <div class="feature-label">動画編集</div>
+          <div class="feature-desc">Canva / CapCut へ</div>
+        </div>
+        <div class="feature-card can-not">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <div class="feature-label">自動ログイン操作</div>
+          <div class="feature-desc">有料ツールへの代理操作</div>
+        </div>
+        <div class="feature-card can-not">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div class="feature-label">リアルタイム情報</div>
+          <div class="feature-desc">株価・天気など最新値</div>
+        </div>
+        <div class="feature-card can-not">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></div>
+          <div class="feature-label">確認なしの削除</div>
+          <div class="feature-desc">大事なものは必ず確認</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5-3 チャット×Code使い分け → Part 2の「AI分業」に統合済み -->
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 4：セキュリティ・連携 -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part4">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 04</span>
+    <h2 class="sec-title">セキュリティ・連携</h2>
+    <p class="sec-desc">
+      お客様の情報を扱うからこそ、気になるところ。<br>
+      「連携」「許可」「個人情報」の3つのポイントを押さえましょう。
+    </p>
+  </div>
+
+  <!-- 6-1 許可 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">6-1</span>「許可しますか？」と聞かれたとき</h3>
+    <div class="subsec-body">
+      <p>Claude Codeで作業中、<strong>「このファイルを変更していい？」</strong>と確認されることがあります。これは<strong>大事な安全機構</strong>です。</p>
+
+      <div class="card">
+        <div class="card-title">判断のポイント</div>
+        <ul class="check-list">
+          <li><strong>許可していい</strong>：自分のプロジェクトフォルダ内のファイル（HTML、images/内など）</li>
+          <li><strong>ちょっと待って</strong>：見慣れないフォルダ、システム関連、消せないファイル</li>
+          <li><strong>断ってOK</strong>：意図しない場所を触ろうとしている、意味がわからない操作</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">わからない時の鉄則</div>
+        <strong>「わかりません、どういう操作ですか？」</strong>と Claude Codeに聞いてみてください。<br>
+        丁寧に説明してくれます。急いで「はい」と押さないで大丈夫。
+      </div>
+    </div>
+  </div>
+
+  <!-- 6-2 個人情報 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">6-2</span>お客様の個人情報を扱うとき</h3>
+    <div class="subsec-body">
+      <div class="callout callout-danger">
+        <div class="callout-title">基本ルール</div>
+        お客様の<strong>氏名・電話番号・住所・決済情報</strong>などの個人情報は、<br>
+        AIに直接貼り付ける前に<strong>匿名化</strong>するのが基本です。
+      </div>
+
+      <div class="card">
+        <div class="card-title">安全に扱うための3ステップ</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">本当に必要か確認する</div>
+            <div class="steps-desc">LPを作るのに個人情報は本来不要。「お客様の声」として掲載する場合は事前に本人の許可を</div>
+          </li>
+          <li>
+            <div class="steps-title">匿名化する</div>
+            <div class="steps-desc">「Aさん・40代女性・東京都」のように情報を抽象化</div>
+          </li>
+          <li>
+            <div class="steps-title">Drive連携は「特定のファイルのみ」に</div>
+            <div class="steps-desc">全体を見せず、渡したいファイルだけ明示的に選ぶ</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">参考：Anthropic（Claudeの会社）のポリシー</div>
+        Claudeに入力した内容は、デフォルトでは<strong>AIの学習には使われない</strong>設定になっています。
+        ただし100%安心ではないので、機密情報は一般論として扱うのがおすすめ。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OLD PART 2 CONTENT REMOVED (moved to FAQ) -->
+<section style="display:none;" id="part2-legacy-hidden">
 
   <!-- 2-1 Windows Sモード -->
   <div class="subsec">
@@ -1451,13 +3658,572 @@
     </div>
   </div>
 </section>
+<!-- END of legacy hidden content (moved to FAQ) -->
 
 <!-- ═══════════════════════════════ -->
-<!-- Part 3：画像・ファイル名 -->
+<!-- ブルー見出し：では実際にLP作成 -->
 <!-- ═══════════════════════════════ -->
-<section class="section" id="part3">
+<div class="chapter-divider" id="lp-production-start">
+  <div class="chap-inner">
+    <div class="chap-label">Let's Build Your LP</div>
+    <h2 class="chap-title">では、実際にLPを作っていきましょう</h2>
+    <p class="chap-sub">ここからは、当日実際に手を動かす内容です。まず全体の流れを掴んで、その次に「フォルダ」の考え方を押さえます。このあとのステップで、実際のLP制作へ入っていきます。</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- LP制作の全体像（3ステップ） -->
+<!-- ═══════════════════════════════ -->
+<section class="flow-hero" id="flow-hero">
+  <span class="flow-hero-eyebrow">LP Production — Overview</span>
+  <h2 class="flow-hero-title">LP制作は、この流れで進みます</h2>
+  <p class="flow-hero-desc">
+    当日の話も、受講後に一人で作るときも、基本はこの3ステップ。<br>
+    全体像を頭に入れてから、1つずつ詳しく見ていきましょう。
+  </p>
+
+  <div class="flow-steps">
+
+    <div class="flow-step">
+      <div class="flow-step-phone phone-s1">
+        <div class="flow-step-screen">
+          <div class="ps-line"></div>
+          <div class="ps-line short"></div>
+          <div class="ps-block"></div>
+          <div class="ps-line"></div>
+          <div class="ps-line short"></div>
+          <div class="ps-btn"></div>
+        </div>
+      </div>
+      <div class="flow-step-body">
+        <span class="flow-step-num">STEP 01</span>
+        <h3 class="flow-step-title">構成を考える</h3>
+        <ul class="flow-step-sub">
+          <li><span class="sub-key">a.</span>チャッピー（ChatGPT）を使ってもOK、ご自身のサービス内容を書き出してもOK</li>
+          <li><span class="sub-key">b.</span>最終的にClaudeで内容を揉んで、貼り付けて出力する</li>
+          <li><span class="sub-key">c.</span>画像などの素材を入れる</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-step-phone phone-s-folder">
+        <div class="flow-step-screen">
+          <div class="ps-folder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          </div>
+          <div class="ps-folder-label"></div>
+          <div class="ps-file-chip"></div>
+          <div class="ps-file-chip short"></div>
+          <div class="ps-file-chip"></div>
+        </div>
+      </div>
+      <div class="flow-step-body">
+        <span class="flow-step-num">STEP 02</span>
+        <h3 class="flow-step-title">フォルダーの概念を伝える</h3>
+        <ul class="flow-step-sub">
+          <li><span class="sub-key">a.</span>前準備として、使いたい素材をファイル（フォルダ）に入れておく</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-step-phone phone-s-send">
+        <div class="flow-step-screen">
+          <div class="ps-bubble"></div>
+          <div class="ps-bubble right"></div>
+          <div class="ps-bubble"></div>
+          <div class="ps-input">
+            <span class="ps-input-line"></span>
+            <span class="ps-input-send"></span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-step-body">
+        <span class="flow-step-num">STEP 03</span>
+        <h3 class="flow-step-title">情報を投げる</h3>
+        <ul class="flow-step-sub">
+          <li><span class="sub-key">a.</span>必要な情報が揃ったら、Claudeにまとめて投げる</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- フォルダの概要：なぜフォルダが大事なのか -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="folder-overview">
   <div class="sec-head">
-    <span class="sec-eyebrow">Part 03</span>
+    <span class="sec-eyebrow">Folder — Overview</span>
+    <h2 class="sec-title">まず全体像：なぜ「フォルダ」が大事なのか</h2>
+    <p class="sec-desc">
+      実際にLPを作り始める前に、一番つまずきやすい<strong>「フォルダとファイル名」</strong>の考え方をお伝えします。<br>
+      ここを理解しておくと、この後の流れが一気にラクになります。
+    </p>
+  </div>
+
+  <div class="subsec">
+    <div class="subsec-body">
+      <p>
+        さっきのHTMLの中身を思い出してください。<br>
+        あそこには、画像を呼び出す<strong>「ファイル名」</strong>が英語で書かれていました。この名前が、実際の画像ファイル（JPEG・PNG）と<strong>紐づいている</strong>のがポイントです。
+      </p>
+
+      <div class="html-anatomy" style="margin-top: 20px;">
+        <div class="html-code"><span class="h-tag">&lt;img</span> <span class="h-attr">src</span>=<span class="h-str">"images/hero.jpg"</span><span class="h-tag">&gt;</span>
+<span class="h-tag">&lt;img</span> <span class="h-attr">src</span>=<span class="h-str">"images/profile.jpg"</span><span class="h-tag">&gt;</span>
+<span class="h-tag">&lt;img</span> <span class="h-attr">src</span>=<span class="h-str">"images/logo.png"</span><span class="h-tag">&gt;</span>
+
+<span class="h-text" style="color:#64748B; font-size:11px;">↑ ここに書いた英語名と</span>
+<span class="h-text" style="color:#64748B; font-size:11px;">  同じ名前の画像ファイルが</span>
+<span class="h-text" style="color:#64748B; font-size:11px;">  images/フォルダの中に必要</span></div>
+        <div class="html-anatomy-arrow"><div class="html-anatomy-arrow-inner"></div></div>
+        <div class="html-preview">
+          <div class="html-preview-browser">● ● ●　images/</div>
+          <ul style="list-style: none; font-family: 'DM Sans', monospace; font-size: 12px; line-height: 2.1; color: var(--dark);">
+            <li>hero.jpg</li>
+            <li>profile.jpg</li>
+            <li>logo.png</li>
+          </ul>
+          <p style="font-size: 11px; color: var(--gray-mid); margin-top: 10px; line-height: 1.7;">
+            コードに書いた英語名と<br>ファイル名が一致している
+          </p>
+        </div>
+      </div>
+
+      <div class="callout callout-warn" style="margin-top: 24px;">
+        <div class="callout-title">日本語のファイル名にすると…</div>
+        <ul class="check-list" style="margin-top: 8px;">
+          <li>パソコンが読み込めずにエラーになる</li>
+          <li>翌日に開いたら<strong>画像データが消えている</strong>ことがある</li>
+          <li>URL共有したときに文字化けする</li>
+        </ul>
+        英語の名前にするのは、<strong>安全に動かすための前提条件</strong>です。
+      </div>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 18px; margin: 32px 0 16px; color: var(--black);">
+        Claude Codeでの管理 ― 3つのポイント
+      </h4>
+
+      <ol class="steps">
+        <li>
+          <div class="steps-title">1つのLPに使うものは、1つのフォルダにまとめる</div>
+          <div class="steps-desc">
+            ClaudeはAIエージェントとして、<strong>指定されたフォルダの中</strong>を自律的に見て操作します。だから、そのLPに関するもの（HTML・画像・原稿）は<strong>1つのフォルダに全部入れておく</strong>必要があります。
+          </div>
+        </li>
+        <li>
+          <div class="steps-title">画像は「images/」という別フォルダにまとめる</div>
+          <div class="steps-desc">
+            LPフォルダの中に <code>images/</code> を作って、画像はそこに入れておく。こうしておくとClaudeが<strong>すぐに取りに行ってくれます</strong>。
+          </div>
+        </li>
+        <li>
+          <div class="steps-title">名前は英語・パソコンが読みやすい単語で</div>
+          <div class="steps-desc">
+            ターミナル上で操作する前提のツールなので、<strong>日本語ではなく英単語</strong>で。空白は <code>-</code>（ハイフン）か <code>_</code>（アンダースコア）で区切る。これを守らないと動作がおかしくなる原因になります。
+          </div>
+        </li>
+      </ol>
+
+      <h4 style="font-family: 'Zen Maru Gothic', sans-serif; font-weight: 500; font-size: 18px; margin: 32px 0 16px; color: var(--black);">
+        実際のフォルダ階層 ― こんなふうに分かれています
+      </h4>
+
+      <p>
+        まず、自分の<strong>好きな場所</strong>に「Claude Codeを触る用」の親フォルダを1つ作ります。<br>
+        その中に、案件・制作物ごとに<strong>小さなフォルダ</strong>を分けていくイメージです。
+      </p>
+
+      <!-- 3段階フォルダ階層ビジュアル -->
+      <div style="margin-top: 28px; display: flex; flex-direction: column; gap: 20px;">
+
+        <!-- Level 1: 親フォルダ -->
+        <div style="background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 0; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+          <div style="background: #F1F3F5; padding: 10px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line);">
+            <span style="display: flex; gap: 6px;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF6057;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F;"></span>
+            </span>
+            <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--gray-mid);">
+              claude-code　←　<span style="color: var(--blue); font-weight: 600;">Lv.1：親フォルダ（自分の好きな場所に1つ作る）</span>
+            </span>
+          </div>
+          <div style="padding: 20px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; background: #FAFBFD; border: 1.5px solid var(--blue); border-radius: 10px; position: relative;">
+              <svg viewBox="0 0 24 24" fill="#4F7EF7" width="36" height="36"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+              <div style="font-size: 13px; font-weight: 600; color: var(--black); text-align: center;">ワークショップLP</div>
+              <span style="position: absolute; top: -8px; right: -8px; background: var(--blue); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 10px; font-family: 'DM Sans', sans-serif;">CLICK</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; background: #FAFBFD; border: 1px solid var(--line); border-radius: 10px;">
+              <svg viewBox="0 0 24 24" fill="#94A3B8" width="36" height="36"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+              <div style="font-size: 13px; font-weight: 600; color: var(--black); text-align: center;">LINEプレゼント</div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; background: #FAFBFD; border: 1px solid var(--line); border-radius: 10px;">
+              <svg viewBox="0 0 24 24" fill="#94A3B8" width="36" height="36"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+              <div style="font-size: 13px; font-weight: 600; color: var(--black); text-align: center;">スライド</div>
+            </div>
+          </div>
+          <div style="padding: 12px 24px; border-top: 1px solid var(--line); background: #FAFBFD; font-size: 12px; color: var(--gray-mid);">
+            案件・制作物ごとに<strong style="color: var(--black);">フォルダを分ける</strong>（名前は日本語でもOK、ただし英語だとより安全）
+          </div>
+        </div>
+
+        <!-- 矢印 -->
+        <div style="text-align: center; color: var(--blue); font-size: 24px;">
+          <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 4px;">
+            <span style="font-size: 11px; color: var(--gray-mid); font-family: 'DM Sans', sans-serif; letter-spacing: 0.1em;">「ワークショップLP」を開くと…</span>
+            <span>↓</span>
+          </div>
+        </div>
+
+        <!-- Level 2: 案件フォルダ -->
+        <div style="background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 0; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+          <div style="background: #F1F3F5; padding: 10px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line);">
+            <span style="display: flex; gap: 6px;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF6057;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F;"></span>
+            </span>
+            <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--gray-mid);">
+              ワークショップLP　←　<span style="color: var(--blue); font-weight: 600;">Lv.2：案件フォルダ</span>
+            </span>
+          </div>
+          <div style="padding: 20px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; background: #FAFBFD; border: 1px solid var(--line); border-radius: 10px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#E07A5F" stroke-width="1.8" width="36" height="36"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <div style="font-size: 12px; font-weight: 600; color: var(--black); text-align: center; font-family: 'DM Sans', monospace;">index.html</div>
+              <div style="font-size: 10px; color: var(--gray-mid);">HTMLファイル</div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 10px; background: #FAFBFD; border: 1.5px solid var(--blue); border-radius: 10px; position: relative;">
+              <svg viewBox="0 0 24 24" fill="#4F7EF7" width="36" height="36"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+              <div style="font-size: 13px; font-weight: 600; color: var(--black); text-align: center; font-family: 'DM Sans', monospace;">images</div>
+              <div style="font-size: 10px; color: var(--gray-mid);">画像フォルダ</div>
+              <span style="position: absolute; top: -8px; right: -8px; background: var(--blue); color: #fff; font-size: 10px; padding: 3px 8px; border-radius: 10px; font-family: 'DM Sans', sans-serif;">CLICK</span>
+            </div>
+          </div>
+          <div style="padding: 12px 24px; border-top: 1px solid var(--line); background: #FAFBFD; font-size: 12px; color: var(--gray-mid);">
+            LPファイル本体（<code>index.html</code>）と、<strong style="color: var(--black);">画像専用のフォルダ（images）</strong>を分けて置く
+          </div>
+        </div>
+
+        <!-- 矢印 -->
+        <div style="text-align: center; color: var(--blue); font-size: 24px;">
+          <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 4px;">
+            <span style="font-size: 11px; color: var(--gray-mid); font-family: 'DM Sans', sans-serif; letter-spacing: 0.1em;">「images」を開くと…</span>
+            <span>↓</span>
+          </div>
+        </div>
+
+        <!-- Level 3: imagesフォルダ -->
+        <div style="background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 0; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+          <div style="background: #F1F3F5; padding: 10px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line);">
+            <span style="display: flex; gap: 6px;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF6057;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F;"></span>
+            </span>
+            <span style="font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--gray-mid);">
+              images　←　<span style="color: var(--blue); font-weight: 600;">Lv.3：画像フォルダ（実際の画像が入る）</span>
+            </span>
+          </div>
+          <div style="padding: 20px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; background: #FAFBFD; border: 1px solid var(--line); border-radius: 10px;">
+              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #F9A8D4, #FBCFE8); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+              </div>
+              <div style="font-size: 11px; color: var(--black); font-family: 'DM Sans', monospace;">hero.jpg</div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; background: #FAFBFD; border: 1px solid var(--line); border-radius: 10px;">
+              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #A7F3D0, #6EE7B7); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+              </div>
+              <div style="font-size: 11px; color: var(--black); font-family: 'DM Sans', monospace;">profile.jpg</div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; background: #FAFBFD; border: 1px solid var(--line); border-radius: 10px;">
+              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #BFDBFE, #93C5FD); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+              </div>
+              <div style="font-size: 11px; color: var(--black); font-family: 'DM Sans', monospace;">logo.png</div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; background: #FAFBFD; border: 1px solid var(--line); border-radius: 10px;">
+              <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #FDE68A, #FCD34D); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="24" height="24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+              </div>
+              <div style="font-size: 11px; color: var(--black); font-family: 'DM Sans', monospace;">back.png</div>
+            </div>
+          </div>
+          <div style="padding: 12px 24px; border-top: 1px solid var(--line); background: #FAFBFD; font-size: 12px; color: var(--gray-mid);">
+            画像ファイルの名前は<strong style="color: var(--black);">必ず英語</strong>で。HTMLの <code>&lt;img src="images/hero.jpg"&gt;</code> と一致させる
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout callout-info" style="margin-top: 28px;">
+        <div class="callout-title">ポイント：3階層で覚える</div>
+        <strong>Lv.1「Claude Code用の親フォルダ」</strong> → <strong>Lv.2「案件ごとのフォルダ」</strong> → <strong>Lv.3「images（画像専用）」</strong><br>
+        この3階層さえ守れば、Claudeが迷わず正しいファイルを見に行ってくれます。
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 5：フォルダ整理 -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part5">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 05</span>
+    <h2 class="sec-title">フォルダ整理の考え方</h2>
+    <p class="sec-desc">
+      「images/ って何？」「新LPごとにフォルダ分けるべき？」
+      第1回で実際にあった質問への答えをまとめました。
+    </p>
+  </div>
+
+  <!-- 3-1 引き出し -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-1</span>フォルダ＝引き出しのイメージ</h3>
+    <div class="subsec-body">
+      <p>
+        パソコンのフォルダは、<strong>机の引き出し</strong>と同じ。<br>
+        「何がどこにあるか」を<strong>あなた自身が説明できる</strong>状態にしておくのが目標です。
+      </p>
+      <div class="callout callout-info">
+        <div class="callout-title">Claude Codeの視点</div>
+        Claude Codeは、<strong>あなたが指定したフォルダの中だけ</strong>が見えます。<br>
+        だから、1つのLPに使う素材は<strong>1つのフォルダにまとめる</strong>のが基本。
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-2 プロジェクト単位 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-2</span>プロジェクト単位で分ける</h3>
+    <div class="subsec-body">
+      <p>お仕事ごと・LPごとに<strong>別フォルダ</strong>。これが基本ルールです。</p>
+
+      <div class="card">
+        <div class="card-title">推奨フォルダ構成の例</div>
+        <pre style="font-family: 'DM Sans', monospace; font-size: 13px; line-height: 1.9; background: var(--beige); padding: 20px; border-radius: 10px; overflow-x: auto; color: var(--dark);">デスクトップ/
+├── lp-aya-main/          ← 本命LP（あや）
+│   ├── index.html
+│   └── images/
+│       ├── hero.jpg
+│       └── profile.jpg
+├── lp-aya-front/         ← フロントLP（あや）
+│   ├── index.html
+│   └── images/
+└── lp-yumi-service/      ← ゆみさんサービスLP
+    ├── index.html
+    └── images/</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-3 images/ -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-3</span>「images/」 って何？</h3>
+    <div class="subsec-body">
+      <p>
+        <strong>images/</strong> は「画像をまとめて入れておくフォルダ」という意味の<strong>慣習名</strong>です。<br>
+        Claude Codeにも、HTMLから画像を読み込むときにも、この名前が使われます。
+      </p>
+
+      <div class="compare">
+        <div class="compare-box compare-good">
+          <div class="compare-label">推奨</div>
+          <p><strong>プロジェクトフォルダの中</strong>に images/ を作る</p>
+          <p style="margin-top: 8px; font-size: 13px;">
+            lp-front/<br>
+            ├── index.html<br>
+            └── images/ ← ここに画像
+          </p>
+        </div>
+        <div class="compare-box compare-bad">
+          <div class="compare-label">混乱しがち</div>
+          <p>デスクトップに直接「写真素材」フォルダを作って、そこに入れる</p>
+          <p style="margin-top: 8px; font-size: 13px;">
+            LPが画像を探せず表示されないことがある
+          </p>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">ルール</div>
+        <strong>HTMLファイルと同じフォルダの中に、images/ を作る</strong>。<br>
+        これだけ守れば迷いません。
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-4 新LP -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-4</span>新しいLPを作るとき、フォルダは別にする？</h3>
+    <div class="subsec-body">
+      <p><strong>はい、別フォルダにするのが基本です。</strong></p>
+      <ul class="check-list">
+        <li>本命LPとフロントLPは別フォルダに</li>
+        <li>クライアントAの案件とクライアントBの案件は別フォルダに</li>
+        <li>理由：素材が混ざらない・Claude Codeが混乱しない・あとで見返しやすい</li>
+      </ul>
+
+      <div class="card">
+        <div class="card-title">新しいLPを始めるときの型</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">デスクトップ（か専用の場所）に新フォルダを作る</div>
+            <div class="steps-desc">例：<code>lp-yoshimi-front/</code></div>
+          </li>
+          <li>
+            <div class="steps-title">その中に images/ フォルダを作る</div>
+          </li>
+          <li>
+            <div class="steps-title">使いたい画像をimages/に入れる</div>
+            <div class="steps-desc">ファイル名は英語で、空白なしで</div>
+          </li>
+          <li>
+            <div class="steps-title">提案書・原稿があれば同じフォルダの中に</div>
+            <div class="steps-desc">例：<code>brief.md</code> や <code>copy.txt</code></div>
+          </li>
+          <li>
+            <div class="steps-title">Claude Codeでそのフォルダを開く</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-5 日付 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-5</span>日付の入れ方</h3>
+    <div class="subsec-body">
+      <p>日付をフォルダ名やファイル名に入れるときは、<strong>並び替えやすい形式</strong>で。</p>
+
+      <div class="compare">
+        <div class="compare-box compare-good">
+          <div class="compare-label">Good</div>
+          <ul>
+            <li>20260423-qa-session/</li>
+            <li>2026-04-23_meeting.md</li>
+            <li>202604_monthly-report/</li>
+          </ul>
+          <p style="font-size: 12px; margin-top: 8px; color: var(--gray-mid);">並び替えると日付順に揃う</p>
+        </div>
+        <div class="compare-box compare-bad">
+          <div class="compare-label">Bad</div>
+          <ul>
+            <li>4月23日_打合せ/</li>
+            <li>23-4-2026.md</li>
+            <li>最新版_ver2_final.md</li>
+          </ul>
+          <p style="font-size: 12px; margin-top: 8px; color: var(--dark);">並び替えがバラバラになる</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-6 事前準備 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-6</span>当日までに用意しておくと差がつくもの</h3>
+    <div class="subsec-body">
+      <p>第1回の受講生から「これがあれば当日もっと進んだ」と聞いた項目です。</p>
+
+      <div class="card">
+        <div class="card-title">事前に揃えておく7つのもの</div>
+        <ul class="check-list">
+          <li><strong>使いたい写真</strong>を10〜20枚（プロフィール・サービス風景・雰囲気写真）</li>
+          <li><strong>参考にしたいLP</strong>のURL 3〜5本（雰囲気のモデリング先）</li>
+          <li><strong>キャッチコピー</strong>の候補（10個くらい書き出しておく）</li>
+          <li><strong>サービス説明文</strong>（長くてOK、あとで整える）</li>
+          <li><strong>お客様の声</strong>（あれば2〜3件）</li>
+          <li><strong>ロゴ</strong>（PNGの透過版があるとベスト）</li>
+          <li><strong>ブランドカラー</strong>（3色くらい決めておく）</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">これらを入れるフォルダ</div>
+        1つのプロジェクトフォルダにまとめて、その中で<br>
+        <code>images/</code>、<code>copy/</code>（文章）、<code>brief/</code>（提案書）などに整理しておくとClaude Codeがスムーズに読めます。
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-7 Claudeに一括リネーム -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">3-7</span>ファイル名を一括で英語にしてもらうコツ</h3>
+    <div class="subsec-body">
+      <p>
+        日本語で「スクリーンショット 2026-04-22 14.32.10.png」みたいなファイル名、そのままだとLPで使えません。<br>
+        <strong>でも、自分で1枚ずつ名前を変えるのは大変…</strong>
+      </p>
+      <div class="callout callout-tip">
+        <div class="callout-title">朗報</div>
+        <strong>images/ フォルダに全部ぶち込んで、Claude Codeに一括リネームしてもらえばOK。</strong><br>
+        中身を見て、用途に合った英語名を考えて、ぜんぶ一気に変えてくれます。
+      </div>
+
+      <div class="card">
+        <div class="card-title">やり方の流れ</div>
+        <ol class="steps">
+          <li>
+            <div class="steps-title">images/ に画像を全部入れる</div>
+            <div class="steps-desc">日本語名・スマホ撮影そのままでOK。とりあえず入れる</div>
+          </li>
+          <li>
+            <div class="steps-title">Claude Codeに頼む</div>
+            <div class="steps-desc">例：「images/の中のファイル名を、中身を見て英語のわかりやすい名前に変えて」</div>
+          </li>
+          <li>
+            <div class="steps-title">提案を確認する</div>
+            <div class="steps-desc">Claudeが「hero.jpg / profile-smile.jpg / service-scene-01.jpg …」のように案を出すので、OKを出す</div>
+          </li>
+          <li>
+            <div class="steps-title">一括でリネーム</div>
+            <div class="steps-desc">許可を出すと、一気に変えてくれます</div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-title">そのまま使える頼み方テンプレ</div>
+        <pre style="font-family: 'DM Sans', monospace; font-size: 13px; line-height: 1.9; background: var(--beige); padding: 20px; border-radius: 10px; overflow-x: auto; color: var(--dark); white-space: pre-wrap;">images/ の画像を見て、
+中身がわかる英語のファイル名に
+一括で変更してください。
+
+ルール：
+・小文字 + ハイフン区切り（例：hero-image.jpg）
+・拡張子はそのまま
+・同じ種類が複数あるなら 01, 02 と連番
+・変更前後の対応表も見せて</pre>
+      </div>
+
+      <div class="callout callout-warn">
+        <div class="callout-title">一手間かけると安心</div>
+        心配なら、<strong>リネーム前のフォルダをコピー</strong>しておくと元に戻せます。<br>
+        「images-backup/」みたいな名前で保管しておくのがおすすめ。
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">なぜ英語名がいいの？</div>
+        日本語ファイル名は、URLに含まれると<strong>文字化け</strong>したり、ブラウザによって<strong>画像が表示されない</strong>ことがあります。<br>
+        最初から英語で揃えておけば、公開してから「画像が出ない！」というトラブルを防げます。
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════════════════════ -->
+<!-- Part 6：画像・ファイル名 -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part6">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 06</span>
     <h2 class="sec-title">画像・ファイル名のコツ</h2>
     <p class="sec-desc">
       地味だけど、ここでつまずくとLPが表示されなかったり、文字化けしたり…。
@@ -1465,9 +4231,39 @@
     </p>
   </div>
 
-  <!-- 3-1 ファイル名は英語 -->
+  <!-- 4-1 フォーマット -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">3-1</span>ファイル名は「英語」で書く</h3>
+    <h3 class="subsec-title"><span class="subsec-num">4-1</span>画像フォーマットの使い分け（PNG / JPG / WebP）</h3>
+    <div class="subsec-body">
+      <div class="file-types">
+        <div class="file-type type-jpg">
+          <div class="file-type-icon"><span>JPG</span></div>
+          <div class="file-type-name">写真向き・軽い</div>
+          <div class="file-type-desc">お客様写真・風景・FV背景に。<br>透過はできない</div>
+        </div>
+        <div class="file-type type-png">
+          <div class="file-type-icon"><span>PNG</span></div>
+          <div class="file-type-name">透過・文字入り向き</div>
+          <div class="file-type-desc">ロゴ・スクショ・アイコン。<br>写真に使うと重い</div>
+        </div>
+        <div class="file-type type-webp">
+          <div class="file-type-icon"><span>WebP</span></div>
+          <div class="file-type-name">軽さと透過の両立</div>
+          <div class="file-type-desc">サイト高速化の切り札。<br>一部古いブラウザで×</div>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <div class="callout-title">サイズの目安</div>
+        LP1ページに使う画像は、<strong>1枚あたり500KB以下</strong>を目標に。<br>
+        3MBの写真をそのまま入れると、スマホで開くのに5秒かかることも。
+      </div>
+    </div>
+  </div>
+
+  <!-- 4-2 ファイル名は英語 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">4-2</span>ファイル名は「英語」で書く</h3>
     <div class="subsec-body">
       <p><strong>なぜ？</strong> 日本語ファイル名はWeb上で<strong>文字化け</strong>したり、<strong>URLが壊れたり</strong>するから。<br>英語なら世界中のどのサーバーでも確実に動きます。</p>
 
@@ -1494,9 +4290,9 @@
     </div>
   </div>
 
-  <!-- 3-2 空白 -->
+  <!-- 4-3 空白 -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">3-2</span>空白は入れない。代わりにハイフン（-）</h3>
+    <h3 class="subsec-title"><span class="subsec-num">4-3</span>空白は入れない。代わりにハイフン（-）</h3>
     <div class="subsec-body">
       <p>
         ファイル名に<strong>半角スペース・全角スペース</strong>を入れると、URLが途中で切れたり、正しく読み込めないことがあります。
@@ -1529,54 +4325,36 @@
     </div>
   </div>
 
-  <!-- 3-3 フォーマット -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">3-3</span>画像フォーマットの使い分け（PNG / JPG / WebP）</h3>
-    <div class="subsec-body">
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>形式</th>
-              <th>得意</th>
-              <th>苦手</th>
-              <th>こんな時に</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>JPG</strong><br><span class="tag">.jpg / .jpeg</span></td>
-              <td>写真・グラデーション。軽い</td>
-              <td>透過できない</td>
-              <td>お客様写真・風景・FV背景</td>
-            </tr>
-            <tr>
-              <td><strong>PNG</strong><br><span class="tag">.png</span></td>
-              <td>文字入り画像・ロゴ・透過</td>
-              <td>写真に使うと重い</td>
-              <td>ロゴ・スクショ・アイコン</td>
-            </tr>
-            <tr>
-              <td><strong>WebP</strong><br><span class="tag">.webp</span></td>
-              <td>JPGより軽くて、透過もOK</td>
-              <td>一部古いブラウザで見えない</td>
-              <td>サイトを軽くしたい時の切り札</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+</section>
 
-      <div class="callout callout-info">
-        <div class="callout-title">サイズの目安</div>
-        LP1ページに使う画像は、<strong>1枚あたり500KB以下</strong>を目標に。<br>
-        3MBの写真をそのまま入れると、スマホで開くのに5秒かかることも。
-      </div>
-    </div>
+<!-- ═══════════════════════════════ -->
+<!-- ═══════════════════════════════ -->
+<!-- Chapter 4：デザインの知識 -->
+<!-- ═══════════════════════════════ -->
+<div class="chapter-divider" id="chapter4">
+  <span class="chap-num">04</span>
+  <div class="chap-inner">
+    <div class="chap-label">Chapter Four</div>
+    <h2 class="chap-title">デザインの知識</h2>
+    <p class="chap-sub">実際にアウトプットした後に使える、デザインの知識についてまとめます。「AIっぽさ」って何？ よく聞く「パララックス」「レスポンシブ」って？ 当日クロードに指示するときに、言葉を知っているだけで仕上がりが変わります。</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- Design Tips：素材・スクショ・拡張ツール -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="design-tips">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Design Tips</span>
+    <h2 class="sec-title">素材・スクショのコツ</h2>
+    <p class="sec-desc">
+      LP制作の「引き出し」を増やすテクニック集。素材サイト・スクショの撮り方・参考LPを残すコツまで。
+    </p>
   </div>
 
-  <!-- 3-4 スクショ -->
+  <!-- D-1 スクショ -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">3-4</span>スクリーンショットの撮り方</h3>
+    <h3 class="subsec-title"><span class="subsec-num">D-1</span>スクリーンショットの撮り方</h3>
     <div class="subsec-body">
       <div class="compare">
         <div class="compare-box" style="background: #F3E8FF; border-color: #D8B4FE;">
@@ -1608,9 +4386,9 @@
     </div>
   </div>
 
-  <!-- 3-5 拡張機能 -->
+  <!-- D-2 拡張機能 -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">3-5</span>LPの参考にしたい時の拡張ツール</h3>
+    <h3 class="subsec-title"><span class="subsec-num">D-2</span>参考LPをまるごと保存</h3>
     <div class="subsec-body">
       <p>他の素敵なLPを見つけたとき、<strong>全体を1枚の画像として保存</strong>できるツールがあります。</p>
 
@@ -1625,9 +4403,9 @@
     </div>
   </div>
 
-  <!-- 3-6 素材集め -->
+  <!-- D-3 素材集め -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">3-6</span>素材はどこから集める？</h3>
+    <h3 class="subsec-title"><span class="subsec-num">D-3</span>素材はどこから集める？</h3>
     <div class="subsec-body">
       <p>「いい素材がない…」がLP制作の一番の詰まりポイント。<strong>日頃から集めておく</strong>と差がつきます。</p>
 
@@ -1685,422 +4463,6 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════ -->
-<!-- Part 4：フォルダ整理 -->
-<!-- ═══════════════════════════════ -->
-<section class="section" id="part4">
-  <div class="sec-head">
-    <span class="sec-eyebrow">Part 04</span>
-    <h2 class="sec-title">フォルダ整理の考え方</h2>
-    <p class="sec-desc">
-      「images/ って何？」「新LPごとにフォルダ分けるべき？」
-      第1回で実際にあった質問への答えをまとめました。
-    </p>
-  </div>
-
-  <!-- 4-1 引き出し -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">4-1</span>フォルダ＝引き出しのイメージ</h3>
-    <div class="subsec-body">
-      <p>
-        パソコンのフォルダは、<strong>机の引き出し</strong>と同じ。<br>
-        「何がどこにあるか」を<strong>あなた自身が説明できる</strong>状態にしておくのが目標です。
-      </p>
-      <div class="callout callout-info">
-        <div class="callout-title">Claude Codeの視点</div>
-        Claude Codeは、<strong>あなたが指定したフォルダの中だけ</strong>が見えます。<br>
-        だから、1つのLPに使う素材は<strong>1つのフォルダにまとめる</strong>のが基本。
-      </div>
-    </div>
-  </div>
-
-  <!-- 4-2 プロジェクト単位 -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">4-2</span>プロジェクト単位で分ける</h3>
-    <div class="subsec-body">
-      <p>お仕事ごと・LPごとに<strong>別フォルダ</strong>。これが基本ルールです。</p>
-
-      <div class="card">
-        <div class="card-title">推奨フォルダ構成の例</div>
-        <pre style="font-family: 'DM Sans', monospace; font-size: 13px; line-height: 1.9; background: var(--beige); padding: 20px; border-radius: 10px; overflow-x: auto; color: var(--dark);">デスクトップ/
-├── lp-aya-main/          ← 本命LP（あや）
-│   ├── index.html
-│   └── images/
-│       ├── hero.jpg
-│       └── profile.jpg
-├── lp-aya-front/         ← フロントLP（あや）
-│   ├── index.html
-│   └── images/
-└── lp-yumi-service/      ← ゆみさんサービスLP
-    ├── index.html
-    └── images/</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4-3 images/ -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">4-3</span>「images/」 って何？</h3>
-    <div class="subsec-body">
-      <p>
-        <strong>images/</strong> は「画像をまとめて入れておくフォルダ」という意味の<strong>慣習名</strong>です。<br>
-        Claude Codeにも、HTMLから画像を読み込むときにも、この名前が使われます。
-      </p>
-
-      <div class="compare">
-        <div class="compare-box compare-good">
-          <div class="compare-label">推奨</div>
-          <p><strong>プロジェクトフォルダの中</strong>に images/ を作る</p>
-          <p style="margin-top: 8px; font-size: 13px;">
-            lp-front/<br>
-            ├── index.html<br>
-            └── images/ ← ここに画像
-          </p>
-        </div>
-        <div class="compare-box compare-bad">
-          <div class="compare-label">混乱しがち</div>
-          <p>デスクトップに直接「写真素材」フォルダを作って、そこに入れる</p>
-          <p style="margin-top: 8px; font-size: 13px;">
-            LPが画像を探せず表示されないことがある
-          </p>
-        </div>
-      </div>
-
-      <div class="callout callout-tip">
-        <div class="callout-title">ルール</div>
-        <strong>HTMLファイルと同じフォルダの中に、images/ を作る</strong>。<br>
-        これだけ守れば迷いません。
-      </div>
-    </div>
-  </div>
-
-  <!-- 4-4 新LP -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">4-4</span>新しいLPを作るとき、フォルダは別にする？</h3>
-    <div class="subsec-body">
-      <p><strong>はい、別フォルダにするのが基本です。</strong></p>
-      <ul class="check-list">
-        <li>本命LPとフロントLPは別フォルダに</li>
-        <li>クライアントAの案件とクライアントBの案件は別フォルダに</li>
-        <li>理由：素材が混ざらない・Claude Codeが混乱しない・あとで見返しやすい</li>
-      </ul>
-
-      <div class="card">
-        <div class="card-title">新しいLPを始めるときの型</div>
-        <ol class="steps">
-          <li>
-            <div class="steps-title">デスクトップ（か専用の場所）に新フォルダを作る</div>
-            <div class="steps-desc">例：<code>lp-yoshimi-front/</code></div>
-          </li>
-          <li>
-            <div class="steps-title">その中に images/ フォルダを作る</div>
-          </li>
-          <li>
-            <div class="steps-title">使いたい画像をimages/に入れる</div>
-            <div class="steps-desc">ファイル名は英語で、空白なしで</div>
-          </li>
-          <li>
-            <div class="steps-title">提案書・原稿があれば同じフォルダの中に</div>
-            <div class="steps-desc">例：<code>brief.md</code> や <code>copy.txt</code></div>
-          </li>
-          <li>
-            <div class="steps-title">Claude Codeでそのフォルダを開く</div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4-5 日付 -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">4-5</span>日付の入れ方</h3>
-    <div class="subsec-body">
-      <p>日付をフォルダ名やファイル名に入れるときは、<strong>並び替えやすい形式</strong>で。</p>
-
-      <div class="compare">
-        <div class="compare-box compare-good">
-          <div class="compare-label">Good</div>
-          <ul>
-            <li>20260423-qa-session/</li>
-            <li>2026-04-23_meeting.md</li>
-            <li>202604_monthly-report/</li>
-          </ul>
-          <p style="font-size: 12px; margin-top: 8px; color: var(--gray-mid);">並び替えると日付順に揃う</p>
-        </div>
-        <div class="compare-box compare-bad">
-          <div class="compare-label">Bad</div>
-          <ul>
-            <li>4月23日_打合せ/</li>
-            <li>23-4-2026.md</li>
-            <li>最新版_ver2_final.md</li>
-          </ul>
-          <p style="font-size: 12px; margin-top: 8px; color: var(--dark);">並び替えがバラバラになる</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4-6 事前準備 -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">4-6</span>当日までに用意しておくと差がつくもの</h3>
-    <div class="subsec-body">
-      <p>第1回の受講生から「これがあれば当日もっと進んだ」と聞いた項目です。</p>
-
-      <div class="card">
-        <div class="card-title">事前に揃えておく7つのもの</div>
-        <ul class="check-list">
-          <li><strong>使いたい写真</strong>を10〜20枚（プロフィール・サービス風景・雰囲気写真）</li>
-          <li><strong>参考にしたいLP</strong>のURL 3〜5本（雰囲気のモデリング先）</li>
-          <li><strong>キャッチコピー</strong>の候補（10個くらい書き出しておく）</li>
-          <li><strong>サービス説明文</strong>（長くてOK、あとで整える）</li>
-          <li><strong>お客様の声</strong>（あれば2〜3件）</li>
-          <li><strong>ロゴ</strong>（PNGの透過版があるとベスト）</li>
-          <li><strong>ブランドカラー</strong>（3色くらい決めておく）</li>
-        </ul>
-      </div>
-
-      <div class="callout callout-info">
-        <div class="callout-title">これらを入れるフォルダ</div>
-        1つのプロジェクトフォルダにまとめて、その中で<br>
-        <code>images/</code>、<code>copy/</code>（文章）、<code>brief/</code>（提案書）などに整理しておくとClaude Codeがスムーズに読めます。
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ -->
-<!-- Part 5：Claude Codeでできること -->
-<!-- ═══════════════════════════════ -->
-<section class="section" id="part5">
-  <div class="sec-head">
-    <span class="sec-eyebrow">Part 05</span>
-    <h2 class="sec-title">Claude Codeでできること</h2>
-    <p class="sec-desc">
-      できること / できないこと / チャットとの使い分け。
-      「何を頼めばいいか」の全体像がわかると、活用の幅が一気に広がります。
-    </p>
-  </div>
-
-  <!-- 5-1 できること -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">5-1</span>できること一覧</h3>
-    <div class="subsec-body">
-      <ul class="check-list">
-        <li><strong>LP・HPの制作</strong>（HTML / CSS）</li>
-        <li><strong>既存サイトの修正</strong>（色・文字・レイアウト変更）</li>
-        <li>ブログ・会員サイトの作成</li>
-        <li><strong>LINE/メール配信の自動化</strong>スクリプト作成</li>
-        <li>スプレッドシート連携（Google Apps Script）</li>
-        <li>フォルダ内の書類を<strong>横断的に読んで要約</strong></li>
-        <li>大量ファイルの一括リネーム・整理</li>
-        <li>PDF・画像からの文字起こし</li>
-        <li>GitHubへのアップ・Vercelデプロイ</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 5-2 できないこと -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">5-2</span>できないこと（苦手なこと）</h3>
-    <div class="subsec-body">
-      <ul class="cross-list">
-        <li><strong>画像そのものを作る</strong>（生成はChatGPTやMidjourneyで）</li>
-        <li><strong>動画編集</strong>（Canva・CapCutなど専門ツールへ）</li>
-        <li>有料ツールの<strong>自動ログイン操作</strong></li>
-        <li>リアルタイムな<strong>株価・天気</strong>など最新情報の取得（Web検索は限定的）</li>
-        <li>あなたの<strong>確認なしに重要な削除</strong></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 5-3 チャットとの使い分け -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">5-3</span>チャット × Claude Code の使い分け</h3>
-    <div class="subsec-body">
-      <p>受講生から多かった質問：「チャットで話した内容はCodeに引き継がれる？」</p>
-      <div class="callout callout-warn">
-        <div class="callout-title">答え：引き継がれません</div>
-        チャットとCodeは別アプリです。チャットでの会話はCode側には見えません。<br>
-        <strong>大事な設定や人物像は、ファイルに書いて保存</strong>しておく必要があります。
-      </div>
-
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>やりたいこと</th>
-              <th>使うべきは</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>アイデア出し・雑談・壁打ち</td>
-              <td>チャット（またはChatGPTで節約）</td>
-            </tr>
-            <tr>
-              <td>文章を整える</td>
-              <td>チャット</td>
-            </tr>
-            <tr>
-              <td>画像を見せて意見を聞く</td>
-              <td>チャット</td>
-            </tr>
-            <tr>
-              <td>LP・HPを作る</td>
-              <td>Claude Code</td>
-            </tr>
-            <tr>
-              <td>既存ファイルを編集する</td>
-              <td>Claude Code</td>
-            </tr>
-            <tr>
-              <td>フォルダの中身を理解させる</td>
-              <td>Claude Code</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-title">事前課題のとき、どっちで壁打ちする？</div>
-        <p style="margin-bottom: 12px;">受講生のよくある迷い：「ステップ2の内容整理は、Codeと先に壁打ちしてから埋める？ 埋めてから壁打ちする？」</p>
-        <p><strong>おすすめの順番：</strong></p>
-        <ol class="steps">
-          <li>
-            <div class="steps-title">まずはチャット（またはChatGPT）で壁打ち</div>
-            <div class="steps-desc">アイデアがぐちゃぐちゃな段階はここで整理（トークン節約）</div>
-          </li>
-          <li>
-            <div class="steps-title">ある程度まとまったらステップ2を書く</div>
-            <div class="steps-desc">完璧じゃなくてOK</div>
-          </li>
-          <li>
-            <div class="steps-title">Claude Codeで実際にLP化しながら調整</div>
-            <div class="steps-desc">ここでトークンをしっかり使う</div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ -->
-<!-- Part 6：セキュリティ・連携 -->
-<!-- ═══════════════════════════════ -->
-<section class="section" id="part6">
-  <div class="sec-head">
-    <span class="sec-eyebrow">Part 06</span>
-    <h2 class="sec-title">セキュリティ・連携</h2>
-    <p class="sec-desc">
-      お客様の情報を扱うからこそ、気になるところ。<br>
-      「連携」「許可」「個人情報」の3つのポイントを押さえましょう。
-    </p>
-  </div>
-
-  <!-- 6-1 Drive連携 -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">6-1</span>Google Drive連携：3つの選択肢</h3>
-    <div class="subsec-body">
-      <p>Drive連携で出てくる選択肢、迷いますよね。<strong>あなたのやりたいこと別</strong>にまとめました。</p>
-
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>あなたの使い方</th>
-              <th>選ぶもの</th>
-              <th>注意点</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Driveの大量資料をまとめて読ませたい</td>
-              <td>①すべてのファイルの表示・DL</td>
-              <td>Drive全体が見える状態に。機密ファイルがあれば注意</td>
-            </tr>
-            <tr>
-              <td>特定ファイルだけ読ませたい</td>
-              <td>②特定のファイルのみ</td>
-              <td>一番安全。使うときに都度選ぶ</td>
-            </tr>
-            <tr>
-              <td>Driveとは連携せずローカルで作業</td>
-              <td>どちらもチェックせずスキップ</td>
-              <td>Claude CodeでLPを作るだけなら、これで十分</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout callout-tip">
-        <div class="callout-title">迷ったら</div>
-        まずは<strong>「チェックせずスキップ」</strong>でOK。
-        あとからGoogleアカウントの設定でいつでも変更できます。
-      </div>
-    </div>
-  </div>
-
-  <!-- 6-2 許可 -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">6-2</span>「許可しますか？」と聞かれたとき</h3>
-    <div class="subsec-body">
-      <p>Claude Codeで作業中、<strong>「このファイルを変更していい？」</strong>と確認されることがあります。これは<strong>大事な安全機構</strong>です。</p>
-
-      <div class="card">
-        <div class="card-title">判断のポイント</div>
-        <ul class="check-list">
-          <li><strong>許可していい</strong>：自分のプロジェクトフォルダ内のファイル（HTML、images/内など）</li>
-          <li><strong>ちょっと待って</strong>：見慣れないフォルダ、システム関連、消せないファイル</li>
-          <li><strong>断ってOK</strong>：意図しない場所を触ろうとしている、意味がわからない操作</li>
-        </ul>
-      </div>
-
-      <div class="callout callout-warn">
-        <div class="callout-title">わからない時の鉄則</div>
-        <strong>「わかりません、どういう操作ですか？」</strong>と Claude Codeに聞いてみてください。<br>
-        丁寧に説明してくれます。急いで「はい」と押さないで大丈夫。
-      </div>
-    </div>
-  </div>
-
-  <!-- 6-3 個人情報 -->
-  <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">6-3</span>お客様の個人情報を扱うとき</h3>
-    <div class="subsec-body">
-      <div class="callout callout-danger">
-        <div class="callout-title">基本ルール</div>
-        お客様の<strong>氏名・電話番号・住所・決済情報</strong>などの個人情報は、<br>
-        AIに直接貼り付ける前に<strong>匿名化</strong>するのが基本です。
-      </div>
-
-      <div class="card">
-        <div class="card-title">安全に扱うための3ステップ</div>
-        <ol class="steps">
-          <li>
-            <div class="steps-title">本当に必要か確認する</div>
-            <div class="steps-desc">LPを作るのに個人情報は本来不要。「お客様の声」として掲載する場合は事前に本人の許可を</div>
-          </li>
-          <li>
-            <div class="steps-title">匿名化する</div>
-            <div class="steps-desc">「Aさん・40代女性・東京都」のように情報を抽象化</div>
-          </li>
-          <li>
-            <div class="steps-title">Drive連携は「特定のファイルのみ」に</div>
-            <div class="steps-desc">全体を見せず、渡したいファイルだけ明示的に選ぶ</div>
-          </li>
-        </ol>
-      </div>
-
-      <div class="callout callout-info">
-        <div class="callout-title">参考：Anthropic（Claudeの会社）のポリシー</div>
-        Claudeに入力した内容は、デフォルトでは<strong>AIの学習には使われない</strong>設定になっています。
-        ただし100%安心ではないので、機密情報は一般論として扱うのがおすすめ。
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ -->
 <!-- Part 7：用語辞典 -->
 <!-- ═══════════════════════════════ -->
 <section class="section" id="part7">
@@ -2218,6 +4580,120 @@
       </div>
     </div>
   </div>
+</section>
+
+
+<!-- ═══════════════════════════════ -->
+<!-- Chapter 5：できたものを公開するには -->
+<!-- ═══════════════════════════════ -->
+<div class="chapter-divider" id="chapter5">
+  <span class="chap-num">05</span>
+  <div class="chap-inner">
+    <div class="chap-label">Chapter Five</div>
+    <h2 class="chap-title">できたものを公開するには</h2>
+    <p class="chap-sub">LPができあがったら、いよいよ世界に公開。でも「PCで作ったファイル」は、そのままではURLになりません。GitHubとVercelを使って、誰でも見られる1本のURLに変えていきます。</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- Part 8：Claude × GitHub × Vercel -->
+<!-- ═══════════════════════════════ -->
+<section class="section" id="part8">
+  <div class="sec-head">
+    <span class="sec-eyebrow">Part 08</span>
+    <h2 class="sec-title">公開までの3つの道具<br>― Claude × GitHub × Vercel ―</h2>
+    <p class="sec-desc">
+      作ったLPを「URL1つで誰でも見られる」状態にするまでの流れを、役割分担の図で整理します。
+    </p>
+  </div>
+
+<!-- 1-2 関係図 -->
+  <div class="subsec">
+    <h3 class="subsec-title"><span class="subsec-num">8-1</span>Claude × GitHub × Vercel の関係図</h3>
+    <div class="subsec-body">
+      <p>
+        「なぜGitHubを入れるの？」「Vercelって何？」という疑問の答えがこの図です。<br>
+        <strong>役割が違うから、全部が必要</strong>なのです。
+      </p>
+
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+            </div>
+            <div class="flow-box-title">あなたのPC</div>
+            <div class="flow-box-desc">Claude Codeで<br>ファイルを作る場所</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="1.6"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1 .8-.2 1.6-.3 2.5-.3.8 0 1.7.1 2.5.3 1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.6 4.9.4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5C19.1 20.2 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>
+            </div>
+            <div class="flow-box-title">GitHub</div>
+            <div class="flow-box-desc">ファイルを<br>保管する倉庫</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1BC6B4" stroke-width="1.6"><path d="M12 2L2 20h20L12 2z"/></svg>
+            </div>
+            <div class="flow-box-title">Vercel</div>
+            <div class="flow-box-desc">GitHubから読み取って<br>世界に公開する</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1BC6B4" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+            </div>
+            <div class="flow-box-title">公開URL</div>
+            <div class="flow-box-desc">お客様が見られる<br>あなたのLP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ツール</th>
+              <th>たとえるなら</th>
+              <th>役割</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Claude Code</strong></td>
+              <td>あなたの相棒のデザイナー</td>
+              <td>あなたの代わりにHTMLファイルを書いてくれる</td>
+            </tr>
+            <tr>
+              <td><strong>GitHub</strong></td>
+              <td>作品の保管庫・バックアップ先</td>
+              <td>作ったファイルを預ける。履歴も残るので安心</td>
+            </tr>
+            <tr>
+              <td><strong>Vercel</strong></td>
+              <td>配達人</td>
+              <td>GitHubの中身を世界中のネットに配達してくれる</td>
+            </tr>
+            <tr>
+              <td><strong>Git</strong> <span class="tag tag-win">Windowsのみ</span></td>
+              <td>郵便の仕組みそのもの</td>
+              <td>PCからGitHubに送るための仕組み（Macは最初から入ってる）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-tip">
+        <div class="callout-title">つまり</div>
+        「PCで作る → GitHubに保管 → Vercelが世界に配達」の3段階で、<br>
+        あなたのLPがURL1つで誰でも見られるようになります。
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <div class="divider">

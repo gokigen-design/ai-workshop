@@ -5,25 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claude Codeで叶える！デザイナー視点もりもりのAI制作ワークショップ ¥55,000版</title>
 <script>
-  // イントロ演出判定（レンダリング前に実行してFOUC防止）
-  (function(){
-    try {
-      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (sessionStorage.getItem('ws_intro_played') !== '1' && !reduced) {
-        document.documentElement.classList.add('intro-playing');
-      } else {
-        document.documentElement.classList.add('intro-done');
-      }
-    } catch(e) {
-      document.documentElement.classList.add('intro-done');
-    }
-  })();
+  // イントロ演出：黒画面による離脱を避けるため常に "intro-done" 扱い
+  document.documentElement.classList.add('intro-done');
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<link rel="preload" href="bg-fv.jpg" as="image">
-<link rel="preload" href="images/sitetop.png" as="image">
-<link rel="preload" href="images/fv-bg.mp4" as="video" type="video/mp4">
+<!-- レンダリングをブロックしないようpreconnect＋print-swapトリックで非同期読み込み -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Zen+Maru+Gothic:wght@500;700&family=DotGothic16&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Zen+Maru+Gothic:wght@500;700&family=DotGothic16&family=VT323&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Zen+Maru+Gothic:wght@500;700&family=DotGothic16&family=VT323&display=swap"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+<link rel="preload" href="images/bg-fv.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="images/sitetop.png" as="image" fetchpriority="high">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -111,6 +104,13 @@
   /* スクロールアニメーション */
   .reveal { opacity: 0; transform: translateY(50px); transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* スマホ：アニメーション未発火で消えるのを防ぐ保険（6秒後には必ず表示） */
+  @media (max-width: 768px) {
+    .reveal, .reveal-left, .reveal-right, .reveal-scale { animation: forceReveal 0s linear 6s forwards; }
+    @keyframes forceReveal {
+      to { opacity: 1 !important; transform: none !important; }
+    }
+  }
   .reveal-left { opacity: 0; transform: translateX(-60px); transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
   .reveal-left.visible { opacity: 1; transform: translateX(0); }
   .reveal-right { opacity: 0; transform: translateX(60px); transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -1184,6 +1184,13 @@
   .fv-intro-skip:hover { background: rgba(34,211,238,0.2); }
   html.intro-playing .fv-intro-skip { display: block; }
 
+  /* スマホ：重いFV装飾アニメーションを無効化（Safariメモリ対策） */
+  @media (max-width: 768px) {
+    .fv-perspective-lines { display: none !important; }
+    .fv-stars { display: none !important; }
+    .fv-shockwave { display: none !important; }
+  }
+
   /* アクセシビリティ：モーション低減設定を尊重 */
   @media (prefers-reduced-motion: reduce) {
     .fv-perspective-lines, .fv-star { animation: none !important; }
@@ -1210,8 +1217,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    background: #05050f;
-    animation: heroBloomIn 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
+    background: url('images/bg-fv.jpg') center center / cover no-repeat, #05050f;
     z-index: 2;
     overflow: hidden;
   }
@@ -1243,6 +1249,7 @@
   .fv-hero-photo {
     position: absolute;
     inset: 0;
+    margin-top: 80px;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -2039,7 +2046,7 @@
   /* ================================ */
   .impact {
     background: var(--dark-bg);
-    padding: 120px 20px 80px;
+    padding: 120px 20px 40px;
     position: relative;
     overflow: hidden;
   }
@@ -2210,7 +2217,7 @@
   .instructor {
     background: var(--dark-bg);
     clip-path: polygon(0 80px, 100% 0, 100% calc(100% - 80px), 0 100%);
-    padding: 180px 20px;
+    padding: 90px 20px 40px;
   }
   .instructor-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
   .instructor-card {
@@ -2262,7 +2269,7 @@
   .overview {
     background: var(--dark-card2);
     clip-path: polygon(0 0, 100% 80px, 100% 100%, 0 100%);
-    padding: 160px 20px 100px;
+    padding: 50px 20px 80px;
   }
   .overview-table { margin-top: 28px; }
   .overview-row { display: flex; border-bottom: 1px solid rgba(255,255,255,0.04); padding: 18px 0; }
@@ -2448,9 +2455,9 @@
 
     /* ─── FV スマホ専用 ─── */
     .fv-hero-wrap {
-      /* 170%に拡大 + 90px下にずらして顔をバッジから離す */
-      background-size: 220%;
-      background-position: 50% 60px;
+      /* 背景は自然にcover。拡大しすぎない */
+      background-size: cover;
+      background-position: center center;
     }
     /* 下半身を隠すグラデ */
     .fv-hero-wrap::after {
@@ -2483,8 +2490,11 @@
     .fv-catch-sub { font-size: 0.88rem; }
     .fv-title-date { font-size: 0.72rem; letter-spacing: 2px; margin-top: 8px; }
     .fv-title-band { padding: 8px 0 4px; }
-    /* 女性3人を80px下にずらす（顔がバッジに近すぎる対策） */
-    .fv-hero-photo { object-position: center 80px; }
+    /* 女性3人：スマホは中央にバランスよく配置（顔が上すぎないように） */
+    .fv-hero-photo {
+      object-fit: cover;
+      object-position: center 75%;
+    }
     .fv-proof { gap: 6px; margin-bottom: 12px; flex-wrap: nowrap; justify-content: center; }
     .fv-proof span { font-size: 0.6rem; padding: 5px 8px; white-space: nowrap; }
     /* 申込ボタンを2回り大きく */
@@ -2546,9 +2556,7 @@
     z-index: 9999;
     overflow: hidden;
     background: #000010;
-  }
-  #gate-opening {
-    transition: opacity 1.2s ease;
+    transition: opacity 1.0s ease;
   }
   #gate-opening.gone {
     opacity: 0;
@@ -2740,6 +2748,42 @@
     width: 100%;
     padding: 60px 0 80px;
     overflow: visible !important;
+    cursor: grab;
+    position: relative;
+  }
+  .phone-swiper:active { cursor: grabbing; }
+  /* ナビゲーション矢印ボタン（PC向け） */
+  .phone-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(15, 20, 45, 0.75);
+    border: 1.5px solid rgba(34,211,238,0.55);
+    color: #e8f7ff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 0 18px rgba(34,211,238,0.35), inset 0 0 12px rgba(192,132,252,0.2);
+    transition: background 0.25s, transform 0.25s, border-color 0.25s;
+  }
+  .phone-nav:hover {
+    background: rgba(34,211,238,0.25);
+    border-color: #22d3ee;
+    transform: translateY(-50%) scale(1.08);
+  }
+  .phone-nav-prev { left: 16px; }
+  .phone-nav-next { right: 16px; }
+  @media (max-width: 768px) {
+    .phone-nav { width: 42px; height: 42px; }
+    .phone-nav-prev { left: 6px; }
+    .phone-nav-next { right: 6px; }
   }
   .phone-swiper .swiper-slide {
     width: 260px;
@@ -2824,12 +2868,15 @@
   }
   .phone-scroll-img img { width: 100%; height: auto; display: block; }
   .phone-iframe {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0;
+    width: 1200px; height: 2600px;
     border: 0;
     background: #fff;
     border-radius: inherit;
     display: block;
+    transform: scale(0.217);
+    transform-origin: top left;
+    pointer-events: auto;
   }
   .phone-scroll-img::-webkit-scrollbar { width: 4px; }
   .phone-scroll-img::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.5); border-radius: 2px; }
@@ -3176,8 +3223,12 @@
     .step-card { grid-template-columns: 1fr; gap: 10px; padding: 30px 22px; }
     .step-card::before { left: 26px; }
     .step-no strong { font-size: 44px; }
-    .phone-swiper .swiper-slide { width: 220px; }
-    .phone-mock { width: 220px; height: 460px; }
+    .phone-swiper .swiper-slide { width: 180px; }
+    .phone-mock { width: 180px; height: 380px; }
+    .phone-mock::before { width: 64px; height: 16px; top: 8px; border-radius: 10px; }
+    .phone-screen { border-radius: 22px; }
+    /* スマホ：LPは1200×2600で描画してスケール縮小（他セクションと同じ見せ方） */
+    .phone-iframe { width: 1200px; height: 2600px; transform: scale(0.15); }
     .gallery { padding: 90px 0 100px; }
     .edge, .steps { padding: 90px 0; }
   }
@@ -3632,6 +3683,9 @@
     white-space: nowrap;
     margin-top: 0;
   }
+  .baof-phone-wrap .baof-live-btn:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
   .baof-phone-tag {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.7rem;
@@ -3702,6 +3756,9 @@
     background: linear-gradient(180deg, #3a3a4a, #1a1a2a, #2a2a3a);
   }
   .baof-phone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* スマホ：受講生の声のスクショもギャラリーと同じく縦スクロール表示 */
+  .baof-phone-screen .phone-scroll-img { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; border-radius: inherit; }
+  .baof-phone-screen .phone-scroll-img img { width: 100% !important; height: auto !important; object-fit: initial !important; display: block; }
   /* LPをライブ表示する iframe（クリックは親のaタグへ通す） */
   .baof-phone-link {
     display: inline-block;
@@ -3721,6 +3778,13 @@
     transform-origin: top left;
     pointer-events: auto;
     background: #fff;
+  }
+  .baof-phone.before .baof-phone-iframe {
+    transform: scale(0.172);
+  }
+  /* BEFOREはFVで固定表示。クリック/スクロール操作を無効化 */
+  .baof-phone-iframe-locked {
+    pointer-events: none !important;
   }
   /* 長尺スクリーンショット画像をスマホ画面内でスクロール表示 */
   .baof-phone-scroll-img {
@@ -3859,6 +3923,12 @@
     overflow: hidden;
   }
   .baof-person-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .baof-person-avatar svg {
+    width: 60%; height: 60%;
+    color: var(--neon-cyan);
+    stroke: currentColor;
+    fill: none;
+  }
   .baof-person-name {
     font-size: 17px;
     font-weight: 700;
@@ -4456,20 +4526,30 @@
 
   @media (max-width: 768px) {
     .ideal-grid { grid-template-columns: 1fr; gap: 18px; }
-    .baof-row { padding: 40px 20px 36px; gap: 28px; }
-    .baof-phones-duo { grid-template-columns: 0.8fr auto 1fr; gap: 10px; }
-    .baof-phone.before { width: 120px; height: 250px; padding: 5px; border-radius: 20px; }
-    .baof-phone.before::before { width: 42px; height: 10px; top: 6px; border-radius: 7px; }
-    .baof-phone.before .baof-phone-screen { border-radius: 16px; }
-    .baof-phone.after { width: 175px; height: 370px; padding: 6px; border-radius: 24px; }
-    .baof-phone-iframe { width: 1000px; height: 2200px; transform: scale(0.165); }
-    .baof-phone-badge { font-size: 0.5rem; padding: 3px 7px; bottom: 8px; }
-    .baof-phone.after::before { width: 58px; height: 14px; top: 8px; border-radius: 10px; }
-    .baof-phone.after .baof-phone-screen { border-radius: 18px; }
-    .baof-arrow { padding-bottom: 120px; }
-    .baof-arrow-line { font-size: 1.5rem; }
-    .baof-arrow-txt { font-size: 0.55rem; }
+    .baof-row { padding: 40px 10px 36px; gap: 28px; }
+    .baof-phones-duo {
+      grid-template-columns: auto auto auto;
+      gap: 6px;
+      justify-content: center;
+      align-items: center;
+      max-width: 100%;
+      overflow: visible;
+    }
+    .baof-phone.before { width: 92px; height: 192px; padding: 3px; border-radius: 16px; }
+    .baof-phone.before::before { width: 32px; height: 7px; top: 4px; border-radius: 6px; }
+    .baof-phone.before .baof-phone-screen { border-radius: 12px; }
+    .baof-phone.after { width: 126px; height: 268px; padding: 4px; border-radius: 18px; }
+    .baof-phone.after .baof-phone-iframe { width: 1000px; height: 2200px; transform: scale(0.118); }
+    .baof-phone.before .baof-phone-iframe { width: 1000px; height: 2200px; transform: scale(0.086); }
+    .baof-phone-badge { font-size: 0.45rem; padding: 2px 6px; bottom: 6px; }
+    .baof-phone.after::before { width: 44px; height: 10px; top: 6px; border-radius: 8px; }
+    .baof-phone.after .baof-phone-screen { border-radius: 14px; }
+    .baof-arrow { padding-bottom: 80px; min-width: 24px; }
+    .baof-arrow-line { font-size: 1.3rem; }
+    .baof-arrow-txt { font-size: 0.5rem; }
     .baof-row-no { font-size: 5rem; top: -10px; right: 8px; }
+    /* 「実際のサイトを見る」ボタンはスマホで縮小 */
+    .baof-phone-wrap .baof-live-btn { font-size: 0.72rem; padding: 8px 14px; top: calc(100% + 10px); }
     .scene-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 120px; }
     .scene-tile.t1 { grid-column: span 6; grid-row: span 2; }
     .scene-tile.t2, .scene-tile.t3, .scene-tile.t4, .scene-tile.t5 { grid-column: span 3; grid-row: span 1; }
@@ -4576,19 +4656,19 @@
       white-space: normal;
     }
 
-    /* FVのproofチップ（事前MTG / 当日 / ¥55,000 等）の見切れ解消 */
+    /* FVのproofチップ（横並び固定） */
     .fv-proof {
-      flex-wrap: wrap;
+      flex-wrap: nowrap !important;
       justify-content: center;
-      gap: 6px 8px;
-      padding: 0 12px;
+      gap: 6px;
+      padding: 0 8px;
       max-width: 100%;
     }
     .fv-proof span {
-      font-size: 11px !important;
-      padding: 5px 10px !important;
+      font-size: 10.5px !important;
+      padding: 5px 8px !important;
       white-space: nowrap;
-      letter-spacing: 0.05em !important;
+      letter-spacing: 0.03em !important;
     }
 
     /* voice-card（4人分）のメッセージバーで「—」が落ちないように */
@@ -4675,9 +4755,8 @@
     </div>
     <!-- 女性画像＋タイトル完全重ね -->
     <div class="fv-hero-wrap">
-      <video class="fv-hero-video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
-        <source src="images/fv-bg.mp4" type="video/mp4">
-      </video>
+      <!-- 動画は削除し、bg-fv.jpg（703KB）のみで表示（読み込み高速化のため） -->
+      <div class="fv-hero-video" style="background:url('images/bg-fv.jpg') center center / cover no-repeat;" aria-hidden="true"></div>
       <!-- 常時の奥行き演出：放射状パースライン -->
       <div class="fv-perspective-lines" aria-hidden="true"></div>
       <!-- 常時の奥行き演出：星屑パーティクル -->
@@ -4714,7 +4793,7 @@
         <div class="fv-content">
           <div class="fv-proof">
             <span>プログラミング経験 0 でOK</span>
-            <span>リアルサポート ¥55,000</span>
+            <span>リアルサポート</span>
           </div>
           <a href="https://forms.gle/2hQxx9La3powwnYT6" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
           <p class="fv-urgency">
@@ -4744,18 +4823,26 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroll-img"><img src="images/zoe-after.png" alt="ゾエさんの完成LP" loading="lazy"></div>
+            <iframe class="phone-iframe" src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 01<span class="name">ゾエさん / セールス伴走コーチ</span></div>
+        <div class="phone-label">CASE 01<span class="name">さーやん / 自己理解コーチ</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <iframe class="phone-iframe" src="https://hanu-lp.vercel.app/" loading="lazy" title="ハヌさんの完成LP"></iframe>
+            <div class="phone-scroll-img"><img src="images/zoe-after.png" alt="ゾエさんの完成LP" loading="lazy"></div>
           </div>
         </div>
-        <div class="phone-label">CASE 02<span class="name">ハヌさん / パーティープロデューサー</span></div>
+        <div class="phone-label">CASE 02<span class="name">ゾエさん / セールス伴走コーチ</span></div>
+      </div>
+      <div class="swiper-slide">
+        <div class="phone-mock">
+          <div class="phone-screen">
+            <iframe class="phone-iframe" src="https://hanu-lp.vercel.app/mobile.html" loading="lazy" title="ハヌさんの完成LP"></iframe>
+          </div>
+        </div>
+        <div class="phone-label">CASE 03<span class="name">ハヌさん / パーティープロデューサー</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4763,15 +4850,7 @@
             <iframe class="phone-iframe" src="https://hana-okashi-lp.vercel.app/" loading="lazy" title="はなさんの完成LP"></iframe>
           </div>
         </div>
-        <div class="phone-label">CASE 03<span class="name">はなさん / 焼き菓子作家</span></div>
-      </div>
-      <div class="swiper-slide">
-        <div class="phone-mock">
-          <div class="phone-screen">
-            <iframe class="phone-iframe" src="https://sayan-lp.vercel.app/" loading="lazy" title="さーやんの完成LP"></iframe>
-          </div>
-        </div>
-        <div class="phone-label">CASE 04<span class="name">さーやん / 自己理解コーチ</span></div>
+        <div class="phone-label">CASE 04<span class="name">はなさん / 焼き菓子作家</span></div>
       </div>
       <div class="swiper-slide">
         <div class="phone-mock">
@@ -4798,9 +4877,15 @@
         <div class="phone-label">CASE 07<span class="name">えびちゃん / 動画編集コミュニティ主宰</span></div>
       </div>
     </div>
+    <button class="phone-nav phone-nav-prev" type="button" aria-label="前へ">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="phone-nav phone-nav-next" type="button" aria-label="次へ">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
   </div>
 
-  <div class="gallery-cta reveal delay-4">SWIPE TO EXPLORE</div>
+  <div class="gallery-cta reveal delay-4">← ドラッグ / 横スワイプ / 矢印ボタンで他のケースも見られます →</div>
 </section>
 
 <!-- 理想の未来 -->
@@ -5326,27 +5411,7 @@
   </div>
 </section>
 
-<!-- Claude character: WORKS → COMPARE -->
-<div class="claude-float">
-  <svg width="60" height="60" viewBox="0 0 60 60">
-    <defs>
-      <linearGradient id="claude-grad2" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#a855f7"/>
-        <stop offset="100%" stop-color="#00d4ff"/>
-      </linearGradient>
-      <filter id="claude-glow2">
-        <feGaussianBlur stdDeviation="2" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-    <polygon points="30,2 56,16 56,44 30,58 4,44 4,16" fill="url(#claude-grad2)" opacity="0.9" filter="url(#claude-glow2)"/>
-    <polygon points="30,6 52,18 52,42 30,54 8,42 8,18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-    <text x="30" y="36" text-anchor="middle" fill="#fff" font-family="Orbitron, monospace" font-size="16" font-weight="900">&gt;_</text>
-    <circle cx="30" cy="5" r="3" fill="#00d4ff" opacity="0.7"/>
-    <line x1="30" y1="2" x2="30" y2="0" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
-  </svg>
-  <div class="claude-speech"><span class="speech-text">これ全部、月額 約3,000円〜</span></div>
-</div>
+<!-- Claude character: WORKS → COMPARE（キャラ吹き出しは比較表に移動済みのため削除） -->
 
 <!-- 比較 -->
 <section class="compare">
@@ -5429,14 +5494,14 @@
   </div>
 </section>
 
-<!-- ¥55,000に含まれる5つのサポート（統一サイズ・画像入り） -->
+<!-- AIワークショップに含まれるサポート内容 -->
 <section class="support5" id="support5">
   <div class="inner">
     <div class="section-header scan-host">
       <div class="section-en slam">WHAT YOU GET</div>
       <span class="section-line reveal delay-1"></span>
       <h2 class="section-title slam-chop" style="margin-top:8px;">
-        ¥55,000に含まれる、<br><span class="em">5つのサポート</span>
+        AIワークショップに含まれる<br><span class="em">サポート内容</span>
       </h2>
     </div>
     <p class="support5-lead reveal delay-2">
@@ -5848,7 +5913,7 @@
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>さー</div></div>
+            <div class="baof-person-avatar"><div><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="自己理解コーチ"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/><path d="M17.2 3.4l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5z" fill="currentColor" stroke="none"/></svg></div></div>
             <div>
               <div class="baof-person-name">さーやん</div>
               <div class="baof-person-role">SELF-UNDERSTANDING COACH / 優等生の鎧を脱がせる人・自己理解／潜在意識コーチ</div>
@@ -5879,7 +5944,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">AIに<br>乗り遅れ…</div>
+                <iframe class="baof-phone-iframe baof-phone-iframe-locked" src="https://hanu-lp.vercel.app/lp.html" loading="lazy" scrolling="no" title="ハヌさんのBEFORE（従来LP）"></iframe>
               </div>
             </div>
           </div>
@@ -5891,16 +5956,15 @@
             <span class="baof-phone-tag after">AFTER</span>
             <div class="baof-phone after">
               <div class="baof-phone-screen">
-                <iframe class="baof-phone-iframe" src="https://hanu-lp.vercel.app/" loading="lazy" title="ハヌさんのAFTER（実LP）"></iframe>
-                <span class="baof-phone-badge">SCROLL</span>
+                <iframe class="baof-phone-iframe" src="https://hanu-lp.vercel.app/mobile.html" loading="lazy" title="ハヌさんのAFTER（完成LP）"></iframe>
               </div>
             </div>
-            <a class="baof-live-btn" href="https://hanu-lp.vercel.app/" target="_blank" rel="noopener">実際のサイトを見る<span class="arr">→</span></a>
+            <a class="baof-live-btn" href="https://hanu-lp.vercel.app/mobile.html" target="_blank" rel="noopener">実際のサイトを見る<span class="arr">→</span></a>
           </div>
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>ハヌ</div></div>
+            <div class="baof-person-avatar"><div><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="パーティープロデューサー"><path d="M5 4h14l-7 8z"/><path d="M12 12v7"/><path d="M8 20h8"/><circle cx="19" cy="5.5" r="0.8" fill="currentColor" stroke="none"/><circle cx="5.5" cy="9" r="0.7" fill="currentColor" stroke="none"/><circle cx="21" cy="13" r="0.6" fill="currentColor" stroke="none"/></svg></div></div>
             <div>
               <div class="baof-person-name">ハヌさん</div>
               <div class="baof-person-role">パーティープロデューサー</div>
@@ -5953,7 +6017,7 @@
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>はな</div></div>
+            <div class="baof-person-avatar"><div><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="焼き菓子作家"><path d="M6 11h12l-1.3 8.2a1 1 0 0 1-1 .8H8.3a1 1 0 0 1-1-.8L6 11z"/><path d="M6 11c0-1.7 1.3-3 3-3 .2-1.7 1.4-3 3-3s2.8 1.3 3 3c1.7 0 3 1.3 3 3"/><path d="M12 3v2"/><circle cx="12" cy="3" r="0.6" fill="currentColor" stroke="none"/></svg></div></div>
             <div>
               <div class="baof-person-name">はなさん</div>
               <div class="baof-person-role">BAKE ARTIST / がんばるママに「お疲れ様」を届ける焼き菓子作家</div>
@@ -5986,7 +6050,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">スピードと<br>サポート力を</div>
+                <iframe class="baof-phone-iframe" src="/ayumin-before.html" loading="lazy" title="あゆみんのBEFORE（従来LP）"></iframe>
               </div>
             </div>
           </div>
@@ -6007,7 +6071,7 @@
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>あゆ</div></div>
+            <div class="baof-person-avatar"><div><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="WEBデザイナー"><path d="M14 3l7 7-11 11H3v-7z"/><path d="M13 4l7 7"/><path d="M5 19l3-3"/></svg></div></div>
             <div>
               <div class="baof-person-name">あゆみん</div>
               <div class="baof-person-role">WEB DESIGNER / WEBデザイナー</div>
@@ -6039,7 +6103,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <div class="placeholder-txt">課金してても<br>使えない…</div>
+                <iframe class="baof-phone-iframe" src="/tomomi-before.html" loading="lazy" title="ともみさんのBEFORE（従来LP）"></iframe>
               </div>
             </div>
           </div>
@@ -6060,7 +6124,7 @@
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>とも</div></div>
+            <div class="baof-person-avatar"><div><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="イメージコンサルタント"><path d="M12 7a2 2 0 1 1 2-2"/><path d="M12 7L3.5 15.5a1 1 0 0 0 .5 1.7L12 19l8-1.8a1 1 0 0 0 .5-1.7L12 7z"/></svg></div></div>
             <div>
               <div class="baof-person-name">ともみさん</div>
               <div class="baof-person-role">IMAGE CONSULTANT / イメージコンサルタント・集客コンサルタント</div>
@@ -6113,7 +6177,7 @@
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>えび</div></div>
+            <div class="baof-person-avatar"><div><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="動画編集コミュニティ主宰"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h3M3 15h3M18 9h3M18 15h3"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></div></div>
             <div>
               <div class="baof-person-name">えびちゃん</div>
               <div class="baof-person-role">VIDEO EDITOR / 動画編集コミュニティ主宰</div>
@@ -6170,7 +6234,7 @@
         </div>
         <div class="baof-body">
           <div class="baof-person">
-            <div class="baof-person-avatar"><div>ぞえ</div></div>
+            <div class="baof-person-avatar"><div><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="セールス伴走コーチ"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></div></div>
             <div>
               <div class="baof-person-name">ぞえさん</div>
               <div class="baof-person-role">SALES COACH / 売れる流れを作るセールス伴走コーチ</div>
@@ -6955,6 +7019,229 @@
 <footer>&copy; 2026 AI WORKSHOP BY DESIGNER TEAM</footer>
 
 <script>
+  /* ============================================================
+     スマホiPhone Safariのメモリ対策：
+     外部iframeを多数同時に読み込むとタブがリロードされるため、
+     スマホでは必要最低限のiframeしか同時に保持しない。
+     - baof-phone-iframe（BEFORE/AFTER）: スマホでは全てプレビュー画像化
+     - phone-iframe（ギャラリー）: 同時に3枚（前・アクティブ・次）だけ src を入れる
+     ============================================================ */
+  window.__IS_MOBILE__ = window.matchMedia('(max-width: 768px)').matches
+    || /iPhone|iPod|Android.*Mobile/i.test(navigator.userAgent);
+  (function(){
+    if (!window.__IS_MOBILE__) return;
+
+    // 外部iframeはスマホSafariのメモリ上限で落ちるため、
+    // LPのキャプチャ画像に置換する（静止画として横並び・縦並びで見せる）
+    const lpImageMap = {
+      // AFTER
+      'https://sayan-lp.vercel.app/': 'images/sayan-after-wide.png',
+      'https://hanu-lp.vercel.app/mobile.html': 'images/hanu-after-wide.png',
+      'https://hana-okashi-lp.vercel.app/': 'images/hana-after.jpg',
+      'https://petit-atelier.vercel.app/': 'images/ayumi-after-wide.png',
+      'https://lp-fujiba-tomomi.vercel.app/': 'images/tomomi-after.png',
+      'https://lp-premiere-seminar.vercel.app/': 'images/ebi-after-wide.png',
+      // BEFORE
+      'https://hanu-lp.vercel.app/lp.html': 'images/hanu-before.png',
+      '/ayumin-before.html': 'images/ayumin-before.png',
+      '/tomomi-before.html': 'images/tomomi-before.png'
+    };
+
+    // さーやんだけFV動画で表示（iframeはSafariでリロードになるため動画に戻した）
+    const lpVideoMap = {
+      'https://sayan-lp.vercel.app/': 'images/sayan-fv.mp4'
+    };
+
+    const makeFvVideo = (src, title) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'phone-fv-video';
+      const v = document.createElement('video');
+      v.src = src;
+      v.muted = true;
+      v.loop = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
+      v.preload = 'metadata';
+      v.setAttribute('title', title || '');
+      wrap.appendChild(v);
+      return wrap;
+    };
+
+    const makeScrollImg = (src, alt) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'phone-scroll-img';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt || '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      wrap.appendChild(img);
+      return wrap;
+    };
+
+    // 動画FVの3人（さーやん・ともみ・あゆみん）は実LPをiframeで表示。
+    // ただし「画面に入ったときだけ」srcをセット、出たら解放（Safariのメモリ対策）
+    // iframe方式は全てOFF（スマホSafariで画面リロード・白画面になるため）
+    const lazyIframeUrls = new Set();
+
+    const makeLazyIframe = (url, className, title) => {
+      const iframe = document.createElement('iframe');
+      iframe.className = className;
+      iframe.setAttribute('data-lazy-src', url);
+      iframe.setAttribute('loading', 'lazy');
+      iframe.setAttribute('title', title || '');
+      iframe.setAttribute('scrolling', 'yes');
+      return iframe;
+    };
+
+    // 画面外に出たら src を外してメモリを解放、入ったら復帰
+    const lazyIframeObs = ('IntersectionObserver' in window) ? new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const f = e.target;
+        const url = f.getAttribute('data-lazy-src');
+        if (!url) return;
+        if (e.isIntersecting) {
+          if (!f.getAttribute('src')) f.setAttribute('src', url);
+        } else {
+          if (f.getAttribute('src')) f.removeAttribute('src');
+        }
+      });
+    }, { rootMargin: '200px 0px' }) : null;
+
+    // 1. baof（受講生の声）のiframeを画像に置換（BEFORE/AFTER両方）
+    document.querySelectorAll('.baof-phone-iframe').forEach(iframe => {
+      const src = iframe.getAttribute('src') || '';
+      const title = iframe.getAttribute('title') || '';
+      const imgSrc = lpImageMap[src];
+      const vidSrc = lpVideoMap[src];
+      const isLazy = lazyIframeUrls.has(src);
+      const screen = iframe.closest('.baof-phone-screen');
+      if (vidSrc) {
+        iframe.parentNode.replaceChild(makeFvVideo(vidSrc, title), iframe);
+      } else if (isLazy) {
+        const lazy = makeLazyIframe(src, 'baof-phone-iframe', title);
+        iframe.parentNode.replaceChild(lazy, iframe);
+        if (lazyIframeObs) lazyIframeObs.observe(lazy);
+      } else if (imgSrc) {
+        iframe.parentNode.replaceChild(makeScrollImg(imgSrc, title), iframe);
+      } else {
+        // マッピングがない場合：BEFORE旧LPなど → BEFORE phone-wrap ごと非表示
+        const wrap = iframe.closest('.baof-phone-wrap');
+        if (wrap) wrap.style.display = 'none';
+        else iframe.remove();
+      }
+      // SCROLLバッジは画像でもスクロールできるが、見た目ノイズなので消す
+      if (screen) {
+        const badge = screen.querySelector('.baof-phone-badge');
+        if (badge) badge.remove();
+      }
+    });
+
+    // 2. phone-swiper（ギャラリー）のiframeも画像/動画に置換
+    document.querySelectorAll('.phone-swiper .phone-iframe').forEach(iframe => {
+      const src = iframe.getAttribute('src') || '';
+      const title = iframe.getAttribute('title') || '';
+      const imgSrc = lpImageMap[src];
+      const vidSrc = lpVideoMap[src];
+      const isLazy = lazyIframeUrls.has(src);
+      if (vidSrc) {
+        iframe.parentNode.replaceChild(makeFvVideo(vidSrc, title), iframe);
+      } else if (isLazy) {
+        const lazy = makeLazyIframe(src, 'phone-iframe', title);
+        iframe.parentNode.replaceChild(lazy, iframe);
+        if (lazyIframeObs) lazyIframeObs.observe(lazy);
+      } else if (imgSrc) {
+        iframe.parentNode.replaceChild(makeScrollImg(imgSrc, title), iframe);
+      } else {
+        iframe.remove();
+      }
+    });
+
+    // 3. WORKS セクションの iframe はスマホでは非表示（.work-demo ごと消す）
+    document.querySelectorAll('.work-demo').forEach(demo => {
+      demo.style.display = 'none';
+    });
+
+    // 4. 画面外の動画は一時停止してメモリ・バッテリー節約
+    if ('IntersectionObserver' in window) {
+      const vidObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          const v = e.target;
+          if (e.isIntersecting) { v.play().catch(() => {}); }
+          else { v.pause(); }
+        });
+      }, { threshold: 0.1 });
+      // 少し遅延させて動画が挿入された後に監視
+      setTimeout(() => {
+        document.querySelectorAll('.phone-fv-video video').forEach(v => vidObs.observe(v));
+      }, 300);
+    }
+  })();
+</script>
+<style>
+  /* スマホ：FVが動画のLP用（さーやん・ともみちゃん） */
+  .phone-fv-video {
+    position: absolute; inset: 0;
+    background: #000;
+    border-radius: inherit;
+    overflow: hidden;
+  }
+  .phone-fv-video video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* スマホ：FVが画像スライダーのLP用（あゆみん） */
+  .phone-fv-slider {
+    position: absolute; inset: 0;
+    background: #000;
+    border-radius: inherit;
+    overflow: hidden;
+  }
+  .phone-fv-slider img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: phoneFvSlide 9s infinite;
+  }
+  @keyframes phoneFvSlide {
+    0%, 28%   { opacity: 1; }
+    33%, 95%  { opacity: 0; }
+    100%      { opacity: 1; }
+  }
+
+  /* スマホでiframe代替として表示するプレースホルダー */
+  .baof-mobile-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(34,211,238,0.14) 0%, rgba(192,132,252,0.14) 100%), #0a1020;
+    text-decoration: none;
+    color: #e8f7ff;
+    border-radius: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .baof-mobile-ph-inner {
+    text-align: center;
+    padding: 8px;
+  }
+  .baof-mobile-ph-inner svg {
+    color: var(--neon-cyan);
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 6px rgba(34,211,238,0.6));
+  }
+  .baof-mobile-ph-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    color: #fff;
+  }
+</style>
+
+<script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -6962,9 +7249,15 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px 200px 0px' });
 
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .slam, .slam-r, .slam-chop, .glitch-once, .scan-host').forEach(el => observer.observe(el));
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .slam, .slam-r, .slam-chop, .glitch-once, .scan-host');
+  revealEls.forEach(el => observer.observe(el));
+
+  // 保険：10秒後にまだvisibleになっていない要素は強制表示（スクロールイベント不発・iframe読込で止まる環境対策）
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible), .reveal-scale:not(.visible), .slam:not(.visible), .slam-r:not(.visible), .slam-chop:not(.visible), .scan-host:not(.visible)').forEach(el => el.classList.add('visible'));
+  }, 10000);
 
   // char-stagger：文字ごとに遅延させる
   document.querySelectorAll('.char-stagger').forEach(el => {
@@ -6984,16 +7277,44 @@
 </script>
 
 <script>
+  // GATE OPENING：青い吸い込みアニメーションを見せてからFVに切り替える
   document.body.style.overflow = 'hidden';
-  window.addEventListener('load', () => {
+  (function(){
     const gate = document.getElementById('gate-opening');
+    if (!gate) { document.body.style.overflow = ''; return; }
+    const GATE_SHOW_MS = 2200;   // ゲート演出の表示時間
+    const GATE_FADE_MS = 1000;   // フェードアウト時間（CSS transitionと一致）
+    const startedAt = Date.now();
+    let started = false;
 
-    // 3.0s: ゲートフェードアウト開始（1.2sかけてゆっくり消える → 4.2sに完全透明）
-    setTimeout(() => {
-      gate.classList.add('gone');
-      document.body.style.overflow = '';
-    }, 3000);
-    // display:noneは使わない → 瞬間的なブラックフラッシュを防止
+    function startFade(){
+      if (started) return;
+      started = true;
+      const elapsed = Date.now() - startedAt;
+      const wait = Math.max(0, GATE_SHOW_MS - elapsed);
+      setTimeout(() => {
+        gate.classList.add('gone');
+        document.body.style.overflow = '';
+        setTimeout(() => { if (gate.parentNode) gate.parentNode.removeChild(gate); }, GATE_FADE_MS + 100);
+      }, wait);
+    }
+
+    // FV画像のロードが完了したらフェード開始（早く終わりすぎないようGATE_SHOW_MSは保証）
+    const imgs = ['images/bg-fv.jpg', 'images/sitetop.png'];
+    let loaded = 0;
+    imgs.forEach(src => {
+      const im = new Image();
+      im.onload = im.onerror = () => { if (++loaded >= imgs.length) startFade(); };
+      im.src = src;
+    });
+    // window.loadでも念のため発火
+    if (document.readyState === 'complete') startFade();
+    else window.addEventListener('load', startFade);
+    // 安全装置：最大6秒で強制解除
+    setTimeout(startFade, 6000);
+  })();
+
+  window.addEventListener('load', () => {
 
     // 4.4s以降: fv-proofのタイピングアニメーション
     const proofSpans = document.querySelectorAll('.fv-proof span');
@@ -7018,38 +7339,36 @@
 <script>
   window.addEventListener('load', () => {
     if (typeof Swiper === 'undefined') return;
-    new Swiper('.phone-swiper', {
-      effect: 'coverflow',
-      grabCursor: false,
+    const _mobile = window.__IS_MOBILE__;
+    const phoneSwiperConfig = {
+      effect: _mobile ? 'slide' : 'coverflow',
+      grabCursor: true,
       centeredSlides: true,
       slidesPerView: 'auto',
-      spaceBetween: 30,
+      spaceBetween: _mobile ? 16 : 30,
       loop: true,
-      initialSlide: 3,
-      speed: 700,
+      initialSlide: 0,
+      speed: _mobile ? 400 : 700,
       touchAngle: 35,
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 180,
-        modifier: 1,
-        slideShadows: false,
-      },
-      autoplay: {
-        delay: 3800,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      },
-      breakpoints: {
-        768: {
-          spaceBetween: 40,
-        }
+      simulateTouch: true,
+      touchStartPreventDefault: false,
+      keyboard: { enabled: !_mobile },
+      navigation: {
+        prevEl: '.phone-nav-prev',
+        nextEl: '.phone-nav-next',
       },
       on: {
-        init() { this.slideToLoop(3, 0, false); },
-        afterInit() { this.slideToLoop(3, 0, false); }
+        init() { this.slideToLoop(0, 0, false); },
+        afterInit() { this.slideToLoop(0, 0, false); }
       }
-    });
+    };
+    if (!_mobile) {
+      phoneSwiperConfig.mousewheel = { forceToAxis: true, sensitivity: 1, releaseOnEdges: true };
+      phoneSwiperConfig.coverflowEffect = { rotate: 0, stretch: 0, depth: 180, modifier: 1, slideShadows: false };
+      phoneSwiperConfig.autoplay = { delay: 3800, disableOnInteraction: false, pauseOnMouseEnter: true };
+      phoneSwiperConfig.breakpoints = { 768: { spaceBetween: 40 } };
+    }
+    new Swiper('.phone-swiper', phoneSwiperConfig);
 
     // 背景動画：再生開始を検知してフェードイン（読み込み失敗時はフォールバックのまま）
     document.querySelectorAll('.videobg-video').forEach(v => {
