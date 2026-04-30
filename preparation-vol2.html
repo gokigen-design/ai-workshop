@@ -1482,6 +1482,85 @@
       .tab-btn { font-size: 11px; padding: 8px 8px; }
       .tab-btn span { font-size: 9px; min-width: 20px; }
     }
+
+    /* ─── TAB PREV/NEXT NAV FOOTER ─── */
+    .tab-nav-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tab-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--beige);
+      color: var(--gray-mid);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .tab-nav-btn:hover {
+      border-color: var(--orange);
+      color: var(--black);
+      background: var(--orange-dim);
+    }
+
+    .tab-nav-btn .nav-direction {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .tab-nav-btn .nav-label {
+      display: block;
+      font-size: 13px;
+      color: var(--black);
+    }
+
+    .tab-nav-btn.next {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .tab-nav-btn svg {
+      flex-shrink: 0;
+      color: var(--orange);
+    }
+
+    @media (max-width: 768px) {
+      .tab-nav-footer {
+        margin-top: 36px;
+        padding-top: 20px;
+        gap: 8px;
+      }
+      .tab-nav-btn {
+        padding: 10px 14px;
+      }
+      .tab-nav-btn .nav-label {
+        font-size: 12px;
+        max-width: 110px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   </style>
 
   <!-- ═══ QA-SESSION 取り込み用スコープスタイル ═══ -->
@@ -8160,6 +8239,89 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         }
       } catch (e) {}
     }
+
+    /* ─── タブ前後ナビゲーション 動的生成 ─── */
+    (function() {
+      var tabOrder = [
+        'overview','ai-agent','claude-features','setup',
+        'lp-intro','worksheet','prompt','aiish-intro','design','deploy',
+        'kickoff','checklist','schedule',
+        'glow-step1','glow-step2','glow-step3',
+        'glossary','special','team','feedback','qa'
+      ];
+      var tabLabels = {
+        'overview':       '全体像',
+        'ai-agent':       'AIエージェントとは何か',
+        'claude-features':'Claude Codeでできること',
+        'setup':          '環境を整える',
+        'lp-intro':       'LPとは',
+        'worksheet':      '内容を整理する',
+        'prompt':         'AIに指示する',
+        'aiish-intro':    'AIっぽいデザインの正体',
+        'design':         'デザインを学ぶ',
+        'deploy':         '公開する',
+        'kickoff':        'キックオフ（2時間）',
+        'checklist':      'これをやってきてね',
+        'schedule':       '当日のスケジュール',
+        'glow-step1':     '垢抜けさせる',
+        'glow-step2':     '動きをつける',
+        'glow-step3':     '構造で差をつける',
+        'glossary':       '用語集',
+        'special':        '画像LP×AI×Canva',
+        'team':           'チーム一覧',
+        'feedback':       '当日の感想',
+        'qa':             'Q&A'
+      };
+
+      function makeSvgPrev() {
+        return '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+      function makeSvgNext() {
+        return '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        tabOrder.forEach(function(tabId, idx) {
+          var el = document.getElementById('tab-' + tabId);
+          if (!el) return;
+
+          var nav = document.createElement('div');
+          nav.className = 'tab-nav-footer';
+
+          if (idx > 0) {
+            var prevId = tabOrder[idx - 1];
+            var prevBtn = document.createElement('button');
+            prevBtn.className = 'tab-nav-btn prev';
+            prevBtn.innerHTML =
+              makeSvgPrev() +
+              '<span><span class="nav-direction">戻る</span>' +
+              '<span class="nav-label">' + tabLabels[prevId] + '</span></span>';
+            prevBtn.addEventListener('click', function() {
+              var sidebarBtn = document.querySelector('.tab-btn[onclick*="\'' + prevId + '\'"]');
+              if (sidebarBtn) switchTab(prevId, sidebarBtn);
+            });
+            nav.appendChild(prevBtn);
+          }
+
+          if (idx < tabOrder.length - 1) {
+            var nextId = tabOrder[idx + 1];
+            var nextBtn = document.createElement('button');
+            nextBtn.className = 'tab-nav-btn next';
+            nextBtn.innerHTML =
+              '<span><span class="nav-direction">次へ</span>' +
+              '<span class="nav-label">' + tabLabels[nextId] + '</span></span>' +
+              makeSvgNext();
+            nextBtn.addEventListener('click', function() {
+              var sidebarBtn = document.querySelector('.tab-btn[onclick*="\'' + nextId + '\'"]');
+              if (sidebarBtn) switchTab(nextId, sidebarBtn);
+            });
+            nav.appendChild(nextBtn);
+          }
+
+          el.appendChild(nav);
+        });
+      });
+    })();
 
     function v(id) {
       const el = document.getElementById(id);
