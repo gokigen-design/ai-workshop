@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI合宿 2026 | AI Workshop Summer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@300;400;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:      #FF2D87;
+      --pink-lt:   #FF7AB8;
+      --blue:      #0099FF;
+      --blue-deep: #004DB3;
+      --blue-glow: rgba(0,153,255,.3);
+      --sky:       #E6F4FF;
+      --gold:      #FFD600;
+      --white:     #FFFFFF;
+      --text:      #0A1A3A;
+      --text-mid:  rgba(10,26,58,.55);
+      --g-hero: linear-gradient(135deg, #FF2D87 0%, #FF7AB8 40%, #0099FF 100%);
+      --g-blue: linear-gradient(135deg, #0099FF 0%, #004DB3 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      max-width: 480px;
+      margin: 0 auto;
+      letter-spacing: .04em;
+    }
+    img { width: 100%; display: block; }
+
+    /* ── Scroll Animation ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+    /* ── Gradient Text ── */
+    .grad-pink { background: var(--g-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .grad-blue { background: var(--g-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* ── 飾りデコ ── */
+    .deco { position: absolute; pointer-events: none; z-index: 2; }
+    .deco img { width: 100%; }
+
+    /* ── Section badge ── */
+    .sec-badge {
+      display: inline-block; font-family: 'Montserrat', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: .32em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .sec-badge.pink { background: rgba(255,45,135,.08); color: var(--pink); border: 1px solid var(--pink-lt); }
+    .sec-badge.blue { background: rgba(0,153,255,.08); color: var(--blue-deep); border: 1px solid rgba(0,153,255,.3); }
+
+    /* ── キラーン shimmer ── */
+    @keyframes btn-shine {
+      0%, 55% { transform: translateX(-160%) skewX(-20deg); }
+      75%, 100% { transform: translateX(280%) skewX(-20deg); }
+    }
+    @keyframes btn-glow {
+      0%, 100% { box-shadow: 0 5px 0 #038A35, 0 10px 28px rgba(6,199,85,.45), inset 0 1px 0 rgba(255,255,255,.6); }
+      50%       { box-shadow: 0 5px 0 #038A35, 0 16px 40px rgba(6,199,85,.65), inset 0 1px 0 rgba(255,255,255,.6); }
+    }
+
+    /* ── CTA button ── */
+    .btn-line, .btn-line-lg {
+      display: block; width: 100%; margin: 0 auto;
+      background: linear-gradient(180deg, #22F080 0%, #06C755 50%, #04A140 100%);
+      color: #fff;
+      border: 2.5px solid rgba(255,255,255,.82);
+      border-radius: 50px;
+      font-family: 'Noto Sans JP', sans-serif; font-weight: 700;
+      letter-spacing: .06em; text-decoration: none; text-align: center;
+      animation: btn-glow 2.8s ease-in-out infinite;
+      position: relative; overflow: hidden; transition: transform .2s;
+    }
+    .btn-line { max-width: 320px; padding: 18px 24px; font-size: 16px; }
+    .btn-line-lg { max-width: 380px; padding: 22px 24px; font-size: 17px; }
+    .btn-line::before, .btn-line-lg::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 48%;
+      background: linear-gradient(180deg, rgba(255,255,255,.28) 0%, transparent 100%);
+      border-radius: 50px 50px 0 0; pointer-events: none;
+    }
+    .btn-line::after, .btn-line-lg::after {
+      content: ''; position: absolute; top: -30%; left: -100%; width: 45%; height: 160%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
+      transform: skewX(-20deg); animation: btn-shine 3.2s ease .8s infinite;
+    }
+    .btn-line:hover, .btn-line-lg:hover { transform: translateY(-2px); }
+
+
+    /* ════════════════════════════
+       ① FV
+    ════════════════════════════ */
+    .fv { background: #7EC8E3; }
+    .fv__img { width: 100%; line-height: 0; }
+    .fv__img img { width: 100%; height: auto; display: block; }
+
+    /* 海の波打ち際を背景に */
+    .fv__foot {
+      background:
+        linear-gradient(rgba(255,255,255,.44), rgba(255,255,255,.65)),
+        url('bgのコピー.jpg') center 40% / cover no-repeat;
+      padding: 32px 24px 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* ハイビスカス右下 */
+    .fv__foot .deco--flower {
+      width: 100px; bottom: -8px; right: -8px; opacity: .88;
+    }
+
+
+    /* ════════════════════════════
+       ② GAIN
+    ════════════════════════════ */
+    /* トロピカル16.png（淡ピンク＋青い植物）を背景に */
+    .gain {
+      background: url('トロピカル背景/16.png') center bottom / cover no-repeat;
+      padding: 72px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* ヒトデ装飾 */
+    .gain .deco--star { width: 64px; top: 28px; right: 20px; opacity: .8; transform: rotate(18deg); }
+
+    .gain__header { padding: 0 24px; margin-bottom: 44px; }
+    .gain__h2 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(32px, 8.8vw, 52px);
+      font-weight: 900; line-height: 1.3; letter-spacing: .02em;
+    }
+
+    /* 1枚大画像 */
+    .gain__img-single { margin-bottom: 44px; line-height: 0; }
+    .gain__img-single img { width: 100%; height: 290px; object-fit: cover; }
+
+    /* チェックリスト */
+    .gain__list { list-style: none; padding: 0 24px; margin-bottom: 16px; }
+    .gain__list li {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 16px; font-weight: 700; line-height: 1.7; color: var(--text);
+      padding: 17px 0; border-bottom: 1px solid rgba(0,0,0,.08); letter-spacing: .04em;
+      background: rgba(255,255,255,.72); margin: 0 -24px; padding: 17px 24px;
+    }
+    .gain__list li:first-child { border-top: 1px solid rgba(0,0,0,.08); }
+    .gain__list .check-icon { flex-shrink: 0; }
+
+    /* 中央・超でかタグライン */
+    .gain__tagline {
+      padding: 40px 24px 20px; text-align: center;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(36px, 9.5vw, 58px);
+      font-weight: 900; line-height: 1.35; letter-spacing: .01em;
+    }
+
+    /* 夏の装飾 */
+    .summer-deco {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; margin: 36px auto; padding: 0 32px;
+    }
+    .summer-deco__line {
+      flex: 1; height: 1.5px;
+      background: linear-gradient(to right, transparent, rgba(0,153,255,.35), transparent);
+    }
+
+
+    /* ════════════════════════════
+       ③ WHO
+    ════════════════════════════ */
+    .who { padding: 0 0 64px; background: var(--white); }
+
+    .who__band {
+      background: linear-gradient(135deg, #FF2D87 0%, #FF7AB8 45%, #0099FF 100%);
+      padding: 52px 24px 84px;
+      position: relative; overflow: hidden;
+    }
+    .who__band::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 60px;
+      background: var(--white); clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    /* ヤシの葉 右下 */
+    .who__band .deco--palm {
+      width: 180px; bottom: 30px; right: -20px; opacity: .6;
+    }
+
+    .who__lead {
+      font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: .36em; color: rgba(255,255,255,.8); text-transform: uppercase; margin-bottom: 14px;
+    }
+    .who__h2 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(30px, 8.5vw, 50px);
+      font-weight: 900; line-height: 1.35; color: #fff;
+      margin-bottom: 28px; letter-spacing: .02em; text-shadow: 0 2px 16px rgba(0,0,40,.15);
+    }
+    .who__badge-wrap {
+      background: rgba(255,255,255,.22); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.5); border-radius: 8px;
+      padding: 14px 20px; display: inline-block;
+      color: #fff; font-size: 14px; font-weight: 700; letter-spacing: .08em;
+    }
+
+    .who__cards {
+      padding: 0 20px; margin-top: -40px;
+      display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px;
+    }
+    .who__card {
+      background: var(--white); border-radius: 16px; padding: 20px;
+      display: flex; align-items: center; gap: 18px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+    }
+    .who__card-num {
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 900; color: #fff;
+    }
+    .who__card-num.n1 { background: var(--g-hero); }
+    .who__card-num.n2 { background: var(--g-blue); }
+    .who__card-num.n3 { background: linear-gradient(135deg, #0099FF 0%, #00C8FF 100%); }
+    .who__card-text { font-size: 16px; font-weight: 900; color: var(--text); letter-spacing: .04em; }
+    .who__card-sub { font-size: 12px; font-weight: 400; color: var(--text-mid); margin-top: 2px; letter-spacing: .04em; }
+    .who__tagline {
+      padding: 0 24px; font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(22px, 6vw, 32px); font-weight: 900; line-height: 1.5; letter-spacing: .02em;
+    }
+
+
+    /* ════════════════════════════
+       ④ VALUE
+    ════════════════════════════ */
+    .value { background: var(--sky); overflow: hidden; }
+    .value__hero { position: relative; }
+    .value__hero img { width: 100%; height: 300px; object-fit: cover; }
+    .value__hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
+      background: linear-gradient(to bottom, transparent, var(--sky));
+    }
+    .value__body { padding: 40px 24px 64px; }
+    .value__h2 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(28px, 7.5vw, 44px);
+      font-weight: 900; line-height: 1.4; margin-bottom: 36px; letter-spacing: .02em;
+    }
+    .value-items { margin-bottom: 44px; }
+    .value-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px 0; border-bottom: 1px solid rgba(0,153,255,.15);
+    }
+    .value-item:first-child { border-top: 1px solid rgba(0,153,255,.15); }
+    .value-num {
+      flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+      background: var(--g-blue); display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 900; color: #fff;
+      box-shadow: 0 4px 12px var(--blue-glow);
+    }
+    .value-item__title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: .04em; }
+    .value-item__desc { font-size: 13px; font-weight: 400; color: var(--text-mid); line-height: 1.8; letter-spacing: .04em; }
+    .value__img2 { width: 100%; margin-bottom: 44px; }
+    .value__img2 img { height: 220px; object-fit: cover; }
+    .value__tagline {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(22px, 6vw, 32px); font-weight: 900; line-height: 1.45; letter-spacing: .02em;
+    }
+
+
+    /* ════════════════════════════
+       ⑤ SCHEDULE — 大画像＋テキスト縦積み
+    ════════════════════════════ */
+    .schedule { background: #fff; padding: 72px 0 80px; }
+    .schedule__header { padding: 0 24px; margin-bottom: 52px; }
+    .schedule__h2 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(32px, 8.8vw, 52px);
+      font-weight: 900; line-height: 1.3; letter-spacing: .02em;
+    }
+
+    .sc-card { margin-bottom: 60px; }
+    .sc-card:last-of-type { margin-bottom: 0; }
+    .sc-card__img { line-height: 0; overflow: hidden; }
+    .sc-card__img img { width: 100%; height: 270px; object-fit: cover; display: block; }
+    .sc-card__info { padding: 22px 24px 0; }
+    .sc-time {
+      font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: .3em; color: var(--pink); text-transform: uppercase;
+      display: block; margin-bottom: 8px;
+    }
+    .sc-act { font-size: 20px; font-weight: 900; color: var(--text); letter-spacing: .02em; margin-bottom: 6px; line-height: 1.4; }
+    .sc-desc { font-size: 13px; font-weight: 400; color: var(--text-mid); line-height: 1.8; letter-spacing: .04em; }
+
+    .schedule__footer { padding: 60px 24px 0; }
+    .schedule__tagline {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(22px, 6vw, 32px); font-weight: 900; line-height: 1.45; letter-spacing: .02em;
+    }
+
+
+    /* ════════════════════════════
+       ⑥ ONLY
+    ════════════════════════════ */
+    .only { background: #060E1C; }
+    .only__img { line-height: 0; position: relative; }
+    .only__img img { width: 100%; height: auto; opacity: 1; display: block; }
+    .only__img::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      background: linear-gradient(to bottom, transparent, #060E1C); pointer-events: none;
+    }
+    .only__body { padding: 32px 24px 56px; }
+    .only__badge {
+      display: inline-block; background: var(--g-hero); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: .28em; padding: 5px 14px;
+      border-radius: 20px; margin-bottom: 22px; font-family: 'Montserrat', sans-serif;
+    }
+    .only__list { list-style: none; margin-bottom: 36px; }
+    .only__list li {
+      font-size: clamp(18px, 5vw, 24px); font-weight: 900; line-height: 1.7; color: #fff;
+      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; gap: 12px; letter-spacing: .02em;
+    }
+    .only__list li:first-child { border-top: 1px solid rgba(255,255,255,.1); }
+    .only__stop {
+      font-size: clamp(17px, 4.5vw, 22px); font-weight: 900;
+      line-height: 1.6; margin-bottom: 20px; letter-spacing: .02em;
+    }
+    .only__stop .hl { color: var(--gold); }
+    .only__quote {
+      font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 300;
+      line-height: 2; color: rgba(255,255,255,.45); font-style: italic;
+      padding-left: 14px; border-left: 2px solid var(--pink-lt);
+    }
+
+
+    /* ════════════════════════════
+       ⑦ LIMIT
+    ════════════════════════════ */
+    .limit { padding: 0 0 64px; background: #fff; }
+    .limit__band {
+      background: linear-gradient(135deg, #004DB3 0%, #0099FF 60%, #00C8FF 100%);
+      padding: 52px 24px 84px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .limit__band::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,255,255,.08) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .limit__band::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 60px;
+      background: #fff; clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    /* ヤシの葉 左下 */
+    .limit__band .deco--palm {
+      width: 160px; bottom: 30px; left: -15px; opacity: .55; transform: scaleX(-1);
+    }
+    .limit__en {
+      font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: .36em; color: rgba(255,255,255,.75); text-transform: uppercase;
+      display: block; margin-bottom: 16px;
+    }
+    .limit__h2 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(28px, 7.5vw, 44px);
+      font-weight: 900; line-height: 1.4; color: #fff;
+      letter-spacing: .02em; margin-bottom: 24px; text-shadow: 0 2px 16px rgba(0,0,40,.15);
+    }
+    .limit__badge-wrap {
+      display: inline-block; background: rgba(255,255,255,.2); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.5); border-radius: 8px;
+      padding: 12px 22px; color: #fff; font-size: 14px; font-weight: 700; letter-spacing: .08em;
+    }
+    .limit__body { padding: 0 24px; margin-top: -30px; text-align: center; }
+    .limit__note {
+      background: #fff; border-radius: 16px; padding: 28px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08); font-size: 13px; font-weight: 400;
+      color: var(--text-mid); line-height: 2; letter-spacing: .04em;
+    }
+    .limit__note strong { display: block; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+
+
+    /* ════════════════════════════
+       ⑧ CTA — 13.png（ピンク×ヤシ）を背景に
+    ════════════════════════════ */
+    .cta {
+      background:
+        linear-gradient(rgba(255,255,255,.58), rgba(255,255,255,.72)),
+        url('トロピカル背景/13.png') center / cover no-repeat;
+      padding: 72px 24px 80px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    /* ハイビスカス左下 */
+    .cta .deco--flower-l {
+      width: 130px; bottom: 0; left: -10px; opacity: .85; transform: scaleX(-1);
+    }
+    /* ハイビスカス右下 */
+    .cta .deco--flower-r {
+      width: 130px; bottom: 0; right: -10px; opacity: .85;
+    }
+    .cta__inner { position: relative; z-index: 2; }
+    .cta__h2 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: clamp(30px, 8.5vw, 50px);
+      font-weight: 900; line-height: 1.35; color: var(--text);
+      letter-spacing: .02em; margin-bottom: 14px;
+    }
+    .cta__date {
+      font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: .18em; color: var(--text-mid); margin-bottom: 40px; display: block;
+    }
+    .cta__note { margin-top: 20px; font-size: 12px; font-weight: 400; color: var(--text-mid); letter-spacing: .08em; }
+
+
+    /* ── Mincho 見出し（GAIN） ── */
+    .mincho-heading {
+      position: relative;
+      text-align: center;
+      padding: 52px 24px 0;
+      margin-bottom: 24px;
+    }
+    .mincho-brushstroke {
+      position: absolute;
+      top: 52%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .mincho-h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: clamp(32px, 8.8vw, 52px);
+      line-height: 1.3;
+      letter-spacing: .04em;
+      background: linear-gradient(135deg, #FF2D87 0%, #FF8C00 55%, #FFD600 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 2px 18px rgba(255,45,135,.48));
+      position: relative;
+      z-index: 1;
+    }
+    .heading-glow {
+      width: 260px; height: 44px;
+      margin: -4px auto 0;
+      background: radial-gradient(ellipse at 50% 60%, rgba(255,255,255,.96) 0%, rgba(255,255,255,.55) 40%, transparent 72%);
+      filter: blur(10px);
+      position: relative; z-index: 0;
+    }
+
+    /* ── ネオンカード ── */
+    @keyframes neon-pulse {
+      0%, 100% {
+        box-shadow:
+          0 0 6px 1px rgba(255,45,135,.5),
+          0 0 20px 5px rgba(255,45,135,.18),
+          inset 0 0 8px rgba(255,45,135,.06);
+      }
+      50% {
+        box-shadow:
+          0 0 14px 3px rgba(255,45,135,.82),
+          0 0 40px 10px rgba(255,45,135,.3),
+          0 0 64px 16px rgba(255,120,184,.12),
+          inset 0 0 14px rgba(255,45,135,.1);
+      }
+    }
+    .neon-card {
+      position: relative;
+      margin: 0 16px 44px;
+      border: 1.5px solid rgba(255,45,135,.62);
+      border-radius: 22px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      overflow: visible;
+      animation: neon-pulse 2.6s ease-in-out infinite;
+    }
+    .deco-corner {
+      position: absolute;
+      pointer-events: none; z-index: 4;
+    }
+    .deco-corner--tl { width: 68px; top: -20px; left: -14px; transform: rotate(-15deg); }
+    .deco-corner--tr { width: 56px; top: -14px; right: -10px; transform: rotate(12deg) scaleX(-1); }
+    .neon-card__img { position: relative; line-height: 0; overflow: hidden; border-radius: 20px 20px 0 0; }
+    .neon-card__img img { width: 100%; height: 270px; object-fit: cover; display: block; }
+    .neon-card__img::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 90px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.92));
+      pointer-events: none;
+    }
+    .neon-card .gain__list { padding: 4px 0 16px; }
+    .neon-card .gain__list li {
+      margin: 0;
+      padding: 16px 20px;
+      background: transparent;
+      border-bottom: 1px solid rgba(255,45,135,.12);
+    }
+    .neon-card .gain__list li:first-child { border-top: 1px solid rgba(255,45,135,.12); }
+
+    /* ── Footer ── */
+    .footer { background: var(--text); padding: 36px 24px; text-align: center; }
+    .footer p { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: .2em; color: rgba(255,255,255,.3); }
+  </style>
+</head>
+<body>
+
+  <!-- ① FV -->
+  <section class="fv">
+    <div class="fv__img">
+      <img src="webp/sp_fv.webp" alt="AI合宿 熱海 2026">
+    </div>
+    <div class="fv__foot">
+      <a href="#cta" class="btn-line">参加詳細を見る &#x2192;</a>
+      <!-- ハイビスカス右下 -->
+      <div class="deco deco--flower">
+        <img src="詳細はこちらから/6.png" alt="">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ② GAIN -->
+  <section class="gain">
+    <!-- ヒトデ右上 -->
+    <div class="deco deco--star">
+      <img src="詳細はこちらから/7.png" alt="">
+    </div>
+
+    <!-- 明朝体グラデーション見出し -->
+    <div class="mincho-heading reveal">
+      <svg class="mincho-brushstroke" viewBox="0 0 320 80" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="brush-grad" x1="0" y1="0.5" x2="1" y2="0.5">
+            <stop offset="0%" stop-color="#FF2D87"/>
+            <stop offset="55%" stop-color="#FF8C00"/>
+            <stop offset="100%" stop-color="#FFD600"/>
+          </linearGradient>
+        </defs>
+        <path d="M8,52 Q35,12 85,24 Q135,36 180,16 Q225,0 268,18 Q298,30 313,22 L315,54 Q293,64 252,52 Q205,40 162,58 Q118,74 72,62 Q30,48 8,52 Z" fill="url(#brush-grad)" opacity="0.82"/>
+      </svg>
+      <h2 class="mincho-h2">この合宿に<br>参加すると…</h2>
+      <div class="heading-glow"></div>
+    </div>
+
+    <!-- ネオンカード：画像＋チェックリスト -->
+    <div class="neon-card reveal d1">
+      <!-- コーナー装飾：ヒトデ左上 -->
+      <div class="deco-corner deco-corner--tl">
+        <img src="詳細はこちらから/7.png" alt="">
+      </div>
+      <!-- コーナー装飾：ハイビスカス右上 -->
+      <div class="deco-corner deco-corner--tr">
+        <img src="詳細はこちらから/6.png" alt="">
+      </div>
+
+      <div class="neon-card__img">
+        <img src="webp/kougi.webp" alt="講義風景">
+      </div>
+
+      <ul class="gain__list">
+        <li class="reveal">
+          <svg class="check-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect width="22" height="22" rx="6" fill="url(#g-pink-a)"/>
+            <defs><linearGradient id="g-pink-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF2D87"/><stop offset="100%" stop-color="#FF7AB8"/></linearGradient></defs>
+            <polyline points="5,11 9,15 17,7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          最新AIのリアルな使い方
+        </li>
+        <li class="reveal d1">
+          <svg class="check-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect width="22" height="22" rx="6" fill="url(#g-pink-b)"/>
+            <defs><linearGradient id="g-pink-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FF2D87"/><stop offset="100%" stop-color="#FF7AB8"/></linearGradient></defs>
+            <polyline points="5,11 9,15 17,7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          実際のアウトプット共有
+        </li>
+        <li class="reveal d2">
+          <svg class="check-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect width="22" height="22" rx="6" fill="url(#g-blue-a)"/>
+            <defs><linearGradient id="g-blue-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0099FF"/><stop offset="100%" stop-color="#00C8FF"/></linearGradient></defs>
+            <polyline points="5,11 9,15 17,7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          他のホルダーの視点
+        </li>
+        <li class="reveal d3">
+          <svg class="check-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect width="22" height="22" rx="6" fill="url(#g-blue-b)"/>
+            <defs><linearGradient id="g-blue-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0099FF"/><stop offset="100%" stop-color="#00C8FF"/></linearGradient></defs>
+            <polyline points="5,11 9,15 17,7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          横のつながり
+        </li>
+        <li class="reveal d4">
+          <svg class="check-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect width="22" height="22" rx="6" fill="url(#g-gold-a)"/>
+            <defs><linearGradient id="g-gold-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFB800"/><stop offset="100%" stop-color="#FF9500"/></linearGradient></defs>
+            <polyline points="5,11 9,15 17,7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          没頭できる環境
+        </li>
+      </ul>
+    </div>
+
+    <div class="gain__tagline reveal">
+      <span class="grad-pink">"知ってる"</span>から<br>
+      <span class="grad-blue">"使いこなす"</span>へ。
+    </div>
+
+    <!-- 夏の装飾 -->
+    <div class="summer-deco reveal">
+      <div class="summer-deco__line"></div>
+      <svg width="28" height="34" viewBox="0 0 28 34" fill="none">
+        <path d="M14 34 C13 30 12 26 12.5 18" stroke="#8B6F3A" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M13 20 Q6 14 0 14 Q5 10 13 17" fill="#4CAF50" opacity=".9"/>
+        <path d="M13 20 Q20 14 28 14 Q23 10 13 17" fill="#66BB6A" opacity=".9"/>
+        <path d="M13 20 Q5 10 6 2 Q10 8 13 17" fill="#81C784" opacity=".85"/>
+        <path d="M13 20 Q21 10 22 2 Q18 8 13 17" fill="#4CAF50" opacity=".85"/>
+        <path d="M13 20 Q10 8 14 0 Q15 8 13 17" fill="#A5D6A7" opacity=".8"/>
+      </svg>
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <ellipse cx="15" cy="6" rx="4" ry="6" fill="#FF7AB8" opacity=".9"/>
+        <ellipse cx="24" cy="15" rx="6" ry="4" fill="#FF2D87" opacity=".85"/>
+        <ellipse cx="15" cy="24" rx="4" ry="6" fill="#FF7AB8" opacity=".9"/>
+        <ellipse cx="6" cy="15" rx="6" ry="4" fill="#FF2D87" opacity=".85"/>
+        <circle cx="15" cy="15" r="5" fill="#FFD600"/>
+        <circle cx="15" cy="15" r="2.5" fill="#FF9500"/>
+      </svg>
+      <svg width="36" height="16" viewBox="0 0 36 16" fill="none">
+        <path d="M0,8 Q4.5,2 9,8 Q13.5,14 18,8 Q22.5,2 27,8 Q31.5,14 36,8" stroke="#0099FF" stroke-width="2.2" stroke-linecap="round" fill="none" opacity=".7"/>
+      </svg>
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <ellipse cx="15" cy="6" rx="4" ry="6" fill="#FF2D87" opacity=".9"/>
+        <ellipse cx="24" cy="15" rx="6" ry="4" fill="#FF7AB8" opacity=".85"/>
+        <ellipse cx="15" cy="24" rx="4" ry="6" fill="#FF2D87" opacity=".9"/>
+        <ellipse cx="6" cy="15" rx="6" ry="4" fill="#FF7AB8" opacity=".85"/>
+        <circle cx="15" cy="15" r="5" fill="#FFD600"/>
+        <circle cx="15" cy="15" r="2.5" fill="#FF9500"/>
+      </svg>
+      <div class="summer-deco__line"></div>
+    </div>
+  </section>
+
+
+  <!-- ③ WHO -->
+  <section class="who">
+    <div class="who__band">
+      <p class="who__lead reveal">For participants only</p>
+      <h2 class="who__h2 reveal d1">
+        この合宿は<br>選ばれた人だけの<br>特別な空間。
+      </h2>
+      <div class="who__badge-wrap reveal d2">AIワークショップ参加者限定</div>
+      <!-- ヤシの葉 右下 -->
+      <div class="deco deco--palm">
+        <img src="詳細はこちらから/9.png" alt="">
+      </div>
+    </div>
+
+    <div class="who__cards">
+      <div class="who__card reveal">
+        <div class="who__card-num n1">01</div>
+        <div>
+          <p class="who__card-text">話が通じる</p>
+          <p class="who__card-sub">同じ温度感・同じ言語で話せる</p>
+        </div>
+      </div>
+      <div class="who__card reveal d1">
+        <div class="who__card-num n2">02</div>
+        <div>
+          <p class="who__card-text">レベル感が揃う</p>
+          <p class="who__card-sub">基礎説明ゼロで即本題へ</p>
+        </div>
+      </div>
+      <div class="who__card reveal d2">
+        <div class="who__card-num n3">03</div>
+        <div>
+          <p class="who__card-text">無駄な説明がいらない</p>
+          <p class="who__card-sub">濃い時間だけに全集中できる</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="who__tagline reveal">
+      <span class="grad-pink">"濃い時間"</span>だけに<br>集中できる環境。
+    </div>
+  </section>
+
+
+  <!-- ④ VALUE -->
+  <section class="value">
+    <div class="value__hero reveal">
+      <img src="webp/candol.webp" alt="キャンドルナイト">
+    </div>
+    <div class="value__body">
+      <span class="sec-badge blue reveal">Value</span>
+      <h2 class="value__h2 reveal d1">
+        この合宿の価値は、<br><span class="grad-blue">内容だけじゃない。</span>
+      </h2>
+
+      <div class="value-items">
+        <div class="value-item reveal">
+          <div class="value-num">01</div>
+          <div class="value-content">
+            <p class="value-item__title">AIオタクと本気で語れる</p>
+            <p class="value-item__desc">熱量のある人たちと、深夜まで話し込む</p>
+          </div>
+        </div>
+        <div class="value-item reveal d1">
+          <div class="value-num">02</div>
+          <div class="value-content">
+            <p class="value-item__title">すぐ試せる &mdash; その場で改善できる</p>
+            <p class="value-item__desc">アイデアを即実装できる環境がある</p>
+          </div>
+        </div>
+        <div class="value-item reveal d2">
+          <div class="value-num">03</div>
+          <div class="value-content">
+            <p class="value-item__title">他の人の頭の中が覗ける</p>
+            <p class="value-item__desc">自分だけでは気づけない視点と出会う</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="value__img2 reveal">
+        <img src="webp/nights.webp" alt="深夜の熱気">
+      </div>
+
+      <p class="value__tagline reveal">
+        普段の生活では、<br><span class="grad-pink">絶対にできない体験。</span>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ⑤ SCHEDULE -->
+  <section class="schedule">
+    <div class="schedule__header">
+      <h2 class="schedule__h2 reveal d1">
+        AIだけじゃない。<br><span class="grad-blue">全部が濃い。</span>
+      </h2>
+    </div>
+
+    <div class="sc-card reveal">
+      <div class="sc-card__img">
+        <img src="webp/kougi.webp" alt="講義風景">
+      </div>
+      <div class="sc-card__info">
+        <span class="sc-time">Daytime</span>
+        <p class="sc-act">最新AI情報 &times; 講義</p>
+        <p class="sc-desc">アウトプット共有・もくもく作業。最前線の情報をその場で試す。</p>
+      </div>
+    </div>
+
+    <div class="sc-card reveal">
+      <div class="sc-card__img">
+        <img src="webp/dinner.webp" alt="ディナー交流">
+      </div>
+      <div class="sc-card__info">
+        <span class="sc-time">Evening</span>
+        <p class="sc-act">ディナー &times; 交流</p>
+        <p class="sc-desc">フィードバック・雑談・つながり。食事しながら深まる関係。</p>
+      </div>
+    </div>
+
+    <div class="sc-card reveal">
+      <div class="sc-card__img">
+        <img src="webp/candol.webp" alt="深夜の語らい">
+      </div>
+      <div class="sc-card__info">
+        <span class="sc-time">Night</span>
+        <p class="sc-act">深夜のAI談義</p>
+        <p class="sc-desc">キャンドルを囲んで語り合う夜。日常では絶対に起きない会話。</p>
+      </div>
+    </div>
+
+    <div class="sc-card reveal">
+      <div class="sc-card__img">
+        <img src="webp/nights.webp" alt="深夜のやり込み">
+      </div>
+      <div class="sc-card__info">
+        <span class="sc-time">Late Night</span>
+        <p class="sc-act">やり込みタイム</p>
+        <p class="sc-desc">眠れない夜も、それが醍醐味。誰かが作ってるから自分も動く。</p>
+      </div>
+    </div>
+
+    <div class="sc-card reveal">
+      <div class="sc-card__img">
+        <img src="webp/onsen.webp" alt="朝の温泉">
+      </div>
+      <div class="sc-card__info">
+        <span class="sc-time">Morning</span>
+        <p class="sc-act">温泉 &times; 朝の振り返り</p>
+        <p class="sc-desc">頭と体をリセットして、また潜る。熱海の朝、最高。</p>
+      </div>
+    </div>
+
+    <div class="schedule__footer">
+      <p class="schedule__tagline reveal">
+        <span class="grad-pink">"やり込み"</span> &times; <span class="grad-blue">"ゆるさ"</span><br>のバランス。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ⑥ ONLY -->
+  <section class="only">
+    <div class="only__img">
+      <img src="webp/hanabi.webp" alt="熱海の花火">
+    </div>
+    <div class="only__body">
+      <div class="only__badge reveal">ONLY HERE</div>
+      <ul class="only__list">
+        <li class="reveal">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="10" fill="rgba(255,45,135,.3)" stroke="#FF7AB8" stroke-width="1"/>
+            <polyline points="6,11 9.5,14.5 16,8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          AIの使い方が変わる
+        </li>
+        <li class="reveal d1">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="10" fill="rgba(255,45,135,.3)" stroke="#FF7AB8" stroke-width="1"/>
+            <polyline points="6,11 9.5,14.5 16,8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          発想が変わる
+        </li>
+        <li class="reveal d2">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="10" fill="rgba(255,45,135,.3)" stroke="#FF7AB8" stroke-width="1"/>
+            <polyline points="6,11 9.5,14.5 16,8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          次にやることが見える
+        </li>
+      </ul>
+      <p class="only__stop reveal d3">
+        停滞してる人ほど、<br><span class="hl">変わる場所。</span>
+      </p>
+      <p class="only__quote reveal d4">
+        AIを学びに来たのに、<br>人生の転機になった。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ⑦ LIMIT -->
+  <section class="limit">
+    <div class="limit__band">
+      <span class="limit__en reveal">Admission</span>
+      <h2 class="limit__h2 reveal d1">
+        本合宿は<br>AIワークショップ<br>参加者限定です
+      </h2>
+      <div class="limit__badge-wrap reveal d2">1期 &middot; 2期 &middot; 3期 参加者対象</div>
+      <!-- ヤシの葉 左下（反転） -->
+      <div class="deco deco--palm">
+        <img src="詳細はこちらから/9.png" alt="">
+      </div>
+    </div>
+    <div class="limit__body">
+      <div class="limit__note reveal">
+        <strong>なぜ限定なのか？</strong>
+        この空気感を守るため。<br>
+        話が通じる人だけが集まるから、<br>濃い時間が生まれる。
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ⑧ CTA -->
+  <section class="cta" id="cta">
+    <!-- ハイビスカス左下 -->
+    <div class="deco deco--flower-l">
+      <img src="詳細はこちらから/6.png" alt="">
+    </div>
+    <!-- ハイビスカス右下 -->
+    <div class="deco deco--flower-r">
+      <img src="詳細はこちらから/6.png" alt="">
+    </div>
+
+    <div class="cta__inner">
+      <!-- 夏の装飾 -->
+      <div class="summer-deco reveal" style="margin-bottom: 36px;">
+        <div class="summer-deco__line"></div>
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <ellipse cx="13" cy="5" rx="3.5" ry="5.5" fill="#FF7AB8" opacity=".9"/>
+          <ellipse cx="21" cy="13" rx="5.5" ry="3.5" fill="#FF2D87" opacity=".85"/>
+          <ellipse cx="13" cy="21" rx="3.5" ry="5.5" fill="#FF7AB8" opacity=".9"/>
+          <ellipse cx="5" cy="13" rx="5.5" ry="3.5" fill="#FF2D87" opacity=".85"/>
+          <circle cx="13" cy="13" r="4.5" fill="#FFD600"/>
+          <circle cx="13" cy="13" r="2.2" fill="#FF9500"/>
+        </svg>
+        <svg width="32" height="14" viewBox="0 0 32 14" fill="none">
+          <path d="M0,7 Q4,2 8,7 Q12,12 16,7 Q20,2 24,7 Q28,12 32,7" stroke="#0099FF" stroke-width="2" stroke-linecap="round" fill="none" opacity=".75"/>
+        </svg>
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <ellipse cx="13" cy="5" rx="3.5" ry="5.5" fill="#FF2D87" opacity=".9"/>
+          <ellipse cx="21" cy="13" rx="5.5" ry="3.5" fill="#FF7AB8" opacity=".85"/>
+          <ellipse cx="13" cy="21" rx="3.5" ry="5.5" fill="#FF2D87" opacity=".9"/>
+          <ellipse cx="5" cy="13" rx="5.5" ry="3.5" fill="#FF7AB8" opacity=".85"/>
+          <circle cx="13" cy="13" r="4.5" fill="#FFD600"/>
+          <circle cx="13" cy="13" r="2.2" fill="#FF9500"/>
+        </svg>
+        <div class="summer-deco__line"></div>
+      </div>
+
+      <h2 class="cta__h2 reveal d1">
+        次のステージへ行く<br>
+        <span class="grad-pink">準備を。</span>
+      </h2>
+      <span class="cta__date reveal d2">2026.7.3 FRI &mdash; 7.4 SAT &nbsp;|&nbsp; ATAMI</span>
+      <a href="https://x.gd/JK2Ae" class="btn-line-lg reveal d3">オープンチャットに参加する &#x2192;</a>
+      <p class="cta__note reveal d4">AIワークショップ参加者限定</p>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>AI Workshop Summer 2026 &copy; All rights reserved.</p>
+  </footer>
+
+
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
