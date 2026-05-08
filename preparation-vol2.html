@@ -8015,145 +8015,144 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       </div>
     </div>
 
-    <!-- 3.5: 自動デプロイ設定（チャカナンガイド） -->
+    <!-- 3.5: 自動デプロイ設定（Connect to Git方式） -->
     <div class="card" style="border-color:#f6821f;">
       <div class="card-head">
         <div class="card-num" style="background:linear-gradient(135deg,#f6821f,#f9a641);">&#x26A1;</div>
         <div class="card-title">自動デプロイの設定（一度だけ）</div>
       </div>
       <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:6px;">
-        この設定を済ませると、<strong style="color:var(--black);">「Claudeにpushして」と言うだけでLPが自動更新</strong>されます。
-        毎回Cloudflareを開いてドラッグする手間がなくなります。
+        この設定を一度済ませると、<strong style="color:var(--black);">「Claudeにpushして」と言うだけでLPが自動更新</strong>されます。<br>
+        毎回Cloudflareを開いてドラッグ&amp;ドロップする作業は、もう不要になります。
       </p>
-      <div style="background:linear-gradient(135deg,#FFF9F5,#FFF3E8);border:1px solid #FDD9B5;border-radius:10px;padding:14px 18px;font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:20px;">
-        <strong style="color:var(--black);">あなたがやること：この3ステップだけ</strong><br>
-        ファイルの作成・gitの操作はClaudeがすべて行います。
+
+      <!-- 仕組みの図解 -->
+      <div style="background:linear-gradient(135deg,#FFF9F5,#FFF3E8);border:1px solid #FDD9B5;border-radius:12px;padding:18px 20px;margin-bottom:20px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.14em;color:var(--orange);font-weight:700;margin-bottom:14px;">HOW IT WORKS</div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#1d2735;text-align:center;">
+            <div style="font-size:18px;margin-bottom:4px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B8FE8" stroke-width="2" style="vertical-align:middle;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+            </div>
+            Claudeが<br>HTMLを編集
+          </div>
+          <div style="color:#f6821f;font-size:18px;font-weight:300;">&rarr;</div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#1d2735;text-align:center;">
+            <div style="font-size:18px;margin-bottom:4px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B8FE8" stroke-width="2" style="vertical-align:middle;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            git push<br>（自動）
+          </div>
+          <div style="color:#f6821f;font-size:18px;font-weight:300;">&rarr;</div>
+          <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#1d2735;text-align:center;">
+            <div style="font-size:18px;margin-bottom:4px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B8FE8" stroke-width="2" style="vertical-align:middle;"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            Cloudflareが<br>自動でデプロイ
+          </div>
+          <div style="color:#f6821f;font-size:18px;font-weight:300;">&rarr;</div>
+          <div style="background:#dcfce7;border:1px solid #86efac;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#166534;text-align:center;">
+            <div style="font-size:18px;margin-bottom:4px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#166534" stroke-width="2" style="vertical-align:middle;"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            1〜2分で<br>サイト更新！
+          </div>
+        </div>
+        <div style="margin-top:14px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+          GitHubとCloudflareを<strong style="color:var(--black);">一度だけ繋ぐ設定</strong>をすれば、あとはこの流れが全自動になります。
+        </div>
       </div>
 
-      <!-- STEP A: Cloudflareプロジェクト作成 -->
+      <!-- STEP A -->
       <div class="deploy-step-item" style="margin-bottom:10px;">
         <div class="deploy-step-num" style="background:#f6821f;">A</div>
         <div>
-          <div class="deploy-step-title">Cloudflare Pagesにプロジェクトを作る（初回のみ）</div>
+          <div class="deploy-step-title">Cloudflare Pagesを開いてGitHubを選ぶ</div>
           <div class="deploy-step-desc">
-            <a href="https://dash.cloudflare.com" target="_blank" style="color:#f6821f;">dash.cloudflare.com</a> にログイン &rarr; 「Workers &amp; Pages」&rarr;「Pages」&rarr;「Create a project」&rarr; <strong>「Direct Upload」</strong>を選ぶ &rarr; プロジェクト名を入力（例：<code style="background:var(--beige);padding:1px 6px;border-radius:4px;">my-lp</code>）&rarr; HTMLファイルをドラッグ&amp;ドロップ &rarr;「Deploy site」
+            <a href="https://dash.cloudflare.com" target="_blank" style="color:#f6821f;">dash.cloudflare.com</a> にログイン &rarr;
+            左メニュー「Workers &amp; Pages」&rarr;「Pages」&rarr;「Create」&rarr;
+            <strong>「Connect to Git」</strong>タブを選ぶ（Direct Upload ではない）
           </div>
         </div>
       </div>
-      <!-- Mock: Cloudflare project created -->
+      <!-- Mock: Connect to Git UI -->
       <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-        <div style="background:#f6821f;padding:10px 20px;">
-          <span style="color:#fff;font-size:13px;font-weight:700;">Cloudflare Pages</span>
+        <div style="background:#1d2735;padding:10px 20px;">
+          <span style="color:#fff;font-size:13px;font-weight:700;">Cloudflare Pages &mdash; Create a project</span>
         </div>
-        <div style="padding:18px 20px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-            <div style="background:#dcfce7;color:#166534;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">Active</div>
-            <div style="font-size:14px;font-weight:700;color:#1d2735;">my-lp</div>
+        <div style="padding:16px 20px;">
+          <div style="display:flex;gap:8px;margin-bottom:16px;">
+            <div style="flex:1;border:2px solid #f6821f;border-radius:8px;padding:10px 14px;text-align:center;font-size:13px;font-weight:700;color:#f6821f;background:#FFF9F5;">Connect to Git</div>
+            <div style="flex:1;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;text-align:center;font-size:13px;color:#6b7280;">Direct Upload</div>
           </div>
-          <div style="font-size:12px;color:#6b7280;">URL: <span style="color:#f6821f;font-weight:600;">https://my-lp.pages.dev</span></div>
+          <div style="font-size:12px;color:#6b7280;line-height:1.8;">GitHubと連携すると、pushするたびに自動でデプロイされます。</div>
         </div>
         <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-          &#x1F446; サイトが公開されたら次のステップへ
+          「Connect to Git」を選ぶのがポイント（Direct Uploadでは自動にならない）
         </div>
       </div>
 
-      <!-- STEP B: APIトークン＆アカウントID -->
+      <!-- STEP B -->
       <div class="deploy-step-item" style="margin-bottom:10px;">
         <div class="deploy-step-num" style="background:#f6821f;">B</div>
         <div>
-          <div class="deploy-step-title">APIトークンとアカウントIDをコピーする（初回のみ）</div>
+          <div class="deploy-step-title">GitHubのリポジトリを選んで連携する</div>
+          <div class="deploy-step-desc">
+            GitHubアカウントを選択 &rarr; 公開したいリポジトリを選ぶ &rarr;「セットアップを開始します」を押す
+          </div>
         </div>
       </div>
-
-      <!-- B-1: APIトークン -->
-      <div style="margin:0 0 16px;background:#FAFAFA;border:1px solid #eee;border-radius:10px;padding:16px 18px;">
-        <div style="font-size:12px;font-weight:700;color:#1d2735;margin-bottom:10px;letter-spacing:0.05em;">B-1 APIトークンの取得</div>
-        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--gray-mid);line-height:1.8;">
-          <div>&#x2460; Cloudflare右上のアイコン &rarr;「My Profile」</div>
-          <div>&#x2461;「API Tokens」&rarr;「Create Token」</div>
-          <div>&#x2462; <strong style="color:var(--black);">「Edit Cloudflare Workers」</strong>を選ぶ</div>
-          <div>&#x2463; Account Resources・Zone Resources はそのままでOK</div>
-          <div>&#x2464;「Continue to summary」&rarr;「Create Token」</div>
-          <div>&#x2465; 表示されたトークンをコピー（<strong style="color:var(--red);">この画面を閉じると二度と見られません！</strong>）</div>
+      <!-- Mock: Repo selection -->
+      <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #d1d5da;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+        <div style="background:#24292e;padding:10px 16px;">
+          <span style="color:#fff;font-size:13px;font-weight:600;">Select a repository</span>
         </div>
-        <!-- Mock: Token created -->
-        <div style="margin-top:14px;border-radius:8px;overflow:hidden;border:1px solid #e5e7eb;">
-          <div style="padding:14px 16px;background:#fff;">
-            <div style="font-size:12px;color:#374151;font-weight:600;margin-bottom:8px;">API Token created successfully</div>
-            <div style="display:flex;align-items:center;gap:8px;background:#f6f8fa;border:1px solid #d1d5da;border-radius:6px;padding:8px 12px;">
-              <code style="font-size:12px;color:#1d2735;flex:1;letter-spacing:0.03em;">ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>
-              <div style="background:#0969da;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;cursor:pointer;">Copy</div>
+        <div style="padding:14px 18px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:2px solid #f6821f;border-radius:8px;background:#FFF9F5;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="#24292e"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8z"/></svg>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#24292e;">my-lp</div>
+                <div style="font-size:11px;color:#6b7280;">gokigen-design / my-lp</div>
+              </div>
             </div>
-            <div style="margin-top:8px;font-size:11px;color:#cf222e;">&#x26A0; Make sure to copy your personal access token now. You won't be able to see it again!</div>
+            <div style="background:#f6821f;color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:6px;">選択済み</div>
           </div>
-          <div style="background:var(--orange-dim);padding:8px 14px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-            &#x1F446; このトークンをメモ帳などに一時保存しておく
-          </div>
+        </div>
+        <div style="padding:12px 18px;border-top:1px solid #e5e7eb;">
+          <div style="background:#f6821f;color:#fff;font-size:13px;font-weight:700;padding:10px 0;border-radius:8px;text-align:center;cursor:pointer;">セットアップを開始します</div>
         </div>
       </div>
 
-      <!-- B-2: アカウントID -->
-      <div style="margin:0 0 20px;background:#FAFAFA;border:1px solid #eee;border-radius:10px;padding:16px 18px;">
-        <div style="font-size:12px;font-weight:700;color:#1d2735;margin-bottom:10px;letter-spacing:0.05em;">B-2 アカウントIDの確認</div>
-        <div style="font-size:13px;color:var(--gray-mid);line-height:1.9;">
-          Cloudflareのトップページ（Account home）を開いて、ブラウザのURLバーを確認します：
-        </div>
-        <!-- Mock: URL bar -->
-        <div style="margin-top:10px;border-radius:8px;overflow:hidden;border:1px solid #e5e7eb;background:#fff;">
-          <div style="background:#f1f3f4;border-bottom:1px solid #e5e7eb;padding:8px 12px;display:flex;align-items:center;gap:8px;">
-            <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
-            <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
-            <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
-            <div style="flex:1;background:#fff;border:1px solid #d1d5da;border-radius:20px;padding:4px 12px;font-size:11px;color:#1d2735;font-family:monospace;">
-              https://dash.cloudflare.com/<span style="background:#FEF08A;padding:1px 4px;border-radius:3px;font-weight:700;">ここがアカウントID</span>/home
-            </div>
-          </div>
-          <div style="background:var(--orange-dim);padding:8px 14px;font-size:12px;color:var(--orange);font-weight:600;">
-            &#x1F446; dash.cloudflare.com/ の後ろの英数字をコピー
-          </div>
-        </div>
-      </div>
-
-      <!-- STEP C: GitHubシークレット登録 -->
+      <!-- STEP C -->
       <div class="deploy-step-item" style="margin-bottom:10px;">
         <div class="deploy-step-num" style="background:#f6821f;">C</div>
         <div>
-          <div class="deploy-step-title">GitHubにシークレットを登録する（プロジェクトごと）</div>
-          <div class="deploy-step-desc">GitHubのリポジトリ &rarr;「Settings」&rarr; 左メニュー「Secrets and variables」&rarr;「Actions」&rarr;「New repository secret」</div>
+          <div class="deploy-step-title">ビルド設定は空のまま「保存してデプロイ」を押す</div>
+          <div class="deploy-step-desc">
+            プロジェクト名は自動入力される &rarr; ビルドコマンド・ルートディレクトリは<strong>何も入力しない</strong> &rarr;「保存してデプロイ」を押すと初回デプロイが始まる
+          </div>
         </div>
       </div>
-      <!-- Mock: GitHub Secrets -->
-      <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #d1d5da;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-        <div style="background:#24292e;padding:10px 16px;">
-          <span style="color:#fff;font-size:13px;font-weight:600;">Repository secrets</span>
-        </div>
+      <!-- Mock: Build settings -->
+      <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
         <div style="padding:16px 20px;">
-          <div style="font-size:12px;color:#57606a;margin-bottom:12px;">「New repository secret」で2つ登録します：</div>
-          <!-- secret 1 -->
-          <div style="border:1px solid #d1d5da;border-radius:8px;overflow:hidden;margin-bottom:10px;">
-            <div style="padding:12px 16px;background:#f6f8fa;border-bottom:1px solid #d1d5da;display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:8px;">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="#57606a"><path d="M4 4v2h-.25A1.75 1.75 0 002 7.75v5.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-5.5A1.75 1.75 0 0012.25 6H12V4a4 4 0 10-8 0zm6.5 2V4a2.5 2.5 0 00-5 0v2h5z"/></svg>
-                <code style="font-size:12px;font-weight:700;color:#24292e;">CLOUDFLARE_API_TOKEN</code>
-              </div>
-              <div style="font-size:11px;color:#57606a;">Updated just now</div>
-            </div>
-            <div style="padding:10px 16px;font-size:12px;color:#57606a;">値：Bステップでコピーしたトークン（<code>ghp_xxxxx</code>）を貼り付け</div>
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">プロジェクト名</div>
+            <div style="border:1px solid #d1d5da;border-radius:6px;padding:8px 12px;font-size:13px;color:#1d2735;">my-lp</div>
           </div>
-          <!-- secret 2 -->
-          <div style="border:1px solid #d1d5da;border-radius:8px;overflow:hidden;">
-            <div style="padding:12px 16px;background:#f6f8fa;border-bottom:1px solid #d1d5da;display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:8px;">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="#57606a"><path d="M4 4v2h-.25A1.75 1.75 0 002 7.75v5.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-5.5A1.75 1.75 0 0012.25 6H12V4a4 4 0 10-8 0zm6.5 2V4a2.5 2.5 0 00-5 0v2h5z"/></svg>
-                <code style="font-size:12px;font-weight:700;color:#24292e;">CLOUDFLARE_ACCOUNT_ID</code>
-              </div>
-              <div style="font-size:11px;color:#57606a;">Updated just now</div>
-            </div>
-            <div style="padding:10px 16px;font-size:12px;color:#57606a;">値：BステップでコピーしたアカウントID（英数字）を貼り付け</div>
+          <div style="margin-bottom:12px;">
+            <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">ビルドコマンド <span style="font-weight:400;color:#9ca3af;">（空でOK）</span></div>
+            <div style="border:1px solid #d1d5da;border-radius:6px;padding:8px 12px;font-size:13px;color:#9ca3af;font-style:italic;">例: npm run build（今回は空のまま）</div>
           </div>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">ルートディレクトリ <span style="font-weight:400;color:#9ca3af;">（空でOK）</span></div>
+            <div style="border:1px solid #d1d5da;border-radius:6px;padding:8px 12px;font-size:13px;color:#9ca3af;font-style:italic;">/（空のまま）</div>
+          </div>
+          <div style="background:#f6821f;color:#fff;font-size:13px;font-weight:700;padding:10px 0;border-radius:8px;text-align:center;">保存してデプロイ</div>
         </div>
         <div style="background:var(--green-lt);padding:10px 18px;font-size:12px;color:var(--green);font-weight:600;border-top:1px solid #eee;">
-          &#x2705; これで設定完了！あとはClaudeに任せてください。
+          1〜2分でデプロイ完了。URLが発行されます。
         </div>
       </div>
 
@@ -8163,48 +8162,67 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;">
           <div style="font-weight:700;color:var(--black);padding:8px 0;border-bottom:1px solid var(--border);">作業</div>
           <div style="font-weight:700;color:var(--black);padding:8px 0;border-bottom:1px solid var(--border);">誰が？</div>
-          <div style="color:var(--gray-mid);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.6;">Cloudflareにプロジェクト作成</div>
-          <div style="color:var(--orange);font-weight:600;padding:8px 0;border-bottom:1px solid var(--border);">あなた（初回のみ）</div>
-          <div style="color:var(--gray-mid);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.6;">APIトークン・アカウントID取得</div>
-          <div style="color:var(--orange);font-weight:600;padding:8px 0;border-bottom:1px solid var(--border);">あなた（初回のみ）</div>
-          <div style="color:var(--gray-mid);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.6;">GitHubにシークレット登録</div>
-          <div style="color:var(--orange);font-weight:600;padding:8px 0;border-bottom:1px solid var(--border);">あなた（プロジェクトごと）</div>
-          <div style="color:var(--gray-mid);padding:8px 0;line-height:1.6;">ファイル作成・git push・設定</div>
-          <div style="color:#1BC6B4;font-weight:600;padding:8px 0;">Claude</div>
+          <div style="color:var(--gray-mid);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.6;">Cloudflare × GitHub の連携設定</div>
+          <div style="color:var(--orange);font-weight:600;padding:8px 0;border-bottom:1px solid var(--border);">あなた（サイトごとに1回のみ）</div>
+          <div style="color:var(--gray-mid);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.6;">HTMLの編集・git push</div>
+          <div style="color:#1BC6B4;font-weight:600;padding:8px 0;border-bottom:1px solid var(--border);">Claude</div>
+          <div style="color:var(--gray-mid);padding:8px 0;line-height:1.6;">デプロイ（サイト公開）</div>
+          <div style="color:#f6821f;font-weight:600;padding:8px 0;">Cloudflare（自動）</div>
         </div>
       </div>
-      <div style="font-size:12px;color:var(--gray-lt);line-height:1.8;">APIトークンとアカウントIDは次のプロジェクトでもそのまま使い回せます。</div>
+      <div style="font-size:12px;color:var(--gray-lt);line-height:1.8;">APIトークンやシークレットの設定は不要です。Cloudflareのダッシュボード操作だけで完結します。</div>
     </div>
 
     <!-- 4. 更新の流れ -->
     <div class="card">
       <div class="card-head">
         <div class="card-num">4</div>
-        <div class="card-title">修正したら、また同じようにアップロードするだけ</div>
+        <div class="card-title">2回目以降の更新は「pushして」と言うだけ</div>
       </div>
       <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
-        更新のたびにGitHub連携は不要。<strong style="color:var(--black);">Cloudflare Pagesを開いて、新しいフォルダを投げ込むだけ</strong>で公開URLが更新されます。
+        連携設定が終わったら、<strong style="color:var(--black);">Cloudflareのダッシュボードは二度と開かなくていい</strong>です。
+        LPの修正はすべてClaudeとのチャットで完結します。
       </p>
       <div style="background:var(--beige);border-radius:10px;padding:18px 22px;margin-bottom:14px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.12em;color:var(--orange);font-weight:600;margin-bottom:10px;">UPDATE FLOW</div>
-        <div style="font-size:13px;color:var(--gray-mid);line-height:2;">
-          &#x2460; Claudeに「ここ変えて」と頼む &rarr; 新しいコードを保存<br>
-          &#x2461; GitHubにpush（Claudeが自動でやってくれる）<br>
-          &#x2462; Cloudflare Pagesを開く &rarr; プロジェクトを選ぶ &rarr;「Create new deployment」<br>
-          &#x2463; 新しいフォルダをドラッグ&amp;ドロップ &rarr; Deploy &rarr; URLが更新される
-        </div>
-      </div>
-      <!-- Mock: Create new deployment -->
-      <div style="border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-        <div style="padding:16px 20px;border-bottom:1px solid #f3f4f6;">
-          <div style="font-size:13px;font-weight:700;color:#1d2735;margin-bottom:10px;">my-lp</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
-            <div style="font-size:12px;color:#6b7280;">Latest deployment: <span style="color:#22c55e;font-weight:600;">Active</span></div>
-            <div style="background:#f6821f;color:#fff;font-size:11px;font-weight:700;padding:6px 16px;border-radius:6px;cursor:pointer;">Create new deployment</div>
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.12em;color:var(--orange);font-weight:600;margin-bottom:12px;">2回目以降の作業フロー</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="background:#f6821f;color:#fff;font-size:11px;font-weight:700;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
+            <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">Claudeに「ここを変えて」と伝える</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="background:#f6821f;color:#fff;font-size:11px;font-weight:700;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
+            <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">ClaudeがHTMLを編集 &rarr; GitHubにpush（自動）</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="background:#22c55e;color:#fff;font-size:11px;font-weight:700;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
+            <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">1〜2分後、<strong style="color:var(--black);">URLを開くと自動で更新されている</strong></div>
           </div>
         </div>
-        <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;">
-          &#x1F446;「Create new deployment」から再アップロードできます
+      </div>
+      <!-- Mock: Cloudflare auto deploy log -->
+      <div style="border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+        <div style="background:#1d2735;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="color:#fff;font-size:13px;font-weight:600;">Cloudflare Pages &mdash; Deployments</span>
+        </div>
+        <div style="padding:14px 18px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f3f4f6;">
+            <div>
+              <div style="font-size:12px;color:#374151;font-weight:600;">main &rarr; 自動デプロイ</div>
+              <div style="font-size:11px;color:#9ca3af;margin-top:2px;">Triggered by git push &mdash; just now</div>
+            </div>
+            <div style="background:#dcfce7;color:#166534;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">Active</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;">
+            <div>
+              <div style="font-size:12px;color:#9ca3af;">以前のデプロイ</div>
+              <div style="font-size:11px;color:#9ca3af;margin-top:2px;">2 days ago</div>
+            </div>
+            <div style="background:#f3f4f6;color:#6b7280;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;">Inactive</div>
+          </div>
+        </div>
+        <div style="background:var(--green-lt);padding:10px 18px;font-size:12px;color:var(--green);font-weight:600;border-top:1px solid #eee;">
+          pushするたびに自動でデプロイ履歴が積み上がっていきます
         </div>
       </div>
     </div>
