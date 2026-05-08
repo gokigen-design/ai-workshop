@@ -7873,148 +7873,6 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       </div>
     </div>
 
-    <!-- 3. Cloudflare Pagesで公開 -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-num">3</div>
-        <div class="card-title">Cloudflare Pagesにドラッグ&amp;ドロップで公開する</div>
-      </div>
-      <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
-        フォルダをブラウザにドラッグするだけでLPが公開されます。<br>
-        <strong style="color:var(--black);">GitHubとの連携は不要。初心者でも迷わない方法です。</strong>
-      </p>
-
-      <!-- Step 3-1 -->
-      <div class="deploy-step-item" style="margin-bottom:10px;">
-        <div class="deploy-step-num">1</div>
-        <div>
-          <div class="deploy-step-title"><a href="https://pages.cloudflare.com" target="_blank" style="color:var(--black);border-bottom:1px dotted var(--blue);text-decoration:none;">pages.cloudflare.com</a> を開く</div>
-          <div class="deploy-step-desc">ログイン後、「Workers &amp; Pages」→「Pages」→「Create a project」→「<strong>Upload assets</strong>」を選びます。</div>
-        </div>
-      </div>
-      <!-- Mock: Upload assets selection -->
-      <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-        <div style="background:#f6821f;padding:10px 20px;display:flex;align-items:center;gap:10px;">
-          <svg width="18" height="18" viewBox="0 0 100 100" fill="none"><path d="M78.8 61.3c.4-1.3.6-2.7.6-4.1 0-7.7-6.2-13.9-13.9-13.9-1.4 0-2.8.2-4.1.6C59.2 38.7 53.5 35 47 35c-9.9 0-18 8.1-18 18 0 .7 0 1.4.1 2.1C23.3 56.8 19 62 19 68.3 19 75.3 24.7 81 31.7 81h46.6C85.3 81 91 75.3 91 68.3c0-4-2-7.7-5.3-10l-6.9 3z" fill="#fff"/></svg>
-          <span style="color:#fff;font-size:13px;font-weight:700;">Cloudflare</span>
-          <span style="color:rgba(255,255,255,0.7);font-size:13px;">| Pages</span>
-        </div>
-        <div style="padding:20px;">
-          <div style="font-size:14px;font-weight:700;color:#1d2735;margin-bottom:14px;">Create a new project</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="border:1px solid #e5e7eb;border-radius:10px;padding:16px;opacity:0.4;">
-              <div style="font-size:20px;margin-bottom:8px;">
-                <svg width="20" height="20" viewBox="0 0 16 16" fill="#24292e"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-              </div>
-              <div style="font-size:12px;font-weight:700;color:#6b7280;">Connect to Git</div>
-            </div>
-            <div style="border:2.5px solid #f6821f;border-radius:10px;padding:16px;background:#FFF9F5;position:relative;">
-              <div style="position:absolute;top:-10px;right:10px;background:#f6821f;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:8px;">こちらを選ぶ</div>
-              <div style="font-size:20px;margin-bottom:8px;">&#x1F4C2;</div>
-              <div style="font-size:12px;font-weight:700;color:#1d2735;margin-bottom:3px;">Upload assets</div>
-              <div style="font-size:10px;color:#6b7280;line-height:1.5;">ファイルを直接アップロード</div>
-            </div>
-          </div>
-        </div>
-        <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-          &#x1F446;「Upload assets」を選びます
-        </div>
-      </div>
-
-      <!-- Step 3-2 -->
-      <div class="deploy-step-item" style="margin-bottom:10px;">
-        <div class="deploy-step-num">2</div>
-        <div>
-          <div class="deploy-step-title">プロジェクト名をつける</div>
-          <div class="deploy-step-desc">英数字とハイフンで入力します（例：<code style="background:var(--beige);padding:1px 6px;border-radius:4px;">my-lp</code>）。これがURLの一部になります。</div>
-        </div>
-      </div>
-      <!-- Mock: Project name -->
-      <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-        <div style="padding:20px;">
-          <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:6px;">Project name</div>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="flex:1;border:2px solid #f6821f;border-radius:6px;padding:9px 12px;font-size:14px;color:#1d2735;font-weight:600;">my-lp</div>
-          </div>
-          <div style="margin-top:8px;font-size:11px;color:#6b7280;">Your site will be available at: <span style="color:#f6821f;font-weight:600;">my-lp.pages.dev</span></div>
-        </div>
-        <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-          &#x1F446; 好きな名前をつけてください（ローマ字でOK）
-        </div>
-      </div>
-
-      <!-- Step 3-3 -->
-      <div class="deploy-step-item" style="margin-bottom:10px;">
-        <div class="deploy-step-num">3</div>
-        <div>
-          <div class="deploy-step-title">LPのフォルダをドラッグ&amp;ドロップ</div>
-          <div class="deploy-step-desc">Claude Codeで作ったプロジェクトフォルダごとドラッグします。<code style="background:var(--beige);padding:1px 6px;border-radius:4px;">index.html</code> が入っているフォルダをそのまま投げ込んでください。</div>
-        </div>
-      </div>
-      <!-- Mock: Drag & Drop area -->
-      <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-        <div style="padding:20px;">
-          <div style="border:2.5px dashed #f6821f;border-radius:12px;background:#FFF9F5;padding:32px 20px;text-align:center;">
-            <div style="font-size:36px;margin-bottom:10px;">&#x1F4C1;</div>
-            <div style="font-size:14px;font-weight:700;color:#1d2735;margin-bottom:4px;">Drop your project folder here</div>
-            <div style="font-size:12px;color:#6b7280;margin-bottom:14px;">or click to browse</div>
-            <div style="background:#f6821f;color:#fff;font-size:12px;font-weight:700;padding:7px 20px;border-radius:6px;display:inline-block;">Select a folder</div>
-          </div>
-        </div>
-        <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-          &#x1F446; フォルダをここにドラッグ＆ドロップするだけ！
-        </div>
-      </div>
-
-      <!-- Step 3-4 -->
-      <div class="deploy-step-item" style="margin-bottom:10px;">
-        <div class="deploy-step-num">4</div>
-        <div>
-          <div class="deploy-step-title">「Deploy site」を押す</div>
-          <div class="deploy-step-desc">ファイルがアップロードされたら「Deploy site」ボタンを押します。30秒〜1分で完了です。</div>
-        </div>
-      </div>
-      <!-- Mock: Deploy button -->
-      <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-        <div style="padding:20px;">
-          <div style="border:1px solid #e5e7eb;border-radius:8px;padding:12px 16px;background:#f9fafb;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-            <span style="font-size:12px;color:#374151;">my-lp / <span style="color:#6b7280;">3 files uploaded</span></span>
-          </div>
-          <div style="display:flex;justify-content:flex-end;">
-            <div style="background:#f6821f;color:#fff;font-size:13px;font-weight:700;padding:10px 28px;border-radius:6px;cursor:pointer;box-shadow:0 2px 8px rgba(246,130,31,0.4);">Deploy site</div>
-          </div>
-        </div>
-        <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-          &#x1F446;「Deploy site」を押して完了！
-        </div>
-      </div>
-
-      <!-- 成功 -->
-      <div class="deploy-step-item" style="background:var(--green-lt);border:1px solid #A7F3D0;margin-bottom:10px;">
-        <div class="deploy-step-num" style="background:var(--green);">&#x2713;</div>
-        <div>
-          <div class="deploy-step-title" style="color:var(--green);">URLが発行されました！</div>
-          <div class="deploy-step-desc">これがあなたのLPの公開URLです。今すぐ誰でも見られます。</div>
-        </div>
-      </div>
-      <!-- Mock: Success -->
-      <div style="margin:0 0 10px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-        <div style="background:linear-gradient(135deg,#f6821f,#f9a641);padding:24px 20px;text-align:center;">
-          <div style="font-size:32px;margin-bottom:8px;">&#x1F389;</div>
-          <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;">Success!</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.85);">Your site is now live on Cloudflare Pages.</div>
-        </div>
-        <div style="padding:20px;text-align:center;">
-          <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">YOUR DOMAIN</div>
-          <div style="font-size:16px;color:#f6821f;font-weight:700;">https://my-lp.pages.dev</div>
-        </div>
-        <div style="background:var(--green-lt);padding:10px 18px;font-size:12px;color:var(--green);font-weight:600;border-top:1px solid #eee;">
-          &#x2705; このURLをクリックすると、あなたのLPが表示されます！
-        </div>
-      </div>
-    </div>
-
     <!-- 3.5: 自動デプロイ設定（Connect to Git方式） -->
     <div class="card" style="border-color:#f6821f;">
       <div class="card-head">
@@ -8225,6 +8083,121 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
           pushするたびに自動でデプロイ履歴が積み上がっていきます
         </div>
       </div>
+    </div>
+
+
+    <!-- 参考: Cloudflare Pagesにドラッグ&ドロップで公開する方法 -->
+    <div class="card" style="border-color:#e5e7eb;background:#FAFAFA;">
+      <details id="dd-deploy-toggle">
+        <summary style="list-style:none;cursor:pointer;-webkit-appearance:none;" onclick="var d=this.parentElement;var icon=this.querySelector('.toggle-chevron');setTimeout(function(){icon.style.transform=d.open?'rotate(90deg)':'rotate(0deg)';},0);">
+          <div class="card-head" style="margin-bottom:0;">
+            <div class="card-num" style="background:#e5e7eb;color:#9ca3af;">3</div>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:600;color:var(--gray-mid);">ドラッグ&amp;ドロップで公開する（参考）</div>
+              <div style="font-size:12px;color:var(--gray-lt);margin-top:2px;line-height:1.6;">自動デプロイが難しい場合の代替方法です &#x25B6; タップで開く</div>
+            </div>
+            <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#9ca3af" stroke-width="2" style="transition:transform 0.2s;flex-shrink:0;"><polyline points="6 3 11 8 6 13"/></svg>
+          </div>
+        </summary>
+        <div style="margin-top:20px;border-top:1px solid #e5e7eb;padding-top:20px;">
+          <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+            フォルダをブラウザにドラッグするだけでLPが公開されます。GitHubとの連携なしで使える方法です。
+          </p>
+
+          <!-- Step 3-1 -->
+          <div class="deploy-step-item" style="margin-bottom:10px;">
+            <div class="deploy-step-num">1</div>
+            <div>
+              <div class="deploy-step-title"><a href="https://pages.cloudflare.com" target="_blank" style="color:var(--black);border-bottom:1px dotted var(--blue);text-decoration:none;">pages.cloudflare.com</a> を開く</div>
+              <div class="deploy-step-desc">ログイン後、「Workers &amp; Pages」&#x2192;「Pages」&#x2192;「Create a project」&#x2192;「<strong>Upload assets</strong>」を選びます。</div>
+            </div>
+          </div>
+          <!-- Mock: Upload assets selection -->
+          <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+            <div style="background:#f6821f;padding:10px 20px;display:flex;align-items:center;gap:10px;">
+              <span style="color:#fff;font-size:13px;font-weight:700;">Cloudflare</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:13px;">| Pages</span>
+            </div>
+            <div style="padding:20px;">
+              <div style="font-size:14px;font-weight:700;color:#1d2735;margin-bottom:14px;">Create a new project</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="border:1px solid #e5e7eb;border-radius:10px;padding:16px;opacity:0.4;">
+                  <div style="font-size:12px;font-weight:700;color:#6b7280;">Connect to Git</div>
+                </div>
+                <div style="border:2.5px solid #f6821f;border-radius:10px;padding:16px;background:#FFF9F5;position:relative;">
+                  <div style="position:absolute;top:-10px;right:10px;background:#f6821f;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:8px;">こちらを選ぶ</div>
+                  <div style="font-size:20px;margin-bottom:8px;">&#x1F4C2;</div>
+                  <div style="font-size:12px;font-weight:700;color:#1d2735;margin-bottom:3px;">Upload assets</div>
+                  <div style="font-size:10px;color:#6b7280;line-height:1.5;">ファイルを直接アップロード</div>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
+              &#x1F446;「Upload assets」を選びます
+            </div>
+          </div>
+
+          <!-- Step 3-2 -->
+          <div class="deploy-step-item" style="margin-bottom:10px;">
+            <div class="deploy-step-num">2</div>
+            <div>
+              <div class="deploy-step-title">プロジェクト名をつける</div>
+              <div class="deploy-step-desc">英数字とハイフンで入力します（例：<code style="background:var(--beige);padding:1px 6px;border-radius:4px;">my-lp</code>）。これがURLの一部になります。</div>
+            </div>
+          </div>
+          <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+            <div style="padding:20px;">
+              <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:6px;">Project name</div>
+              <div style="border:2px solid #f6821f;border-radius:6px;padding:9px 12px;font-size:14px;color:#1d2735;font-weight:600;">my-lp</div>
+              <div style="margin-top:8px;font-size:11px;color:#6b7280;">Your site will be available at: <span style="color:#f6821f;font-weight:600;">my-lp.pages.dev</span></div>
+            </div>
+            <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
+              &#x1F446; 好きな名前をつけてください（ローマ字でOK）
+            </div>
+          </div>
+
+          <!-- Step 3-3 -->
+          <div class="deploy-step-item" style="margin-bottom:10px;">
+            <div class="deploy-step-num">3</div>
+            <div>
+              <div class="deploy-step-title">LPのフォルダをドラッグ&amp;ドロップ</div>
+              <div class="deploy-step-desc">Claude Codeで作ったプロジェクトフォルダごとドラッグします。<code style="background:var(--beige);padding:1px 6px;border-radius:4px;">index.html</code> が入っているフォルダをそのまま投げ込んでください。</div>
+            </div>
+          </div>
+          <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+            <div style="padding:20px;">
+              <div style="border:2.5px dashed #f6821f;border-radius:12px;background:#FFF9F5;padding:32px 20px;text-align:center;">
+                <div style="font-size:36px;margin-bottom:10px;">&#x1F4C1;</div>
+                <div style="font-size:14px;font-weight:700;color:#1d2735;margin-bottom:4px;">Drop your project folder here</div>
+                <div style="font-size:12px;color:#6b7280;margin-bottom:14px;">or click to browse</div>
+                <div style="background:#f6821f;color:#fff;font-size:12px;font-weight:700;padding:7px 20px;border-radius:6px;display:inline-block;">Select a folder</div>
+              </div>
+            </div>
+            <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
+              &#x1F446; フォルダをここにドラッグ&amp;ドロップするだけ！
+            </div>
+          </div>
+
+          <!-- Step 3-4 -->
+          <div class="deploy-step-item" style="margin-bottom:10px;">
+            <div class="deploy-step-num">4</div>
+            <div>
+              <div class="deploy-step-title">「Deploy site」を押す</div>
+              <div class="deploy-step-desc">ファイルがアップロードされたら「Deploy site」ボタンを押します。30秒〜1分で完了です。</div>
+            </div>
+          </div>
+          <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
+            <div style="padding:20px;">
+              <div style="display:flex;justify-content:flex-end;">
+                <div style="background:#f6821f;color:#fff;font-size:13px;font-weight:700;padding:10px 28px;border-radius:6px;">Deploy site</div>
+              </div>
+            </div>
+            <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
+              &#x1F446;「Deploy site」を押して完了！URLが発行されます。
+            </div>
+          </div>
+        </div>
+      </details>
     </div>
 
     <!-- 用語まとめ -->
