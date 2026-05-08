@@ -10700,31 +10700,77 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     <div class="card">
       <div class="card-head"><div class="card-num">2</div><div class="card-title">サイズの選び方とレスポンシブの注意点</div></div>
 
-      <!-- サイズ比較 -->
-      <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:10px;">どのサイズで作ればいい？</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
-        <!-- スマホ -->
-        <div style="border:2px solid #4F7EF7;border-radius:12px;overflow:hidden;">
-          <div style="background:#4F7EF7;padding:8px 12px;">
-            <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.12em;color:rgba(255,255,255,0.8);font-weight:600;">MOBILE / SNS</div>
-            <div style="font-size:13px;font-weight:700;color:#fff;">スマホ用</div>
+      <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:14px;">どのサイズで作ればいい？（デバイス別のイメージ）</div>
+
+      <!-- ── モックアップ比較 ── -->
+      <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start;margin-bottom:22px;">
+
+        <!-- ── PC モックアップ（左・大きめ） ── -->
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.12em;color:var(--orange);font-weight:700;margin-bottom:8px;">DESKTOP / WEB &nbsp; PC用</div>
+          <!-- Laptop frame -->
+          <div style="background:#2d3748;border-radius:8px 8px 0 0;padding:6px 6px 0;box-shadow:0 4px 20px rgba(0,0,0,0.25);">
+            <!-- Browser chrome -->
+            <div style="background:#3d4f62;border-radius:5px 5px 0 0;padding:5px 10px;display:flex;align-items:center;gap:5px;">
+              <div style="width:7px;height:7px;border-radius:50%;background:#ff5f57;flex-shrink:0;"></div>
+              <div style="width:7px;height:7px;border-radius:50%;background:#ffbd2e;flex-shrink:0;"></div>
+              <div style="width:7px;height:7px;border-radius:50%;background:#28c840;flex-shrink:0;"></div>
+              <div style="flex:1;background:#4a5e72;border-radius:3px;height:13px;margin-left:8px;"></div>
+            </div>
+            <!-- Screen content -->
+            <div style="overflow:hidden;">
+              <img src="images/pc_fv.webp" style="width:100%;display:block;" alt="PC用ファーストビュー例">
+              <!-- Demo: CTA button below FV -->
+              <div style="background:#fff;padding:10px 14px;text-align:center;">
+                <div style="background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:7px 20px;border-radius:6px;display:inline-block;box-shadow:0 2px 6px rgba(22,163,74,0.3);">お申し込みはこちら</div>
+                <div style="font-size:9px;color:#9ca3af;margin-top:4px;">残り3席 / 2026.7.3〜7.4</div>
+              </div>
+              <!-- Next section hint -->
+              <div style="background:#f0fdf4;padding:7px 14px;text-align:center;border-top:1px solid #d1fae5;">
+                <div style="font-size:9px;color:#16a34a;font-weight:600;">こんなお悩みありませんか？ ↓</div>
+              </div>
+            </div>
           </div>
-          <img src="images/sp_fv.webp" style="width:100%;display:block;" alt="スマホ用ファーストビュー例">
-          <div style="padding:10px 12px;background:#EFF6FF;">
-            <div style="font-size:13px;font-weight:700;color:#1d4ed8;margin-bottom:2px;">1080 × 1350 px</div>
-            <div style="font-size:11px;color:#4b5563;line-height:1.7;">Instagram投稿サイズに最適。<br>縦長でスクロールなしに情報が入る。</div>
+          <!-- Stand -->
+          <div style="background:#374151;height:8px;margin:0 12%;"></div>
+          <div style="background:#4b5563;height:5px;border-radius:0 0 3px 3px;margin:0 6%;"></div>
+          <!-- Size label -->
+          <div style="text-align:center;margin-top:10px;">
+            <div style="font-size:12px;font-weight:700;color:var(--orange);">推奨サイズ：1920 × 800 px</div>
+            <div style="font-size:11px;color:var(--gray-mid);margin-top:2px;">1600×600〜2000×900 前後であれば大丈夫</div>
+            <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;margin-top:4px;">横長でスクリーンのファーストビューに<br>ぴったり収まるサイズ</div>
           </div>
         </div>
-        <!-- PC -->
-        <div style="border:2px solid var(--orange);border-radius:12px;overflow:hidden;">
-          <div style="background:var(--orange);padding:8px 12px;">
-            <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.12em;color:rgba(255,255,255,0.8);font-weight:600;">DESKTOP / WEB</div>
-            <div style="font-size:13px;font-weight:700;color:#fff;">PC用</div>
+
+        <!-- ── スマホ モックアップ（右・小さめ） ── -->
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:0.12em;color:#4F7EF7;font-weight:700;margin-bottom:8px;">MOBILE / SNS &nbsp; スマホ用</div>
+          <!-- Phone frame -->
+          <div style="max-width:160px;margin:0 auto;">
+            <div style="background:#1a1a2e;border-radius:28px;padding:10px 7px 14px;box-shadow:0 8px 28px rgba(0,0,0,0.4);position:relative;">
+              <!-- Notch -->
+              <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:44px;height:15px;background:#1a1a2e;border-radius:0 0 10px 10px;z-index:2;"></div>
+              <!-- Screen -->
+              <div style="border-radius:20px;overflow:hidden;">
+                <img src="images/sp_fv.webp" style="width:100%;display:block;" alt="スマホ用ファーストビュー例">
+                <!-- Demo: CTA button below FV -->
+                <div style="background:#fff;padding:6px 8px;text-align:center;">
+                  <div style="background:#16a34a;color:#fff;font-size:7px;font-weight:700;padding:5px 10px;border-radius:5px;display:inline-block;">お申し込みはこちら</div>
+                </div>
+                <!-- Next section hint -->
+                <div style="background:#f0fdf4;padding:4px 8px;text-align:center;border-top:1px solid #d1fae5;">
+                  <div style="font-size:7px;color:#16a34a;font-weight:600;">こんなお悩みありませんか？</div>
+                </div>
+              </div>
+              <!-- Home indicator -->
+              <div style="width:40px;height:3px;background:#3d3d5c;border-radius:2px;margin:8px auto 0;"></div>
+            </div>
           </div>
-          <img src="images/pc_fv.webp" style="width:100%;display:block;" alt="PC用ファーストビュー例">
-          <div style="padding:10px 12px;background:var(--orange-dim);">
-            <div style="font-size:13px;font-weight:700;color:var(--orange);margin-bottom:2px;">1920 × 800 px</div>
-            <div style="font-size:11px;color:#4b5563;line-height:1.7;">PC閲覧用のLP向け。<br>横長でファーストビューに収まる。</div>
+          <!-- Size label -->
+          <div style="text-align:center;margin-top:10px;">
+            <div style="font-size:12px;font-weight:700;color:#4F7EF7;">推奨サイズ：1080 × 1350 px</div>
+            <div style="font-size:11px;color:var(--gray-mid);margin-top:2px;">1080×1080〜1080×1400 前後であれば大丈夫</div>
+            <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;margin-top:4px;">Instagram投稿に最適な縦長サイズ</div>
           </div>
         </div>
       </div>
@@ -10736,8 +10782,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
           <div style="font-size:13px;font-weight:600;color:var(--black);">レスポンシブ対応について</div>
         </div>
         <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">
-          使っているデバイス（iPadや様々なサイズのPCなど）によって、画像の見え方が<strong style="color:var(--black);">多少変わる</strong>ことをご理解ください。<br>
-          ChatGPTで生成した画像はそれ自体では「固定サイズの1枚絵」なので、画面の横幅に合わせて引き伸びたり縮んだりします。完全に同じには見えないのが前提です。
+          使っているデバイス（iPadや様々なサイズのPCなど）によって、画像の見え方が<strong style="color:var(--black);">多少変わる</strong>ことをご理解ください。ChatGPTで生成した画像はそれ自体では「固定サイズの1枚絵」なので、画面の横幅に合わせて引き伸びたり縮んだりします。完全に同じには見えないのが前提です。
         </div>
       </div>
 
@@ -10761,7 +10806,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
           </div>
         </div>
         <div style="font-size:12px;color:#16a34a;font-weight:600;line-height:1.8;">
-          日時・キャッチコピーなどの重要な情報はなるべく中央付近に配置し、端ギリギリまで書き込まないようにすること。これがレスポンシブ対応において非常に大切な考え方です。ChatGPT側でも理解していますが、プロンプトに「重要な要素は中央付近に配置」と一言添えると確実です。
+          日時・キャッチコピーなどの重要な情報はなるべく中央付近に配置し、端ギリギリまで書き込まないこと。これがレスポンシブ対応において非常に大切な考え方です。プロンプトに「重要な要素は中央付近に配置」と一言添えると確実です。
         </div>
       </div>
     </div>
