@@ -6328,7 +6328,7 @@
         const label = group.querySelector('.ws-label');
         if (!label) return;
         const labelText = label.textContent.replace(/必須|任意.*$/g, '').trim();
-        const inputs = group.querySelectorAll('input[type=text], textarea');
+        const inputs = group.querySelectorAll('input[type=text], input[type=url], textarea');
         const values = [];
         inputs.forEach(el => { if (el.value.trim()) values.push(el.value.trim()); });
         if (values.length) {
@@ -6372,7 +6372,7 @@
         for (const group of groups) {
           const label = group.querySelector('.ws-label');
           if (label && label.textContent.includes(labelText)) {
-            const inputs = group.querySelectorAll('input[type=text], textarea');
+            const inputs = group.querySelectorAll('input[type=text], input[type=url], textarea');
             return Array.from(inputs).map(el => el.value.trim()).filter(v => v).join('\n---\n');
           }
         }
@@ -6410,6 +6410,9 @@
         bio:        get('講師の自己紹介'),
         closing:    get('最後に背中を押す'),
         bonus:      get('登録プレゼント'),
+        modeling1:  get('構成のモデリング'),
+        modeling2:  get('中身のモデリング'),
+        modeling3:  get('デザインのモデリング'),
         beforeUrl:  '',
         afterUrl:   ''
       };
