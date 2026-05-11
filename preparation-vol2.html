@@ -8890,6 +8890,85 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         btn.textContent = '送信する';
       });
     }
+
+    // ── 感想フォームの入力内容を localStorage に保存・復元 ──
+    // ※ GAS連携（submitFeedback / FEEDBACK_GAS_URL）には一切触れていません
+    (function() {
+      const STORE_KEY = 'aiws-fb-fields-v1';
+      const SCALE_NAMES = ['satisfaction', 'confidence_before', 'confidence_after', 'nps'];
+
+      function saveAll() {
+        const form = document.getElementById('feedback-form');
+        if (!form) return;
+        const data = {};
+        form.querySelectorAll('input[type="text"], input[type="url"], textarea').forEach(function(el) {
+          if (el.name) data[el.name] = el.value;
+        });
+        form.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
+          if (el.name) data[el.name] = el.checked;
+        });
+        SCALE_NAMES.forEach(function(name) {
+          var el = form.querySelector('input[type="hidden"][name="' + name + '"]');
+          if (el) data[name] = el.value;
+        });
+        localStorage.setItem(STORE_KEY, JSON.stringify(data));
+      }
+
+      function restoreAll() {
+        var saved = localStorage.getItem(STORE_KEY);
+        if (!saved) return;
+        try {
+          var data = JSON.parse(saved);
+          var form = document.getElementById('feedback-form');
+          if (!form) return;
+          form.querySelectorAll('input[type="text"], input[type="url"], textarea').forEach(function(el) {
+            if (el.name && data[el.name] !== undefined) el.value = data[el.name];
+          });
+          form.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
+            if (el.name && data[el.name] !== undefined) el.checked = data[el.name];
+          });
+          SCALE_NAMES.forEach(function(name) {
+            var val = data[name];
+            if (!val) return;
+            var hidden = form.querySelector('input[type="hidden"][name="' + name + '"]');
+            if (hidden) hidden.value = val;
+            var scale = form.querySelector('.fb-scale[data-name="' + name + '"]');
+            if (!scale) return;
+            var labels = JSON.parse(scale.dataset.labels || '[]');
+            var labelEl = scale.nextElementSibling;
+            scale.querySelectorAll('.fb-num').forEach(function(btn) {
+              if (btn.dataset.value === val) {
+                btn.classList.add('active');
+                if (labelEl) labelEl.textContent = labels[parseInt(val) - 1] || '';
+              } else {
+                btn.classList.remove('active');
+              }
+            });
+          });
+        } catch(e) {}
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        restoreAll();
+        var form = document.getElementById('feedback-form');
+        if (!form) return;
+        form.querySelectorAll('input[type="text"], input[type="url"], textarea').forEach(function(el) {
+          el.addEventListener('input', saveAll);
+        });
+        form.querySelectorAll('input[type="checkbox"]').forEach(function(el) {
+          el.addEventListener('change', saveAll);
+        });
+        form.querySelectorAll('.fb-num').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            setTimeout(saveAll, 50);
+          });
+        });
+        // 送信成功後に form.reset() が呼ばれると localStorage もクリア
+        form.addEventListener('reset', function() {
+          localStorage.removeItem(STORE_KEY);
+        });
+      });
+    })();
   </script>
 
 
