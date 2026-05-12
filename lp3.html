@@ -16,7 +16,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Zen+Maru+Gothic:wght@500;700&family=DotGothic16&family=VT323&display=swap"></noscript>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
 <link rel="preload" href="images/bg-fv.jpg" as="image" fetchpriority="high">
-<link rel="preload" href="images/sitetop.png" as="image" fetchpriority="high">
+<link rel="preload" href="images/oosaka_fv2.png" as="image" fetchpriority="high">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1245,30 +1245,29 @@
     pointer-events: none;
     mix-blend-mode: screen;
   }
-  /* 女性たちの透過PNG（動画の前面） */
+  /* FV背景画像（大阪版） */
   .fv-hero-photo {
     position: absolute;
     inset: 0;
-    margin-top: 80px;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
+    object-position: center 28%;
     z-index: 2;
-    filter: brightness(1.12) contrast(1.18) saturate(1.15) drop-shadow(0 0 20px rgba(34,211,238,0.25));
+    filter: brightness(1.05) contrast(1.08) saturate(1.1);
     pointer-events: none;
   }
-  /* 人物オーバーレイなし。足元だけグラデでフェード */
+  /* 足元グラデ：画像下部（床の反射）をフェード */
   .fv-hero-wrap::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 50%;
+    height: 38%;
     background: linear-gradient(to bottom,
       transparent         0%,
-      rgba(0,5,20,0.25)  35%,
-      rgba(0,5,20,0.75)  60%,
-      rgba(0,5,20,0.97)  85%,
+      rgba(0,5,20,0.2)   30%,
+      rgba(0,5,20,0.65)  58%,
+      rgba(0,5,20,0.95)  82%,
       rgba(0,5,20,1)    100%
     );
     pointer-events: none;
@@ -1680,6 +1679,18 @@
     50%       { opacity: 1;   transform: scale(1.5) rotate(180deg); }
   }
   .cta-btn:hover { transform: translateY(-4px) scale(1.03); }
+
+  /* ================================ */
+  /* D案FV：大阪画像＋CTAのみ */
+  /* ================================ */
+  /* LP側テキストは非表示（画像に情報が入っているため） */
+  .fv-badge-wrap,
+  .fv-title-band,
+  .fv-proof,
+  .fv-urgency { display: none !important; }
+
+  /* CTAボタンエリアに余白を追加 */
+  .fv-content { padding-top: 16px; }
 
   /* ================================ */
   /* セクション共通 */
@@ -2498,10 +2509,10 @@
     .fv-catch-sub { font-size: 0.88rem; }
     .fv-title-date { font-size: 0.72rem; letter-spacing: 2px; margin-top: 8px; }
     .fv-title-band { padding: 8px 0 4px; }
-    /* 女性3人：スマホは中央にバランスよく配置（顔が上すぎないように） */
+    /* 大阪画像：スマホは上から表示（大阪ネオン→女性→日時の流れ） */
     .fv-hero-photo {
       object-fit: cover;
-      object-position: center 75%;
+      object-position: center top;
     }
     .fv-proof { gap: 6px; margin-bottom: 12px; flex-wrap: nowrap; justify-content: center; }
     .fv-proof span { font-size: 0.6rem; padding: 5px 8px; white-space: nowrap; }
@@ -4784,8 +4795,8 @@
         <span class="fv-star" style="left:89%; animation-duration:11s; animation-delay:6.5s; width:4px;height:4px;"></span>
         <span class="fv-star" style="left:95%; animation-duration:13s; animation-delay:3.5s;"></span>
       </div>
-      <img class="fv-hero-photo" src="images/sitetop.png" alt="Claude Code AIワークショップ 講師3人">
-      <img src="images/sitetop.png" alt="" class="fv-hero-img">
+      <img class="fv-hero-photo" src="images/oosaka_fv2.png" alt="AI WORKSHOP in 大阪 2026.06.06">
+      <img src="images/oosaka_fv2.png" alt="" class="fv-hero-img">
       <!-- イントロ用：衝撃波リング -->
       <div class="fv-shockwave" aria-hidden="true"></div>
       <!-- ボトムブロック：タイトル＋proof＋CTA を1つに -->
