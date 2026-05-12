@@ -1692,6 +1692,19 @@
   /* CTAボタンエリアに余白を追加 */
   .fv-content { padding-top: 16px; }
 
+  /* スマホ：グラデーションマスクを外して画像テキストを見えるようにする */
+  @media (max-width: 768px) {
+    /* 足元だけ薄くフェード（AI WORKSHOP・日時テキストは見えるまま） */
+    .fv-hero-wrap::after {
+      height: 14%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,5,20,0.9) 80%, rgba(0,5,20,1) 100%);
+    }
+    /* ボトムブロック自体のグラデも透明に */
+    .fv-bottom-block {
+      background: transparent;
+    }
+  }
+
   /* ================================ */
   /* セクション共通 */
   /* ================================ */
