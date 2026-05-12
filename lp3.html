@@ -1258,8 +1258,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* PCは横長画像：少し下寄りに表示してAI WORKSHOP・日付テキストを見せる */
-    object-position: center 60%;
+    /* PCは横長画像：上寄りに表示して「出陣大阪」ネオンを見せる */
+    object-position: center 20%;
     filter: brightness(1.05) contrast(1.08) saturate(1.1);
     pointer-events: none;
   }
@@ -2494,19 +2494,19 @@
 
     /* ─── FV スマホ専用 ─── */
     .fv-hero-wrap {
-      /* スマホ：ボタンパネル分（約155px）引いて1画面に収める */
-      height: calc(100svh - 155px);
-      min-height: 400px;
+      /* スマホ：縦型画像（941x1672）を切り抜かず全体表示 */
+      height: auto;
+      aspect-ratio: 941 / 1672;
+      min-height: unset;
       background-size: cover;
       background-position: center center;
     }
-    /* 下端グラデ：黒パネルへ接続 */
+    /* スマホ：画像全体を見せるのでグラデは薄く最小限に */
     .fv-hero-wrap::after {
-      height: 18%;
+      height: 8%;
       background: linear-gradient(to bottom,
         transparent        0%,
-        rgba(0,5,20,0.35) 45%,
-        rgba(0,5,20,0.90) 78%,
+        rgba(0,5,20,0.70) 80%,
         rgba(0,5,20,1)   100%
       );
     }
@@ -2529,10 +2529,10 @@
     .fv-catch-sub { font-size: 0.88rem; }
     .fv-title-date { font-size: 0.72rem; letter-spacing: 2px; margin-top: 8px; }
     .fv-title-band { padding: 8px 0 4px; }
-    /* スマホ：縦型画像は上寄りに表示（出陣大阪ネオン→女性→AI WORKSHOP→日時の流れ） */
+    /* スマホ：縦型画像はaspect-ratioで全体表示するのでcoverが等倍に */
     .fv-hero-photo {
       object-fit: cover;
-      object-position: center 15%;
+      object-position: center top;
     }
     .fv-proof { gap: 6px; margin-bottom: 12px; flex-wrap: nowrap; justify-content: center; }
     .fv-proof span { font-size: 0.6rem; padding: 5px 8px; white-space: nowrap; }
