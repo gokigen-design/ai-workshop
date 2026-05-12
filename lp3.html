@@ -15,8 +15,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Zen+Maru+Gothic:wght@500;700&family=DotGothic16&family=VT323&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Zen+Maru+Gothic:wght@500;700&family=DotGothic16&family=VT323&display=swap"></noscript>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
-<link rel="preload" href="images/bg-fv.jpg" as="image" fetchpriority="high">
-<link rel="preload" href="images/oosaka_fv2.png" as="image" fetchpriority="high">
+<link rel="preload" href="images/bg-fv.webp" as="image" type="image/webp" fetchpriority="high">
+<!-- SP：ポートレートFV -->
+<link rel="preload" href="images/oosaka_fv2.webp" as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
+<!-- PC：ランドスケープFV -->
+<link rel="preload" href="images/oosaka_fvpc.webp" as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -917,7 +920,7 @@
     padding: 0;
     background: #000514;
   }
-  /* bg-fv.jpg の上に薄い暗化オーバーレイ */
+  /* bg-fv.webp の上に薄い暗化オーバーレイ */
   .fv::before {
     content: '';
     position: absolute; inset: 0;
@@ -1807,7 +1810,7 @@
   /* 解決 */
   /* ================================ */
   .solution {
-    background: url('images/bg-fv.jpg') center center / cover no-repeat;
+    background: url('images/bg-fv.webp') center center / cover no-repeat;
     position: relative;
     clip-path: polygon(0 80px, 100% 0, 100% calc(100% - 80px), 0 100%);
     padding: 180px 20px;
@@ -1852,7 +1855,7 @@
   /* 持ち帰れるもの */
   /* ================================ */
   .takeaway {
-    background: url('images/bg-fv.jpg') center center / cover no-repeat;
+    background: url('images/bg-fv.webp') center center / cover no-repeat;
     position: relative;
     clip-path: polygon(0 0, 100% 80px, 100% 100%, 0 calc(100% - 80px));
     padding: 160px 20px 180px;
@@ -1892,7 +1895,7 @@
   /* ================================ */
   .works {
     background: var(--dark-bg);
-    background-image: url('images/mainvisual.jpng.jpeg');
+    background-image: url('images/mainvisual.jpng.webp');
     background-size: cover; background-position: center; background-attachment: fixed;
     position: relative;
     clip-path: polygon(0 80px, 100% 0, 100% calc(100% - 80px), 0 100%);
@@ -2005,7 +2008,7 @@
   /* ストーリー（背景画像）*/
   /* ================================ */
   .story {
-    background: url('images/mainvisual.jpng.jpeg') center center / cover no-repeat fixed;
+    background: url('images/mainvisual.jpng.webp') center center / cover no-repeat fixed;
     position: relative;
     clip-path: polygon(0 80px, 100% 0, 100% calc(100% - 80px), 0 100%);
     padding: 180px 20px;
@@ -2613,13 +2616,13 @@
     pointer-events: none;
   }
 
-  /* 背景画像（gate.png を置いたら自動で反映） */
+  /* 背景画像（gate.webp を置いたら自動で反映） */
   .gate-bg {
     position: absolute;
     inset: -5%;
     background:
       radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,212,255,0.18) 0%, transparent 65%),
-      url('images/gate.png') center center / cover no-repeat,
+      url('images/gate.webp') center center / cover no-repeat,
       radial-gradient(ellipse at center, #050018 0%, #000008 100%);
     animation: gateBgZoom 4.0s cubic-bezier(0.3,0,0.7,1) forwards;
   }
@@ -4812,8 +4815,8 @@
     </div>
     <!-- 女性画像＋タイトル完全重ね -->
     <div class="fv-hero-wrap">
-      <!-- 動画は削除し、bg-fv.jpg（703KB）のみで表示（読み込み高速化のため） -->
-      <div class="fv-hero-video" style="background:url('images/bg-fv.jpg') center center / cover no-repeat;" aria-hidden="true"></div>
+      <!-- 動画は削除し、bg-fv.webp（703KB）のみで表示（読み込み高速化のため） -->
+      <div class="fv-hero-video" style="background:url('images/bg-fv.webp') center center / cover no-repeat;" aria-hidden="true"></div>
       <!-- 常時の奥行き演出：放射状パースライン -->
       <div class="fv-perspective-lines" aria-hidden="true"></div>
       <!-- 常時の奥行き演出：星屑パーティクル -->
@@ -4834,8 +4837,8 @@
         <span class="fv-star" style="left:95%; animation-duration:13s; animation-delay:3.5s;"></span>
       </div>
       <picture class="fv-hero-picture">
-        <source media="(min-width: 769px)" srcset="images/oosaka_fvpc.png">
-        <img class="fv-hero-photo" src="images/oosaka_fv2.png" alt="AI WORKSHOP in 大阪 2026.06.06">
+        <source media="(min-width: 769px)" srcset="images/oosaka_fvpc.webp">
+        <img class="fv-hero-photo" src="images/oosaka_fv2.webp" alt="AI WORKSHOP in 大阪 2026.06.06">
       </picture>
       <!-- イントロ用：衝撃波リング -->
       <div class="fv-shockwave" aria-hidden="true"></div>
@@ -4878,7 +4881,7 @@
       <div class="swiper-slide">
         <div class="phone-mock">
           <div class="phone-screen">
-            <div class="phone-scroll-img"><img src="images/zoe-after.png" alt="ゾエさんの完成LP" loading="lazy"></div>
+            <div class="phone-scroll-img"><img src="images/zoe-after.webp" alt="ゾエさんの完成LP" loading="lazy"></div>
           </div>
         </div>
         <div class="phone-label">CASE 02<span class="name">ゾエさん / セールス伴走コーチ</span></div>
@@ -5562,7 +5565,7 @@
       <article class="sup5-card reveal-left delay-1">
         <div class="sup5-no">01</div>
         <div class="sup5-media">
-          <img src="images/PREP%20SESSION.png" alt="プレップセッション：事前オンラインMTGの様子">
+          <img src="images/PREP%20SESSION.webp" alt="プレップセッション：事前オンラインMTGの様子">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">2時間・Zoomオンライン・開催前</div>
@@ -5577,7 +5580,7 @@
       <article class="sup5-card reveal-right delay-2">
         <div class="sup5-no">02</div>
         <div class="sup5-media">
-          <img src="images/today/IMG_9624.jpg" alt="当日のリアル会場：講師3人が横についてサポート">
+          <img src="images/today/IMG_9624.webp" alt="当日のリアル会場：講師3人が横についてサポート">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">1日集中・リアル会場</div>
@@ -5592,7 +5595,7 @@
       <article class="sup5-card reveal-left delay-3">
         <div class="sup5-no">03</div>
         <div class="sup5-media">
-          <img src="images/1DAY%20BUILD.png" alt="リフトレッスン：仕上げの添削会">
+          <img src="images/1DAY%20BUILD.webp" alt="リフトレッスン：仕上げの添削会">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">後日開催・Zoomオンライン</div>
@@ -5607,7 +5610,7 @@
       <article class="sup5-card reveal-right delay-4">
         <div class="sup5-no">04</div>
         <div class="sup5-media">
-          <img src="images/SLACK%20SUPPORT.png" alt="スラックサポート：いつでも質問できるSlackサポート">
+          <img src="images/SLACK%20SUPPORT.webp" alt="スラックサポート：いつでも質問できるSlackサポート">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">期間中いつでも・聞き放題</div>
@@ -5622,7 +5625,7 @@
       <article class="sup5-card reveal-left delay-5">
         <div class="sup5-no">05</div>
         <div class="sup5-media">
-          <img src="images/LIFETIME%20ACCESS.png" alt="会員サイト：受講後も見返せる専用サイト">
+          <img src="images/LIFETIME%20ACCESS.webp" alt="会員サイト：受講後も見返せる専用サイト">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">受講後いつでも・専用会員サイト</div>
@@ -5856,52 +5859,52 @@
       <div class="scene-marquee-track">
         <!-- 1セット目：当日の実写真 -->
         <div class="scene-tile wide">
-          <img src="images/today/IMG_4033.jpg" alt="当日の会場の様子" loading="lazy">
+          <img src="images/today/IMG_4033.webp" alt="当日の会場の様子" loading="lazy">
           <span class="scene-label">VENUE</span>
         </div>
         <div class="scene-tile">
-          <img src="images/today/IMG_4037.jpg" alt="ワークショップ進行中" loading="lazy">
+          <img src="images/today/IMG_4037.webp" alt="ワークショップ進行中" loading="lazy">
           <span class="scene-label">HANDS-ON</span>
         </div>
         <div class="scene-tile tall">
-          <img src="images/today/IMG_9624.jpg" alt="受講生の取り組み" loading="lazy">
+          <img src="images/today/IMG_9624.webp" alt="受講生の取り組み" loading="lazy">
           <span class="scene-label">FOCUS</span>
         </div>
         <div class="scene-tile">
-          <img src="images/today/IMG_4034.jpg" alt="当日のワンショット" loading="lazy">
+          <img src="images/today/IMG_4034.webp" alt="当日のワンショット" loading="lazy">
           <span class="scene-label">MOMENT</span>
         </div>
         <div class="scene-tile">
-          <img src="images/today/IMG_4040.jpg" alt="当日の空気感" loading="lazy">
+          <img src="images/today/IMG_4040.webp" alt="当日の空気感" loading="lazy">
           <span class="scene-label">VIBE</span>
         </div>
         <div class="scene-tile wide">
-          <img src="images/today/IMG_4042.jpg" alt="発表シーン" loading="lazy">
+          <img src="images/today/IMG_4042.webp" alt="発表シーン" loading="lazy">
           <span class="scene-label">SHARE</span>
         </div>
         <!-- 2セット目（シームレスループ用に同内容を複製） -->
         <div class="scene-tile wide" aria-hidden="true">
-          <img src="images/today/IMG_4033.jpg" alt="" loading="lazy">
+          <img src="images/today/IMG_4033.webp" alt="" loading="lazy">
           <span class="scene-label">VENUE</span>
         </div>
         <div class="scene-tile" aria-hidden="true">
-          <img src="images/today/IMG_4037.jpg" alt="" loading="lazy">
+          <img src="images/today/IMG_4037.webp" alt="" loading="lazy">
           <span class="scene-label">HANDS-ON</span>
         </div>
         <div class="scene-tile tall" aria-hidden="true">
-          <img src="images/today/IMG_9624.jpg" alt="" loading="lazy">
+          <img src="images/today/IMG_9624.webp" alt="" loading="lazy">
           <span class="scene-label">FOCUS</span>
         </div>
         <div class="scene-tile" aria-hidden="true">
-          <img src="images/today/IMG_4034.jpg" alt="" loading="lazy">
+          <img src="images/today/IMG_4034.webp" alt="" loading="lazy">
           <span class="scene-label">MOMENT</span>
         </div>
         <div class="scene-tile" aria-hidden="true">
-          <img src="images/today/IMG_4040.jpg" alt="" loading="lazy">
+          <img src="images/today/IMG_4040.webp" alt="" loading="lazy">
           <span class="scene-label">VIBE</span>
         </div>
         <div class="scene-tile wide" aria-hidden="true">
-          <img src="images/today/IMG_4042.jpg" alt="" loading="lazy">
+          <img src="images/today/IMG_4042.webp" alt="" loading="lazy">
           <span class="scene-label">SHARE</span>
         </div>
       </div>
@@ -5909,13 +5912,13 @@
 
     <!-- 1期生 集合写真 -->
     <div class="scene-video reveal delay-4">
-      <img src="images/AI.png" alt="1期生・AIワークショップ集合写真" loading="lazy" class="scene-video-img">
+      <img src="images/AI.webp" alt="1期生・AIワークショップ集合写真" loading="lazy" class="scene-video-img">
       <div class="vlabel">1ST COHORT / CLASS PHOTO</div>
     </div>
 
     <!-- 2期生 集合写真（ほぼ正方形画像のためaspect-ratio調整・全員表示） -->
     <div class="scene-video reveal delay-4" style="margin-top: 32px; aspect-ratio: 1130/1091;">
-      <img src="images/AI2ki.png" alt="2期生・AIワークショップ集合写真" loading="lazy" class="scene-video-img" style="object-fit: contain; background: #0a0a1a;">
+      <img src="images/AI2ki.webp" alt="2期生・AIワークショップ集合写真" loading="lazy" class="scene-video-img" style="object-fit: contain; background: #0a0a1a;">
       <div class="vlabel">2ND COHORT / CLASS PHOTO</div>
     </div>
 
@@ -5946,7 +5949,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <img src="images/sayan-before.jpg" alt="さーやんのBEFORE" class="baof-phone-before-img">
+                <img src="images/sayan-before.webp" alt="さーやんのBEFORE" class="baof-phone-before-img">
               </div>
             </div>
           </div>
@@ -6050,7 +6053,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <img src="images/hana-before.png" alt="はなさんのBEFORE" class="baof-phone-before-img">
+                <img src="images/hana-before.webp" alt="はなさんのBEFORE" class="baof-phone-before-img">
               </div>
             </div>
           </div>
@@ -6210,7 +6213,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <img src="images/ebi-before.png" alt="えびちゃんのBEFORE" class="baof-phone-before-img">
+                <img src="images/ebi-before.webp" alt="えびちゃんのBEFORE" class="baof-phone-before-img">
               </div>
             </div>
           </div>
@@ -6266,7 +6269,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <img src="images/zoe-before.png" alt="ぞえさんのBEFORE" class="baof-phone-before-img">
+                <img src="images/zoe-before.webp" alt="ぞえさんのBEFORE" class="baof-phone-before-img">
               </div>
             </div>
           </div>
@@ -6279,7 +6282,7 @@
             <div class="baof-phone after">
               <div class="baof-phone-screen">
                 <div class="baof-phone-scroll-img">
-                  <img src="images/zoe-after.png" alt="ぞえさんのAFTER（LPスクリーンショット）">
+                  <img src="images/zoe-after.webp" alt="ぞえさんのAFTER（LPスクリーンショット）">
                 </div>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
@@ -6669,7 +6672,7 @@
     </div>
     <div class="instructor-cards">
       <div class="instructor-card reveal delay-1" style="border-color: rgba(0,212,255,0.4); box-shadow: 0 0 30px rgba(0,212,255,0.15);">
-<div class="instructor-photo"><img src="images/aya.png" alt="あや"></div>
+<div class="instructor-photo"><img src="images/aya.webp" alt="あや"></div>
         <h3>あや</h3>
         <p>飲食接客業から、妊娠・出産を機にデザイナーへ転身したチーム内最年少！「エクセル・ブラインドタッチ不可」の非IT系ながら、異常なまでの集中力とAIを武器に、今回のLPや5つのツールを自力で爆速制作。歴の浅さを「誰よりも早い初動」でカバーする、不可能を可能にする実践派クリエイターです。</p>
         <div style="margin-top:14px; background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(192,132,252,0.1)); border: 1px solid rgba(0,212,255,0.5); border-radius:10px; padding:14px 16px; text-align:center; line-height:1.8;">
@@ -6678,13 +6681,13 @@
         </div>
       </div>
       <div class="instructor-card reveal delay-2" style="border-color: rgba(0,212,255,0.4); box-shadow: 0 0 30px rgba(0,212,255,0.15);">
-        <div class="instructor-photo"><img src="images/yumi.png" alt="ゆみ"></div>
+        <div class="instructor-photo"><img src="images/yumi.webp" alt="ゆみ"></div>
         <h3>ゆみ</h3>
         <div class="role">IN-HOUSE DESIGNER</div>
         <p>会社員インハウスデザイナー歴22年。真面目なベテラン…と思いきや、その実態は寝食を忘れて最新AIを触り倒す「AI鬼オタク」。AIが楽しすぎて夜更かしを極め、翌日に支障をきたすほどのめり込んでいます。22年培ったデザイン力に最先端のAIを掛け合わせ、チームのバナーや動画も私が作りました！圧倒的な熱量と技術で、皆さんのアウトプットをサポートします。</p>
       </div>
       <div class="instructor-card reveal delay-3" style="border-color: rgba(0,212,255,0.4); box-shadow: 0 0 30px rgba(0,212,255,0.15);">
-        <div class="instructor-photo"><img src="images/chikano.png" alt="ちかの"></div>
+        <div class="instructor-photo"><img src="images/chikano.webp" alt="ちかの"></div>
         <h3>ちゃかな</h3>
         <div class="role">CREATIVE DIRECTOR</div>
         <p>デザイナー歴20年（会社15年＋独立5年）。ウェブ・動画・プロモーションで起業家さんの魅力を世に放つ「推し活」系デザイナー。好奇心旺盛なB型Apple信者が現在どっぷりハマっているのがAI沼。息をするように最新トレンドを浴びる「趣味＝インプット」な自称・AIオタクです！</p>
@@ -7052,16 +7055,16 @@
     // LPのキャプチャ画像に置換する（静止画として横並び・縦並びで見せる）
     const lpImageMap = {
       // AFTER
-      'https://sayan-lp.vercel.app/': 'images/sayan-after-wide.png',
-      'https://hanu-lp.vercel.app/mobile.html': 'images/hanu-after-wide.png',
-      'https://hana-okashi-lp.vercel.app/': 'images/hana-after.jpg',
-      'https://petit-atelier.vercel.app/': 'images/ayumi-after-wide.png',
-      'https://lp-fujiba-tomomi.vercel.app/': 'images/tomomi-after.png',
-      'https://lp-premiere-seminar.vercel.app/': 'images/ebi-after-wide.png',
+      'https://sayan-lp.vercel.app/': 'images/sayan-after-wide.webp',
+      'https://hanu-lp.vercel.app/mobile.html': 'images/hanu-after-wide.webp',
+      'https://hana-okashi-lp.vercel.app/': 'images/hana-after.webp',
+      'https://petit-atelier.vercel.app/': 'images/ayumi-after-wide.webp',
+      'https://lp-fujiba-tomomi.vercel.app/': 'images/tomomi-after.webp',
+      'https://lp-premiere-seminar.vercel.app/': 'images/ebi-after-wide.webp',
       // BEFORE
-      'https://hanu-lp.vercel.app/lp.html': 'images/hanu-before.png',
-      '/ayumin-before.html': 'images/ayumin-before.png',
-      '/tomomi-before.html': 'images/tomomi-before.png'
+      'https://hanu-lp.vercel.app/lp.html': 'images/hanu-before.webp',
+      '/ayumin-before.html': 'images/ayumin-before.webp',
+      '/tomomi-before.html': 'images/tomomi-before.webp'
     };
 
     // さーやんだけFV動画で表示（iframeはSafariでリロードになるため動画に戻した）
@@ -7317,7 +7320,7 @@
     }
 
     // FV画像のロードが完了したらフェード開始（早く終わりすぎないようGATE_SHOW_MSは保証）
-    const imgs = ['images/bg-fv.jpg', 'images/sitetop.png'];
+    const imgs = ['images/bg-fv.webp', 'images/sitetop.webp'];
     let loaded = 0;
     imgs.forEach(src => {
       const im = new Image();

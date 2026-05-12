@@ -12,6 +12,7 @@ images/today/*
 !images/today/*.JPG
 !images/today/*.png
 !images/today/*.mp4
+!images/today/*.webp
 making-screenshots/
 *.mov
 *.MOV
