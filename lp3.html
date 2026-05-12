@@ -1212,10 +1212,10 @@
   .fv-hero-wrap {
     position: relative;
     width: 100%;
-    /* ボタンパネル分（約220px）を引いてFV全体が確実に1画面に収まるようにする */
-    height: calc(100vh - 220px);
-    min-height: 400px;
-    background: url('images/bg-fv.jpg') center center / cover no-repeat, #05050f;
+    /* FV = 画像だけ・1画面いっぱい */
+    height: 100vh;
+    min-height: 480px;
+    background: #000514;
     z-index: 2;
     overflow: hidden;
     flex-shrink: 0;
@@ -1257,25 +1257,19 @@
   .fv-hero-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    /* PC：上から表示（出陣大阪ネオン→女性）。AI WORKSHOP以下はパネルに任せる */
-    object-position: center top;
+    /* PCは横長画像をcontainで全体表示（AI WORKSHOP・日付含めて全部見える） */
+    object-fit: contain;
+    object-position: center center;
     filter: brightness(1.05) contrast(1.08) saturate(1.1);
     pointer-events: none;
   }
-  /* 足元グラデ：画像テキスト（AI WORKSHOP等）を隠して黒パネルへ自然につなぐ */
+  /* 足元グラデ：PCはcontainで画像全体表示するので最小限 */
   .fv-hero-wrap::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 38%;
-    background: linear-gradient(to bottom,
-      transparent         0%,
-      rgba(0,5,20,0.15)  25%,
-      rgba(0,5,20,0.65)  55%,
-      rgba(0,5,20,0.95)  78%,
-      rgba(0,5,20,1)    100%
-    );
+    height: 4%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,5,20,1) 100%);
     pointer-events: none;
     z-index: 3;
   }
@@ -2522,14 +2516,10 @@
       background-size: cover;
       background-position: center center;
     }
-    /* スマホ：画像全体を見せるのでグラデは薄く最小限に */
+    /* スマホ：aspect-ratioで画像全体表示。下端だけ薄くつなぐ */
     .fv-hero-wrap::after {
-      height: 8%;
-      background: linear-gradient(to bottom,
-        transparent        0%,
-        rgba(0,5,20,0.70) 80%,
-        rgba(0,5,20,1)   100%
-      );
+      height: 5%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,5,20,1) 100%);
     }
     /* CTAパネル：スマホはパディング調整 */
     .fv-bottom-block {
@@ -4846,10 +4836,6 @@
     <!-- CTAパネル：画像の下に独立配置（黒背景） -->
     <div class="fv-bottom-block">
       <div class="fv-content">
-        <!-- PCのみ表示：日時・場所（スマホは画像に記載済みのため非表示） -->
-        <div class="fv-panel-event">
-          <span class="fv-panel-event-date">2026年6月6日（土）&nbsp; 10:00–18:00 &nbsp;|&nbsp; 新大阪</span>
-        </div>
         <p class="fv-micro">
           <span class="fv-urgency-dot"></span>
           <span><strong>先着10名様限定</strong> / 少人数制のためお席に限りがあります</span>
