@@ -3807,8 +3807,11 @@
   }
   .baof-phone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
   /* スマホ：受講生の声のスクショもギャラリーと同じく縦スクロール表示 */
-  .baof-phone-screen .phone-scroll-img { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; border-radius: inherit; }
+  .baof-phone-screen .phone-scroll-img { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; border-radius: inherit; }
   .baof-phone-screen .phone-scroll-img img { width: 100% !important; height: auto !important; object-fit: initial !important; display: block; }
+  /* BEFORE側スクショ：固定幅LPはコンテンツが中央寄りのため cover+center top で見せる */
+  .baof-phone.before .baof-phone-screen .phone-scroll-img { overflow-y: hidden; }
+  .baof-phone.before .baof-phone-screen .phone-scroll-img img { height: 100% !important; width: auto !important; min-width: 100%; object-fit: cover; object-position: center top; }
   /* LPをライブ表示する iframe（クリックは親のaタグへ通す） */
   .baof-phone-link {
     display: inline-block;
@@ -4644,7 +4647,8 @@
     }
 
     /* 日本語本文：単語の途中で不自然に折れないように
-       （auto-phrase はChrome119+で文節単位に折り返し、非対応でも害なし） */
+       （auto-phrase はChrome119+で文節単位に折り返し、非対応でも害なし）
+       text-wrap: pretty は末尾1文字孤立（ぶら下がり）を自動抑制（Chrome117+/Safari17.4+） */
     p, li,
     .edge-body, .edge-lead, .edge-title,
     .q02-lead, .q02-card p,
@@ -4655,11 +4659,14 @@
     .sup5-text p, .sup5-title, .sup5-desc,
     .ideal-sub, .ideal-card p, .ideal-lead,
     .baof-name, .baof-role, .baof-quote,
+    .baof-comment, .baof-chip,
+    .wz-body p, .wz-body h3,
     .claude-speech,
     .voice-label, .problem-card p, .problem-card h3 {
       word-break: auto-phrase;
       overflow-wrap: anywhere;
       line-break: strict;
+      text-wrap: pretty;
     }
 
     /* 中央寄せの本文は左寄せに変更すると改行が自然になる */
@@ -7023,43 +7030,6 @@
       <p class="urgency-push">抽選になる可能性があります。お早めにお申し込みください。</p>
     </div>
     <div class="note" style="margin-top:14px;">※ 中古PC／古いMac／メモリが極端に少ないPCをお使いの方は、事前にご相談ください</div>
-  </div>
-</section>
-
-<!-- LP実績セクション -->
-<section style="padding: 80px 20px; text-align: center; position: relative; overflow: hidden; background: linear-gradient(180deg, rgba(0,5,20,1) 0%, rgba(0,15,40,1) 50%, rgba(0,5,20,1) 100%);">
-  <!-- 背景グロー -->
-  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:300px; background: radial-gradient(ellipse, rgba(0,212,255,0.12) 0%, rgba(192,132,252,0.08) 40%, transparent 70%); pointer-events:none;"></div>
-  <!-- グリッドライン -->
-  <div style="position:absolute; inset:0; background: linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px); background-size: 40px 40px; pointer-events:none;"></div>
-
-  <div style="position:relative; z-index:1; max-width: 700px; margin: 0 auto;">
-    <div class="reveal" style="font-family:'Orbitron',sans-serif; font-size:0.7rem; letter-spacing:0.25em; color:var(--neon-cyan); margin-bottom:20px; opacity:0.8;">PROOF OF CONCEPT</div>
-
-    <div class="reveal delay-1" style="font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight:900; color:#fff; line-height:1.4; margin-bottom:8px;">
-      それ、<span style="background: linear-gradient(90deg, #00d4ff, #c084fc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">全部解決</span>できます
-    </div>
-
-    <div class="reveal delay-2" style="margin: 24px auto; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-      <div style="background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.4); border-radius: 50px; padding: 10px 24px; font-family:'Orbitron',sans-serif; font-size:0.75rem; color:var(--neon-cyan); white-space:nowrap;">
-        制作時間　<strong style="font-size:1.5rem; color:#fff;">約3時間</strong>
-      </div>
-      <div style="background: rgba(192,132,252,0.08); border: 1px solid rgba(192,132,252,0.4); border-radius: 50px; padding: 10px 24px; font-family:'Orbitron',sans-serif; font-size:0.75rem; color:var(--neon-purple); white-space:nowrap;">
-        コーディング知識　<strong style="font-size:1.5rem; color:#fff;">ゼロ</strong>
-      </div>
-      <div style="background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.4); border-radius: 50px; padding: 10px 24px; font-family:'Orbitron',sans-serif; font-size:0.75rem; color:var(--neon-cyan); white-space:nowrap;">
-        月額費用　<strong style="font-size:1.5rem; color:#fff;">約3,000円〜</strong>
-      </div>
-    </div>
-
-    <div class="reveal delay-3" style="font-size: clamp(1.0rem, 3vw, 1.35rem); color: var(--text-light); line-height: 2.0; margin-bottom: 28px;">
-      「このサイト、すごい…どこかに発注したの？」<br>
-      <span style="color:#fff; font-weight:700;">違います。AIと私が作りました。</span><br>
-      <span style="font-size:0.9em;">あなたも、当日これができるようになります。</span>
-    </div>
-
-    <!-- ネオンライン区切り -->
-    <div class="reveal delay-3" style="width: 120px; height: 2px; margin: 0 auto; background: linear-gradient(90deg, transparent, #00d4ff, #c084fc, transparent); box-shadow: 0 0 12px rgba(0,212,255,0.6);"></div>
   </div>
 </section>
 
