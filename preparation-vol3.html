@@ -152,25 +152,53 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500&family=Noto+Serif+JP:wght@300;400&family=M+PLUS+Rounded+1c:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black:      #1C1D2E;
-      --dark:       #2A2B3D;
-      --card:       #FFFFFF;
-      --border:     #E5E8F0;
-      --orange:     #4F7EF7;
-      --orange-dim: rgba(79,126,247,0.07);
-      --orange-border: rgba(79,126,247,0.22);
-      --beige:      #F5F7FB;
-      --beige-mid:  #EBEEf5;
-      --white:      #FFFFFF;
-      --gray:       #A0A8BC;
-      --gray-mid:   #6B7280;
-      --gray-lt:    #9CA3AF;
-      --grad:       linear-gradient(135deg, #4F7EF7 0%, #1BC6B4 100%);
-      --grad-soft:  linear-gradient(135deg, rgba(79,126,247,0.12) 0%, rgba(27,198,180,0.12) 100%);
-      --green:      #10B981;
-      --green-lt:   #ECFDF5;
-      --red:        #EF4444;
-      --red-lt:     #FEF2F2;
+      /* テキスト */
+      --text:           #1e1e1e;       /* 本文 */
+      --text-sub:       #6a6a6a;       /* 補足テキスト */
+      --black:          #1e1e1e;       /* 旧変数の互換用 */
+      --dark:           #2A2B3D;
+
+      /* 背景 */
+      --bg:             #faf8f5;       /* ページ全体（少し色味のある白） */
+      --card:           #ffffff;       /* カードは純白で軽く浮かせる */
+      --beige:          #EFF4FA;       /* 旧ベージュ→薄ブルーへ刷新 */
+      --beige-mid:      #DCE5F0;
+      --white:          #ffffff;
+
+      /* 境界線 */
+      --border:         #DEE5EE;
+      --border-strong:  #C8D2DF;
+
+      /* アクセント（青系1色のみ・濃淡の同系色で派生） */
+      --accent:         #3B82F6;       /* メインアクセント */
+      --accent-deep:    #1E40AF;       /* 強調 */
+      --accent-light:   #BAE6FD;       /* 薄い */
+      --accent-bg:      #F0F7FF;       /* ごく薄い背景 */
+      --accent-border:  #C7DBF5;
+
+      /* 旧 orange 系（互換維持・徐々にaccentに置換） */
+      --orange:         #3B82F6;
+      --orange-dim:     rgba(59,130,246,0.07);
+      --orange-border:  rgba(59,130,246,0.22);
+
+      /* ステータス色（機能的に必要なものだけ） */
+      --gray:           #9ea4af;
+      --gray-mid:       #6a6a6a;
+      --gray-lt:        #9aa0a8;
+      --green:          #10B981;
+      --green-lt:       #ECFDF5;
+      --red:            #EF4444;
+      --red-lt:         #FEF2F2;
+
+      /* 共通グラデ（同系色の微差のみ） */
+      --grad:           linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+      --grad-soft:      linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(30,64,175,0.12) 100%);
+
+      /* デザイントークン */
+      --radius-sm:      8px;
+      --radius-lg:      16px;
+      --shadow-soft:    0 8px 30px rgba(0,0,0,0.05);
+      --shadow-card:    0 4px 14px rgba(0,0,0,0.04);
     }
 
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -183,11 +211,13 @@
 
     body {
       background: var(--white);
-      color: var(--black);
+      color: var(--text);
       font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
+      font-size: 16px;
       line-height: 1.8;
       min-height: 100vh;
+      letter-spacing: 0.02em;
     }
 
     /* ─── HEADER ─── */
@@ -982,80 +1012,82 @@
     /* ─── SECTION HEADER ─── */
     .sec-eyebrow {
       font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      background: var(--grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 10px;
+      color: var(--accent);
+      margin-bottom: 8px;
       display: inline-block;
     }
 
     .sec-title {
-      font-size: 24px;
-      font-weight: 400;
-      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 600;
+      font-family: 'Noto Sans JP', sans-serif;
       letter-spacing: 0.02em;
-      margin-bottom: 8px;
-      color: var(--black);
+      line-height: 1.35;
+      margin-bottom: 16px;
+      color: var(--text);
+      max-width: 760px;
     }
 
     .sec-desc {
-      font-size: 14px;
-      color: #4B5563;
-      margin-bottom: 40px;
-      max-width: 520px;
-      line-height: 1.9;
+      font-size: 16px;
+      color: var(--text-sub);
+      margin-bottom: 48px;
+      max-width: 640px;
+      line-height: 1.8;
     }
 
     /* ─── CALLOUT ─── */
     .callout {
-      background: var(--orange-dim);
-      border: 1px solid var(--orange-border);
-      border-radius: 10px;
-      padding: 16px 22px;
-      font-size: 15px;
-      color: var(--gray-mid);
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius-sm);
+      padding: 16px 24px;
+      font-size: 16px;
+      color: var(--text-sub);
       line-height: 1.8;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     /* ─── CARD ─── */
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 32px 36px;
-      margin-bottom: 20px;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-soft);
     }
 
     .card-head {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       margin-bottom: 24px;
     }
 
     .card-num {
-      width: 26px; height: 26px;
-      background: var(--grad);
+      width: 32px; height: 32px;
+      background: var(--accent);
       color: #fff;
       border-radius: 50%;
       font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
 
     .card-title {
-      font-size: 14px;
-      font-weight: 500;
-      font-family: 'Noto Serif JP', serif;
-      letter-spacing: 0.03em;
+      font-size: clamp(17px, 4vw, 22px);
+      font-weight: 600;
+      font-family: 'Noto Sans JP', sans-serif;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      color: var(--text);
     }
 
     /* ─── FORM ─── */
@@ -2514,12 +2546,15 @@
       font-family: 'Zen Maru Gothic', sans-serif;
       font-weight: 500;
       font-size: 22px;
-      line-height: 1.6;
+      line-height: 1.5;
       color: var(--black);
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      margin-bottom: 20px;
+      margin-top: 8px;
+      padding: 12px 18px;
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(to right, var(--accent-bg) 0%, transparent 80%);
+      border-radius: 0 8px 8px 0;
+      display: block;
     }
 .qa-imported .subsec-num {
       font-family: 'DM Sans', sans-serif;
@@ -3955,7 +3990,7 @@
         <div class="sidebar-label" style="color:#1E40AF;font-weight:700;">STEP 2. キックオフの前にやっておこう</div>
         <div style="display:inline-flex;align-items:center;gap:5px;margin:2px 0 8px 0;padding:3px 9px;background:#fff;border:1px solid #BFDBFE;border-radius:10px;font-size:10px;font-weight:600;color:#1E40AF;letter-spacing:0.02em;">
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span>5月27日（火）までに完了</span>
+          <span>5月27日（水）までに完了</span>
         </div>
         <button class="tab-btn tab-action" onclick="switchTab('setup', this)"><span>09</span>環境を整える</button>
         <button class="tab-btn tab-action" onclick="switchTab('accounts', this)"><span>10</span>アカウント＆ツール準備</button>
@@ -3975,9 +4010,16 @@
         <button class="tab-btn" onclick="switchTab('deploy', this)"><span>17</span>公開する</button>
         <button class="tab-btn tab-work" onclick="switchTab('feedback', this)"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;color:var(--orange);"><path d="M3 19 L4 8 L8 12 L12 6 L16 12 L20 8 L21 19 L21 21 L3 21 Z"/><circle cx="4" cy="7" r="1.3"/><circle cx="12" cy="5" r="1.3"/><circle cx="20" cy="7" r="1.3"/></svg>感想・成果物を提出</button>
       </div>
+      <div class="sidebar-group" style="background:#FDF4FF;border:1px solid #E9D5FF;border-radius:12px;padding:8px 10px 10px;">
+        <div class="sidebar-label" style="color:#7C3AED;font-weight:700;display:flex;align-items:center;gap:6px;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 2l2.39 7.36H22l-6.19 4.5L18.18 22 12 17.27 5.82 22l2.37-8.14L2 9.36h7.61z"/></svg>
+          <span>アフターフォロー<br>＆イベント</span>
+        </div>
+        <button class="tab-btn" onclick="switchTab('after', this)"><span>18</span>フォローアップMTG・Slack・AI合宿</button>
+      </div>
       <div class="sidebar-group">
         <div class="sidebar-label">サポート（いつでも）</div>
-        <button class="tab-btn" onclick="switchTab('qa', this)"><span>18</span>Q &amp; A</button>
+        <button class="tab-btn" onclick="switchTab('qa', this)"><span>19</span>Q &amp; A</button>
         <button class="tab-btn" onclick="switchTab('glossary', this)"><span style="font-size:9px;letter-spacing:0;">用語</span>用語集</button>
       </div>
     </nav>
@@ -4568,6 +4610,48 @@
       </div>
     </div>
 
+    <!-- ━━━ Google Meet 参加カード ━━━ -->
+    <div class="card" style="background:linear-gradient(135deg,#fff 60%,#F0F7FF);border:1.5px solid #93C5FD;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <!-- Google Meet ロゴ風アイコン -->
+        <div style="width:48px;height:48px;border-radius:12px;background:#fff;border:1px solid #DBEAFE;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(59,130,246,0.08);">
+          <svg width="28" height="28" viewBox="0 0 87 72" xmlns="http://www.w3.org/2000/svg">
+            <path d="M49.5 36L57 44 70 52V20L57 28z" fill="#00832D"/>
+            <path d="M0 51.5V64c0 4.4 3.6 8 8 8h12.5l2.6-9.4L20.5 56l-7.1-2.6z" fill="#0066DA"/>
+            <path d="M20.5 0L0 20.5l13.4 7.1L20.5 24l2.6-7.1z" fill="#E94235"/>
+            <path d="M20.5 24V0H8C3.6 0 0 3.6 0 8v12.5z" fill="#2684FC"/>
+            <path d="M70 20V8c0-4.4-3.6-8-8-8H20.5v24L49.5 36 70 52v-8.4z" fill="#FFBA00"/>
+            <path d="M70 52L49.5 36 20.5 24v48h41.5c4.4 0 8-3.6 8-8z" fill="#00AC47"/>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;color:#1E40AF;text-transform:uppercase;margin-bottom:2px;">Google Meet</div>
+          <div style="font-size:16px;font-weight:700;color:var(--black);line-height:1.4;">AIWS in 大阪🐙キックオフMTG</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:#4B5563;line-height:1.9;margin-bottom:14px;">
+        当日5月27日（水）の開始時間になったら、下のボタンをポンッと押すだけで参加できます。Zoomではなく <strong>Google Meet</strong> を使うので、<strong>Googleアカウントが必要</strong>です。お持ちでない方は事前にご準備ください。
+      </p>
+
+      <!-- 参加ボタン -->
+      <a href="https://meet.google.com/rbb-ufcv-nob" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;background:linear-gradient(135deg,#3B82F6,#1E40AF);color:#fff;border-radius:26px;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(59,130,246,0.30);transition:transform 0.15s, box-shadow 0.15s;font-family:inherit;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 18px rgba(59,130,246,0.40)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(59,130,246,0.30)';">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        ミーティングに参加する
+      </a>
+
+      <!-- 直接URL表示（コピー用） -->
+      <div style="margin-top:14px;padding:10px 14px;background:#fff;border:1px dashed #BFDBFE;border-radius:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="font-size:10px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.1em;color:var(--gray-mid);flex-shrink:0;">URL</span>
+        <code style="flex:1;min-width:0;font-size:12px;font-family:'DM Sans',monospace;color:#1E40AF;word-break:break-all;">https://meet.google.com/rbb-ufcv-nob</code>
+        <button onclick="(function(b){navigator.clipboard.writeText('https://meet.google.com/rbb-ufcv-nob').then(function(){var o=b.textContent;b.textContent='✓ コピー済み';setTimeout(function(){b.textContent=o;},1500);});})(this)" style="padding:4px 10px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:14px;font-size:11px;font-weight:600;color:#1E40AF;cursor:pointer;font-family:inherit;flex-shrink:0;">コピー</button>
+      </div>
+
+      <p style="font-size:11px;color:var(--gray-mid);line-height:1.8;margin-top:12px;">
+        ※ ボタンを押すと別タブでミーティング画面が開きます。Googleアカウントにログイン後、「参加をリクエスト」を押してください。当日は時間直前にアクセスして大丈夫です。
+      </p>
+    </div>
+
     <!-- ━━━ トークンの話（最初に知っておこう） ━━━ -->
     <div class="card" style="border:1.5px solid #4A90D9;background:linear-gradient(135deg,#fff 60%,rgba(74,144,217,0.04));">
       <div class="card-head">
@@ -4797,7 +4881,7 @@
   <section class="tab-content" id="tab-schedule">
     <div class="sec-eyebrow">当日のスケジュール</div>
     <div class="sec-title">6月6日（土）当日の流れ</div>
-    <p class="sec-desc">10:00〜18:00のオフライン会場（新大阪駅付近）。午前はインプット＋LP制作、午後はひたすら磨いて16:00から発表会です。</p>
+    <p class="sec-desc">10:00〜18:00のオフライン会場（新大阪駅付近）。午前はインプット＋LP制作、午後は磨いて15:30から公開設定、16:30から発表会です。</p>
 
     <div class="card">
       <div class="timeline">
@@ -4845,23 +4929,39 @@
           <div class="tl-time">12:00</div>
           <div class="tl-label">
             <div style="font-weight:500;margin-bottom:3px;">ランチ休憩（45分）</div>
-            <div style="font-size:12px;color:var(--gray-lt);">お互いの途中経過を見せ合いながら。午後どこを詰めたいか考える時間でもあります。</div>
+            <div style="font-size:12px;color:var(--gray-lt);">お弁当などを持ち込んでもOK、外のお店に出てもOK、自由にお過ごしください。お互いの途中経過を見せ合うのもおすすめです。</div>
           </div>
           <div class="tl-tag">Lunch</div>
         </div>
-        <div class="tl-row">
-          <div class="tl-time">12:45</div>
+        <div class="tl-row" style="background:rgba(124,58,237,0.06);">
+          <div class="tl-time" style="color:#7C3AED;font-weight:700;">12:45</div>
           <div class="tl-label">
-            <div style="font-weight:500;margin-bottom:3px;">午後の部 再開 — LP制作つづき</div>
-            <div style="font-size:12px;color:var(--gray-lt);">デザインをさらに磨く時間。色・フォント・パララックス・フェードインなど、見本帳（design-tips）を参考に好みの演出を追加していきます。</div>
+            <div style="font-weight:700;margin-bottom:3px;color:#7C3AED;">スペシャルコンテンツ — 最新AI情報</div>
+            <div style="font-size:12px;color:var(--gray-lt);">12:45〜13:00。今いちばんアツい最新のAI話題・ツール・使い方を講師チームから紹介します。コーヒー片手にどうぞ。</div>
+          </div>
+          <div class="tl-tag" style="background:#7C3AED;color:#fff;">Special</div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-time">13:00</div>
+          <div class="tl-label">
+            <div style="font-weight:500;margin-bottom:3px;">午後の部 再開 — 1ティップス紹介 ＋ LP制作つづき</div>
+            <div style="font-size:12px;color:var(--gray-lt);">最初に「これだけ覚えて帰ってほしい」というティップスを1つ紹介してから、各自の制作に戻ります。色・フォント・パララックス・フェードインなど、見本帳（design-tips）を参考に磨いていきましょう。</div>
           </div>
           <div class="tl-tag">Design</div>
         </div>
+        <div class="tl-row" style="background:rgba(16,185,129,0.06);">
+          <div class="tl-time" style="color:#059669;font-weight:700;">15:30</div>
+          <div class="tl-label">
+            <div style="font-weight:700;margin-bottom:3px;color:#059669;">公開設定（GitHub → Cloudflare Pages）</div>
+            <div style="font-size:12px;color:var(--gray-lt);">完成したLPをインターネットに公開する作業。GitHubにプッシュ → Cloudflare Pages連携 → 公開URLを発行。詰まる人が出やすいので一緒に進めます。</div>
+          </div>
+          <div class="tl-tag" style="background:#059669;color:#fff;">Deploy</div>
+        </div>
         <div class="tl-row" style="background:rgba(79,126,247,0.06);">
-          <div class="tl-time" style="color:#6B8FE8;font-weight:700;">16:00</div>
+          <div class="tl-time" style="color:#6B8FE8;font-weight:700;">16:30</div>
           <div class="tl-label">
             <div style="font-weight:700;margin-bottom:3px;color:#6B8FE8;">発表タイム</div>
-            <div style="font-size:12px;color:var(--gray-lt);">ひとりずつ「誰に・何を届けたいか」「こだわった部分」を発表。お互いの工夫をシェアできる貴重な時間です。</div>
+            <div style="font-size:12px;color:var(--gray-lt);">ひとりずつ「誰に・何を届けたいか」「こだわった部分」を発表。公開URLを画面に映しながら、お互いの工夫をシェアします。</div>
           </div>
           <div class="tl-tag" style="background:#6B8FE8;color:#fff;">Share</div>
         </div>
@@ -4892,7 +4992,7 @@
       </div>
     </div>
 
-    <div class="callout"><strong>今日のポイント</strong><br>・午前はインプット（AIっぽさ脱出・レスポンシブ）＋ LP制作スタート<br>・16:00きっかりに発表会スタート<br>・集合写真・感想記入は17:30〜（余裕を持って）<br>・18:00完全撤収で余裕のある撤収時間を確保</div>
+    <div class="callout"><strong>今日のポイント</strong><br>・午前はインプット（AIっぽさ脱出・レスポンシブ）＋ LP制作スタート<br>・12:45〜13:00 スペシャルコンテンツ（最新AI情報）<br>・15:30から公開設定（GitHub→Cloudflare Pages）<br>・16:30きっかりに発表会スタート<br>・集合写真・感想記入は17:30〜（余裕を持って）<br>・18:00完全撤収</div>
   </section>
 
   <!-- ═══ TAB 5: CCセットアップ ═══ -->
@@ -5561,11 +5661,22 @@
         <div class="card-num" style="background:linear-gradient(135deg,#4F7EF7,#1BC6B4);">+</div>
         <div class="card-title">Chrome拡張「Claude in Chrome」を入れる</div>
       </div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">ClaudeがChromeブラウザを直接操作できるようになる拡張機能です。当日のデモで使います。</p>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:12px;">ClaudeがChromeブラウザを直接操作できるようになる拡張機能です。当日のデモで使います。</p>
+
+      <!-- Chrome必須の注意 -->
+      <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div style="font-size:13px;color:#7C2D12;line-height:1.8;">
+          <strong>Chromeが必須です。</strong>この拡張機能はChromeにしか対応していません。<br>
+          MacはSafari、WindowsはEdgeがデフォルトになっている場合があります。<br>
+          Chromeが入っていない方は、先に <a href="https://www.google.com/chrome/" target="_blank" rel="noopener" style="color:#EA580C;font-weight:600;">google.com/chrome</a> からインストールしてください。
+        </div>
+      </div>
+
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div style="display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #B8CCFF;border-radius:10px;padding:14px 16px;">
           <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#4F7EF7,#1BC6B4);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
-          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">Chromeブラウザを開く（Chromeが入っていない場合は先にインストール）</div>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">Chromeブラウザを開く</div>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #B8CCFF;border-radius:10px;padding:14px 16px;">
           <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#4F7EF7,#1BC6B4);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
@@ -6008,9 +6119,20 @@
         <div class="card-num">3</div>
         <div class="card-title">Chrome拡張「Claude in Chrome」を入れる</div>
       </div>
-      <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+      <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:12px;">
         Claudeがブラウザを直接操作できるようになる拡張機能。当日の作業効率が上がります。
       </p>
+
+      <!-- Chrome必須の注意 -->
+      <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div style="font-size:13px;color:#7C2D12;line-height:1.8;">
+          <strong>Chromeが必須です。</strong>この拡張機能はChromeにしか対応していません。<br>
+          MacはSafari、WindowsはEdgeがデフォルトになっている場合があります。<br>
+          Chromeが入っていない方は、先に <a href="https://www.google.com/chrome/" target="_blank" rel="noopener" style="color:#EA580C;font-weight:600;">google.com/chrome</a> からインストールしてください。
+        </div>
+      </div>
+
       <div class="deploy-step-item">
         <div class="deploy-step-num">1</div>
         <div>
@@ -9409,6 +9531,120 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     </style>
   </section>
 
+  <!-- ═══ TAB: アフターフォロー ═══ -->
+  <section class="tab-content" id="tab-after">
+    <div class="sec-eyebrow">アフターフォロー</div>
+    <div class="sec-title">ワークショップの後も、しばらく一緒に</div>
+    <p class="sec-desc">当日が終わってからも、フォローアップミーティングで一緒にLPをブラッシュアップ。Slackで1ヶ月間質問を受け付けます。さらに次のステップとして、参加者限定のAI合宿も予定しています。</p>
+
+    <!-- ① フォローアップミーティング（最重要・最上部） -->
+    <div id="after-followup" class="card" style="background:linear-gradient(135deg,#fff 60%,#F0F7FF);border:2px solid #3B82F6;box-shadow:0 6px 20px rgba(59,130,246,0.12);">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#3B82F6,#1E40AF);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(59,130,246,0.30);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-3V4a1 1 0 00-1-1H8a1 1 0 00-1 1v3H4a1 1 0 00-1 1v12a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM9 5h6v2H9V5z"/><path d="M9 13l2 2 4-4"/></svg>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;color:#1E40AF;text-transform:uppercase;margin-bottom:2px;">Follow-up Meeting</div>
+          <div style="font-size:16px;font-weight:700;color:var(--black);line-height:1.4;">フォローアップミーティング</div>
+        </div>
+      </div>
+
+      <!-- 日程未定バッジ -->
+      <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:#fff;border:1px dashed #93C5FD;border-radius:10px;font-size:12px;font-weight:600;color:#1E40AF;margin-bottom:14px;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        日程は後日調整 / 1回開催
+      </div>
+
+      <p style="font-size:13px;color:#4B5563;line-height:1.9;margin-bottom:12px;">
+        当日に作ったLPを、もう一段引き上げる時間です。みなさんがそれぞれ自分のペースでブラッシュアップしてきたLPを持ち寄り、<strong style="color:var(--black);">講師チームがさらに一緒に磨いていきます</strong>。
+      </p>
+
+      <p style="font-size:13px;color:#4B5563;line-height:1.9;margin-bottom:0;">
+        「ここをこうしたいけどうまく動かない」「もっと垢抜けさせたい」など、当日では深掘りしきれなかった部分を、ゆっくり扱える回です。日程は受講生のみなさんの都合を見て調整します。
+      </p>
+    </div>
+
+    <!-- ② Slack サポート（1ヶ月限定） -->
+    <div id="after-slack" class="card" style="background:linear-gradient(135deg,#fff 60%,#F4ECFF);border:1.5px solid #C5A3FF;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <!-- Slack ロゴ風アイコン -->
+        <div style="width:48px;height:48px;border-radius:12px;background:#fff;border:1px solid #E5D7FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(124,58,237,0.10);">
+          <svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z" fill="#E01E5A"/>
+            <path d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z" fill="#36C5F0"/>
+            <path d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z" fill="#2EB67D"/>
+            <path d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" fill="#ECB22E"/>
+          </svg>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;color:#6B21A8;text-transform:uppercase;margin-bottom:2px;">1ヶ月限定サポート</div>
+          <div style="font-size:16px;font-weight:700;color:var(--black);line-height:1.4;">Slack で質問できる期間</div>
+        </div>
+      </div>
+
+      <!-- 期間バナー -->
+      <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #C5A3FF;border-radius:10px;padding:8px 14px;margin-bottom:14px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span style="font-size:13px;font-weight:700;color:#6B21A8;">〜 7月6日（月）まで</span>
+      </div>
+
+      <p style="font-size:13px;color:#4B5563;line-height:1.9;margin-bottom:14px;">
+        当日に詰めきれなかった部分や、家に帰ってから出てきた疑問は遠慮なく Slack に投げてください。<strong>ワークショップ後 約1ヶ月（7月6日あたりまで）</strong>講師チームがフォローします。聞きたいことがある方は期間内にお願いします。
+      </p>
+
+      <!-- Slackに移動ボタン -->
+      <a href="https://join.slack.com/t/3ai-world/shared_invite/zt-3xvt7rn3a-eZwsdK6A1RIf7IUGQkkEyg" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#4A154B;color:#fff;border-radius:24px;font-size:13px;font-weight:600;text-decoration:none;box-shadow:0 4px 12px rgba(74,21,75,0.25);transition:transform 0.15s, box-shadow 0.15s;font-family:inherit;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 16px rgba(74,21,75,0.35)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 12px rgba(74,21,75,0.25)';">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 15a2.5 2.5 0 01-2.5-2.5A2.5 2.5 0 015 10h2.5v2.5A2.5 2.5 0 015 15zm1.25-2.5a2.5 2.5 0 015 0v6.25a2.5 2.5 0 11-5 0V12.5zM9 5a2.5 2.5 0 01-2.5-2.5A2.5 2.5 0 019 0a2.5 2.5 0 012.5 2.5V5H9zm0 1.25a2.5 2.5 0 010 5H2.5a2.5 2.5 0 010-5H9zm10 2.5A2.5 2.5 0 0121.5 6 2.5 2.5 0 0124 8.5 2.5 2.5 0 0121.5 11H19V8.75zm-1.25 0a2.5 2.5 0 11-5 0V2.5a2.5 2.5 0 015 0v6.25zM15 19a2.5 2.5 0 012.5 2.5A2.5 2.5 0 0115 24a2.5 2.5 0 01-2.5-2.5V19H15zm0-1.25a2.5 2.5 0 010-5h6.5a2.5 2.5 0 010 5H15z"/></svg>
+        Slack を開く
+      </a>
+    </div>
+
+    <!-- ② AIオタク合宿の案内 -->
+    <div id="after-camp" class="card" style="background:linear-gradient(135deg,#fff 60%,#FFFBEB);border:1.5px solid #FCD34D;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#F59E0B,#EC4899);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(245,158,11,0.25);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.39 7.36H22l-6.19 4.5L18.18 22 12 17.27 5.82 22l2.37-8.14L2 9.36h7.61z"/></svg>
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;color:#92400E;text-transform:uppercase;margin-bottom:2px;">Special Invitation</div>
+          <div style="font-size:16px;font-weight:700;color:var(--black);line-height:1.4;">AIオタク合宿 — 7月3日（金）・4日（土） in 熱海</div>
+        </div>
+      </div>
+
+      <!-- 開催情報 -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:#fff;border:1px solid #FCD34D;border-radius:10px;font-size:12px;font-weight:600;color:#92400E;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+          2026.7.3（金）〜7.4（土）／1泊2日
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:#fff;border:1px solid #FCD34D;border-radius:10px;font-size:12px;font-weight:600;color:#92400E;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          熱海
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:#fff;border:1px solid #FCD34D;border-radius:10px;font-size:12px;font-weight:600;color:#92400E;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          ワークショップ参加者限定
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:#4B5563;line-height:1.9;margin-bottom:12px;">
+        ワークショップ <strong>第1弾〜第3弾までに参加してくれた方限定</strong> でお声がけする、AIづくしの1泊2日合宿です。今回みんなでLPの基礎を学んだので、その流れで <strong>もう一段ブースト</strong> しちゃおうという回。
+      </p>
+
+      <p style="font-size:13px;color:#4B5563;line-height:1.9;margin-bottom:14px;">
+        最新のAI事情を肴に、もくもく作業＋情報交換＋夜ごはん＋温泉的なやつ、ぜんぶ含めて満喫する2日間を予定しています。
+      </p>
+
+      <!-- Coming Soon バッジ -->
+      <div style="background:linear-gradient(135deg,#FEF3C7,#FFFBEB);border:1px dashed #F59E0B;border-radius:10px;padding:14px 16px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:#92400E;text-transform:uppercase;margin-bottom:4px;">Coming Soon</div>
+        <p style="font-size:12px;color:#92400E;line-height:1.8;margin:0;">
+          詳細（会場・参加費・申込み方法など）は後日このページでご案内します。気になる方は Slack にも告知が流れるので、登録しておいてください。
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ TAB 14: Q & A ═══ -->
   <section class="tab-content" id="tab-qa">
     <div class="sec-eyebrow">みんなの声 ／ Q&amp;A</div>
@@ -10070,6 +10306,8 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         var tabOrder = [];
         var tabLabels = {};
         buttons.forEach(function(btn) {
+          // 宿題ボタンは独立したアクション項目なので前後ナビからは除外
+          if (btn.classList.contains('tab-homework')) return;
           var onclick = btn.getAttribute('onclick') || '';
           var m = onclick.match(/switchTab\(['"]([^'"]+)['"]/);
           if (!m) return;
@@ -10897,7 +11135,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 1-1 AIエージェントとは -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">1-1</span>そもそもAIエージェントって何？</h3>
+    <h3 class="subsec-title">そもそもAIエージェントって何？</h3>
     <div class="subsec-body">
       <p>
         「Claude Codeってすごそう、でも何がすごいのか説明できない」<br>
@@ -10948,7 +11186,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 1-2 コードが書けるとは -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">1-2</span>「コードが書ける」ってどういうこと？</h3>
+    <h3 class="subsec-title">「コードが書ける」ってどういうこと？</h3>
     <div class="subsec-body">
       <p>
         そもそも、私たちが普段見ているWebサイトやアプリは<strong>どうやって作られているのでしょう？</strong><br>
@@ -11147,7 +11385,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 1-4 Claude Desktopの3モード -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">1-4</span>Claude Desktopの「3つのモード」を見分ける</h3>
+    <h3 class="subsec-title">Claude Desktopの「3つのモード」を見分ける</h3>
     <div class="subsec-body">
       <p>
         Claude Desktopアプリを開くと、画面の上に<strong>3つのボタン</strong>が並んでいます。<br>
@@ -11239,14 +11477,14 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <div class="callout-title">大事なのはココ</div>
         チャット（Claude）とClaude Codeは<strong>別モードだけど、同じアカウントで動いている</strong>。
         そしてProプランの場合、<strong>トークン（使える量）は共通の財布から減っていきます</strong>。
-        詳しくは 1-6 で説明します。
+        詳しくは後ほど「プラン・課金・制限の仕組み」で説明します。
       </div>
     </div>
   </div>
 
   <!-- 1-5 実際の画面：どこで切り替える？
   <div class="subsec" id="p1-5">
-    <h3 class="subsec-title"><span class="subsec-num">1-5</span>実際の画面：どこで切り替える？</h3>
+    <h3 class="subsec-title">実際の画面：どこで切り替える？</h3>
     <div class="subsec-body">
       <p>
         Claude Desktopを開くと、<strong>画面の左上に折りたたまれたサイドバー</strong>があります。<br>
@@ -11355,7 +11593,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 1-3 プラン・課金・制限 -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">1-6</span>プラン・課金・制限の仕組み</h3>
+    <h3 class="subsec-title">プラン・課金・制限の仕組み</h3>
     <div class="subsec-body">
       <p>第1回で一番つまずいた「<strong>気づいたら制限がきた</strong>」問題。ここを丁寧に解説します。</p>
 
@@ -11596,7 +11834,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 <!-- ═══════════════════════════════ -->
 <section class="section" id="part2">
   <div class="sec-head">
-    <span class="sec-eyebrow">パート 02</span>
+    <span class="sec-eyebrow">パート 01</span>
     <h2 class="sec-title">プラン変更のタイミング<br><span style="font-size: 20px; color: var(--gray-mid);">― 課金しても待たされる理由 ―</span></h2>
     <p class="sec-desc">
       当日 Pro プラン（あるいは Max）に引き上げたにもかかわらず、動作が止まってしまう事例もありました。<br>
@@ -11606,7 +11844,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 2-1 なぜ待たされるのか -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">2-1</span>なぜ「Maxに上げても待たされる」のか</h3>
+    <h3 class="subsec-title">なぜ「Maxに上げても待たされる」のか</h3>
     <div class="subsec-body">
       <p>
         Claudeの利用制限は、Anthropic公式ヘルプによると<strong>「直近5時間のローリングウィンドウ方式」</strong>で判定されています。
@@ -11642,7 +11880,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 2-2 判断基準 -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">2-2</span>Pro と Max、どっちを選ぶ？判断の目安</h3>
+    <h3 class="subsec-title">Pro と Max、どっちを選ぶ？判断の目安</h3>
     <div class="subsec-body">
 
       <p>月額3,000円と15,000円では差が大きいので、<strong>自分の使い方から判断するのが一番</strong>です。正解は一つではありません。</p>
@@ -11719,7 +11957,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 2-3 AI分業 -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">2-3</span>制限を食らわないための「AI分業」</h3>
+    <h3 class="subsec-title">制限を食らわないための「AI分業」</h3>
     <div class="subsec-body">
       <p>
         全部を Claude で完結させるのはもったいない。<br>
@@ -11799,7 +12037,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 <!-- ═══════════════════════════════ -->
 <section class="section" id="part3">
   <div class="sec-head">
-    <span class="sec-eyebrow">パート 03</span>
+    <span class="sec-eyebrow">パート 02</span>
     <h2 class="sec-title">Claude Codeでできること</h2>
     <p class="sec-desc">
       できること / できないこと / チャットとの使い分け。
@@ -11809,7 +12047,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 5-1 できること -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">5-1</span>できること一覧</h3>
+    <h3 class="subsec-title">できること一覧</h3>
     <div class="subsec-body">
       <div class="feature-grid">
         <div class="feature-card">
@@ -11863,7 +12101,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 5-2 できないこと -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">5-2</span>できないこと（苦手なこと）</h3>
+    <h3 class="subsec-title">できないこと（苦手なこと）</h3>
     <div class="subsec-body">
       <div class="feature-grid">
         <div class="feature-card can-not">
@@ -11903,7 +12141,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 <!-- ═══════════════════════════════ -->
 <section class="section" id="part4">
   <div class="sec-head">
-    <span class="sec-eyebrow">パート 04</span>
+    <span class="sec-eyebrow">パート 03</span>
     <h2 class="sec-title">セキュリティ・連携</h2>
     <p class="sec-desc">
       お客様の情報を扱うからこそ、気になるところ。<br>
@@ -11913,7 +12151,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 6-1 許可 -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">6-1</span>「許可しますか？」と聞かれたとき</h3>
+    <h3 class="subsec-title">「許可しますか？」と聞かれたとき</h3>
     <div class="subsec-body">
       <p>Claude Codeで作業中、<strong>「このファイルを変更していい？」</strong>と確認されることがあります。これは<strong>大事な安全機構</strong>です。</p>
 
@@ -11936,7 +12174,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
   <!-- 6-2 個人情報 -->
   <div class="subsec">
-    <h3 class="subsec-title"><span class="subsec-num">6-2</span>お客様の個人情報を扱うとき</h3>
+    <h3 class="subsec-title">お客様の個人情報を扱うとき</h3>
     <div class="subsec-body">
       <div class="callout callout-danger">
         <div class="callout-title">基本ルール</div>
