@@ -178,7 +178,7 @@
     html, body {
       width: 100%;
       max-width: 100vw;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     body {
@@ -192,7 +192,7 @@
 
     /* ─── HEADER ─── */
     .hero-wrapper {
-      height: 250vh;
+      height: 350vh;
       position: relative;
     }
 
@@ -211,12 +211,15 @@
     .site-header::before { display: none; }
     .hero-video {
       position: absolute;
-      inset: -20px;
-      width: calc(100% + 40px);
-      height: calc(100% + 40px);
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       filter: brightness(1.08) saturate(0.9);
       z-index: 0;
+      transform-origin: center center;
+      transform: scale(0.75);
+      will-change: transform, filter;
     }
 
     /* Overlay - starts transparent, becomes opaque on scroll */
@@ -292,36 +295,40 @@
       opacity: 0;
     }
 
-    /* Scroll indicator — minimal stylish text */
+    /* Scroll indicator — visible cue at the bottom */
     .scroll-indicator {
       position: absolute;
-      bottom: 32px;
+      bottom: 36px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 3;
+      z-index: 5;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.6);
+      gap: 14px;
+      color: rgba(26,26,26,0.7);
       font-family: 'DM Sans', sans-serif;
-      font-size: 8px;
-      letter-spacing: 0.3em;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      animation: scrollBounce 2s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .scroll-indicator::after {
       content: '';
       width: 1px;
-      height: 24px;
-      background: rgba(255,255,255,0.5);
-      opacity: 0.5;
+      height: 36px;
+      background: rgba(26,26,26,0.6);
+      animation: scrollLineDrop 1.8s cubic-bezier(0.65,0,0.35,1) infinite;
+      transform-origin: top center;
     }
 
-    @keyframes scrollBounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
+    @keyframes scrollLineDrop {
+      0%   { transform: scaleY(0);   transform-origin: top center;    opacity: 0; }
+      45%  { transform: scaleY(1);   transform-origin: top center;    opacity: 1; }
+      55%  { transform: scaleY(1);   transform-origin: bottom center; opacity: 1; }
+      100% { transform: scaleY(0);   transform-origin: bottom center; opacity: 0; }
     }
 
     .hero-badge {
@@ -377,21 +384,23 @@
     .tab-btn {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
-      padding: 11px 14px;
+      padding: 10px 12px;
       background: none;
       border: none;
       border-radius: 8px;
       color: var(--gray-mid);
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 15px;
+      font-size: 13.5px;
       font-weight: 400;
       cursor: pointer;
       transition: background 0.15s, color 0.15s;
       text-align: left;
-      white-space: nowrap;
-      line-height: 1.5;
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+      line-height: 1.45;
     }
 
     .tab-btn span {
@@ -404,53 +413,426 @@
     }
 
     .tab-btn.active {
-      background: var(--beige);
+      background: #fff;
       color: var(--black);
-      font-weight: 500;
+      font-weight: 600;
+      box-shadow: inset 3px 0 0 var(--orange), 0 2px 10px rgba(201,106,58,0.12);
+      padding-left: 14px;
     }
+
+    .tab-btn.active span {
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    .tab-btn::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 60%;
+      background: var(--orange);
+      border-radius: 0 3px 3px 0;
+      transition: width 0.18s ease;
+    }
+
+    .tab-btn { position: relative; }
+
+    .tab-btn.active::before { width: 3px; }
 
     .tab-btn:hover:not(.active) {
-      background: var(--beige);
+      background: rgba(245, 233, 205, 0.5);
       color: var(--black);
     }
 
-    /* ─── WORK / ACTION ボタン強調（PC・スマホ共通） ─── */
+    /* ─── ACTION / WORK ボタン（重要マーカー：左にオレンジバー + 右に矢印） ─── */
     .tab-btn.tab-work,
     .tab-btn.tab-action {
-      background: linear-gradient(135deg, #4F7EF7, #1BC6B4);
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(79,126,247,0.18);
+      background: rgba(201,106,58,0.08);
+      color: var(--black);
       border: none;
       font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.4;
+      padding: 10px 12px 10px 16px;
+      gap: 8px;
+      white-space: normal;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
     }
-    .tab-btn.tab-work span,
-    .tab-btn.tab-action span { color: rgba(255,255,255,0.85); font-weight: 600; }
+    /* 左の固定オレンジバー（重要マーカー） */
+    .tab-btn.tab-work::before,
+    .tab-btn.tab-action::before { width: 3px; }
+    .tab-btn.tab-work span:first-of-type,
+    .tab-btn.tab-action span:first-of-type {
+      color: var(--orange);
+      font-weight: 700;
+    }
+    .tab-btn.tab-work:hover:not(.active),
+    .tab-btn.tab-action:hover:not(.active) {
+      background: rgba(201,106,58,0.14);
+    }
     .tab-btn.tab-work.active,
     .tab-btn.tab-action.active {
       background: #fff;
-      border: 2px solid #4F7EF7;
-      color: #2a5bd7;
-      box-shadow: 0 0 0 3px rgba(79,126,247,0.10);
     }
-    .tab-btn.tab-work.active span,
-    .tab-btn.tab-action.active span { color: #2a5bd7; font-weight: 700; }
-    .tab-btn.tab-work.active .tab-badge {
-      background: #4F7EF7;
+
+    /* 右側の小さな「→」矢印（未完了タスクの誘導） */
+    .tab-btn.tab-action:not(.is-read)::after,
+    .tab-btn.tab-work:not(.is-read):not(.tab-homework)::after {
+      content: '';
+      width: 14px;
+      height: 14px;
+      margin-left: auto;
+      flex-shrink: 0;
+      background-color: var(--orange);
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 7h8M7 3l4 4-4 4'/></svg>") center/contain no-repeat;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 7h8M7 3l4 4-4 4'/></svg>") center/contain no-repeat;
+    }
+
+    /* tab-work バッジ（オレンジ無地・統一） */
+    .tab-btn.tab-work .tab-badge {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: var(--orange);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* ─── 宿題ボタン（最重要・黒地+カレンダーアイコン） ─── */
+    .tab-btn.tab-homework {
+      background: var(--black);
+      color: #fff;
+      font-weight: 600;
+    }
+    .tab-btn.tab-homework::before { background: var(--orange); width: 3px; }
+    .tab-btn.tab-homework:hover:not(.active) {
+      background: #2a2a2a;
+    }
+    .tab-btn.tab-homework .tab-badge {
+      background: var(--orange);
       color: #fff;
     }
-    .tab-btn.tab-work:hover:not(.active),
-    .tab-btn.tab-action:hover:not(.active) { opacity: 0.88; color: #fff; }
+    .tab-btn.tab-homework.active {
+      background: #fff;
+      color: var(--black);
+      font-weight: 700;
+    }
+    .tab-btn.tab-homework.active .tab-badge {
+      background: var(--orange);
+      color: #fff;
+    }
+    /* 宿題に小さいカレンダーアイコン（右側）— 締切を示唆 */
+    .tab-btn.tab-homework:not(.is-read)::after {
+      content: '';
+      width: 13px;
+      height: 13px;
+      margin-left: auto;
+      flex-shrink: 0;
+      background-color: currentColor;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>") center/contain no-repeat;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>") center/contain no-repeat;
+      opacity: 0.85;
+    }
 
-    .tab-btn.tab-work .tab-badge {
+    /* ─── 読了トラッキング ─── */
+    /* サイドバーのチェックマーク */
+    .tab-btn.is-read::after {
+      content: '✓';
+      margin-left: auto;
+      color: #10B981;
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .tab-btn.is-read.active::after { color: #059669; }
+    .tab-btn.tab-homework.is-read:not(.active)::after { color: #fff; }
+
+    /* STEP 1 ラベルの進捗バッジ */
+    .step1-progress-badge {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 2px 8px;
+      background: var(--orange);
+      color: #fff;
+      border-radius: 10px;
       font-family: 'DM Sans', sans-serif;
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.18em;
-      background: rgba(255,255,255,0.92);
-      color: #4F7EF7;
-      padding: 2px 7px;
+      letter-spacing: 0.1em;
+      vertical-align: middle;
+    }
+    .step1-progress-badge.complete { background: #10B981; }
+
+    /* タブ下部の「読了する」カード */
+    .read-mark-card {
+      background: var(--beige);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin: 32px 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .read-mark-card.is-done {
+      background: #fff;
+      border-color: var(--orange-border);
+    }
+    .read-mark-q {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .read-mark-card.is-done .read-mark-q { color: var(--orange); font-weight: 600; }
+    .read-mark-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--black);
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .read-mark-btn:hover { background: #2a2a2a; }
+    .read-mark-btn-undo {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--gray-mid);
+      padding: 6px 14px;
+      border-radius: 18px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .read-mark-btn-undo:hover { background: rgba(0,0,0,0.04); border-color: var(--gray-mid); }
+
+    /* ─── 全体進捗ウィジェット（サイドバー最上部・常設） ─── */
+    .overall-progress {
+      background: linear-gradient(135deg,#FFF8F0,#FAF5EC);
+      border: 1.5px solid var(--orange-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(201,106,58,0.10);
+    }
+    .overall-progress.complete {
+      background: linear-gradient(135deg, #F0FDF4, #ECFDF5);
+      border-color: #86EFAC;
+      box-shadow: 0 4px 14px rgba(16,185,129,0.12);
+    }
+    .op-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #B91C1C;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .op-title svg { flex-shrink: 0; }
+    .op-title-date {
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .overall-progress.complete .op-title { color: #059669; }
+    .op-stats {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .op-stats em {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-style: normal;
+      color: var(--orange);
+      font-weight: 800;
+    }
+    .overall-progress.complete .op-stats em { color: #059669; }
+    .op-bar {
+      height: 6px;
+      background: rgba(0,0,0,0.07);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .op-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--orange), #F59E0B);
+      transition: width 0.5s ease;
+    }
+    .overall-progress.complete .op-bar-fill {
+      background: linear-gradient(90deg, #10B981, #059669);
+    }
+    .op-remaining {
+      font-size: 11px;
+      color: var(--gray-mid);
+      line-height: 1.7;
+    }
+    .op-remaining .op-r-label {
+      color: #B91C1C;
+      font-weight: 700;
+    }
+    .op-plant {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0 6px;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.06));
+    }
+    .op-plant svg {
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .overall-progress:not(.complete) .op-plant svg:hover {
+      transform: translateY(-2px);
+    }
+    .op-stage-caption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .overall-progress.complete .op-stage-caption { color: #059669; }
+
+    /* ─── タスク完了カード（setup / accounts タブ用） ─── */
+    .task-done-card {
+      background: var(--beige);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin: 32px 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .task-done-card.is-done {
+      background: #fff;
+      border-color: var(--orange-border);
+    }
+    .task-done-q {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .task-done-card.is-done .task-done-q { color: var(--orange); font-weight: 600; }
+    .task-done-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--black);
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .task-done-btn:hover { background: #2a2a2a; }
+    .task-done-btn-undo {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--gray-mid);
+      padding: 6px 14px;
+      border-radius: 18px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .task-done-btn-undo:hover { background: rgba(0,0,0,0.04); border-color: var(--gray-mid); }
+
+    /* オーバービュータブのバナー */
+    .prep-progress-banner {
+      background: linear-gradient(135deg, #FFFBEB, #FFF8F0);
+      border: 1.5px solid #FCD34D;
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 28px;
+    }
+    .prep-progress-banner.complete {
+      background: linear-gradient(135deg, #F0FDF4, #ECFDF5);
+      border-color: #86EFAC;
+    }
+    .pb-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #92400E;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .prep-progress-banner.complete .pb-title { color: #059669; }
+    .pb-bar {
+      height: 8px;
+      background: rgba(0,0,0,0.07);
       border-radius: 4px;
-      margin-right: 2px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .pb-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--orange), #F59E0B);
+      transition: width 0.5s ease;
+    }
+    .prep-progress-banner.complete .pb-bar-fill {
+      background: linear-gradient(90deg, #10B981, #059669);
+    }
+    .pb-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .pb-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      background: #fff;
+      border: 1px solid #FCD34D;
+      border-radius: 16px;
+      font-size: 12px;
+      color: var(--black);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      font-family: inherit;
+    }
+    .pb-chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(251,191,36,0.30);
     }
 
     /* ─── CONTENT AREA ─── */
@@ -1452,7 +1834,7 @@
         min-width: auto !important;
       }
       /* スマホはヒーローをコンパクトに */
-      .hero-wrapper { height: 200vh; }
+      .hero-wrapper { height: 300vh; }
       .site-header { height: 100vh; min-height: 480px; }
       .row-2 { grid-template-columns: 1fr; }
       .palette-grid { grid-template-columns: 1fr 1fr; }
@@ -3418,47 +3800,55 @@
   <div class="main-layout">
 
     <nav class="sidebar-nav">
+      <!-- 全体進捗ウィジェット（JSで動的更新） -->
+      <div class="overall-progress" id="overall-progress">
+        <div class="op-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span class="op-title-date">6月3日（火）</span>までに完了
+        </div>
+        <div class="op-plant" id="op-plant"></div>
+        <div class="op-stage-caption" id="op-stage-caption">種をまく準備中</div>
+        <div class="op-stats" id="op-stats"><em>0</em> / 11 完了</div>
+        <div class="op-bar"><div class="op-bar-fill" id="op-bar-fill" style="width:0%;"></div></div>
+        <div class="op-remaining" id="op-remaining"></div>
+      </div>
       <div class="sidebar-group">
-        <div class="sidebar-label">1. 全体像・Claudeコードとは</div>
+        <div class="sidebar-label">STEP 1. まずは知っておこう</div>
         <button class="tab-btn active" onclick="switchTab('overview', this)"><span>01</span>全体像</button>
         <button class="tab-btn" onclick="switchTab('ai-agent', this)"><span>02</span>AIエージェントとは何か</button>
         <button class="tab-btn" onclick="switchTab('claude-features', this)"><span>03</span>Claude Codeでできること</button>
-      </div>
-      <div class="sidebar-group" style="background:#EBF5FB;border-radius:10px;padding:6px 8px 8px;">
-        <div class="sidebar-label">2. セットアップしよう</div>
-        <button class="tab-btn tab-action" onclick="switchTab('setup', this)"><span>04</span>環境を整える</button>
-      </div>
-      <div class="sidebar-group" style="background:#FFFBEB;border-radius:10px;padding:6px 8px 8px;">
-        <div class="sidebar-label">3. このLPについて</div>
-        <button class="tab-btn" onclick="switchTab('lp-intro', this)"><span>06</span>LPとは</button>
-        <button class="tab-btn tab-work" onclick="switchTab('worksheet', this)"><span class="tab-badge">宿題</span>これやってきてね</button>
+        <button class="tab-btn" onclick="switchTab('lp-intro', this)"><span>04</span>LPとは</button>
         <button class="tab-btn" onclick="switchTab('aiish-intro', this)"><span style="font-size:9px;letter-spacing:0;">AI</span>AIっぽいデザインの正体</button>
-        <button class="tab-btn" onclick="switchTab('design', this)"><span>07</span>デザインを学ぶ</button>
+        <button class="tab-btn" onclick="switchTab('design', this)"><span>05</span>デザインを学ぶ</button>
+        <button class="tab-btn" onclick="switchTab('glow-tips', this)"><span>06</span>垢抜けのコツ</button>
+        <button class="tab-btn" onclick="switchTab('folder-concept', this)"><span>07</span>フォルダの考え方</button>
       </div>
-      <div class="sidebar-group" style="background:#FFF7ED;border-radius:10px;padding:6px 8px 8px;">
-        <div class="sidebar-label">Cloudflareで公開する</div>
-        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>05</span>公開する</button>
+      <div class="sidebar-group sidebar-step2" style="background:var(--beige);border:1px solid var(--orange-border);border-radius:12px;padding:10px 10px 12px;position:relative;">
+        <div class="sidebar-label" style="color:var(--orange);font-weight:700;display:flex;align-items:center;gap:6px;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>STEP 2. キックオフの前にやっておこう</span>
+        </div>
+        <button class="tab-btn tab-action" onclick="switchTab('setup', this)"><span>08</span>環境を整える</button>
+        <button class="tab-btn tab-action" onclick="switchTab('accounts', this)"><span>09</span>アカウント＆ツール準備</button>
       </div>
-      <div class="sidebar-group" style="background:#EFF6FF;border-radius:10px;padding:6px 8px 8px;">
-        <div class="sidebar-label">4. 当日について</div>
-        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>08</span>キックオフ（2時間）</button>
-        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>09</span>当日のスケジュール</button>
+      <div class="sidebar-group" style="background:#FAFAF7;border:1px solid #E8E4DA;border-radius:12px;padding:8px 10px 10px;">
+        <div class="sidebar-label">STEP 3. キックオフ（事前MTG）</div>
+        <button class="tab-btn" onclick="switchTab('kickoff', this)"><span>10</span>キックオフ（2時間）</button>
+        <button class="tab-btn" onclick="switchTab('team', this)"><span>11</span>チーム一覧</button>
+        <button class="tab-btn tab-work tab-homework" onclick="switchTab('worksheet', this)"><span class="tab-badge">宿題</span>6月3日までに提出</button>
       </div>
-      <div class="sidebar-group" style="background:#F5F3FF;border-radius:10px;padding:6px 8px 8px;">
-        <div class="sidebar-label">5. 垢抜けのコツ・用語集</div>
-        <button class="tab-btn" onclick="switchTab('prompt-no-ai', this)"><span>①</span>AIっぽさをなくすプロンプト</button>
-        <button class="tab-btn" onclick="switchTab('glow-tips', this)"><span>②</span>垢抜けのコツ</button>
-        <button class="tab-btn" onclick="switchTab('glossary', this)"><span>③</span>用語集</button>
-      </div>
-      <div class="sidebar-group">
-        <div class="sidebar-label">スペシャルコンテンツ</div>
-        <button class="tab-btn tab-special" onclick="switchTab('special', this)"><span>★</span>画像LP×AI×Canva</button>
-      </div>
-      <div class="sidebar-group">
-        <div class="sidebar-label">みんなの声</div>
-        <button class="tab-btn" onclick="switchTab('team', this)"><span>14</span>チーム一覧</button>
+      <div class="sidebar-group" style="background:#FAFAF7;border:1px solid #E8E4DA;border-radius:12px;padding:8px 10px 10px;">
+        <div class="sidebar-label">STEP 4. 当日</div>
+        <button class="tab-btn" onclick="switchTab('schedule', this)"><span>12</span>当日のスケジュール</button>
+        <button class="tab-btn" onclick="switchTab('prompt-no-ai', this)"><span>13</span>AIっぽさをなくすプロンプト</button>
+        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>14</span>公開する</button>
         <button class="tab-btn tab-work" onclick="switchTab('feedback', this)"><span class="tab-badge">当日</span>感想・成果物を提出</button>
-        <button class="tab-btn" onclick="switchTab('qa', this)"><span>16</span>Q &amp; A</button>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-label">サポート（いつでも）</div>
+        <button class="tab-btn tab-special" onclick="switchTab('special', this)"><span>★</span>画像LP×AI×Canva</button>
+        <button class="tab-btn" onclick="switchTab('qa', this)"><span>15</span>Q &amp; A</button>
+        <button class="tab-btn" onclick="switchTab('glossary', this)"><span style="font-size:9px;letter-spacing:0;">用語</span>用語集</button>
       </div>
     </nav>
 
@@ -3804,7 +4194,7 @@
         </div>
       </div>
       <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;padding:14px 16px;background:var(--beige);border-radius:8px;margin:0;">
-        この「準備」こそが、「宿題」タブ「<strong style="color:var(--black);">これやってきてね</strong>」です。ここを丁寧に埋めてから当日に臨むほど、Claudeが期待通りに動きます。
+        この「準備」こそが、「宿題」タブの中身です（<strong style="color:var(--black);">6月3日（火）までに提出</strong>）。ここを丁寧に埋めてから当日に臨むほど、Claudeが期待通りに動きます。
       </p>
     </div>
 
@@ -4232,7 +4622,7 @@
           </div>
           <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:14px 18px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
             <strong style="color:var(--black);">① LPの内容を整理する</strong><br>
-            「これやってきてね」ページで、ご自身のサービス情報を入力・提出する<br><br>
+            「宿題」タブで、ご自身のサービス情報を入力し、6月3日（火）までに提出する<br><br>
             <strong style="color:var(--black);">② 写真・素材を集める</strong><br>
             プロフィール写真／サービス風景写真／参考LPのURL 3〜5本<br><br>
             <strong style="color:var(--black);">③ 環境を整える</strong><br>
@@ -4269,7 +4659,7 @@
         <div style="font-size:16px;font-weight:600;color:var(--black);line-height:1.8;">
           「みんなの顔が見えた」＋「Claude Codeのイメージが掴めた」<br>
           ＋「当日までに何をすればいいかが明確になった」<br>
-          この3つが揃えば、5/9当日は最速でLP完成までいけます。
+          この3つが揃えば、6/6当日は最速でLP完成までいけます。
         </div>
       </div>
     </div>
@@ -4783,70 +5173,19 @@
         </div>
       </div>
 
-      <!-- フォルダの考え方（図解） -->
-      <div style="margin-bottom:24px;padding:20px 18px;border:1px solid var(--border);border-radius:12px;background:#fff;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:14px;text-transform:uppercase;">フォルダの考え方 ─ なぜ「Select folder」が大事？</div>
-
-        <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:center;margin-bottom:16px;">
-          <!-- 左：NG -->
-          <div style="padding:14px;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;text-align:center;">
-            <div style="font-size:10px;font-weight:700;color:#dc2626;margin-bottom:8px;">NG</div>
-            <svg width="60" height="60" viewBox="0 0 60 60">
-              <rect x="5" y="8" width="50" height="38" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
-              <text x="30" y="22" text-anchor="middle" font-size="7" fill="#dc2626" font-weight="600">PC全体</text>
-              <rect x="10" y="28" width="16" height="10" rx="2" fill="#fecaca" stroke="#fca5a5" stroke-width="0.8"/>
-              <text x="18" y="35" text-anchor="middle" font-size="5" fill="#dc2626">写真</text>
-              <rect x="30" y="28" width="16" height="10" rx="2" fill="#fecaca" stroke="#fca5a5" stroke-width="0.8"/>
-              <text x="38" y="35" text-anchor="middle" font-size="5" fill="#dc2626">仕事</text>
-              <text x="30" y="53" text-anchor="middle" font-size="6" fill="#991b1b">全部見えちゃう</text>
-            </svg>
-          </div>
-          <!-- 矢印 -->
-          <div style="text-align:center;">
-            <svg width="24" height="20" viewBox="0 0 24 20"><path d="M4 10h14M14 4l6 6-6 6" stroke="var(--orange)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <!-- 右：OK -->
-          <div style="padding:14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;text-align:center;">
-            <div style="font-size:10px;font-weight:700;color:#16a34a;margin-bottom:8px;">OK</div>
-            <svg width="60" height="60" viewBox="0 0 60 60">
-              <rect x="5" y="8" width="50" height="38" rx="3" fill="#f8f8f6" stroke="#d4d0cc" stroke-width="0.8" stroke-dasharray="3 2"/>
-              <text x="30" y="18" text-anchor="middle" font-size="6" fill="#a09890">PC</text>
-              <rect x="12" y="22" width="36" height="20" rx="3" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
-              <text x="30" y="32" text-anchor="middle" font-size="6" fill="#16a34a" font-weight="600">LP制作</text>
-              <text x="30" y="39" text-anchor="middle" font-size="5" fill="#15803d">ここだけ</text>
-              <text x="30" y="53" text-anchor="middle" font-size="6" fill="#15803d">安心！</text>
-            </svg>
-          </div>
+      <!-- フォルダの考え方への誘導カード -->
+      <div style="margin-bottom:24px;padding:18px 22px;border:1px solid var(--orange-border);border-radius:12px;background:linear-gradient(135deg,#fff 60%,#FAF5EC);display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <div style="width:42px;height:42px;border-radius:10px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2v11z"/></svg>
         </div>
-
-        <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
-          <strong style="color:var(--black);">デスクトップに「クラウドコード」フォルダを作りましょう。</strong><br>
-          Claude は「Select folder」で選んだフォルダの中しか見ません。だから <strong style="color:var(--black);">作業用のフォルダを1つ作って</strong>、そこを指定するのが安心です。<br>
-          素材（写真や参考資料）を Claude に見せたい場合は、<strong style="color:var(--orange);">コピーして</strong>このフォルダに入れてください（移動ではなくコピー）。
+        <div style="flex:1;min-width:200px;">
+          <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;">フォルダを作って作業します</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">デスクトップに「クラウドコード」フォルダを作ってから始めましょう。なぜフォルダを分けるのか、その概念は別タブで確認できます。</div>
         </div>
-        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-          <img src="images/foruda.png" style="width:100%;display:block;" alt="Claude Codeにおけるフォルダ構造のイメージ">
-        </div>
-
-        <!-- フォルダ構造の例 -->
-        <div style="margin-top:14px;padding:14px 16px;background:var(--beige);border-radius:8px;font-size:12px;font-family:monospace;color:#4a4540;line-height:2;">
-          <div>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--orange)" style="vertical-align:middle;margin-right:4px;"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2v11z"/></svg>
-            <strong>デスクトップ / クラウドコード</strong>
-          </div>
-          <div style="padding-left:24px;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="#7a7068" style="vertical-align:middle;margin-right:3px;"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2v11z"/></svg>
-            LP制作 ← <span style="color:var(--orange);font-family:sans-serif;font-weight:500;font-size:11px;">Select folder でここを選ぶ</span>
-          </div>
-          <div style="padding-left:48px;color:#a09890;">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a09890" stroke-width="2" style="vertical-align:middle;margin-right:3px;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            lp.html
-          </div>
-          <div style="padding-left:48px;color:#a09890;">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a09890" stroke-width="2" style="vertical-align:middle;margin-right:3px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            profile.jpg（コピーして入れる）
-          </div>
-        </div>
+        <a href="#" onclick="switchTab('folder-concept',document.querySelector('[onclick*=folder-concept]'));return false;" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--black);color:#fff;border-radius:20px;font-size:12px;font-weight:500;text-decoration:none;flex-shrink:0;">
+          フォルダの概念を確認する
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+        </a>
       </div>
 
       <div style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.9;">まずは基本のチャットから練習してみましょう。</div>
@@ -5077,7 +5416,7 @@
       </div>
 
       <div style="text-align:center;">
-        <a href="#" onclick="switchTab('worksheet',document.querySelector('[onclick*=worksheet]'));return false;" style="display:inline-block;padding:10px 24px;background:var(--orange);color:#fff;border-radius:24px;font-size:13px;font-weight:500;text-decoration:none;">これやってきてね →</a>
+        <a href="#" onclick="switchTab('worksheet',document.querySelector('[onclick*=worksheet]'));return false;" style="display:inline-block;padding:10px 24px;background:var(--orange);color:#fff;border-radius:24px;font-size:13px;font-weight:500;text-decoration:none;">宿題（6月3日までに提出） →</a>
       </div>
     </div>
 
@@ -5252,7 +5591,7 @@
       <details class="faq-acc">
         <summary>何をやってもダメ…</summary>
         <div class="faq-acc-body">
-          <p>大丈夫です！5/9 当日や事前サポートで一緒に解決します。エラー画面のスクリーンショットだけ撮っておいてください。</p>
+          <p>大丈夫です！6/6 当日や事前サポートで一緒に解決します。エラー画面のスクリーンショットだけ撮っておいてください。</p>
         </div>
       </details>
     </div>
@@ -5437,6 +5776,148 @@
     </script>
   </section>
 
+  <!-- ═══ TAB: アカウント＆ツール準備 ═══ -->
+  <section class="tab-content" id="tab-accounts">
+    <div class="sec-eyebrow">事前準備（キックオフまで）</div>
+    <div class="sec-title">アカウントとツールを揃える</div>
+    <p class="sec-desc"><strong>両方とも同じGoogleアカウントでログイン</strong>するのが一番シンプルです。3つとも「Continue with Google」または同等のワンクリック作成で揃えましょう。</p>
+
+    <!-- 全体フロー -->
+    <div class="card" style="background:linear-gradient(135deg,#fff 60%,rgba(79,126,247,0.04));border-color:#B8CCFF;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:#4F7EF7;text-transform:uppercase;margin-bottom:16px;">スムーズな流れ</div>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.7;">
+        <div>① GitHub を <strong>「Continue with Google」</strong> で作成（ワンクリック）</div>
+        <div>② Cloudflare を <strong>「Continue with Google」</strong> で作成（同じGoogleアカウント）</div>
+        <div>③ Chrome拡張「Claude in Chrome」を入れる</div>
+      </div>
+      <p style="font-size:12px;color:var(--gray-mid);margin-top:16px;line-height:1.8;padding-top:14px;border-top:1px dashed var(--border);">
+        両方とも同じGoogleアカウントを使うと、「あれ違うメアドだった？」のトラブルがゼロ。当日のLP公開作業（Cloudflare Pages → GitHub接続）でも、同じGoogleで紐づいているので識別がスムーズです。
+      </p>
+    </div>
+
+    <!-- STEP 1: GitHub -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">1</div>
+        <div class="card-title">GitHubアカウントを作る</div>
+      </div>
+      <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+        作ったLPを保管する「箱」を置く場所です。無料で使えます。
+      </p>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">
+        <a href="https://github.com/signup" target="_blank" style="color:var(--blue);font-weight:500;">github.com/signup</a> を開いて、下記のいずれかで作成してください。
+      </p>
+
+      <div class="deploy-step-item" style="background:linear-gradient(135deg,#EEF4FF,#E0F7FA);border:1px solid #B8CCFF;">
+        <div class="deploy-step-num" style="background:linear-gradient(135deg,#4F7EF7,#1BC6B4);">推奨</div>
+        <div>
+          <div class="deploy-step-title">「Continue with Google」でワンクリック</div>
+          <div class="deploy-step-desc">Googleアカウントを選ぶだけで作成完了。パスワード設定なし、メール認証なしで一番楽です。</div>
+        </div>
+      </div>
+      <div class="deploy-step-item" style="margin-top:10px;">
+        <div class="deploy-step-num">A</div>
+        <div>
+          <div class="deploy-step-title">「Continue with Apple」</div>
+          <div class="deploy-step-desc">Appleアカウントをお持ちならこちらも一発でOK。</div>
+        </div>
+      </div>
+      <div class="deploy-step-item" style="margin-top:10px;">
+        <div class="deploy-step-num">他</div>
+        <div>
+          <div class="deploy-step-title">メール＋パスワードで作成</div>
+          <div class="deploy-step-desc">Google/Appleを使わない場合はメール＋パスワードで作成。Yahoo!メールなどでもOKです。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Cloudflare -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">2</div>
+        <div class="card-title">Cloudflareアカウントを作る</div>
+      </div>
+      <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+        作ったLPをインターネット上に公開するサービスです。無料・商業利用OK。
+      </p>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">
+        <a href="https://dash.cloudflare.com/sign-up" target="_blank" style="color:var(--blue);font-weight:500;">dash.cloudflare.com/sign-up</a> を開いて、<strong>GitHubと同じGoogleアカウント</strong>で「Continue with Google」を押してください。
+      </p>
+
+      <div class="deploy-step-item" style="background:linear-gradient(135deg,#EEF4FF,#E0F7FA);border:1px solid #B8CCFF;">
+        <div class="deploy-step-num" style="background:linear-gradient(135deg,#4F7EF7,#1BC6B4);">推奨</div>
+        <div>
+          <div class="deploy-step-title">「Continue with Google」でワンクリック</div>
+          <div class="deploy-step-desc">GitHubで使ったのと<strong>同じGoogleアカウント</strong>を選択。パスワード設定なしで即完成。両方とも同じGoogleで揃うので、当日の連携作業で迷いません。</div>
+        </div>
+      </div>
+
+      <div class="deploy-step-item" style="margin-top:10px;">
+        <div class="deploy-step-num">A</div>
+        <div>
+          <div class="deploy-step-title">「Continue with GitHub」</div>
+          <div class="deploy-step-desc">GitHubでも作成可能。ただし<strong>当日の Pages → GitHub 連携は別途認可が必要</strong>な点はGoogleと同じです（自動連携にはなりません）。</div>
+        </div>
+      </div>
+
+      <div class="deploy-step-item" style="margin-top:10px;">
+        <div class="deploy-step-num">他</div>
+        <div>
+          <div class="deploy-step-title">メール＋パスワードで作成</div>
+          <div class="deploy-step-desc">Googleアカウントを使わない場合の選択肢。GitHubと同じメールアドレスを使ってください。</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;padding:14px 16px;background:#FFFBEB;border:1px solid #FBBF24;border-radius:8px;font-size:13px;color:#92400E;line-height:1.8;">
+        <strong>当日のつまづきポイントを先にお伝えします：</strong><br>
+        Cloudflare Pages を作るとき、GitHubのリポジトリにアクセスする許可を別途求められます（一度きり）。その画面で必ず<strong>「All repositories」を選択</strong>してください。「Only select repositories」を選ぶと、後で追加リポジトリが見えなくなって詰まります。
+      </div>
+    </div>
+
+    <!-- STEP 3: Claude in Chrome -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">3</div>
+        <div class="card-title">Chrome拡張「Claude in Chrome」を入れる</div>
+      </div>
+      <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
+        Claudeがブラウザを直接操作できるようになる拡張機能。当日の作業効率が上がります。
+      </p>
+      <div class="deploy-step-item">
+        <div class="deploy-step-num">1</div>
+        <div>
+          <div class="deploy-step-title">Google Chrome で Chrome ウェブストアを開く</div>
+          <div class="deploy-step-desc">Safari ではなく、必ず Google Chrome を使ってください。<a href="https://chromewebstore.google.com/detail/claude-in-chrome/bjdgdeioakpnhgejghfafmbibikjcgmk" target="_blank" style="color:var(--blue);">Claude in Chrome のページ</a> に直接アクセスできます。</div>
+        </div>
+      </div>
+      <div class="deploy-step-item" style="margin-top:10px;">
+        <div class="deploy-step-num">2</div>
+        <div>
+          <div class="deploy-step-title">「Chromeに追加」を押してインストール</div>
+          <div class="deploy-step-desc">右上に Claude in Chrome のアイコンが出たら成功です。</div>
+        </div>
+      </div>
+      <div class="deploy-step-item" style="margin-top:10px;">
+        <div class="deploy-step-num">3</div>
+        <div>
+          <div class="deploy-step-title">Claudeアカウントでログイン</div>
+          <div class="deploy-step-desc">アイコンをクリックして Claudeアカウントでログイン。これで完了です。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 完了後の案内 -->
+    <div class="card" style="background:linear-gradient(135deg,#fff,#F0FDF4);border-color:#86EFAC;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:#059669;text-transform:uppercase;margin-bottom:14px;">準備ができたら</div>
+      <p style="font-size:14px;color:var(--black);line-height:1.9;">
+        3つ全部できたら、キックオフを安心して迎えられます。次は <a href="#" onclick="switchTab('worksheet',document.querySelector('[onclick*=worksheet]'));return false;" style="color:#059669;font-weight:600;">「宿題」タブ（6月3日までに提出）</a> に進みましょう。
+      </p>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;margin-top:10px;">
+        ※宿題は <strong>「STEP 1. まずは知っておこう」</strong> を一通り読んでから取り組むと、ぐっとやりやすくなります。
+      </p>
+    </div>
+  </section>
+
   <!-- ═══ TAB 7: 用語集 ═══ -->
   <!-- ═══ TAB: AIっぽさをなくすプロンプト ═══ -->
   <section class="tab-content" id="tab-prompt-no-ai">
@@ -5560,6 +6041,84 @@
       </div>
       <div style="text-align:center;margin:16px 0 0;">
         <a href="design-tips.html#lv3" target="_blank" rel="noopener" style="display:inline-block;padding:12px 28px;background:var(--orange);color:#fff;border-radius:22px;font-size:13px;font-weight:600;text-decoration:none;">別タブでフルサイズで開く →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TAB: フォルダの考え方 ═══ -->
+  <section class="tab-content" id="tab-folder-concept">
+    <div class="sec-eyebrow">事前知識</div>
+    <div class="sec-title">フォルダの考え方</div>
+    <p class="sec-desc">Claude Codeを安心して使うために、「作業用フォルダを1つ作って、そこだけを見せる」のが基本です。これを知っておくと、当日のセットアップで迷いません。</p>
+
+    <div style="margin-bottom:24px;padding:24px 22px;border:1px solid var(--border);border-radius:12px;background:#fff;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;color:var(--orange);margin-bottom:14px;text-transform:uppercase;">なぜ「Select folder」が大事？</div>
+
+      <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:center;margin-bottom:16px;">
+        <!-- 左：NG -->
+        <div style="padding:14px;background:#fef2f2;border:1px solid #fecaca;border-radius:10px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#dc2626;margin-bottom:8px;">NG</div>
+          <svg width="60" height="60" viewBox="0 0 60 60">
+            <rect x="5" y="8" width="50" height="38" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
+            <text x="30" y="22" text-anchor="middle" font-size="7" fill="#dc2626" font-weight="600">PC全体</text>
+            <rect x="10" y="28" width="16" height="10" rx="2" fill="#fecaca" stroke="#fca5a5" stroke-width="0.8"/>
+            <text x="18" y="35" text-anchor="middle" font-size="5" fill="#dc2626">写真</text>
+            <rect x="30" y="28" width="16" height="10" rx="2" fill="#fecaca" stroke="#fca5a5" stroke-width="0.8"/>
+            <text x="38" y="35" text-anchor="middle" font-size="5" fill="#dc2626">仕事</text>
+            <text x="30" y="53" text-anchor="middle" font-size="6" fill="#991b1b">全部見えちゃう</text>
+          </svg>
+        </div>
+        <!-- 矢印 -->
+        <div style="text-align:center;">
+          <svg width="24" height="20" viewBox="0 0 24 20"><path d="M4 10h14M14 4l6 6-6 6" stroke="var(--orange)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <!-- 右：OK -->
+        <div style="padding:14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#16a34a;margin-bottom:8px;">OK</div>
+          <svg width="60" height="60" viewBox="0 0 60 60">
+            <rect x="5" y="8" width="50" height="38" rx="3" fill="#f8f8f6" stroke="#d4d0cc" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <text x="30" y="18" text-anchor="middle" font-size="6" fill="#a09890">PC</text>
+            <rect x="12" y="22" width="36" height="20" rx="3" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+            <text x="30" y="32" text-anchor="middle" font-size="6" fill="#16a34a" font-weight="600">LP制作</text>
+            <text x="30" y="39" text-anchor="middle" font-size="5" fill="#15803d">ここだけ</text>
+            <text x="30" y="53" text-anchor="middle" font-size="6" fill="#15803d">安心！</text>
+          </svg>
+        </div>
+      </div>
+
+      <div style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        <strong style="color:var(--black);">デスクトップに「クラウドコード」フォルダを作りましょう。</strong><br>
+        Claude は「Select folder」で選んだフォルダの中しか見ません。だから <strong style="color:var(--black);">作業用のフォルダを1つ作って</strong>、そこを指定するのが安心です。<br>
+        素材（写真や参考資料）を Claude に見せたい場合は、<strong style="color:var(--orange);">コピーして</strong>このフォルダに入れてください（移動ではなくコピー）。
+      </div>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+        <img src="images/foruda.png" style="width:100%;display:block;" alt="Claude Codeにおけるフォルダ構造のイメージ">
+      </div>
+
+      <!-- フォルダ構造の例 -->
+      <div style="margin-top:14px;padding:14px 16px;background:var(--beige);border-radius:8px;font-size:12px;font-family:monospace;color:#4a4540;line-height:2;">
+        <div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--orange)" style="vertical-align:middle;margin-right:4px;"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2v11z"/></svg>
+          <strong>デスクトップ / クラウドコード</strong>
+        </div>
+        <div style="padding-left:24px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#7a7068" style="vertical-align:middle;margin-right:3px;"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2v11z"/></svg>
+          LP制作 ← <span style="color:var(--orange);font-family:sans-serif;font-weight:500;font-size:11px;">Select folder でここを選ぶ</span>
+        </div>
+        <div style="padding-left:48px;color:#a09890;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a09890" stroke-width="2" style="vertical-align:middle;margin-right:3px;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          lp.html
+        </div>
+        <div style="padding-left:48px;color:#a09890;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a09890" stroke-width="2" style="vertical-align:middle;margin-right:3px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          profile.jpg（コピーして入れる）
+        </div>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border:1px solid var(--orange-border);border-radius:12px;padding:18px 22px;">
+      <div style="font-size:13px;color:var(--gray-mid);line-height:1.9;">
+        実際にフォルダを作る手順は、<a href="#" onclick="switchTab('setup',document.querySelector('[onclick*=setup]'));return false;" style="color:var(--orange);font-weight:600;">「環境を整える」タブ</a> で確認できます。
       </div>
     </div>
   </section>
@@ -5853,6 +6412,26 @@
     <div class="sec-title">LPに載せる情報を整理する</div>
     <p class="sec-desc">ここを埋めてから当日に臨むほど、Claudeへの指示が1回で決まります。灰色の文字は記入例です。あなたのサービスに合う内容を書いてください。</p>
 
+    <!-- 提出期限バナー（最上部・最重要） -->
+    <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#FEE2E2,#FEF3C7);border:2px solid #F87171;border-radius:12px;padding:16px 20px;margin-bottom:18px;box-shadow:0 4px 14px rgba(248,113,113,0.18);">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#EF4444,#F97316);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:#B91C1C;text-transform:uppercase;margin-bottom:4px;">Deadline</div>
+        <div style="font-size:17px;font-weight:700;color:#7F1D1D;line-height:1.5;">提出期限：<span style="font-size:19px;">6月3日（火）</span> までにお願いします</div>
+        <div style="font-size:12px;color:#92400E;line-height:1.7;margin-top:4px;">講師が事前に内容を確認 → 当日のサポート・提案に活かすため、必ず期日までに「講師へ提出する」ボタンを押してください。</div>
+      </div>
+    </div>
+
+    <!-- 取り組み前のおすすめ案内 -->
+    <div style="display:flex;align-items:flex-start;gap:12px;background:linear-gradient(135deg,#FEF3C7,#FFFBEB);border:1px solid #FBBF24;border-radius:10px;padding:14px 16px;margin-bottom:20px;">
+      <div style="width:28px;height:28px;border-radius:50%;background:#F59E0B;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">💡</div>
+      <div style="font-size:13px;color:#92400E;line-height:1.9;">
+        <strong>取り組む前に：</strong>この宿題は <a href="#" onclick="switchTab('overview',document.querySelector('[onclick*=overview]'));return false;" style="color:#92400E;font-weight:700;text-decoration:underline;">「STEP 1. まずは知っておこう」</a> を一通り読んでから取り組むと、ぐっとやりやすくなります。LPの構造・AIっぽいデザインの正体・用語などを先に頭に入れておきましょう。
+      </div>
+    </div>
+
     <!-- トークンリマインダー -->
     <div style="display:flex;align-items:flex-start;gap:12px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px 16px;margin-bottom:20px;">
       <div style="width:28px;height:28px;border-radius:50%;background:#2563EB;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">!</div>
@@ -6094,60 +6673,77 @@
       <div style="font-size:11px;color:#888;margin-left:2px;">— 参考にしたいLPを集めておく</div>
     </div>
 
+    <!-- 参考サイト案内（モデリングフォームの前にまず見る） -->
+    <div style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border:1.5px solid var(--orange-border);border-radius:12px;padding:18px 20px;margin-bottom:16px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;color:var(--orange);text-transform:uppercase;margin-bottom:8px;">まずはここから</div>
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:10px;line-height:1.6;">参考にしたいLPを集めましょう</div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        下記サイトを開いて、自分のLPの参考になりそうなページを探してください。「この順番で読ませたい」「このコピーが刺さる」「この配色が好き」など、<strong style="color:var(--black);">ピンと来たLPのURLを下のフォームに貼り付けます</strong>。
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <a href="https://rdlp.jp/lp-archive/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
+          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#EF4444,#F97316);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;line-height:1.3;">LPアーカイブ</div>
+            <div style="font-size:10px;color:var(--gray-mid);">日本語LP 44,000件以上</div>
+          </div>
+        </a>
+        <a href="https://sankoudesign.com/category/lp/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
+          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#0EA5E9,#06B6D4);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;line-height:1.3;">SANKOU!</div>
+            <div style="font-size:10px;color:var(--gray-mid);">国内Webデザインギャラリー</div>
+          </div>
+        </a>
+        <a href="https://www.awwwards.com/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
+          <div style="width:24px;height:24px;border-radius:6px;background:#0F0F0F;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#fff;letter-spacing:0.02em;">AW</div>
+          <div>
+            <div style="font-size:12px;font-weight:600;line-height:1.3;">Awwwards</div>
+            <div style="font-size:10px;color:var(--gray-mid);">世界最高峰のWebデザイン受賞集</div>
+          </div>
+        </a>
+        <a href="https://www.pinterest.jp/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
+          <div style="width:24px;height:24px;border-radius:6px;background:#E60023;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.67 1.33 1.48 0 .9-.57 2.26-.87 3.52-.25 1.05.52 1.9 1.54 1.9 1.85 0 3.09-2.37 3.09-5.18 0-2.14-1.44-3.76-4.05-3.76-2.95 0-4.78 2.2-4.78 4.65 0 .85.24 1.44.62 1.9.17.2.19.28.13.51-.04.17-.14.57-.18.73-.06.24-.24.32-.44.23-1.24-.51-1.82-1.87-1.82-3.4 0-2.53 2.14-5.59 6.38-5.59 3.42 0 5.65 2.48 5.65 5.14 0 3.54-1.96 6.2-4.83 6.2-.97 0-1.87-.52-2.18-1.11l-.59 2.27c-.21.82-.78 1.85-1.16 2.47.87.27 1.8.42 2.76.42 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;line-height:1.3;">Pinterest</div>
+            <div style="font-size:10px;color:var(--gray-mid);">「LPデザイン」「landing page」で検索</div>
+          </div>
+        </a>
+      </div>
+      <p style="font-size:11px;color:var(--gray-lt);line-height:1.7;margin-top:12px;">気に入ったページを見つけたら、URLをコピー or スクショ。Claudeに「このサイトのような雰囲気で」と伝えるとイメージが伝わりやすくなります。</p>
+    </div>
+
     <div class="card">
 
-      <!-- 構成モデリング -->
+      <!-- 構成・中身モデリング（旧：構成 + 中身 を統合） -->
       <div class="ws-group">
-        <label class="ws-label">構成のモデリング <span class="ws-opt">参考にしたいLPのセクション順・流れ</span></label>
-        <div class="ws-hint">「この順番で読ませたい」「このセクション構成が好き」という事例を3つ集めてみよう</div>
+        <label class="ws-label">構成・中身のモデリング <span class="ws-req">必須</span></label>
+        <div class="ws-hint">セクションの順番・流れ・コピー（言葉づかい）の参考にしたいLPを<strong style="color:var(--black);">最低1つ</strong>貼ってください（3つあるとなお良し）。</div>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
           <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
             <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">1</div>
             <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ（例：ファーストビューからお客様の声への流れがいい）">
+              <input type="url" class="ws-input" data-modeling-group="composition" placeholder="URL（必須・最低1つ）">
+              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ（例：セクション順、キャッチコピーが刺さる）">
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
             <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">2</div>
             <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
+              <input type="url" class="ws-input" data-modeling-group="composition" placeholder="URL（任意）">
               <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
             <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">3</div>
             <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 内容モデリング -->
-      <div class="ws-group" style="margin-top:20px;">
-        <label class="ws-label">中身のモデリング <span class="ws-opt">参考にしたいLPのコピー・言葉づかい</span></label>
-        <div class="ws-hint">「このLPの言葉の使い方が好き」「このキャッチコピーが刺さる」という事例を3つ集めてみよう</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">1</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ（例：ファーストビューのキャッチコピーが刺さる）">
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">2</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">3</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
+              <input type="url" class="ws-input" data-modeling-group="composition" placeholder="URL（任意）">
               <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
             </div>
           </div>
@@ -6156,73 +6752,30 @@
 
       <!-- デザインモデリング -->
       <div class="ws-group" style="margin-top:20px;">
-        <label class="ws-label">デザインのモデリング <span class="ws-opt">参考にしたいビジュアル・配色・雰囲気</span></label>
-        <div class="ws-hint">「この色の使い方が好き」「このフォントの雰囲気に近づけたい」という事例を3つ集めてみよう</div>
+        <label class="ws-label">デザインのモデリング <span class="ws-req">必須</span></label>
+        <div class="ws-hint">配色・フォント・ビジュアルの雰囲気で参考にしたいLPを<strong style="color:var(--black);">最低1つ</strong>貼ってください（3つあるとなお良し）。</div>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
           <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
             <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">1</div>
             <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
+              <input type="url" class="ws-input" data-modeling-group="design" placeholder="URL（必須・最低1つ）">
               <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ（例：グラデーションの使い方、余白の広さが好み）">
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
             <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">2</div>
             <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
+              <input type="url" class="ws-input" data-modeling-group="design" placeholder="URL（任意）">
               <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
             <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">3</div>
             <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" placeholder="URL">
+              <input type="url" class="ws-input" data-modeling-group="design" placeholder="URL（任意）">
               <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- 参考サイト4選（一番下に移動） -->
-      <div style="background:var(--beige);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-top:24px;">
-        <div style="font-size:11px;font-family:'DM Sans',sans-serif;font-weight:700;color:var(--gray-mid);letter-spacing:0.1em;margin-bottom:10px;">参考LPを探すならこのサイト</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <a href="https://rdlp.jp/lp-archive/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
-            <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#EF4444,#F97316);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:600;line-height:1.3;">LPアーカイブ</div>
-              <div style="font-size:10px;color:var(--gray-mid);">日本語LP 44,000件以上</div>
-            </div>
-          </a>
-          <a href="https://sankoudesign.com/category/lp/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
-            <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#0EA5E9,#06B6D4);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:600;line-height:1.3;">SANKOU!</div>
-              <div style="font-size:10px;color:var(--gray-mid);">国内Webデザインギャラリー</div>
-            </div>
-          </a>
-          <a href="https://www.pinterest.jp/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
-            <div style="width:24px;height:24px;border-radius:6px;background:#E60023;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.67 1.33 1.48 0 .9-.57 2.26-.87 3.52-.25 1.05.52 1.9 1.54 1.9 1.85 0 3.09-2.37 3.09-5.18 0-2.14-1.44-3.76-4.05-3.76-2.95 0-4.78 2.2-4.78 4.65 0 .85.24 1.44.62 1.9.17.2.19.28.13.51-.04.17-.14.57-.18.73-.06.24-.24.32-.44.23-1.24-.51-1.82-1.87-1.82-3.4 0-2.53 2.14-5.59 6.38-5.59 3.42 0 5.65 2.48 5.65 5.14 0 3.54-1.96 6.2-4.83 6.2-.97 0-1.87-.52-2.18-1.11l-.59 2.27c-.21.82-.78 1.85-1.16 2.47.87.27 1.8.42 2.76.42 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:600;line-height:1.3;">Pinterest</div>
-              <div style="font-size:10px;color:var(--gray-mid);">デザインのインスピレーション</div>
-            </div>
-          </a>
-          <a href="https://onepagelove.com/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
-            <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#7C3AED,#A855F7);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:600;line-height:1.3;">One Page Love</div>
-              <div style="font-size:10px;color:var(--gray-mid);">海外1ページLP事例</div>
-            </div>
-          </a>
         </div>
       </div>
     </div>
@@ -6237,21 +6790,21 @@
         <div style="flex:1;height:1px;background:var(--border);"></div>
       </div>
 
-      <!-- STEP 1: 公式へ提出 -->
+      <!-- STEP 1: 講師へ提出 -->
       <div style="display:flex;gap:0;align-items:stretch;">
         <div style="display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0;">
           <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#4F7EF7,#1BC6B4);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
           <div style="width:2px;flex:1;background:linear-gradient(to bottom,#1BC6B4,var(--orange));margin:4px 0;opacity:0.3;"></div>
         </div>
         <div style="flex:1;min-width:0;padding:0 0 24px 10px;">
-          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;line-height:1.6;">公式へ提出</div>
+          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;line-height:1.6;">講師へ提出</div>
           <div style="font-size:11px;color:var(--gray-mid);line-height:1.8;margin-bottom:10px;">記入した内容を講師チームに共有します。当日の提案・サポートに使います。</div>
           <div style="display:inline-flex;align-items:center;gap:8px;background:#FFF3CD;border:1px solid #F59E0B;border-radius:8px;padding:7px 14px;margin-bottom:12px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <span style="font-size:12px;font-weight:600;color:#92400E;">提出期限：6月3日（火）までにお願いします</span>
           </div>
           <div>
-            <button id="ws-submit-btn" onclick="submitWorksheet()" style="padding:10px 24px;background:linear-gradient(135deg,#4F7EF7,#1BC6B4);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;letter-spacing:0.05em;">公式へ提出する</button>
+            <button id="ws-submit-btn" onclick="submitWorksheet()" style="padding:10px 24px;background:linear-gradient(135deg,#4F7EF7,#1BC6B4);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;letter-spacing:0.05em;">講師へ提出する</button>
             <div id="ws-submit-msg" style="margin-top:8px;font-size:12px;min-height:16px;"></div>
           </div>
         </div>
@@ -6371,6 +6924,22 @@
         return;
       }
 
+      // モデリングURL 必須チェック（構成・中身 / デザイン それぞれ最低1つ）
+      const compositionUrls = document.querySelectorAll('#tab-worksheet input[data-modeling-group="composition"]');
+      const hasComposition = Array.from(compositionUrls).some(el => el.value.trim());
+      if (!hasComposition) {
+        msg.style.color = '#e55';
+        msg.textContent = '「構成・中身のモデリング」に最低1つはURLを入れてください。';
+        return;
+      }
+      const designUrls = document.querySelectorAll('#tab-worksheet input[data-modeling-group="design"]');
+      const hasDesign = Array.from(designUrls).some(el => el.value.trim());
+      if (!hasDesign) {
+        msg.style.color = '#e55';
+        msg.textContent = '「デザインのモデリング」に最低1つはURLを入れてください。';
+        return;
+      }
+
       // GAS URL 未設定チェック
       if (GAS_URL === 'GAS_WEB_APP_URL_HERE') {
         msg.style.color = '#e55';
@@ -6394,8 +6963,8 @@
         bio:        get('講師の自己紹介'),
         closing:    get('最後に背中を押す'),
         bonus:      get('登録プレゼント'),
-        modeling1:  get('構成のモデリング'),
-        modeling2:  get('中身のモデリング'),
+        modeling1:  get('構成・中身のモデリング'),
+        modeling2:  '',
         modeling3:  get('デザインのモデリング'),
         beforeUrl:  '',
         afterUrl:   ''
@@ -6417,6 +6986,8 @@
         msg.style.color = '#2a9d5c';
         msg.textContent = '送信しました。スプレッドシートに記録されました。';
         btn.textContent = '送信済み';
+        // 宿題完了フラグを立てて、サイドバーの全体進捗を更新
+        if (window.__aiwsMarkTaskDone) window.__aiwsMarkTaskDone('worksheet_done');
         setTimeout(() => {
           btn.disabled = false;
           btn.textContent = '講師に提出する';
@@ -7645,35 +8216,20 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
     <!-- ━━━ PART 2: 実際の手順 ━━━ -->
 
-    <!-- 事前準備 -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-num">0</div>
-        <div class="card-title">事前準備（キックオフまでに）</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div class="deploy-step-item">
-          <div class="deploy-step-num">1</div>
-          <div>
-            <div class="deploy-step-title">GitHubアカウントを作る</div>
-            <div class="deploy-step-desc"><a href="https://github.com/signup" target="_blank" style="color:var(--orange);">github.com/signup</a> からメールアドレスで作成。無料です。</div>
-          </div>
-        </div>
-        <div class="deploy-step-item">
-          <div class="deploy-step-num">2</div>
-          <div>
-            <div class="deploy-step-title">Cloudflareアカウントを作る</div>
-            <div class="deploy-step-desc"><a href="https://dash.cloudflare.com/sign-up" target="_blank" style="color:var(--orange);">dash.cloudflare.com/sign-up</a> からメールアドレスで作成。無料・商業利用OK。</div>
-          </div>
-        </div>
-        <div class="deploy-step-item" style="background:linear-gradient(135deg,#EEF4FF,#E0F7FA);border:1px solid #B8CCFF;">
-          <div class="deploy-step-num" style="background:linear-gradient(135deg,#4F7EF7,#1BC6B4);">3</div>
-          <div>
-            <div class="deploy-step-title">Chrome拡張「Claude in Chrome」を入れる</div>
-            <div class="deploy-step-desc">Chromeを開いて <a href="https://chromewebstore.google.com/detail/claude-in-chrome/bjdgdeioakpnhgejghfafmbibikjcgmk" target="_blank" style="color:var(--blue);">Chrome ウェブストア</a> で「Claude in Chrome」を検索してインストール。Claudeがブラウザを直接操作できるようになります。</div>
-          </div>
-        </div>
-      </div>
+    <!-- 事前準備の確認案内（詳細は accounts タブへ） -->
+    <div class="card" style="background:linear-gradient(135deg,#fff,#F0FDF4);border-color:#86EFAC;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;color:#059669;text-transform:uppercase;margin-bottom:12px;">事前準備の確認</div>
+      <p style="font-size:14px;color:var(--black);line-height:1.9;margin-bottom:10px;">
+        この手順を始める前に、以下の3つが揃っているか確認してください：
+      </p>
+      <ul style="font-size:14px;line-height:1.9;margin:0 0 14px 18px;color:var(--gray-mid);">
+        <li>GitHubアカウント（Gmailで作成済み）</li>
+        <li>Cloudflareアカウント（GitHubと同じメールで作成済み）</li>
+        <li>Chrome拡張「Claude in Chrome」インストール済み</li>
+      </ul>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.8;">
+        まだの方は <a href="#" onclick="switchTab('accounts',document.querySelector('[onclick*=accounts]'));return false;" style="color:#059669;font-weight:600;">「アカウント＆ツール準備」タブ</a> から先に済ませてください。
+      </p>
     </div>
 
     <!-- 1. GitHub保管庫を作る -->
@@ -8362,6 +8918,50 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       <button type="submit" id="feedback-submit" class="fb-submit">送信する</button>
     </form>
 
+    <!-- ═══ Instagram シェアのお願い ═══ -->
+    <div style="margin-top:32px;background:linear-gradient(135deg,#FFF5F7 0%,#FCE7F3 50%,#FEF3C7 100%);border:2px solid #F9A8D4;border-radius:18px;padding:28px 28px 24px;box-shadow:0 8px 24px rgba(236,72,153,0.12);position:relative;overflow:hidden;">
+
+      <!-- 装飾的なグラデーション円 -->
+      <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(249,115,22,0.15));pointer-events:none;"></div>
+
+      <div style="position:relative;display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+        <!-- Instagram風アイコン -->
+        <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#F09433 0%,#E6683C 25%,#DC2743 50%,#CC2366 75%,#BC1888 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(220,39,67,0.30);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:#BE185D;text-transform:uppercase;margin-bottom:2px;">A small request</div>
+          <div style="font-size:17px;font-weight:700;color:#9D174D;line-height:1.5;">インスタのストーリーズでシェアしてもらえると、<br>とっても嬉しいです 💕</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:#831843;line-height:1.9;margin-bottom:16px;position:relative;">
+        当日の作業の様子・完成したLPのスクショ・感想など、自由なテイストで大丈夫です。<br>
+        メンション付きでシェアしていただけると、講師チームに通知が届きます。
+      </p>
+
+      <!-- メンションID -->
+      <div style="background:rgba(255,255,255,0.7);border:1px dashed #F9A8D4;border-radius:12px;padding:14px 18px;margin-bottom:14px;position:relative;">
+        <div style="font-size:11px;font-weight:600;color:#BE185D;letter-spacing:0.1em;margin-bottom:8px;">メンションID（タップしてコピー）</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <button onclick="navigator.clipboard.writeText('@chakana_design').then(()=>{this.textContent='✓ コピーしました';setTimeout(()=>{this.textContent='@chakana_design';},1500);})" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#fff;border:1.5px solid #F9A8D4;border-radius:20px;font-size:13px;font-weight:600;color:#BE185D;cursor:pointer;font-family:inherit;transition:transform 0.15s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">@chakana_design</button>
+          <button onclick="navigator.clipboard.writeText('@yumioka_design').then(()=>{this.textContent='✓ コピーしました';setTimeout(()=>{this.textContent='@yumioka_design';},1500);})" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#fff;border:1.5px solid #F9A8D4;border-radius:20px;font-size:13px;font-weight:600;color:#BE185D;cursor:pointer;font-family:inherit;transition:transform 0.15s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">@yumioka_design</button>
+          <button onclick="navigator.clipboard.writeText('@shindou_ayaka_').then(()=>{this.textContent='✓ コピーしました';setTimeout(()=>{this.textContent='@shindou_ayaka_';},1500);})" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:#fff;border:1.5px solid #F9A8D4;border-radius:20px;font-size:13px;font-weight:600;color:#BE185D;cursor:pointer;font-family:inherit;transition:transform 0.15s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">@shindou_ayaka_</button>
+        </div>
+        <p style="margin-top:10px;font-size:11px;color:#9D174D;line-height:1.7;">
+          ※ Instagramのメンションは1つずつ入力するので、上のボタンを<strong>1つずつタップしてコピー</strong>してください。
+        </p>
+      </div>
+
+      <p style="font-size:11px;color:#9D174D;line-height:1.7;text-align:center;padding-top:6px;border-top:1px dashed rgba(249,168,212,0.5);">
+        ※ 無理にしなくて大丈夫です。気が向いたときに、自由なテイストでぜひ 🌷
+      </p>
+    </div>
+
     <style>
       .fb-card {
         background:#fff;
@@ -8593,7 +9193,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       <details class="faq-acc">
         <summary>何をやってもダメ…</summary>
         <div class="faq-acc-body">
-          <p>大丈夫です！5/9 当日や事前サポートで一緒に解決します。エラー画面のスクリーンショットだけ撮っておいてください。</p>
+          <p>大丈夫です！6/6 当日や事前サポートで一緒に解決します。エラー画面のスクリーンショットだけ撮っておいてください。</p>
         </div>
       </details>
 
@@ -8973,10 +9573,11 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
 
   <script>
-    /* ─── Hero scroll effect: photo → scroll → text appears → page continues ─── */
+    /* ─── Hero scroll effect: video zooms in from depth, blurs, then text appears ─── */
     (function() {
       const wrapper = document.getElementById('heroWrapper');
       const hero = document.getElementById('heroHeader');
+      const video = hero.querySelector('.hero-video');
       const title = document.getElementById('heroTitle');
       const overlay = hero.querySelector('.header-overlay');
       const eyebrow = hero.querySelector('.eyebrow');
@@ -8984,38 +9585,56 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       const date = hero.querySelector('.header-date');
       const indicator = hero.querySelector('.scroll-indicator');
 
+      function update() {
+        const wrapperTop = wrapper.offsetTop;
+        const scrollRange = wrapper.offsetHeight - hero.offsetHeight;
+        const scrolled = window.scrollY - wrapperTop;
+        const progress = Math.max(0, Math.min(scrolled / scrollRange, 1));
+
+        // All animations complete by progress=0.70.
+        // progress 0.70 → 1.00 is a "hold" period where the finished hero stays
+        // visible while still sticky, before the next section starts scrolling in.
+
+        // 1) Video zoom: 0.75 → 1.05 over 0–35% scroll (奥から手前へ)
+        const zoom = Math.min(progress / 0.35, 1);
+        const videoScale = 0.75 + zoom * 0.30;
+
+        // 2) Video blur: 0 → 18px over 30–55%
+        const blurT = Math.max(0, Math.min((progress - 0.30) / 0.25, 1));
+        const videoBlur = blurT * 18;
+
+        video.style.transform = `scale(${videoScale})`;
+        video.style.filter = `brightness(1.08) saturate(0.9) blur(${videoBlur}px)`;
+
+        // 3) White overlay fades in 35–60% (映像が白に溶ける)
+        overlay.style.opacity = Math.max(0, Math.min((progress - 0.35) / 0.25, 1));
+
+        // 4) Title appears 40–65%
+        const titleT = Math.max(0, Math.min((progress - 0.40) / 0.25, 1));
+        title.style.transform = `scale(${2.5 - titleT * 1.5})`;
+        title.style.opacity = titleT;
+
+        // 5) Sub-text appears 55–70%
+        const textT = Math.max(0, Math.min((progress - 0.55) / 0.15, 1));
+        eyebrow.style.opacity = textT;
+        subtitle.style.opacity = textT;
+        date.style.opacity = textT;
+
+        // Scroll indicator fades out early
+        if (indicator) indicator.style.opacity = 1 - Math.min(progress * 4, 1);
+      }
+
       let ticking = false;
       window.addEventListener('scroll', function() {
         if (!ticking) {
           requestAnimationFrame(function() {
-            const wrapperTop = wrapper.offsetTop;
-            const scrollRange = wrapper.offsetHeight - hero.offsetHeight;
-            const scrolled = window.scrollY - wrapperTop;
-            const progress = Math.max(0, Math.min(scrolled / scrollRange, 1));
-
-            // Overlay fades in (photo becomes hidden)
-            overlay.style.opacity = progress;
-
-            // Title: starts large & invisible, shrinks to 1x and becomes visible
-            const scale = 2.8 - progress * 1.8;
-            const titleOpacity = Math.min(progress * 1.6, 1);
-            title.style.transform = `scale(${scale})`;
-            title.style.opacity = titleOpacity;
-
-            // Other text appears after 50% scroll
-            const textFade = Math.max(0, (progress - 0.5) / 0.35);
-            eyebrow.style.opacity = Math.min(textFade, 1);
-            subtitle.style.opacity = Math.min(textFade, 1);
-            date.style.opacity = Math.min(textFade, 1);
-
-            // Scroll indicator fades out
-            if (indicator) indicator.style.opacity = 1 - Math.min(progress * 2, 1);
-
+            update();
             ticking = false;
           });
           ticking = true;
         }
       });
+      update();
     })();
 
     function switchPtab(tabId, btn) {
@@ -9072,40 +9691,10 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       } catch (e) {}
     }
 
-    /* ─── タブ前後ナビゲーション 動的生成 ─── */
+    /* ─── タブ前後ナビゲーション 動的生成 ───
+       サイドバーの並び順とラベルから自動で読み取る。
+       サイドバーを修正すれば prev/next も自動で追従する。 */
     (function() {
-      var tabOrder = [
-        'overview','ai-agent','claude-features','setup','deploy',
-        'lp-intro','worksheet','prompt','aiish-intro','design',
-        'kickoff','checklist','schedule',
-        'glow-step1','glow-step2','glow-step3',
-        'glossary','special','team','feedback','qa'
-      ];
-      var tabLabels = {
-        'overview':       '全体像',
-        'ai-agent':       'AIエージェントとは何か',
-        'claude-features':'Claude Codeでできること',
-        'setup':          '環境を整える',
-        'deploy':         '公開する',
-        'lp-intro':       'LPとは',
-        'worksheet':      'これやってきてね',
-        'prompt':         'AIに指示する',
-        'aiish-intro':    'AIっぽいデザインの正体',
-        'design':         'デザインを学ぶ',
-        'kickoff':        'キックオフ（2時間）',
-        'checklist':      'これをやってきてね',
-        'schedule':       '当日のスケジュール',
-        'glow':           '垢抜けのコツ',
-        'glow-step1':     '垢抜けさせる',
-        'glow-step2':     '動きをつける',
-        'glow-step3':     '構造で差をつける',
-        'glossary':       '用語集',
-        'special':        '画像LP×AI×Canva',
-        'team':           'チーム一覧',
-        'feedback':       '当日の感想',
-        'qa':             'Q&A'
-      };
-
       function makeSvgPrev() {
         return '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       }
@@ -9113,7 +9702,38 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         return '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       }
 
+      function extractLabel(btn) {
+        // ボタンのテキストノードだけを連結（番号spanやbadgeを除外）
+        var label = '';
+        btn.childNodes.forEach(function(node) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            label += node.textContent;
+          }
+        });
+        return label.trim();
+      }
+
+      function buildOrder() {
+        var buttons = document.querySelectorAll('.sidebar-nav .tab-btn');
+        var tabOrder = [];
+        var tabLabels = {};
+        buttons.forEach(function(btn) {
+          var onclick = btn.getAttribute('onclick') || '';
+          var m = onclick.match(/switchTab\(['"]([^'"]+)['"]/);
+          if (!m) return;
+          var tabId = m[1];
+          if (tabOrder.indexOf(tabId) !== -1) return; // 重複ガード
+          tabOrder.push(tabId);
+          tabLabels[tabId] = extractLabel(btn) || tabId;
+        });
+        return { tabOrder: tabOrder, tabLabels: tabLabels };
+      }
+
       document.addEventListener('DOMContentLoaded', function() {
+        var built = buildOrder();
+        var tabOrder = built.tabOrder;
+        var tabLabels = built.tabLabels;
+
         tabOrder.forEach(function(tabId, idx) {
           var el = document.getElementById('tab-' + tabId);
           if (!el) return;
@@ -9153,6 +9773,469 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
           el.appendChild(nav);
         });
+      });
+    })();
+
+    /* ─── 事前準備の全体進捗トラッキング（読了＋タスク完了） ─── */
+    (function() {
+      // STEP 1: 読了対象のタブ（用語集はサポート扱いなので除外、フォルダの考え方を追加）
+      var READ_TRACKED_TABS = [
+        'overview', 'ai-agent', 'claude-features',
+        'lp-intro', 'aiish-intro', 'design',
+        'glow-tips', 'folder-concept'
+      ];
+      // STEP 2/3: 完了対象のタスク
+      // id: localStorage キー / tab: 関連タブID / shortLabel: 残りリストの表示名 / longLabel: 完了ボタンのコピー
+      var TRACKED_TASKS = [
+        { id: 'setup_done',     tab: 'setup',     shortLabel: '環境を整える',         longLabel: 'セットアップ完了！' },
+        { id: 'accounts_done',  tab: 'accounts',  shortLabel: 'アカウント＆ツール準備', longLabel: 'アカウント揃った！' },
+        { id: 'worksheet_done', tab: 'worksheet', shortLabel: '宿題',                 longLabel: '宿題完了！', autoOnly: true }
+      ];
+      var STORAGE_KEY = 'aiws_prep_read_v1';
+
+      function getRead() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+        catch (e) { return {}; }
+      }
+      function saveRead(obj) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); }
+        catch (e) {}
+      }
+      function isRead(id) { return !!getRead()[id]; }
+      function setReadFlag(id, val) {
+        var data = getRead();
+        if (val) data[id] = true; else delete data[id];
+        saveRead(data);
+      }
+      function isTaskDone(taskId) { return !!getRead()[taskId]; }
+      function setTaskDone(taskId, val) { setReadFlag(taskId, val); }
+      // 外部から呼べるように window に公開
+      window.__aiwsMarkTaskDone = function(taskId) {
+        setTaskDone(taskId, true);
+        renderAll();
+      };
+
+      function getLabel(tabId) {
+        var btn = document.querySelector('.sidebar-nav .tab-btn[onclick*="\'' + tabId + '\'"]');
+        if (!btn) return tabId;
+        var label = '';
+        btn.childNodes.forEach(function(n) {
+          if (n.nodeType === Node.TEXT_NODE) label += n.textContent;
+        });
+        return label.trim() || tabId;
+      }
+
+      function getStats() {
+        var read = getRead();
+        var readCount = READ_TRACKED_TABS.filter(function(id) { return read[id]; }).length;
+        var unread = READ_TRACKED_TABS.filter(function(id) { return !read[id]; });
+        return { read: readCount, total: READ_TRACKED_TABS.length, unread: unread };
+      }
+
+      function getOverallStats() {
+        var read = getRead();
+        var step1Done = READ_TRACKED_TABS.filter(function(id) { return read[id]; }).length;
+        var step1Total = READ_TRACKED_TABS.length;
+        var taskDone = TRACKED_TASKS.filter(function(t) { return read[t.id]; }).length;
+        var taskTotal = TRACKED_TASKS.length;
+        var remainingItems = [];
+        READ_TRACKED_TABS.forEach(function(id) {
+          if (!read[id]) remainingItems.push({ kind: 'read', id: id, label: getLabel(id) });
+        });
+        TRACKED_TASKS.forEach(function(t) {
+          if (!read[t.id]) remainingItems.push({ kind: 'task', id: t.id, tab: t.tab, label: t.shortLabel });
+        });
+        return {
+          step1: { done: step1Done, total: step1Total },
+          tasks: { done: taskDone, total: taskTotal },
+          total: step1Total + taskTotal,
+          done: step1Done + taskDone,
+          remaining: remainingItems
+        };
+      }
+
+      function jumpTo(tabId) {
+        var sidebarBtn = document.querySelector('.sidebar-nav .tab-btn[onclick*="\'' + tabId + '\'"]');
+        if (sidebarBtn) sidebarBtn.click();
+        // タブ切替後にコンテンツ位置までスクロール（FVに戻らない）
+        setTimeout(function() {
+          var target = document.querySelector('.content-area') || document.querySelector('.main-layout');
+          if (target) {
+            var top = target.getBoundingClientRect().top + window.scrollY - 20;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        }, 60);
+      }
+
+      function updateSidebar() {
+        var read = getRead();
+        // STEP 1: 読了タブにチェック
+        READ_TRACKED_TABS.forEach(function(id) {
+          var btn = document.querySelector('.sidebar-nav .tab-btn[onclick*="\'' + id + '\'"]');
+          if (!btn) return;
+          btn.classList.toggle('is-read', !!read[id]);
+        });
+        // STEP 2/3: タスク完了タブにもチェック
+        TRACKED_TASKS.forEach(function(t) {
+          var btn = document.querySelector('.sidebar-nav .tab-btn[onclick*="\'' + t.tab + '\'"]');
+          if (!btn) return;
+          btn.classList.toggle('is-read', !!read[t.id]);
+        });
+        updateAllStepBadges();
+      }
+
+      function findGroupByLabelText(searchText) {
+        var groups = document.querySelectorAll('.sidebar-nav .sidebar-group');
+        for (var i = 0; i < groups.length; i++) {
+          var label = groups[i].querySelector('.sidebar-label');
+          if (label && label.textContent.indexOf(searchText) !== -1) return groups[i];
+        }
+        return null;
+      }
+
+      function setStepBadge(group, count, total) {
+        if (!group) return;
+        var label = group.querySelector('.sidebar-label');
+        if (!label) return;
+        var badge = label.querySelector('.step1-progress-badge');
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'step1-progress-badge';
+          label.appendChild(document.createTextNode(' '));
+          label.appendChild(badge);
+        }
+        badge.textContent = count + '/' + total;
+        badge.classList.toggle('complete', count === total);
+      }
+
+      function updateAllStepBadges() {
+        var read = getRead();
+        var stats = getStats();
+        // STEP 1
+        var step1Group = findGroupByLabelText('STEP 1');
+        setStepBadge(step1Group, stats.read, stats.total);
+        // STEP 2 (setup + accounts)
+        var step2Tasks = TRACKED_TASKS.filter(function(t) { return t.tab === 'setup' || t.tab === 'accounts'; });
+        var step2Done = step2Tasks.filter(function(t) { return read[t.id]; }).length;
+        setStepBadge(findGroupByLabelText('STEP 2'), step2Done, step2Tasks.length);
+        // STEP 3 (worksheet)
+        var step3Tasks = TRACKED_TASKS.filter(function(t) { return t.tab === 'worksheet'; });
+        var step3Done = step3Tasks.filter(function(t) { return read[t.id]; }).length;
+        setStepBadge(findGroupByLabelText('STEP 3'), step3Done, step3Tasks.length);
+      }
+
+      // 進捗に応じた植物SVG（共通の鉢＋ステージごとの上部パーツ）
+      function buildPlantSvg(done, total) {
+        var stage;
+        if (done === 0) stage = 0;
+        else if (done <= 3) stage = 1;
+        else if (done <= 6) stage = 2;
+        else if (done <= 9) stage = 3;
+        else if (done < total) stage = 4;
+        else stage = 5;
+
+        // 共通の鉢
+        var pot =
+          '<ellipse cx="40" cy="71" rx="13" ry="1.5" fill="rgba(0,0,0,0.07)"/>' +
+          '<path d="M27 56 L30 70 L50 70 L53 56 Z" fill="#C96A3A"/>' +
+          '<rect x="25" y="53" width="30" height="4" rx="1" fill="#A85230"/>';
+
+        var inner = '';
+        if (stage === 0) {
+          // 種
+          inner = '<ellipse cx="40" cy="54" rx="2" ry="1.2" fill="#5C3A1F"/>';
+        } else if (stage === 1) {
+          // 芽（双葉）
+          inner =
+            '<line x1="40" y1="53" x2="40" y2="46" stroke="#8FAA7C" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<ellipse cx="36" cy="46" rx="3.5" ry="2" fill="#8FAA7C" transform="rotate(-15 36 46)"/>' +
+            '<ellipse cx="44" cy="46" rx="3.5" ry="2" fill="#8FAA7C" transform="rotate(15 44 46)"/>';
+        } else if (stage === 2) {
+          // 葉が増える
+          inner =
+            '<line x1="40" y1="53" x2="40" y2="32" stroke="#7A9B6B" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<ellipse cx="33" cy="46" rx="5" ry="2.5" fill="#8FAA7C" transform="rotate(-25 33 46)"/>' +
+            '<ellipse cx="47" cy="42" rx="5" ry="2.5" fill="#8FAA7C" transform="rotate(25 47 42)"/>' +
+            '<ellipse cx="35" cy="38" rx="4" ry="2" fill="#9CBA88" transform="rotate(-15 35 38)"/>' +
+            '<ellipse cx="45" cy="34" rx="4" ry="2" fill="#9CBA88" transform="rotate(15 45 34)"/>';
+        } else if (stage === 3) {
+          // つぼみ
+          inner =
+            '<line x1="40" y1="53" x2="40" y2="24" stroke="#7A9B6B" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<ellipse cx="33" cy="46" rx="5" ry="2.5" fill="#8FAA7C" transform="rotate(-25 33 46)"/>' +
+            '<ellipse cx="47" cy="42" rx="5" ry="2.5" fill="#8FAA7C" transform="rotate(25 47 42)"/>' +
+            '<ellipse cx="35" cy="36" rx="4" ry="2" fill="#9CBA88" transform="rotate(-15 35 36)"/>' +
+            '<ellipse cx="45" cy="32" rx="4" ry="2" fill="#9CBA88" transform="rotate(15 45 32)"/>' +
+            '<ellipse cx="40" cy="22" rx="3" ry="5" fill="#E8736A"/>' +
+            '<ellipse cx="40" cy="20" rx="1.5" ry="2.5" fill="#F2918A"/>';
+        } else if (stage === 4) {
+          // 開きかけ
+          inner =
+            '<line x1="40" y1="53" x2="40" y2="22" stroke="#7A9B6B" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<ellipse cx="33" cy="46" rx="5" ry="2.5" fill="#8FAA7C" transform="rotate(-25 33 46)"/>' +
+            '<ellipse cx="47" cy="42" rx="5" ry="2.5" fill="#8FAA7C" transform="rotate(25 47 42)"/>' +
+            '<ellipse cx="35" cy="34" rx="4" ry="2" fill="#9CBA88" transform="rotate(-15 35 34)"/>' +
+            '<ellipse cx="45" cy="30" rx="4" ry="2" fill="#9CBA88" transform="rotate(15 45 30)"/>' +
+            '<g transform="translate(40 22)">' +
+              '<ellipse cx="0" cy="-3" rx="2.5" ry="3" fill="#E8736A"/>' +
+              '<ellipse cx="3" cy="0" rx="3" ry="2.5" fill="#F2918A"/>' +
+              '<ellipse cx="-3" cy="0" rx="3" ry="2.5" fill="#F2918A"/>' +
+              '<circle r="1.5" fill="#F4C77C"/>' +
+            '</g>';
+        } else {
+          // 満開＋きらめき
+          inner =
+            '<line x1="40" y1="53" x2="40" y2="22" stroke="#7A9B6B" stroke-width="1.5" stroke-linecap="round"/>' +
+            '<ellipse cx="33" cy="46" rx="5" ry="2.5" fill="#8FAA7C" transform="rotate(-25 33 46)"/>' +
+            '<ellipse cx="47" cy="42" rx="5" ry="2.5" fill="#8FAA7C" transform="rotate(25 47 42)"/>' +
+            '<ellipse cx="35" cy="34" rx="4" ry="2" fill="#9CBA88" transform="rotate(-15 35 34)"/>' +
+            '<ellipse cx="45" cy="30" rx="4" ry="2" fill="#9CBA88" transform="rotate(15 45 30)"/>' +
+            // メインの花
+            '<g transform="translate(40 20)">' +
+              '<ellipse cx="0" cy="-5" rx="3" ry="4" fill="#E8736A"/>' +
+              '<ellipse cx="5" cy="-1" rx="4" ry="3" fill="#F2918A"/>' +
+              '<ellipse cx="0" cy="4" rx="3" ry="4" fill="#E8736A"/>' +
+              '<ellipse cx="-5" cy="-1" rx="4" ry="3" fill="#F2918A"/>' +
+              '<circle r="2.5" fill="#F4C77C"/>' +
+            '</g>' +
+            // 横の小花
+            '<g transform="translate(30 30)">' +
+              '<ellipse cx="0" cy="-2" rx="1.5" ry="2" fill="#E8736A"/>' +
+              '<ellipse cx="2" cy="0" rx="2" ry="1.5" fill="#F2918A"/>' +
+              '<ellipse cx="-2" cy="0" rx="2" ry="1.5" fill="#F2918A"/>' +
+              '<circle r="1" fill="#F4C77C"/>' +
+            '</g>' +
+            // きらめき
+            '<g fill="#F4C77C">' +
+              '<circle cx="16" cy="22" r="1.2"/>' +
+              '<circle cx="64" cy="26" r="1.5"/>' +
+              '<circle cx="58" cy="12" r="1"/>' +
+              '<circle cx="20" cy="36" r="1"/>' +
+            '</g>';
+        }
+
+        return '<svg viewBox="0 0 80 80" width="72" height="72">' + pot + inner + '</svg>';
+      }
+
+      function getStageCaption(done, total) {
+        if (done === 0) return '種をまく準備が整いました';
+        if (done <= 3) return '芽が出てきました';
+        if (done <= 6) return 'すくすく育っています';
+        if (done <= 9) return 'つぼみができました';
+        if (done < total) return 'もうすぐ開花します';
+        return '満開！キックオフでお会いしましょう';
+      }
+
+      function updateOverallWidget() {
+        var widget = document.getElementById('overall-progress');
+        if (!widget) return;
+        var stats = getOverallStats();
+        var done = stats.done === stats.total;
+        widget.classList.toggle('complete', done);
+        var plantEl = document.getElementById('op-plant');
+        if (plantEl) plantEl.innerHTML = buildPlantSvg(stats.done, stats.total);
+        var captionEl = document.getElementById('op-stage-caption');
+        if (captionEl) captionEl.textContent = getStageCaption(stats.done, stats.total);
+        var statsEl = document.getElementById('op-stats');
+        if (statsEl) {
+          statsEl.innerHTML = '<em>' + stats.done + '</em> / ' + stats.total + ' 完了';
+        }
+        var bar = document.getElementById('op-bar-fill');
+        if (bar) bar.style.width = (stats.done / stats.total * 100) + '%';
+        var rem = document.getElementById('op-remaining');
+        if (rem) {
+          if (done) {
+            rem.innerHTML = '<span style="color:#059669;font-weight:600;">✓ すべて完了しました</span>';
+          } else {
+            var remList = stats.remaining.slice(0, 4).map(function(r) { return r.label; });
+            var more = stats.remaining.length > 4 ? '、他' + (stats.remaining.length - 4) + '件' : '';
+            rem.innerHTML = '<span class="op-r-label">残り：</span>' + remList.join('、') + more;
+          }
+        }
+      }
+
+      function makeTaskCard(task) {
+        var done = isTaskDone(task.id);
+        var card = document.createElement('div');
+        card.className = 'task-done-card' + (done ? ' is-done' : '');
+        card.setAttribute('data-task-id', task.id);
+
+        var q = document.createElement('div');
+        q.className = 'task-done-q';
+        q.innerHTML = done
+          ? '<span style="margin-right:6px;">✓</span>このタスクを完了しました'
+          : '準備できましたか？';
+        card.appendChild(q);
+
+        var actionWrap = document.createElement('div');
+        actionWrap.style.cssText = 'display:flex;gap:10px;align-items:center;';
+
+        if (done) {
+          var undoBtn = document.createElement('button');
+          undoBtn.className = 'task-done-btn-undo';
+          undoBtn.textContent = '取り消す';
+          undoBtn.onclick = function() {
+            setTaskDone(task.id, false);
+            replaceTaskCard(card, task);
+            renderAll();
+          };
+          actionWrap.appendChild(undoBtn);
+        } else {
+          var btn = document.createElement('button');
+          btn.className = 'task-done-btn';
+          btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/></svg><span>' + task.longLabel + '</span>';
+          btn.onclick = function() {
+            setTaskDone(task.id, true);
+            replaceTaskCard(card, task);
+            renderAll();
+          };
+          actionWrap.appendChild(btn);
+        }
+        card.appendChild(actionWrap);
+        return card;
+      }
+
+      function replaceTaskCard(oldCard, task) {
+        var newCard = makeTaskCard(task);
+        oldCard.parentNode.replaceChild(newCard, oldCard);
+      }
+
+      function injectTaskCards() {
+        TRACKED_TASKS.forEach(function(task) {
+          if (task.autoOnly) return; // 宿題は自動完了のみ（カード挿入なし）
+          var tab = document.getElementById('tab-' + task.tab);
+          if (!tab) return;
+          if (tab.querySelector('[data-task-id="' + task.id + '"]')) return;
+          var footer = tab.querySelector('.tab-nav-footer');
+          var card = makeTaskCard(task);
+          if (footer) tab.insertBefore(card, footer);
+          else tab.appendChild(card);
+        });
+      }
+
+      function renderAll() {
+        updateSidebar();
+        renderOverviewBanner();
+        updateOverallWidget();
+      }
+      // 外部公開
+      window.__aiwsRenderAll = renderAll;
+
+      function makeReadCard(tabId) {
+        var read = isRead(tabId);
+        var card = document.createElement('div');
+        card.className = 'read-mark-card' + (read ? ' is-done' : '');
+        card.setAttribute('data-read-tab', tabId);
+
+        var q = document.createElement('div');
+        q.className = 'read-mark-q';
+        q.innerHTML = read
+          ? '<span style="margin-right:6px;">✓</span>このタブを読了しました'
+          : '読み終わりましたか？';
+        card.appendChild(q);
+
+        var actionWrap = document.createElement('div');
+        actionWrap.style.cssText = 'display:flex;gap:10px;align-items:center;';
+
+        if (read) {
+          var undoBtn = document.createElement('button');
+          undoBtn.className = 'read-mark-btn-undo';
+          undoBtn.textContent = '取り消す';
+          undoBtn.onclick = function() {
+            setReadFlag(tabId, false);
+            replaceCard(card, tabId);
+            renderAll();
+          };
+          actionWrap.appendChild(undoBtn);
+        } else {
+          var btn = document.createElement('button');
+          btn.className = 'read-mark-btn';
+          btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/></svg><span>このタブを読了にする</span>';
+          btn.onclick = function() {
+            setReadFlag(tabId, true);
+            replaceCard(card, tabId);
+            renderAll();
+          };
+          actionWrap.appendChild(btn);
+        }
+        card.appendChild(actionWrap);
+        return card;
+      }
+
+      function replaceCard(oldCard, tabId) {
+        var newCard = makeReadCard(tabId);
+        oldCard.parentNode.replaceChild(newCard, oldCard);
+      }
+
+      function injectReadCards() {
+        READ_TRACKED_TABS.forEach(function(id) {
+          var tab = document.getElementById('tab-' + id);
+          if (!tab) return;
+          // 既に挿入済みならスキップ
+          if (tab.querySelector('[data-read-tab="' + id + '"]')) return;
+          var footer = tab.querySelector('.tab-nav-footer');
+          var card = makeReadCard(id);
+          if (footer) tab.insertBefore(card, footer);
+          else tab.appendChild(card);
+        });
+      }
+
+      function renderOverviewBanner() {
+        var overview = document.getElementById('tab-overview');
+        if (!overview) return;
+        var existing = document.getElementById('prep-progress-banner');
+        var stats = getStats();
+        var done = stats.read === stats.total;
+
+        var banner = document.createElement('div');
+        banner.id = 'prep-progress-banner';
+        banner.className = 'prep-progress-banner' + (done ? ' complete' : '');
+
+        var title = document.createElement('div');
+        title.className = 'pb-title';
+        title.textContent = done
+          ? '✓ STEP 1 すべて読了しました！次は STEP 2 へ進みましょう'
+          : 'STEP 1 の読了状況：' + stats.read + ' / ' + stats.total + ' タブ完了';
+        banner.appendChild(title);
+
+        var bar = document.createElement('div');
+        bar.className = 'pb-bar';
+        var fill = document.createElement('div');
+        fill.className = 'pb-bar-fill';
+        fill.style.width = (stats.read / stats.total * 100) + '%';
+        bar.appendChild(fill);
+        banner.appendChild(bar);
+
+        if (!done) {
+          var note = document.createElement('div');
+          note.style.cssText = 'font-size:13px;color:var(--gray-mid);line-height:1.7;margin:8px 0 6px;';
+          note.textContent = 'まだ読んでいないタブ（クリックで開く）：';
+          banner.appendChild(note);
+
+          var list = document.createElement('div');
+          list.className = 'pb-list';
+          stats.unread.forEach(function(id) {
+            var chip = document.createElement('a');
+            chip.href = '#';
+            chip.className = 'pb-chip';
+            chip.textContent = getLabel(id);
+            chip.addEventListener('click', function(e) {
+              e.preventDefault();
+              jumpTo(id);
+            });
+            list.appendChild(chip);
+          });
+          banner.appendChild(list);
+        }
+
+        if (existing) existing.parentNode.replaceChild(banner, existing);
+        else overview.insertBefore(banner, overview.firstChild);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        injectReadCards();
+        injectTaskCards();
+        renderAll();
       });
     })();
 
