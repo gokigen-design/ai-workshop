@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIワークショップ — デザイナー3人によるAI制作体験</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #D4713A;
+    --orange-light: #E8956A;
+    --orange-dim: #FFF0E6;
+    --brown: #4A2F1A;
+    --beige: #FAF5EC;
+    --beige2: #F5EDE0;
+    --text: #3D2B1A;
+    --text-mid: #7A5A3A;
+    --border: #E8D5BF;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--beige);
+    line-height: 1.8;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: #fff;
+    border-bottom: 2px solid var(--orange);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo { font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: 0.1em; }
+  .nav-cta { background: var(--orange); color: #fff; border: none; border-radius: 4px; padding: 8px 20px; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(160deg, #FFF8F0 0%, var(--beige2) 100%);
+    padding: 60px 24px 50px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--orange-dim);
+    color: var(--orange);
+    border: 1px solid var(--orange-light);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 900;
+    line-height: 1.4;
+    color: var(--brown);
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--orange); }
+  .hero-sub {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    margin-bottom: 28px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .hero-meta span {
+    font-size: 12px;
+    color: var(--text-mid);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 12px;
+  }
+  .cta-main {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 40px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* ─── SECTION ─── */
+  .section { padding: 48px 24px; max-width: 700px; margin: 0 auto; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--orange);
+  }
+
+  /* ─── OVERVIEW ─── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .overview-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .overview-card-num { font-size: 22px; font-weight: 900; color: var(--orange); margin-bottom: 4px; }
+  .overview-card-label { font-size: 11px; color: var(--text-mid); }
+
+  /* ─── FEATURES ─── */
+  .feature-list { display: flex; flex-direction: column; gap: 12px; }
+  .feature-item {
+    background: #fff;
+    border-left: 3px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .feature-item strong { color: var(--orange); }
+
+  /* ─── INSTRUCTORS ─── */
+  .instructor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .instructor-card {
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 12px;
+  }
+  .instructor-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--orange-dim);
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--orange);
+  }
+  .instructor-name { font-size: 14px; font-weight: 700; color: var(--brown); margin-bottom: 4px; }
+  .instructor-role { font-size: 11px; color: var(--text-mid); }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    padding: 48px 24px;
+    text-align: center;
+    color: #fff;
+  }
+  .cta-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .cta-section p { font-size: 13px; opacity: 0.9; margin-bottom: 24px; }
+  .cta-btn-white {
+    display: inline-block;
+    background: #fff;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 36px;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+
+  footer {
+    background: var(--brown);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AI WORKSHOP</div>
+  <button class="nav-cta">参加を申し込む</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">2026年5月開催 / 限定8名</div>
+  <h1>デザイナー3人が教える<br><span>AIを使ったLP制作</span>ワークショップ</h1>
+  <p class="hero-sub">
+    Claude Codeに話しかけるだけで、本物のLPが完成します。<br>
+    コードの知識不要。外注なし。当日8時間で公開URLを持ち帰ります。
+  </p>
+  <div class="hero-meta">
+    <span>2026年5月9日（土）</span>
+    <span>10:00〜18:00</span>
+    <span>¥33,000（税込）</span>
+  </div>
+  <button class="cta-main">参加を申し込む →</button>
+</section>
+
+<!-- OVERVIEW -->
+<div class="section">
+  <div class="section-label">Overview</div>
+  <div class="section-title">このワークショップでできること</div>
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="overview-card-num">0円</div>
+      <div class="overview-card-label">外注費</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-card-num">1日</div>
+      <div class="overview-card-label">で完成</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-card-num">無制限</div>
+      <div class="overview-card-label">修正可能</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-card-num">URL</div>
+      <div class="overview-card-label">持ち帰り</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section" style="background:#fff;max-width:100%;padding:40px 24px;">
+  <div style="max-width:700px;margin:0 auto;">
+    <div class="section-label">Features</div>
+    <div class="section-title">ワークショップの特徴</div>
+    <div class="feature-list">
+      <div class="feature-item"><strong>AIに話しかけるだけ</strong>で、プロ品質のLPが完成します。コードを書く必要はありません。</div>
+      <div class="feature-item"><strong>デザイナー3人がフルサポート</strong>。当日困ったことはすぐに解決できます。</div>
+      <div class="feature-item"><strong>公開URLを持ち帰れます</strong>。当日作ったLPはそのまま使えます。</div>
+      <div class="feature-item"><strong>少人数制（8名）</strong>で一人ひとりに向き合います。</div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTRUCTORS -->
+<div class="section">
+  <div class="section-label">Instructors</div>
+  <div class="section-title">講師紹介</div>
+  <div class="instructor-grid">
+    <div class="instructor-card">
+      <div class="instructor-avatar">あ</div>
+      <div class="instructor-name">あや</div>
+      <div class="instructor-role">フリーランスデザイナー</div>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-avatar">ゆ</div>
+      <div class="instructor-name">ゆみ</div>
+      <div class="instructor-role">Webデザイナー</div>
+    </div>
+    <div class="instructor-card">
+      <div class="instructor-avatar">ち</div>
+      <div class="instructor-name">ちゃかな</div>
+      <div class="instructor-role">AIコンサルタント</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>まずは一歩、踏み出してみてください</h2>
+  <p>定員8名・先着順。お早めにお申し込みください。</p>
+  <a href="#" class="cta-btn-white">参加を申し込む →</a>
+</section>
+
+<footer>&copy; 2026 AIワークショップ</footer>
+
+</body>
+</html>

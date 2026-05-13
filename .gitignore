@@ -13,7 +13,6 @@ images/today/*
 !images/today/*.png
 !images/today/*.mp4
 !images/today/*.webp
-making-screenshots/
 *.mov
 *.MOV
 *.HEIC
