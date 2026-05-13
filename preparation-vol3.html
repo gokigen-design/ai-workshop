@@ -3971,12 +3971,13 @@
         <button class="tab-btn" onclick="switchTab('schedule', this)"><span>13</span>当日のスケジュール</button>
         <button class="tab-btn" onclick="switchTab('prompt-no-ai', this)"><span>14</span>AIっぽさをなくすプロンプト</button>
         <button class="tab-btn" onclick="switchTab('special', this)"><span>15</span>画像LP×AI×Canva</button>
-        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>16</span>公開する</button>
+        <button class="tab-btn" onclick="switchTab('advice', this)"><span>16</span>個人別アドバイス</button>
+        <button class="tab-btn" onclick="switchTab('deploy', this)"><span>17</span>公開する</button>
         <button class="tab-btn tab-work" onclick="switchTab('feedback', this)"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;color:var(--orange);"><path d="M3 19 L4 8 L8 12 L12 6 L16 12 L20 8 L21 19 L21 21 L3 21 Z"/><circle cx="4" cy="7" r="1.3"/><circle cx="12" cy="5" r="1.3"/><circle cx="20" cy="7" r="1.3"/></svg>感想・成果物を提出</button>
       </div>
       <div class="sidebar-group">
         <div class="sidebar-label">サポート（いつでも）</div>
-        <button class="tab-btn" onclick="switchTab('qa', this)"><span>17</span>Q &amp; A</button>
+        <button class="tab-btn" onclick="switchTab('qa', this)"><span>18</span>Q &amp; A</button>
         <button class="tab-btn" onclick="switchTab('glossary', this)"><span style="font-size:9px;letter-spacing:0;">用語</span>用語集</button>
       </div>
     </nav>
@@ -4186,24 +4187,10 @@
       </div>
     </div>
 
-    <!-- ═══ 参加者セクション（チーム分け後に再構築予定） ═══ -->
+    <!-- ═══ 参加者セクション（JSで PARTICIPANTS 配列から自動描画） ═══ -->
     <div style="border-top:1px solid var(--border);margin:36px 0 28px;"></div>
     <div class="sec-eyebrow">受講生のみなさん</div>
-    <div class="card" style="border:2px dashed var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));text-align:center;padding:40px 28px;margin-top:8px;">
-      <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--grad-soft);margin-bottom:16px;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C96A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-        </svg>
-      </div>
-      <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:12px;">Coming Soon</div>
-      <div style="font-size:16px;font-weight:600;color:var(--black);line-height:1.7;margin-bottom:12px;">チーム分けが済んだら<br>こちらに各メンバーをご紹介します</div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:2;max-width:480px;margin:0 auto;">
-        今回の3期生は新しくスタートされたばかりの皆さんなので、チーム分けの確定後にメンバー一覧をこちらに掲載します。
-      </p>
-    </div>
-
+    <div id="participants-team-list" style="margin-top:8px;"></div>
 
   </section>
 
@@ -6057,6 +6044,128 @@
         ※宿題は <strong>「STEP 1. まずは知っておこう」</strong> を一通り読んでから取り組むと、ぐっとやりやすくなります。
       </p>
     </div>
+  </section>
+
+  <!-- ═══ TAB: 個人別アドバイス ═══ -->
+  <section class="tab-content" id="tab-advice">
+    <div class="sec-eyebrow">個人別アドバイス</div>
+    <div class="sec-title">あなたへのアドバイス</div>
+    <p class="sec-desc">講師チームから一人ひとりにメッセージを用意しています。お名前をクリックすると、私たちからのアドバイスが開きます。<br><span style="font-size:12px;color:var(--gray-mid);">※参加メンバー確定後、お名前とアドバイスを順次追加します。</span></p>
+
+    <div id="advice-list-container" class="advice-list"></div>
+
+    <style>
+      .advice-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .advice-item {
+        background: #fff;
+        border: 1px solid #C7DBF5;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .advice-item[open] {
+        border-color: #3B82F6;
+        box-shadow: 0 4px 14px rgba(59,130,246,0.10);
+      }
+      .advice-item > summary {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        cursor: pointer;
+        list-style: none;
+        font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      }
+      .advice-item > summary::-webkit-details-marker { display: none; }
+      .advice-item > summary:hover { background: #F0F7FF; }
+      .advice-num {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: #2563EB;
+        flex-shrink: 0;
+        min-width: 22px;
+      }
+      .advice-name {
+        flex: 1;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--black);
+      }
+      .advice-toggle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #E0F2FE;
+        position: relative;
+        flex-shrink: 0;
+        transition: background 0.2s, transform 0.3s;
+      }
+      .advice-toggle::before,
+      .advice-toggle::after {
+        content: '';
+        position: absolute;
+        background: #2563EB;
+        border-radius: 1px;
+        top: 50%; left: 50%;
+      }
+      .advice-toggle::before {
+        width: 9px; height: 1.5px;
+        transform: translate(-50%, -50%);
+      }
+      .advice-toggle::after {
+        width: 1.5px; height: 9px;
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s;
+      }
+      .advice-item[open] .advice-toggle {
+        background: #3B82F6;
+      }
+      .advice-item[open] .advice-toggle::before,
+      .advice-item[open] .advice-toggle::after { background: #fff; }
+      .advice-item[open] .advice-toggle::after {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+      .advice-body {
+        padding: 6px 22px 22px;
+        background: #F8FBFF;
+        border-top: 1px solid #E0F2FE;
+      }
+      .advice-block {
+        padding: 14px 0;
+        border-bottom: 1px dashed #C7DBF5;
+      }
+      .advice-block:last-child { border-bottom: none; }
+      .advice-from {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        color: #2563EB;
+        text-transform: none;
+        margin-bottom: 6px;
+      }
+      .advice-from strong {
+        font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--black);
+        margin-left: 4px;
+        letter-spacing: 0;
+      }
+      .advice-block p {
+        font-size: 13.5px;
+        line-height: 1.95;
+        color: var(--black);
+        margin: 0;
+      }
+    </style>
   </section>
 
   <!-- ═══ TAB 7: 用語集 ═══ -->
@@ -10583,6 +10692,86 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         injectReadCards();
         injectTaskCards();
         renderAll();
+      });
+    })();
+
+    /* ─── 参加メンバーのデータソース ───
+       ここに参加者を追加すると、チーム一覧と個人別アドバイスの両方に自動反映されます。
+       例：{ name: '〇〇さん', advice: 'あなたへのアドバイス本文…' }
+    */
+    const PARTICIPANTS = [
+      // 参加メンバーが決まったら、ここに追加してください
+      // { name: '参加者A さん', advice: 'ここに私たちからのアドバイスを記入してください。' },
+    ];
+
+    (function() {
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function(c) {
+          return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+        });
+      }
+
+      function renderTeamParticipants() {
+        var el = document.getElementById('participants-team-list');
+        if (!el) return;
+        if (PARTICIPANTS.length === 0) {
+          el.innerHTML =
+            '<div class="card" style="border:2px dashed var(--orange-border);background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));text-align:center;padding:40px 28px;margin-top:8px;">' +
+              '<div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--grad-soft);margin-bottom:16px;">' +
+                '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C96A3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>' +
+              '</div>' +
+              '<div style="font-family:\'DM Sans\',sans-serif;font-size:11px;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:12px;">Coming Soon</div>' +
+              '<div style="font-size:16px;font-weight:600;color:var(--black);line-height:1.7;margin-bottom:12px;">チーム分けが済んだら<br>こちらに各メンバーをご紹介します</div>' +
+              '<p style="font-size:13px;color:var(--gray-mid);line-height:2;max-width:480px;margin:0 auto;">参加メンバー確定後、こちらに自動でお名前が表示されます。</p>' +
+            '</div>';
+          return;
+        }
+        el.innerHTML =
+          '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:8px;">' +
+          PARTICIPANTS.map(function(p) {
+            var initial = (p.name || '').replace(/さん$/,'').trim().charAt(0) || '✦';
+            return '<div class="card" style="margin-bottom:0;padding:18px 20px;display:flex;align-items:center;gap:14px;">' +
+              '<div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#BAE6FD,#3B82F6);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:\'Zen Maru Gothic\',sans-serif;font-size:18px;font-weight:700;">' + escapeHtml(initial) + '</div>' +
+              '<div style="flex:1;min-width:0;font-size:14px;font-weight:600;color:var(--black);">' + escapeHtml(p.name) + '</div>' +
+            '</div>';
+          }).join('') +
+          '</div>';
+      }
+
+      function renderAdviceList() {
+        var el = document.getElementById('advice-list-container');
+        if (!el) return;
+        if (PARTICIPANTS.length === 0) {
+          el.innerHTML =
+            '<div style="background:#F0F7FF;border:1.5px dashed #93C5FD;border-radius:12px;padding:32px 24px;text-align:center;">' +
+              '<div style="font-family:\'DM Sans\',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:#2563EB;text-transform:uppercase;margin-bottom:10px;">Coming Soon</div>' +
+              '<div style="font-size:14px;font-weight:600;color:var(--black);line-height:1.7;margin-bottom:8px;">参加メンバー確定後、ここにお名前が並びます</div>' +
+              '<p style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin:0;">お名前をクリックすると、私たちからの個別アドバイスが開きます。</p>' +
+            '</div>';
+          return;
+        }
+        el.innerHTML = PARTICIPANTS.map(function(p, i) {
+          var num = String(i + 1).padStart(2, '0');
+          var advice = p.advice || '（私たちからのアドバイスをここに記入）';
+          return '<details class="advice-item">' +
+            '<summary>' +
+              '<span class="advice-num">' + num + '</span>' +
+              '<span class="advice-name">' + escapeHtml(p.name) + '</span>' +
+              '<span class="advice-toggle"></span>' +
+            '</summary>' +
+            '<div class="advice-body">' +
+              '<div class="advice-block">' +
+                '<div class="advice-from">From <strong>私たち</strong></div>' +
+                '<p>' + escapeHtml(advice).replace(/\n/g, '<br>') + '</p>' +
+              '</div>' +
+            '</div>' +
+          '</details>';
+        }).join('');
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        renderTeamParticipants();
+        renderAdviceList();
       });
     })();
 
