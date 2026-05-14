@@ -261,14 +261,20 @@
     }
     .lp-preview iframe {
       width: 100%;
-      height: 500px;
+      height: 460px;
       border: none;
       display: block;
+      overflow: hidden;
+    }
+    /* FINALのみ全体表示 */
+    .lp-preview iframe.full {
+      height: 4200px;
     }
 
     @media (max-width: 600px) {
       .lp-preview { margin-left: 0; }
-      .lp-preview iframe { height: 400px; }
+      .lp-preview iframe { height: 360px; }
+      .lp-preview iframe.full { height: 4200px; }
     }
 
     /* === SEPARATOR === */
@@ -418,7 +424,7 @@
           <span class="lp-preview-dot g"></span>
           <span class="lp-preview-url">PHASE 01 — ポン出し（暖色系）</span>
         </div>
-        <iframe src="making-screenshots/v0-initial.html"></iframe>
+        <iframe src="making-screenshots/v0-initial.html" scrolling="no"></iframe>
       </div>
       <div class="visual-change">
         <div class="visual-label">FIRST OUTPUT</div>
@@ -462,7 +468,7 @@
           <span class="lp-preview-dot g"></span>
           <span class="lp-preview-url">PHASE 02 — サイバーパンク化</span>
         </div>
-        <iframe src="making-screenshots/v1-initial.html"></iframe>
+        <iframe src="making-screenshots/v1-initial.html" scrolling="no"></iframe>
       </div>
       <div class="visual-change">
         <div class="visual-label">ATMOSPHERE CHANGED</div>
@@ -516,7 +522,7 @@
           <span class="lp-preview-dot g"></span>
           <span class="lp-preview-url">PHASE 03 — ヘキサゴン × 女性写真</span>
         </div>
-        <iframe src="making-screenshots/v2-improved.html"></iframe>
+        <iframe src="making-screenshots/v2-improved.html" scrolling="no"></iframe>
       </div>
       <div class="visual-change">
         <div class="visual-label">LAYOUT UPDATE</div>
@@ -622,7 +628,7 @@
           <span class="lp-preview-dot g"></span>
           <span class="lp-preview-url">FINAL — 完成版LP（スクロールして全体を確認）</span>
         </div>
-        <iframe src="making-screenshots/v5-final.html" style="height:4200px;"></iframe>
+        <iframe src="making-screenshots/v5-final.html" class="full"></iframe>
       </div>
 
       <div class="msg">
