@@ -320,9 +320,45 @@
       .change { margin-left: 0; }
       .visual-change { margin-left: 0; }
     }
+
+    /* === BACK BUTTON === */
+    .back-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(120deg, #1e5fd8 0%, #38b2f5 100%);
+      color: #fff;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(30,95,216,0.45);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      white-space: nowrap;
+    }
+    .back-btn:hover {
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 8px 28px rgba(30,95,216,0.55);
+    }
+    .back-btn svg {
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
+
+  <!-- BACK BUTTON -->
+  <a href="preparation-vol2.html" class="back-btn">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    事前学習サイトに戻る
+  </a>
 
   <!-- HERO -->
   <div class="hero">
@@ -332,7 +368,7 @@
     <div class="stats">
       <div class="stat">
         <div class="stat-num">4</div>
-        <div class="stat-label">バージョン進化</div>
+        <div class="stat-label">フェーズ</div>
       </div>
       <div class="stat">
         <div class="stat-num">20+</div>
@@ -352,7 +388,7 @@
     <div class="phase">
       <div class="phase-header">
         <span class="phase-num">PHASE 01</span>
-        <span class="phase-title">最初の一言 — まず作ってみて</span>
+        <span class="phase-title">まず作ってみて（ポン出し）</span>
       </div>
 
       <div class="msg">
@@ -361,7 +397,7 @@
           <div class="msg-name">あや</div>
         </div>
         <div class="msg-body user">
-          デザイナー3人でAI制作ワークショップのLPを作りたい。ハンズオンで参加者が自分のLPを作れるようになる講座。サイバーパンクっぽい雰囲気で、かっこよくして！
+          デザイナー3人でAIワークショップのLPを作りたい。まずポン出しで作って！
         </div>
       </div>
 
@@ -371,7 +407,7 @@
           <div class="msg-name">Claude</div>
         </div>
         <div class="msg-body claude">
-          了解です！サイバーパンクテーマのLPを作成しました。ネオンカラー × ダーク背景でまとめています。
+          作成しました！暖色系のシンプルなデザインです。ヘッダー・ヒーロー・概要・講師・CTAを一通り組みました。
         </div>
       </div>
 
@@ -380,14 +416,14 @@
           <span class="lp-preview-dot r"></span>
           <span class="lp-preview-dot y"></span>
           <span class="lp-preview-dot g"></span>
-          <span class="lp-preview-url">VERSION 1 — 初版</span>
+          <span class="lp-preview-url">PHASE 01 — ポン出し（暖色系）</span>
         </div>
-        <iframe src="making-screenshots/v1-initial.html"></iframe>
+        <iframe src="making-screenshots/v0-initial.html"></iframe>
       </div>
       <div class="visual-change">
-        <div class="visual-label">VERSION 1 — FIRST OUTPUT</div>
+        <div class="visual-label">FIRST OUTPUT</div>
         <div class="visual-desc">
-          最初に出てきたLP。ヘキサゴン（六角形）マスクの中に講師写真が収まっている。スクロールして中を見てみてください。
+          最初に出てきたLP。オレンジ×ベージュの暖色系。シンプルで読みやすいが、インパクトには欠ける。
         </div>
       </div>
 
@@ -397,7 +433,7 @@
           <div class="msg-name">あや</div>
         </div>
         <div class="msg-body user">
-          うーん、普通すぎる！もっとサイバー感出して！
+          もっとかっこよくしたい！サイバーパンクみたいな雰囲気にして！
         </div>
       </div>
     </div>
@@ -406,7 +442,7 @@
     <div class="phase">
       <div class="phase-header">
         <span class="phase-num">PHASE 02</span>
-        <span class="phase-title">サイバー感を追求</span>
+        <span class="phase-title">雰囲気の調整（サイバーパンクに変更）</span>
       </div>
 
       <div class="msg">
@@ -415,7 +451,7 @@
           <div class="msg-name">Claude</div>
         </div>
         <div class="msg-body claude">
-          ダークテーマに切り替えました。ネオンブルー × パープルのグロー効果を追加し、背景にグリッドパターンを入れました。
+          サイバーパンクテーマに切り替えました。ネオンブルー × ダーク背景でまとめています。グリッドパターンと発光エフェクトを追加しました。
         </div>
       </div>
 
@@ -424,14 +460,14 @@
           <span class="lp-preview-dot r"></span>
           <span class="lp-preview-dot y"></span>
           <span class="lp-preview-dot g"></span>
-          <span class="lp-preview-url">VERSION 2 — 視認性改善 + Claudeキャラ追加</span>
+          <span class="lp-preview-url">PHASE 02 — サイバーパンク化</span>
         </div>
-        <iframe src="making-screenshots/v2-improved.html"></iframe>
+        <iframe src="making-screenshots/v1-initial.html"></iframe>
       </div>
       <div class="visual-change">
-        <div class="visual-label">VERSION 2 — IMPROVED</div>
+        <div class="visual-label">ATMOSPHERE CHANGED</div>
         <div class="visual-desc">
-          見出しを明るく、テキスト読みやすく改善。3Dアイコン化、Claudeキャラクター追加。
+          ダーク背景 + ネオンカラーに一変。サイバーパンクらしさが出てきた。
         </div>
       </div>
 
@@ -441,7 +477,7 @@
           <div class="msg-name">あや</div>
         </div>
         <div class="msg-body user">
-          いい感じ！でもフォントもっと攻めたい。英語部分はもっとSFっぽくできない？
+          いい感じ！でも講師の写真をもっと活かしたい。インパクトが欲しい！
         </div>
       </div>
     </div>
@@ -450,7 +486,7 @@
     <div class="phase">
       <div class="phase-header">
         <span class="phase-num">PHASE 03</span>
-        <span class="phase-title">フォントとレイアウトの攻め</span>
+        <span class="phase-title">要素の追加と配置（ヘキサゴンに女性）</span>
       </div>
 
       <div class="msg">
@@ -459,7 +495,7 @@
           <div class="msg-name">あや</div>
         </div>
         <div class="msg-body user">
-          英語フォント変えて、斜めカット入れて！もっとエッジの効いた感じにしたい
+          ヘキサゴン（六角形）の中に3人の写真を入れて！もっとビジュアルインパクトを出して
         </div>
       </div>
 
@@ -469,7 +505,7 @@
           <div class="msg-name">Claude</div>
         </div>
         <div class="msg-body claude">
-          英語フォントを <code>Orbitron</code> に変更し、セクション間に <code>clip-path</code> で斜めカットを入れました。アイコンにも3Dグロー効果を追加しています。
+          ヘキサゴンマスクで3人を配置しました。グロー効果 + 斜めカット（<code>clip-path</code>）でエッジを効かせています。フォントも <code>Orbitron</code> に変更済みです。
         </div>
       </div>
 
@@ -478,14 +514,14 @@
           <span class="lp-preview-dot r"></span>
           <span class="lp-preview-dot y"></span>
           <span class="lp-preview-dot g"></span>
-          <span class="lp-preview-url">VERSION 3 — 内容変更（成果物・価格・対象者）</span>
+          <span class="lp-preview-url">PHASE 03 — ヘキサゴン × 女性写真</span>
         </div>
-        <iframe src="making-screenshots/v3-content.html"></iframe>
+        <iframe src="making-screenshots/v2-improved.html"></iframe>
       </div>
       <div class="visual-change">
-        <div class="visual-label">VERSION 3 — CONTENT UPDATE</div>
+        <div class="visual-label">LAYOUT UPDATE</div>
         <div class="visual-desc">
-          成果物・価格・対象者を全面改訂。「正直に言います」メッセージ追加。ここで20分で13回の変更を一気に実施。
+          ヘキサゴンマスクで講師3人を配置。英語フォントもSF系に。一気にプロっぽくなった。
         </div>
       </div>
 
@@ -495,7 +531,7 @@
           <div class="msg-name">あや</div>
         </div>
         <div class="msg-body user">
-          めっちゃいい！！！
+          めっちゃいい！！！これベースで内容を詰めていこう
         </div>
       </div>
     </div>
@@ -506,7 +542,7 @@
     <div class="phase">
       <div class="phase-header">
         <span class="phase-num">PHASE 04</span>
-        <span class="phase-title">内容を詰める — 20分で13回の変更</span>
+        <span class="phase-title">最終調整とアニメーション</span>
       </div>
 
       <div class="msg">
@@ -515,60 +551,14 @@
           <div class="msg-name">あや</div>
         </div>
         <div class="msg-body user">
-          成果物1のところはハンズオンでデザイナー3人が教える。内容はLPにして
+          成果物はLPに変更。ストーリーセクションは削除。価格はモニター¥25,000 / 通常¥50,000に
         </div>
       </div>
       <div class="change">
         <div class="change-label">CHANGED</div>
-        <span class="before">OUTPUT 01: LINEプレゼント</span>
+        <span class="before">OUTPUT: LINEプレゼント / STORYセクションあり / ¥18,000</span>
         <span class="arrow-down">&darr;</span>
-        <span class="after">OUTPUT 01: LP（ランディングページ）</span>
-      </div>
-
-      <div class="msg">
-        <div class="msg-header">
-          <div class="msg-icon user">A</div>
-          <div class="msg-name">あや</div>
-        </div>
-        <div class="msg-body user">
-          ストーリーはいらないので消してください
-        </div>
-      </div>
-      <div class="change">
-        <div class="change-label">REMOVED</div>
-        <span class="before">STORYセクション まるごと削除</span>
-      </div>
-
-      <div class="msg">
-        <div class="msg-header">
-          <div class="msg-icon user">A</div>
-          <div class="msg-name">あや</div>
-        </div>
-        <div class="msg-body user">
-          モニター価格は25000円に。通常価格は50000円に書いてください
-        </div>
-      </div>
-      <div class="change">
-        <div class="change-label">CHANGED</div>
-        <span class="before">モニター ¥18,000 / 通常 ¥25,000</span>
-        <span class="arrow-down">&darr;</span>
-        <span class="after">モニター ¥25,000 / 通常 ¥50,000（3箇所同時更新）</span>
-      </div>
-
-      <div class="msg">
-        <div class="msg-header">
-          <div class="msg-icon user">A</div>
-          <div class="msg-name">あや</div>
-        </div>
-        <div class="msg-body user">
-          25000円で通常LP頼むところを打破したい。Canvaでも垢抜けない問題もある。デザイナーに頼んでも最低50000円かかるし
-        </div>
-      </div>
-      <div class="change">
-        <div class="change-label">CHANGED</div>
-        <span class="before">「お金が浮く」</span>
-        <span class="arrow-down">&darr;</span>
-        <span class="after">「LP1枚 ¥50,000〜 を打破」+ Canva垢抜けない問題を追加</span>
+        <span class="after">OUTPUT: LP制作 / STORYセクション削除 / モニター¥25,000・通常¥50,000</span>
       </div>
 
       <div class="msg">
@@ -591,78 +581,14 @@
           <div class="msg-name">あや</div>
         </div>
         <div class="msg-body user">
-          対象者：自身の講座やサービスを持っている方。対象外：自身のサービスがない方
-        </div>
-      </div>
-      <div class="change">
-        <div class="change-label">ADDED</div>
-        <span class="after">TARGETセクションを対象者 / 対象外で明確化</span>
-      </div>
-
-      <div class="msg">
-        <div class="msg-header">
-          <div class="msg-icon user">A</div>
-          <div class="msg-name">あや</div>
-        </div>
-        <div class="msg-body user">
-          「解決できるよ」ってところのデザインがささやかすぎる。もう少し目立つように！
-        </div>
-      </div>
-      <div class="change">
-        <div class="change-label">ENHANCED</div>
-        <span class="after">Claudeキャラクターの吹き出しを80px化 + ネオングロー + フリッカーアニメーション追加</span>
-      </div>
-    </div>
-
-    <div class="separator"><span>CONTENT COMPLETE</span></div>
-
-    <!-- ====== PHASE 5 ====== -->
-    <div class="phase">
-      <div class="phase-header">
-        <span class="phase-num">PHASE 05</span>
-        <span class="phase-title">ファーストビューの大改造</span>
-      </div>
-
-      <div class="msg">
-        <div class="msg-header">
-          <div class="msg-icon user">A</div>
-          <div class="msg-name">あや</div>
-        </div>
-        <div class="msg-body user">
           ファーストビューを変えたい。hero.png を使って全画面で見せたい。ヘキサゴンの中に収まってるのをやめて、ドーンと出したい
         </div>
       </div>
-
-      <div class="lp-preview">
-        <div class="lp-preview-header">
-          <span class="lp-preview-dot r"></span>
-          <span class="lp-preview-dot y"></span>
-          <span class="lp-preview-dot g"></span>
-          <span class="lp-preview-url">VERSION 4 — FVリデザイン（hero.png全画面化）</span>
-        </div>
-        <iframe src="making-screenshots/v4-fv-redesign.html"></iframe>
-      </div>
-      <div class="visual-change">
-        <div class="visual-label">BEFORE</div>
-        <div class="visual-desc">講師写真がヘキサゴン（六角形）マスクの中に小さく配置</div>
-        <span class="arrow-down">&darr;</span>
-        <div class="visual-label">AFTER</div>
-        <div class="visual-desc">hero.png を全画面配置。3人が画面いっぱいに登場する迫力のFVに</div>
-      </div>
-
-      <div class="msg">
-        <div class="msg-header">
-          <div class="msg-icon user">A</div>
-          <div class="msg-name">あや</div>
-        </div>
-        <div class="msg-body user">
-          ネオンカラーもっと強くして！背景のbg-fv.jpgも使って
-        </div>
-      </div>
-
       <div class="change">
-        <div class="change-label">ENHANCED</div>
-        <span class="after">ネオンブルー #00d4ff / パープル #c084fc 強化 + bg-fv.jpg を背景に配置 + スマホ対応（background-size: 170%）</span>
+        <div class="change-label">REDESIGNED</div>
+        <span class="before">ヘキサゴンマスクの中に講師3人（小さい）</span>
+        <span class="arrow-down">&darr;</span>
+        <span class="after">hero.png を全画面配置。3人が画面いっぱいに登場する迫力のFVに</span>
       </div>
 
       <div class="msg">
@@ -671,20 +597,18 @@
           <div class="msg-name">あや</div>
         </div>
         <div class="msg-body user">
-          講師の年数は消して。あと、ちかの→ちゃかなに名前変更して
+          ネオンカラーもっと強くして！あと、ちかの→ちゃかなに名前変更して。講師の年数も消して
         </div>
       </div>
       <div class="change">
-        <div class="change-label">CHANGED</div>
-        <span class="before">ちかの / 経歴年数表示あり</span>
-        <span class="arrow-down">&darr;</span>
-        <span class="after">ちゃかな / 年数削除でスッキリ</span>
+        <div class="change-label">ENHANCED</div>
+        <span class="after">ネオンブルー #00d4ff / パープル #c084fc 強化 + ちゃかなに改名 + 経歴年数削除 + スクロールアニメーション追加</span>
       </div>
     </div>
 
     <div class="separator"><span>FINAL VERSION</span></div>
 
-    <!-- ====== SUMMARY ====== -->
+    <!-- ====== RESULT ====== -->
     <div class="phase">
       <div class="phase-header">
         <span class="phase-num">RESULT</span>
@@ -696,9 +620,9 @@
           <span class="lp-preview-dot r"></span>
           <span class="lp-preview-dot y"></span>
           <span class="lp-preview-dot g"></span>
-          <span class="lp-preview-url">FINAL — 完成版LP</span>
+          <span class="lp-preview-url">FINAL — 完成版LP（スクロールして全体を確認）</span>
         </div>
-        <iframe src="making-screenshots/v5-final.html"></iframe>
+        <iframe src="making-screenshots/v5-final.html" style="height:4200px;"></iframe>
       </div>
 
       <div class="msg">
@@ -710,7 +634,7 @@
           全ての変更を反映しました。最終版の特徴：<br><br>
           <strong>Design:</strong> サイバーパンク × ネオンダーク<br>
           <strong>Font:</strong> Orbitron（英語）+ Noto Sans JP<br>
-          <strong>Layout:</strong> clip-pathの斜めカット、全画面FV<br>
+          <strong>Layout:</strong> clip-pathの斜めカット、全画面FV（hero.png）<br>
           <strong>Animation:</strong> ネオングロー、フリッカー、スクロール連動<br>
           <strong>Responsive:</strong> スマホ対応済み
         </div>
