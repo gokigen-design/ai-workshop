@@ -450,6 +450,26 @@
       padding-left: 14px;
     }
 
+    .tab-home-btn {
+      background: var(--grad-soft);
+      color: var(--accent-deep);
+      font-weight: 700;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      justify-content: center;
+      border: 1px solid var(--accent-border);
+    }
+    .tab-home-btn.active {
+      background: var(--grad);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(59,130,246,0.30);
+      border-color: transparent;
+      padding-left: 12px;
+    }
+    .tab-home-btn:hover:not(.active) {
+      background: var(--accent-bg);
+    }
+
     .tab-btn.active span {
       color: var(--orange);
       font-weight: 700;
@@ -3975,9 +3995,15 @@
         <div class="op-bar"><div class="op-bar-fill" id="op-bar-fill" style="width:0%;"></div></div>
         <div class="op-remaining" id="op-remaining"></div>
       </div>
+      <!-- ホームボタン -->
+      <button class="tab-btn tab-home-btn active" onclick="switchTab('home', this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        まずここから
+      </button>
+
       <div class="sidebar-group">
         <div class="sidebar-label">STEP 1. まずは知っておこう</div>
-        <button class="tab-btn active" onclick="switchTab('overview', this)"><span>01</span>全体像</button>
+        <button class="tab-btn" onclick="switchTab('overview', this)"><span>01</span>全体像</button>
         <button class="tab-btn" onclick="switchTab('ai-agent', this)"><span>02</span>AIエージェントとは何か</button>
         <button class="tab-btn" onclick="switchTab('claude-features', this)"><span>03</span>Claude Codeでできること</button>
         <button class="tab-btn" onclick="switchTab('lp-intro', this)"><span>04</span>LPとは</button>
@@ -4027,7 +4053,85 @@
     <div class="content-area">
 
   <!-- ═══ TAB 1: 全体像 ═══ -->
-  <section class="tab-content active" id="tab-overview">
+  <!-- ═══ TAB: ホーム ═══ -->
+  <section class="tab-content active" id="tab-home">
+    <div class="sec-eyebrow">AIWS 事前準備ガイド</div>
+    <div class="sec-title">まず、ここから読んでください</div>
+    <p class="sec-desc">このサイトは当日まで何度も使います。まずこのページで流れをつかんでから、各タブを開いて進めてください。</p>
+
+    <!-- タイムライン -->
+    <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:40px;">
+
+      <!-- Step 1 -->
+      <div style="display:flex;gap:16px;align-items:flex-start;background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:20px 24px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--grad-soft);border:2px solid var(--accent-border);color:var(--accent-deep);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:0.05em;">01</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:11px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.18em;color:var(--accent);text-transform:uppercase;margin-bottom:4px;">キックオフ（5/27）までにざっと</div>
+          <div style="font-size:17px;font-weight:700;color:var(--black);margin-bottom:6px;">事前知識を読んでおく</div>
+          <div style="font-size:13px;color:var(--text-sub);line-height:1.8;">「AIエージェントとは何か」「Claude Codeでできること」など、サイドバーの STEP 1 タブをひと通り読んでおくと当日がスムーズです。すべて読まなくても大丈夫。気になるところだけでOK。</div>
+          <button onclick="document.querySelector('.tab-btn[onclick*=\'overview\']').click()" style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--accent-bg);color:var(--accent-deep);border:1px solid var(--accent-border);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">全体像を読む →</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="display:flex;gap:16px;align-items:flex-start;background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:16px;padding:20px 24px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#FB923C,#EA580C);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:0.05em;">02</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:11px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.18em;color:#EA580C;text-transform:uppercase;margin-bottom:4px;">キックオフ（5/27）までに完了</div>
+          <div style="font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px;">環境を整える・アカウントを準備する</div>
+          <div style="font-size:13px;color:#7C2D12;line-height:1.9;">
+            以下をすべて済ませておいてください。<br>
+            <span style="display:inline-block;margin-top:6px;line-height:2;">
+              ・ Claude アカウント作成 ＋ Pro プラン加入<br>
+              ・ Google Chrome インストール<br>
+              ・ Claude in Chrome 拡張機能を追加<br>
+              ・ GitHub アカウント作成<br>
+              ・ Cloudflare アカウント作成
+            </span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+            <button onclick="document.querySelector('.tab-btn[onclick*=\'setup\']').click()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#EA580C;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">環境を整える →</button>
+            <button onclick="document.querySelector('.tab-btn[onclick*=\'accounts\']').click()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#fff;color:#EA580C;border:1.5px solid #FED7AA;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">アカウント＆ツール準備 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="display:flex;gap:16px;align-items:flex-start;background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:16px;padding:20px 24px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;letter-spacing:0.05em;">03</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:11px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.18em;color:#16A34A;text-transform:uppercase;margin-bottom:4px;">キックオフ後〜6月3日（火）まで</div>
+          <div style="font-size:17px;font-weight:700;color:var(--black);margin-bottom:6px;">宿題ワークシートを提出する</div>
+          <div style="font-size:13px;color:#166534;line-height:1.9;">自分のサービス情報をワークシートに入力して送信してください。ここを丁寧に埋めるほど、当日のClaudeの精度が上がります。<br><span style="display:inline-block;margin-top:6px;padding:6px 12px;background:#DCFCE7;border-radius:8px;font-size:12px;">02 の環境設定が終わった方から取り組んでください。キックオフ後でも全然大丈夫です。先に読み進めてもOK。</span></div>
+          <button onclick="document.querySelector('.tab-btn[onclick*=\'worksheet\']').click()" style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#16A34A;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">宿題を提出する →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 当日バナー -->
+    <div style="text-align:center;padding:24px 20px;background:var(--grad);border-radius:16px;color:#fff;margin-bottom:24px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;opacity:0.8;margin-bottom:6px;">Workshop Day</div>
+      <div style="font-size:22px;font-weight:700;margin-bottom:4px;">6月6日（金） — 当日</div>
+      <div style="font-size:13px;opacity:0.85;line-height:1.7;">ここまで準備できていれば、当日は最速でLP完成までいけます。</div>
+    </div>
+
+    <!-- Slack リンク -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px 22px;margin-bottom:24px;">
+      <div>
+        <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:2px;">ちょっとわからない...</div>
+        <div style="font-size:12px;color:var(--text-sub);line-height:1.7;">迷ったり詰まったりしたら、Slack で気軽に聞いてください。</div>
+      </div>
+      <a href="https://join.slack.com/t/3ai-world/shared_invite/zt-3xvt7rn3a-eZwsdK6A1RIf7IUGQkkEyg" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#4A154B;color:#fff;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5.042 15.165a2.528 2.528 0 01-2.52 2.523A2.528 2.528 0 010 15.165a2.527 2.527 0 012.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 012.521-2.52 2.527 2.527 0 012.521 2.52v6.313A2.528 2.528 0 018.834 24a2.528 2.528 0 01-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 01-2.521-2.52A2.528 2.528 0 018.834 0a2.528 2.528 0 012.521 2.522v2.52H8.834zm0 1.271a2.527 2.527 0 012.521 2.521 2.527 2.527 0 01-2.521 2.521H2.522A2.528 2.528 0 010 8.834a2.528 2.528 0 012.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 012.522-2.521A2.528 2.528 0 0124 8.834a2.528 2.528 0 01-2.522 2.521h-2.522V8.834zm-1.27 0a2.527 2.527 0 01-2.523 2.521 2.527 2.527 0 01-2.52-2.521V2.522A2.527 2.527 0 0115.163 0a2.528 2.528 0 012.523 2.522v6.312zM15.163 18.956a2.528 2.528 0 012.523 2.522A2.528 2.528 0 0115.163 24a2.527 2.527 0 01-2.52-2.522v-2.522h2.52zm0-1.27a2.527 2.527 0 01-2.52-2.523 2.526 2.526 0 012.52-2.52h6.313A2.527 2.527 0 0124 15.163a2.528 2.528 0 01-2.522 2.523h-6.315z"/></svg>
+        Slack で質問する
+      </a>
+    </div>
+
+    <!-- 迷ったら -->
+    <div class="callout">タブは順番通りでなくてOKです。気になるところから自由に開いてください。</div>
+  </section>
+
+  <section class="tab-content" id="tab-overview">
     <div class="sec-eyebrow">はじめに</div>
     <div class="sec-title">このワークショップで起きること</div>
     <p class="sec-desc">8時間で何を作り、何を持ち帰るのか。全体像を最初に把握しておきましょう。</p>
@@ -5111,7 +5215,22 @@
     <!-- ─── Card 1: サブスクリプション加入 ─── -->
     <div class="card">
       <div class="card-head"><div class="card-num">1</div><div class="card-title">サブスクリプション加入</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">まず Claude のアカウントを作って、Pro プラン（$20/月）に加入します。これだけで Claude Desktop アプリが使えるようになります。</p>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.9;">まず Claude のアカウントを作って、Pro プラン（$20/月）に加入します。これだけで Claude Desktop アプリが使えるようになります。</p>
+
+      <!-- 招待リンク tip -->
+      <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
+        <div style="font-size:12px;color:#166534;line-height:1.9;">
+          <strong>まだ有料プランに加入していない方へ：</strong>下の招待リンクから登録すると、1週間無料でお試しいただけます。その後に課金しても1週間分はかかりません。数に限りがありますので、お早めにどうぞ。<br>
+          <span style="display:flex;flex-direction:column;gap:2px;margin-top:6px;">
+            <a href="https://claude.ai/referral/89zls3gNfQ" target="_blank" rel="noopener" style="color:#15803D;font-weight:600;">→ claude.ai/referral/89zls3gNfQ</a>
+            <a href="https://claude.ai/referral/tKKhOZRP5A" target="_blank" rel="noopener" style="color:#15803D;font-weight:600;">→ claude.ai/referral/tKKhOZRP5A</a>
+            <a href="https://claude.ai/referral/xtLybk0cMg" target="_blank" rel="noopener" style="color:#15803D;font-weight:600;">→ claude.ai/referral/xtLybk0cMg</a>
+          </span>
+          <span style="font-size:11px;color:#166534;display:block;margin-top:4px;">いずれか1つをお使いください。招待枠が終わっている場合は通常登録でどうぞ。</span>
+        </div>
+      </div>
+
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
