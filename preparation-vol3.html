@@ -4068,7 +4068,7 @@
         <div style="flex:1;min-width:0;">
           <div style="font-size:11px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.18em;color:var(--accent);text-transform:uppercase;margin-bottom:4px;">キックオフ（5/27）までにざっと</div>
           <div style="font-size:17px;font-weight:700;color:var(--black);margin-bottom:6px;">事前知識を読んでおく</div>
-          <div style="font-size:13px;color:var(--text-sub);line-height:1.8;">「AIエージェントとは何か」「Claude Codeでできること」など、サイドバーの STEP 1 タブをひと通り読んでおくと当日がスムーズです。すべて読まなくても大丈夫。気になるところだけでOK。</div>
+          <div style="font-size:13px;color:var(--text-sub);line-height:1.8;">「AIエージェントとは何か」「Claude Codeでできること」など、サイドバーの STEP 1 タブをざっとでいいので読んでおいてください。ひと通り目を通しておくだけで、当日の理解度がぐっと変わります。</div>
           <button onclick="document.querySelector('.tab-btn[onclick*=\'overview\']').click()" style="margin-top:12px;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--accent-bg);color:var(--accent-deep);border:1px solid var(--accent-border);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">全体像を読む →</button>
         </div>
       </div>
@@ -4080,9 +4080,12 @@
           <div style="font-size:11px;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.18em;color:#EA580C;text-transform:uppercase;margin-bottom:4px;">キックオフ（5/27）までに完了</div>
           <div style="font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px;">環境を整える・アカウントを準備する</div>
           <div style="font-size:13px;color:#7C2D12;line-height:1.9;">
-            以下をすべて済ませておいてください。<br>
+            以下の項目を覗いてみてください。できる範囲で進めていただけると助かります。わからなくなったら Slack で気軽に聞いてください。それでも解決しなくても大丈夫。キックオフで一緒に確認しますし、当日必ずセットアップできるようにサポートします。<br>
             <span style="display:inline-block;margin-top:6px;line-height:2;">
               ・ Claude アカウント作成 ＋ Pro プラン加入<br>
+              ・ Claude Desktop アプリをインストール<br>
+              ・ <strong>Claude Desktop 内で Claude Code を設定・動作確認する</strong><span style="font-size:11px;background:#EA580C;color:#fff;padding:1px 7px;border-radius:3px;font-weight:700;margin-left:6px;vertical-align:middle;">最重要</span><br>
+              <span style="font-size:12px;padding-left:1em;color:#92400E;">※ アプリを入れるだけでは使えません。Code タブを開いて動作確認まで必要です</span><br>
               ・ Google Chrome インストール<br>
               ・ Claude in Chrome 拡張機能を追加<br>
               ・ GitHub アカウント作成<br>
@@ -5108,8 +5111,8 @@
     <!-- ★ 当日までにやること マスターチェックリスト -->
     <div style="background:linear-gradient(135deg,#fff 60%,rgba(201,106,58,0.04));border:2px solid var(--orange-border);border-radius:14px;padding:20px 22px;margin-bottom:28px;">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-        <div style="background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;padding:3px 10px;border-radius:20px;text-transform:uppercase;">当日までにやること</div>
-        <div style="font-size:12px;color:var(--gray-mid);">全5項目 — チェックしながら進めてね</div>
+        <div style="background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;padding:3px 10px;border-radius:20px;text-transform:uppercase;">キックオフ（5/27）までにやること</div>
+        <div style="font-size:12px;color:var(--gray-mid);">全6項目 — チェックしながら進めてね</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;">
         <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:10px;">
@@ -5124,6 +5127,13 @@
           <div>
             <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Claude Desktop をインストールする</div>
             <div style="font-size:11px;color:var(--gray-mid);">このタブの「Claude Code」で手順確認できます</div>
+          </div>
+        </label>
+        <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;padding:10px 12px;background:linear-gradient(135deg,#FFF7ED,#fff);border:1.5px solid #FB923C;border-radius:10px;">
+          <input type="checkbox" style="margin-top:2px;accent-color:var(--orange);width:16px;height:16px;flex-shrink:0;">
+          <div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:2px;color:var(--black);">Claude Code の動作確認をする <span style="font-size:10px;background:#EA580C;color:#fff;padding:1px 7px;border-radius:3px;font-weight:700;margin-left:4px;">最重要</span></div>
+            <div style="font-size:11px;color:var(--gray-mid);">Desktop を開いて「Code」タブをクリック → 「こんにちは」と送信して返事が返ればOK。うまくいかなくてもキックオフで一緒に解決します</div>
           </div>
         </label>
         <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:10px;">
@@ -5163,6 +5173,20 @@
     <!-- ===== サブタブ：Claude Code ===== -->
     <div id="subtab-claude">
 
+    <!-- 最重要ポイント告知 -->
+    <div style="background:#FFF7ED;border:2px solid #FB923C;border-radius:14px;padding:18px 22px;margin-bottom:24px;">
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#7C2D12;margin-bottom:6px;">一番の肝はここです</div>
+          <div style="font-size:13px;color:#7C2D12;line-height:1.9;">
+            Claude Desktop をインストールするだけでは足りません。<strong>アプリの中で「Claude Code」を使える状態に設定する</strong>ことが、このセットアップの最重要ステップです。<br>
+            MacとWindowsでつまずきやすい場所が違います。うまくいかなくても大丈夫。<strong>キックオフ（5/27）で全員一緒に確認します</strong>ので、安心して進めてください。
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- このガイドでやること -->
     <div style="background:var(--beige);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:28px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.2em;color:var(--gray-lt);margin-bottom:14px;text-transform:uppercase;">このガイドでやること</div>
@@ -5177,7 +5201,7 @@
         </div>
         <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--gray-mid);">
           <div style="width:20px;height:20px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;">3</div>
-          Claude Code 機能を使ってみる
+          <span><strong style="color:var(--black);">Claude Code を有効にして動作確認する</strong><span style="margin-left:6px;font-size:11px;background:#FB923C;color:#fff;padding:1px 7px;border-radius:3px;font-weight:700;">最重要</span></span>
         </div>
         <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--gray-mid);">
           <div style="width:20px;height:20px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;">4</div>
@@ -5485,29 +5509,50 @@
 
     <!-- ─── Card 3: Claude Code 機能を使ってみよう ─── -->
     <div class="card">
-      <div class="card-head"><div class="card-num">3</div><div class="card-title">Claude Code 機能を使ってみよう</div></div>
-      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:20px;line-height:1.9;">Claude Desktop には「Claude Code」機能が内蔵されています。普通のチャットに加えて、あなたのPC上でファイルを作成したり、プログラムを実行したりできる機能です。ターミナルを開く必要はありません。</p>
+      <div class="card-head"><div class="card-num">3</div><div class="card-title">Claude Code を有効にして動作確認する<span style="margin-left:8px;font-size:10px;background:#EA580C;color:#fff;padding:2px 8px;border-radius:3px;font-weight:700;font-family:'DM Sans',sans-serif;letter-spacing:0.05em;">最重要</span></div></div>
+      <p style="font-size:13px;color:var(--gray-mid);margin-bottom:16px;line-height:1.9;">Claude Desktop をインストールしただけでは Claude Code は使えません。アプリ内で「Code」タブを開き、追加設定を済ませて動作確認するまでがセットアップです。</p>
 
-      <!-- できること -->
-      <div style="margin-bottom:20px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--orange);margin-bottom:12px;text-transform:uppercase;">Claude Code 機能でできること</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
-            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
-            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">ファイル作成</strong><span style="color:var(--gray-mid);"> — 企画書・レポート・HTML・スプレッドシートなどを PC 上に直接保存</span></div>
+      <!-- 手順 -->
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--grad);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">Claude Desktop を起動し、画面上部の <strong style="color:var(--black);">「Code」</strong> タブをクリックする</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--grad);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">画面の指示に従って初回設定を進める（許可ダイアログが出たら「許可」「OK」を選ぶ）</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--beige);border-radius:10px;padding:14px 16px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--grad);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div style="font-size:13px;color:var(--gray-mid);line-height:1.8;">チャット欄に <strong style="color:var(--black);">「こんにちは」</strong> と入力して送信 → 返事が返ってきたら設定完了</div>
+        </div>
+      </div>
+
+      <!-- Mac / Windows 別つまずきポイント -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div style="background:#F0F7FF;border:1px solid var(--accent-border);border-radius:12px;padding:16px 18px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;color:var(--accent-deep);margin-bottom:10px;text-transform:uppercase;">Mac のつまずきポイント</div>
+          <div style="font-size:12px;color:#1E40AF;line-height:1.9;">
+            ・「開発者ツールが必要」と表示される場合は <code style="background:#DBEAFE;padding:1px 6px;border-radius:4px;">xcode-select --install</code> を実行<br>
+            ・ファイルへのアクセス許可ダイアログ → 必ず「許可」を選ぶ<br>
+            ・動かない場合はアプリを一度終了して再起動
           </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
-            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
-            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">データ処理</strong><span style="color:var(--gray-mid);"> — Excel / CSV ファイルを読み込んで変換・分析・整形</span></div>
+        </div>
+        <div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:12px;padding:16px 18px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;color:#6D28D9;margin-bottom:10px;text-transform:uppercase;">Windows のつまずきポイント</div>
+          <div style="font-size:12px;color:#4C1D95;line-height:1.9;">
+            ・「Git をインストールしてください」と表示される場合は Q&amp;A タブに手順あり<br>
+            ・セキュリティソフトがブロックする場合は一時的に許可<br>
+            ・動かない場合はアプリを管理者として実行
           </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
-            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
-            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">ツール構築</strong><span style="color:var(--gray-mid);"> — あなたの仕事を自動化するスクリプトを作成して実行</span></div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--beige);border-radius:8px;">
-            <div style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;margin-top:7px;"></div>
-            <div style="font-size:13px;line-height:1.7;"><strong style="font-weight:500;">Webサイト作成</strong><span style="color:var(--gray-mid);"> — LP やポートフォリオをその場で構築</span></div>
-          </div>
+        </div>
+      </div>
+
+      <!-- 安心メッセージ -->
+      <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:16px 18px;margin-bottom:24px;display:flex;gap:10px;align-items:flex-start;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div style="font-size:13px;color:#166534;line-height:1.9;">
+          <strong>うまくいかなくても大丈夫です。</strong>キックオフ（5/27）でみんな一緒に確認するのでそこで解決できます。わからなくなったら Slack で気軽に質問してください。エラー画面のスクリーンショットを撮っておくとスムーズです。
         </div>
       </div>
 
@@ -5515,8 +5560,8 @@
       <div style="margin-bottom:24px;padding:16px 18px;background:var(--grad-soft);border:1px solid var(--orange-border);border-radius:10px;">
         <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.15em;color:var(--orange);margin-bottom:10px;text-transform:uppercase;">普通のチャットと何が違う？</div>
         <div style="font-size:13px;color:var(--gray-mid);line-height:1.9;">
-          <div style="margin-bottom:6px;"><strong style="color:var(--black);">普通のチャット</strong> → 回答をコピーして自分で貼り付ける。</div>
-          <div><strong style="color:var(--black);">Claude Code 機能</strong> → Claude が直接あなたの PC にファイルを作る。コピペ不要。「LP作って」と言えば HTML ファイルがデスクトップに出来上がる。</div>
+          <div style="margin-bottom:6px;"><strong style="color:var(--black);">普通のチャット（Claudeタブ）</strong> → 回答を自分でコピーして貼り付ける</div>
+          <div><strong style="color:var(--black);">Claude Code（Codeタブ）</strong> → Claude が直接あなたのPC にファイルを作る。「LP作って」と言えば HTML ファイルがデスクトップに出来上がる</div>
         </div>
       </div>
 
