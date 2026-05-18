@@ -16,10 +16,8 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Zen+Maru+Gothic:wght@500;700&family=DotGothic16&family=VT323&display=swap"></noscript>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
 <link rel="preload" href="images/bg-fv.webp" as="image" type="image/webp" fetchpriority="high">
-<!-- SP：ポートレートFV -->
-<link rel="preload" href="images/oosaka_fv2.webp" as="image" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
-<!-- PC：ランドスケープFV -->
-<link rel="preload" href="images/oosaka_fvpc.webp" as="image" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
+<!-- FVバナー（締め切り告知）-->
+<link rel="preload" href="images/ssimekirimasita.webp" as="image" type="image/webp" fetchpriority="high">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -41,6 +39,7 @@
     line-height: 1.8;
     background: var(--dark-bg);
     overflow-x: hidden;
+    padding-top: 36px; /* closed-topbar の高さ分 */
   }
 
   .font-en {
@@ -1687,6 +1686,63 @@
   .fv-proof,
   .fv-urgency { display: none !important; }
 
+  /* ===== 募集締め切り設定 ===== */
+  /* 申し込みボタン・中間CTA・urgency-noteを全て非表示 */
+  .cta-btn { display: none !important; }
+  .mid-cta { display: none !important; }
+  .urgency-note { display: none !important; }
+  .fv-micro { display: none !important; }
+
+  /* 募集終了メッセージ（CTAパネル代替） */
+  .closed-notice {
+    text-align: center;
+    padding: 28px 24px 32px;
+    background: #000514;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+  .closed-notice .closed-badge {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    padding: 5px 18px;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.6);
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+  .closed-notice .closed-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .closed-notice .closed-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* 最上部：固定締め切りバー */
+  .closed-topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 9999;
+    background: rgba(0,5,20,0.92);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    text-align: center;
+    padding: 9px 16px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.65);
+    pointer-events: none;
+  }
+
   /* パネル内日時・場所（PCのみ表示。スマホは画像に入っているため非表示） */
   .fv-panel-event {
     display: flex;
@@ -2512,9 +2568,9 @@
 
     /* ─── FV スマホ専用 ─── */
     .fv-hero-wrap {
-      /* スマホ：縦型画像（941x1672）を切り抜かず全体表示 */
+      /* バナー（横長 1672x941）をスマホでも全体表示 */
       height: auto;
-      aspect-ratio: 941 / 1672;
+      aspect-ratio: 1672 / 941;
       min-height: unset;
       background-size: cover;
       background-position: center center;
@@ -2543,10 +2599,10 @@
     .fv-catch-sub { font-size: 0.88rem; }
     .fv-title-date { font-size: 0.72rem; letter-spacing: 2px; margin-top: 8px; }
     .fv-title-band { padding: 8px 0 4px; }
-    /* スマホ：縦型画像はaspect-ratioで全体表示するのでcoverが等倍に */
+    /* スマホ：バナーは横長なのでcontainで全体表示 */
     .fv-hero-photo {
-      object-fit: cover;
-      object-position: center top;
+      object-fit: contain;
+      object-position: center center;
     }
     .fv-proof { gap: 6px; margin-bottom: 12px; flex-wrap: nowrap; justify-content: center; }
     .fv-proof span { font-size: 0.6rem; padding: 5px 8px; white-space: nowrap; }
@@ -4775,6 +4831,9 @@
 </head>
 <body>
 
+<!-- 募集締め切り：固定トップバー -->
+<div class="closed-topbar">RECRUITMENT CLOSED &nbsp;|&nbsp; 3期生の募集は締め切りました</div>
+
 <!-- GATE OPENING -->
 <div id="gate-opening">
   <div class="gate-bg"></div>
@@ -4836,22 +4895,15 @@
         <span class="fv-star" style="left:89%; animation-duration:11s; animation-delay:6.5s; width:4px;height:4px;"></span>
         <span class="fv-star" style="left:95%; animation-duration:13s; animation-delay:3.5s;"></span>
       </div>
-      <picture class="fv-hero-picture">
-        <source media="(min-width: 769px)" srcset="images/oosaka_fvpc.webp">
-        <img class="fv-hero-photo" src="images/oosaka_fv2.webp" alt="AI WORKSHOP in 大阪 2026.06.06">
-      </picture>
+      <img class="fv-hero-photo" src="images/ssimekirimasita.webp" alt="AIワークショップ 3期生 募集締め切り">
       <!-- イントロ用：衝撃波リング -->
       <div class="fv-shockwave" aria-hidden="true"></div>
     </div>
-    <!-- CTAパネル：画像の下に独立配置（黒背景） -->
-    <div class="fv-bottom-block">
-      <div class="fv-content">
-        <p class="fv-micro">
-          <span class="fv-urgency-dot"></span>
-          <span><strong>先着順・少人数限定</strong> / お席に限りがございます</span>
-        </p>
-        <a href="https://forms.gle/rTJyi6ogyVfroqtB8" class="cta-btn" target="_blank" rel="noopener">お申し込みはこちら</a>
-      </div>
+    <!-- 締め切りメッセージ -->
+    <div class="fv-bottom-block closed-notice">
+      <div class="closed-badge">CLOSED</div>
+      <div class="closed-title">3期生の募集は締め切りました</div>
+      <p class="closed-sub">次回開催は追ってご案内いたします。</p>
     </div>
   </div>
   <div class="fv-cut"></div>
