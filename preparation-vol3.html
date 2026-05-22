@@ -4290,7 +4290,7 @@
             <img src="images/yumi.webp" alt="ゆみ" style="width:100%;height:100%;object-fit:cover;" onerror="this.onerror=null;this.src='images/yumi.png'">
           </div>
           <div>
-            <div style="font-size:16px;font-weight:500;margin-bottom:2px;">ゆみ</div>
+            <div style="font-size:16px;font-weight:500;margin-bottom:2px;">ゆみ <span style="font-size:11px;color:var(--gray-mid);font-weight:400;">（岡田由美）</span></div>
             <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--orange);letter-spacing:0.1em;margin-bottom:8px;">IN-HOUSE DESIGNER / 22 YEARS</div>
             <a href="https://www.instagram.com/yumioka_design/" target="_blank" rel="noopener" class="instagram-link">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -4307,7 +4307,7 @@
             <img src="images/chikano.webp" alt="ちゃかなん" style="width:100%;height:100%;object-fit:cover;" onerror="this.onerror=null;this.src='images/chikano.png'">
           </div>
           <div>
-            <div style="font-size:16px;font-weight:500;margin-bottom:2px;">ちゃかなん</div>
+            <div style="font-size:16px;font-weight:500;margin-bottom:2px;">ちゃかなん <span style="font-size:11px;color:var(--gray-mid);font-weight:400;">（舩田和未）</span></div>
             <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--orange);letter-spacing:0.1em;margin-bottom:8px;">CREATIVE DIRECTOR / 20 YEARS</div>
             <a href="https://www.instagram.com/chakana_design/" target="_blank" rel="noopener" class="instagram-link">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -4324,7 +4324,7 @@
             <img src="images/aya.webp" alt="あや" style="width:100%;height:100%;object-fit:cover;" onerror="this.onerror=null;this.src='images/aya.png'">
           </div>
           <div>
-            <div style="font-size:16px;font-weight:500;margin-bottom:2px;">あや</div>
+            <div style="font-size:16px;font-weight:500;margin-bottom:2px;">あや <span style="font-size:11px;color:var(--gray-mid);font-weight:400;">（新頭綾香）</span></div>
             <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:var(--orange);letter-spacing:0.1em;margin-bottom:8px;">WEB DESIGNER / YOUNGEST MEMBER</div>
             <a href="https://www.instagram.com/shindou_ayaka_/" target="_blank" rel="noopener" class="instagram-link">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -11068,12 +11068,31 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
     /* ─── 参加メンバーのデータソース ───
        ここに参加者を追加すると、チーム一覧と個人別アドバイスの両方に自動反映されます。
-       例：{ name: '〇〇さん', advice: 'あなたへのアドバイス本文…' }
+       team: 'A' / 'B' でチーム指定。'advisor' でアドバイザー扱い。
     */
     const PARTICIPANTS = [
-      // 参加メンバーが決まったら、ここに追加してください
-      // { name: '参加者A さん', advice: 'ここに私たちからのアドバイスを記入してください。' },
+      // ─── チームA ───
+      { name: '尾野さおり', team: 'A', ig: 'saraha_style', job: 'ポーセラーツ・絵付け講師', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '三宅純子', team: 'A', ig: 'sumiko_lattenail', job: '動画編集者', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '庄子真穂', team: 'A', ig: 'kakky_shortmovie', job: 'ショート動画プロデュース', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '室橋夏絵', team: 'A', ig: 'natsue_rawsweets', job: 'ロースイーツ講座', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '原のどか', team: 'A', ig: '8nodoka8', job: 'イメージコンサルタント', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '高木友紀', team: 'A', ig: 'smilemusicschool', job: 'ピアノ講師・Googleマップ', advice: '（私たちからのアドバイスをここに記入）' },
+      // ─── チームB ───
+      { name: '玉腰由佳', team: 'B', ig: '_yukainsta', job: '女性起業家プロモサポート', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '杉山きえ', team: 'B', ig: 'kie.s_parenting', job: '子育てコーチング', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '山田佳代', team: 'B', ig: 'kayo.yamada307', job: 'ライフコーチ・法人研修', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '和田あゆみ', team: 'B', ig: 'ayumi_s_design', job: '建築士・インスタ運用・デザイン', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '萩原愛子', team: 'B', ig: 'aiko.babymassage', job: 'ベビーマッサージ・講師育成', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '平野なな', team: 'B', ig: 'yours.7ms', job: 'SNS運用代行', advice: '（私たちからのアドバイスをここに記入）' },
     ];
+
+    // Instagram公開アイコンをunavatar.io経由で取得（IDから自動生成）
+    PARTICIPANTS.forEach(function(p) {
+      if (p.ig && !p.icon) {
+        p.icon = 'https://unavatar.io/instagram/' + p.ig;
+      }
+    });
 
     (function() {
       function escapeHtml(s) {
@@ -11097,16 +11116,50 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
             '</div>';
           return;
         }
-        el.innerHTML =
-          '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:8px;">' +
-          PARTICIPANTS.map(function(p) {
-            var initial = (p.name || '').replace(/さん$/,'').trim().charAt(0) || '✦';
-            return '<div class="card" style="margin-bottom:0;padding:18px 20px;display:flex;align-items:center;gap:14px;">' +
-              '<div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#BAE6FD,#3B82F6);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:\'Zen Maru Gothic\',sans-serif;font-size:18px;font-weight:700;">' + escapeHtml(initial) + '</div>' +
-              '<div style="flex:1;min-width:0;font-size:14px;font-weight:600;color:var(--black);">' + escapeHtml(p.name) + '</div>' +
-            '</div>';
-          }).join('') +
+
+        function memberCard(p) {
+          var initial = (p.name || '').replace(/さん$/,'').trim().charAt(0) || '✦';
+          var iconHtml;
+          if (p.icon) {
+            iconHtml = '<img src="' + escapeHtml(p.icon) + '" alt="' + escapeHtml(p.name) + '" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex-shrink:0;background:linear-gradient(135deg,#BAE6FD,#3B82F6);" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">' +
+              '<div style="display:none;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#BAE6FD,#3B82F6);color:#fff;align-items:center;justify-content:center;flex-shrink:0;font-family:\'Zen Maru Gothic\',sans-serif;font-size:20px;font-weight:700;">' + escapeHtml(initial) + '</div>';
+          } else {
+            iconHtml = '<div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#BAE6FD,#3B82F6);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:\'Zen Maru Gothic\',sans-serif;font-size:20px;font-weight:700;">' + escapeHtml(initial) + '</div>';
+          }
+          var igHtml = p.ig ?
+            '<a href="https://www.instagram.com/' + escapeHtml(p.ig) + '/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#C13584;text-decoration:none;margin-top:3px;">' +
+              '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>' +
+              '@' + escapeHtml(p.ig) +
+            '</a>' : '';
+          return '<div class="card" style="margin-bottom:0;padding:16px 18px;display:flex;align-items:center;gap:14px;">' +
+            iconHtml +
+            '<div style="flex:1;min-width:0;">' +
+              '<div style="font-size:14px;font-weight:600;color:var(--black);line-height:1.4;">' + escapeHtml(p.name) + '</div>' +
+              (p.job ? '<div style="font-size:11px;color:var(--gray-mid);margin-top:2px;line-height:1.5;">' + escapeHtml(p.job) + '</div>' : '') +
+              igHtml +
+            '</div>' +
           '</div>';
+        }
+
+        var teamA = PARTICIPANTS.filter(function(p){ return p.team === 'A'; });
+        var teamB = PARTICIPANTS.filter(function(p){ return p.team === 'B'; });
+
+        function teamSection(title, color, members) {
+          if (members.length === 0) return '';
+          return '<div style="margin-bottom:32px;">' +
+            '<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid ' + color + ';">' +
+              '<span style="font-family:\'DM Sans\',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.2em;color:' + color + ';text-transform:uppercase;">' + title + '</span>' +
+              '<span style="font-size:11px;color:var(--gray-lt);margin-left:auto;">' + members.length + '人</span>' +
+            '</div>' +
+            '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">' +
+              members.map(memberCard).join('') +
+            '</div>' +
+          '</div>';
+        }
+
+        el.innerHTML =
+          teamSection('Team A', '#EA580C', teamA) +
+          teamSection('Team B', '#2563EB', teamB);
       }
 
       function renderAdviceList() {
@@ -11121,13 +11174,27 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
             '</div>';
           return;
         }
-        el.innerHTML = PARTICIPANTS.map(function(p, i) {
-          var num = String(i + 1).padStart(2, '0');
+        function adviceItem(p, num) {
           var advice = p.advice || '（私たちからのアドバイスをここに記入）';
+          var teamBadge = '';
+          if (p.team === 'A') {
+            teamBadge = '<span style="font-family:\'DM Sans\',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;color:#EA580C;background:#FFF7ED;padding:2px 8px;border-radius:4px;margin-right:8px;">Team A</span>';
+          } else if (p.team === 'B') {
+            teamBadge = '<span style="font-family:\'DM Sans\',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;color:#2563EB;background:#EFF6FF;padding:2px 8px;border-radius:4px;margin-right:8px;">Team B</span>';
+          } else if (p.team === 'advisor') {
+            teamBadge = '<span style="font-family:\'DM Sans\',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;color:#16A34A;background:#F0FDF4;padding:2px 8px;border-radius:4px;margin-right:8px;">Advisor</span>';
+          }
+          var igLink = p.ig ?
+            '<a href="https://www.instagram.com/' + escapeHtml(p.ig) + '/" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#C13584;text-decoration:none;margin-left:auto;margin-right:12px;">' +
+              '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>' +
+              '@' + escapeHtml(p.ig) +
+            '</a>' : '';
           return '<details class="advice-item">' +
             '<summary>' +
-              '<span class="advice-num">' + num + '</span>' +
+              '<span class="advice-num">' + String(num).padStart(2, '0') + '</span>' +
+              teamBadge +
               '<span class="advice-name">' + escapeHtml(p.name) + '</span>' +
+              igLink +
               '<span class="advice-toggle"></span>' +
             '</summary>' +
             '<div class="advice-body">' +
@@ -11137,7 +11204,22 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
               '</div>' +
             '</div>' +
           '</details>';
-        }).join('');
+        }
+
+        var counter = 0;
+        var html = '';
+        var teamA = PARTICIPANTS.filter(function(p){ return p.team === 'A'; });
+        var teamB = PARTICIPANTS.filter(function(p){ return p.team === 'B'; });
+
+        if (teamA.length) {
+          html += '<div style="font-family:\'DM Sans\',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.2em;color:#EA580C;text-transform:uppercase;margin:8px 0 10px;">Team A</div>';
+          teamA.forEach(function(p){ counter++; html += adviceItem(p, counter); });
+        }
+        if (teamB.length) {
+          html += '<div style="font-family:\'DM Sans\',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.2em;color:#2563EB;text-transform:uppercase;margin:24px 0 10px;">Team B</div>';
+          teamB.forEach(function(p){ counter++; html += adviceItem(p, counter); });
+        }
+        el.innerHTML = html;
       }
 
       document.addEventListener('DOMContentLoaded', function() {
