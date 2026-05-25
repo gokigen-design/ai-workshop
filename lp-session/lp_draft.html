@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIスライド生成セミナー | デザイナーが教える90分</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #6b5b95;
+  --accent-light: #ede8f5;
+  --text: #1e1e1e;
+  --text-sub: #6a6a6a;
+  --bg: #faf8f5;
+  --bg-dark: #2a2a2a;
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --font-main: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+img { width: 100%; max-width: 100%; display: block; }
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 48px 0;
+}
+
+@media (min-width: 768px) {
+  section { padding: 80px 0; }
+}
+
+/* ─── セクションラベル ─── */
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* ─── 見出し ─── */
+h2.section-title {
+  font-size: clamp(22px, 5vw, 32px);
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: clamp(17px, 4vw, 22px);
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+/* ─── FV ─── */
+.fv {
+  background: var(--bg-dark);
+  color: var(--white);
+  padding: 48px 0;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .fv { padding: 80px 0; min-height: 90vh; }
+}
+
+.fv-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .fv-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+}
+
+.fv-text { flex: 6; }
+.fv-image { flex: 4; }
+
+.fv-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 16px;
+}
+
+.fv h1 {
+  font-size: clamp(28px, 7vw, 48px);
+  line-height: 1.3;
+  font-weight: 900;
+  margin-bottom: 24px;
+}
+
+.fv-sub {
+  font-size: clamp(15px, 2.5vw, 18px);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.85; }
+
+@media (max-width: 767px) {
+  .btn-primary { width: 100%; text-align: center; padding: 16px 24px; }
+}
+
+.fv-image-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 14px;
+  border: 1px dashed rgba(255,255,255,0.2);
+}
+
+/* ─── お悩み ─── */
+.mondai { background: var(--white); }
+
+.mondai-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .mondai-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+
+.mondai-card {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.mondai-card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.mondai-card p::before {
+  content: "「";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.mondai-card p::after {
+  content: "」";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ─── 解決策 ─── */
+.solution {
+  background: var(--accent);
+  color: var(--white);
+  text-align: center;
+}
+
+.solution .section-title { color: var(--white); }
+
+.solution p {
+  font-size: clamp(15px, 2.5vw, 18px);
+  line-height: 1.8;
+  max-width: 640px;
+  margin: 0 auto;
+  color: rgba(255,255,255,0.9);
+}
+
+/* ─── ビフォーアフター ─── */
+.befa-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .befa-grid { flex-direction: row; gap: 24px; align-items: stretch; }
+}
+
+.befa-card {
+  flex: 1;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.befa-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.befa-card.before .befa-label { color: #9ca3af; }
+.befa-card.after .befa-label { color: var(--accent); }
+
+.befa-card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+/* ─── サービス内容 ─── */
+.service { background: var(--white); }
+
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .service-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+
+.service-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--accent-light);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--accent);
+}
+
+.service-item h3 { font-size: 17px; }
+.service-item p { font-size: 15px; color: var(--text-sub); line-height: 1.7; }
+
+/* ─── プロフィール ─── */
+.profile { background: var(--bg-dark); color: var(--white); }
+.profile .section-label { color: var(--accent-light); }
+.profile .section-title { color: var(--white); }
+
+.profile-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .profile-inner { flex-direction: row; gap: 48px; align-items: flex-start; }
+}
+
+.profile-image { flex: 4; }
+
+.profile-image-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 14px;
+  border: 1px dashed rgba(255,255,255,0.2);
+  max-width: 320px;
+}
+
+.profile-text { flex: 6; }
+
+.profile-name {
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.profile-title {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 24px;
+}
+
+.profile-text p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 16px;
+}
+
+.profile-achievement {
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-top: 24px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+}
+
+/* ─── 選ばれる理由 ─── */
+.reasons { background: var(--white); }
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+
+.reason-card {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.reason-number {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--accent-light);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.reason-card h3 { font-size: 17px; margin-bottom: 12px; }
+.reason-card p { font-size: 15px; line-height: 1.7; color: var(--text-sub); }
+
+/* ─── FAQ ─── */
+.faq { background: var(--bg); }
+
+.faq-list {
+  max-width: 720px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.faq-q {
+  padding: 20px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.faq-q::before {
+  content: "Q";
+  color: var(--accent);
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.faq-a {
+  padding: 0 24px 20px 24px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-sub);
+  padding-left: 48px;
+}
+
+/* ─── 料金 ─── */
+.price { background: var(--white); text-align: center; }
+
+.price-card {
+  max-width: 480px;
+  margin: 40px auto 0;
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+  border-top: 4px solid var(--accent);
+}
+
+.price-amount {
+  font-size: clamp(36px, 8vw, 56px);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.price-tax {
+  font-size: 14px;
+  color: var(--text-sub);
+  margin-bottom: 24px;
+}
+
+.price-includes {
+  text-align: left;
+  font-size: 15px;
+  line-height: 2;
+  color: var(--text-sub);
+  margin-bottom: 32px;
+}
+
+.price-includes li {
+  list-style: none;
+  padding-left: 0;
+}
+
+.price-includes li::before {
+  content: "── ";
+  color: var(--accent);
+}
+
+/* ─── CTA ─── */
+.cta-section {
+  background: var(--accent);
+  text-align: center;
+  color: var(--white);
+}
+
+.cta-section .section-title { color: var(--white); }
+
+.cta-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.btn-cta {
+  display: inline-block;
+  background: var(--white);
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 900;
+  padding: 20px 56px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.btn-cta:hover { opacity: 0.9; }
+
+@media (max-width: 767px) {
+  .btn-cta { width: 100%; text-align: center; padding: 20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── FV ─── -->
+<section class="fv">
+  <div class="container">
+    <div class="fv-inner">
+      <div class="fv-text">
+        <p class="fv-label">AI Slide Seminar</p>
+        <h1>スライド生成に困っている<br>女性起業家のための、<br>90分セミナー</h1>
+        <p class="fv-sub">
+          デザイナーが現役で使っているノウハウをそのままお届け。
+          AIを使って、構成もデザインもまるっとカバーできる
+          スライドの考え方がわかります。
+        </p>
+        <a href="#お申し込み" class="btn-primary">申し込みフォームに進む（5,000円）</a>
+      </div>
+      <div class="fv-image">
+        <div class="fv-image-placeholder">
+          ここに講師または<br>スライド完成イメージの写真を入れてください
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── お悩み ─── -->
+<section class="mondai">
+  <div class="container">
+    <p class="section-label">よくある悩み</p>
+    <h2 class="section-title">こんな気持ち、ありませんか？</h2>
+    <div class="mondai-grid">
+      <div class="mondai-card">
+        <p>作るのは楽しいんだけど、時間がかかりすぎちゃうんだよな。毎回考えなきゃいけなくて、もうちょっと効率化したいんだよな</p>
+      </div>
+      <div class="mondai-card">
+        <p>何を書いたらいいか、どういう順で書いたらいいかよくわからないけど、これでいいのかな</p>
+      </div>
+      <div class="mondai-card">
+        <p>なんか、これで「ダサい」って思われてないか不安で、躊躇しちゃうことがあるんだよね</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 解決策 ─── -->
+<section class="solution">
+  <div class="container" style="text-align:center">
+    <p class="section-label" style="color:rgba(255,255,255,0.6)">このセミナーで解決できること</p>
+    <h2 class="section-title" style="color:#fff;max-width:640px;margin:0 auto 24px">
+      デザイナーがAIで実際にクライアント案件を作っている現場のノウハウで、「何を書くか」から「どう見せるか」まで、丸ごと持ち帰れます
+    </h2>
+  </div>
+</section>
+
+<!-- ─── ビフォーアフター ─── -->
+<section>
+  <div class="container">
+    <p class="section-label">受講前と後の変化</p>
+    <h2 class="section-title">Before / After</h2>
+    <div class="befa-grid">
+      <div class="befa-card before">
+        <p class="befa-label">BEFORE</p>
+        <p>
+          スライドを作ろうとするたびに内容から悩み、図解に合うものも見つからず、1週間も頭を抱えてしまう。Canvaのテンプレート止まりで、なかなか前に進めない。
+        </p>
+      </div>
+      <div class="befa-card after" style="border-top: 4px solid var(--accent);">
+        <p class="befa-label">AFTER</p>
+        <p>
+          迷いなくスライドを生成できて、叩きが1時間で完成。時間も手間も大幅に減り、デザインも整っている。受け取った人から「このプレゼント嬉しい」と言われるようになる。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── サービス内容 ─── -->
+<section class="service">
+  <div class="container">
+    <p class="section-label">セミナー内容</p>
+    <h2 class="section-title">受け取れるもの</h2>
+    <div class="service-grid">
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        </div>
+        <h3>オンラインセミナー（60〜90分）</h3>
+        <p>当日参加できなくても安心。アーカイブ動画（1ヶ月）付き。わからなかった部分を何度でも見返せます。</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        </div>
+        <h3>当日のスライド（PDF）</h3>
+        <p>「あそこ何だっけ」とさっと確認できる。じっくり読み込みたいときにも使えます。</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <h3>プロンプト特典</h3>
+        <p>AIへの聞き方がわからなくても、順序通りに使うだけでスライド生成をすぐに始められます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── プロフィール ─── -->
+<section class="profile">
+  <div class="container">
+    <p class="section-label">講師紹介</p>
+    <h2 class="section-title">なぜこのセミナーをやるのか</h2>
+    <div class="profile-inner">
+      <div class="profile-image">
+        <div class="profile-image-placeholder">
+          ここに講師の写真を入れてください
+        </div>
+      </div>
+      <div class="profile-text">
+        <p class="profile-name">ここに名前を入れてください</p>
+        <p class="profile-title">デザイナー / 女性起業家向けLPデザイン・AI活用サポート</p>
+        <p>
+          私自身、以前はスライド1枚に何日もかけていました。ChatGPTと壁打ちして、コピペして、図解をネットで探して——それがClaude CodeとChatGPTの組み合わせで、1日で40枚近く作れるようになりました。
+        </p>
+        <p>
+          デザイナーとして、SNSマーケティングも学んできたから、「綺麗なだけ」ではなく「伝わって喜ばれる」スライドの作り方をお伝えできます。
+        </p>
+        <div class="profile-achievement">
+          チラシ添削セミナー・Canva名刺セミナーなど、スライド・デザイン系セミナーの実績あり
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 選ばれる理由 ─── -->
+<section class="reasons">
+  <div class="container">
+    <p class="section-label">選ばれる理由</p>
+    <h2 class="section-title">他のAI講座と違う3つのこと</h2>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <p class="reason-number">01</p>
+        <h3>構成から考えるプロンプトの思考法ごと持ち帰れる</h3>
+        <p>「表面的なAI活用」ではなく、どう考えてスライドを作るかというプロセスごと学べます。</p>
+      </div>
+      <div class="reason-card">
+        <p class="reason-number">02</p>
+        <h3>デザイナーが教えるから、見た目が「整って」いる</h3>
+        <p>受け取った人が「綺麗・分かりやすい」と感じるスライドの作り方を、現場の感覚でお伝えします。</p>
+      </div>
+      <div class="reason-card">
+        <p class="reason-number">03</p>
+        <h3>「どんなプレゼントが喜ばれるか」の視点まで教えられる</h3>
+        <p>SNSマーケティングも学んでいるから、受け取る相手が嬉しくなるスライドの設計ごと教えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq">
+  <div class="container">
+    <p class="section-label">よくある質問</p>
+    <h2 class="section-title" style="text-align:center">FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <p class="faq-q">料金はいくらですか？</p>
+        <p class="faq-a">5,000円です。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">AIに苦手意識がありますが、大丈夫ですか？</p>
+        <p class="faq-a">はい、大丈夫です。私自身もすぐに使い始められました。初歩的な操作から順を追って説明します。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">パソコン初心者でも大丈夫ですか？</p>
+        <p class="faq-a">はい。私もブラインドタッチができず、コピー&ペーストから始めた初心者でした。今ではできているので安心してください。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">スライドに何を書けばいいかまだ決まっていませんが大丈夫ですか？</p>
+        <p class="faq-a">大丈夫です。Claudeとの壁打ちで「何をどの順番で伝えるか」を一緒に考える方法をお伝えします。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">色やデザインの雰囲気がわかりません。</p>
+        <p class="faq-a">色や雰囲気の選び方の基準もきちんとお伝えします。センスがなくても大丈夫です。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">本当にこの時間内に理解して実行できますか？</p>
+        <p class="faq-a">はい。セミナー後すぐに動き始められるよう、プロンプト特典もお渡しします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 料金 ─── -->
+<section class="price">
+  <div class="container">
+    <p class="section-label">料金</p>
+    <h2 class="section-title">セミナー参加費</h2>
+    <div class="price-card">
+      <p class="price-amount">5,000<span style="font-size:24px">円</span></p>
+      <p class="price-tax">税込 / 1回</p>
+      <ul class="price-includes">
+        <li>オンラインセミナー（60〜90分）</li>
+        <li>アーカイブ動画（1ヶ月）</li>
+        <li>当日スライドPDF</li>
+        <li>プロンプト特典</li>
+      </ul>
+      <a href="#お申し込み" class="btn-primary" style="width:100%;text-align:center;display:block">申し込みフォームに進む</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section" id="お申し込み">
+  <div class="container">
+    <p class="section-label" style="color:rgba(255,255,255,0.6)">お申し込み</p>
+    <h2 class="section-title">あなたのスライドとAIレベルが<br>一気に上がる90分</h2>
+    <p class="cta-sub">
+      申し込みフォームに必要事項を入力後、<br>銀行振込にてお支払いください。
+    </p>
+    <a href="ここに申し込みフォームのURLを入れてください" class="btn-cta">申し込みフォームに進む（5,000円）</a>
+  </div>
+</section>
+
+</body>
+</html>

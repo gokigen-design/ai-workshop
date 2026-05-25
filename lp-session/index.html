@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LP壁打ちセッション まとめ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #6b5b95;
+  --accent-light: #ede8f5;
+  --text: #1e1e1e;
+  --text-sub: #6a6a6a;
+  --bg: #faf8f5;
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.8;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+section { padding: 48px 0; border-bottom: 1px solid #ebe8e3; }
+section:last-child { border-bottom: none; }
+.label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+h1 { font-size: clamp(24px, 5vw, 36px); line-height: 1.3; font-weight: 900; margin-bottom: 16px; }
+h2 { font-size: clamp(18px, 4vw, 24px); line-height: 1.4; font-weight: 700; margin-bottom: 16px; }
+h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+p { margin-bottom: 12px; }
+
+/* ヘッダー */
+.hero {
+  background: var(--accent);
+  color: white;
+  padding: 48px 0;
+}
+.hero .label { color: rgba(255,255,255,0.6); }
+.hero h1 { color: white; }
+.hero p { color: rgba(255,255,255,0.85); margin-bottom: 0; }
+.stats {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.stat {
+  background: rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: 12px 20px;
+}
+.stat-num { font-size: 28px; font-weight: 900; line-height: 1; }
+.stat-label { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+/* 概要 */
+.overview-box {
+  background: var(--accent-light);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  border-left: 4px solid var(--accent);
+}
+
+/* Q&A */
+.step-block {
+  margin-bottom: 32px;
+}
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.step-badge {
+  background: var(--accent);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+.qa-item {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+.qa-q {
+  background: var(--accent-light);
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.qa-q::before { content: "Q"; color: var(--accent); font-weight: 900; flex-shrink: 0; }
+.qa-a {
+  padding: 14px 20px 14px 44px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  border-left: none;
+}
+.qa-a::before {
+  content: "A  ";
+  color: var(--text-sub);
+  font-weight: 700;
+  margin-left: -24px;
+  margin-right: 8px;
+}
+.answer-quote {
+  background: var(--bg);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 16px;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  font-style: italic;
+}
+.completed {
+  display: inline-block;
+  background: #d1fae5;
+  color: #065f46;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: 8px;
+}
+
+/* LP プレビュー */
+.lp-preview {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+.lp-preview-header {
+  background: #2a2a2a;
+  padding: 12px 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.red { background: #ff5f57; }
+.dot.yellow { background: #febc2e; }
+.dot.green { background: #28c840; }
+.lp-url { color: rgba(255,255,255,0.5); font-size: 13px; margin-left: 8px; }
+.lp-preview-body {
+  padding: 32px;
+  background: var(--bg);
+}
+
+/* ファイルリンク */
+.file-link-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-decoration: none;
+  color: var(--text);
+  border: 2px solid transparent;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.file-link-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(107,91,149,0.15);
+}
+.file-link-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+.file-link-body { flex: 1; }
+.file-link-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.file-link-desc { font-size: 13px; color: var(--text-sub); margin: 0; line-height: 1.6; }
+.file-link-arrow {
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* フロー図 */
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.flow-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.flow-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.flow-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.flow-connector {
+  width: 2px;
+  height: 32px;
+  background: var(--accent-light);
+  margin: 4px 0;
+}
+.flow-content {
+  padding-top: 4px;
+  padding-bottom: 20px;
+}
+.flow-content h3 { margin-bottom: 4px; font-size: 16px; }
+.flow-content p { font-size: 14px; color: var(--text-sub); margin: 0; }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<section class="hero">
+  <div class="container">
+    <p class="label">AIリーダーキャンプ ワークショップ資料</p>
+    <h1>LP壁打ちセッション<br>実録レポート</h1>
+    <p>「Claudeと対話しながら、自分のサービスのLPコピーを自力で作る」という壁打ちプロンプトのテストセッション全記録です。</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">14<span style="font-size:16px">STEP</span></div>
+        <div class="stat-label">質問ステップ数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">約<span style="font-size:16px"> </span>30〜45<span style="font-size:16px">分</span></div>
+        <div class="stat-label">実際の壁打き時間（待機時間除く）</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">全項目</div>
+        <div class="stat-label">コピー完成</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 経緯と議論 -->
+<section style="background:var(--white)">
+  <div class="container">
+    <p class="label">作った経緯と背景</p>
+    <h2>なぜこれを作ったか</h2>
+    <div class="overview-box" style="margin-bottom:32px">
+      <p>今回、LPの構成を作るプロンプトを、セミナーのめぐみさんの商品設計プロンプトを元に考えました。Claudeと対話することで、LPの中身が作られていく仕組みです。</p>
+      <p>最初に「あなたの活動やサービスは何ですか？」という質問から始まり、LPに必要な見出しを抽出します。例えば、ビフォーアフターや実際の流れを入れるなど、講座に必要な項目を洗い出したうえで、その内容をClaudeと対話しながら各項目を3回ほど深掘りしてブラッシュアップしていきます。</p>
+      <p style="margin-bottom:0">今回は私が自分のフロント商品として考えている「スライド作成講座」のLPを作る想定で内容を埋めました。最後にその構成案と、元々私たちが作っていた「垢抜けるプロンプト（MDファイル）」を組み合わせて出力したのが、このページに載せているLPです。</p>
+    </div>
+
+    <h2>完成して気づいたこと</h2>
+    <p style="margin-bottom:24px">実際にどのようなスライドが生成できるかといったビフォーアフターなど、視覚的に訴求できる部分が足りないと気づきました。そのため、最初のステップで構成案を出す際に「モデリング先」を入力し、自分に足りない要素をその段階で判断して追加してもらう流れを組みました。これにより、必要な構成と内容をClaudeとの対話で引き出せるようになったかと思います。</p>
+
+    <div style="background:#fff8e1;border-radius:var(--radius-lg);padding:28px;border-left:4px solid #f59e0b">
+      <p style="font-weight:700;font-size:17px;margin-bottom:20px">皆さんの意見を聞かせてください：今後の進め方について</p>
+      <p style="font-size:15px;color:var(--text-sub);margin-bottom:24px">以下の2つのやり方が考えられます。どちらが良いか、またはどう組み合わせるかをぜひ議論させてください。</p>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div style="background:var(--white);border-radius:var(--radius-lg);padding:24px;border-top:4px solid #6b5b95">
+          <p style="font-size:11px;letter-spacing:0.1em;color:#6b5b95;font-weight:700;margin-bottom:8px">方向性 1</p>
+          <h3 style="margin-bottom:12px">デザインMDファイルをさらに磨き上げる</h3>
+          <p style="font-size:15px;color:var(--text-sub);margin:0">デザイン用のMDファイルをより洗練させ、構成案とあわせて出力されたものを自分でさらに微調整していく方法。今すぐ使えて、指示を育てるほど品質が上がっていく。</p>
+        </div>
+
+        <div style="background:var(--white);border-radius:var(--radius-lg);padding:24px;border-top:4px solid #059669">
+          <p style="font-size:11px;letter-spacing:0.1em;color:#059669;font-weight:700;margin-bottom:8px">方向性 2</p>
+          <h3 style="margin-bottom:12px">セクションごとにテンプレートからデザインを選ぶ</h3>
+          <p style="font-size:15px;color:var(--text-sub);margin:0">構成ができた後、各セクションに当てはまるデザインをテンプレートの中から選んでカスタマイズし、組み合わせていく方法。ペライチのような感覚で使え、AI臭さがゼロになる。実装に時間がかかる。</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 概要 -->
+<section>
+  <div class="container">
+    <p class="label">このセッションについて</p>
+    <h2>何をやったか</h2>
+    <div class="overview-box">
+      <p>Claude（AI）が壁打ち相手として、参加者に1問ずつ質問を投げかけます。参加者は自分の言葉で答えるだけ。Claudeがコピーを代わりに書くことはなく、「なぜその言葉？」「もっとお客様の言葉に近づけると？」と問い返しながら、参加者自身がより刺さるコピーを引き出していきます。</p>
+      <p style="margin-bottom:0">全STEPが終わると、LPに必要なコピーが一覧で出力されます。そのコピーとデザインルール（デザインMD）をClaudeに渡すと、実際のLPのHTMLが生成されます。</p>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3>全体の流れ</h3>
+      <div class="flow" style="margin-top:16px">
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">1</div><div class="flow-connector"></div></div>
+          <div class="flow-content"><h3>壁打きプロンプトをClaudeに貼る</h3><p>Claude.ai または Claude Code に貼り付けて送信</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">2</div><div class="flow-connector"></div></div>
+          <div class="flow-content"><h3>Claudeが1問ずつ質問してくる</h3><p>STEP 0〜14、自分の言葉で答えるだけ（約○○分）</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">3</div><div class="flow-connector"></div></div>
+          <div class="flow-content"><h3>LPコピーが一覧で出力される</h3><p>FV・お悩み・プロフィール・FAQ・CTAなど全セクション分</p></div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-line"><div class="flow-dot">4</div></div>
+          <div class="flow-content"><h3>デザインMD + コピーをClaudeに渡してLP生成</h3><p>HTML形式のLPが生成される → GitHub Pagesにデプロイ</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Q&Aセッション全記録 -->
+<section>
+  <div class="container">
+    <p class="label">壁打きセッション全記録</p>
+    <h2>質問と回答の流れ</h2>
+
+    <!-- STEP 0 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 0</span>
+        <h3>サービス診断（どのセクションが必要かを決める）</h3>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">あなたの肩書きを教えてください</p>
+        <p class="qa-a">デザイナー</p>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">今回このLPで売りたいサービスの形を教えてください</p>
+        <p class="qa-a">スライド生成をする90分のオンラインセミナー</p>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">価格帯を教えてください</p>
+        <p class="qa-a">5,000円（〜1万円）</p>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">LPを見た人に、最終的にどんな行動をとってほしいですか？</p>
+        <p class="qa-a">セミナーに直接申し込んでほしい</p>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">お客様はどこからこのLPにたどり着きますか？またCTAボタンを押したらどこに進みますか？</p>
+        <p class="qa-a">インスタストーリーズ→LINE登録→LPを送付→申込 / または インスタ広告→LP→申込</p>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">これまでにサービスを受けてもらったお客様はいますか？声や感想はありますか？</p>
+        <p class="qa-a">スライドセミナーは初めて。チラシ添削・Canva名刺セミナーの実績はある</p>
+      </div>
+      <div style="margin-top:16px;background:var(--white);border-radius:var(--radius-lg);padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.04)">
+        <p style="font-size:14px;font-weight:700;margin-bottom:8px">診断結果</p>
+        <p style="font-size:14px;color:var(--text-sub);margin:0">必須：FV・お悩み・解決策・サービス内容・プロフィール・選ばれる理由・料金・CTA<br>あると効果的：ビフォーアフター・FAQ・講師実績<br>今回なくてもOK：お客様の声・申し込みの流れ・特典セクション</p>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 1</span>
+        <h3>サービスの核心を1文で言う</h3>
+      </div>
+      <p style="font-size:14px;color:var(--text-sub);margin-bottom:12px">3往復で磨き上げ → 完成</p>
+      <div class="qa-item">
+        <p class="qa-q">あなたのサービスを、まだあなたのことを知らない人に向けて1文で説明してください</p>
+        <p class="qa-a">（最終的に完成した1文）</p>
+      </div>
+      <div class="answer-quote">
+        スライド生成に困っている女性起業家さんに向けて、デザイナーが現役で使っているノウハウをそのままお届け。AIを使って、構成もデザインもまるっとカバーできるスライドの考え方がわかるセミナー。
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 2</span>
+        <h3>理想のお客様を1人に絞る</h3>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">あなたのサービスを最も必要としている人を1人だけ頭に思い浮かべてください。年代・職業・今の悩み・認知のきっかけを教えてください</p>
+        <p class="qa-a">30代・イメージコンサルタント。スライドの内容・デザイン・画像探しに時間がかかる。インスタ広告や上位層のフォロワーの発信から知る</p>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">その人は今、どんな気持ちで毎日を過ごしていそうですか？</p>
+        <p class="qa-a">模索しながら手探りで作っている。作ること自体は楽しいが、時間がかかってダサいかなと不安になる。渡した後も「受け取ってもらえるかな」と心配になる</p>
+      </div>
+      <div class="qa-item">
+        <p class="qa-q">その人は今、どんな言葉で悩みを口にしていそうですか？実際に使いそうな言葉で</p>
+        <p class="qa-a"></p>
+      </div>
+      <div class="answer-quote">
+        「最近頑張ってスライドやプレゼン資料を作っているんだけど、なかなか時間がかかってしまって大変なんだよね。最近のAIとかでもう少しうまく効率化できたりしないかな」<br><br>
+        「スライドを作ろうとしても何を書けばいいか迷ってしまって、いつも構成案を探すのに時間がかかるんだよね」
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 3</span>
+        <h3>お悩みを3つ言語化する（最重要パート）</h3>
+      </div>
+      <p style="font-size:14px;color:var(--text-sub);margin-bottom:12px">お客様が実際に口にしそうな言葉で書く</p>
+      <div class="answer-quote" style="margin-bottom:8px">
+        ①「作るのは楽しいんだけど、時間がかかりすぎちゃうんだよな。毎回考えなきゃいけなくて、もうちょっと効率化したいんだよな」
+      </div>
+      <div class="answer-quote" style="margin-bottom:8px">
+        ②「何を書いたらいいか、どういう順で書いたらいいかよくわからないけど、これでいいのかな」
+      </div>
+      <div class="answer-quote">
+        ③「なんか、これで『ダサい』って思われてないか不安で、躊躇しちゃうことがあるんだよね」
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 4</span>
+        <h3>ヒーロー（FV）キャッチコピーを作る</h3>
+      </div>
+      <p style="font-size:14px;color:var(--text-sub);margin-bottom:12px">3往復で対象者・変化・独自性の3要素を磨いた</p>
+      <div class="answer-quote">
+        スライド生成に困っている女性起業家さんに向けて、デザイナーが現役で使っているノウハウをそのままお届け。AIを使って、構成もデザインもまるっとカバーできるスライドの考え方がわかるセミナー。
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 5</span>
+        <h3>ビフォーアフターを具体化する</h3>
+      </div>
+      <div class="answer-quote" style="margin-bottom:8px">
+        Before：スライドを作ろうとするたびに内容から悩み、図解に合うものも見つからず、1週間も頭を抱えてしまう。Canvaのテンプレート止まりで、なかなか前に進めない。
+      </div>
+      <div class="answer-quote">
+        After：迷いなくスライドを生成できて、叩きが1時間で完成。時間も手間も大幅に減り、デザインも整っている。
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 7</span>
+        <h3>プロフィールを言語化する</h3>
+      </div>
+      <div class="answer-quote">
+        私自身、以前はスライド1枚に何日もかけていた。ChatGPTと壁打ちして、コピペして、図解をネットで探して——それがClaude CodeとChatGPTの組み合わせで、1日で40枚近く作れるようになった。デザイナーとして、SNSマーケティングも学んできたから、「綺麗なだけ」ではなく「伝わって喜ばれる」スライドの作り方をお伝えできる。
+      </div>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 8</span>
+        <h3>選ばれる理由を3つ出す</h3>
+      </div>
+      <div class="answer-quote" style="margin-bottom:8px">
+        ①「表面的なAI活用」ではなく、構成から考えるプロンプトの思考法ごと持ち帰れる
+      </div>
+      <div class="answer-quote" style="margin-bottom:8px">
+        ②デザイナーとして、受け取った人が「綺麗・分かりやすい」と感じるスライドの作り方を知っている
+      </div>
+      <div class="answer-quote">
+        ③SNSマーケティングも学んでいるから、「どんなプレゼントが喜ばれるか」という視点まで一緒に教えられる
+      </div>
+    </div>
+
+    <!-- STEP 9 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 9</span>
+        <h3>サービス内容を書き出す</h3>
+      </div>
+      <div class="answer-quote">
+        ・オンラインセミナー（60〜90分）<br>
+        ・アーカイブ動画（1ヶ月）── 後から何度でも見返せる<br>
+        ・当日のスライド（PDF）── さっと確認・じっくり読み込める<br>
+        ・プロンプト特典 ── 順序通りに使うだけでスライド生成をすぐ始められる
+      </div>
+    </div>
+
+    <!-- STEP 12 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 12</span>
+        <h3>よくある質問を作る</h3>
+      </div>
+      <div class="answer-quote">
+        Q：料金はいくらですか？ → A：5,000円です<br>
+        Q：AIに苦手意識がありますが大丈夫ですか？ → A：私もすぐに使い始められました<br>
+        Q：パソコン初心者でも大丈夫ですか？ → A：ブラインドタッチができなかった私もできています<br>
+        Q：スライドに何を書けばいいかまだ決まっていませんが大丈夫ですか？ → A：Claudeとの壁打ちで考え方をお伝えします<br>
+        Q：色やデザインの雰囲気がわかりません → A：選び方の基準もきちんとお伝えします<br>
+        Q：この時間内に理解して実行できますか？ → A：プロンプト特典があるのでセミナー後すぐ動けます
+      </div>
+    </div>
+
+    <!-- STEP 14 -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 14</span>
+        <h3>最終CTAコピーを決める</h3>
+      </div>
+      <div class="answer-quote">
+        ボタン：申し込みフォームに進む（5,000円）※仮<br>
+        一言：あなたのスライドとAIレベルが一気に上がる90分
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LP生成結果 -->
+<section>
+  <div class="container">
+    <p class="label">ポン出し結果</p>
+    <h2>デザインMD + コピーをClaudeに渡したら<br>こんなLPが生成されました</h2>
+    <p style="color:var(--text-sub);margin-bottom:24px">壁打きで出てきたコピー全文 + デザインルール（デザインMD）をClaudeに渡して生成。<br>生成時間：数秒〜1分程度</p>
+    <div class="lp-preview">
+      <div class="lp-preview-header">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+        <span class="lp-url">lp_draft.html（ローカルで確認）</span>
+      </div>
+      <div class="lp-preview-body">
+        <div style="background:#2a2a2a;border-radius:var(--radius);padding:24px;color:white;margin-bottom:16px">
+          <p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:8px">FV（ファーストビュー）</p>
+          <p style="font-size:20px;font-weight:900;line-height:1.4;margin-bottom:12px">スライド生成に困っている<br>女性起業家のための、90分セミナー</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:16px">デザイナーが現役で使っているノウハウをそのままお届け。AIを使って、構成もデザインもまるっとカバーできるスライドの考え方がわかります。</p>
+          <span style="background:#6b5b95;color:white;padding:10px 24px;border-radius:6px;font-size:14px;font-weight:700">申し込みフォームに進む（5,000円）</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+          <div style="background:var(--bg);border-radius:var(--radius);padding:16px;border-left:3px solid #6b5b95;font-size:13px;line-height:1.7">「作るのは楽しいんだけど、時間がかかりすぎちゃうんだよな」</div>
+          <div style="background:var(--bg);border-radius:var(--radius);padding:16px;border-left:3px solid #6b5b95;font-size:13px;line-height:1.7">「何を書いたらいいかよくわからないけど、これでいいのかな」</div>
+          <div style="background:var(--bg);border-radius:var(--radius);padding:16px;border-left:3px solid #6b5b95;font-size:13px;line-height:1.7">「ダサいって思われてないか不安で、躊躇しちゃうことがある」</div>
+        </div>
+        <div style="text-align:center;color:var(--text-sub);font-size:13px">… FAQ・プロフィール・選ばれる理由・料金・CTA が続く</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;background:#fef3c7;border-radius:var(--radius-lg);padding:20px">
+      <p style="font-weight:700;margin-bottom:8px">現状の課題（次回改善ポイント）</p>
+      <ul style="list-style:none;font-size:14px;color:var(--text-sub);line-height:2">
+        <li>・実際にどんなスライドが作れるかの実例がない → 成果物ギャラリーセクションが必要</li>
+        <li>・写真がないためワクワク感が薄い → 講師写真・スライド完成例の画像が必要</li>
+        <li>・Claude Code / ChatGPTというツール名が見えにくい → ツール紹介セクションを追加予定</li>
+        <li>・理想の未来を描くセクションがまだない → 壁打きSTEP 5bで引き出せるよう追加済み</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 使用ファイル -->
+<section>
+  <div class="container">
+    <p class="label">使用したファイル</p>
+    <h2>チームで共有できるファイル一覧</h2>
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <a href="LP_セールスコピープロンプト.md" target="_blank" class="file-link-card">
+        <div class="file-link-icon" style="background:#ede8f5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#6b5b95"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+        </div>
+        <div class="file-link-body">
+          <p class="file-link-title">LP_セールスコピープロンプト.md</p>
+          <p class="file-link-desc">Claudeに貼って壁打きを始めるプロンプト。STEP 0〜14まで自動で進行する。</p>
+        </div>
+        <span class="file-link-arrow">開く</span>
+      </a>
+
+      <a href="デザインMD.md" target="_blank" class="file-link-card">
+        <div class="file-link-icon" style="background:#e8f5e9">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#388e3c"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <div class="file-link-body">
+          <p class="file-link-title">デザインMD.md</p>
+          <p class="file-link-desc">壁打きで出たコピーと一緒にClaudeに渡すデザインルール。これを入れるとAI臭くないLPが生成される。</p>
+        </div>
+        <span class="file-link-arrow" style="background:#388e3c">開く</span>
+      </a>
+
+      <a href="lp_draft.html" target="_blank" class="file-link-card">
+        <div class="file-link-icon" style="background:#fff3e0">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#e65100"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        </div>
+        <div class="file-link-body">
+          <p class="file-link-title">lp_draft.html — 実際に生成されたLP</p>
+          <p class="file-link-desc">今回のセッションで出てきたコピー + デザインMDで生成。ブラウザでそのまま確認できる。</p>
+        </div>
+        <span class="file-link-arrow" style="background:#e65100">LPを見る</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 0;text-align:center;color:var(--text-sub);font-size:13px">
+  AIリーダーキャンプ ワークショップ資料 — 2026年5月
+</footer>
+
+</body>
+</html>
