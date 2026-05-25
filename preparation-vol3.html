@@ -5699,6 +5699,19 @@
       <div class="faq-cat">─ 環境構築でつまずいた時</div>
 
       <details class="faq-acc">
+        <summary>Mac で「ローカルセッションには Git が必要です」と表示された</summary>
+        <div class="faq-acc-body">
+          <p>Claude Code を起動して「ローカル」を選ぶと表示されることがあります。Git（バージョン管理ソフト）が Mac に入っていないのが原因です。</p>
+          <p><strong>1.</strong> <code>⌘ + space</code> →「ターミナル」と入力して開く<br>
+          <strong>2.</strong> 下のコマンドをコピペして Enter<br>
+          <code>xcode-select --install</code><br>
+          <strong>3.</strong> ポップアップが出たら「インストール」をクリック（5〜10分かかります）<br>
+          <strong>4.</strong> 完了したら Claude Code を再起動</p>
+          <p>ターミナルで <code>git --version</code> と入力して <code>git version 2.xx.x</code> と出れば成功です。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
         <summary>Mac で「xcode-select --install」というエラーが出ました</summary>
         <div class="faq-acc-body">
           <p>Mac に必要な開発ツール（Xcode Command Line Tools）が入っていないだけです。</p>
@@ -5780,6 +5793,24 @@
         <summary>スマホからでもできる？</summary>
         <div class="faq-acc-body">
           <p><strong>パソコンを強くおすすめします。</strong>Claude Desktop アプリも Claude Code 機能もパソコン用です。スマホでは Claude のチャットアプリは使えますが、ファイル作成などの本格的な作業はできません。</p>
+        </div>
+      </details>
+
+      <div class="faq-cat">─ 公開・デプロイでつまずいた時</div>
+
+      <details class="faq-acc">
+        <summary>Cloudflare Pages で「GitHub のリポジトリがありません」と言われた</summary>
+        <div class="faq-acc-body">
+          <p>Cloudflare Pages は「GitHub にあるファイルを自動でネットに公開する」しくみです。先に GitHub 上に<strong>リポジトリ（ファイルの入れ物）</strong>を作る必要があります。</p>
+          <p><strong>リポジトリを先に作る手順：</strong><br>
+          <strong>1.</strong> <a href="https://github.com/new" target="_blank" style="color:var(--orange);">github.com/new</a> を開く<br>
+          <strong>2.</strong>「Repository name」にリポジトリ名を英語で入力（例：<code>my-lp</code>）<br>
+          <strong>3.</strong>「Public」を選択 →「Create repository」をクリック<br>
+          <strong>4.</strong> Cloudflare Pages の画面に戻って、作ったリポジトリを選択</p>
+          <p><strong>リポジトリ名はそのまま URL になります</strong><br>
+          例：<code>my-lp</code> という名前にすると → 公開URLは <code>my-lp.pages.dev</code><br>
+          あとから変えると URL が変わってしまうので、<strong>最初に決めておく</strong>のが大事です。</p>
+          <p>名前のおすすめ：英数字＋ハイフンのみ・短くシンプルに（例：<code>aya-lp</code>、<code>workshop-june</code>）</p>
         </div>
       </details>
 
@@ -9825,6 +9856,19 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       <div class="faq-cat">─ 環境構築でつまずいた時</div>
 
       <details class="faq-acc">
+        <summary>Mac で「ローカルセッションには Git が必要です」と表示された</summary>
+        <div class="faq-acc-body">
+          <p>Claude Code を起動して「ローカル」を選ぶと表示されることがあります。Git（バージョン管理ソフト）が Mac に入っていないのが原因です。</p>
+          <p><strong>1.</strong> <code>⌘ + space</code> →「ターミナル」と入力して開く<br>
+          <strong>2.</strong> 下のコマンドをコピペして Enter<br>
+          <code>xcode-select --install</code><br>
+          <strong>3.</strong> ポップアップが出たら「インストール」をクリック（5〜10分かかります）<br>
+          <strong>4.</strong> 完了したら Claude Code を再起動</p>
+          <p>ターミナルで <code>git --version</code> と入力して <code>git version 2.xx.x</code> と出れば成功です。</p>
+        </div>
+      </details>
+
+      <details class="faq-acc">
         <summary>Mac で「xcode-select --install」というエラーが出ました</summary>
         <div class="faq-acc-body">
           <p>Mac に必要な開発ツール（Xcode Command Line Tools）が入っていないだけです。</p>
@@ -9906,6 +9950,24 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <summary>スマホからでもできる？</summary>
         <div class="faq-acc-body">
           <p><strong>パソコンを強くおすすめします。</strong>Claude Desktop アプリも Claude Code 機能もパソコン用です。スマホでは Claude のチャットアプリは使えますが、ファイル作成などの本格的な作業はできません。</p>
+        </div>
+      </details>
+
+      <div class="faq-cat">─ 公開・デプロイでつまずいた時</div>
+
+      <details class="faq-acc">
+        <summary>Cloudflare Pages で「GitHub のリポジトリがありません」と言われた</summary>
+        <div class="faq-acc-body">
+          <p>Cloudflare Pages は「GitHub にあるファイルを自動でネットに公開する」しくみです。先に GitHub 上に<strong>リポジトリ（ファイルの入れ物）</strong>を作る必要があります。</p>
+          <p><strong>リポジトリを先に作る手順：</strong><br>
+          <strong>1.</strong> <a href="https://github.com/new" target="_blank" style="color:var(--orange);">github.com/new</a> を開く<br>
+          <strong>2.</strong>「Repository name」にリポジトリ名を英語で入力（例：<code>my-lp</code>）<br>
+          <strong>3.</strong>「Public」を選択 →「Create repository」をクリック<br>
+          <strong>4.</strong> Cloudflare Pages の画面に戻って、作ったリポジトリを選択</p>
+          <p><strong>リポジトリ名はそのまま URL になります</strong><br>
+          例：<code>my-lp</code> という名前にすると → 公開URLは <code>my-lp.pages.dev</code><br>
+          あとから変えると URL が変わってしまうので、<strong>最初に決めておく</strong>のが大事です。</p>
+          <p>名前のおすすめ：英数字＋ハイフンのみ・短くシンプルに（例：<code>aya-lp</code>、<code>workshop-june</code>）</p>
         </div>
       </details>
 
