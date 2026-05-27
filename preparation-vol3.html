@@ -113,7 +113,7 @@
   </style>
   <script>
     (function(){
-      if (sessionStorage.getItem('aiws_auth') === 'ok') return;
+      if (localStorage.getItem('aiws_auth') === 'ok') return;
       document.documentElement.classList.add('pw-locked');
       document.addEventListener('DOMContentLoaded', function(){
         var gate = document.createElement('div');
@@ -137,7 +137,7 @@
         form.addEventListener('submit', function(e){
           e.preventDefault();
           if (input.value === 'otaku2026') {
-            sessionStorage.setItem('aiws_auth','ok');
+            localStorage.setItem('aiws_auth','ok');
             document.documentElement.classList.remove('pw-locked');
             gate.remove();
           } else {
