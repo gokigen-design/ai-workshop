@@ -7489,7 +7489,6 @@
       var url1    = (document.getElementById('lp-ref-url-1') || {}).value || '';
       var url2    = (document.getElementById('lp-ref-url-2') || {}).value || '';
       var url3    = (document.getElementById('lp-ref-url-3') || {}).value || '';
-      var refUrl  = [url1, url2, url3].filter(function(u){ return u.trim(); }).join('\n') || '（なし）';
 
       if (!name.trim()) {
         msg.style.color = '#DC2626';
@@ -7511,7 +7510,7 @@
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ name: name, content: content, refUrl: refUrl }),
+        body: JSON.stringify({ name: name, content: content, refUrl1: url1, refUrl2: url2, refUrl3: url3 }),
       })
       .then(function() {
         msg.style.color = '#059669';

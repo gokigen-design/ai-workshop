@@ -2,16 +2,18 @@
  * AIワークショップ 宿題提出 GAS（縦並びバージョン）
  * ──────────────────────────────────────────────────────────
  * スプシのレイアウト:
- *   A列 = ラベル（確認済み / 提出日時 / お名前 / 参考URL / 壁打ち結果 / 講師メモ）
+ *   A列 = ラベル（確認済み / 提出日時 / お名前 / 参考URL① / 参考URL② / 参考URL③ / 壁打ち結果 / 講師メモ）
  *   B列以降 = 受講生1人ずつ横に追加されていく
  *
  *       A列         B列(さーやん)  C列(はなちゃん)  ...
  *   1   確認済み    ☐              ☐
  *   2   提出日時    6/3 14:22      6/3 15:01
  *   3   お名前      さーやん       はなちゃん
- *   4   参考URL     https://...    （なし）
- *   5   壁打ち結果  ## 1.FV...     ## 1.FV...
- *   6   講師メモ    （空欄）        （空欄）
+ *   4   参考URL①   https://...    （なし）
+ *   5   参考URL②   https://...    （なし）
+ *   6   参考URL③   （なし）        （なし）
+ *   7   壁打ち結果  ## 1.FV...     ## 1.FV...
+ *   8   講師メモ    （空欄）        （空欄）
  *
  * 使い方:
  * 1. 【3期生】AI_workshop スプシを開く
@@ -30,9 +32,11 @@ var ROW_LABELS = [
   '確認済み',     // 行1: チェックボックス（講師が入力）
   '提出日時',     // 行2: 自動
   'お名前',       // 行3: 受講生入力
-  '参考サイトURL',// 行4: 受講生入力（任意）
-  '壁打ち結果',   // 行5: 受講生入力（長文）
-  '講師メモ',     // 行6: 空欄（講師が入力）
+  '参考URL①',    // 行4: 受講生入力（任意）
+  '参考URL②',    // 行5: 受講生入力（任意）
+  '参考URL③',    // 行6: 受講生入力（任意）
+  '壁打ち結果',   // 行7: 受講生入力（長文）
+  '講師メモ',     // 行8: 空欄（講師が入力）
 ];
 
 // ── マークダウン記号を除去して読みやすいプレーンテキストにする ──
@@ -73,7 +77,9 @@ function doPost(e) {
     var params  = JSON.parse(e.postData.contents);
     var name    = (params.name    || '').trim() || '（名前未入力）';
     var rawContent = (params.content || '').trim() || '（内容未入力）';
-    var refUrl  = (params.refUrl  || '').trim() || '（なし）';
+    var refUrl1 = (params.refUrl1 || '').trim() || '（なし）';
+    var refUrl2 = (params.refUrl2 || '').trim() || '（なし）';
+    var refUrl3 = (params.refUrl3 || '').trim() || '（なし）';
     var ts      = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss');
 
     // マークダウン記号を除去して読みやすいテキストに変換
@@ -95,28 +101,30 @@ function doPost(e) {
     nameCell.setFontWeight('bold');
     nameCell.setFontColor('#1E40AF');
 
-    // 行4: 参考サイトURL
-    sheet.getRange(4, newCol).setValue(refUrl);
+    // 行4: 参考URL①
+    sheet.getRange(4, newCol).setValue(refUrl1);
 
-    // 行5: 壁打ち結果（折り返し表示・読みやすいプレーンテキスト）
-    var contentCell = sheet.getRange(5, newCol);
+    // 行5: 参考URL②
+    sheet.getRange(5, newCol).setValue(refUrl2);
+
+    // 行6: 参考URL③
+    sheet.getRange(6, newCol).setValue(refUrl3);
+
+    // 行7: 壁打ち結果（折り返し表示・読みやすいプレーンテキスト）
+    var contentCell = sheet.getRange(7, newCol);
     contentCell.setValue(content);
     contentCell.setWrap(true);
     contentCell.setVerticalAlignment('top');
     contentCell.setFontSize(11);
 
-    // 行6: 講師メモ（空欄・背景色で強調）
-    var memoCell = sheet.getRange(6, newCol);
+    // 行8: 講師メモ（空欄・背景色で強調）
+    var memoCell = sheet.getRange(8, newCol);
     memoCell.setValue('');
     memoCell.setBackground('#FFF9E6');
     memoCell.setWrap(true);
 
     // 列幅を設定（長文が入るので広めに）
     sheet.setColumnWidth(newCol, 320);
-
-    // ※ 行5の高さはinitSheetで設定済み。
-    //   doPost内でsetRowHeightを呼ぶと、手動調整がリセットされるため呼ばない。
-    //   高さを変えたい場合はスプシ上で行ヘッダーをドラッグして調整できます。
 
     return ContentService
       .createTextOutput(JSON.stringify({
@@ -153,12 +161,14 @@ function initSheet(sheet) {
   sheet.setColumnWidth(1, 130);
 
   // 各行の高さ
-  sheet.setRowHeight(1, 36);   // 確認済み（チェックボックス）
-  sheet.setRowHeight(2, 36);   // 提出日時
-  sheet.setRowHeight(3, 36);   // お名前
-  sheet.setRowHeight(4, 60);   // 参考URL
-  sheet.setRowHeight(5, 1200); // 壁打ち結果（長文対応・大きめに設定）
-  sheet.setRowHeight(6, 120);  // 講師メモ
+  sheet.setRowHeight(1, 36);    // 確認済み（チェックボックス）
+  sheet.setRowHeight(2, 36);    // 提出日時
+  sheet.setRowHeight(3, 36);    // お名前
+  sheet.setRowHeight(4, 50);    // 参考URL①
+  sheet.setRowHeight(5, 50);    // 参考URL②
+  sheet.setRowHeight(6, 50);    // 参考URL③
+  sheet.setRowHeight(7, 1200);  // 壁打ち結果（長文対応・大きめに設定）
+  sheet.setRowHeight(8, 120);   // 講師メモ
 
   // 先頭列を固定（スクロールしてもA列が見える）
   sheet.setFrozenColumns(1);
