@@ -7320,9 +7320,22 @@
         <textarea id="lp-content" class="ws-textarea" rows="18" placeholder="ここに壁打ちで仕上げた売れる構成順の全文を貼り付けてください。&#10;&#10;## 1. ファーストビュー&#10;キャッチコピー：...&#10;サブコピー：...&#10;&#10;## 2. 共感セクション&#10;...&#10;&#10;（以降、AIから出力された全文）"></textarea>
       </div>
       <div class="ws-group" style="margin-bottom:0;">
-        <label class="ws-label">参考にしたいサイトURL <span class="ws-opt">任意</span></label>
-        <div class="ws-hint">「こんな雰囲気にしたい！」と思うサイトのURL。複数ある場合はカンマ区切りかスペースで入力してください。講師がデザイン方向を把握するのに使います。</div>
-        <input type="text" id="lp-ref-url" class="ws-input" placeholder="例：https://example.com, https://another.com">
+        <label class="ws-label">参考にしたいサイトURL <span class="ws-opt">任意・最大3つ</span></label>
+        <div class="ws-hint">「こんな雰囲気にしたい！」と思うサイトのURLを最大3つまで入力できます。講師がデザイン方向を把握するのに使います。</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;font-weight:700;color:var(--gray-mid);min-width:20px;">①</span>
+            <input type="text" id="lp-ref-url-1" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;font-weight:700;color:var(--gray-mid);min-width:20px;">②</span>
+            <input type="text" id="lp-ref-url-2" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;font-weight:700;color:var(--gray-mid);min-width:20px;">③</span>
+            <input type="text" id="lp-ref-url-3" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+          </div>
+        </div>
       </div>
     </div>
 
@@ -7471,9 +7484,12 @@
       var GAS_URL = 'https://script.google.com/macros/s/AKfycby5vE44EYM5R3h-r9w3wT2MSqa6ucjF1hJ36u9e_36OFiImOVi3MkxEdeW_dOzRvZIR-g/exec';
       var msg  = document.getElementById('ws-submit-msg');
       var btn  = document.getElementById('ws-submit-btn');
-      var name    = (document.getElementById('lp-name')    || {}).value || '';
-      var content = (document.getElementById('lp-content') || {}).value || '';
-      var refUrl  = (document.getElementById('lp-ref-url') || {}).value || '';
+      var name    = (document.getElementById('lp-name')      || {}).value || '';
+      var content = (document.getElementById('lp-content')   || {}).value || '';
+      var url1    = (document.getElementById('lp-ref-url-1') || {}).value || '';
+      var url2    = (document.getElementById('lp-ref-url-2') || {}).value || '';
+      var url3    = (document.getElementById('lp-ref-url-3') || {}).value || '';
+      var refUrl  = [url1, url2, url3].filter(function(u){ return u.trim(); }).join('\n') || '（なし）';
 
       if (!name.trim()) {
         msg.style.color = '#DC2626';
@@ -7516,9 +7532,11 @@
       const STORE_KEY = 'aiws-ws-v2-fields';
       function saveAll() {
         const data = {
-          name:   document.getElementById('lp-name')    ? document.getElementById('lp-name').value    : '',
-          content:document.getElementById('lp-content') ? document.getElementById('lp-content').value : '',
-          refUrl: document.getElementById('lp-ref-url') ? document.getElementById('lp-ref-url').value : '',
+          name:    document.getElementById('lp-name')      ? document.getElementById('lp-name').value      : '',
+          content: document.getElementById('lp-content')   ? document.getElementById('lp-content').value   : '',
+          refUrl1: document.getElementById('lp-ref-url-1') ? document.getElementById('lp-ref-url-1').value : '',
+          refUrl2: document.getElementById('lp-ref-url-2') ? document.getElementById('lp-ref-url-2').value : '',
+          refUrl3: document.getElementById('lp-ref-url-3') ? document.getElementById('lp-ref-url-3').value : '',
         };
         try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e) {}
       }
@@ -7527,14 +7545,16 @@
           const saved = localStorage.getItem(STORE_KEY);
           if (!saved) return;
           const data = JSON.parse(saved);
-          if (data.name    && document.getElementById('lp-name'))    document.getElementById('lp-name').value    = data.name;
-          if (data.content && document.getElementById('lp-content')) document.getElementById('lp-content').value = data.content;
-          if (data.refUrl  && document.getElementById('lp-ref-url')) document.getElementById('lp-ref-url').value = data.refUrl;
+          if (data.name    && document.getElementById('lp-name'))      document.getElementById('lp-name').value      = data.name;
+          if (data.content && document.getElementById('lp-content'))   document.getElementById('lp-content').value   = data.content;
+          if (data.refUrl1 && document.getElementById('lp-ref-url-1')) document.getElementById('lp-ref-url-1').value = data.refUrl1;
+          if (data.refUrl2 && document.getElementById('lp-ref-url-2')) document.getElementById('lp-ref-url-2').value = data.refUrl2;
+          if (data.refUrl3 && document.getElementById('lp-ref-url-3')) document.getElementById('lp-ref-url-3').value = data.refUrl3;
         } catch(e) {}
       }
       document.addEventListener('DOMContentLoaded', function() {
         restoreAll();
-        ['lp-name','lp-content','lp-ref-url'].forEach(function(id) {
+        ['lp-name','lp-content','lp-ref-url-1','lp-ref-url-2','lp-ref-url-3'].forEach(function(id) {
           const el = document.getElementById(id);
           if (el) el.addEventListener('input', saveAll);
         });
