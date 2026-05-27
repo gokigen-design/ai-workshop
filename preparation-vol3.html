@@ -7467,17 +7467,14 @@
     }
 
     // ─── 講師へ提出（GAS連携） ───
-    // ★ GASデプロイ後にURLをここに入れてください
-    var GAS_SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbzS2X09t94979CChrswHGXoLHI8wvblXQGe6H7HE8nN5naH4jMiceT-xAm58YKZ1RNt/exec';
-
     function submitToTeachers() {
-      const msg  = document.getElementById('ws-submit-msg');
-      const btn  = document.getElementById('ws-submit-btn');
-      const name    = (document.getElementById('lp-name')    || {}).value || '';
-      const content = (document.getElementById('lp-content') || {}).value || '';
-      const refUrl  = (document.getElementById('lp-ref-url') || {}).value || '';
+      var GAS_URL = 'https://script.google.com/macros/s/AKfycbzS2X09t94979CChrswHGXoLHI8wvblXQGe6H7HE8nN5naH4jMiceT-xAm58YKZ1RNt/exec';
+      var msg  = document.getElementById('ws-submit-msg');
+      var btn  = document.getElementById('ws-submit-btn');
+      var name    = (document.getElementById('lp-name')    || {}).value || '';
+      var content = (document.getElementById('lp-content') || {}).value || '';
+      var refUrl  = (document.getElementById('lp-ref-url') || {}).value || '';
 
-      // バリデーション
       if (!name.trim()) {
         msg.style.color = '#DC2626';
         msg.textContent = 'お名前を入力してください。';
@@ -7488,37 +7485,27 @@
         msg.textContent = '壁打ち結果を貼り付けてください。';
         return;
       }
-      if (!GAS_SUBMIT_URL) {
-        msg.style.color = '#92400E';
-        msg.textContent = '提出URLを設定中です。もうしばらくお待ちください。';
-        return;
-      }
 
-      // 送信中
       btn.disabled = true;
       btn.style.opacity = '0.6';
       msg.style.color = '#6B7280';
       msg.textContent = '送信中...';
 
-      fetch(GAS_SUBMIT_URL, {
+      fetch(GAS_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ name: name, content: content, refUrl: refUrl }),
       })
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
-        if (data.status === 'ok') {
-          msg.style.color = '#059669';
-          msg.textContent = name + ' さんの提出が完了しました（' + data.charLen + '文字）。ありがとうございます！';
-          btn.textContent = '提出済み';
-          btn.style.background = '#059669';
-        } else {
-          throw new Error(data.message || '送信エラー');
-        }
+      .then(function() {
+        msg.style.color = '#059669';
+        msg.textContent = name + ' さんの提出が完了しました。ありがとうございます！';
+        btn.textContent = '提出済み';
+        btn.style.background = '#059669';
       })
       .catch(function(err) {
         msg.style.color = '#DC2626';
-        msg.textContent = '送信に失敗しました。もう一度お試しください。（' + err.message + '）';
+        msg.textContent = '送信に失敗しました。もう一度お試しください。';
         btn.disabled = false;
         btn.style.opacity = '1';
       });
