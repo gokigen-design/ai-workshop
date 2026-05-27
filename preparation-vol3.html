@@ -7044,11 +7044,11 @@
   <!-- ═══ TAB: これやってきてね ═══ -->
   <section class="tab-content" id="tab-worksheet">
     <div class="sec-eyebrow">宿題</div>
-    <div class="sec-title">LPに載せる情報を整理する</div>
-    <p class="sec-desc">ここを埋めてから当日に臨むほど、Claudeへの指示が1回で決まります。灰色の文字は記入例です。あなたのサービスに合う内容を書いてください。</p>
+    <div class="sec-title">壁打ちでLPの中身を仕上げる</div>
+    <p class="sec-desc">表側の見栄えより<strong style="color:var(--black);">中身が刺さるLP</strong>を作るため、当日までにAIと壁打ちして「売れる構成順」で内容を整理しておきましょう。やることはシンプルに3ステップです。</p>
 
     <!-- 提出期限バナー（最上部・最重要） -->
-    <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#FEE2E2,#FEF3C7);border:2px solid #F87171;border-radius:12px;padding:16px 20px;margin-bottom:18px;box-shadow:0 4px 14px rgba(248,113,113,0.18);">
+    <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#FEE2E2,#FEF3C7);border:2px solid #F87171;border-radius:12px;padding:16px 20px;margin-bottom:24px;box-shadow:0 4px 14px rgba(248,113,113,0.18);">
       <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#EF4444,#F97316);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       </div>
@@ -7059,424 +7059,254 @@
       </div>
     </div>
 
-    <!-- 取り組み前のおすすめ案内 -->
-    <div style="display:flex;align-items:flex-start;gap:12px;background:linear-gradient(135deg,#FEF3C7,#FFFBEB);border:1px solid #FBBF24;border-radius:10px;padding:14px 16px;margin-bottom:20px;">
-      <div style="width:28px;height:28px;border-radius:50%;background:#F59E0B;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">💡</div>
-      <div style="font-size:13px;color:#92400E;line-height:1.9;">
-        <strong>取り組む前に：</strong>この宿題は <a href="#" onclick="switchTab('overview',document.querySelector('[onclick*=overview]'));return false;" style="color:#92400E;font-weight:700;text-decoration:underline;">「STEP 1. まずは知っておこう」</a> を一通り読んでから取り組むと、ぐっとやりやすくなります。LPの構造・AIっぽいデザインの正体・用語などを先に頭に入れておきましょう。
-      </div>
-    </div>
-
-    <!-- トークンリマインダー -->
-    <div style="display:flex;align-items:flex-start;gap:12px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px 16px;margin-bottom:20px;">
-      <div style="width:28px;height:28px;border-radius:50%;background:#2563EB;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">!</div>
-      <div style="font-size:12px;color:#1e40af;line-height:1.9;">
-        <strong style="color:#1d4ed8;">内容を揉む（壁打ち）はGemini・ChatGPTで。</strong>ClaudeのトークンはLP制作本番まで温存しましょう。チャットで雑談を重ねると、いざコードを書くときに上限に達してしまいます。
-      </div>
-    </div>
-
-    <!-- まず最初にAIへ渡すプロンプト -->
-    <div style="background:#FFF8F0;border:2px solid var(--orange-border);border-radius:14px;padding:20px 20px 16px;margin-bottom:24px;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.14em;text-transform:uppercase;">Step 0</div>
-        <div style="width:1px;height:12px;background:var(--orange-border);"></div>
-        <div style="font-size:13px;font-weight:700;color:var(--black);">まず最初にこのプロンプトをAIに渡してください</div>
-      </div>
-      <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;">ChatGPT・Claude・Geminiなど、どのAIでもOK。ワークを始める前に貼り付けておくと、AIがマーケティング視点でサポートしてくれます。</div>
-      <div style="background:#fff;border:1px solid var(--orange-border);border-radius:10px;padding:14px 16px;">
-        <div style="font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;color:var(--orange);letter-spacing:0.12em;margin-bottom:10px;">AIに投げるプロンプト</div>
-        <div style="border-top:1px dashed var(--orange-border);border-bottom:1px dashed var(--orange-border);padding:10px 0;margin-bottom:12px;">
-          <pre id="ws-top-prompt" style="font-size:12px;color:var(--gray-mid);line-height:1.9;white-space:pre-wrap;word-break:break-word;overflow-wrap:break-word;margin:0;font-family:'Zen Maru Gothic',sans-serif;background:transparent;border:none;padding:0;">あなたは「LPの企画から制作まで一貫して担当するマーケティングディレクター」です。
-ターゲットの悩みを深掘りし、「この人のための講座だ」と思わせる構成とコピーを一緒に考えてください。
-
-以下の視点を持って進めてください：
-- マーケター視点：誰に届けるか、競合との違いは何か
-- コピーライター視点：感情を動かす言葉選び
-- ユーザー視点：読んだ人が「自分のことだ」と感じるか</pre>
+    <!-- 全体フロー -->
+    <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px 22px 18px;margin-bottom:20px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:14px;">Flow</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">
+        <div style="background:var(--beige);border-radius:10px;padding:14px 12px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:var(--orange);margin-bottom:4px;">01</div>
+          <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;">壁打ち</div>
+          <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">Claude/ChatGPTで売れる構成順に内容を整理</div>
         </div>
-        <button onclick="(function(){const t=document.getElementById('ws-top-prompt').innerText;navigator.clipboard.writeText(t).then(function(){const m=document.getElementById('ws-top-msg');m.textContent='コピーしました';setTimeout(function(){m.textContent=''},2000)});})()" style="padding:7px 18px;background:var(--orange);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;">このプロンプトをコピー</button>
-        <span id="ws-top-msg" style="display:inline-block;margin-left:10px;font-size:11px;color:var(--orange);min-height:14px;vertical-align:middle;"></span>
+        <div style="background:var(--beige);border-radius:10px;padding:14px 12px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:var(--orange);margin-bottom:4px;">02</div>
+          <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;">貼り付け</div>
+          <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">出力された全文を下のテキストエリアに貼る</div>
+        </div>
+        <div style="background:var(--beige);border-radius:10px;padding:14px 12px;text-align:center;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:var(--orange);margin-bottom:4px;">03</div>
+          <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;">提出 or コピー</div>
+          <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">講師に提出 ＋ 当日Claude Codeへコピー</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin:14px 0 0;">前回は表側の見た目に時間を使いすぎてしまった反省から、今回は<strong style="color:var(--black);">「売れる構成順」で中身を整える</strong>ところから始めます。壁打ちは Claude/ChatGPT/Gemini どれでもOKですが、Claude のトークンは当日のLP制作本番まで温存することをおすすめします。</p>
+    </div>
+
+    <!-- 取り組み前のおすすめ案内 -->
+    <div style="display:flex;align-items:flex-start;gap:12px;background:linear-gradient(135deg,#FEF3C7,#FFFBEB);border:1px solid #FBBF24;border-radius:10px;padding:14px 16px;margin-bottom:24px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div style="font-size:13px;color:#92400E;line-height:1.9;">
+        <strong>取り組む前に：</strong><a href="#" onclick="switchTab('overview',document.querySelector('[onclick*=overview]'));return false;" style="color:#92400E;font-weight:700;text-decoration:underline;">「STEP 1. まずは知っておこう」</a> を一通り読んでから取り組むと、ぐっと進めやすくなります。LPの構造・AIっぽいデザインの正体・用語などが頭に入った状態で壁打ちすると、AIの提案にも素早く判断ができるようになります。
       </div>
     </div>
 
-    <!-- 使い方メモ -->
-    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:linear-gradient(135deg,#FAF5EC,#F5EFE4);border:1px solid var(--orange-border);border-radius:10px;margin-bottom:28px;">
-      <div style="width:20px;height:20px;border-radius:50%;background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">!</div>
-      <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">入力した内容は、このページを閉じると消えます。書き終わったら<strong style="color:var(--black);">下のボタンでコピー</strong>して、Claude CodeまたはChatGPTに貼り付けてください。スプレッドシートやメモアプリに控えておくのもおすすめです。</div>
-    </div>
-
-    <!-- ━━━ SECTION 1: 基本情報 ━━━ -->
+    <!-- ━━━ STEP 1: 壁打ち専用プロンプト ━━━ -->
     <div style="display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">1</div>
       <div style="width:1px;height:16px;background:#444;"></div>
-      <div style="font-size:14px;font-weight:600;color:#fff;">基本情報</div>
-      <div style="font-size:11px;color:#888;margin-left:2px;">— LP全体の土台になる情報</div>
+      <div style="font-size:14px;font-weight:600;color:#fff;">壁打ち専用プロンプト</div>
+      <div style="font-size:11px;color:#888;margin-left:2px;">— 売れる構成順で内容を整理</div>
     </div>
 
-    <div class="card">
-      <div class="ws-group">
-        <label class="ws-label">（a）お名前 <span class="ws-req">必須</span></label>
-        <div class="ws-hint">LP上で表示する名前・ニックネーム</div>
-        <input type="text" class="ws-input" placeholder="例：山田さくら / さくら先生">
-      </div>
-      <div class="ws-group">
-        <label class="ws-label">（b）インスタグラムURL <span class="ws-opt">任意</span></label>
-        <div class="ws-hint">LP下部にSNSリンクを入れる場合</div>
-        <input type="text" class="ws-input" placeholder="例：https://www.instagram.com/sakura_design">
-      </div>
-      <div class="ws-group">
-        <label class="ws-label">（c）ターゲット <span class="ws-req">必須</span></label>
-        <div class="ws-hint">「どんな人に届けたいか」を具体的に。1人に絞るほどLPが刺さります</div>
-        <textarea class="ws-textarea" rows="3" placeholder="例：30代〜40代の女性で、ハンドメイドが趣味だが副業にしたいと思っている方。パソコンが少し苦手で、SNSは毎日見ている。"></textarea>
-      </div>
-      <div class="ws-group">
-        <label class="ws-label">（d）サービス名・内容 <span class="ws-req">必須</span></label>
-        <div class="ws-hint">何をするサービスか、一言でわかるように</div>
-        <input type="text" class="ws-input" placeholder="例：ハンドメイド作家のためのInstagram集客3ヶ月サポートプログラム">
-        <textarea class="ws-textarea" rows="4" style="margin-top:8px;" placeholder="具体的な内容（箇条書きでもOK）&#10;例：&#10;・月2回のオンライン個別セッション（60分）&#10;・LINE無制限サポート&#10;・Instagramフィード添削&#10;・プロフィール改善&ハイライト設計"></textarea>
-      </div>
-      <div class="ws-group">
-        <label class="ws-label">（e）価格 <span class="ws-req">必須</span></label>
-        <div class="ws-hint">税込み表記・分割対応の有無も書いておくと安心</div>
-        <input type="text" class="ws-input" placeholder="例：¥88,000（税込）／ 分割払い：¥30,000×3回">
-      </div>
-      <div class="ws-group">
-        <label class="ws-label">（f）申込みリンク（遷移先URL） <span class="ws-req">必須</span></label>
-        <div class="ws-hint">MOSHのURL・LINEのリンク・お問い合わせフォームなど</div>
-        <input type="text" class="ws-input" placeholder="例：https://mosh.jp/services/xxxxx">
-      </div>
+    <!-- プロンプトの設計思想 -->
+    <div style="background:linear-gradient(135deg,#FFF8F0 0%,#FEF3C7 100%);border:1px solid #FBBF24;border-radius:12px;padding:16px 18px;margin-bottom:14px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;color:#92400E;text-transform:uppercase;margin-bottom:8px;">About this prompt</div>
+      <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">女性ターゲット向けに、ライティング×心理学で作り込んだプロンプトです</div>
+      <p style="font-size:12px;color:#7C2D12;line-height:1.9;margin:0 0 12px;">受講生のみなさんは女性向けの商材を扱っている方が多いため、このプロンプトには <strong>「プリンセスマーケティング」と「情緒的価値の組み込み」</strong> を骨組みとして盛り込みました。具体的には以下の5つです。</p>
+
+      <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;">
+        <li style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #FCD34D;border-radius:8px;padding:10px 12px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#EA580C;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span>
+          <div style="font-size:12px;color:#7C2D12;line-height:1.8;"><strong>最上位ルールとして明示</strong>：「ヒロインの旅」「変身」「特別感」「共感が先、説得が後」を冒頭にブロック化。「機能的価値＋情緒的価値の両方」を必ず盛り込むルール。</div>
+        </li>
+        <li style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #FCD34D;border-radius:8px;padding:10px 12px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#EA580C;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>
+          <div style="font-size:12px;color:#7C2D12;line-height:1.8;"><strong>各セクションに織り込み</strong>：FVは「感情を動かす一語」、共感は「悩みの背後の感情」、未来は「機能＋情緒の両セット」、信頼は「変身ストーリー」が出るよう質問設計。</div>
+        </li>
+        <li style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #FCD34D;border-radius:8px;padding:10px 12px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#EA580C;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>
+          <div style="font-size:12px;color:#7C2D12;line-height:1.8;"><strong>強制ルール</strong>：機能的な要素しか出てこないとき、AIが必ず情緒的な表現の具体案を3つ提示してから選ばせる。</div>
+        </li>
+        <li style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #FCD34D;border-radius:8px;padding:10px 12px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#EA580C;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</span>
+          <div style="font-size:12px;color:#7C2D12;line-height:1.8;"><strong>禁止事項で機能止まりを防ぐ</strong>：「機能的価値だけで止まらない」を明文化。情緒的価値の具体案が必ず出てくる設計。</div>
+        </li>
+        <li style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #FCD34D;border-radius:8px;padding:10px 12px;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#EA580C;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</span>
+          <div style="font-size:12px;color:#7C2D12;line-height:1.8;"><strong>当日のClaude Codeにも貫通</strong>：当日コピーする前置きプロンプトにも「女性ターゲット／感情を動かす言葉／ヒロインの旅／柔らかさ・上質感」を明記。一貫した世界観でLPが立ち上がります。</div>
+        </li>
+      </ol>
+
+      <p style="font-size:12px;color:#7C2D12;line-height:1.9;margin:12px 0 0;">プロンプトを読んでみて<strong>「自分の商材には合わないな」と感じたら、自由に書き換えて使ってください</strong>。あくまでベースのテンプレートです。</p>
     </div>
 
-    <!-- ━━━ SECTION 2: 導入・ベネフィット ━━━ -->
-    <div style="display:flex;align-items:center;gap:12px;margin:28px 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
+    <!-- プロンプト本体 -->
+    <div style="background:#FFF8F0;border:2px solid var(--orange-border);border-radius:14px;padding:20px;margin-bottom:14px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:10px;font-family:'DM Sans',sans-serif;font-weight:700;color:var(--orange);letter-spacing:0.12em;margin-bottom:3px;">PROMPT</div>
+          <div style="font-size:13px;font-weight:700;color:var(--black);">これをコピーして、Claude / ChatGPT / Gemini に貼り付け</div>
+        </div>
+        <button onclick="copyBrainstormPrompt()" style="padding:9px 20px;background:var(--orange);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;flex-shrink:0;">プロンプトをコピー</button>
+      </div>
+      <div style="max-height:280px;overflow-y:auto;background:#fff;border:1px solid var(--orange-border);border-radius:10px;padding:14px 16px;">
+        <pre id="ws-brainstorm-prompt" style="font-size:11.5px;color:var(--gray-mid);line-height:1.9;white-space:pre-wrap;word-break:break-word;overflow-wrap:break-word;margin:0;font-family:'Zen Maru Gothic',sans-serif;background:transparent;border:none;padding:0;">あなたはランディングページ制作専門のマーケティングディレクター兼コピーライターです。 特に「女性をターゲットにしたLP」のコピーと構成を得意としています。 これから、ある講座（サービス）のLPを作るための情報整理を一緒に進めます。
+
+【重要な視点（必ず守る）】
+- ターゲットは女性。論理だけでなく感情を動かすコピーを優先する
+- 「プリンセスマーケティング」の原則を活用：
+  - 「ヒロインの旅」を描く：今のあなた → 理想のあなた への変化の物語
+  - 「変身」「変化」「特別感」を全面に出す
+  - 共感が先、説得が後（「あなたの気持ち、わかる」から始める）
+  - 視覚的・感覚的・体験的な言葉を使う
+- 機能的価値（何ができるか）と情緒的価値（どう感じられるか）の両方を必ず盛り込む
+- 例：「自宅で参加できる」(機能) → 「家事の合間に、自分だけの時間が持てる安心感」(情緒)
+
+私たちは売れるLPの黄金構成順で1セクションずつ進めます。 あなたは下記のセクションを順に質問し、私の回答を深掘り・添削してください。
+
+【売れるLPの黄金構成（この順序で進める）】
+
+■ セクション1: ファーストビュー
+- キャッチコピー（ターゲット × 悩み × ベネフィット + 感情を動かす一語を内包）
+- サブコピー（「私のことだ」と感じさせる共感の一文）
+- ターゲット像（年齢・職業・悩みのフェーズ・心理状態まで具体的に）
+- サービス名・概要
+- CTAボタン文言と申込みリンク
+
+■ セクション2: 共感セクション「こんなお悩みありませんか？」
+- ターゲットが実際に口に出すお悩み 3〜5個（抽象語禁止）
+- その悩みの背後にある感情（不安・焦り・悲しみ・自己否定など）も拾う
+
+■ セクション3: 未来提示「このサービスを受けると」
+- 機能的変化：数字・行動・状態の変化 2〜3個
+- 情緒的変化：「自信」「ワクワク」「誇り」「安心」「自己肯定感」など感情の変化 2〜3個
+- 両方をセットで描く
+
+■ セクション4: サービス内容
+- サービスの具体的な内容・カリキュラム
+- 特徴・強み
+- あなたを選ぶ理由（なぜ他社じゃなく"このサービス"か）— 機能的差別化＋情緒的差別化の両面で
+- タイムテーブル・スケジュール（単発講座系で重要）
+
+■ セクション5: 信頼セクション
+- お客様の声 2〜3名分（名前・肩書き・コメント）— 「変身ストーリー」が見えるコメント
+- 講師の自己紹介・経歴（講師自身も「ヒロインの旅」を経た存在として描く。資格・実績より共感ストーリー）
+
+■ セクション6: オファー
+- 価格（税込・分割対応の有無）
+- 登録プレゼント・特典 — 特別感・限定感を意識
+- 「今、あなたが申し込むべき理由」
+
+■ セクション7: 不安解消「よくある質問（FAQ）」
+- 申込み直前の感情的な不安を解消するFAQ 3〜5個
+（例：「初心者でも大丈夫ですか？」「途中で挫折しないか不安です」「家族に内緒で受けたいです」）
+
+■ セクション8: クロージング
+- 背中を押す文言（「迷っているあなたへ」のような感情に寄り添う一文）
+- 最終CTAボタン文言
+
+■ 参考（モデリング）
+- 構成・コピーの参考にしたいLP（最低1つ、URL）
+- デザインの参考にしたいLP（最低1つ、URL）
+
+【あなたの役割（提案型のスタイル）】
+私は専門家ではなく、自分のサービスのことしか分かりません。 ですので、あなたは「質問して私に答えさせる」のではなく、こちらから具体的な選択肢を提案するスタイルで進めてください。 漠然とした問い（「ここに情緒的な要素を足すとしたら？」「女性ターゲットの心が動きますか？」など）は禁止です。
+
+具体的なやり取りのルール：
+- 私の入力を聞いたら、毎回2〜3個の具体的なコピー案・表現案を先にあなたが提示する
+- そのうえで「この中ならどれが近いですか？／別の方向にしたいですか？」と聞く
+- 私が「もっとこんな感じ」と修正リクエストを出したら、それを反映して再提案
+- 私が「わからない」と答えたら、さらに別パターンの案を3つ出して選んでもらう
+- 抽象語（「自信がつく」など）が出てきたら、具体化案を3つ提案してから「これに近いですか？」と確認
+- 機能的な要素しか出てこないときは、情緒的な表現の具体案を3つ提案してから「この中ならどれがしっくり来ますか？」と聞く
+- あなたを選ぶ理由が見えにくいときは、あなたを選ぶ理由の候補を3個提示してから「どれが本質に近いですか？」と聞く
+- 業界用語が出てきたら、素人向けの言い換え候補を3つ提案してから「どれが近いですか？」と聞く
+- 文字数が多すぎる回答には、重要そうな3点をあなたが抜き出して提示してから「この絞り込みで合ってますか？」と確認
+
+【絶対にやらないこと】
+- 「ここに情緒的な要素を足すとしたら？」のような漠然とした問いを投げっぱなしにしない
+- 「女性ターゲットの心が動きますか？」のような自己判断を迫る問いにしない
+- 「もっと具体的に教えてください」だけで終わらせない（必ず具体案を3つ提示する）
+- 私が答えに詰まったら、こちらから具体例を出して選んでもらう
+
+【深掘りの観点（提案のヒントとして）】
+あなたが具体案を出すときに意識する観点：
+- ターゲットは1人に絞れているか（年齢・職業・悩みのフェーズ・心理状態まで具体的か）
+- お悩みは「ターゲットが実際に口に出す言葉」になっているか
+- 未来は「機能的な変化＋情緒的な変化」の両方が入っているか
+- あなたを選ぶ理由（独自性）が明示されているか（機能・情緒の両面）
+- お客様の声は「変身ストーリー」が見えるか
+- 価格設定の根拠・特典の特別感は伝わるか
+
+【会話の進め方】
+1. セクション1（ファーストビュー）から1つずつ進める
+2. 私の入力（または「わからない」という回答）を受けたら、まずあなたから具体案を3つ提示する
+3. 私の選択 or 修正リクエストに応じて再提案 → 確定
+4. 1セクション固まったら次のセクションへ
+5. 全セクションが終わったら、売れる構成順での全文まとめ（Markdown形式）を1本だけ出力する。 セクション見出し（## 1. ファーストビュー など）と、その下に各項目の確定文面が並ぶ形。 この出力をそのままフォームの単一テキストエリアに貼って提出 → 当日CCに貼り付けてLP生成、の流れになる。
+
+【禁止事項】
+- 私の代わりに「それっぽい答え」を作って終わらせない（提案はするが、最終決定は私）
+- 私の入力をそのまま褒めるだけにしない
+- 抽象語のまま通さない
+- セクションを飛ばして次に進まない
+- 機能的価値だけで止まらない（必ず情緒的価値の具体案も提示する）
+- 質問だけで終わらない（必ず具体案 3つ → 選択を促す、のセットで返す）
+
+準備ができたら、まず以下のメッセージを返してください：
+
+「準備OKです。提案型のスタイルでブラッシュアップしていきます。 まずサービスの全体像を教えてください。「どんな講座・サービスですか？」「どんな女性に届けたいですか？」 — ざっくりで構いません。 その内容をもとに、私からセクション1（ファーストビュー）のキャッチコピー案・サブコピー案をそれぞれ3つずつ提案します。 あなたは『この中ならコレ』『もっとこっちの方向で』と選ぶだけでOKです。 迷ったら『わからない』と言ってもらえれば、別の方向の3案を出し直します」 — このメッセージを返してから、私の最初の回答を待ってください。</pre>
+      </div>
+      <div id="ws-brainstorm-msg" style="font-size:11px;color:var(--orange);min-height:14px;margin-top:8px;"></div>
+    </div>
+
+    <p style="font-size:12px;color:var(--gray-mid);line-height:1.9;margin-bottom:32px;padding:0 4px;">所要時間の目安：<strong style="color:var(--black);">30〜60分</strong>。最後に <strong style="color:var(--black);">Markdown形式の全文まとめ</strong> がAIから出力されるので、それを次のステップで貼り付けます。</p>
+
+    <!-- ━━━ STEP 2: 壁打ち結果を貼り付け ━━━ -->
+    <div style="display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">2</div>
       <div style="width:1px;height:16px;background:#444;"></div>
-      <div style="font-size:14px;font-weight:600;color:#fff;">導入・ベネフィット</div>
-      <div style="font-size:11px;color:#888;margin-left:2px;">— 読んだ人が「私のことだ」と感じる部分</div>
+      <div style="font-size:14px;font-weight:600;color:#fff;">壁打ち結果を貼り付け</div>
+      <div style="font-size:11px;color:#888;margin-left:2px;">— AIが出した全文をそのままここへ</div>
     </div>
 
-    <div class="card">
+    <div class="card" style="margin-bottom:24px;">
       <div class="ws-group">
-        <label class="ws-label">（a）「こんなお悩みありませんか？」3〜5個 <span class="ws-req">必須</span></label>
-        <div class="ws-hint">ターゲットが「そうそう！」と頷くリアルな言葉で。「〜できない」「〜が不安」「〜に悩んでいる」のような形で書くと刺さりやすい</div>
-        <textarea class="ws-textarea" rows="7" placeholder="例：&#10;・頑張って作品を作っても、なかなかフォロワーが増えない&#10;・Instagramを毎日投稿しているのに、問い合わせが来ない&#10;・同じようなハンドメイド作家がたくさんいて、どう差別化したらいいかわからない&#10;・値下げしないと売れない気がして、適正価格で売る自信がない&#10;・副業収入を月5万円にしたいが、どこから手をつければいいか迷っている"></textarea>
+        <label class="ws-label">お名前 <span class="ws-req">必須</span></label>
+        <div class="ws-hint">提出時に講師が誰の内容か識別するために使います</div>
+        <input type="text" id="lp-name" class="ws-input" placeholder="例：山田さくら">
       </div>
-      <div class="ws-group">
-        <label class="ws-label">（b）このサービスを受けると、どんな未来が待っているか？ 3〜5個 <span class="ws-req">必須</span></label>
-        <div class="ws-hint">具体的な数字や変化を入れると伝わりやすい。「〜できるようになる」「〜が手に入る」の形で</div>
-        <textarea class="ws-textarea" rows="7" placeholder="例：&#10;・フォロワーが増えなくても「この人から買いたい」と思ってもらえるプロフィールが完成する&#10;・投稿のたびに問い合わせが来る仕組みができる&#10;・値段交渉されずに、定価で買ってもらえるようになる&#10;・月5万円の副収入が3ヶ月で現実に近づく&#10;・「次は何を作ろう」ではなく「次は誰に届けよう」と考えられるようになる"></textarea>
+      <div class="ws-group" style="margin-bottom:0;">
+        <label class="ws-label">壁打ち結果（売れる構成順の全文） <span class="ws-req">必須</span></label>
+        <div class="ws-hint">AIから最後に出た Markdown 形式の全文まとめをそのままコピー＆ペースト。途中までしか終わってなくてもOK、まずは貼ってみてください</div>
+        <textarea id="lp-content" class="ws-textarea" rows="18" placeholder="ここに壁打ちで仕上げた売れる構成順の全文を貼り付けてください。&#10;&#10;## 1. ファーストビュー&#10;キャッチコピー：...&#10;サブコピー：...&#10;&#10;## 2. 共感セクション&#10;...&#10;&#10;（以降、AIから出力された全文）"></textarea>
       </div>
     </div>
 
-    <!-- ━━━ SECTION 3: 詳細・信頼性 ━━━ -->
-    <div style="display:flex;align-items:center;gap:12px;margin:28px 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
+    <!-- ━━━ STEP 3: 提出 or コピー ━━━ -->
+    <div style="display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
       <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">3</div>
       <div style="width:1px;height:16px;background:#444;"></div>
-      <div style="font-size:14px;font-weight:600;color:#fff;">詳細・信頼性</div>
-      <div style="font-size:11px;color:#888;margin-left:2px;">— 「本当に大丈夫？」の不安を取り除く部分</div>
+      <div style="font-size:14px;font-weight:600;color:#fff;">提出 or コピー</div>
+      <div style="font-size:11px;color:#888;margin-left:2px;">— 講師へ提出 ＆ 当日Claude Codeへ</div>
     </div>
 
-    <div class="card">
-      <div class="ws-group">
-        <label class="ws-label">（a）サービスの具体的な内容・カリキュラム <span class="ws-req">必須</span></label>
-        <div class="ws-hint">「何がどう含まれているか」を箇条書きで。サービスの種類によってはタイムテーブルに書いてもOK</div>
-        <textarea class="ws-textarea" rows="6" placeholder="例：&#10;【含まれるもの】&#10;・初回ヒアリングセッション 90分（現状分析＆3ヶ月の設計）&#10;・月2回の個別セッション 60分×6回&#10;・LINE無制限サポート（平日10〜18時対応）&#10;・Instagram投稿添削（月4枚まで）&#10;・プロフィール改善提案書（PDF）"></textarea>
-      </div>
-
-      <div class="ws-divider"></div>
-
-      <div class="ws-group">
-        <label class="ws-label">（b）受講生・お客様の声 <span class="ws-opt">任意・あれば強力</span></label>
-        <div class="ws-hint">名前・肩書き・コメントの3点セットが理想。実名・顔写真があるほど信頼度が上がる</div>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          <div style="background:var(--beige);border-radius:10px;padding:14px 16px;">
-            <div style="font-size:11px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:8px;letter-spacing:0.1em;">VOICE 1</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <input type="text" class="ws-input" placeholder="お名前・肩書き（例：山本あやか / ハンドメイド作家）">
-              <textarea class="ws-textarea" rows="3" placeholder="コメント（例：3ヶ月で月収5万円を達成しました。何をすればいいかわからなかった私でも、ステップを踏めば結果が出るんだと実感しています。）"></textarea>
-            </div>
-          </div>
-          <div style="background:var(--beige);border-radius:10px;padding:14px 16px;">
-            <div style="font-size:11px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:8px;letter-spacing:0.1em;">VOICE 2</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <input type="text" class="ws-input" placeholder="お名前・肩書き">
-              <textarea class="ws-textarea" rows="3" placeholder="コメント"></textarea>
-            </div>
-          </div>
-          <div style="background:var(--beige);border-radius:10px;padding:14px 16px;">
-            <div style="font-size:11px;font-family:'DM Sans',sans-serif;color:var(--orange);margin-bottom:8px;letter-spacing:0.1em;">VOICE 3</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <input type="text" class="ws-input" placeholder="お名前・肩書き">
-              <textarea class="ws-textarea" rows="3" placeholder="コメント"></textarea>
-            </div>
-          </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+      <!-- 講師へ提出（工事中） -->
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:var(--gray-mid);letter-spacing:0.12em;">FOR TEACHER</div>
+          <span style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#fff;background:#94A3B8;padding:1px 6px;border-radius:3px;">準備中</span>
         </div>
+        <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:6px;line-height:1.5;">講師へ提出</div>
+        <div style="font-size:11px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;flex:1;">記入内容を講師チームに共有します。当日の提案・サポートに使います。<br><strong style="color:#92400E;">※ ただいま提出フォーム調整中。動作確認後ご案内します。</strong></div>
+        <button id="ws-submit-btn" onclick="submitToTeachers()" style="padding:11px 20px;background:#E5E7EB;color:#9CA3AF;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:not-allowed;font-family:'Zen Maru Gothic',sans-serif;" disabled>講師へ提出（準備中）</button>
+        <div id="ws-submit-msg" style="margin-top:8px;font-size:11px;min-height:14px;"></div>
       </div>
 
-      <div class="ws-divider"></div>
-
-      <div class="ws-group">
-        <label class="ws-label">（c）よくある質問（FAQ） <span class="ws-opt">任意・申込み直前の不安解消に効果大</span></label>
-        <div class="ws-hint">「料金は？」「初心者でも大丈夫？」「どんな人向け？」「返金は？」などが典型。3〜5個あると安心</div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
-              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q. 例：PCが苦手でも参加できますか？">
-            </div>
-            <div style="padding:10px 14px;">
-              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A. 例：はい、大丈夫です。ゼロからわかりやすく説明しますので、パソコンが苦手な方でも安心してご参加いただけます。"></textarea>
-            </div>
-          </div>
-          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
-              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q. 例：分割払いはできますか？">
-            </div>
-            <div style="padding:10px 14px;">
-              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A. 例：はい、3回分割払い（手数料なし）に対応しています。申込み時にご選択いただけます。"></textarea>
-            </div>
-          </div>
-          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
-              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q.">
-            </div>
-            <div style="padding:10px 14px;">
-              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A."></textarea>
-            </div>
-          </div>
-          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
-              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q.">
-            </div>
-            <div style="padding:10px 14px;">
-              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A."></textarea>
-            </div>
-          </div>
-          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-            <div style="padding:10px 14px;background:var(--beige);border-bottom:1px solid var(--border);">
-              <input type="text" class="ws-input" style="background:transparent;border:none;padding:0;" placeholder="Q.">
-            </div>
-            <div style="padding:10px 14px;">
-              <textarea class="ws-textarea" rows="2" style="border:none;padding:0;background:transparent;" placeholder="A."></textarea>
-            </div>
-          </div>
+      <!-- Claude Code用コピー -->
+      <div style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border:1.5px solid var(--orange-border);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:var(--orange);letter-spacing:0.12em;">FOR CLAUDE CODE</div>
+          <span style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#fff;background:var(--orange);padding:1px 6px;border-radius:3px;">当日使う</span>
         </div>
-      </div>
-
-      <div class="ws-divider"></div>
-
-      <div class="ws-group">
-        <label class="ws-label">（d）タイムテーブル・スケジュール <span class="ws-opt">任意・単発講座・セミナー系に特に重要</span></label>
-        <div class="ws-hint">「当日何をするの？」がわかると申込みへのハードルが下がる</div>
-        <textarea class="ws-textarea" rows="8" placeholder="例（セミナー形式の場合）：&#10;13:00　開場・受付&#10;13:30　スタート・自己紹介&#10;14:00　第1部：〇〇の基礎知識（60分）&#10;15:00　休憩&#10;15:15　第2部：ワーク・実践（60分）&#10;16:15　質疑応答&#10;16:30　終了&#10;&#10;例（継続サポート型の場合）：&#10;1ヶ月目：現状分析＆戦略設計&#10;2ヶ月目：コンテンツ制作＆投稿開始&#10;3ヶ月目：改善＆仕組み化"></textarea>
-      </div>
-
-      <div class="ws-divider"></div>
-
-      <div class="ws-group">
-        <label class="ws-label">（e）講師の自己紹介・経歴 <span class="ws-req">必須</span></label>
-        <div class="ws-hint">「なぜあなたが教えられるのか」「どんな人なのか」を伝える。資格・実績より"共感できるストーリー"が効く</div>
-        <textarea class="ws-textarea" rows="6" placeholder="例：&#10;はじめまして、山田さくらです。&#10;元会社員で、産後に趣味のハンドメイドを副業にしようとしたものの、最初の1年は全く売れずに悩んでいました。&#10;試行錯誤の末、Instagramの発信を見直したことで月収10万円を達成。その経験をもとに、同じように悩む作家さんのサポートをしています。&#10;現在は受講生50名以上。副業月収5万円以上を達成した方が続出しています。"></textarea>
+        <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:6px;line-height:1.5;">Claude Code 用コピー</div>
+        <div style="font-size:11px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;flex:1;">前置きプロンプト（女性向けLPルール／デザインルール／clamp必須など）＋ 上の壁打ち結果を、まとめてクリップボードへコピーします。当日Claude Codeに貼って実行するだけ。</div>
+        <button onclick="copyForClaudeCode()" style="padding:11px 20px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;">Claude Code 用にコピー</button>
+        <div id="ws-cc-msg" style="margin-top:8px;font-size:11px;color:var(--orange);min-height:14px;"></div>
       </div>
     </div>
 
-    <!-- ━━━ SECTION 4: クロージング ━━━ -->
-    <div style="display:flex;align-items:center;gap:12px;margin:28px 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
-      <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">4</div>
-      <div style="width:1px;height:16px;background:#444;"></div>
-      <div style="font-size:14px;font-weight:600;color:#fff;">クロージング</div>
-      <div style="font-size:11px;color:#888;margin-left:2px;">— 最後の背中を押す部分</div>
-    </div>
-
-    <div class="card">
-      <div class="ws-group">
-        <label class="ws-label">（a）最後に背中を押す文言 <span class="ws-opt">任意・あると申込み率UP</span></label>
-        <div class="ws-hint">残り枠数、締め切り、「迷っているあなたへ」など。嘘はNG、実際の状況を書く</div>
-        <textarea class="ws-textarea" rows="4" placeholder="例：&#10;・残り2席です（2025年5月10日時点）&#10;・5月末までのお申込みで、初回セッションを90分→120分に延長します&#10;・「もう少し考えてから」と思っているなら、まず無料相談だけでも大丈夫です"></textarea>
-      </div>
-      <div class="ws-group">
-        <label class="ws-label">（b）登録プレゼント・特典 <span class="ws-opt">任意</span></label>
-        <div class="ws-hint">LINE登録やメルマガ登録で何かプレゼントがある場合に記入。特典名と内容を具体的に</div>
-        <textarea class="ws-textarea" rows="4" placeholder="例：&#10;LINE登録特典：「Instagramプロフィール改善チェックリスト20項目」PDF無料プレゼント&#10;&#10;早期申込み特典：3ヶ月分の投稿テーマカレンダー（Canvaテンプレート付き）をプレゼント"></textarea>
-      </div>
-    </div>
-
-    <!-- ━━━ SECTION 5: モデリング ━━━ -->
-    <div style="display:flex;align-items:center;gap:12px;margin:28px 0 16px;padding:10px 16px;background:var(--black);border-radius:10px;">
-      <div style="font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:var(--orange);line-height:1;">5</div>
-      <div style="width:1px;height:16px;background:#444;"></div>
-      <div style="font-size:14px;font-weight:600;color:#fff;">モデリング</div>
-      <div style="font-size:11px;color:#888;margin-left:2px;">— 参考にしたいLPを集めておく</div>
-    </div>
-
-    <!-- 参考サイト案内（モデリングフォームの前にまず見る） -->
-    <div style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border:1.5px solid var(--orange-border);border-radius:12px;padding:18px 20px;margin-bottom:16px;">
-      <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;color:var(--orange);text-transform:uppercase;margin-bottom:8px;">まずはここから</div>
-      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:10px;line-height:1.6;">参考にしたいLPを集めましょう</div>
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
-        下記サイトを開いて、自分のLPの参考になりそうなページを探してください。「この順番で読ませたい」「このコピーが刺さる」「この配色が好き」など、<strong style="color:var(--black);">ピンと来たLPのURLを下のフォームに貼り付けます</strong>。
-      </p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <a href="https://rdlp.jp/lp-archive/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
-          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#EF4444,#F97316);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-          </div>
-          <div>
-            <div style="font-size:12px;font-weight:600;line-height:1.3;">LPアーカイブ</div>
-            <div style="font-size:10px;color:var(--gray-mid);">日本語LP 44,000件以上</div>
-          </div>
-        </a>
-        <a href="https://sankoudesign.com/category/lp/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
-          <div style="width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#0EA5E9,#06B6D4);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-          </div>
-          <div>
-            <div style="font-size:12px;font-weight:600;line-height:1.3;">SANKOU!</div>
-            <div style="font-size:10px;color:var(--gray-mid);">国内Webデザインギャラリー</div>
-          </div>
-        </a>
-        <a href="https://www.awwwards.com/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
-          <div style="width:24px;height:24px;border-radius:6px;background:#0F0F0F;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#fff;letter-spacing:0.02em;">AW</div>
-          <div>
-            <div style="font-size:12px;font-weight:600;line-height:1.3;">Awwwards</div>
-            <div style="font-size:10px;color:var(--gray-mid);">世界最高峰のWebデザイン受賞集</div>
-          </div>
-        </a>
-        <a href="https://www.pinterest.jp/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--black);">
-          <div style="width:24px;height:24px;border-radius:6px;background:#E60023;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.67 1.33 1.48 0 .9-.57 2.26-.87 3.52-.25 1.05.52 1.9 1.54 1.9 1.85 0 3.09-2.37 3.09-5.18 0-2.14-1.44-3.76-4.05-3.76-2.95 0-4.78 2.2-4.78 4.65 0 .85.24 1.44.62 1.9.17.2.19.28.13.51-.04.17-.14.57-.18.73-.06.24-.24.32-.44.23-1.24-.51-1.82-1.87-1.82-3.4 0-2.53 2.14-5.59 6.38-5.59 3.42 0 5.65 2.48 5.65 5.14 0 3.54-1.96 6.2-4.83 6.2-.97 0-1.87-.52-2.18-1.11l-.59 2.27c-.21.82-.78 1.85-1.16 2.47.87.27 1.8.42 2.76.42 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
-          </div>
-          <div>
-            <div style="font-size:12px;font-weight:600;line-height:1.3;">Pinterest</div>
-            <div style="font-size:10px;color:var(--gray-mid);">「LPデザイン」「landing page」で検索</div>
-          </div>
-        </a>
-      </div>
-      <p style="font-size:11px;color:var(--gray-lt);line-height:1.7;margin-top:12px;">気に入ったページを見つけたら、URLをコピー or スクショ。Claudeに「このサイトのような雰囲気で」と伝えるとイメージが伝わりやすくなります。</p>
-    </div>
-
-    <div class="card">
-
-      <!-- 構成・中身モデリング（旧：構成 + 中身 を統合） -->
-      <div class="ws-group">
-        <label class="ws-label">構成・中身のモデリング <span class="ws-req">必須</span></label>
-        <div class="ws-hint">セクションの順番・流れ・コピー（言葉づかい）の参考にしたいLPを<strong style="color:var(--black);">最低1つ</strong>貼ってください（3つあるとなお良し）。</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">1</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" data-modeling-group="composition" placeholder="URL（必須・最低1つ）">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ（例：セクション順、キャッチコピーが刺さる）">
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">2</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" data-modeling-group="composition" placeholder="URL（任意）">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">3</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" data-modeling-group="composition" placeholder="URL（任意）">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- デザインモデリング -->
-      <div class="ws-group" style="margin-top:20px;">
-        <label class="ws-label">デザインのモデリング <span class="ws-req">必須</span></label>
-        <div class="ws-hint">配色・フォント・ビジュアルの雰囲気で参考にしたいLPを<strong style="color:var(--black);">最低1つ</strong>貼ってください（3つあるとなお良し）。</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">1</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" data-modeling-group="design" placeholder="URL（必須・最低1つ）">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ（例：グラデーションの使い方、余白の広さが好み）">
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">2</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" data-modeling-group="design" placeholder="URL（任意）">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;">
-            <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:10px;flex-shrink:0;">3</div>
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <input type="url" class="ws-input" data-modeling-group="design" placeholder="URL（任意）">
-              <input type="text" class="ws-input" placeholder="参考にしたい部分・メモ">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ━━━ 3ステップで提出 ━━━ -->
-    <div style="margin-top:36px;">
-
-      <!-- ステップ見出し -->
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-        <div style="flex:1;height:1px;background:var(--border);"></div>
-        <div style="font-size:11px;font-family:'DM Sans',sans-serif;letter-spacing:0.15em;color:var(--gray-mid);white-space:nowrap;">3 STEPS TO LP</div>
-        <div style="flex:1;height:1px;background:var(--border);"></div>
-      </div>
-
-      <!-- STEP 1: 講師へ提出 -->
-      <div style="display:flex;gap:0;align-items:stretch;">
-        <div style="display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0;">
-          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#4F7EF7,#1BC6B4);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
-          <div style="width:2px;flex:1;background:linear-gradient(to bottom,#1BC6B4,var(--orange));margin:4px 0;opacity:0.3;"></div>
-        </div>
-        <div style="flex:1;min-width:0;padding:0 0 24px 10px;">
-          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;line-height:1.6;">講師へ提出</div>
-          <div style="font-size:11px;color:var(--gray-mid);line-height:1.8;margin-bottom:10px;">記入した内容を講師チームに共有します。当日の提案・サポートに使います。</div>
-          <div style="display:inline-flex;align-items:center;gap:8px;background:#FFF3CD;border:1px solid #F59E0B;border-radius:8px;padding:7px 14px;margin-bottom:12px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <span style="font-size:12px;font-weight:600;color:#92400E;">提出期限：6月3日（火）までにお願いします</span>
-          </div>
-          <div>
-            <button id="ws-submit-btn" onclick="submitWorksheet()" style="padding:10px 24px;background:linear-gradient(135deg,#4F7EF7,#1BC6B4);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;letter-spacing:0.05em;">講師へ提出する</button>
-            <div id="ws-submit-msg" style="margin-top:8px;font-size:12px;min-height:16px;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STEP 2: Claude Codeに貼り付ける -->
-      <div style="display:flex;gap:0;align-items:stretch;">
-        <div style="display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0;">
-          <div style="width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
-          <div style="width:2px;flex:1;background:linear-gradient(to bottom,var(--orange),#10B981);margin:4px 0;opacity:0.3;"></div>
-        </div>
-        <div style="flex:1;min-width:0;padding:0 0 24px 10px;">
-          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;line-height:1.6;">入力内容をコピーして Claude Code に貼り付ける</div>
-          <div style="font-size:11px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">上で記入した内容をまとめてコピーし、Claude Code のチャット欄に貼り付けてください。</div>
-          <button onclick="copyWorksheet()" style="padding:10px 24px;background:#1C1D2E;color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;letter-spacing:0.05em;">入力内容をまとめてコピー</button>
-          <div id="ws-copy-msg" style="margin-top:8px;font-size:12px;color:var(--orange);min-height:16px;"></div>
-        </div>
-      </div>
-
-      <!-- STEP 3: 実行でLP完成 -->
-      <div style="display:flex;gap:0;align-items:stretch;">
-        <div style="display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0;">
-          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#10B981,#06B6D4);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
-        </div>
-        <div style="flex:1;min-width:0;padding:0 0 8px 10px;">
-          <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:4px;line-height:1.6;">実行を押すとLP（ランディングページ）が完成</div>
-          <div style="background:linear-gradient(135deg,rgba(16,185,129,0.07),rgba(6,182,212,0.07));border:1px solid rgba(16,185,129,0.25);border-radius:10px;padding:14px 16px;margin-top:8px;">
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.9;">
-              貼り付けたら <strong style="color:var(--black);">Enter キー（実行）</strong> を押すだけ。<br>
-              Claude Code が自動でHTMLファイルを生成し、LPのたたき台が完成します。<br>
-              <span style="color:var(--gray-lt);font-size:11px;">あとは当日、一緒にブラッシュアップしていきましょう。</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
 
     <style>
       .ws-group { margin-bottom:20px; }
@@ -7493,170 +7323,127 @@
     </style>
 
     <script>
-    function copyWorksheet() {
-      const labels = document.querySelectorAll('#tab-worksheet .ws-label');
-      let result = '【LPに載せる情報】\n\n';
-      document.querySelectorAll('#tab-worksheet .ws-group').forEach(group => {
-        const label = group.querySelector('.ws-label');
-        if (!label) return;
-        const labelText = label.textContent.replace(/必須|任意.*$/g, '').trim();
-        const inputs = group.querySelectorAll('input[type=text], input[type=url], textarea');
-        const values = [];
-        inputs.forEach(el => { if (el.value.trim()) values.push(el.value.trim()); });
-        if (values.length) {
-          result += labelText + '\n';
-          values.forEach(v => result += v + '\n');
-          result += '\n';
-        }
+    // ─── 壁打ち専用プロンプトをコピー ───
+    function copyBrainstormPrompt() {
+      const text = document.getElementById('ws-brainstorm-prompt').innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        const msg = document.getElementById('ws-brainstorm-msg');
+        msg.textContent = 'コピーしました。Claude / ChatGPT / Gemini に貼り付けてください。';
+        setTimeout(function(){ msg.textContent = ''; }, 4000);
       });
-      if (result.trim() === '【LPに載せる情報】') {
-        document.getElementById('ws-copy-msg').textContent = 'まだ何も入力されていません。';
+    }
+
+    // ─── Claude Code 用にコピー（前置きプロンプト + 壁打ち結果） ───
+    const PROMPT_PREFIX = `あなたは売れるLPを作るデザイナー兼コピーライターです。
+特に「女性をターゲットにしたLP」のデザイン・コピーが得意で、AIっぽい定型句を一切使わずに作ります。
+以下の「LP構成案」をもとに、HTMLとCSSでランディングページを作ってください。
+構成案の順序・文面はそのまま使ってください。
+
+【コピーのルール】
+- 主語は「あなた」、抽象語禁止（「自信がつく」「あなたの可能性を広げる」「理想の○○へ」など中身のない言葉は一切使わない）
+- AI定型句禁止（「さあ、始めましょう」「いかがでしょうか？」「〜の世界へようこそ」「革新的な」など）
+- 数字・固有名詞・動詞から始まる文を意識する
+- 架空のお客様の声や数字（「満足度97%」等）は作らない。プレースホルダーで置く
+- 女性ターゲットに感情を動かす言葉を使う（プリンセスマーケティング視点）
+- 機能的価値＋情緒的価値の両方を必ず盛り込む
+- キャッチコピーは「ターゲット × 悩み × ベネフィット」を内包
+
+【デザインのルール】
+- 絵文字一切禁止（チェック等はCSS疑似要素で）
+- フォント最大3種類。明朝体を長文本文に使わない
+- 色：アクセント1色のみ。原色そのまま禁止、派手なグラデ禁止
+- テキスト#1e1e1e / 補足#6a6a6a / 背景#faf8f5（純白でなく少し色味のある白）
+- 角丸は8pxか16pxに統一
+- シャドウは薄く広く（0 8px 30px rgba(0,0,0,0.05)）
+- 女性ターゲット向けの柔らかさ・上質感
+
+【フォントサイズ（clamp必須）】
+- 本文16px以上、H1 clamp(28px,7vw,48px)、H2 clamp(22px,5vw,32px)、H3 clamp(17px,4vw,22px)
+- 本文行間1.7〜1.8 / 見出し行間1.3〜1.4
+
+【スマホファースト】
+- ブレークポイント768px
+- 横スクロール禁止、タップ領域44px以上
+- 2カラム以上は必ずスマホで縦積み
+
+【余白・レイアウト】
+- セクション間：PC 80px / スマホ 48px
+- 要素間は8の倍数（8/16/24/32px）
+- 左右パディング最低20px、テキストmax-width: 720px
+
+【ビジュアル】
+- 全セクションに画像 or 図解必須。なければpicsum.photosやCSS図解
+- 絵文字をアイコン代わりにしない（SVG or CSS疑似要素）
+- 画像はwidth: 100%; max-width: 100%
+
+【セクションごとの推奨カラム（モデリングLPの世界観優先・迷ったときのデフォルト）】
+- FV: PC2col（左テキスト60%+右画像40%）/ スマホ縦積み
+- 共感: PC3colカード / スマホ1col
+- 未来: PC2col(Before/After) / スマホ縦積み
+- サービス: PC2col×3行 / スマホ1col
+- 信頼: PC3colカード / スマホ1col
+- プロフィール: PC2col(左画像40%+右テキスト60%) / スマホ縦積み
+- FAQ: 全幅1col（アコーディオン推奨）
+- 料金: 中央寄せ1col (max-width: 480px)
+- CTA: PC中央寄せ・ボタン幅固定 / スマホボタンフルワイド
+
+【出力フォーマット】
+- HTML 1枚完結、CSSはstyle内、altテキスト必須
+
+---
+
+# LP構成案
+
+`;
+
+    function copyForClaudeCode() {
+      const content = document.getElementById('lp-content').value.trim();
+      const msg = document.getElementById('ws-cc-msg');
+      if (!content) {
+        msg.style.color = '#e55';
+        msg.textContent = '先に壁打ち結果を貼り付けてください。';
+        setTimeout(function(){ msg.textContent = ''; msg.style.color = 'var(--orange)'; }, 3000);
         return;
       }
-      navigator.clipboard.writeText(result).then(() => {
-        const msg = document.getElementById('ws-copy-msg');
-        msg.textContent = 'コピーしました！ChatGPT または Claude に貼り付けてください。';
-        setTimeout(() => { msg.textContent = ''; }, 4000);
+      const fullText = PROMPT_PREFIX + content;
+      navigator.clipboard.writeText(fullText).then(function() {
+        msg.style.color = 'var(--orange)';
+        msg.textContent = 'コピーしました。Claude Code に貼り付けて実行してください。';
+        setTimeout(function(){ msg.textContent = ''; }, 4000);
       });
     }
 
-    // ─── ディレクタープロンプトをコピー ───
-    function copyDirectorPrompt() {
-      const text = document.getElementById('ws-director-prompt').textContent;
-      navigator.clipboard.writeText(text.trim()).then(() => {
-        const msg = document.getElementById('ws-director-msg');
-        msg.textContent = 'コピーしました！';
-        setTimeout(() => { msg.textContent = ''; }, 3000);
-      });
-    }
-
-    // ─── 講師に提出する ───
-    // GASデプロイ後、下のURLを差し替えてください
-    const GAS_URL = 'https://script.google.com/macros/s/AKfycbzuTKLJUtmHUbeDadezLqgYrUBvoc1rS-angpxOaL3wW3RpJfrZugAmL9DVMj1kC1Z1hQ/exec';
-
-    async function submitWorksheet() {
-      const btn = document.getElementById('ws-submit-btn');
+    // ─── 講師へ提出（準備中：当面は無効化） ───
+    function submitToTeachers() {
       const msg = document.getElementById('ws-submit-msg');
-
-      // ラベル文字列でフィールドの値を収集
-      const get = (labelText) => {
-        const groups = document.querySelectorAll('#tab-worksheet .ws-group');
-        for (const group of groups) {
-          const label = group.querySelector('.ws-label');
-          if (label && label.textContent.includes(labelText)) {
-            const inputs = group.querySelectorAll('input[type=text], input[type=url], textarea');
-            return Array.from(inputs).map(el => el.value.trim()).filter(v => v).join('\n---\n');
-          }
-        }
-        return '';
-      };
-
-      // お名前は必須チェック
-      const name = get('お名前');
-      if (!name) {
-        msg.style.color = '#e55';
-        msg.textContent = 'お名前（基本情報 a）を入力してから送信してください。';
-        return;
-      }
-
-      // モデリングURL 必須チェック（構成・中身 / デザイン それぞれ最低1つ）
-      const compositionUrls = document.querySelectorAll('#tab-worksheet input[data-modeling-group="composition"]');
-      const hasComposition = Array.from(compositionUrls).some(el => el.value.trim());
-      if (!hasComposition) {
-        msg.style.color = '#e55';
-        msg.textContent = '「構成・中身のモデリング」に最低1つはURLを入れてください。';
-        return;
-      }
-      const designUrls = document.querySelectorAll('#tab-worksheet input[data-modeling-group="design"]');
-      const hasDesign = Array.from(designUrls).some(el => el.value.trim());
-      if (!hasDesign) {
-        msg.style.color = '#e55';
-        msg.textContent = '「デザインのモデリング」に最低1つはURLを入れてください。';
-        return;
-      }
-
-      // GAS URL 未設定チェック
-      if (GAS_URL === 'GAS_WEB_APP_URL_HERE') {
-        msg.style.color = '#e55';
-        msg.textContent = '（講師向け）GAS URLが未設定です。preparation-vol3.html の GAS_URL を更新してください。';
-        return;
-      }
-
-      const data = {
-        name:       get('お名前'),
-        instagram:  get('インスタグラムURL'),
-        target:     get('ターゲット'),
-        service:    get('サービス名・内容'),
-        price:      get('価格'),
-        applyUrl:   get('申込みリンク'),
-        troubles:   get('こんなお悩みありませんか'),
-        benefits:   get('このサービスを受けると'),
-        curriculum: get('サービスの具体的な内容'),
-        voices:     get('受講生・お客様の声'),
-        faq:        get('よくある質問'),
-        timetable:  get('タイムテーブル'),
-        bio:        get('講師の自己紹介'),
-        closing:    get('最後に背中を押す'),
-        bonus:      get('登録プレゼント'),
-        modeling1:  get('構成・中身のモデリング'),
-        modeling2:  '',
-        modeling3:  get('デザインのモデリング'),
-        beforeUrl:  '',
-        afterUrl:   ''
-      };
-
-      btn.disabled = true;
-      btn.textContent = '送信中...';
-      btn.style.background = '#aaa';
-      msg.style.color = 'var(--gray-mid)';
-      msg.textContent = '';
-
-      try {
-        await fetch(GAS_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: JSON.stringify(data)
-        });
-        // no-cors では応答が読めないため、送信完了とみなす
-        msg.style.color = '#2a9d5c';
-        msg.textContent = '送信しました。スプレッドシートに記録されました。';
-        btn.textContent = '送信済み';
-        // 宿題完了フラグを立てて、サイドバーの全体進捗を更新
-        if (window.__aiwsMarkTaskDone) window.__aiwsMarkTaskDone('worksheet_done');
-        setTimeout(() => {
-          btn.disabled = false;
-          btn.textContent = '講師に提出する';
-          btn.style.background = 'linear-gradient(135deg,#4F7EF7,#1BC6B4)';
-        }, 3000);
-      } catch (err) {
-        msg.style.color = '#e55';
-        msg.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
-        btn.disabled = false;
-        btn.textContent = '講師に提出する';
-        btn.style.background = 'linear-gradient(135deg,#4F7EF7,#1BC6B4)';
-      }
+      msg.style.color = '#92400E';
+      msg.textContent = 'ただいま提出フォーム調整中です。動作確認後ご案内します。';
     }
-    // ── ワークシートの入力内容を localStorage に保存・復元 ──
+
+    // ─── 入力内容を localStorage に保存・復元 ───
     (function() {
-      const STORE_KEY = 'aiws-ws-fields-v1';
+      const STORE_KEY = 'aiws-ws-v2-fields';
       function saveAll() {
-        const els = document.querySelectorAll('#tab-worksheet .ws-input, #tab-worksheet .ws-textarea');
-        const vals = Array.from(els).map(el => el.value);
-        localStorage.setItem(STORE_KEY, JSON.stringify(vals));
+        const data = {
+          name: document.getElementById('lp-name') ? document.getElementById('lp-name').value : '',
+          content: document.getElementById('lp-content') ? document.getElementById('lp-content').value : ''
+        };
+        try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e) {}
       }
       function restoreAll() {
-        const saved = localStorage.getItem(STORE_KEY);
-        if (!saved) return;
         try {
-          const vals = JSON.parse(saved);
-          const els = document.querySelectorAll('#tab-worksheet .ws-input, #tab-worksheet .ws-textarea');
-          els.forEach((el, i) => { if (vals[i] !== undefined) el.value = vals[i]; });
+          const saved = localStorage.getItem(STORE_KEY);
+          if (!saved) return;
+          const data = JSON.parse(saved);
+          if (data.name && document.getElementById('lp-name')) document.getElementById('lp-name').value = data.name;
+          if (data.content && document.getElementById('lp-content')) document.getElementById('lp-content').value = data.content;
         } catch(e) {}
       }
       document.addEventListener('DOMContentLoaded', function() {
         restoreAll();
-        document.querySelectorAll('#tab-worksheet .ws-input, #tab-worksheet .ws-textarea').forEach(function(el) {
-          el.addEventListener('input', saveAll);
+        ['lp-name','lp-content'].forEach(function(id) {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener('input', saveAll);
         });
       });
     })();
