@@ -35,6 +35,21 @@ var ROW_LABELS = [
   '講師メモ',     // 行6: 空欄（講師が入力）
 ];
 
+// ── マークダウン記号を除去して読みやすいプレーンテキストにする ──
+function stripMarkdown(text) {
+  return text
+    .replace(/^#{1,6}\s*/gm, '')           // ## 見出し記号を除去
+    .replace(/\*\*(.+?)\*\*/g, '$1')       // **太字** → テキストのみ
+    .replace(/\*(.+?)\*/g, '$1')           // *斜体* → テキストのみ
+    .replace(/^[-*+]\s+/gm, '・')          // - 箇条書き → ・
+    .replace(/^\d+\.\s+/gm, '')            // 1. 番号リスト記号を除去
+    .replace(/^---+$/gm, '──────────────') // --- 区切り線
+    .replace(/`(.+?)`/g, '$1')             // `code` → テキストのみ
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1')    // [リンクテキスト](URL) → テキストのみ
+    .replace(/\n{3,}/g, '\n\n')            // 3行以上の空行 → 2行に
+    .trim();
+}
+
 function doPost(e) {
   try {
     var ss    = SpreadsheetApp.getActiveSpreadsheet();
@@ -57,9 +72,12 @@ function doPost(e) {
     // ── リクエストデータを取得 ───────────────────────────────
     var params  = JSON.parse(e.postData.contents);
     var name    = (params.name    || '').trim() || '（名前未入力）';
-    var content = (params.content || '').trim() || '（内容未入力）';
+    var rawContent = (params.content || '').trim() || '（内容未入力）';
     var refUrl  = (params.refUrl  || '').trim() || '（なし）';
     var ts      = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss');
+
+    // マークダウン記号を除去して読みやすいテキストに変換
+    var content = stripMarkdown(rawContent);
 
     // ── データを列に書き込む ─────────────────────────────────
     // 行1: チェックボックス（初期値: 未チェック）
@@ -80,11 +98,12 @@ function doPost(e) {
     // 行4: 参考サイトURL
     sheet.getRange(4, newCol).setValue(refUrl);
 
-    // 行5: 壁打ち結果（折り返し表示・高さ拡張）
+    // 行5: 壁打ち結果（折り返し表示・読みやすいプレーンテキスト）
     var contentCell = sheet.getRange(5, newCol);
     contentCell.setValue(content);
     contentCell.setWrap(true);
     contentCell.setVerticalAlignment('top');
+    contentCell.setFontSize(11);
 
     // 行6: 講師メモ（空欄・背景色で強調）
     var memoCell = sheet.getRange(6, newCol);
@@ -95,8 +114,9 @@ function doPost(e) {
     // 列幅を設定（長文が入るので広めに）
     sheet.setColumnWidth(newCol, 320);
 
-    // 行5の高さを広げる（壁打ち結果が長いので）
-    sheet.setRowHeight(5, 400);
+    // ※ 行5の高さはinitSheetで設定済み。
+    //   doPost内でsetRowHeightを呼ぶと、手動調整がリセットされるため呼ばない。
+    //   高さを変えたい場合はスプシ上で行ヘッダーをドラッグして調整できます。
 
     return ContentService
       .createTextOutput(JSON.stringify({
@@ -133,14 +153,14 @@ function initSheet(sheet) {
   sheet.setColumnWidth(1, 130);
 
   // 各行の高さ
-  sheet.setRowHeight(1, 36);  // 確認済み（チェックボックス）
-  sheet.setRowHeight(2, 36);  // 提出日時
-  sheet.setRowHeight(3, 36);  // お名前
-  sheet.setRowHeight(4, 60);  // 参考URL
-  sheet.setRowHeight(5, 400); // 壁打ち結果（長文）
-  sheet.setRowHeight(6, 100); // 講師メモ
+  sheet.setRowHeight(1, 36);   // 確認済み（チェックボックス）
+  sheet.setRowHeight(2, 36);   // 提出日時
+  sheet.setRowHeight(3, 36);   // お名前
+  sheet.setRowHeight(4, 60);   // 参考URL
+  sheet.setRowHeight(5, 1200); // 壁打ち結果（長文対応・大きめに設定）
+  sheet.setRowHeight(6, 120);  // 講師メモ
 
-  // 先頭行・列を固定（スクロールしてもA列・1行目が見える）
+  // 先頭列を固定（スクロールしてもA列が見える）
   sheet.setFrozenColumns(1);
 }
 
