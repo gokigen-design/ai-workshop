@@ -4,31 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ギャラリープレビュー — 受講生作品 + 参考サイト</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Maru+Gothic:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --orange: #C96A3A;
-    --orange-light: #E8956A;
-    --beige: #F5EFE4;
-    --beige2: #FAF8F5;
-    --black: #1A1210;
-    --gray-mid: #7A6A5A;
-    --gray-lt: #B5A99A;
-    --border: #E8DDD0;
-    --white: #FFFFFF;
+    --navy:    #0D1B4B;
+    --blue:    #2563EB;
+    --blue-lt: #60A5FA;
+    --violet:  #7C3AED;
+    --sky:     #EFF6FF;
+    --lavender:#F5F3FF;
+    --pink-lt: #FDF2F8;
+    --white:   #FFFFFF;
+    --gray:    #6B7280;
+    --gray-lt: #D1D5DB;
+    --border:  #E0E7FF;
+    --grad-main: linear-gradient(135deg, #1E40AF 0%, #6366F1 55%, #A21CAF 100%);
+    --grad-btn:  linear-gradient(90deg, #2563EB 0%, #7C3AED 100%);
+    --grad-bg:   linear-gradient(160deg, #EFF6FF 0%, #F5F3FF 50%, #FDF2F8 100%);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Noto Sans JP', 'Zen Maru Gothic', sans-serif;
-    background: var(--beige2);
-    color: var(--black);
+    background: var(--grad-bg);
+    color: var(--navy);
     line-height: 1.8;
     font-size: 15px;
+    min-height: 100vh;
   }
 
   /* ─── TOP NOTE ─── */
   .preview-note {
-    background: #1e5fd8;
+    background: linear-gradient(90deg, #1E40AF, #7C3AED);
     color: #fff;
     text-align: center;
     padding: 10px 20px;
@@ -37,29 +43,71 @@
     letter-spacing: 0.05em;
   }
 
+  /* ─── HERO BANNER ─── */
+  .hero-band {
+    background: var(--grad-main);
+    padding: 52px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 75% 20%, rgba(255,255,255,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 14px;
+  }
+  .hero-title {
+    font-size: clamp(22px, 5vw, 36px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.9;
+  }
+
   /* ─── LAYOUT ─── */
-  .page { max-width: 1000px; margin: 0 auto; padding: 60px 24px 100px; }
+  .page { max-width: 1040px; margin: 0 auto; padding: 56px 24px 100px; }
 
   /* ─── SECTION HEADER ─── */
-  .sec-label {
+  .sec-eyebrow {
     font-family: 'DM Sans', sans-serif;
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.2em;
-    color: var(--orange);
+    letter-spacing: 0.25em;
     text-transform: uppercase;
+    background: var(--grad-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 8px;
+    display: inline-block;
   }
   .sec-title {
     font-size: 22px;
     font-weight: 700;
-    color: var(--black);
+    color: var(--navy);
     margin-bottom: 8px;
     line-height: 1.4;
   }
   .sec-desc {
     font-size: 14px;
-    color: var(--gray-mid);
+    color: var(--gray);
     margin-bottom: 36px;
     line-height: 1.9;
   }
@@ -70,51 +118,49 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     padding: 3px 10px;
     border-radius: 20px;
   }
-  .badge-claude { background: #1e40af; color: #fff; }
-  .badge-image  { background: #6d28d9; color: #fff; }
-  .badge-sp     { background: #065f46; color: #fff; }
-  .badge-pc     { background: #1e3a5f; color: #fff; }
-  .badge-splp   { background: #7c2d12; color: #fff; }
-  .badge-wip    { background: var(--beige); color: var(--gray-lt); border: 1px solid var(--border); }
+  .badge-role   { background: var(--border); color: var(--violet); }
+  .badge-sp     { background: #DBEAFE; color: #1D4ED8; }
+  .badge-pc     { background: #EDE9FE; color: #6D28D9; }
+  .badge-splp   { background: #FCE7F3; color: #9D174D; }
+  .badge-wip    { background: #F3F4F6; color: var(--gray-lt); border: 1px solid #E5E7EB; }
+  .badge-coming { background: #EFF6FF; color: #3B82F6; border: 1px dashed #93C5FD; }
 
   /* ─── STUDENT CARDS ─── */
-  /* PC: 4列 / SP: 2列 */
   .student-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 18px;
     margin-bottom: 72px;
   }
-
   .student-card {
     background: var(--white);
-    border-radius: 14px;
+    border-radius: 16px;
     border: 1px solid var(--border);
     overflow: hidden;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 2px 12px rgba(37, 99, 235, 0.06);
   }
   .student-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(37, 99, 235, 0.14);
   }
-
-  /* サムネ：縦長（スマホのファーストビュー想定） */
+  /* サムネ：9:16縦長（スマホFVスクショ） */
   .student-thumb {
     width: 100%;
     aspect-ratio: 9 / 16;
-    background: linear-gradient(135deg, var(--beige) 0%, #ede0d0 100%);
+    background: linear-gradient(160deg, #EFF6FF 0%, #EDE9FE 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
-    color: var(--gray-lt);
+    color: #A5B4FC;
     letter-spacing: 0.1em;
     position: relative;
     overflow: hidden;
@@ -126,36 +172,28 @@
     object-fit: cover;
     object-position: top center;
   }
-
   .student-body {
-    padding: 12px 14px 14px;
+    padding: 14px 14px 16px;
     display: flex;
     flex-direction: column;
     flex: 1;
+    gap: 6px;
   }
   .student-name {
     font-size: 13px;
     font-weight: 700;
-    color: var(--black);
-    margin-bottom: 6px;
+    color: var(--navy);
     font-family: 'Noto Sans JP', sans-serif;
-  }
-  .student-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-bottom: 8px;
   }
   .student-memo {
     font-size: 12px;
-    color: var(--gray-mid);
+    color: var(--gray);
     line-height: 1.7;
-    margin-bottom: 12px;
     flex: 1;
   }
-  .student-memo.placeholder { color: var(--gray-lt); font-style: italic; }
+  .student-memo.placeholder { color: #D1D5DB; font-style: italic; }
 
-  /* LPに飛べるボタン */
+  /* LPリンクボタン */
   .student-btn {
     display: flex;
     align-items: center;
@@ -163,7 +201,7 @@
     gap: 6px;
     width: 100%;
     padding: 9px 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 12px;
     font-weight: 700;
     font-family: 'DM Sans', sans-serif;
@@ -171,32 +209,35 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.18s ease;
+    margin-top: auto;
   }
   .student-btn.active {
-    background: var(--orange);
+    background: var(--grad-btn);
     color: #fff;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.25);
   }
   .student-btn.active:hover {
-    background: #b55e30;
+    opacity: 0.88;
+    box-shadow: 0 4px 14px rgba(37,99,235,0.35);
   }
   .student-btn.inactive {
-    background: var(--beige);
-    color: var(--gray-lt);
-    border: 1px solid var(--border);
+    background: #F9FAFB;
+    color: #D1D5DB;
+    border: 1px solid #E5E7EB;
     cursor: default;
   }
-  /* ボタン内の矢印アイコン */
   .btn-arrow {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     flex-shrink: 0;
   }
 
   /* ─── DIVIDER ─── */
   .divider {
     border: none;
-    border-top: 1px solid var(--border);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
     margin: 64px 0;
   }
 
@@ -211,76 +252,106 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    padding: 7px 18px;
+    letter-spacing: 0.04em;
+    padding: 7px 20px;
     border-radius: 30px;
     border: 1.5px solid var(--border);
     background: var(--white);
-    color: var(--gray-mid);
+    color: var(--gray);
     cursor: pointer;
     transition: all 0.15s ease;
   }
-  .tab-btn:hover { border-color: var(--orange); color: var(--orange); }
-  .tab-btn.active { background: var(--orange); color: #fff; border-color: var(--orange); }
+  .tab-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .tab-btn.active {
+    background: var(--grad-btn);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.22);
+  }
 
   /* ─── REFERENCE CARDS ─── */
   .ref-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     gap: 16px;
   }
   .ref-card {
     background: var(--white);
-    border-radius: 12px;
+    border-radius: 14px;
     border: 1px solid var(--border);
-    padding: 16px 18px;
+    overflow: hidden;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.05);
   }
   .ref-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
   }
+  /* 参考サイトサムネ（横長・スマホ表示） */
+  .ref-thumb {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: linear-gradient(160deg, #EFF6FF, #EDE9FE);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: #A5B4FC;
+    letter-spacing: 0.08em;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .ref-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .ref-body { padding: 12px 14px 14px; display: flex; flex-direction: column; flex: 1; }
   .ref-domain {
     font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    color: var(--black);
-    margin: 8px 0 6px;
+    color: var(--navy);
+    margin: 6px 0 4px;
     word-break: break-all;
     line-height: 1.5;
   }
-  .ref-memo { font-size: 12px; color: var(--gray-mid); line-height: 1.7; margin-bottom: 12px; min-height: 20px; }
+  .ref-memo { font-size: 11px; color: var(--gray); line-height: 1.7; margin-bottom: 10px; flex: 1; }
   .ref-link {
     display: inline-flex;
     align-items: center;
     gap: 4px;
     font-size: 11px;
-    font-weight: 600;
-    color: var(--orange);
+    font-weight: 700;
+    color: var(--blue);
     text-decoration: none;
     font-family: 'DM Sans', sans-serif;
+    margin-top: auto;
   }
-  .ref-link:hover { text-decoration: underline; }
+  .ref-link:hover { opacity: 0.7; }
 
   /* hidden tab content */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .student-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
-    .ref-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .ref-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .sec-title { font-size: 19px; }
-    .student-body { padding: 10px 12px 12px; }
+    .student-body { padding: 10px 11px 12px; gap: 5px; }
     .student-name { font-size: 12px; }
     .student-memo { font-size: 11px; }
     .student-btn { font-size: 11px; padding: 8px 6px; }
-    .ref-card { padding: 12px 14px; }
-    .tab-row { gap: 6px; }
     .tab-btn { font-size: 11px; padding: 6px 14px; }
+    .hero-band { padding: 40px 20px 36px; }
   }
 </style>
 </head>
@@ -288,10 +359,19 @@
 
 <div class="preview-note">プレビュー用 — レイアウト確認後に preparation-vol3.html に組み込みます</div>
 
+<!-- ヒーローバナー -->
+<div class="hero-band">
+  <div class="hero-eyebrow">AI Workshop Gallery</div>
+  <div class="hero-title">受講生の作品 &amp; 参考サイト</div>
+  <div class="hero-sub">
+    AIだけで作ったLPと、デザインの参考になるサイトを集めました。
+  </div>
+</div>
+
 <div class="page">
 
   <!-- ====== 受講生作品 ====== -->
-  <div class="sec-label">STUDENT WORKS</div>
+  <div class="sec-eyebrow">STUDENT WORKS</div>
   <div class="sec-title">受講生の作品</div>
   <div class="sec-desc">
     実際のワークショップ受講生がAIだけで作ったLP。<br>
@@ -307,14 +387,10 @@
       </div>
       <div class="student-body">
         <div class="student-name">さーやん</div>
-        <div class="student-badges">
-          <span class="badge badge-claude">自己理解コーチ</span>
-        </div>
+        <span class="badge badge-role">自己理解コーチ</span>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
         <a href="https://sayan-lp.vercel.app/" target="_blank" class="student-btn active">
-          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           LP を見る
         </a>
       </div>
@@ -327,14 +403,10 @@
       </div>
       <div class="student-body">
         <div class="student-name">はぬちゃん</div>
-        <div class="student-badges">
-          <span class="badge badge-wip">職業・メモ待ち</span>
-        </div>
+        <span class="badge badge-wip">職業・メモ待ち</span>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
         <a href="https://hanu-lp.vercel.app/mobile.html" target="_blank" class="student-btn active">
-          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           LP を見る
         </a>
       </div>
@@ -347,14 +419,10 @@
       </div>
       <div class="student-body">
         <div class="student-name">はなちゃん</div>
-        <div class="student-badges">
-          <span class="badge badge-claude">焼き菓子作家</span>
-        </div>
+        <span class="badge badge-role">焼き菓子作家</span>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
         <a href="https://hana-okashi-lp.vercel.app/" target="_blank" class="student-btn active">
-          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           LP を見る
         </a>
       </div>
@@ -367,14 +435,10 @@
       </div>
       <div class="student-body">
         <div class="student-name">あゆみん</div>
-        <div class="student-badges">
-          <span class="badge badge-claude">WEBデザイナー</span>
-        </div>
+        <span class="badge badge-role">WEBデザイナー</span>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
         <a href="https://petit-atelier.vercel.app/" target="_blank" class="student-btn active">
-          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           LP を見る
         </a>
       </div>
@@ -387,14 +451,10 @@
       </div>
       <div class="student-body">
         <div class="student-name">えびちゃん</div>
-        <div class="student-badges">
-          <span class="badge badge-claude">動画編集コミュニティ</span>
-        </div>
+        <span class="badge badge-role">動画編集コミュニティ</span>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
         <a href="https://lp-premiere-seminar.vercel.app/" target="_blank" class="student-btn active">
-          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           LP を見る
         </a>
       </div>
@@ -407,15 +467,11 @@
       </div>
       <div class="student-body">
         <div class="student-name">ゾエさん</div>
-        <div class="student-badges">
-          <span class="badge badge-claude">セールス伴走コーチ</span>
-        </div>
+        <span class="badge badge-role">セールス伴走コーチ</span>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
         <a class="student-btn inactive">
-          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          LP URL待ち
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          URL 確認中
         </a>
       </div>
     </div>
@@ -427,14 +483,10 @@
       </div>
       <div class="student-body">
         <div class="student-name">ともみちゃん</div>
-        <div class="student-badges">
-          <span class="badge badge-claude">イメージコンサル</span>
-        </div>
+        <span class="badge badge-role">イメージコンサル</span>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
         <a href="https://lp-fujiba-tomomi.vercel.app/" target="_blank" class="student-btn active">
-          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           LP を見る
         </a>
       </div>
@@ -442,19 +494,15 @@
 
     <!-- 2期生 -->
     <div class="student-card">
-      <div class="student-thumb" style="background: linear-gradient(135deg, #f0e8da 0%, #e8d8c4 100%);">
-        <span style="font-size:12px; color: #B5A99A; letter-spacing:0.1em;">準備中</span>
+      <div class="student-thumb">
+        <span>準備中</span>
       </div>
       <div class="student-body">
         <div class="student-name">2期生さん</div>
-        <div class="student-badges">
-          <span class="badge badge-wip">近日公開</span>
-        </div>
+        <span class="badge badge-coming">近日公開</span>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
         <a class="student-btn inactive">
-          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           準備中
         </a>
       </div>
@@ -462,10 +510,10 @@
 
   </div><!-- /student-grid -->
 
-  <hr class="divider">
+  <div class="divider"></div>
 
   <!-- ====== 参考サイト ====== -->
-  <div class="sec-label">DESIGN REFERENCE</div>
+  <div class="sec-eyebrow">DESIGN REFERENCE</div>
   <div class="sec-title">デザインの参考にしてほしいサイト</div>
   <div class="sec-desc">
     講師3人が「こんなデザイン目指したい！」と選んだサイト集。<br>
@@ -483,150 +531,256 @@
     <div class="ref-grid">
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">sp.elle.co.jp/fashion/tasaki</div>
-        <div class="ref-memo"></div>
-        <a href="https://sp.elle.co.jp/fashion/tasaki/2010/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-elle-tasaki.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+          <span style="display:none;" class="ref-thumb-placeholder">SCREENSHOT</span>
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">sp.elle.co.jp / tasaki</div>
+          <div class="ref-memo"></div>
+          <a href="https://sp.elle.co.jp/fashion/tasaki/2010/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">dot-st.com / rageblue</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.dot-st.com/rageblue/cp/magicink" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-rageblue.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">dot-st.com / rageblue</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.dot-st.com/rageblue/cp/magicink" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">beams.co.jp / beamsmini</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.beams.co.jp/special/beamsmini/kids_7days/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-beamsmini.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">beams.co.jp / mini</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.beams.co.jp/special/beamsmini/kids_7days/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">junonline.jp / rope-picnic × pino</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.junonline.jp/special/ropepicnic_pino_collaboration/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-juno-ropepicnic.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">junonline.jp / rope-picnic×pino</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.junonline.jp/special/ropepicnic_pino_collaboration/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">junonline.jp / onepiece</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.junonline.jp/rope-picnic/product/onepiece/onepiece-dress/GDE14950" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-juno-onepiece.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">junonline.jp / onepiece</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.junonline.jp/rope-picnic/product/onepiece/onepiece-dress/GDE14950" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">pronovias-jp.com</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.pronovias-jp.com/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-pronovias.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">pronovias-jp.com</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.pronovias-jp.com/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">ogiya-wedding.jp</div>
-        <div class="ref-memo"></div>
-        <a href="https://ogiya-wedding.jp/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-ogiya-wedding.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">ogiya-wedding.jp</div>
+          <div class="ref-memo"></div>
+          <a href="https://ogiya-wedding.jp/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">sp.elle.co.jp / harrywinston</div>
-        <div class="ref-memo"></div>
-        <a href="https://sp.elle.co.jp/fashion/harrywinston/2206/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-elle-harrywinston.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">sp.elle.co.jp / harrywinston</div>
+          <div class="ref-memo"></div>
+          <a href="https://sp.elle.co.jp/fashion/harrywinston/2206/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">beams.co.jp / citydwellers</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.beams.co.jp/special/bmingbybeams/citydwellers/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-beams-citydwellers.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">beams / citydwellers</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.beams.co.jp/special/bmingbybeams/citydwellers/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">sundaymorning-f.com</div>
-        <div class="ref-memo"></div>
-        <a href="https://sundaymorning-f.com/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-sundaymorning.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">sundaymorning-f.com</div>
+          <div class="ref-memo"></div>
+          <a href="https://sundaymorning-f.com/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">sp.elle.co.jp / shiseido</div>
-        <div class="ref-memo"></div>
-        <a href="https://sp.elle.co.jp/beauty/shiseido/1905/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-elle-shiseido.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">sp.elle.co.jp / shiseido</div>
+          <div class="ref-memo"></div>
+          <a href="https://sp.elle.co.jp/beauty/shiseido/1905/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">botanistofficial.com / 26spring</div>
-        <div class="ref-memo"></div>
-        <a href="https://botanistofficial.com/special/limited/26spring/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-botanist-26spring.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">botanist / 26spring</div>
+          <div class="ref-memo"></div>
+          <a href="https://botanistofficial.com/special/limited/26spring/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">norikura-hanabi.com</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.norikura-hanabi.com/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-norikura-hanabi.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">norikura-hanabi.com</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.norikura-hanabi.com/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">twoe.jp</div>
-        <div class="ref-memo"></div>
-        <a href="https://twoe.jp/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-twoe.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">twoe.jp</div>
+          <div class="ref-memo"></div>
+          <a href="https://twoe.jp/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">noog.jp/pages/lp</div>
-        <div class="ref-memo"></div>
-        <a href="https://noog.jp/pages/lp" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-noog.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">noog.jp/pages/lp</div>
+          <div class="ref-memo"></div>
+          <a href="https://noog.jp/pages/lp" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">botanistofficial.com / 25spring</div>
-        <div class="ref-memo"></div>
-        <a href="https://botanistofficial.com/special/limited/25spring/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-botanist-25spring.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">botanist / 25spring</div>
+          <div class="ref-memo"></div>
+          <a href="https://botanistofficial.com/special/limited/25spring/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">izawasyouten.jp / internship</div>
-        <div class="ref-memo"></div>
-        <a href="https://izawasyouten.jp/recruit/internship/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-izawa-internship.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">izawasyouten / internship</div>
+          <div class="ref-memo"></div>
+          <a href="https://izawasyouten.jp/recruit/internship/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">junonline.jp / rope-picnic × pino（再掲）</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.junonline.jp/special/ropepicnic_pino_collaboration/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-juno-ropepicnic2.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">junonline.jp / rope-picnic×pino</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.junonline.jp/special/ropepicnic_pino_collaboration/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">yolu.jp / 25renewal</div>
-        <div class="ref-memo"></div>
-        <a href="https://yolu.jp/special/25renewal/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-yolu.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">yolu.jp / 25renewal</div>
+          <div class="ref-memo"></div>
+          <a href="https://yolu.jp/special/25renewal/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">femyou.jp</div>
-        <div class="ref-memo"></div>
-        <a href="https://femyou.jp/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-femyou.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">femyou.jp</div>
+          <div class="ref-memo"></div>
+          <a href="https://femyou.jp/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-sp">スマホサイト</span>
-        <div class="ref-domain">botanistofficial.com / 25summer</div>
-        <div class="ref-memo"></div>
-        <a href="https://botanistofficial.com/special/limited/25summer/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/sp-botanist-25summer.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-sp">スマホ</span>
+          <div class="ref-domain">botanist / 25summer</div>
+          <div class="ref-memo"></div>
+          <a href="https://botanistofficial.com/special/limited/25summer/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
     </div>
@@ -637,31 +791,51 @@
     <div class="ref-grid">
 
       <div class="ref-card">
-        <span class="badge badge-pc">PC</span>
-        <div class="ref-domain">talanton.jp</div>
-        <div class="ref-memo"></div>
-        <a href="https://talanton.jp/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/pc-talanton.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-pc">PC</span>
+          <div class="ref-domain">talanton.jp</div>
+          <div class="ref-memo"></div>
+          <a href="https://talanton.jp/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-pc">PC</span>
-        <div class="ref-domain">niaulab.com</div>
-        <div class="ref-memo"></div>
-        <a href="https://niaulab.com/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/pc-niaulab.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-pc">PC</span>
+          <div class="ref-domain">niaulab.com</div>
+          <div class="ref-memo"></div>
+          <a href="https://niaulab.com/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-pc">PC</span>
-        <div class="ref-domain">culinary.ac.jp / introduce</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.culinary.ac.jp/introduce/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/pc-culinary.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-pc">PC</span>
+          <div class="ref-domain">culinary.ac.jp / introduce</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.culinary.ac.jp/introduce/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-pc">PC</span>
-        <div class="ref-domain">mygenius.jp</div>
-        <div class="ref-memo"></div>
-        <a href="https://mygenius.jp/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/pc-mygenius.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-pc">PC</span>
+          <div class="ref-domain">mygenius.jp</div>
+          <div class="ref-memo"></div>
+          <a href="https://mygenius.jp/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
     </div>
@@ -672,38 +846,63 @@
     <div class="ref-grid">
 
       <div class="ref-card">
-        <span class="badge badge-splp">スマホ LP</span>
-        <div class="ref-domain">rdlp.jp（LP事例）</div>
-        <div class="ref-memo"></div>
-        <a href="https://rdlp.jp/archives/otherdesign/lp/200150?sp=1&rdlp_flg=1" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/splp-rdlp.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-splp">スマホ LP</span>
+          <div class="ref-domain">rdlp.jp（LP事例）</div>
+          <div class="ref-memo"></div>
+          <a href="https://rdlp.jp/archives/otherdesign/lp/200150?sp=1&rdlp_flg=1" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-splp">スマホ LP</span>
-        <div class="ref-domain">skillskip.jp/lp17</div>
-        <div class="ref-memo"></div>
-        <a href="https://skillskip.jp/lp17" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/splp-skillskip.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-splp">スマホ LP</span>
+          <div class="ref-domain">skillskip.jp/lp17</div>
+          <div class="ref-memo"></div>
+          <a href="https://skillskip.jp/lp17" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-splp">スマホ LP</span>
-        <div class="ref-domain">forwomenpersonalgym.com</div>
-        <div class="ref-memo"></div>
-        <a href="https://forwomenpersonalgym.com/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/splp-forwomengym.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-splp">スマホ LP</span>
+          <div class="ref-domain">forwomenpersonalgym.com</div>
+          <div class="ref-memo"></div>
+          <a href="https://forwomenpersonalgym.com/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-splp">スマホ LP</span>
-        <div class="ref-domain">oppen-ec.com</div>
-        <div class="ref-memo"></div>
-        <a href="https://www.oppen-ec.com/products-ss/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/splp-oppen.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-splp">スマホ LP</span>
+          <div class="ref-domain">oppen-ec.com</div>
+          <div class="ref-memo"></div>
+          <a href="https://www.oppen-ec.com/products-ss/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
       <div class="ref-card">
-        <span class="badge badge-splp">スマホ LP</span>
-        <div class="ref-domain">shelikes.jp/trial</div>
-        <div class="ref-memo"></div>
-        <a href="https://shelikes.jp/trial/" target="_blank" class="ref-link">→ サイトを見る</a>
+        <div class="ref-thumb">
+          <img src="images/ref-screenshots/splp-shelikes.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        </div>
+        <div class="ref-body">
+          <span class="badge badge-splp">スマホ LP</span>
+          <div class="ref-domain">shelikes.jp/trial</div>
+          <div class="ref-memo"></div>
+          <a href="https://shelikes.jp/trial/" target="_blank" class="ref-link">→ 見る</a>
+        </div>
       </div>
 
     </div>
@@ -718,6 +917,13 @@
     document.getElementById('tab-' + id).classList.add('active');
     btn.classList.add('active');
   }
+
+  /* サムネが読み込めなかったらプレースホルダーテキスト表示 */
+  document.querySelectorAll('.ref-thumb-img, .student-thumb-img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+    });
+  });
 </script>
 </body>
 </html>
