@@ -38,7 +38,7 @@
   }
 
   /* ─── LAYOUT ─── */
-  .page { max-width: 900px; margin: 0 auto; padding: 60px 24px 100px; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 60px 24px 100px; }
 
   /* ─── SECTION HEADER ─── */
   .sec-label {
@@ -82,69 +82,116 @@
   .badge-wip    { background: var(--beige); color: var(--gray-lt); border: 1px solid var(--border); }
 
   /* ─── STUDENT CARDS ─── */
+  /* PC: 4列 / SP: 2列 */
   .student-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
     margin-bottom: 72px;
   }
+
   .student-card {
     background: var(--white);
     border-radius: 14px;
     border: 1px solid var(--border);
     overflow: hidden;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: flex;
+    flex-direction: column;
   }
   .student-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.09);
   }
+
+  /* サムネ：縦長（スマホのファーストビュー想定） */
   .student-thumb {
     width: 100%;
-    height: 160px;
+    aspect-ratio: 9 / 16;
     background: linear-gradient(135deg, var(--beige) 0%, #ede0d0 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--gray-lt);
     letter-spacing: 0.1em;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
   }
   .student-thumb-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
   }
-  .student-body { padding: 16px 18px 18px; }
+
+  .student-body {
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
   .student-name {
     font-size: 13px;
     font-weight: 700;
-    color: var(--gray-mid);
-    margin-bottom: 4px;
-    font-family: 'DM Sans', sans-serif;
+    color: var(--black);
+    margin-bottom: 6px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .student-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
   }
   .student-memo {
-    font-size: 13px;
-    color: var(--black);
+    font-size: 12px;
+    color: var(--gray-mid);
     line-height: 1.7;
-    margin: 8px 0 12px;
+    margin-bottom: 12px;
+    flex: 1;
   }
   .student-memo.placeholder { color: var(--gray-lt); font-style: italic; }
-  .student-link {
-    display: inline-flex;
+
+  /* LPに飛べるボタン */
+  .student-btn {
+    display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 8px;
     font-size: 12px;
-    font-weight: 600;
-    color: var(--orange);
-    text-decoration: none;
+    font-weight: 700;
     font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
   }
-  .student-link:hover { text-decoration: underline; }
-  .student-link.placeholder { color: var(--gray-lt); cursor: default; }
+  .student-btn.active {
+    background: var(--orange);
+    color: #fff;
+  }
+  .student-btn.active:hover {
+    background: #b55e30;
+  }
+  .student-btn.inactive {
+    background: var(--beige);
+    color: var(--gray-lt);
+    border: 1px solid var(--border);
+    cursor: default;
+  }
+  /* ボタン内の矢印アイコン */
+  .btn-arrow {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
 
   /* ─── DIVIDER ─── */
   .divider {
@@ -179,7 +226,7 @@
   /* ─── REFERENCE CARDS ─── */
   .ref-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
   }
   .ref-card {
@@ -219,10 +266,21 @@
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 600px) {
-    .student-grid { grid-template-columns: 1fr; }
-    .ref-grid { grid-template-columns: 1fr; }
+    .student-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .ref-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .sec-title { font-size: 19px; }
+    .student-body { padding: 10px 12px 12px; }
+    .student-name { font-size: 12px; }
+    .student-memo { font-size: 11px; }
+    .student-btn { font-size: 11px; padding: 8px 6px; }
+    .ref-card { padding: 12px 14px; }
+    .tab-row { gap: 6px; }
+    .tab-btn { font-size: 11px; padding: 6px 14px; }
   }
 </style>
 </head>
@@ -244,89 +302,169 @@
 
     <!-- さーやん -->
     <div class="student-card">
-      <div class="student-thumb">THUMBNAIL</div>
+      <div class="student-thumb">
+        <!-- <img src="thumbs/saayan.jpg" alt="さーやん" class="student-thumb-img"> -->
+        SCREENSHOT
+      </div>
       <div class="student-body">
         <div class="student-name">さーやん</div>
-        <div style="margin-bottom:8px;"><span class="badge badge-wip">URL待ち</span></div>
+        <div class="student-badges">
+          <span class="badge badge-wip">URL待ち</span>
+        </div>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
-        <a class="student-link placeholder">→ サイトを見る</a>
+        <a class="student-btn inactive">
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LP を見る
+        </a>
       </div>
     </div>
 
     <!-- はぬちゃん -->
     <div class="student-card">
-      <div class="student-thumb">THUMBNAIL</div>
+      <div class="student-thumb">
+        <!-- <img src="thumbs/hanuchan.jpg" alt="はぬちゃん" class="student-thumb-img"> -->
+        SCREENSHOT
+      </div>
       <div class="student-body">
         <div class="student-name">はぬちゃん</div>
-        <div style="margin-bottom:8px;"><span class="badge badge-wip">URL待ち</span></div>
+        <div class="student-badges">
+          <span class="badge badge-wip">URL待ち</span>
+        </div>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
-        <a class="student-link placeholder">→ サイトを見る</a>
+        <a class="student-btn inactive">
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LP を見る
+        </a>
       </div>
     </div>
 
     <!-- はなちゃん -->
     <div class="student-card">
-      <div class="student-thumb">THUMBNAIL</div>
+      <div class="student-thumb">
+        <!-- <img src="thumbs/hanachan.jpg" alt="はなちゃん" class="student-thumb-img"> -->
+        SCREENSHOT
+      </div>
       <div class="student-body">
         <div class="student-name">はなちゃん</div>
-        <div style="margin-bottom:8px;"><span class="badge badge-wip">URL待ち</span></div>
+        <div class="student-badges">
+          <span class="badge badge-wip">URL待ち</span>
+        </div>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
-        <a class="student-link placeholder">→ サイトを見る</a>
+        <a class="student-btn inactive">
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LP を見る
+        </a>
       </div>
     </div>
 
     <!-- あゆみん -->
     <div class="student-card">
-      <div class="student-thumb">THUMBNAIL</div>
+      <div class="student-thumb">
+        <!-- <img src="thumbs/ayumin.jpg" alt="あゆみん" class="student-thumb-img"> -->
+        SCREENSHOT
+      </div>
       <div class="student-body">
         <div class="student-name">あゆみん</div>
-        <div style="margin-bottom:8px;"><span class="badge badge-wip">URL待ち</span></div>
+        <div class="student-badges">
+          <span class="badge badge-wip">URL待ち</span>
+        </div>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
-        <a class="student-link placeholder">→ サイトを見る</a>
+        <a class="student-btn inactive">
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LP を見る
+        </a>
       </div>
     </div>
 
     <!-- えびちゃん -->
     <div class="student-card">
-      <div class="student-thumb">THUMBNAIL</div>
+      <div class="student-thumb">
+        <!-- <img src="thumbs/ebichan.jpg" alt="えびちゃん" class="student-thumb-img"> -->
+        SCREENSHOT
+      </div>
       <div class="student-body">
         <div class="student-name">えびちゃん</div>
-        <div style="margin-bottom:8px;"><span class="badge badge-wip">URL待ち</span></div>
+        <div class="student-badges">
+          <span class="badge badge-wip">URL待ち</span>
+        </div>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
-        <a class="student-link placeholder">→ サイトを見る</a>
+        <a class="student-btn inactive">
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LP を見る
+        </a>
       </div>
     </div>
 
     <!-- ゾエさん -->
     <div class="student-card">
-      <div class="student-thumb">THUMBNAIL</div>
+      <div class="student-thumb">
+        <!-- <img src="thumbs/zoe.jpg" alt="ゾエさん" class="student-thumb-img"> -->
+        SCREENSHOT
+      </div>
       <div class="student-body">
         <div class="student-name">ゾエさん</div>
-        <div style="margin-bottom:8px;"><span class="badge badge-wip">URL待ち</span></div>
+        <div class="student-badges">
+          <span class="badge badge-wip">URL待ち</span>
+        </div>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
-        <a class="student-link placeholder">→ サイトを見る</a>
+        <a class="student-btn inactive">
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LP を見る
+        </a>
       </div>
     </div>
 
     <!-- ともみちゃん -->
     <div class="student-card">
-      <div class="student-thumb">THUMBNAIL</div>
+      <div class="student-thumb">
+        <!-- <img src="thumbs/tomomichan.jpg" alt="ともみちゃん" class="student-thumb-img"> -->
+        SCREENSHOT
+      </div>
       <div class="student-body">
         <div class="student-name">ともみちゃん</div>
-        <div style="margin-bottom:8px;"><span class="badge badge-wip">URL待ち</span></div>
+        <div class="student-badges">
+          <span class="badge badge-wip">URL待ち</span>
+        </div>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
-        <a class="student-link placeholder">→ サイトを見る</a>
+        <a class="student-btn inactive">
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LP を見る
+        </a>
       </div>
     </div>
 
     <!-- 2期生 -->
     <div class="student-card">
-      <div class="student-thumb">THUMBNAIL</div>
+      <div class="student-thumb">
+        <!-- <img src="thumbs/2ndgen.jpg" alt="2期生" class="student-thumb-img"> -->
+        SCREENSHOT
+      </div>
       <div class="student-body">
         <div class="student-name">2期生さん</div>
-        <div style="margin-bottom:8px;"><span class="badge badge-wip">URL待ち</span></div>
+        <div class="student-badges">
+          <span class="badge badge-wip">URL待ち</span>
+        </div>
         <div class="student-memo placeholder">ひと言メモを入れてください</div>
-        <a class="student-link placeholder">→ サイトを見る</a>
+        <a class="student-btn inactive">
+          <svg class="btn-arrow" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          LP を見る
+        </a>
       </div>
     </div>
 
@@ -343,9 +481,9 @@
   </div>
 
   <div class="tab-row">
-    <button class="tab-btn active" onclick="switchTab('sp')">スマホサイト（21件）</button>
-    <button class="tab-btn" onclick="switchTab('pc')">PC サイト（4件）</button>
-    <button class="tab-btn" onclick="switchTab('splp')">スマホ LP（5件）</button>
+    <button class="tab-btn active" onclick="switchTab('sp', this)">スマホサイト（21件）</button>
+    <button class="tab-btn" onclick="switchTab('pc', this)">PC サイト（4件）</button>
+    <button class="tab-btn" onclick="switchTab('splp', this)">スマホ LP（5件）</button>
   </div>
 
   <!-- スマホサイト -->
@@ -582,11 +720,11 @@
 </div><!-- /page -->
 
 <script>
-  function switchTab(id) {
+  function switchTab(id, btn) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
-    event.target.classList.add('active');
+    btn.classList.add('active');
   }
 </script>
 </body>
