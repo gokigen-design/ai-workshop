@@ -7314,10 +7314,15 @@
         <div class="ws-hint">提出時に講師が誰の内容か識別するために使います</div>
         <input type="text" id="lp-name" class="ws-input" placeholder="例：山田さくら">
       </div>
-      <div class="ws-group" style="margin-bottom:0;">
+      <div class="ws-group">
         <label class="ws-label">壁打ち結果（売れる構成順の全文） <span class="ws-req">必須</span></label>
         <div class="ws-hint">AIから最後に出た Markdown 形式の全文まとめをそのままコピー＆ペースト。途中までしか終わってなくてもOK、まずは貼ってみてください</div>
         <textarea id="lp-content" class="ws-textarea" rows="18" placeholder="ここに壁打ちで仕上げた売れる構成順の全文を貼り付けてください。&#10;&#10;## 1. ファーストビュー&#10;キャッチコピー：...&#10;サブコピー：...&#10;&#10;## 2. 共感セクション&#10;...&#10;&#10;（以降、AIから出力された全文）"></textarea>
+      </div>
+      <div class="ws-group" style="margin-bottom:0;">
+        <label class="ws-label">参考にしたいサイトURL <span class="ws-opt">任意</span></label>
+        <div class="ws-hint">「こんな雰囲気にしたい！」と思うサイトのURL。複数ある場合はカンマ区切りかスペースで入力してください。講師がデザイン方向を把握するのに使います。</div>
+        <input type="text" id="lp-ref-url" class="ws-input" placeholder="例：https://example.com, https://another.com">
       </div>
     </div>
 
@@ -7330,15 +7335,15 @@
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
-      <!-- 講師へ提出（工事中） -->
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;">
+      <!-- 講師へ提出 -->
+      <div style="background:#fff;border:1.5px solid #BFDBFE;border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:var(--gray-mid);letter-spacing:0.12em;">FOR TEACHER</div>
-          <span style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#fff;background:#94A3B8;padding:1px 6px;border-radius:3px;">準備中</span>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#1E40AF;letter-spacing:0.12em;">FOR TEACHER</div>
+          <span style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#fff;background:#2563EB;padding:1px 6px;border-radius:3px;">提出できます</span>
         </div>
         <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:6px;line-height:1.5;">講師へ提出</div>
-        <div style="font-size:11px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;flex:1;">記入内容を講師チームに共有します。当日の提案・サポートに使います。<br><strong style="color:#92400E;">※ ただいま提出フォーム調整中。動作確認後ご案内します。</strong></div>
-        <button id="ws-submit-btn" onclick="submitToTeachers()" style="padding:11px 20px;background:#E5E7EB;color:#9CA3AF;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:not-allowed;font-family:'Zen Maru Gothic',sans-serif;" disabled>講師へ提出（準備中）</button>
+        <div style="font-size:11px;color:var(--gray-mid);line-height:1.8;margin-bottom:14px;flex:1;">記入内容を講師チームに共有します。当日の提案・サポートに使います。提出は何度でもOKです（最後の内容が反映されます）。</div>
+        <button id="ws-submit-btn" onclick="submitToTeachers()" style="padding:11px 20px;background:linear-gradient(90deg,#2563EB,#7C3AED);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;transition:opacity 0.15s;">講師へ提出する</button>
         <div id="ws-submit-msg" style="margin-top:8px;font-size:11px;min-height:14px;"></div>
       </div>
 
@@ -7461,11 +7466,62 @@
       });
     }
 
-    // ─── 講師へ提出（準備中：当面は無効化） ───
+    // ─── 講師へ提出（GAS連携） ───
+    // ★ GASデプロイ後にURLをここに入れてください
+    var GAS_SUBMIT_URL = ''; // ← あやさんからGAS URLをもらったら入れる
+
     function submitToTeachers() {
-      const msg = document.getElementById('ws-submit-msg');
-      msg.style.color = '#92400E';
-      msg.textContent = 'ただいま提出フォーム調整中です。動作確認後ご案内します。';
+      const msg  = document.getElementById('ws-submit-msg');
+      const btn  = document.getElementById('ws-submit-btn');
+      const name    = (document.getElementById('lp-name')    || {}).value || '';
+      const content = (document.getElementById('lp-content') || {}).value || '';
+      const refUrl  = (document.getElementById('lp-ref-url') || {}).value || '';
+
+      // バリデーション
+      if (!name.trim()) {
+        msg.style.color = '#DC2626';
+        msg.textContent = 'お名前を入力してください。';
+        return;
+      }
+      if (!content.trim()) {
+        msg.style.color = '#DC2626';
+        msg.textContent = '壁打ち結果を貼り付けてください。';
+        return;
+      }
+      if (!GAS_SUBMIT_URL) {
+        msg.style.color = '#92400E';
+        msg.textContent = '提出URLを設定中です。もうしばらくお待ちください。';
+        return;
+      }
+
+      // 送信中
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      msg.style.color = '#6B7280';
+      msg.textContent = '送信中...';
+
+      fetch(GAS_SUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ name: name, content: content, refUrl: refUrl }),
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.status === 'ok') {
+          msg.style.color = '#059669';
+          msg.textContent = name + ' さんの提出が完了しました（' + data.charLen + '文字）。ありがとうございます！';
+          btn.textContent = '提出済み';
+          btn.style.background = '#059669';
+        } else {
+          throw new Error(data.message || '送信エラー');
+        }
+      })
+      .catch(function(err) {
+        msg.style.color = '#DC2626';
+        msg.textContent = '送信に失敗しました。もう一度お試しください。（' + err.message + '）';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      });
     }
 
     // ─── 入力内容を localStorage に保存・復元 ───
@@ -7473,8 +7529,9 @@
       const STORE_KEY = 'aiws-ws-v2-fields';
       function saveAll() {
         const data = {
-          name: document.getElementById('lp-name') ? document.getElementById('lp-name').value : '',
-          content: document.getElementById('lp-content') ? document.getElementById('lp-content').value : ''
+          name:   document.getElementById('lp-name')    ? document.getElementById('lp-name').value    : '',
+          content:document.getElementById('lp-content') ? document.getElementById('lp-content').value : '',
+          refUrl: document.getElementById('lp-ref-url') ? document.getElementById('lp-ref-url').value : '',
         };
         try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e) {}
       }
@@ -7483,13 +7540,14 @@
           const saved = localStorage.getItem(STORE_KEY);
           if (!saved) return;
           const data = JSON.parse(saved);
-          if (data.name && document.getElementById('lp-name')) document.getElementById('lp-name').value = data.name;
+          if (data.name    && document.getElementById('lp-name'))    document.getElementById('lp-name').value    = data.name;
           if (data.content && document.getElementById('lp-content')) document.getElementById('lp-content').value = data.content;
+          if (data.refUrl  && document.getElementById('lp-ref-url')) document.getElementById('lp-ref-url').value = data.refUrl;
         } catch(e) {}
       }
       document.addEventListener('DOMContentLoaded', function() {
         restoreAll();
-        ['lp-name','lp-content'].forEach(function(id) {
+        ['lp-name','lp-content','lp-ref-url'].forEach(function(id) {
           const el = document.getElementById(id);
           if (el) el.addEventListener('input', saveAll);
         });
