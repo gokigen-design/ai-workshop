@@ -4822,151 +4822,291 @@
     <div class="card">
       <div class="card-head"><div class="card-num">01</div><div class="card-title">タイムスケジュール（20:30〜22:30）</div></div>
 
-      <!-- 20:30 オープニング 10分 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);">
+      <!-- ── PART 1: オープニング ── -->
+      <div style="display:flex;align-items:center;gap:10px;padding:14px 0 8px;margin-top:6px;border-bottom:2px solid var(--orange);">
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;color:var(--orange);">PART 1</div>
+        <div style="font-size:13px;font-weight:600;color:var(--black);">オープニング（40分）</div>
+      </div>
+
+      <!-- 20:30 1-a 挨拶 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);">
         <div style="text-align:right;">
           <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">20:30</div>
           <div style="font-size:11px;color:var(--gray-lt);">10 min</div>
         </div>
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">オープニング</div>
-          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">ご挨拶・このワークショップで起きること</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">
-            講師3人からのご挨拶と、これから何が起きるのかを共有します。<br>
-            「当日までに何を準備すればいいのか」「どんな未来が待っているのか」をまず頭に入れて、安心して走り出せる状態にします。
-          </div>
-          <div style="background:var(--beige);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
-            参照 → <a href="#" onclick="switchTab('overview',document.querySelector('[onclick*=overview]'));return false;" style="color:var(--orange);font-weight:500;">全体像ページ</a>
-          </div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">1-a 挨拶</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">ご挨拶・ワークショップの概要説明</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">講師3人からのご挨拶と、当日6/6までに何が起きるのかを共有します。安心して走り出せる状態にします。</div>
         </div>
       </div>
 
-      <!-- 21:10 自己紹介 10分 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);">
+      <!-- 20:40 1-b 自己紹介 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);">
         <div style="text-align:right;">
           <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">20:40</div>
           <div style="font-size:11px;color:var(--gray-lt);">10 min</div>
         </div>
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">自己紹介</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">1-b 自己紹介</div>
           <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">講師＆受講生の自己紹介タイム</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">
-            お互いを知ることから2期がスタート。お一人ずつ「お名前・お仕事・当日作りたいLP・AIでやってみたいこと」を共有します。<br>
-            20:50までに終わらせる予定です。ここでつながった顔が、当日Slackやリアル会場での距離を一気に縮めてくれます。
-          </div>
-          <div style="background:var(--beige);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:10px;">お一人ずつ「お名前・お仕事・当日作りたいLP・AIでやってみたいこと」を簡潔に。</div>
+          <div style="background:var(--beige);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
             <strong style="color:var(--black);">話していただきたい4つのこと</strong><br>
-            ① お名前／呼ばれたい名前<br>
-            ② お仕事・サービス内容<br>
-            ③ 当日作りたいLPのテーマ<br>
-            ④ AIでこれから挑戦したいこと
+            ① お名前／呼ばれたい名前　② お仕事・サービス内容　③ 当日作りたいLPのテーマ　④ AIでこれから挑戦したいこと
           </div>
         </div>
       </div>
 
-      <!-- 20:50 Claude Codeの全体像 20分 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);">
+      <!-- 20:50 1-c Claude Code全体像 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);">
         <div style="text-align:right;">
           <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">20:50</div>
-          <div style="font-size:11px;color:var(--gray-lt);">20 min</div>
+          <div style="font-size:11px;color:var(--gray-lt);">10 min</div>
         </div>
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">Claude Codeの全体像</div>
-          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">Claude Codeの全体像についての解説</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">
-            「AIエージェントって何？」「Claude Codeで何ができるの？」を、画面を共有しながら一緒に確認します。<br>
-            プラン／モデル（Sonnet・Opus）／トークンの仕組み／許可の確認画面など、当日つまずきがちなポイントをまとめて押さえます。
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <div style="background:var(--beige);border-radius:8px;padding:12px 14px;">
-              <div style="font-size:11px;font-weight:600;color:var(--black);margin-bottom:3px;">3つのモード</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">Claude／Co-work／Code の違いと切り替え方</div>
-            </div>
-            <div style="background:var(--beige);border-radius:8px;padding:12px 14px;">
-              <div style="font-size:11px;font-weight:600;color:var(--black);margin-bottom:3px;">Sonnet vs Opus</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">普段はSonnet・こだわりたい時はOpus</div>
-            </div>
-            <div style="background:var(--beige);border-radius:8px;padding:12px 14px;">
-              <div style="font-size:11px;font-weight:600;color:var(--black);margin-bottom:3px;">プラン・上限</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">Pro（$20）／Max（$100）の違いと制限の仕組み</div>
-            </div>
-            <div style="background:var(--beige);border-radius:8px;padding:12px 14px;">
-              <div style="font-size:11px;font-weight:600;color:var(--black);margin-bottom:3px;">フォルダの考え方</div>
-              <div style="font-size:11px;color:var(--gray-mid);line-height:1.6;">3階層構造（親／案件／images）の整理ルール</div>
-            </div>
-          </div>
-          <div style="background:var(--beige);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
-            参照 → <a href="#" onclick="switchTab('claude-features',document.querySelector('[onclick*=claude-features]'));return false;" style="color:var(--orange);font-weight:500;">「Claude Codeでできること」ページ</a>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">1-c 全体像</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">Claude Code の全体像を解説</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:10px;">3つのモード／プラン・トークン／フォルダの考え方をコンパクトに整理します。</div>
+          <div style="background:var(--beige);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
+            参照 → <a href="#" onclick="switchTab('claude-features',document.querySelector('[onclick*=claude-features]'));return false;" style="color:var(--orange);font-weight:500;">「Claude Codeでできること」</a>
           </div>
         </div>
       </div>
 
-      <!-- 21:10 実際の操作 35分 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(201,106,58,0.04),transparent);">
+      <!-- 21:00 1-d 基礎操作＆セットアップ確認 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);">
         <div style="text-align:right;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">21:10</div>
-          <div style="font-size:11px;color:var(--gray-lt);">65 min</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">21:00</div>
+          <div style="font-size:11px;color:var(--gray-lt);">10 min</div>
         </div>
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">実際の操作</div>
-          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">基礎操作およびセットアップ</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">
-            実際にClaude Codeを画面共有しながら操作します。<br>
-            基本の使い方・フォルダ構成・よくある確認画面の読み方を、一緒に手を動かしながら確認します。
-          </div>
-          <div style="background:var(--beige);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
-            <strong style="color:var(--black);">この時間にやること</strong><br>
-            ① Claude Codeを起動して最初のコマンドを打つ<br>
-            ② フォルダの3階層構造（親／案件／images）を作る<br>
-            ③ Claude in Chrome・Cloudflare・Typeless の動作確認
-          </div>
-          <div style="background:var(--beige);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
-            参照 → <a href="#" onclick="switchTab('setup',document.querySelector('[onclick*=setup]'));return false;" style="color:var(--orange);font-weight:500;">「環境を整える」ページ</a>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">1-d 確認</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">基礎操作とセットアップの確認</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:10px;">事前準備で完了している前提で、ここでは <strong style="color:var(--black);">動作確認の軽いチェック</strong> のみ。詰まっている方は個別フォロー。</div>
+          <div style="background:var(--beige);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
+            参照 → <a href="#" onclick="switchTab('setup',document.querySelector('[onclick*=setup]'));return false;" style="color:var(--orange);font-weight:500;">「環境を整える」</a>
           </div>
         </div>
       </div>
 
-      <!-- 22:15 宿題の説明 15分 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);">
+      <!-- ── PART 2: 本編 ── -->
+      <div style="display:flex;align-items:center;gap:10px;padding:14px 0 8px;margin-top:18px;border-bottom:2px solid #2563EB;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;color:#2563EB;">PART 2</div>
+        <div style="font-size:13px;font-weight:600;color:var(--black);">本編：ツール導入と課題説明（40分）</div>
+      </div>
+
+      <!-- 21:10 2-a 導入ツール -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(37,99,235,0.04),transparent);">
         <div style="text-align:right;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">22:15</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#2563EB;">21:10</div>
           <div style="font-size:11px;color:var(--gray-lt);">15 min</div>
         </div>
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">宿題の説明</div>
-          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">次回に向けた宿題の説明</div>
-          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">
-            当日スムーズにLPを作り始めるための<strong style="color:var(--black);">3つの宿題</strong>をお伝えします。<br>
-            事前にここまで揃っていれば、当日はClaudeに「お任せ」できる状態でスタートできます。
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:#2563EB;margin-bottom:4px;">2-a 導入ツール</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">導入してほしいツールの案内（追加あり）</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">既存ツールに加えて、今回は <strong style="color:var(--black);">Superpowers</strong>（Claude Code 公式プラグイン）を新たに導入します。Mac／Windowsそれぞれの入れ方を画面共有でレクチャー。</div>
+
+          <!-- Superpowers カード -->
+          <div style="background:#F0F7FF;border:1.5px solid #93C5FD;border-radius:10px;padding:16px 18px;margin-bottom:10px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span style="font-size:13px;font-weight:700;color:#1E40AF;">Superpowers（新規導入）</span>
+              <span style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#fff;background:#2563EB;padding:1px 6px;border-radius:3px;">NEW</span>
+            </div>
+            <div style="font-size:12px;color:#1E40AF;line-height:1.9;margin-bottom:14px;">Claude Code 公式マーケットプレイス（claude-plugins-official）の Core Skills プラグイン。作者は Anthropic の Jesse Vincent。Claude Code がより賢く・段取りよく動くように、ブレスト・計画・テスト・デバッグなどの「型」を教え込んだスキル集です。</div>
+
+            <!-- 前提条件 -->
+            <div style="background:#fff;border:1px solid #BFDBFE;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:11px;color:#1E40AF;line-height:1.8;">
+              <strong>前提：</strong>Claude Code v2.1.128 以上／Claude Pro 以上のプラン
+            </div>
+
+            <!-- 共通手順 -->
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#1E40AF;letter-spacing:0.15em;margin-bottom:8px;">INSTALL STEPS（Mac／Windows 共通）</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+              <div style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;">
+                <div style="width:22px;height:22px;border-radius:50%;background:#2563EB;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+                <div style="font-size:12px;color:#1E40AF;line-height:1.8;">
+                  <strong>ターミナルを開いて Claude Code を起動</strong><br>
+                  <span style="color:var(--gray-mid);font-size:11px;">Mac：「ターミナル」アプリ／Windows：「PowerShell」または「コマンドプロンプト」を開く</span>
+                  <div style="margin-top:6px;padding:6px 10px;background:#1E293B;color:#A7F3D0;border-radius:4px;font-family:monospace;font-size:11px;">claude</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;">
+                <div style="width:22px;height:22px;border-radius:50%;background:#2563EB;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+                <div style="font-size:12px;color:#1E40AF;line-height:1.8;">
+                  <strong>Claude Code が起動したら、スラッシュコマンドで入れる</strong><br>
+                  <span style="color:var(--gray-mid);font-size:11px;">入力欄に下記をそのまま貼り付けて Enter</span>
+                  <div style="margin-top:6px;padding:6px 10px;background:#1E293B;color:#A7F3D0;border-radius:4px;font-family:monospace;font-size:11px;">/plugin install superpowers@claude-plugins-official</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;">
+                <div style="width:22px;height:22px;border-radius:50%;background:#2563EB;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+                <div style="font-size:12px;color:#1E40AF;line-height:1.8;">
+                  <strong>プラグインを読み込み直す</strong>
+                  <div style="margin-top:6px;padding:6px 10px;background:#1E293B;color:#A7F3D0;border-radius:4px;font-family:monospace;font-size:11px;">/reload-plugins</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;">
+                <div style="width:22px;height:22px;border-radius:50%;background:#2563EB;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+                <div style="font-size:12px;color:#1E40AF;line-height:1.8;">
+                  <strong>動作確認</strong>　<code style="background:#1E293B;color:#A7F3D0;padding:1px 6px;border-radius:3px;font-size:10px;">/help</code> を打って、<code style="background:#fff;color:#1E40AF;padding:1px 6px;border:1px solid #BFDBFE;border-radius:3px;font-size:10px;">superpowers:brainstorming</code> などのスキルが一覧に出てきたら成功
+                </div>
+              </div>
+            </div>
+
+            <!-- OS別の注意 -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+              <div style="background:#fff;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;">
+                <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#1E40AF;letter-spacing:0.1em;margin-bottom:4px;">MAC</div>
+                <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;">⌘ + Space → 「ターミナル」と入力 → Enter で起動。あとは共通手順どおり。</div>
+              </div>
+              <div style="background:#fff;border:1px solid #BFDBFE;border-radius:8px;padding:10px 12px;">
+                <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#1E40AF;letter-spacing:0.1em;margin-bottom:4px;">WINDOWS</div>
+                <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;">スタートメニューで「PowerShell」を検索して起動。コマンド表記も同じです。</div>
+              </div>
+            </div>
+
+            <!-- つまずきポイント -->
+            <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:10px 14px;font-size:11px;color:#7C2D12;line-height:1.9;">
+              <strong>つまずいたら：</strong><br>
+              ・ <code style="background:#fff;padding:1px 5px;border-radius:3px;">/plugin</code> が効かない → Claude Code が古い可能性。<code style="background:#fff;padding:1px 5px;border-radius:3px;">claude --version</code> で確認、必要なら再インストール<br>
+              ・ プラグインが見つからない → <code style="background:#fff;padding:1px 5px;border-radius:3px;">/plugin marketplace update claude-plugins-official</code> でマーケットプレイスを更新<br>
+              ・ スキルが出てこない → Claude Code を一度終了して再起動
+            </div>
           </div>
+        </div>
+      </div>
+
+      <!-- 21:25 2-b 課題説明 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(37,99,235,0.04),transparent);">
+        <div style="text-align:right;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#2563EB;">21:25</div>
+          <div style="font-size:11px;color:var(--gray-lt);">10 min</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:#2563EB;margin-bottom:4px;">2-b 課題説明</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">今回取り組んでほしい課題</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">当日6/6に作ってほしいLP・サイト・ツールの方向性をお伝えします。「何を作るか」「どこまで仕上げるか」のゴール設定。</div>
+        </div>
+      </div>
+
+      <!-- 21:35 2-c デモ比較 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(37,99,235,0.04),transparent);">
+        <div style="text-align:right;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#2563EB;">21:35</div>
+          <div style="font-size:11px;color:var(--gray-lt);">15 min</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:#2563EB;margin-bottom:4px;">2-c デモ比較</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">2つのパターンを比較デモ</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">「Claude Code だけで作ったサイト」と「Claude Code ＋ ChatGPT を組み合わせて作ったサイト」を見せながら、メリット・デメリットを解説します。みなさんに「どちらをイメージしているか」を考えてもらう時間です。</div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+            <div style="background:#fff;border:1px dashed #BFDBFE;border-radius:10px;padding:12px 14px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#2563EB;letter-spacing:0.1em;margin-bottom:4px;">PATTERN A</div>
+              <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Claude Code 単体で制作</div>
+              <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;">1期生・2期生の作品サンプルをここに差し込みます（プレースホルダー）</div>
+            </div>
+            <div style="background:#fff;border:1px dashed #BFDBFE;border-radius:10px;padding:12px 14px;">
+              <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#2563EB;letter-spacing:0.1em;margin-bottom:4px;">PATTERN B</div>
+              <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Claude Code ＋ ChatGPT で制作</div>
+              <div style="font-size:11px;color:var(--gray-mid);line-height:1.7;">1期生・2期生の作品サンプルをここに差し込みます（プレースホルダー）</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PART 3: LPの本質 ── -->
+      <div style="display:flex;align-items:center;gap:10px;padding:14px 0 8px;margin-top:18px;border-bottom:2px solid #16A34A;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;color:#16A34A;">PART 3</div>
+        <div style="font-size:13px;font-weight:600;color:var(--black);">LP の本質：中身が大事（20分）</div>
+      </div>
+
+      <!-- 21:50 3-a 見栄え vs 中身 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(22,163,74,0.04),transparent);">
+        <div style="text-align:right;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#16A34A;">21:50</div>
+          <div style="font-size:11px;color:var(--gray-lt);">5 min</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:#16A34A;margin-bottom:4px;">3-a 本質</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">表側の見栄えより、刺さる中身を作る</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">前回は表側の制作に時間を使いすぎてしまった反省を踏まえて、今回は <strong style="color:var(--black);">読み手に本当に刺さる中身</strong> を作っていきます。</div>
+        </div>
+      </div>
+
+      <!-- 21:55 3-b 内容ブラッシュアップ -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);background:linear-gradient(90deg,rgba(22,163,74,0.04),transparent);">
+        <div style="text-align:right;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:#16A34A;">21:55</div>
+          <div style="font-size:11px;color:var(--gray-lt);">15 min</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:#16A34A;margin-bottom:4px;">3-b 事前ブラッシュアップ</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">当日までに内容を揉んでおく</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:12px;">以前は「これを書いてください」と指定するだけでしたが、今回は <strong style="color:var(--black);">内容をブラッシュアップするための専用AIプロンプト</strong> を用意しました。Claude Code でも、お使いの他のAIでも構いません。まずはこのプロンプトを使って内容を揉んでみてください。<strong style="color:var(--black);">6月3日（火）までに提出</strong>をお願いします。</div>
+
+          <div style="background:#F0FDF4;border:1.5px dashed #86EFAC;border-radius:10px;padding:14px 16px;">
+            <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#15803D;letter-spacing:0.1em;margin-bottom:6px;">PROMPT（プレースホルダー）</div>
+            <div style="font-size:12px;color:#166534;line-height:1.8;">
+              ブラッシュアップ用のAIプロンプト本体をここに差し込みます。<br>
+              現在作成中。完成次第こちらに反映予定。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PART 4: 締め ── -->
+      <div style="display:flex;align-items:center;gap:10px;padding:14px 0 8px;margin-top:18px;border-bottom:2px solid var(--gray-lt);">
+        <div style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;color:var(--gray-mid);">PART 4</div>
+        <div style="font-size:13px;font-weight:600;color:var(--black);">締め・その他（20分）</div>
+      </div>
+
+      <!-- 22:10 4-a 宿題案内 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);">
+        <div style="text-align:right;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--gray-mid);">22:10</div>
+          <div style="font-size:11px;color:var(--gray-lt);">10 min</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--gray-mid);margin-bottom:4px;">4-a 宿題</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">宿題の案内</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;margin-bottom:10px;">6月3日（火）までに以下を完了させてください。</div>
           <div style="background:var(--orange-dim);border-left:3px solid var(--orange);padding:14px 18px;border-radius:6px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
-            <strong style="color:var(--black);">① LPの内容を整理する</strong><br>
-            「宿題」タブで、ご自身のサービス情報を入力し、6月3日（火）までに提出する<br><br>
-            <strong style="color:var(--black);">② 写真・素材を集める</strong><br>
-            プロフィール写真／サービス風景写真／参考LPのURL 3〜5本<br><br>
-            <strong style="color:var(--black);">③ 環境を整える</strong><br>
-            Claude Pro加入／Claude Desktopインストール／作業フォルダ作成<br>
-            Claude in Chrome・Cloudflare・Typeless のインストール
+            <strong style="color:var(--black);">① ブラッシュアップ用プロンプトで内容を揉む</strong>　→ ワークシートに反映して提出<br>
+            <strong style="color:var(--black);">② 写真・素材を集める</strong>　プロフィール写真／サービス風景／参考LPのURL<br>
+            <strong style="color:var(--black);">③ 環境を整える</strong>　Superpowers含め、当日までに最終チェック
           </div>
           <div style="background:var(--beige);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;color:var(--gray-mid);line-height:1.7;">
-            宿題の詳細 → <a href="#" onclick="switchTab('checklist',document.querySelector('[onclick*=checklist]'));return false;" style="color:var(--orange);font-weight:500;">「当日に備える」ページ</a>
+            宿題の詳細 → <a href="#" onclick="switchTab('worksheet',document.querySelector('[onclick*=worksheet]'));return false;" style="color:var(--orange);font-weight:500;">「宿題」ページ</a>
           </div>
+        </div>
+      </div>
+
+      <!-- 22:20 4-b 質疑応答・事例紹介 -->
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);">
+        <div style="text-align:right;">
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--gray-mid);">22:20</div>
+          <div style="font-size:11px;color:var(--gray-lt);">10 min</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--gray-mid);margin-bottom:4px;">4-b Q&amp;A</div>
+          <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">質疑応答 ＋ 時間が余れば事例紹介</div>
+          <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">気になることをまとめて聞ける時間。時間に余裕があれば「Claude Code でこんなものも作れる」という事例をいくつかご紹介します。</div>
         </div>
       </div>
 
       <!-- 22:30 終了 -->
-      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;">
+      <div style="display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;">
         <div style="text-align:right;">
-          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--orange);">22:30</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--gray-mid);">22:30</div>
           <div style="font-size:11px;color:var(--gray-lt);">終了</div>
         </div>
         <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--orange);margin-bottom:4px;">終了</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.15em;color:var(--gray-mid);margin-bottom:4px;">終了</div>
           <div style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:6px;">クロージング</div>
-          <div style="background:var(--beige);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--gray-mid);line-height:1.9;">
-            作業が終わっていない方は、そのまま残って進めていただいて大丈夫です。<br>
-            講師も残っていますので、わからないことがあればその場で質問してください。
-          </div>
+          <div style="background:var(--beige);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--gray-mid);line-height:1.9;">残って作業されたい方はそのまま続けて大丈夫です。講師も残っているので、わからないことはその場で質問してください。</div>
         </div>
       </div>
     </div>
