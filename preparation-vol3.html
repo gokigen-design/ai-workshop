@@ -4995,34 +4995,32 @@
               </div>
             </div>
 
-            <!-- 前提 -->
-            <div style="background:#fff;border:1px solid #C4B5FD;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:11px;color:#5B21B6;line-height:1.8;">
-              <strong>前提：</strong>Python 3.x が必要（検索スクリプトに使用）。MacはほぼプレインストールでOK、Windowsの方は <code style="background:#FAF5FF;padding:1px 5px;border-radius:3px;">winget install Python.Python.3.12</code> でインストール可能
-            </div>
-
             <!-- インストール手順 -->
             <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#7C3AED;letter-spacing:0.15em;margin-bottom:8px;">INSTALL STEPS（Mac／Windows 共通）</div>
             <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
               <div style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #C4B5FD;border-radius:8px;padding:10px 12px;">
                 <div style="width:22px;height:22px;border-radius:50%;background:#7C3AED;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
                 <div style="font-size:12px;color:#5B21B6;line-height:1.8;">
-                  <strong>Claude Code を起動し、マーケットプレイスを追加</strong>
-                  <div style="margin-top:6px;padding:6px 10px;background:#1E293B;color:#E9D5FF;border-radius:4px;font-family:monospace;font-size:11px;">/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill</div>
+                  <strong>共通のGitHubページにアクセス</strong>
+                  <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:8px 12px;background:#1E293B;color:#E9D5FF;border-radius:6px;font-size:11px;text-decoration:none;font-family:monospace;word-break:break-all;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    github.com/nextlevelbuilder/ui-ux-pro-max-skill
+                  </a>
                 </div>
               </div>
               <div style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #C4B5FD;border-radius:8px;padding:10px 12px;">
                 <div style="width:22px;height:22px;border-radius:50%;background:#7C3AED;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
                 <div style="font-size:12px;color:#5B21B6;line-height:1.8;">
-                  <strong>プラグインをインストール</strong>
-                  <div style="margin-top:6px;padding:6px 10px;background:#1E293B;color:#E9D5FF;border-radius:4px;font-family:monospace;font-size:11px;">/plugin install ui-ux-pro-max@ui-ux-pro-max-skill</div>
+                  <strong>掲載されているスキルのコードを丸ごとコピー</strong>
+                  <div style="font-size:11px;color:var(--gray-mid);margin-top:4px;">ページ全体ではなく、コード部分（コードブロック）を選択してコピーします</div>
                 </div>
               </div>
               <div style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #C4B5FD;border-radius:8px;padding:10px 12px;">
                 <div style="width:22px;height:22px;border-radius:50%;background:#7C3AED;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
                 <div style="font-size:12px;color:#5B21B6;line-height:1.8;">
-                  <strong>プラグインを読み込み直して動作確認</strong>
-                  <div style="margin-top:6px;padding:6px 10px;background:#1E293B;color:#E9D5FF;border-radius:4px;font-family:monospace;font-size:11px;">/reload-plugins</div>
-                  <span style="font-size:11px;color:var(--gray-mid);">→ <code style="background:#1E293B;color:#E9D5FF;padding:1px 6px;border-radius:3px;font-size:10px;">/help</code> でスキル一覧に <code style="background:#fff;color:#7C3AED;padding:1px 6px;border:1px solid #C4B5FD;border-radius:3px;font-size:10px;">ui-ux-pro-max</code> が出てきたら成功</span>
+                  <strong>Claude Code の会話に貼り付けて、指示を出す</strong>
+                  <div style="margin-top:6px;padding:8px 12px;background:#1E293B;color:#E9D5FF;border-radius:4px;font-family:monospace;font-size:11px;line-height:1.7;">（コピーしたコードをここに貼り付け）<br><br>このスキルを入れてください</div>
+                  <span style="font-size:11px;color:var(--gray-mid);">→ Claude Code が自動でスキルを設置してくれます</span>
                 </div>
               </div>
             </div>
