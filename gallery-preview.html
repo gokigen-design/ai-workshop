@@ -310,7 +310,9 @@
     object-fit: cover;
     object-position: top center;
   }
-  .ref-body { padding: 12px 14px 14px; display: flex; flex-direction: column; flex: 1; }
+  .ref-body { padding: 10px 12px 12px; display: flex; flex-direction: column; flex: 1; }
+  /* バッジが横幅いっぱいにならないよう */
+  .ref-body .badge { align-self: flex-start; }
   .ref-domain {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
@@ -320,19 +322,51 @@
     word-break: break-all;
     line-height: 1.5;
   }
-  .ref-memo { font-size: 11px; color: var(--gray); line-height: 1.7; margin-bottom: 10px; flex: 1; }
-  .ref-link {
-    display: inline-flex;
+  .ref-memo { font-size: 11px; color: var(--gray); line-height: 1.7; margin-bottom: 8px; flex: 1; }
+  /* →見る をボタンに */
+  .ref-btn {
+    display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--grad-btn);
+    color: #fff;
     font-size: 11px;
     font-weight: 700;
-    color: var(--blue);
-    text-decoration: none;
     font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
     margin-top: auto;
+    box-shadow: 0 2px 6px rgba(37,99,235,0.2);
   }
-  .ref-link:hover { opacity: 0.7; }
+  .ref-btn:hover { opacity: 0.85; }
+  /* 取得できなかったサイトのプレースホルダー */
+  .ref-thumb-unavailable {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: linear-gradient(160deg, #EFF6FF, #EDE9FE);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .ref-thumb-unavailable span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: #A5B4FC;
+    letter-spacing: 0.06em;
+    text-align: center;
+    line-height: 1.6;
+  }
 
   /* hidden tab content */
   .tab-panel { display: none; }
@@ -539,31 +573,42 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">sp.elle.co.jp / tasaki</div>
           <div class="ref-memo"></div>
-          <a href="https://sp.elle.co.jp/fashion/tasaki/2010/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://sp.elle.co.jp/fashion/tasaki/2010/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
       <div class="ref-card">
-        <div class="ref-thumb">
-          <img src="images/ref-screenshots/sp-rageblue.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        <div class="ref-thumb-unavailable">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#C7D2FE" stroke-width="1.5"/><path d="M3 9h18M9 21V9" stroke="#C7D2FE" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>BOT対策により<br>スクショ取得不可</span>
         </div>
         <div class="ref-body">
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">dot-st.com / rageblue</div>
           <div class="ref-memo"></div>
-          <a href="https://www.dot-st.com/rageblue/cp/magicink" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.dot-st.com/rageblue/cp/magicink" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
       <div class="ref-card">
-        <div class="ref-thumb">
-          <img src="images/ref-screenshots/sp-beamsmini.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        <div class="ref-thumb-unavailable">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#C7D2FE" stroke-width="1.5"/><path d="M3 9h18M9 21V9" stroke="#C7D2FE" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>BOT対策により<br>スクショ取得不可</span>
         </div>
         <div class="ref-body">
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">beams.co.jp / mini</div>
           <div class="ref-memo"></div>
-          <a href="https://www.beams.co.jp/special/beamsmini/kids_7days/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.beams.co.jp/special/beamsmini/kids_7days/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -575,7 +620,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">junonline.jp / rope-picnic×pino</div>
           <div class="ref-memo"></div>
-          <a href="https://www.junonline.jp/special/ropepicnic_pino_collaboration/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.junonline.jp/special/ropepicnic_pino_collaboration/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -587,7 +635,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">junonline.jp / onepiece</div>
           <div class="ref-memo"></div>
-          <a href="https://www.junonline.jp/rope-picnic/product/onepiece/onepiece-dress/GDE14950" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.junonline.jp/rope-picnic/product/onepiece/onepiece-dress/GDE14950" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -599,7 +650,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">pronovias-jp.com</div>
           <div class="ref-memo"></div>
-          <a href="https://www.pronovias-jp.com/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.pronovias-jp.com/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -611,7 +665,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">ogiya-wedding.jp</div>
           <div class="ref-memo"></div>
-          <a href="https://ogiya-wedding.jp/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://ogiya-wedding.jp/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -623,19 +680,26 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">sp.elle.co.jp / harrywinston</div>
           <div class="ref-memo"></div>
-          <a href="https://sp.elle.co.jp/fashion/harrywinston/2206/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://sp.elle.co.jp/fashion/harrywinston/2206/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
       <div class="ref-card">
-        <div class="ref-thumb">
-          <img src="images/ref-screenshots/sp-beams-citydwellers.jpg" alt="" class="ref-thumb-img" onerror="this.style.display='none'">
+        <div class="ref-thumb-unavailable">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#C7D2FE" stroke-width="1.5"/><path d="M3 9h18M9 21V9" stroke="#C7D2FE" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>BOT対策により<br>スクショ取得不可</span>
         </div>
         <div class="ref-body">
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">beams / citydwellers</div>
           <div class="ref-memo"></div>
-          <a href="https://www.beams.co.jp/special/bmingbybeams/citydwellers/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.beams.co.jp/special/bmingbybeams/citydwellers/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -647,7 +711,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">sundaymorning-f.com</div>
           <div class="ref-memo"></div>
-          <a href="https://sundaymorning-f.com/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://sundaymorning-f.com/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -659,7 +726,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">sp.elle.co.jp / shiseido</div>
           <div class="ref-memo"></div>
-          <a href="https://sp.elle.co.jp/beauty/shiseido/1905/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://sp.elle.co.jp/beauty/shiseido/1905/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -671,7 +741,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">botanist / 26spring</div>
           <div class="ref-memo"></div>
-          <a href="https://botanistofficial.com/special/limited/26spring/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://botanistofficial.com/special/limited/26spring/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -683,7 +756,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">norikura-hanabi.com</div>
           <div class="ref-memo"></div>
-          <a href="https://www.norikura-hanabi.com/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.norikura-hanabi.com/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -695,7 +771,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">twoe.jp</div>
           <div class="ref-memo"></div>
-          <a href="https://twoe.jp/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://twoe.jp/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -707,7 +786,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">noog.jp/pages/lp</div>
           <div class="ref-memo"></div>
-          <a href="https://noog.jp/pages/lp" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://noog.jp/pages/lp" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -719,7 +801,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">botanist / 25spring</div>
           <div class="ref-memo"></div>
-          <a href="https://botanistofficial.com/special/limited/25spring/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://botanistofficial.com/special/limited/25spring/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -731,7 +816,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">izawasyouten / internship</div>
           <div class="ref-memo"></div>
-          <a href="https://izawasyouten.jp/recruit/internship/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://izawasyouten.jp/recruit/internship/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -743,7 +831,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">junonline.jp / rope-picnic×pino</div>
           <div class="ref-memo"></div>
-          <a href="https://www.junonline.jp/special/ropepicnic_pino_collaboration/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.junonline.jp/special/ropepicnic_pino_collaboration/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -755,7 +846,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">yolu.jp / 25renewal</div>
           <div class="ref-memo"></div>
-          <a href="https://yolu.jp/special/25renewal/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://yolu.jp/special/25renewal/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -767,7 +861,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">femyou.jp</div>
           <div class="ref-memo"></div>
-          <a href="https://femyou.jp/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://femyou.jp/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -779,7 +876,10 @@
           <span class="badge badge-sp">スマホ</span>
           <div class="ref-domain">botanist / 25summer</div>
           <div class="ref-memo"></div>
-          <a href="https://botanistofficial.com/special/limited/25summer/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://botanistofficial.com/special/limited/25summer/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -798,7 +898,10 @@
           <span class="badge badge-pc">PC</span>
           <div class="ref-domain">talanton.jp</div>
           <div class="ref-memo"></div>
-          <a href="https://talanton.jp/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://talanton.jp/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -810,7 +913,10 @@
           <span class="badge badge-pc">PC</span>
           <div class="ref-domain">niaulab.com</div>
           <div class="ref-memo"></div>
-          <a href="https://niaulab.com/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://niaulab.com/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -822,7 +928,10 @@
           <span class="badge badge-pc">PC</span>
           <div class="ref-domain">culinary.ac.jp / introduce</div>
           <div class="ref-memo"></div>
-          <a href="https://www.culinary.ac.jp/introduce/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.culinary.ac.jp/introduce/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -834,7 +943,10 @@
           <span class="badge badge-pc">PC</span>
           <div class="ref-domain">mygenius.jp</div>
           <div class="ref-memo"></div>
-          <a href="https://mygenius.jp/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://mygenius.jp/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -853,7 +965,10 @@
           <span class="badge badge-splp">スマホ LP</span>
           <div class="ref-domain">rdlp.jp（LP事例）</div>
           <div class="ref-memo"></div>
-          <a href="https://rdlp.jp/archives/otherdesign/lp/200150?sp=1&rdlp_flg=1" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://rdlp.jp/archives/otherdesign/lp/200150?sp=1&rdlp_flg=1" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -865,7 +980,10 @@
           <span class="badge badge-splp">スマホ LP</span>
           <div class="ref-domain">skillskip.jp/lp17</div>
           <div class="ref-memo"></div>
-          <a href="https://skillskip.jp/lp17" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://skillskip.jp/lp17" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -877,7 +995,10 @@
           <span class="badge badge-splp">スマホ LP</span>
           <div class="ref-domain">forwomenpersonalgym.com</div>
           <div class="ref-memo"></div>
-          <a href="https://forwomenpersonalgym.com/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://forwomenpersonalgym.com/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -889,7 +1010,10 @@
           <span class="badge badge-splp">スマホ LP</span>
           <div class="ref-domain">oppen-ec.com</div>
           <div class="ref-memo"></div>
-          <a href="https://www.oppen-ec.com/products-ss/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://www.oppen-ec.com/products-ss/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
@@ -901,7 +1025,10 @@
           <span class="badge badge-splp">スマホ LP</span>
           <div class="ref-domain">shelikes.jp/trial</div>
           <div class="ref-memo"></div>
-          <a href="https://shelikes.jp/trial/" target="_blank" class="ref-link">→ 見る</a>
+          <a href="https://shelikes.jp/trial/" target="_blank" class="ref-btn">
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          サイトを見る
+        </a>
         </div>
       </div>
 
