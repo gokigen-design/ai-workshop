@@ -7327,9 +7327,9 @@
         <div class="ws-hint">AIから最後に出た Markdown 形式の全文まとめをそのままコピー＆ペースト。途中までしか終わってなくてもOK、まずは貼ってみてください</div>
         <textarea id="lp-content" class="ws-textarea" rows="18" placeholder="ここに壁打ちで仕上げた売れる構成順の全文を貼り付けてください。&#10;&#10;## 1. ファーストビュー&#10;キャッチコピー：...&#10;サブコピー：...&#10;&#10;## 2. 共感セクション&#10;...&#10;&#10;（以降、AIから出力された全文）"></textarea>
       </div>
-      <div class="ws-group" style="margin-bottom:0;">
-        <label class="ws-label">参考にしたいサイトURL <span class="ws-opt">任意・最大3つ</span></label>
-        <div class="ws-hint">「こんな雰囲気にしたい！」と思うサイトのURLを最大3つまで入力できます。講師がデザイン方向を把握するのに使います。</div>
+      <div class="ws-group">
+        <label class="ws-label">デザインの参考サイト <span class="ws-opt">任意・最大3つ</span></label>
+        <div class="ws-hint">「こんな雰囲気にしたい！」と思うサイトのURLを入力してください。講師がデザイン方向を把握するのに使います。</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;align-items:center;gap:8px;">
             <span style="font-size:11px;font-weight:700;color:var(--gray-mid);min-width:20px;">①</span>
@@ -7342,6 +7342,24 @@
           <div style="display:flex;align-items:center;gap:8px;">
             <span style="font-size:11px;font-weight:700;color:var(--gray-mid);min-width:20px;">③</span>
             <input type="text" id="lp-ref-url-3" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+          </div>
+        </div>
+      </div>
+      <div class="ws-group" style="margin-bottom:0;">
+        <label class="ws-label">内容の参考サイト <span class="ws-opt">任意・最大3つ</span></label>
+        <div class="ws-hint">サービス内容・コピー・構成の参考にしたいサイトのURLを入力してください。</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;font-weight:700;color:var(--gray-mid);min-width:20px;">①</span>
+            <input type="text" id="lp-content-url-1" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;font-weight:700;color:var(--gray-mid);min-width:20px;">②</span>
+            <input type="text" id="lp-content-url-2" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;font-weight:700;color:var(--gray-mid);min-width:20px;">③</span>
+            <input type="text" id="lp-content-url-3" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
           </div>
         </div>
       </div>
@@ -7494,9 +7512,12 @@
       var btn  = document.getElementById('ws-submit-btn');
       var name    = (document.getElementById('lp-name')      || {}).value || '';
       var content = (document.getElementById('lp-content')   || {}).value || '';
-      var url1    = (document.getElementById('lp-ref-url-1') || {}).value || '';
-      var url2    = (document.getElementById('lp-ref-url-2') || {}).value || '';
-      var url3    = (document.getElementById('lp-ref-url-3') || {}).value || '';
+      var url1    = (document.getElementById('lp-ref-url-1')     || {}).value || '';
+      var url2    = (document.getElementById('lp-ref-url-2')     || {}).value || '';
+      var url3    = (document.getElementById('lp-ref-url-3')     || {}).value || '';
+      var curl1   = (document.getElementById('lp-content-url-1') || {}).value || '';
+      var curl2   = (document.getElementById('lp-content-url-2') || {}).value || '';
+      var curl3   = (document.getElementById('lp-content-url-3') || {}).value || '';
 
       if (!name.trim()) {
         msg.style.color = '#DC2626';
@@ -7518,7 +7539,7 @@
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ name: name, content: content, refUrl1: url1, refUrl2: url2, refUrl3: url3 }),
+        body: JSON.stringify({ name: name, content: content, refUrl1: url1, refUrl2: url2, refUrl3: url3, contentUrl1: curl1, contentUrl2: curl2, contentUrl3: curl3 }),
       })
       .then(function() {
         msg.style.color = '#059669';
@@ -7541,9 +7562,12 @@
         const data = {
           name:    document.getElementById('lp-name')      ? document.getElementById('lp-name').value      : '',
           content: document.getElementById('lp-content')   ? document.getElementById('lp-content').value   : '',
-          refUrl1: document.getElementById('lp-ref-url-1') ? document.getElementById('lp-ref-url-1').value : '',
-          refUrl2: document.getElementById('lp-ref-url-2') ? document.getElementById('lp-ref-url-2').value : '',
-          refUrl3: document.getElementById('lp-ref-url-3') ? document.getElementById('lp-ref-url-3').value : '',
+          refUrl1:     document.getElementById('lp-ref-url-1')     ? document.getElementById('lp-ref-url-1').value     : '',
+          refUrl2:     document.getElementById('lp-ref-url-2')     ? document.getElementById('lp-ref-url-2').value     : '',
+          refUrl3:     document.getElementById('lp-ref-url-3')     ? document.getElementById('lp-ref-url-3').value     : '',
+          contentUrl1: document.getElementById('lp-content-url-1') ? document.getElementById('lp-content-url-1').value : '',
+          contentUrl2: document.getElementById('lp-content-url-2') ? document.getElementById('lp-content-url-2').value : '',
+          contentUrl3: document.getElementById('lp-content-url-3') ? document.getElementById('lp-content-url-3').value : '',
         };
         try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e) {}
       }
@@ -7554,14 +7578,17 @@
           const data = JSON.parse(saved);
           if (data.name    && document.getElementById('lp-name'))      document.getElementById('lp-name').value      = data.name;
           if (data.content && document.getElementById('lp-content'))   document.getElementById('lp-content').value   = data.content;
-          if (data.refUrl1 && document.getElementById('lp-ref-url-1')) document.getElementById('lp-ref-url-1').value = data.refUrl1;
-          if (data.refUrl2 && document.getElementById('lp-ref-url-2')) document.getElementById('lp-ref-url-2').value = data.refUrl2;
-          if (data.refUrl3 && document.getElementById('lp-ref-url-3')) document.getElementById('lp-ref-url-3').value = data.refUrl3;
+          if (data.refUrl1     && document.getElementById('lp-ref-url-1'))     document.getElementById('lp-ref-url-1').value     = data.refUrl1;
+          if (data.refUrl2     && document.getElementById('lp-ref-url-2'))     document.getElementById('lp-ref-url-2').value     = data.refUrl2;
+          if (data.refUrl3     && document.getElementById('lp-ref-url-3'))     document.getElementById('lp-ref-url-3').value     = data.refUrl3;
+          if (data.contentUrl1 && document.getElementById('lp-content-url-1')) document.getElementById('lp-content-url-1').value = data.contentUrl1;
+          if (data.contentUrl2 && document.getElementById('lp-content-url-2')) document.getElementById('lp-content-url-2').value = data.contentUrl2;
+          if (data.contentUrl3 && document.getElementById('lp-content-url-3')) document.getElementById('lp-content-url-3').value = data.contentUrl3;
         } catch(e) {}
       }
       document.addEventListener('DOMContentLoaded', function() {
         restoreAll();
-        ['lp-name','lp-content','lp-ref-url-1','lp-ref-url-2','lp-ref-url-3'].forEach(function(id) {
+        ['lp-name','lp-content','lp-ref-url-1','lp-ref-url-2','lp-ref-url-3','lp-content-url-1','lp-content-url-2','lp-content-url-3'].forEach(function(id) {
           const el = document.getElementById(id);
           if (el) el.addEventListener('input', saveAll);
         });
