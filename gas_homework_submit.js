@@ -77,9 +77,9 @@ function doPost(e) {
     var refUrl1      = (params.refUrl1      || '').trim() || '（なし）';
     var refUrl2      = (params.refUrl2      || '').trim() || '（なし）';
     var refUrl3      = (params.refUrl3      || '').trim() || '（なし）';
-    var contentUrl1  = (params.contentUrl1  || '').trim() || '（なし）';
-    var contentUrl2  = (params.contentUrl2  || '').trim() || '（なし）';
-    var contentUrl3  = (params.contentUrl3  || '').trim() || '（なし）';
+    var contentUrl1  = (params.refContent1  || '').trim() || '（なし）';
+    var contentUrl2  = (params.refContent2  || '').trim() || '（なし）';
+    var contentUrl3  = (params.refContent3  || '').trim() || '（なし）';
     var ts           = Utilities.formatDate(new Date(), 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss');
 
     var content = stripMarkdown(rawContent);
