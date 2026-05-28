@@ -7334,20 +7334,50 @@
         <textarea id="lp-content" class="ws-textarea" rows="18" placeholder="ここに壁打ちで仕上げた売れる構成順の全文を貼り付けてください。&#10;&#10;## 1. ファーストビュー&#10;キャッチコピー：...&#10;サブコピー：...&#10;&#10;## 2. 共感セクション&#10;...&#10;&#10;（以降、AIから出力された全文）"></textarea>
       </div>
       <div class="ws-group" style="margin-bottom:0;">
-        <label class="ws-label">参考にしたいサイトURL <span class="ws-req">1つ必須</span></label>
-        <div class="ws-hint">「こんな雰囲気にしたい」「この構成・コピーを真似したい」と思うLPのURLを貼ってください。最低1つ必須・2つ目以降は任意。講師がデザイン方向を把握する＆当日Claude Codeに渡す参考にします</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;align-items:center;gap:8px;">
-            <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#fff;background:var(--orange);border-radius:4px;padding:3px 9px;flex-shrink:0;min-width:46px;text-align:center;">1 必須</span>
-            <input type="text" id="lp-ref-url-1" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+        <label class="ws-label">参考にしたいサイトURL <span class="ws-opt">任意・各最大3つ</span></label>
+        <div class="ws-hint">「こんな雰囲気にしたい」と思うサイトのURLを「デザイン面」と「内容面・構成面」それぞれで入力できます。どちらも任意ですが、入れていただけると講師のデザイン方向把握＆当日のClaude Code活用に役立ちます</div>
+
+        <!-- デザイン面 -->
+        <div style="margin-top:12px;padding:12px 14px;background:#FAF5FF;border:1px solid #E9D5FF;border-radius:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125 0-.937.746-1.688 1.688-1.688H16c2.5 0 4-1.5 4-4 0-4.5-3.582-8-8-8z"/></svg>
+            <span style="font-size:12px;font-weight:700;color:#6D28D9;">デザイン面（色・雰囲気・レイアウト）</span>
           </div>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:var(--gray-mid);background:var(--beige);border:1px solid var(--border);border-radius:4px;padding:3px 9px;flex-shrink:0;min-width:46px;text-align:center;">2 任意</span>
-            <input type="text" id="lp-ref-url-2" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#7C3AED;background:#fff;border:1px solid #C4B5FD;border-radius:4px;padding:3px 8px;flex-shrink:0;min-width:22px;text-align:center;">1</span>
+              <input type="text" id="lp-ref-url-1" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#7C3AED;background:#fff;border:1px solid #C4B5FD;border-radius:4px;padding:3px 8px;flex-shrink:0;min-width:22px;text-align:center;">2</span>
+              <input type="text" id="lp-ref-url-2" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#7C3AED;background:#fff;border:1px solid #C4B5FD;border-radius:4px;padding:3px 8px;flex-shrink:0;min-width:22px;text-align:center;">3</span>
+              <input type="text" id="lp-ref-url-3" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:var(--gray-mid);background:var(--beige);border:1px solid var(--border);border-radius:4px;padding:3px 9px;flex-shrink:0;min-width:46px;text-align:center;">3 任意</span>
-            <input type="text" id="lp-ref-url-3" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+        </div>
+
+        <!-- 内容面・構成面 -->
+        <div style="margin-top:10px;padding:12px 14px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+            <span style="font-size:12px;font-weight:700;color:#92400E;">内容面・構成面（セクション順・コピー・流れ）</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#B45309;background:#fff;border:1px solid #FCD34D;border-radius:4px;padding:3px 8px;flex-shrink:0;min-width:22px;text-align:center;">1</span>
+              <input type="text" id="lp-ref-content-1" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#B45309;background:#fff;border:1px solid #FCD34D;border-radius:4px;padding:3px 8px;flex-shrink:0;min-width:22px;text-align:center;">2</span>
+              <input type="text" id="lp-ref-content-2" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:#B45309;background:#fff;border:1px solid #FCD34D;border-radius:4px;padding:3px 8px;flex-shrink:0;min-width:22px;text-align:center;">3</span>
+              <input type="text" id="lp-ref-content-3" class="ws-input" style="margin-bottom:0;flex:1;" placeholder="https://example.com">
+            </div>
           </div>
         </div>
       </div>
@@ -7485,7 +7515,23 @@
         setTimeout(function(){ msg.textContent = ''; msg.style.color = 'var(--orange)'; }, 3000);
         return;
       }
-      const fullText = PROMPT_PREFIX + content;
+      const designUrls = ['lp-ref-url-1','lp-ref-url-2','lp-ref-url-3']
+        .map(function(id){ var el=document.getElementById(id); return el?el.value.trim():''; })
+        .filter(function(u){ return u; });
+      const contentUrls = ['lp-ref-content-1','lp-ref-content-2','lp-ref-content-3']
+        .map(function(id){ var el=document.getElementById(id); return el?el.value.trim():''; })
+        .filter(function(u){ return u; });
+      var urlBlock = '';
+      if (designUrls.length || contentUrls.length) {
+        urlBlock = '\n\n━━━━━━━━━━━━━━━━━━\n【参考にしたいサイトURL】\n━━━━━━━━━━━━━━━━━━\n';
+        if (designUrls.length) {
+          urlBlock += '\n■ デザイン面（色・雰囲気・レイアウト）\n' + designUrls.map(function(u,i){return (i+1)+'. '+u;}).join('\n') + '\n';
+        }
+        if (contentUrls.length) {
+          urlBlock += '\n■ 内容面・構成面（セクション順・コピー・流れ）\n' + contentUrls.map(function(u,i){return (i+1)+'. '+u;}).join('\n') + '\n';
+        }
+      }
+      const fullText = PROMPT_PREFIX + content + urlBlock;
       navigator.clipboard.writeText(fullText).then(function() {
         msg.style.color = 'var(--orange)';
         msg.textContent = 'コピーしました。Claude Code に貼り付けて実行してください。';
@@ -7498,11 +7544,14 @@
       var GAS_URL = 'https://script.google.com/macros/s/AKfycbw5bU6iAg2RwcWzTdmWn2btGol06xicihnrFHL7sQSvI61-8Wb2Icw8X6hNtB1ess0oGA/exec';
       var msg  = document.getElementById('ws-submit-msg');
       var btn  = document.getElementById('ws-submit-btn');
-      var name    = (document.getElementById('lp-name')      || {}).value || '';
-      var content = (document.getElementById('lp-content')   || {}).value || '';
-      var url1    = (document.getElementById('lp-ref-url-1') || {}).value || '';
-      var url2    = (document.getElementById('lp-ref-url-2') || {}).value || '';
-      var url3    = (document.getElementById('lp-ref-url-3') || {}).value || '';
+      var name    = (document.getElementById('lp-name')          || {}).value || '';
+      var content = (document.getElementById('lp-content')       || {}).value || '';
+      var url1    = (document.getElementById('lp-ref-url-1')     || {}).value || '';
+      var url2    = (document.getElementById('lp-ref-url-2')     || {}).value || '';
+      var url3    = (document.getElementById('lp-ref-url-3')     || {}).value || '';
+      var cnt1    = (document.getElementById('lp-ref-content-1') || {}).value || '';
+      var cnt2    = (document.getElementById('lp-ref-content-2') || {}).value || '';
+      var cnt3    = (document.getElementById('lp-ref-content-3') || {}).value || '';
 
       if (!name.trim()) {
         msg.style.color = '#DC2626';
@@ -7512,11 +7561,6 @@
       if (!content.trim()) {
         msg.style.color = '#DC2626';
         msg.textContent = '壁打ち結果を貼り付けてください。';
-        return;
-      }
-      if (!url1.trim()) {
-        msg.style.color = '#DC2626';
-        msg.textContent = '参考にしたいサイトURLを最低1つ入力してください。';
         return;
       }
 
@@ -7529,7 +7573,7 @@
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ name: name, content: content, refUrl1: url1, refUrl2: url2, refUrl3: url3 }),
+        body: JSON.stringify({ name: name, content: content, refUrl1: url1, refUrl2: url2, refUrl3: url3, refContent1: cnt1, refContent2: cnt2, refContent3: cnt3 }),
       })
       .then(function() {
         msg.style.color = '#059669';
@@ -7548,14 +7592,13 @@
     // ─── 入力内容を localStorage に保存・復元 ───
     (function() {
       const STORE_KEY = 'aiws-ws-v2-fields';
+      const FIELD_IDS = ['lp-name','lp-content','lp-ref-url-1','lp-ref-url-2','lp-ref-url-3','lp-ref-content-1','lp-ref-content-2','lp-ref-content-3'];
       function saveAll() {
-        const data = {
-          name:    document.getElementById('lp-name')      ? document.getElementById('lp-name').value      : '',
-          content: document.getElementById('lp-content')   ? document.getElementById('lp-content').value   : '',
-          refUrl1: document.getElementById('lp-ref-url-1') ? document.getElementById('lp-ref-url-1').value : '',
-          refUrl2: document.getElementById('lp-ref-url-2') ? document.getElementById('lp-ref-url-2').value : '',
-          refUrl3: document.getElementById('lp-ref-url-3') ? document.getElementById('lp-ref-url-3').value : '',
-        };
+        const data = {};
+        FIELD_IDS.forEach(function(id){
+          const el = document.getElementById(id);
+          if (el) data[id] = el.value;
+        });
         try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e) {}
       }
       function restoreAll() {
@@ -7563,16 +7606,15 @@
           const saved = localStorage.getItem(STORE_KEY);
           if (!saved) return;
           const data = JSON.parse(saved);
-          if (data.name    && document.getElementById('lp-name'))      document.getElementById('lp-name').value      = data.name;
-          if (data.content && document.getElementById('lp-content'))   document.getElementById('lp-content').value   = data.content;
-          if (data.refUrl1 && document.getElementById('lp-ref-url-1')) document.getElementById('lp-ref-url-1').value = data.refUrl1;
-          if (data.refUrl2 && document.getElementById('lp-ref-url-2')) document.getElementById('lp-ref-url-2').value = data.refUrl2;
-          if (data.refUrl3 && document.getElementById('lp-ref-url-3')) document.getElementById('lp-ref-url-3').value = data.refUrl3;
+          FIELD_IDS.forEach(function(id){
+            const el = document.getElementById(id);
+            if (el && data[id] !== undefined) el.value = data[id];
+          });
         } catch(e) {}
       }
       document.addEventListener('DOMContentLoaded', function() {
         restoreAll();
-        ['lp-name','lp-content','lp-ref-url-1','lp-ref-url-2','lp-ref-url-3'].forEach(function(id) {
+        FIELD_IDS.forEach(function(id) {
           const el = document.getElementById(id);
           if (el) el.addEventListener('input', saveAll);
         });
