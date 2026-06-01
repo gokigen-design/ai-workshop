@@ -8829,124 +8829,6 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
     <!-- ━━━ PART 2: 実際の手順 ━━━ -->
 
-    <!-- やってみる前の確認カード -->
-    <div class="card" style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border-color:var(--orange-border);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <div style="width:32px;height:32px;border-radius:8px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        </div>
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">Pre-flight check</div>
-          <div style="font-size:15px;font-weight:700;color:var(--black);line-height:1.4;">じゃあやってみましょう</div>
-        </div>
-      </div>
-
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
-        手順を始める前に、下の3つを必ず確認してください。とくに <strong style="color:var(--orange);">Claude in Chrome は時間が経つと自動でログアウトされる</strong> ので、毎回ログイン状態のチェックが必要です。
-      </p>
-
-      <!-- チェック項目 -->
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
-
-        <!-- ① アカウント -->
-        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:10px;">
-          <div style="width:22px;height:22px;border-radius:50%;background:var(--beige);color:var(--orange);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:3px;">GitHub と Cloudflare のアカウントが揃っている</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">同じGoogleアカウントで両方ログインできることを確認。<a href="#" onclick="switchTab('accounts',document.querySelector('[onclick*=accounts]'));return false;" style="color:var(--orange);font-weight:500;">アカウント＆ツール準備</a> を未完了の方はそちらから。</div>
-          </div>
-        </div>
-
-        <!-- ② Claude in Chrome インストール確認 -->
-        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:10px;">
-          <div style="width:22px;height:22px;border-radius:50%;background:var(--beige);color:var(--orange);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:3px;">Chrome拡張「Claude in Chrome」がインストールされている</div>
-            <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">Chromeブラウザ右上に Claude のアイコンが表示されていればOK。見当たらなければ <a href="https://chromewebstore.google.com/detail/claude-in-chrome/bjdgdeioakpnhgejghfafmbibikjcgmk" target="_blank" rel="noopener" style="color:var(--orange);font-weight:500;">Chromeウェブストア</a> から再インストール。</div>
-          </div>
-        </div>
-
-        <!-- ③ Claude in Chrome ログイン確認（重要・赤系で目立たせる） -->
-        <div style="display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:linear-gradient(135deg,#FEF2F2,#FFF1ED);border:1.5px solid #FCA5A5;border-radius:10px;">
-          <div style="width:22px;height:22px;border-radius:50%;background:#FCA5A5;color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:13px;font-weight:700;color:#991B1B;margin-bottom:4px;">Claude in Chrome にログインされている <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#fff;background:#DC2626;padding:1px 7px;border-radius:3px;vertical-align:middle;margin-left:4px;">毎回チェック</span></div>
-            <div style="font-size:12px;color:#7F1D1D;line-height:1.8;margin-bottom:8px;">時間が経つと <strong>自動でログアウトされて、Claudeがブラウザを操作できない状態</strong> になります。下記のいずれかで状態を確認：</div>
-            <ul style="font-size:12px;color:#7F1D1D;line-height:1.9;margin:0 0 4px 16px;">
-              <li>Chrome右上の Claude アイコンを<strong>クリック</strong> → ログイン画面が出たら再ログイン</li>
-              <li>アイコン上に <strong>赤いバッジ</strong> が付いていないかチェック</li>
-              <li>Claudeに「今のページを見て」と頼んで動かなければログアウト状態の可能性</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <div style="background:var(--beige);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
-        ✓ 3つすべてOKなら、下の手順に進んでください。
-      </div>
-    </div>
-
-    <!-- ━━━ Claude Code への指示プロンプト（コピペ用） ━━━ -->
-    <div class="card" style="background:#1C1D2E;border:none;color:#F5EFE4;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <div style="width:32px;height:32px;border-radius:8px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </div>
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">Copy &amp; Paste</div>
-          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.4;">Claude Code への指示プロンプト</div>
-        </div>
-      </div>
-
-      <p style="font-size:13px;color:rgba(245,239,228,0.7);line-height:1.9;margin-bottom:14px;">
-        下のテキストをそのままコピーして、<strong style="color:#fff;">Claude Code のチャット欄に貼り付けて Enter</strong>。Claudeが GitHub への保存 → Cloudflare での公開まで案内してくれます。
-      </p>
-
-      <!-- プロンプト本文 -->
-      <pre id="deploy-prompt-text" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:13px;line-height:1.9;color:#F5EFE4;background:rgba(255,255,255,0.06);border-left:3px solid var(--orange);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;">今このフォルダで作ったLPを、インターネットに公開したいです。
-
-以下の手順で進めてください：
-① GitHubに新しいリポジトリを作って、このフォルダの中身をプッシュする
-② Cloudflare Pages で、そのGitHubリポジトリと連携してデプロイする
-③ 公開URLが発行されたら教えてください
-
-詰まったところがあれば、その都度わかりやすく案内してください。</pre>
-
-      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-text').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:var(--orange);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        このプロンプトをコピー
-      </button>
-
-      <p style="font-size:11px;color:rgba(245,239,228,0.5);line-height:1.8;margin-top:14px;">
-        ※ うまく進まないときは、下の詳しい手順を見ながら進めるか、講師に声をかけてください。
-      </p>
-    </div>
-
-    <!-- ━━━ 2回目以降は呪文ひとつでOK ━━━ -->
-    <div class="card" style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border-color:var(--orange-border);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:28px;height:28px;border-radius:8px;background:var(--beige);color:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
-        </div>
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">2nd time onward</div>
-          <div style="font-size:14px;font-weight:700;color:var(--black);line-height:1.4;">2回目以降は呪文ひとつでOK</div>
-        </div>
-      </div>
-
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:12px;">
-        一度この流れを通せば、別のLPを公開するときも下の一言を Claude Code に言うだけ。あとは全部やってくれます。
-      </p>
-
-      <pre id="deploy-prompt-short" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:14px;font-weight:600;line-height:1.8;color:var(--black);background:#fff;border:1px dashed var(--orange-border);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;text-align:center;">GitHubにプッシュして、Cloudflareでデプロイして</pre>
-
-      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-short').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--black);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        この呪文をコピー
-      </button>
-    </div>
-
     <!-- 1. GitHub保管庫を作る -->
     <div class="card">
       <div class="card-head">
@@ -9117,6 +8999,124 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
           &#x1F446; この緑のボタンを押して完了です
         </div>
       </div>
+    </div>
+
+    <!-- やってみる前の確認カード -->
+    <div class="card" style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border-color:var(--orange-border);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">Pre-flight check</div>
+          <div style="font-size:15px;font-weight:700;color:var(--black);line-height:1.4;">じゃあやってみましょう</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        手順を始める前に、下の3つを必ず確認してください。とくに <strong style="color:var(--orange);">Claude in Chrome は時間が経つと自動でログアウトされる</strong> ので、毎回ログイン状態のチェックが必要です。
+      </p>
+
+      <!-- チェック項目 -->
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+
+        <!-- ① アカウント -->
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:10px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--beige);color:var(--orange);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:3px;">GitHub と Cloudflare のアカウントが揃っている</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">同じGoogleアカウントで両方ログインできることを確認。<a href="#" onclick="switchTab('accounts',document.querySelector('[onclick*=accounts]'));return false;" style="color:var(--orange);font-weight:500;">アカウント＆ツール準備</a> を未完了の方はそちらから。</div>
+          </div>
+        </div>
+
+        <!-- ② Claude in Chrome インストール確認 -->
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:10px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--beige);color:var(--orange);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:13px;font-weight:600;color:var(--black);margin-bottom:3px;">Chrome拡張「Claude in Chrome」がインストールされている</div>
+            <div style="font-size:12px;color:var(--gray-mid);line-height:1.8;">Chromeブラウザ右上に Claude のアイコンが表示されていればOK。見当たらなければ <a href="https://chromewebstore.google.com/detail/claude-in-chrome/bjdgdeioakpnhgejghfafmbibikjcgmk" target="_blank" rel="noopener" style="color:var(--orange);font-weight:500;">Chromeウェブストア</a> から再インストール。</div>
+          </div>
+        </div>
+
+        <!-- ③ Claude in Chrome ログイン確認（重要・赤系で目立たせる） -->
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:linear-gradient(135deg,#FEF2F2,#FFF1ED);border:1.5px solid #FCA5A5;border-radius:10px;">
+          <div style="width:22px;height:22px;border-radius:50%;background:#FCA5A5;color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:13px;font-weight:700;color:#991B1B;margin-bottom:4px;">Claude in Chrome にログインされている <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.1em;color:#fff;background:#DC2626;padding:1px 7px;border-radius:3px;vertical-align:middle;margin-left:4px;">毎回チェック</span></div>
+            <div style="font-size:12px;color:#7F1D1D;line-height:1.8;margin-bottom:8px;">時間が経つと <strong>自動でログアウトされて、Claudeがブラウザを操作できない状態</strong> になります。下記のいずれかで状態を確認：</div>
+            <ul style="font-size:12px;color:#7F1D1D;line-height:1.9;margin:0 0 4px 16px;">
+              <li>Chrome右上の Claude アイコンを<strong>クリック</strong> → ログイン画面が出たら再ログイン</li>
+              <li>アイコン上に <strong>赤いバッジ</strong> が付いていないかチェック</li>
+              <li>Claudeに「今のページを見て」と頼んで動かなければログアウト状態の可能性</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="background:var(--beige);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
+        ✓ 3つすべてOKなら、下の手順に進んでください。
+      </div>
+    </div>
+
+    <!-- ━━━ Claude Code への指示プロンプト（コピペ用） ━━━ -->
+    <div class="card" style="background:#1C1D2E;border:none;color:#F5EFE4;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">Copy &amp; Paste</div>
+          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.4;">Claude Code への指示プロンプト</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:rgba(245,239,228,0.7);line-height:1.9;margin-bottom:14px;">
+        下のテキストをそのままコピーして、<strong style="color:#fff;">Claude Code のチャット欄に貼り付けて Enter</strong>。Claudeが GitHub への保存 → Cloudflare での公開まで案内してくれます。
+      </p>
+
+      <!-- プロンプト本文 -->
+      <pre id="deploy-prompt-text" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:13px;line-height:1.9;color:#F5EFE4;background:rgba(255,255,255,0.06);border-left:3px solid var(--orange);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;">今このフォルダで作ったLPを、インターネットに公開したいです。
+
+以下の手順で進めてください：
+① GitHubに新しいリポジトリを作って、このフォルダの中身をプッシュする
+② Cloudflare Pages で、そのGitHubリポジトリと連携してデプロイする
+③ 公開URLが発行されたら教えてください
+
+詰まったところがあれば、その都度わかりやすく案内してください。</pre>
+
+      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-text').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:var(--orange);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        このプロンプトをコピー
+      </button>
+
+      <p style="font-size:11px;color:rgba(245,239,228,0.5);line-height:1.8;margin-top:14px;">
+        ※ うまく進まないときは、下の詳しい手順を見ながら進めるか、講師に声をかけてください。
+      </p>
+    </div>
+
+    <!-- ━━━ 2回目以降は呪文ひとつでOK ━━━ -->
+    <div class="card" style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border-color:var(--orange-border);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:28px;height:28px;border-radius:8px;background:var(--beige);color:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">2nd time onward</div>
+          <div style="font-size:14px;font-weight:700;color:var(--black);line-height:1.4;">2回目以降は呪文ひとつでOK</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:12px;">
+        一度この流れを通せば、別のLPを公開するときも下の一言を Claude Code に言うだけ。あとは全部やってくれます。
+      </p>
+
+      <pre id="deploy-prompt-short" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:14px;font-weight:600;line-height:1.8;color:var(--black);background:#fff;border:1px dashed var(--orange-border);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;text-align:center;">GitHubにプッシュして、Cloudflareでデプロイして</pre>
+
+      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-short').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--black);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        この呪文をコピー
+      </button>
     </div>
 
     <!-- 2. ファイルを送る -->
