@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ピアノ教室 K.I.E - 「弾きたい！」「楽しい！」を大切に</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --text-primary: #1e1e1e;
+      --text-secondary: #6a6a6a;
+      --bg-main: #faf8f5;
+      --accent: #8b5cf6;
+      --accent-light: #ede9fe;
+      --border-color: #e5e0d5;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-main);
+      line-height: 1.7;
+      font-size: clamp(16px, 4vw, 18px);
+    }
+
+    h1 {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(28px, 7vw, 48px);
+      line-height: 1.3;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(22px, 5vw, 32px);
+      line-height: 1.4;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(17px, 4vw, 22px);
+      line-height: 1.4;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 max(20px, env(safe-area-inset-left));
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .section {
+      padding: clamp(48px, 10vw, 80px) 0;
+    }
+
+    .section-light {
+      background-color: #ffffff;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 16px 32px;
+      background-color: var(--accent);
+      color: #ffffff;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(16px, 4vw, 18px);
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      min-height: 44px;
+      min-width: 44px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+    }
+
+    .button-full {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    /* =============== FV Hero =============== */
+    .hero {
+      background: linear-gradient(135deg, var(--bg-main) 0%, var(--accent-light) 100%);
+      padding: clamp(60px, 12vw, 100px) 0;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(18px, 5vw, 24px);
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 4vw, 18px);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 80px;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* =============== Feature List =============== */
+    .feature-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .feature-item {
+      padding: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .feature-item::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-color: var(--accent);
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .feature-text {
+      font-size: clamp(15px, 3vw, 17px);
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* =============== Card Grid =============== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 2rem 0;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .card-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: var(--accent-light);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+
+    /* =============== Two Column Layout =============== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .two-col.reverse {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .two-col.reverse .image-col {
+      order: -1;
+    }
+
+    .image-col {
+      width: 100%;
+    }
+
+    .image-col img,
+    .image-col .placeholder {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      background-color: rgba(139, 92, 246, 0.08);
+      display: block;
+    }
+
+    /* =============== Profile Section =============== */
+    .profile-section {
+      background-color: #ffffff;
+    }
+
+    .profile-content {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .profile-quote {
+      font-style: italic;
+      color: var(--text-secondary);
+      font-size: clamp(16px, 4vw, 18px);
+      margin: 2rem 0;
+      padding-left: 24px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .profile-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .profile-list li {
+      padding: 12px 0;
+      color: var(--text-secondary);
+      padding-left: 28px;
+      position: relative;
+      font-size: clamp(15px, 3vw, 16px);
+    }
+
+    .profile-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      background-color: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* =============== Testimonial =============== */
+    .testimonial {
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .testimonial-text {
+      font-size: clamp(15px, 3vw, 16px);
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      line-height: 1.8;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+
+    /* =============== Pricing Table =============== */
+    .pricing-section {
+      background-color: #ffffff;
+    }
+
+    .pricing-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .pricing-table thead {
+      background-color: var(--accent-light);
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+      padding: 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: clamp(15px, 3vw, 16px);
+    }
+
+    .pricing-table th {
+      font-weight: 600;
+      color: var(--accent);
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+
+    .pricing-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pricing-info {
+      margin: 2rem 0;
+      padding: 24px;
+      background-color: var(--bg-main);
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .pricing-info p {
+      margin-bottom: 1rem;
+      font-size: clamp(14px, 3vw, 15px);
+      color: var(--text-secondary);
+    }
+
+    .pricing-info p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* =============== FAQ / Accordion =============== */
+    .faq-section {
+      background-color: #ffffff;
+    }
+
+    .faq-content {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin: 16px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow);
+    }
+
+    .faq-question {
+      padding: 20px;
+      background-color: var(--bg-main);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(15px, 3vw, 16px);
+      user-select: none;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      background-color: var(--accent-light);
+    }
+
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .faq-toggle::before {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .faq-item.open .faq-toggle::before {
+      content: '−';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+    }
+
+    .faq-answer-content {
+      padding: 20px;
+      color: var(--text-secondary);
+      font-size: clamp(14px, 3vw, 15px);
+      line-height: 1.8;
+    }
+
+    /* =============== CTA Section =============== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-main) 100%);
+      padding: clamp(60px, 12vw, 100px) 0;
+      text-align: center;
+    }
+
+    .cta-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-content h2 {
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-content p {
+      font-size: clamp(16px, 4vw, 18px);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =============== Divider =============== */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+      margin: 2rem 0;
+    }
+
+    /* =============== Text Utility =============== */
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .muted {
+      color: var(--text-secondary);
+    }
+
+    .text-max {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* =============== Responsive =============== */
+    @media (max-width: 768px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .two-col,
+      .two-col.reverse {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .two-col.reverse .image-col {
+        order: 0;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        height: 250px;
+      }
+
+      .button-full {
+        max-width: none;
+      }
+
+      .feature-item {
+        gap: 16px;
+      }
+
+      .section {
+        padding: clamp(32px, 8vw, 48px) 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 16px;
+      }
+
+      .hero {
+        padding: 40px 0;
+      }
+
+      .hero .container {
+        gap: 24px;
+      }
+
+      .button {
+        padding: 14px 28px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .testimonial {
+        padding: 24px;
+      }
+
+      .faq-question {
+        padding: 16px;
+      }
+
+      .faq-answer-content {
+        padding: 16px;
+      }
+
+      .pricing-table th,
+      .pricing-table td {
+        padding: 16px;
+        font-size: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ FV / Hero ============ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>ピアノ教室 K.I.E</h1>
+        <p class="hero-tagline">「弾きたい！」「楽しい！」を大切に</p>
+        <p class="hero-subtitle">自ら伸びる力を育むピアノ教室</p>
+        <p class="muted" style="margin-bottom: 2rem;">音楽を通して、自分を信じて挑戦する力を育み、お子さまの可能性を広げていきます。</p>
+        <a href="#experience" class="button">無料体験レッスン受付中</a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="ピアノレッスンの風景">
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ 共感セクション ============ -->
+  <section class="section">
+    <div class="container text-center">
+      <h2>こんな願いをお持ちのママへ</h2>
+      <p class="muted text-max">お子さまの成長を心から応援したいというあなたの気持ちをサポートします。</p>
+      <ul class="feature-list">
+        <li class="feature-item">
+          <span class="feature-text">子どもの「できた！」を増やしてあげたい</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">好きなことを見つけて夢中になってほしい</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">自分から挑戦できる子に育ってほしい</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">子どもの可能性を伸ばしてあげたい</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">自信をもって自分らしく成長してほしい</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ 問題セクション ============ -->
+  <section class="section section-light">
+    <div class="container text-center">
+      <h2>こんなお悩みありませんか？</h2>
+      <p class="muted text-max">多くのママたちが感じている、成長段階での課題。あなただけではありません。</p>
+      <ul class="feature-list">
+        <li class="feature-item">
+          <span class="feature-text">新しいことに挑戦する前から「できない」と言ってしまう</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">間違えたり失敗したりすることを怖がっている</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">自信がなく、なかなか一歩を踏み出せない</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">失敗するとすぐに落ち込んでしまう</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">周りの子と比べて自信をなくしている</span>
+        </li>
+        <li class="feature-item">
+          <span class="feature-text">子どもの可能性をもっと伸ばしてあげたい</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ 洞察セクション ============ -->
+  <section class="section">
+    <div class="container text-center">
+      <div class="text-max">
+        <h2>もしかすると…</h2>
+        <p style="margin-bottom: 2rem;">お子さまに必要なのは、「もっと頑張ること」ではなく、</p>
+        <p style="background-color: var(--accent-light); padding: 24px; border-radius: 8px; font-weight: 500; margin-bottom: 2rem;">「できた！」という成功体験を積み重ねながら、「やってみたい！」と思える環境</p>
+        <p class="muted">なのかもしれません。</p>
+        <p class="muted" style="margin-top: 2rem;">ピアノ教室K.I.Eでは、一人ひとりの気持ちや個性を大切にしながら、小さな「できた！」を積み重ね、自分を信じて挑戦する力を育んでいきます。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ ベネフィット - この教室で育つ力 ============ -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="text-center">この教室で育つ力</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>「できた！」が増える</h3>
+          <p class="muted">小さな成功体験の積み重ねが、自信の土台になります。一人ひとりのペースに合わせたレッスンで、「できた！」をたくさん経験できます。</p>
+        </div>
+        <div class="card">
+          <h3>自信をもって行動できる</h3>
+          <p class="muted">親が言わなくても、自分から挑戦する姿が増えていきます。自ら考え、やってみようとする主体性を大切に育みます。</p>
+        </div>
+        <div class="card">
+          <h3>挑戦する力が身につく</h3>
+          <p class="muted">失敗を恐れず、一歩踏み出せるようになります。レッスンの中で挑戦と成功を繰り返しながら、自己効力感を育てていきます。</p>
+        </div>
+        <div class="card">
+          <h3>好きなことに夢中になれる</h3>
+          <p class="muted">集中力や継続する力が自然と育ちます。「好き」という気持ちを大切にすることで、自ら学び続ける力につながります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ K.I.Eの価値観 ============ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">K.I.Eが大切にしていること</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>一人ひとりの「やってみたい！」を大切に</h3>
+          <p class="muted">子どものペースに寄り添いながらレッスンを進めます。できる・できないではなく、「挑戦してみよう」と思える気持ちを育みます。</p>
+        </div>
+        <div class="card">
+          <h3>小さな成功体験を積み重ねる</h3>
+          <p class="muted">「できた！」が自信につながります。自分で考え、挑戦し、達成する経験を通して自己効力感を育てます。</p>
+        </div>
+        <div class="card">
+          <h3>音楽を通して生きる力を育む</h3>
+          <p class="muted">ピアノの上達だけで終わらない学びがあります。自信・挑戦する力・表現する力など、将来につながる力を大切にしています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ K.I.Eが選ばれる理由 ============ -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="text-center">K.I.Eが選ばれる理由</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>音楽大学で学んだ専門性</h3>
+          <p class="muted">基礎から丁寧に指導します。愛知県立明和高等学校音楽科、東京音楽大学器楽科（ピアノ専攻）で学んだ経験を活かし、一人ひとりに合った指導を行います。</p>
+        </div>
+        <div class="card">
+          <h3>小学校教員15年の経験</h3>
+          <p class="muted">子どもの個性や発達に合わせて関わります。たくさんの子どもたちと関わってきた経験をもとに、その子らしい成長をサポートします。</p>
+        </div>
+        <div class="card">
+          <h3>心理学・脳科学を取り入れたレッスン</h3>
+          <p class="muted">自ら伸びる力を育みます。声かけや関わり方を工夫し、「やればできる」という感覚を育てていきます。</p>
+        </div>
+        <div class="card">
+          <h3>香りの力を活かした環境づくり</h3>
+          <p class="muted">落ち着いて集中できる空間を整えています。心地よい環境の中で、安心してレッスンに取り組めます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ 講師紹介 ============ -->
+  <section class="section profile-section">
+    <div class="container">
+      <h2 class="text-center">講師紹介</h2>
+      <div class="two-col">
+        <div class="image-col">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop" alt="講師杉山貴絵">
+        </div>
+        <div class="profile-content">
+          <h3>杉山 貴絵</h3>
+          <p class="profile-quote">子どもたちと15年間関わる中で、自信のある子とない子の違いを見てきました。</p>
+          <p class="muted">小学校教員として15年間、たくさんの子どもたちと関わってきました。その中で感じていたのは、勉強や運動の得意・不得意よりも、「やってみよう」と挑戦できる子ほど、大きく成長していくということでした。</p>
+          <p class="muted">反対に、本当は力を持っているのに、「失敗したらどうしよう」「間違えたら恥ずかしい」そんな気持ちから、一歩を踏み出せない子もたくさん見てきました。</p>
+          <p class="muted">だからこそ私は、ピアノの技術だけでなく、「できた！」という成功体験を積み重ねながら、自分を信じて挑戦する力を育みたい。そんな想いで、ピアノ教室K.I.Eを開いています。</p>
+          <ul class="profile-list">
+            <li>4歳よりピアノを始める</li>
+            <li>愛知県立明和高等学校 音楽科（ピアノ専攻）卒業</li>
+            <li>東京音楽大学 器楽科（ピアノ専攻）卒業</li>
+            <li>演奏活動・音楽教室講師を経て、15年小学校教員として勤務</li>
+            <li>小学校教諭免許、中学・高等学校教諭免許（音楽）所持</li>
+            <li>心理学・脳科学の知見を取り入れたレッスンを実施</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ 生徒さんの声 ============ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">生徒さんの声</h2>
+      <div class="testimonial">
+        <p class="testimonial-text">毎回のレッスンが楽しみです。自分のペースに合わせて進めてもらえるので、毎回楽しく通っています。</p>
+        <p class="testimonial-author">高校生・生徒さん</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ 無料体験レッスン ============ -->
+  <section id="experience" class="section section-light">
+    <div class="container">
+      <h2 class="text-center">無料体験レッスン</h2>
+      <p class="text-center muted" style="margin-bottom: 2rem; font-weight: 500;">お子さまの「好き」と「可能性」を見つける30分</p>
+      <div class="text-max">
+        <p class="muted">体験レッスンでは、ピアノに触れる楽しさを感じながら、お子さまの様子や得意なこと、大切にしたいことを一緒に見つけていきます。また、保護者さまのお話をお聞きしながら、お子さまの可能性を伸ばすための関わり方や今後のステップについてもお伝えします。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 体験レッスンの流れ ============ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">体験レッスンの流れ</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-number">1</div>
+          <h3>ヒアリング（約10分）</h3>
+          <p class="muted">お子さまのご様子や、保護者さまの想い・ご希望をお伺いします。</p>
+        </div>
+        <div class="card">
+          <div class="card-number">2</div>
+          <h3>体験レッスン（約15分）</h3>
+          <p class="muted">お子さまに合わせた内容で、楽しくピアノに触れていただきます。</p>
+        </div>
+        <div class="card">
+          <div class="card-number">3</div>
+          <h3>フィードバック・ご質問タイム（約5分）</h3>
+          <p class="muted">レッスンの様子をお伝えし、ご質問にお答えします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ 料金 ============ -->
+  <section id="pricing" class="section pricing-section">
+    <div class="container">
+      <h2 class="text-center">レッスン料金</h2>
+      <div class="pricing-content">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>コース</th>
+              <th>月謝</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>初心者コース</td>
+              <td>8,000円</td>
+            </tr>
+            <tr>
+              <td>中級者コース</td>
+              <td>9,000円</td>
+            </tr>
+            <tr>
+              <td>上級者コース</td>
+              <td>10,000円</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pricing-info">
+          <p>・個人レッスン（マンツーマン）</p>
+          <p>・月4回 / 1回30分</p>
+          <p>・入会金なし・管理費なし</p>
+          <p>・教材費別途</p>
+          <p>・発表会は希望者のみ</p>
+          <p>・駐車場あり</p>
+          <p style="margin-top: 1.5rem; font-weight: 500;">体験レッスン後にレッスン内容や料金についてご案内いたします。ご不明な点はその場でお気軽にご質問ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section faq-section">
+    <div class="container">
+      <h2 class="text-center">よくある質問</h2>
+      <div class="faq-content">
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>ピアノがまったく初めてでも大丈夫ですか？</span>
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              はい。お子さまの年齢や発達段階に合わせて、無理なく楽しく始められるようサポートいたします。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>家にピアノがなくても始められますか？</span>
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              体験レッスン時は必要ありません。ご入会後は、ご家庭に合った楽器選びについてもご相談いただけます。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>人見知りでも大丈夫ですか？</span>
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              大丈夫です。一人ひとりのペースを大切にしながら、安心してレッスンを受けられる関係づくりを心がけています。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>保護者の付き添いは必要ですか？</span>
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              お子さまの年齢や状況に応じてご相談いただけます。
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>体験レッスン後、必ず入会しなければいけませんか？</span>
+            <span class="faq-toggle"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              いいえ。ご家庭でゆっくりご検討いただいてからお返事いただけますのでご安心ください。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>まずは、お子さまの「できた！」を増やす一歩から</h2>
+        <p>子どもたちは、一人ひとり違った魅力や可能性を持っています。その可能性は、誰かと比べることで伸びるのではなく、「やってみたい」「できた」「もっとやりたい」そんな気持ちの積み重ねの中で育っていくものだと思っています。</p>
+        <p>ピアノ教室K.I.Eで、お子さまの「好き」と「可能性」を一緒に育んでみませんか？</p>
+        <div style="margin-top: 2.5rem;">
+          <a href="#experience" class="button button-full">無料体験レッスンを受ける</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // スムーズスクロール補助（古いブラウザ向け）
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // アコーディオンのキーボード対応
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

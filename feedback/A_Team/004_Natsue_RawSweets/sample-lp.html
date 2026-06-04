@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>砂糖なしでも満足できるおやつ｜ロースイーツ体験レッスン</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: #1e1e1e;
+      background-color: #faf8f5;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.4;
+      margin-bottom: 0.8em;
+    }
+
+    h1 {
+      font-size: clamp(28px, 7vw, 48px);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: clamp(17px, 4vw, 22px);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: clamp(16px, 2.2vw, 18px);
+      margin-bottom: 1.2em;
+      color: #1e1e1e;
+    }
+
+    .text-muted {
+      color: #6a6a6a;
+      font-size: clamp(15px, 2vw, 16px);
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 40px);
+    }
+
+    button, .btn {
+      display: inline-block;
+      background-color: #d4a574;
+      color: #faf8f5;
+      padding: clamp(16px, 2.5vw, 20px) clamp(32px, 6vw, 48px);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(16px, 2vw, 18px);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    button:hover, .btn:hover {
+      background-color: #c29366;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-fullwidth {
+      width: 100%;
+      display: block;
+    }
+
+    /* ========== FV Section ========== */
+    .fv {
+      background-color: #faf8f5;
+      padding: clamp(60px, 8vw, 100px) 0;
+      border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+    }
+
+    .fv-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 60px);
+      align-items: center;
+    }
+
+    .fv-text h1 {
+      color: #1e1e1e;
+      margin-bottom: 1.2em;
+    }
+
+    .fv-text .sub {
+      color: #6a6a6a;
+      margin-bottom: 2em;
+      line-height: 1.8;
+    }
+
+    .fv-image {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(135deg, #e8d4c0 0%, #f5e6d3 100%);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #6a6a6a;
+    }
+
+    .fv-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ========== Section Common ========== */
+    section {
+      padding: clamp(60px, 8vw, 100px) 0;
+      border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: clamp(40px, 6vw, 60px);
+    }
+
+    /* ========== 共感セクション ========== */
+    .empathy-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(24px, 4vw, 32px);
+    }
+
+    .empathy-card {
+      background-color: white;
+      padding: clamp(24px, 4vw, 32px);
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .empathy-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .empathy-card h3 {
+      color: #d4a574;
+      margin-bottom: 0.8em;
+    }
+
+    .empathy-card p {
+      margin-bottom: 0;
+    }
+
+    /* ========== 体験セクション ========== */
+    .experience-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(24px, 4vw, 32px);
+    }
+
+    .experience-card {
+      background-color: white;
+      padding: clamp(24px, 4vw, 32px);
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid #d4a574;
+    }
+
+    .experience-card h3 {
+      margin-bottom: 0.8em;
+    }
+
+    .experience-card p {
+      margin-bottom: 0;
+    }
+
+    /* ========== ロースイーツセクション ========== */
+    .about-raw-sweets {
+      background-color: white;
+      padding: clamp(40px, 6vw, 60px);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .about-raw-sweets h3 {
+      color: #d4a574;
+      margin-bottom: 0.6em;
+    }
+
+    .about-raw-sweets ul {
+      list-style: none;
+      margin-bottom: 2em;
+    }
+
+    .about-raw-sweets li {
+      margin-bottom: 1.2em;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .about-raw-sweets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 8px;
+      height: 8px;
+      background-color: #d4a574;
+      border-radius: 50%;
+    }
+
+    /* ========== 体験詳細セクション ========== */
+    .lesson-details {
+      background-color: white;
+      padding: clamp(40px, 6vw, 60px);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .lesson-flow {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(24px, 4vw, 32px);
+      margin-top: 2em;
+    }
+
+    .flow-item {
+      padding-bottom: 1.6em;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .flow-item:nth-child(odd) {
+      border-right: 1px solid #e0e0e0;
+      padding-right: clamp(24px, 4vw, 32px);
+    }
+
+    .flow-item h4 {
+      color: #d4a574;
+      font-size: clamp(16px, 2.2vw, 18px);
+      margin-bottom: 0.6em;
+      font-weight: 600;
+    }
+
+    .flow-item p {
+      margin-bottom: 0;
+    }
+
+    /* ========== 体験後の変化セクション ========== */
+    .testimonial-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(24px, 4vw, 32px);
+    }
+
+    .testimonial-card {
+      background-color: white;
+      padding: clamp(24px, 4vw, 32px);
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial-card p:first-child {
+      font-weight: 600;
+      color: #d4a574;
+      margin-bottom: 0.8em;
+      padding: 12px;
+      background-color: rgba(212, 165, 116, 0.05);
+      border-radius: 6px;
+    }
+
+    .testimonial-card p:last-child {
+      margin-bottom: 0;
+      color: #6a6a6a;
+    }
+
+    /* ========== 講師紹介セクション ========== */
+    .profile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 60px);
+      align-items: center;
+    }
+
+    .profile-image {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #e8d4c0 0%, #f5e6d3 100%);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6a6a6a;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-text h3 {
+      color: #d4a574;
+    }
+
+    /* ========== レッスン案内セクション ========== */
+    .lesson-info {
+      background-color: white;
+      padding: clamp(40px, 6vw, 60px);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(24px, 4vw, 32px);
+      margin-bottom: 2.4em;
+    }
+
+    .info-item {
+      padding-bottom: 1.6em;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .info-item h4 {
+      color: #d4a574;
+      font-size: clamp(16px, 2.2vw, 18px);
+      margin-bottom: 0.6em;
+      font-weight: 600;
+    }
+
+    .info-item p {
+      margin-bottom: 0;
+    }
+
+    /* ========== FAQ セクション ========== */
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: clamp(16px, 2vw, 24px);
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .faq-question {
+      padding: clamp(16px, 3vw, 24px);
+      background-color: white;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(16px, 2vw, 18px);
+      font-weight: 600;
+      color: #1e1e1e;
+      padding-right: 40px;
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background-color: rgba(212, 165, 116, 0.05);
+    }
+
+    .faq-question::after {
+      content: '';
+      position: absolute;
+      right: clamp(16px, 3vw, 24px);
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid #d4a574;
+      border-bottom: 2px solid #d4a574;
+      transform: translateY(-50%) rotate(-45deg);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: translateY(-50%) rotate(135deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background-color: rgba(212, 165, 116, 0.02);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
+    .faq-answer p {
+      padding: clamp(20px, 3vw, 24px);
+      margin-bottom: 0;
+      color: #6a6a6a;
+    }
+
+    /* ========== クロージングセクション ========== */
+    .closing {
+      background-color: white;
+      padding: clamp(40px, 6vw, 60px);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .closing p {
+      margin-bottom: 1.2em;
+      line-height: 1.8;
+    }
+
+    /* ========== CTA セクション ========== */
+    .cta-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: clamp(60px, 8vw, 100px) 0;
+    }
+
+    .cta-button {
+      min-width: 320px;
+    }
+
+    /* ========== レスポンシブ ========== */
+    @media (max-width: 768px) {
+      .fv-content {
+        grid-template-columns: 1fr;
+      }
+
+      .fv-image {
+        aspect-ratio: 1;
+        order: -1;
+      }
+
+      .empathy-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-item {
+        border-right: none;
+        padding-right: 0;
+      }
+
+      .testimonial-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .profile {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-image {
+        order: -1;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-button {
+        min-width: 100%;
+      }
+
+      .btn-fullwidth {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== FV Section ========== -->
+<section class="fv">
+  <div class="container">
+    <div class="fv-content">
+      <div class="fv-text">
+        <h1>甘いものを我慢できない私に、<br>冷凍庫に"安心できるおやつ"をひとつ。</h1>
+        <p class="sub">夕方や夜、ふと甘いものが欲しくなって、冷蔵庫や棚を何度も開けてしまう。<br>そんな毎日に、甘いものを我慢するだけではない「ロースイーツ」という選択肢を増やしてみませんか。<br><br>まずは体験レッスンで、砂糖なしでも満たされるおやつを、自分の手で作って味わってみてください。</p>
+        <button>体験レッスンに申し込む</button>
+      </div>
+      <div class="fv-image">
+        <img src="https://images.unsplash.com/photo-1587080195348-2c8aa339e15e?w=400&h=500&fit=crop" alt="ロードーナツの完成イメージ">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ターゲット像セクション ========== -->
+<section>
+  <div class="container">
+    <h2>こんなことないですか？</h2>
+    <div class="empathy-cards">
+      <div class="empathy-card">
+        <h3>夕方や夜になると、甘いものを探して冷蔵庫を開けている</h3>
+        <p>疲れてホッとした瞬間、パカッと開けて「何かないかな」と探してしまう。</p>
+      </div>
+      <div class="empathy-card">
+        <h3>「ちょっとだけ」のつもりが、気づいたら食べすぎている</h3>
+        <p>ひと口で終わるはずだったのに、手が止まらなくて、あとから少し落ち込む。</p>
+      </div>
+      <div class="empathy-card">
+        <h3>市販のお菓子を減らしたいけど、我慢だけでは続かない</h3>
+        <p>買わないと決めた日に限って食べたくなって、反動で余計に欲しくなる。</p>
+      </div>
+      <div class="empathy-card">
+        <h3>子どもや家族のおやつも、本当は手作りした方がいいと思っている</h3>
+        <p>でも毎日は面倒で、結局すぐ買えるいつものお菓子に戻ってしまう。</p>
+      </div>
+      <div class="empathy-card">
+        <h3>食べるか、我慢するかで、毎回迷ってしまう</h3>
+        <p>食べてもモヤモヤするし、我慢してもずっと頭の中に残っている。</p>
+      </div>
+      <div class="empathy-card">
+        <h3 style="color: #1e1e1e; margin-bottom: 0;">甘いものが好きなことが悪いわけではありません</h3>
+        <p style="margin-top: 0.8em; margin-bottom: 0;">ただ、食べたあとに自分を責める時間が増えているなら、今のまま我慢を増やすより、安心して食べられる選択肢をひとつ増やすことから始めてみませんか。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 体験できることセクション ========== -->
+<section>
+  <div class="container">
+    <h2>体験できること</h2>
+    <div class="experience-cards">
+      <div class="experience-card">
+        <h3>甘いものを我慢する以外の選択肢が増える</h3>
+        <p>市販のお菓子を買うだけではなく、自分で満たせるおやつを作る感覚を体験できます。</p>
+      </div>
+      <div class="experience-card">
+        <h3>砂糖なしでも「また食べたい」甘さを味わえる</h3>
+        <p>素材の甘さで満たされるから、何度も食べたくなるおやつとして楽しめます。</p>
+      </div>
+      <div class="experience-card">
+        <h3>「私にも作れた」がすぐ次の一回につながる</h3>
+        <p>材料を用意したら、あとは混ぜて固めるだけなので、家でもう一度作るイメージが湧きます。</p>
+      </div>
+      <div class="experience-card">
+        <h3>子どもや家族に出したくなるおやつが増える</h3>
+        <p>「おいしい」と喜んでもらえると、手作りおやつの時間が少し楽しみになります。</p>
+      </div>
+      <div class="experience-card">
+        <h3>冷凍庫に安心なおやつがある感覚を知れる</h3>
+        <p>甘いものが欲しくなった時に「家にあるから大丈夫」と思える未来を体験できます。</p>
+      </div>
+      <div class="experience-card">
+        <h3 style="color: #d4a574;">体験レッスン限定</h3>
+        <p>参加者限定でレッスン後の個別フォローアップもご用意しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ロースイーツセクション ========== -->
+<section>
+  <div class="container">
+    <div class="about-raw-sweets">
+      <h2>ロースイーツとは</h2>
+      <h3>あげない・焼かないおやつ</h3>
+      <p>オーブンを使わず、冷やして仕上げるので、初心者でも始めやすいおやつです。</p>
+
+      <h3>植物性中心の素材で作る</h3>
+      <p>卵・乳製品・小麦粉を使わず、家族にも出しやすい選択肢になります。</p>
+
+      <h3>素材の甘さで満たされる</h3>
+      <p>砂糖の強い甘さではなく、自然な甘さや食感を楽しめます。</p>
+
+      <p style="margin-top: 2em; border-top: 1px solid #e0e0e0; padding-top: 2em; color: #6a6a6a;">ロースイーツは、特別な人だけが作るおしゃれなお菓子ではありません。材料を混ぜて、冷やして、固める。忙しい毎日の中でも、冷凍庫に置いておける"自分と家族のためのおやつ"です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 体験レッスン詳細セクション ========== -->
+<section>
+  <div class="container">
+    <div class="lesson-details">
+      <h2>体験レッスン詳細</h2>
+      <p>あげない・焼かないロードーナツを作りながら、ロースイーツという「甘いものを我慢する以外の選択肢」を体験するオンラインレッスンです。</p>
+      <p>ただ作って終わりではなく、砂糖なしでも満たされる甘さや、冷凍庫にあると安心なおやつを実際に味わえます。</p>
+
+      <h3 style="margin-top: 2.4em;">当日の流れ</h3>
+      <div class="lesson-flow">
+        <div class="flow-item">
+          <h4>ゴール確認</h4>
+          <p>ロードーナツの完成と、砂糖なしでも満たされる甘さを体験する目的を確認します。</p>
+        </div>
+        <div class="flow-item">
+          <h4>自己紹介・悩みの共有</h4>
+          <p>甘いものが欲しくなるタイミングや、レッスン後になりたい気持ちを簡単にシェアします。</p>
+        </div>
+        <div class="flow-item">
+          <h4>手元を見ながら実習</h4>
+          <p>見本動画で流れを確認し、参加者さんの手元を見ながら、混ぜ具合・固さ・成形のコツをお伝えします。</p>
+        </div>
+        <div class="flow-item">
+          <h4>悩みに合わせたミニ座学</h4>
+          <p>冷やし時間に、自己紹介で出てきたお悩みに合わせて、甘いものが欲しくなる理由や、我慢だけに頼らない選び方をお話しします。</p>
+        </div>
+        <div class="flow-item">
+          <h4>仕上げ・試食</h4>
+          <p>カラフルに仕上げたロードーナツを味わい、砂糖なしでも満たされる甘さや食べ応えを体験します。</p>
+        </div>
+        <div class="flow-item">
+          <h4>保存方法の説明</h4>
+          <p>冷凍保存や食べ方、持ち運び方までお伝えします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 体験後の変化セクション ========== -->
+<section>
+  <div class="container">
+    <h2>体験後の変化</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <p>「子どもからのリクエストがすごくて、もう一回作りました」</p>
+        <p>自分だけで楽しむおやつではなく、家族にも喜んでもらえる手作りおやつになりました。</p>
+      </div>
+      <div class="testimonial-card">
+        <p>「子どもが大事そうに、ちょびちょび食べていました」</p>
+        <p>ただ甘いだけではなく、ゆっくり味わいたくなるおやつとして楽しんでくれました。</p>
+      </div>
+      <div class="testimonial-card">
+        <p>「午後にもう一回作りました」</p>
+        <p>材料さえ用意すれば、あとは混ぜて固めるだけ。思ったより手軽で、レッスン後すぐにもう一度作りたくなりました。</p>
+      </div>
+    </div>
+    <div style="background-color: white; padding: clamp(40px, 6vw, 60px); border-radius: 12px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05); margin-top: clamp(40px, 6vw, 60px);">
+      <p style="margin-bottom: 0; color: #6a6a6a;">体験レッスンで作ったものが、その日の午後にもう一度作りたくなったり、子どもが大事そうに食べてくれたりする。それはただ「レシピを覚えた」だけではなく、日常に置けるおやつの選択肢が増えたということです。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 講師紹介セクション ========== -->
+<section>
+  <div class="container">
+    <h2 style="text-align: left; margin-bottom: 0;">講師紹介</h2>
+    <div class="profile" style="margin-top: clamp(40px, 6vw, 60px);">
+      <div class="profile-image">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" alt="講師なつえ">
+      </div>
+      <div class="profile-text">
+        <h3>なつえ</h3>
+        <p class="text-muted">JKA認定講師／オンラインロースイーツ教室主宰</p>
+
+        <p style="margin-top: 1.6em;">前の私は、甘いものが本当に好きで、コンビニに行くたびにスイーツコーナーで新作をチェックして、買うかやめるか10分くらい悩んでいました。</p>
+
+        <p>当時は1歳だった娘を自宅保育していて、毎日おむつ替えと授乳の繰り返し。なぜか社会から離れているような感じがあったり、「私には何も続かないな」「何か強みがあるわけでもないな」と感じたりしていました。</p>
+
+        <p>今思うと、そういう満たされなさや、どうしたらいいか分からない気持ちが、コンビニスイーツに向かっていたのだと思います。</p>
+
+        <p>ロースイーツに出会ってから、甘いものは「買うもの」から「自分で作れるもの」に変わりました。冷凍庫に自分を満たせるおやつがあることで、わざわざ買いに行かなくても大丈夫と思えるようになりました。</p>
+
+        <p>そして続けるうちに、味覚が少しずつ整っていきました。久しぶりに市販の甘いものを食べた時に「こんなに甘かったっけ？」と感じるようになって、我慢ではなく自然と選び方が変わっていったんです。</p>
+
+        <p>今、甘いものが目の前にあるとつい食べてしまう方からすると、「本当にそんなふうに変わるの？」と思うかもしれません。</p>
+
+        <p>でも、味覚が整ってくると、甘いものを無理に遠ざけるのではなく、自然と欲しいものが変わっていく感覚があります。</p>
+
+        <p>ロースイーツは、意識が高い人だけの特別なお菓子ではありません。混ぜて、冷やして、固めるだけで日常に置いておける、自分や家族のための安心おやつです。</p>
+
+        <p>だからこそ私は、甘いものを無理に我慢するのではなく、自分を満たせる選択肢を増やすロースイーツをお伝えしています。</p>
+
+        <p>レッスンでは、参加者さんの手元を見ながら、混ぜ具合・固さ・成形のコツをその場でお伝えします。初めての方でも安心して完成できるよう、画面越しにサポートしますよ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== レッスン案内セクション ========== -->
+<section>
+  <div class="container">
+    <div class="lesson-info">
+      <h2>レッスン案内</h2>
+      <h3 style="margin-top: 2em;">砂糖なしでも満足できるおやつ<br>ロースイーツ体験レッスン</h3>
+
+      <div class="info-grid" style="margin-top: 2em;">
+        <div class="info-item">
+          <h4>開催形式</h4>
+          <p>オンラインZoom</p>
+        </div>
+        <div class="info-item">
+          <h4>時間</h4>
+          <p>約2時間</p>
+        </div>
+        <div class="info-item">
+          <h4>参加費</h4>
+          <p>5,000円（税込）<br><span class="text-muted">※材料費は別途ご負担ください</span></p>
+        </div>
+        <div class="info-item">
+          <h4>定員</h4>
+          <p>各回5名</p>
+        </div>
+        <div class="info-item">
+          <h4>作るもの</h4>
+          <p>初めてでも作りやすい、あげない・焼かないロードーナツ4個</p>
+        </div>
+        <div class="info-item">
+          <h4>お支払い方法</h4>
+          <p>クレジットカード決済、または銀行振込（三菱UFJ銀行）</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 2.4em;">準備するもの</h3>
+      <ul style="list-style: none; margin-bottom: 2em;">
+        <li style="margin-bottom: 1.2em; padding-left: 28px; position: relative;">
+          <span style="position: absolute; left: 0; top: 0; width: 8px; height: 8px; background-color: #d4a574; border-radius: 50%; display: inline-block;"></span>
+          <strong>フードプロセッサー</strong><br><span class="text-muted">体験レッスンはフードプロセッサーがあればOKです。チョッパーでも作れますが、少し腕が疲れます。</span>
+        </li>
+        <li style="margin-bottom: 1.2em; padding-left: 28px; position: relative;">
+          <span style="position: absolute; left: 0; top: 0; width: 8px; height: 8px; background-color: #d4a574; border-radius: 50%; display: inline-block;"></span>
+          <strong>温度計</strong><br><span class="text-muted">100円ショップなどで買えるもので大丈夫です。</span>
+        </li>
+        <li style="margin-bottom: 1.2em; padding-left: 28px; position: relative;">
+          <span style="position: absolute; left: 0; top: 0; width: 8px; height: 8px; background-color: #d4a574; border-radius: 50%; display: inline-block;"></span>
+          <strong>材料・ドーナツ型</strong><br><span class="text-muted">材料と6つ穴のドーナツシリコン型は、お申込み後にレシピ内で詳しくご案内します。穴は直径7.5cm×高さ2.3cmに近いサイズであれば大丈夫です。</span>
+        </li>
+      </ul>
+
+      <h3 style="margin-top: 2.4em;">参加者限定サポート</h3>
+      <ul style="list-style: none; margin-bottom: 2em;">
+        <li style="margin-bottom: 1.2em; padding-left: 28px; position: relative;">
+          <span style="position: absolute; left: 0; top: 0; width: 8px; height: 8px; background-color: #d4a574; border-radius: 50%; display: inline-block;"></span>
+          <strong>材料選びからサポートします</strong><br><span class="text-muted">初めての材料でも、どれを用意すればいいか分かるようにご案内します。</span>
+        </li>
+        <li style="margin-bottom: 1.2em; padding-left: 28px; position: relative;">
+          <span style="position: absolute; left: 0; top: 0; width: 8px; height: 8px; background-color: #d4a574; border-radius: 50%; display: inline-block;"></span>
+          <strong>レッスン前にLINEで相談できます</strong><br><span class="text-muted">材料や道具で迷った時は、小さなことでも事前にご相談いただけます。</span>
+        </li>
+        <li style="margin-bottom: 1.2em; padding-left: 28px; position: relative;">
+          <span style="position: absolute; left: 0; top: 0; width: 8px; height: 8px; background-color: #d4a574; border-radius: 50%; display: inline-block;"></span>
+          <strong>当日は手元を見ながら進めます</strong><br><span class="text-muted">「これで合ってるかな？」と不安になりやすい混ぜ具合や固さも、その場で確認します。</span>
+        </li>
+      </ul>
+
+      <h3 style="margin-top: 2.4em;">キャンセルについて</h3>
+      <p style="margin-bottom: 0;">お申込み・ご入金後に、レシピや材料案内をお渡しします。そのため、ご入金後のキャンセル・返金はお受けしておりません。</p>
+      <p style="color: #6a6a6a;">日程の変更が必要な場合は、分かった時点でご相談ください。可能な範囲で、別日への振替をご案内します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ セクション ========== -->
+<section>
+  <div class="container">
+    <h2>よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">Q. 私にも作れるか不安です。</button>
+        <div class="faq-answer">
+          <p>初めてでも完成できるように、画面越しに手元を見ながら進めます。混ぜ具合や固さも確認するので、「これで合ってるかな？」と一人で迷いにくいです。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Q. 材料をそろえるのが大変そうです。</button>
+        <div class="faq-answer">
+          <p>必要な材料は、お申込み後に分かりやすくご案内します。迷った時はLINEで相談できるので、初めての材料でも準備しやすいです。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Q. フードプロセッサーがないと参加できますか？</button>
+        <div class="faq-answer">
+          <p>体験レッスンはフードプロセッサーがあると安心です。チョッパーでも作れますが、少し腕が疲れるので、できればフードプロセッサーがおすすめです。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Q. 子どもがいても参加できますか？</button>
+        <div class="faq-answer">
+          <p>オンラインなので、ご自宅から参加できます。お子さんの様子を見ながらの参加も可能ですが、作業中は安全を優先して進めてください。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Q. 体験だけの参加でもいいですか？</button>
+        <div class="faq-answer">
+          <p>もちろん大丈夫です。まずは1回、ロースイーツが自分や家族に合いそうか、作って食べて体験してみてください。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Q. キャンセルや返金はできますか？</button>
+        <div class="faq-answer">
+          <p>ご入金後は、レシピや材料案内をお渡しするため返金はできません。参加が難しくなった場合は、分かった時点でご相談ください。可能な範囲で振替をご案内します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== クロージングセクション ========== -->
+<section>
+  <div class="container">
+    <div class="closing">
+      <h2>迷っているあなたへ</h2>
+      <p>甘いものが好きなことは、悪いことではありません。ただ、食べたあとに「また食べちゃった」と自分を責める時間が増えているなら、少しだけ選択肢を増やしてみませんか。</p>
+      <p>夕方や夜、甘いものが欲しくなった時。冷蔵庫や棚を何度も開ける前に、買い物ついでにいつものお菓子をカゴに入れる前に、冷凍庫に自分で作ったおやつがある。</p>
+      <p>それだけで、甘いものとの付き合い方は少し変わります。</p>
+      <p>「我慢しなきゃ」ではなく、「これがあるから大丈夫」と思える選択肢を、まずはひとつ作ってみてください。</p>
+      <p style="border-top: 1px solid #e0e0e0; padding-top: 1.6em; margin-top: 1.6em;">ロースイーツが自分や家族に合うかどうかは、実際に体験してみると分かります。</p>
+      <p style="color: #d4a574; font-weight: 600;">定員が埋まり次第、受付を終了いたしますので、一歩踏み出したい方は今すぐこちらからお席を確保してくださいね。</p>
+      <p style="margin-bottom: 0;">甘いものに振り回される毎日の中に、「これなら大丈夫」と思えるおやつをひとつ増やしていきましょう。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 最終 CTA セクション ========== -->
+<div class="cta-section">
+  <button class="cta-button">体験レッスンに申し込む</button>
+</div>
+
+<script>
+  // FAQ アコーディオン
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // ボタンのリンク設定（実装時に申し込みURLに変更）
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(btn => {
+    if (btn.textContent.includes('申し込む')) {
+      btn.addEventListener('click', () => {
+        alert('申し込みページへ移動します');
+        // window.location.href = 'https://your-booking-url.com';
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
