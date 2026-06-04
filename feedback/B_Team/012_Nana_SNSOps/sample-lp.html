@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>撮影＋編集パッケージ | SNS運用代行 なな</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --text-dark: #1e1e1e;
+      --text-sub: #6a6a6a;
+      --bg-light: #faf8f5;
+      --accent: #e8956b;
+      --accent-light: #f5e5d8;
+      --border-radius: 8px;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Zen Kaku Gothic New", sans-serif;
+      color: var(--text-dark);
+      background-color: white;
+      line-height: 1.7;
+    }
+
+    h1 {
+      font-size: clamp(28px, 7vw, 48px);
+      line-height: 1.3;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(22px, 5vw, 32px);
+      line-height: 1.3;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: clamp(17px, 4vw, 22px);
+      line-height: 1.4;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: clamp(48px, 10vw, 80px) 0;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: white;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-sub);
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* FV */
+    .fv {
+      background: linear-gradient(135deg, #faf8f5 0%, #f5e5d8 100%);
+      padding: clamp(60px, 15vw, 120px) 0;
+    }
+
+    .fv-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .fv-content h1 {
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .fv-badge {
+      display: inline-block;
+      background-color: white;
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid var(--accent);
+    }
+
+    .fv-subtext {
+      font-size: 18px;
+      color: var(--text-sub);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .fv-image {
+      background: linear-gradient(45deg, #e8956b 0%, #d97a4e 100%);
+      border-radius: var(--border-radius);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #d97a4e 0%, #e8956b 100%);
+      color: white;
+      padding: 16px 40px;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(232, 149, 107, 0.3);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .fv-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .fv-image {
+        aspect-ratio: auto;
+        min-height: 300px;
+      }
+    }
+
+    /* Problem Section */
+    .problem {
+      background-color: var(--bg-light);
+    }
+
+    .problem h2 {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .problem-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .problem-item {
+      background: white;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .problem-item h3 {
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .problem-item p {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+
+    /* Concept Section */
+    .concept {
+      background: white;
+    }
+
+    .concept-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .concept-image {
+      background: linear-gradient(135deg, #e8956b 0%, #d97a4e 100%);
+      border-radius: var(--border-radius);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .concept-text h2 {
+      margin-bottom: 24px;
+    }
+
+    .concept-text p {
+      margin-bottom: 20px;
+      line-height: 1.9;
+    }
+
+    .concept-highlight {
+      background-color: var(--accent-light);
+      padding: 24px;
+      border-radius: var(--border-radius);
+      margin-top: 32px;
+      border-left: 4px solid var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .concept-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* Service Section */
+    .service {
+      background-color: var(--bg-light);
+    }
+
+    .service h2 {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .service-table {
+      background: white;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+      margin-bottom: 48px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background-color: var(--accent-light);
+      padding: 16px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    tr:hover {
+      background-color: #faf8f5;
+    }
+
+    .reason-block {
+      background: white;
+      padding: 32px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 32px;
+    }
+
+    .reason-block h3 {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .reason-list {
+      list-style: none;
+    }
+
+    .reason-list li {
+      padding-left: 24px;
+      position: relative;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+
+    .reason-list li:before {
+      content: "・";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Profile Section */
+    .profile {
+      background: white;
+    }
+
+    .profile-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .profile-image {
+      background: linear-gradient(135deg, #e8956b 0%, #d97a4e 100%);
+      border-radius: var(--border-radius);
+      aspect-ratio: 3 / 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-text h2 {
+      margin-bottom: 24px;
+    }
+
+    .profile-text p {
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .profile-highlight {
+      background-color: var(--accent-light);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      margin-top: 24px;
+      font-size: 14px;
+      border-left: 4px solid var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .profile-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .profile-image {
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+    /* Why Section */
+    .why {
+      background-color: var(--bg-light);
+    }
+
+    .why h2 {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .why-content {
+      background: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .why-content p {
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #faf8f5 0%, #f5e5d8 100%);
+      text-align: center;
+      padding: clamp(80px, 15vw, 120px) 0;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 24px;
+    }
+
+    .cta-section p {
+      font-size: 18px;
+      color: var(--text-sub);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* FAQ Section */
+    .faq {
+      background: white;
+    }
+
+    .faq h2 {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .faq-items {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--bg-light);
+      margin-bottom: 16px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background-color: #f0ede8;
+    }
+
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-answer.active {
+      padding: 20px;
+      max-height: 500px;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--text-dark);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* Utilities */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      section {
+        padding: clamp(48px, 8vw, 60px) 0;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .service-table {
+        padding: 20px;
+      }
+
+      th, td {
+        padding: 12px;
+        font-size: 13px;
+      }
+
+      .reason-block {
+        padding: 20px;
+      }
+
+      .why-content {
+        padding: 24px;
+      }
+
+      .cta-section {
+        padding: clamp(60px, 10vw, 80px) 0;
+      }
+    }
+
+    /* Animation for scroll reveal */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">なな</div>
+      <ul class="nav-links">
+        <li><a href="#service">サービス</a></li>
+        <li><a href="#profile">プロフィール</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- FV Section -->
+  <section class="fv">
+    <div class="container">
+      <div class="fv-inner">
+        <div class="fv-content">
+          <div class="fv-badge">実店舗事業主さま向け｜撮影＋編集パッケージ｜初回限定</div>
+          <h1>あなたの世界観を、<br>SNSにもそのままに。</h1>
+          <p class="fv-subtext">
+            写真だけで伝わらなかったあなたの魅力を　撮影<br>
+            編集も任せて　動画<br>
+            こだわりと想いをぎゅっとつめこんだ空間へ
+          </p>
+          <a href="#contact" class="cta-btn">LINEからのご予約はこちら →</a>
+        </div>
+        <div class="fv-image">写真・イメージ</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-header">
+        <h2>動画で、事業の魅力を届けたい。<br>そう思っているあなたへ</h2>
+        <p style="text-align: center; color: var(--text-sub); margin-bottom: 32px;">
+          SNSで検索をするのが当たり前の今<br>
+          SNSやった方がいい、動画もやった方がいい<br>
+          そんなことはわかっていても…
+        </p>
+      </div>
+      <div class="problem-items">
+        <div class="problem-item">
+          <h3>01｜そもそも、何をどうやって撮ればいいの？</h3>
+          <p>「どう撮れば伝わるか」がわからない。何を撮ればいい？角度？なんか微妙？毎回カメラを止めては悩む</p>
+        </div>
+        <div class="problem-item">
+          <h3>02｜編集って、どうやるの？</h3>
+          <p>動画をとったはいいけど、編集を始めたら次は文字は何を伝えたらいい？音楽は何がいい？結果わからず一向に進まない</p>
+        </div>
+        <div class="problem-item">
+          <h3>03｜そんな時間どこにあるんだろう？</h3>
+          <p>目の前のお客様の接客、明日の準備、事務作業、スキルアップの勉強…「後でやろう」のまま、時間だけが過ぎていく</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Concept Section -->
+  <section class="concept">
+    <div class="container">
+      <div class="section-header">
+        <h2>SNSアカウントを<br>こだわりがぎゅっとつめこんだ第二の空間に</h2>
+        <p class="tagline">動画でしか伝わらない、表情・空気感</p>
+      </div>
+      <div class="concept-content">
+        <div class="concept-image">イメージ写真</div>
+        <div class="concept-text">
+          <p>音、動き、表情、空気感──<br>その場所に、一緒にいるような体感まで届く。</p>
+          <p>だからこそ、あなたの魅力的な瞬間を切り取って、動画として形に。</p>
+          <p>SNSに投稿することで、まだあなたを知らない人へ届くきっかけが生まれます。</p>
+          <div class="concept-highlight">
+            <strong>◆ 世界観って、なに？</strong><br><br>
+            <p style="margin: 0; font-size: 14px;">内装のこだわり、選んだ家具や器、流れる音楽、お客様への声のかけ方、空気感、香り──<br><br>その全部を作りだしているのは、あなた自身の在り方。<br><br>言葉にしないけど、「ここは、こういう場所」って伝わる、あなたにしか作れない、唯一無二の空気。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Section -->
+  <section class="service" id="service">
+    <div class="container">
+      <div class="section-header">
+        <h2>あなたの世界観をSNSへ投影<br>撮影＋編集パッケージ</h2>
+      </div>
+
+      <div style="margin-bottom: 48px;">
+        <h3 style="text-align: center; margin-bottom: 24px;">プラン</h3>
+        <div class="service-table">
+          <table>
+            <thead>
+              <tr>
+                <th>プラン</th>
+                <th>価格</th>
+                <th>1本あたり</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>5本プラン</td>
+                <td>¥40,000</td>
+                <td>¥8,000</td>
+              </tr>
+              <tr>
+                <td>10本プラン</td>
+                <td>¥75,000</td>
+                <td>¥7,500</td>
+              </tr>
+              <tr>
+                <td>20本プラン</td>
+                <td>¥140,000</td>
+                <td>¥7,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="text-align: center; font-size: 14px; color: var(--text-sub);">
+          ・すべてのプランに「あなたの世界観が見つかるPDF」付き<br>
+          ・初回限定 / 撮影料 0円 / 月 1〜2枠のみ募集
+        </p>
+      </div>
+
+      <div class="reason-block">
+        <h3>このサービスを選ぶ理由</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 24px;">
+          <div>
+            <strong style="color: var(--accent); font-size: 14px;">【機能的な理由】</strong>
+            <ul class="reason-list">
+              <li>撮影＋編集＋SNS視点が全部入り</li>
+              <li>リール編集だけ頼んだ料金で、撮影と企画もついてくる</li>
+              <li>撮影料は0円（編集料＋交通費のみ）</li>
+            </ul>
+          </div>
+          <div>
+            <strong style="color: var(--accent); font-size: 14px;">【情緒的な理由】</strong>
+            <ul class="reason-list">
+              <li>あなたの世界観を、そのままSNSへ</li>
+              <li>「一緒にアカウントを作る体験」</li>
+              <li>「世界観で選ばれる」発信に変わる</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="reason-block">
+        <h3>サービスの流れ</h3>
+        <div class="service-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>内容</th>
+                <th>時間</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>公式LINEでお問い合わせ</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>参考動画のご準備と送付（PDF付き）</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>オンラインヒアリング</td>
+                <td>約60分</td>
+              </tr>
+              <tr>
+                <td>04</td>
+                <td>撮影企画書のご提案</td>
+                <td>企画書作成4時間以上</td>
+              </tr>
+              <tr>
+                <td>05</td>
+                <td>撮影当日</td>
+                <td>3時間〜半日以内</td>
+              </tr>
+              <tr>
+                <td>06</td>
+                <td>編集＆納品</td>
+                <td>5本=約1ヶ月 / 10本=約2ヶ月 / 20本=約3ヶ月</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 14px; color: var(--text-sub); margin-top: 20px;">
+          ご予約について：一人で運営するサービスのため、お一人おひとりに集中できる体制で対応しています。ご予約枠が埋まり次第、その月の受付を終了します。現在、2026年6月下旬以降のお受付となります。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile Section -->
+  <section class="profile" id="profile">
+    <div class="container">
+      <div class="section-header">
+        <h2>つくっている人</h2>
+      </div>
+      <div class="profile-content">
+        <div class="profile-image">プロフィール写真</div>
+        <div class="profile-text">
+          <h3>なな</h3>
+          <p style="color: var(--accent); font-weight: 600; font-size: 14px;">「仕事を楽しむカッコイイ大人になりたい」</p>
+
+          <p>前職は警察官。元々パソコンは大の苦手。</p>
+
+          <p>小学生からの夢だった警察官で倍率8倍突破し、晴れて就職。しかし離婚をきっかけに、子どもと一緒に住む選択が取れず、働き方を変えたいと模索。</p>
+
+          <p>SNSで出会った起業家さんたちに衝撃を受け、「まじでこんな大人になりたい」その一心で、24時間勤務の傍ら動画編集の勉強を始める。</p>
+
+          <p>SNSでの人との出会いで人生が変わった私だからこそ、SNS運用代行をしています。</p>
+
+          <div class="profile-highlight">
+            <strong>これまでに作ってきた動画実績</strong><br>
+            <p style="margin: 12px 0 0 0;">
+              ・リール 1.5万回再生：企画・編集<br>
+              ・国立病院の採用動画掲載：企画・撮影・編集<br>
+              ・プロモーションリール：企画・編集<br>
+              ・ライブカット動画：企画・撮影・編集<br>
+              ・その他、250本以上の編集や撮影同行も多数あり
+            </p>
+          </div>
+
+          <p style="margin-top: 24px;">Instagram：<a href="https://instagram.com/yours.7ms" target="_blank">@yours.7ms</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Section -->
+  <section class="why">
+    <div class="container">
+      <div class="section-header">
+        <h2>なぜこのサービスをやるのか</h2>
+      </div>
+      <div class="why-content">
+        <p>私がSNS運用代行を選んだ原点は、SNSで出会った起業家さんたちとの出会いでした。</p>
+
+        <p>私の人生を変えるきっかけをくれたのが、このInstagramであり、皆さんです。</p>
+
+        <hr style="border: none; border-top: 1px solid #e8e8e8; margin: 32px 0;">
+
+        <p>素敵な事業をされている皆さんだからこそ、その想いやこだわりを、SNSでもっと広がって欲しい。</p>
+
+        <p>でも、撮影や編集に時間をかけるよりも、その時間を、皆さんが大切にしたい時間に使って欲しい。</p>
+
+        <hr style="border: none; border-top: 1px solid #e8e8e8; margin: 32px 0;">
+
+        <p><strong>そんな想いで作ったのが、今回のサービスです。</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>よくある質問</h2>
+      </div>
+      <div class="faq-items">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Q1｜オンライン業・講座ビジネスは対象になりますか？</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>今回は、実店舗をお持ちの事業主さまを対象としています。オンライン業や講座系の方は、公式LINEからご相談ください。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Q2｜撮影は何時間ですか？</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>約3時間〜半日以内を目安に、企画内容によって変動します。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Q3｜納品までどのくらいかかりますか？</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>プランごとに変動します。5本プランは約1ヶ月、10本プランは約2ヶ月、20本プランは約3ヶ月が目安です。できあがったものから順次お渡しします。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Q4｜撮影に慣れていないんですが、大丈夫ですか？</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>大丈夫です。ご希望があればそのようにお動きいただけますし、こちらから「こういう動作をお願いします」とその場でご案内します。</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Q5｜交通費の目安はいくらですか？</span>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>三重県：約2,000円 / 名古屋：約3,000円 / 大阪：約10,000円 / その他のエリア：別途ご相談ください。県外出張も承ります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <h2>あなたの世界観を、<br>SNSにもそのままに。</h2>
+      <p>写真だけでは伝わりきらない、<br>あなたの魅力、こだわり、想いを<br>ぎゅっとつめこんだSNSに一緒にしませんか？</p>
+      <a href="#" class="cta-btn">ご予約はこちらから</a>
+      <p style="font-size: 12px; color: var(--text-sub); margin-top: 20px;">
+        ※ 下記のお問い合わせフォームを公式LINEに送信してください<br>
+        ※ 2日以内にご返信します
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 SNS運用代行 なな | @yours.7ms</p>
+  </footer>
+
+  <script>
+    // FAQ Toggle
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      const toggle = element.querySelector('.faq-toggle');
+      answer.classList.toggle('active');
+      toggle.textContent = answer.classList.contains('active') ? '−' : '+';
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('reveal');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.problem-item, .reason-block').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
