@@ -11343,7 +11343,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
     const PARTICIPANTS = [
       // ─── チームA ───
       { name: '尾野さおり', team: 'A', ig: 'saraha_style', job: 'ポーセラーツ・絵付け講師', advice: '（私たちからのアドバイスをここに記入）' },
-      { name: '三宅純子', team: 'A', ig: 'sumiko_lattenail', job: '動画編集者', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '三宅純子', team: 'A', ig: 'sumiko_lattenail', job: '動画編集者', advice: '（私たちからのアドバイスをここに記入）', sampleUrl: 'feedback/A_Team/002_Sumie_VideoEditor/sample-lp.html' },
       { name: '庄子真穂', team: 'A', ig: 'kakky_shortmovie', job: 'ショート動画プロデュース', advice: '（私たちからのアドバイスをここに記入）' },
       { name: '室橋夏絵', team: 'A', ig: 'natsue_rawsweets', job: 'ロースイーツ講座', advice: '（私たちからのアドバイスをここに記入）' },
       { name: '原のどか', team: 'A', ig: '8nodoka8', job: 'イメージコンサルタント', advice: '（私たちからのアドバイスをここに記入）' },
@@ -11352,9 +11352,9 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       { name: '玉腰由佳', team: 'B', ig: '_yukainsta', job: '女性起業家プロモサポート', advice: '（私たちからのアドバイスをここに記入）' },
       { name: '杉山きえ', team: 'B', ig: 'kie.s_parenting', job: '子育てコーチング', advice: '（私たちからのアドバイスをここに記入）' },
       { name: '山田佳代', team: 'B', ig: 'kayo.yamada307', job: 'ライフコーチ・法人研修', advice: '（私たちからのアドバイスをここに記入）' },
-      { name: '和田あゆみ', team: 'B', ig: 'ayumi_s_design', job: '建築士・インスタ運用・デザイン', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '和田あゆみ', team: 'B', ig: 'ayumi_s_design', job: '建築士・インスタ運用・デザイン', advice: '（私たちからのアドバイスをここに記入）', sampleUrl: 'feedback/B_Team/010_Kuwamon_Architect/sample-lp.html' },
       { name: '萩原愛子', team: 'B', ig: 'aiko.babymassage', job: 'ベビーマッサージ・講師育成', advice: '（私たちからのアドバイスをここに記入）' },
-      { name: '平野なな', team: 'B', ig: 'yours.7ms', job: 'SNS運用代行', advice: '（私たちからのアドバイスをここに記入）' },
+      { name: '平野なな', team: 'B', ig: 'yours.7ms', job: 'SNS運用代行', advice: '（私たちからのアドバイスをここに記入）', sampleUrl: 'feedback/B_Team/012_Nana_SNSOps/sample-lp.html' },
     ];
 
     // Instagram公開アイコンをunavatar.io経由で取得（IDから自動生成）
@@ -11401,13 +11401,19 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
               '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>' +
               '@' + escapeHtml(p.ig) +
             '</a>' : '';
-          return '<div class="card" style="margin-bottom:0;padding:16px 18px;display:flex;align-items:center;gap:14px;">' +
+          var sampleHtml = p.sampleUrl ?
+            '<a href="' + escapeHtml(p.sampleUrl) + '" target="_blank" rel="noopener" style="flex-basis:100%;display:flex;align-items:center;justify-content:center;gap:6px;margin-top:4px;padding:10px 12px;min-height:44px;box-sizing:border-box;background:linear-gradient(135deg,#EC4899,#F97316);color:#fff;text-decoration:none;border-radius:8px;font-size:12.5px;font-weight:700;">' +
+              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>' +
+              'サンプルLPを見る' +
+            '</a>' : '';
+          return '<div class="card" style="margin-bottom:0;padding:16px 18px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;">' +
             iconHtml +
             '<div style="flex:1;min-width:0;">' +
               '<div style="font-size:14px;font-weight:600;color:var(--black);line-height:1.4;">' + escapeHtml(p.name) + '</div>' +
               (p.job ? '<div style="font-size:11px;color:var(--gray-mid);margin-top:2px;line-height:1.5;">' + escapeHtml(p.job) + '</div>' : '') +
               igHtml +
             '</div>' +
+            sampleHtml +
           '</div>';
         }
 
