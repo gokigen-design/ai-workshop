@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ピアノのタネ｜どの調でも弾ける子を育てる導入メソッド</title>
+<meta name="description" content="黒鍵で止まらない。どの調でも弾ける子を育てる導入期メソッド「ピアノのタネ」。18年間のレッスン現場から生まれた、調感覚を自然に育てる導入教材です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf8f5;
+    --bg-card:#ffffff;
+    --text:#1e1e1e;
+    --sub:#6a6a6a;
+    --accent:#bd7e6d;
+    --accent-dark:#a8695a;
+    --accent-tint:#f3e9e3;
+    --accent-line:#e7d6cd;
+    --radius:8px;
+    --shadow:0 8px 30px rgba(0,0,0,0.05);
+    --maxw:720px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Noto Sans JP",sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.8;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{width:100%;max-width:100%;height:auto;display:block;}
+  svg{display:block;}
+  h1,h2,h3{font-family:"Zen Maru Gothic",sans-serif;line-height:1.35;font-weight:700;}
+
+  /* layout helpers */
+  .section{padding:80px 20px;}
+  .inner{max-width:var(--maxw);margin:0 auto;}
+  .inner-wide{max-width:980px;margin:0 auto;}
+  .center{text-align:center;}
+
+  .eyebrow{
+    display:inline-block;
+    font-size:13px;
+    letter-spacing:.18em;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:16px;
+  }
+  h2.heading{
+    font-size:clamp(22px,5vw,32px);
+    margin-bottom:16px;
+  }
+  .lead{
+    font-size:16px;
+    color:var(--sub);
+    line-height:1.8;
+    max-width:var(--maxw);
+  }
+  .center .lead{margin-left:auto;margin-right:auto;}
+
+  /* ===== FV ===== */
+  .fv{
+    background:linear-gradient(180deg,#f6ede7 0%,var(--bg) 100%);
+    padding:64px 20px 72px;
+  }
+  .fv-grid{
+    max-width:980px;margin:0 auto;
+    display:grid;grid-template-columns:1.4fr 1fr;
+    gap:40px;align-items:center;
+  }
+  .fv-tag{
+    display:inline-block;
+    background:var(--accent-tint);
+    color:var(--accent-dark);
+    font-size:13px;font-weight:700;
+    padding:6px 14px;border-radius:999px;
+    margin-bottom:24px;
+  }
+  .fv h1{
+    font-size:clamp(28px,7vw,48px);
+    letter-spacing:.01em;
+    margin-bottom:24px;
+  }
+  .fv h1 .ac{color:var(--accent);}
+  .fv-sub{
+    font-size:clamp(15px,2.2vw,17px);
+    color:var(--text);
+    margin-bottom:24px;
+    line-height:1.85;
+  }
+  .fv-target{
+    font-size:14px;
+    color:var(--sub);
+    background:#fff;
+    border:1px solid var(--accent-line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    line-height:1.8;
+    margin-bottom:32px;
+    box-shadow:var(--shadow);
+  }
+  .fv-visual{
+    background:#fff;
+    border-radius:var(--radius);
+    padding:28px 24px;
+    box-shadow:var(--shadow);
+  }
+
+  /* CTA button */
+  .cta-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    gap:10px;
+    background:var(--accent);
+    color:#fff;
+    font-family:"Zen Maru Gothic",sans-serif;
+    font-weight:700;
+    font-size:clamp(16px,2.3vw,18px);
+    text-decoration:none;
+    padding:18px 32px;
+    border-radius:var(--radius);
+    min-height:44px;
+    box-shadow:0 8px 22px rgba(189,126,109,0.28);
+    transition:background .2s ease, transform .2s ease;
+  }
+  .cta-btn:hover{background:var(--accent-dark);transform:translateY(-2px);}
+  .cta-btn .arrow{width:18px;height:18px;flex-shrink:0;}
+
+  /* ===== 悩み cards ===== */
+  .worry-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:16px;margin-top:40px;
+    max-width:980px;margin-left:auto;margin-right:auto;
+  }
+  .worry-card{
+    background:var(--bg-card);
+    border-radius:var(--radius);
+    padding:24px 22px;
+    box-shadow:var(--shadow);
+    border:1px solid #f0e7e0;
+  }
+  .worry-icon{
+    width:40px;height:40px;margin-bottom:16px;color:var(--accent);
+  }
+  .worry-card h3{
+    font-size:clamp(17px,4vw,18px);
+    margin-bottom:8px;line-height:1.5;
+  }
+  .worry-card p{font-size:14px;color:var(--sub);line-height:1.8;}
+
+  /* ===== benefit list (このサービスを受けると / 内容) ===== */
+  .benefit-list{margin-top:32px;display:grid;gap:16px;}
+  .benefit-item{
+    background:var(--bg-card);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    box-shadow:var(--shadow);
+    border-left:4px solid var(--accent);
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .benefit-item .num{
+    flex-shrink:0;
+    width:32px;height:32px;border-radius:50%;
+    background:var(--accent-tint);color:var(--accent-dark);
+    font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;margin-top:2px;
+  }
+  .benefit-item .b-body strong{
+    display:block;
+    font-family:"Zen Maru Gothic",sans-serif;
+    font-size:clamp(16px,3.6vw,18px);
+    color:var(--text);
+    line-height:1.55;margin-bottom:6px;font-weight:700;
+  }
+  .benefit-item .b-body span{font-size:14px;color:var(--sub);line-height:1.8;}
+
+  /* ===== service intro (ピアノのタネとは) ===== */
+  .service-intro{
+    background:var(--accent-tint);
+    border-radius:var(--radius);
+    padding:36px 28px;
+    margin-top:8px;
+    text-align:center;
+  }
+  .service-intro .mark{width:56px;height:56px;margin:0 auto 16px;color:var(--accent);}
+  .service-intro h3{font-size:clamp(20px,5vw,26px);margin-bottom:16px;}
+  .service-intro p{font-size:15px;color:#5a4a43;line-height:1.9;max-width:560px;margin:0 auto 12px;}
+
+  .subheading{
+    font-size:clamp(18px,4vw,22px);
+    text-align:center;
+    margin:56px 0 8px;
+    position:relative;
+    padding-bottom:14px;
+  }
+  .subheading::after{
+    content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    width:48px;height:3px;background:var(--accent);border-radius:2px;
+  }
+
+  /* ===== change list (実際の変化) ===== */
+  .change-list{margin-top:36px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .change-card{
+    background:var(--bg-card);border-radius:var(--radius);
+    padding:22px 22px;box-shadow:var(--shadow);border:1px solid #f0e7e0;
+  }
+  .change-card .check{
+    width:26px;height:26px;border-radius:50%;background:var(--accent);
+    display:flex;align-items:center;justify-content:center;margin-bottom:12px;
+  }
+  .change-card .check svg{width:14px;height:14px;color:#fff;}
+  .change-card strong{
+    display:block;font-family:"Zen Maru Gothic",sans-serif;
+    font-size:16px;line-height:1.55;margin-bottom:6px;
+  }
+  .change-card span{font-size:14px;color:var(--sub);line-height:1.8;}
+
+  /* ===== profile ===== */
+  .profile{background:#f6ede7;}
+  .profile-grid{
+    max-width:980px;margin:0 auto;
+    display:grid;grid-template-columns:0.8fr 1.2fr;gap:40px;align-items:start;
+  }
+  .profile-photo{
+    border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+    position:sticky;top:24px;
+  }
+  .profile-photo figcaption{
+    background:#fff;padding:14px 16px;font-size:13px;color:var(--sub);text-align:center;
+  }
+  .profile-body h2{
+    font-size:clamp(20px,5vw,28px);margin-bottom:24px;line-height:1.5;
+  }
+  .profile-body .story-q{
+    font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+    font-size:clamp(17px,4vw,20px);color:var(--accent-dark);
+    margin:32px 0 12px;line-height:1.5;
+  }
+  .profile-body p{font-size:15px;line-height:1.95;margin-bottom:16px;color:#2a2a2a;}
+  .profile-body .keep-list{
+    list-style:none;background:#fff;border-radius:var(--radius);
+    padding:20px 24px;margin:8px 0 16px;box-shadow:var(--shadow);
+  }
+  .profile-body .keep-list li{
+    font-size:15px;padding-left:26px;position:relative;margin:8px 0;line-height:1.7;
+  }
+  .profile-body .keep-list li::before{
+    content:"";position:absolute;left:0;top:10px;width:12px;height:12px;
+    border-radius:50%;background:var(--accent-tint);
+    border:3px solid var(--accent);
+  }
+
+  /* ===== pre-sale / price ===== */
+  .presale{background:var(--bg);}
+  .presale-box{
+    max-width:560px;margin:36px auto 0;
+    background:#fff;border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--accent-line);
+  }
+  .presale-box .ph{background:var(--accent);color:#fff;padding:18px 24px;text-align:center;}
+  .presale-box .ph h3{font-size:18px;color:#fff;}
+  .presale-list{list-style:none;padding:24px 28px;}
+  .presale-list li{
+    font-size:15px;padding:12px 0 12px 30px;position:relative;
+    border-bottom:1px dashed var(--accent-line);line-height:1.7;
+  }
+  .presale-list li:last-child{border-bottom:none;}
+  .presale-list li::before{
+    content:"";position:absolute;left:0;top:18px;width:16px;height:11px;
+    border-left:3px solid var(--accent);border-bottom:3px solid var(--accent);
+    transform:rotate(-45deg);
+  }
+  .price-box{text-align:center;padding:8px 28px 32px;}
+  .price-label{font-size:14px;color:var(--sub);margin-bottom:4px;}
+  .price-main{
+    font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+    font-size:clamp(32px,9vw,44px);color:var(--accent-dark);line-height:1.2;
+  }
+  .price-main .yen{font-size:.5em;margin-left:4px;}
+  .price-note{font-size:13px;color:var(--sub);margin-top:12px;line-height:1.7;}
+
+  /* ===== FAQ ===== */
+  .faq-list{margin-top:36px;max-width:var(--maxw);margin-left:auto;margin-right:auto;}
+  details.faq{
+    background:#fff;border-radius:var(--radius);margin-bottom:12px;
+    box-shadow:var(--shadow);border:1px solid #f0e7e0;overflow:hidden;
+  }
+  details.faq summary{
+    list-style:none;cursor:pointer;padding:20px 52px 20px 24px;
+    font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+    font-size:clamp(15px,3.6vw,17px);position:relative;line-height:1.55;
+    min-height:44px;display:flex;align-items:center;gap:12px;
+  }
+  details.faq summary::-webkit-details-marker{display:none;}
+  details.faq summary .qmark{
+    flex-shrink:0;color:var(--accent);font-weight:700;font-size:18px;
+  }
+  details.faq summary::after{
+    content:"";position:absolute;right:24px;top:50%;margin-top:-5px;
+    width:10px;height:10px;border-right:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);transform:rotate(45deg);
+    transition:transform .25s ease;
+  }
+  details.faq[open] summary::after{transform:rotate(-135deg);}
+  details.faq .faq-a{
+    padding:0 24px 22px 24px;font-size:14px;color:var(--sub);line-height:1.9;
+  }
+  details.faq .faq-a strong{color:var(--text);}
+
+  /* ===== closing / final CTA ===== */
+  .closing{background:#f6ede7;}
+  .closing p{font-size:15px;line-height:1.95;margin-bottom:16px;color:#2a2a2a;}
+  .closing .closing-list{
+    list-style:none;background:#fff;border-radius:var(--radius);
+    padding:20px 24px;margin:8px 0 20px;box-shadow:var(--shadow);
+  }
+  .closing .closing-list li{
+    font-size:15px;padding-left:26px;position:relative;margin:8px 0;line-height:1.7;
+  }
+  .closing .closing-list li::before{
+    content:"";position:absolute;left:2px;top:9px;width:13px;height:8px;
+    border-left:3px solid var(--accent);border-bottom:3px solid var(--accent);
+    transform:rotate(-45deg);
+  }
+  .final-cta{
+    background:var(--accent);
+    text-align:center;padding:64px 20px;
+  }
+  .final-cta h2{color:#fff;font-size:clamp(22px,5.5vw,30px);margin-bottom:12px;}
+  .final-cta p{color:#fbeee8;font-size:15px;margin-bottom:28px;}
+  .final-cta .cta-btn{
+    background:#fff;color:var(--accent-dark);
+    box-shadow:0 8px 22px rgba(0,0,0,0.18);
+    width:100%;max-width:360px;
+  }
+  .final-cta .cta-btn:hover{background:#fbeee8;}
+  .final-cta .cta-btn .arrow{color:var(--accent-dark);}
+
+  footer{background:#1e1e1e;color:#cfc7c2;text-align:center;padding:32px 20px;font-size:13px;}
+  footer .ttl{font-family:"Zen Maru Gothic",sans-serif;font-weight:700;color:#fff;font-size:16px;margin-bottom:8px;}
+
+  /* ===== responsive ===== */
+  @media (max-width:768px){
+    .section{padding:48px 20px;}
+    .fv{padding:40px 20px 56px;}
+    .fv-grid{grid-template-columns:1fr;gap:28px;}
+    .fv-visual{order:-1;}
+    .worry-grid{grid-template-columns:1fr;}
+    .change-list{grid-template-columns:1fr;}
+    .profile-grid{grid-template-columns:1fr;gap:28px;}
+    .profile-photo{position:static;max-width:320px;margin:0 auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== セクション1｜ファーストビュー ========== -->
+<header class="fv">
+  <div class="fv-grid">
+    <div class="fv-text">
+      <span class="fv-tag">幼児〜低学年を教える個人ピアノ教室の先生へ</span>
+      <h1>黒鍵で止まらない。<br><span class="ac">“どの調でも弾ける子”</span>を育てる導入期へ。</h1>
+      <p class="fv-sub">調感覚を自然に育てるから、幼児でも“わかる”が増えていく。<br>自分から弾ける力を育て、スケール指導につながる導入メソッド。</p>
+      <div class="fv-target">
+        「黒鍵になると止まる」「スケールにつながらない」──そんな導入期の悩みを感じながらも、どんな子にも“音楽を楽しめる土台”を育てたいあなたへ。
+      </div>
+      <a href="#presale" class="cta-btn">導入期レッスンをもっとラクにする
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <figure class="fv-visual" aria-label="鍵盤から芽が育つ「ピアノのタネ」のイメージ図">
+      <!-- ピアノ鍵盤＋芽（タネ）のSVG -->
+      <svg viewBox="0 0 240 200" role="img" aria-label="ピアノの鍵盤の上に小さな芽が育っているイラスト">
+        <!-- sprout -->
+        <path d="M120 96 C120 70 120 56 120 44" fill="none" stroke="#bd7e6d" stroke-width="3" stroke-linecap="round"/>
+        <path d="M120 64 C104 60 96 46 100 34 C116 36 124 50 120 64 Z" fill="#cd9c5f" opacity="0.85"/>
+        <path d="M120 56 C136 50 146 36 142 24 C126 28 116 42 120 56 Z" fill="#bd7e6d"/>
+        <circle cx="120" cy="40" r="5" fill="#a8695a"/>
+        <!-- keyboard base -->
+        <rect x="28" y="100" width="184" height="74" rx="6" fill="#ffffff" stroke="#e7d6cd"/>
+        <!-- white keys lines -->
+        <g stroke="#ecd9cf" stroke-width="2">
+          <line x1="54" y1="108" x2="54" y2="174"/>
+          <line x1="80" y1="108" x2="80" y2="174"/>
+          <line x1="106" y1="108" x2="106" y2="174"/>
+          <line x1="132" y1="108" x2="132" y2="174"/>
+          <line x1="158" y1="108" x2="158" y2="174"/>
+          <line x1="184" y1="108" x2="184" y2="174"/>
+        </g>
+        <!-- black keys -->
+        <g fill="#3a302c">
+          <rect x="46" y="100" width="14" height="42" rx="3"/>
+          <rect x="72" y="100" width="14" height="42" rx="3"/>
+          <rect x="124" y="100" width="14" height="42" rx="3"/>
+          <rect x="150" y="100" width="14" height="42" rx="3"/>
+          <rect x="176" y="100" width="14" height="42" rx="3"/>
+        </g>
+        <!-- soil mound -->
+        <path d="M28 100 C70 86 170 86 212 100 L212 100 L28 100 Z" fill="#f3e9e3"/>
+      </svg>
+      <p style="font-size:13px;color:var(--sub);text-align:center;margin-top:14px;line-height:1.6;">導入期に蒔く、“どの調でも弾ける”ためのタネ</p>
+    </figure>
+  </div>
+</header>
+
+<!-- ========== セクション2｜こんなお悩みありませんか？ ========== -->
+<section class="section">
+  <div class="center">
+    <span class="eyebrow">YOUR WORRIES</span>
+    <h2 class="heading">こんなお悩み、ありませんか？</h2>
+  </div>
+  <div class="worry-grid">
+
+    <div class="worry-card">
+      <svg class="worry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 15h8"/><line x1="9" y1="10" x2="9.01" y2="10"/><line x1="15" y1="10" x2="15.01" y2="10"/></svg>
+      <h3>「わからない」で表情が止まる</h3>
+      <p>「わからない」が増えると、子どもの表情が止まってしまう。そのまま“ピアノって難しい”になり、進度低下や退会につながることも。</p>
+    </div>
+
+    <div class="worry-card">
+      <svg class="worry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-9.3-9A5.2 5.2 0 0 1 12 6a5.2 5.2 0 0 1 9.3 6c-2.3 4.4-9.3 9-9.3 9z"/><path d="M9 12l2 2 4-4"/></svg>
+      <h3>自信がなくなっていく</h3>
+      <p>「わからない」が続くと、子どもの自信がなくなっていく。楽しそうだった表情が減り、練習嫌いにつながってしまう。</p>
+    </div>
+
+    <div class="worry-card">
+      <svg class="worry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 4v5h5"/><path d="M8 14h6M8 17h4"/></svg>
+      <h3>読譜はできても調感覚が育たない</h3>
+      <p>読譜はできても、“調の感覚”が育っていない。スケール指導になると一気に苦戦し、先生も生徒も苦しくなる。</p>
+    </div>
+
+    <div class="worry-card">
+      <svg class="worry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+      <h3>後から大きな壁になる</h3>
+      <p>導入期で“調の感覚”を育てきれなかったことに気づく。「黒鍵になると止まる」「移調で弾けない」が後から大きな壁になる。</p>
+    </div>
+
+    <div class="worry-card">
+      <svg class="worry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.3 0-2.6-.3-3.7-.8L3 21l1.8-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg>
+      <h3>どの子にも届く教材がない</h3>
+      <p>発達や理解速度に差がある子にも、「わかる！」「楽しい！」を届けたい。でも、そのための導入教材がなかなか見つからない。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== セクション3｜このサービスを受けると ========== -->
+<section class="section" style="background:#f6ede7;">
+  <div class="center">
+    <span class="eyebrow">AFTER</span>
+    <h2 class="heading">このサービスを受けると</h2>
+    <p class="lead">「ピアノのタネ」で導入期を過ごした子に、こんな変化が育っていきます。</p>
+  </div>
+  <div class="inner">
+    <div class="benefit-list">
+
+      <div class="benefit-item">
+        <div class="num">1</div>
+        <div class="b-body">
+          <strong>黒鍵でも止まらず、どの調でも弾ける。</strong>
+          <span>移調やスケールにもつまずきにくくなり、先生も指導に自信が持てる。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">2</div>
+        <div class="b-body">
+          <strong>「わかる！」が増え、自分から弾きたくなる。</strong>
+          <span>受け身ではなく、“考えて弾ける力”が自然に身についていく。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">3</div>
+        <div class="b-body">
+          <strong>「わからない」が減ると、表情が変わる。</strong>
+          <span>自分から弾きたくなるから、練習への声かけもラクになっていく。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">4</div>
+        <div class="b-body">
+          <strong>幼児でも、感覚的に理解しやすい。</strong>
+          <span>無理なく理解できるから、レッスンがスムーズに進んでいく。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">5</div>
+        <div class="b-body">
+          <strong>「難しい」より先に、“音楽って楽しい！”。</strong>
+          <span>調感覚が自然に身につき、音楽的な耳の土台まで育てられる。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== セクション4｜サービス内容 ========== -->
+<section class="section">
+  <div class="center">
+    <span class="eyebrow">SERVICE</span>
+    <h2 class="heading">サービス内容</h2>
+  </div>
+  <div class="inner">
+
+    <!-- ピアノのタネとは -->
+    <div class="service-intro">
+      <svg class="mark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M24 40V20"/>
+        <path d="M24 28C16 26 12 18 14 10c8 1 12 9 10 18z"/>
+        <path d="M24 24c8-2 12-10 10-18-8 1-12 9-10 18z"/>
+        <path d="M14 40h20"/>
+      </svg>
+      <h3>ピアノのタネとは</h3>
+      <p>「黒鍵になると止まる」「スケール指導へつながらない」──そんな導入期の悩みから生まれた、“調感覚”を自然に育てる導入メソッドです。</p>
+      <p>黒鍵を最初から特別なものにせず、感覚的に理解できる構成だから、幼児でも「わかる！」を積み重ねながら進められます。</p>
+    </div>
+
+    <!-- 内容 -->
+    <h3 class="subheading">内容</h3>
+    <div class="benefit-list">
+
+      <div class="benefit-item">
+        <div class="num">1</div>
+        <div class="b-body">
+          <strong>黒鍵を自然に取り入れ、どの調でも弾ける感覚を育てる。</strong>
+          <span>ハ長調だけで終わらず、移調やスケールにつながる土台を作ります。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">2</div>
+        <div class="b-body">
+          <strong>感覚から理解できるから、幼児でも進めやすい。</strong>
+          <span>「説明して覚える」だけではなく、“感じながら理解する力”を育てます。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">3</div>
+        <div class="b-body">
+          <strong>「わかる！」を積み重ね、自分から弾ける力が育つ。</strong>
+          <span>受け身ではなく、“考えて弾ける子”へ自然につながっていきます。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">4</div>
+        <div class="b-body">
+          <strong>音符の速読にもつながる設計。</strong>
+          <span>3歳頃から小学校中学年まで、1〜2年かけて音楽の土台を育てられます。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">5</div>
+        <div class="b-body">
+          <strong>理解差がある子にも使いやすい。</strong>
+          <span>視覚と感覚を使いながら進めることで、どんな子にも「楽しい！」を届けやすくなります。</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 選ばれる理由 -->
+    <h3 class="subheading">選ばれる理由</h3>
+    <div class="benefit-list">
+
+      <div class="benefit-item">
+        <div class="num">1</div>
+        <div class="b-body">
+          <strong>18年間、実際の教室で子どもたちを見ながら作られてきた。</strong>
+          <span>机上の理論ではなく、「どうしたら幼児でもわかるか」を現場で積み重ねながら生まれた導入メソッドです。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">2</div>
+        <div class="b-body">
+          <strong>“どんな子でもわかる”を目指した導入設計。</strong>
+          <span>発達や理解速度の違いがある子にも、「わかる！」「楽しい！」を届けられるよう、感覚から理解へつなげていきます。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">3</div>
+        <div class="b-body">
+          <strong>スケールにつながる“調感覚”を、導入期から育てる。</strong>
+          <span>黒鍵を特別なものにせず、移調やスケールへつながる感覚を小さい頃から育てていきます。</span>
+        </div>
+      </div>
+
+      <div class="benefit-item">
+        <div class="num">4</div>
+        <div class="b-body">
+          <strong>“わかる喜び”から始める導入期を大切にしている。</strong>
+          <span>幼児でも感覚から理解できるから、「やらされる」ではなく“弾きたい”が自然に育っていきます。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== セクション5｜実際の変化 ========== -->
+<section class="section" style="background:#f6ede7;">
+  <div class="center">
+    <span class="eyebrow">REAL CHANGE</span>
+    <h2 class="heading">実際の変化</h2>
+    <p class="lead">レッスンの現場で起きた、子どもたちの変化です。</p>
+  </div>
+  <div class="inner">
+    <div class="change-list">
+
+      <div class="change-card">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <strong>幼児さんでも、初見で「できた！」が増えた。</strong>
+        <span>レッスンで弾けるから、お家練習へのハードルも下がり、自然と練習習慣につながっていきました。</span>
+      </div>
+
+      <div class="change-card">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <strong>黒鍵を“外す”と、自分で気づくようになった。</strong>
+        <span>「黒鍵を弾く」が特別ではなくなり、本能的に調感覚が育っていることを実感しました。</span>
+      </div>
+
+      <div class="change-card">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <strong>黒鍵が多い曲でも、怖がらなくなった。</strong>
+        <span>“白鍵だけ”ではなく、どの調でも弾く感覚が自然に身についていきました。</span>
+      </div>
+
+      <div class="change-card">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <strong>「やらされる」ではなく、自分から弾くようになった。</strong>
+        <span>“わかる”が増えることで、子どもの主体性や音楽への興味も変わっていきました。</span>
+      </div>
+
+      <div class="change-card">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <strong>発達特性がある子でも理解しやすかった。</strong>
+        <span>感覚から入れることで、「伝わらない」が減り、保護者の方にも驚かれる変化がありました。</span>
+      </div>
+
+      <div class="change-card">
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <strong>スケール導入がラクになった。</strong>
+        <span>導入期から調感覚を育てていたことで、その後の理解スピードも変わっていきました。</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== セクション6｜講師プロフィール ========== -->
+<section class="section profile">
+  <div class="center" style="margin-bottom:8px;">
+    <span class="eyebrow">PROFILE</span>
+  </div>
+  <div class="profile-grid">
+    <figure class="profile-photo">
+      <img src="https://picsum.photos/seed/pianoteacher/480/600" alt="ピアノ教室の講師（ゆき先生）の写真">
+      <figcaption>ピアノ講師・教材制作者　ゆき</figcaption>
+    </figure>
+    <div class="profile-body">
+      <h2>「わからない」の苦しさを、私は知っています。</h2>
+
+      <p>私は幼い頃、大手音楽教室の専門コースに最年少で入りました。でも、まったくついていけませんでした。</p>
+      <p>グループレッスンでは1人だけ弾けず、教室から出されて別室で練習したこともあります。</p>
+      <p>「わからない」。でも、弾かなきゃいけない。自分なりに練習しても弾けなくて怒られる。</p>
+      <p>クラスのコンテストにも選ばれず、「いつも選ばれないよね」と言われたこともありました。私はずっと、“ピアノへの劣等感”を抱えていました。</p>
+
+      <p class="story-q">黒鍵で止まる子を、もう作りたくなかった。</p>
+      <p>講師になってからも、苦しさはありました。調号が2〜3個になると、生徒たちの手が止まる。黒鍵が増えると、「難しい」「わからない」になってしまう。</p>
+      <p>進度も止まり、発表会では調号1〜2個の曲しか選べない。そのまま「楽しくない」になり、小学校高学年になる前に辞めてしまう子もいました。</p>
+      <p>“黒鍵アレルギー”の生徒を作ってしまった。それが、ずっと心に残っていました。</p>
+
+      <p class="story-q">「わかる」から、子どもは自分から弾き始める。</p>
+      <p>子どもは、「やらされること」が嫌いです。でも、“わかる”から楽しい。楽しいから弾く。弾くから上達する。その流れができると、子どもは自分からピアノに向かうようになります。</p>
+      <p>この教材を作ってから、自発的に弾くことで調感覚が育ち、長く続けられる生徒も増えました。たとえ教室を卒業しても、</p>
+      <ul class="keep-list">
+        <li>読譜ができる</li>
+        <li>黒鍵を怖がらない</li>
+        <li>自分で音楽を楽しめる</li>
+      </ul>
+      <p>そんな力が残っていれば、一生音楽を楽しめる。その“ピアノのタネ”を、導入期に蒔きたい。そんな想いで、この教材を作っています。</p>
+
+      <p class="story-q">ピアノは、「できる子」だけのものじゃない。</p>
+      <p>私は18年間、たくさんの子どもたちを見てきました。発達や理解速度の違いがある子。「わからない」が続いてしまう子。自信をなくしかけている子。</p>
+      <p>そんな子たちにも、“わかる喜び”を届けたい。そして、「やったらできる」という感覚を、ピアノを通して育ててほしい。</p>
+      <p>その小さな積み重ねは、勉強や生活習慣、自信にもつながっていく。私は、そう信じています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== セクション7｜先行販売について ========== -->
+<section class="section presale" id="presale">
+  <div class="center">
+    <span class="eyebrow">PRE-SALE</span>
+    <h2 class="heading">先行販売について</h2>
+    <p class="lead">“どんな子にも「わかる！」「楽しい！」を届けたい”──そんな想いから生まれた「ピアノのタネ」を、今回先行販売という形でお届けします。</p>
+    <p class="lead" style="margin-top:16px;">「ピアノのタネ」は、18年間のレッスン現場から生まれた、“調感覚”を育てる導入メソッドです。現在も実際のレッスンを通して、さらに内容を磨き続けています。</p>
+  </div>
+
+  <div class="presale-box">
+    <div class="ph"><h3>先行販売内容</h3></div>
+    <ul class="presale-list">
+      <li>「ピアノのタネ」導入テキスト</li>
+      <li>今後追加予定の解説動画</li>
+      <li>購入者限定アップデート案内</li>
+    </ul>
+    <div class="price-box">
+      <p class="price-label">先行販売価格</p>
+      <p class="price-main">19,800<span class="yen">円（税込）</span></p>
+      <p class="price-note">※今後、動画コンテンツ追加・内容拡充に伴い価格改定予定です。</p>
+    </div>
+  </div>
+
+  <div class="center" style="margin-top:32px;">
+    <a href="#final" class="cta-btn">導入期レッスンをもっとラクにする
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ========== セクション8｜よくある質問 ========== -->
+<section class="section">
+  <div class="center">
+    <span class="eyebrow">FAQ</span>
+    <h2 class="heading">よくある質問</h2>
+  </div>
+  <div class="faq-list">
+
+    <details class="faq" open>
+      <summary><span class="qmark">Q.</span>本当に幼児でも使えますか？</summary>
+      <div class="faq-a"><strong>はい。</strong>「ピアノのタネ」は、3歳頃から“感覚でわかる”を大切にしながら作っています。言葉で理解する前の子でも、「わかる！」「弾けた！」を積み重ねやすい構成です。</div>
+    </details>
+
+    <details class="faq">
+      <summary><span class="qmark">Q.</span>発達特性がある子にも使えますか？</summary>
+      <div class="faq-a">実際のレッスンでは、発達や理解速度に差がある子にも使用してきました。視覚・感覚から理解につなげることで、「伝わらない」が減りやすいのが特徴です。</div>
+    </details>
+
+    <details class="faq">
+      <summary><span class="qmark">Q.</span>スケール指導が苦手でも大丈夫ですか？</summary>
+      <div class="faq-a"><strong>はい。</strong>「ピアノのタネ」は、“スケール前の土台”として調感覚を自然に育てていく設計です。「どうつなげればいいかわからない」という先生にも使いやすい内容になっています。</div>
+    </details>
+
+    <details class="faq">
+      <summary><span class="qmark">Q.</span>教材だけでも実践できますか？</summary>
+      <div class="faq-a"><strong>はい。</strong>まずは教材だけでも導入できます。今後、解説動画も順次追加予定ですので、より理解を深めながら活用していただけます。</div>
+    </details>
+
+    <details class="faq">
+      <summary><span class="qmark">Q.</span>他の教材と併用できますか？</summary>
+      <div class="faq-a"><strong>はい。</strong>普段お使いの導入教材と併用しながら使っていただけます。「調感覚を育てる土台」として取り入れていただく先生が多いです。</div>
+    </details>
+
+    <details class="faq">
+      <summary><span class="qmark">Q.</span>講師歴が浅くても使えますか？</summary>
+      <div class="faq-a"><strong>もちろんです。</strong>「どう教えたらわかるんだろう？」という悩みから生まれた教材なので、導入期に不安がある先生にも取り入れやすい内容になっています。</div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ========== セクション9｜クロージング ========== -->
+<section class="section closing">
+  <div class="center">
+    <span class="eyebrow">MESSAGE</span>
+    <h2 class="heading">「わからない」が続くと、子どもは自信をなくしてしまう。</h2>
+  </div>
+  <div class="inner">
+    <p>「難しい」「わからない」。その積み重ねで、ピアノを嫌いになってしまう子を、私はたくさん見てきました。</p>
+    <p>だからこそ、“わかる喜び”から始まる導入期を届けたい。</p>
+    <p>「ピアノのタネ」は、ただ弾けるようになるための教材ではありません。どの調でも自然に弾ける感覚を育てながら、“音楽って楽しい！”を土台から育てていくための導入メソッドです。</p>
+    <p>子どもたちが、「やらされる」ではなく、「自分から弾きたい」と思える土台を作っていきたい。教室を卒業したあとも、</p>
+    <ul class="closing-list">
+      <li>自分で楽譜を読める</li>
+      <li>黒鍵を怖がらない</li>
+      <li>自分で音楽を楽しめる</li>
+    </ul>
+    <p>そんな力が残っていたら、それは一生の財産になると思っています。その想いから、「ピアノのタネ」は生まれました。</p>
+    <p>子どもたちの未来につながる“ピアノのタネ”を、あなたの教室でも蒔いていただけたら嬉しいです。</p>
+  </div>
+</section>
+
+<!-- ========== 最終CTA ========== -->
+<section class="final-cta" id="final">
+  <h2>導入期に、“ピアノのタネ”を蒔く。</h2>
+  <p>先行販売価格 19,800円（税込）でお届けします。</p>
+  <a href="#" class="cta-btn">導入期レッスンをもっとラクにする
+    <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</section>
+
+<footer>
+  <p class="ttl">ピアノのタネ</p>
+  <p>調感覚を自然に育てる導入メソッド</p>
+</footer>
+
+</body>
+</html>
