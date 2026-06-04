@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブレイクスルー体験セッション｜事業も人生も、もうひとつ上の景色へ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      color: #1e1e1e;
+      background-color: #faf8f5;
+      line-height: 1.7;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'Playfair Display', 'Zen Maru Gothic', serif;
+      line-height: 1.3;
+      color: #1e1e1e;
+    }
+
+    h1 {
+      font-size: clamp(28px, 7vw, 48px);
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 500;
+    }
+
+    h3 {
+      font-size: clamp(17px, 4vw, 22px);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: clamp(16px, 2.5vw, 18px);
+      margin-bottom: 1rem;
+    }
+
+    .text-muted {
+      color: #6a6a6a;
+      font-size: clamp(14px, 2vw, 16px);
+    }
+
+    .accent {
+      color: #C97B7E;
+      font-weight: 600;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 40px);
+    }
+
+    .section {
+      padding: clamp(48px, 10vw, 80px) 0;
+    }
+
+    .section-dark {
+      background-color: #faf8f5;
+    }
+
+    .section-light {
+      background-color: #fff9f7;
+    }
+
+    /* Grid & Flex */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 48px);
+      align-items: center;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(24px, 4vw, 32px);
+    }
+
+    @media (max-width: 768px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Images */
+    img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .img-placeholder {
+      background: linear-gradient(135deg, rgba(201, 123, 126, 0.08), rgba(201, 123, 126, 0.04));
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(12px, 2vw, 14px);
+      color: #6a6a6a;
+      border: 1px solid rgba(201, 123, 126, 0.15);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: clamp(14px, 2vw, 16px) clamp(28px, 4vw, 40px);
+      background-color: #C97B7E;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: clamp(14px, 2vw, 16px);
+      cursor: pointer;
+      border: none;
+      transition: all 250ms ease-out;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      background-color: #b8696c;
+      box-shadow: 0 12px 40px rgba(201, 123, 126, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-fullwidth {
+      width: 100%;
+    }
+
+    /* Cards */
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: clamp(24px, 4vw, 32px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(201, 123, 126, 0.1);
+      transition: all 250ms ease-out;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 40px rgba(201, 123, 126, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      margin-bottom: clamp(12px, 2vw, 16px);
+      color: #1e1e1e;
+    }
+
+    .card p {
+      color: #6a6a6a;
+      margin: 0;
+    }
+
+    /* Tag & Label */
+    .tag {
+      display: inline-block;
+      font-size: clamp(11px, 1.5vw, 12px);
+      letter-spacing: 0.08em;
+      color: #C97B7E;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: clamp(12px, 2vw, 16px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: clamp(60px, 12vw, 100px) 0;
+    }
+
+    .hero-content h1 {
+      margin-bottom: clamp(16px, 3vw, 24px);
+      line-height: 1.35;
+    }
+
+    .hero-subtext {
+      font-size: clamp(16px, 2.5vw, 18px);
+      color: #6a6a6a;
+      margin-bottom: clamp(32px, 5vw, 48px);
+      max-width: 720px;
+      line-height: 1.75;
+    }
+
+    .hero-cta-section {
+      display: flex;
+      gap: clamp(16px, 3vw, 24px);
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: clamp(48px, 8vw, 64px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-cta-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-fullwidth {
+        width: 100%;
+      }
+    }
+
+    /* List */
+    .list-items {
+      list-style: none;
+      margin-top: clamp(24px, 4vw, 32px);
+    }
+
+    .list-items li {
+      position: relative;
+      padding-left: clamp(28px, 4vw, 32px);
+      margin-bottom: clamp(12px, 2vw, 16px);
+      font-size: clamp(14px, 2vw, 16px);
+      color: #1e1e1e;
+      line-height: 1.7;
+    }
+
+    .list-items li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 6px;
+      height: 6px;
+      background-color: #C97B7E;
+      border-radius: 50%;
+    }
+
+    /* Accordion */
+    .accordion {
+      border-bottom: 1px solid rgba(201, 123, 126, 0.1);
+      padding: clamp(20px, 3vw, 24px) 0;
+    }
+
+    .accordion-button {
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-size: clamp(15px, 2.2vw, 17px);
+      font-weight: 600;
+      color: #1e1e1e;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 44px;
+      font-family: 'Playfair Display', 'Zen Maru Gothic', serif;
+      transition: color 250ms ease-out;
+    }
+
+    .accordion-button:hover {
+      color: #C97B7E;
+    }
+
+    .accordion-toggle::after {
+      content: '＋';
+      font-size: clamp(18px, 3vw, 22px);
+      color: #C97B7E;
+      transition: transform 250ms ease-out;
+      line-height: 1;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: clamp(16px, 2vw, 20px) 0 clamp(20px, 3vw, 24px) 0;
+      color: #6a6a6a;
+      font-size: clamp(14px, 2vw, 16px);
+      line-height: 1.75;
+    }
+
+    .accordion.open .accordion-content {
+      display: block;
+    }
+
+    .accordion.open .accordion-toggle::after {
+      transform: rotate(45deg);
+    }
+
+    /* Blockquote */
+    .quote {
+      padding: clamp(24px, 4vw, 32px);
+      background-color: #fff;
+      border-left: 4px solid #C97B7E;
+      border-radius: 6px;
+      font-size: clamp(15px, 2.2vw, 17px);
+      line-height: 1.8;
+      font-style: italic;
+      color: #1e1e1e;
+    }
+
+    .quote-author {
+      margin-top: clamp(12px, 2vw, 16px);
+      font-size: clamp(13px, 2vw, 14px);
+      color: #6a6a6a;
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* Pricing */
+    .pricing-box {
+      text-align: center;
+      background-color: #fff;
+      padding: clamp(40px, 6vw, 48px);
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(201, 123, 126, 0.1);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .price-original {
+      font-size: clamp(16px, 2.5vw, 18px);
+      color: #6a6a6a;
+      text-decoration: line-through;
+      margin-bottom: 8px;
+    }
+
+    .price-current {
+      font-size: clamp(32px, 6vw, 48px);
+      font-family: 'Playfair Display', 'Zen Maru Gothic', serif;
+      color: #C97B7E;
+      font-weight: 600;
+      margin-bottom: clamp(24px, 4vw, 32px);
+    }
+
+    .price-subtitle {
+      font-size: clamp(13px, 2vw, 14px);
+      color: #6a6a6a;
+      margin-bottom: clamp(24px, 4vw, 32px);
+    }
+
+    /* Profile Section */
+    .profile-image {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* CTA Box */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(201, 123, 126, 0.08), rgba(201, 123, 126, 0.04));
+      border: 1px solid rgba(201, 123, 126, 0.15);
+      padding: clamp(40px, 6vw, 60px);
+      border-radius: 8px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-box h2 {
+      margin-bottom: clamp(24px, 4vw, 32px);
+      color: #1e1e1e;
+    }
+
+    .cta-box-text {
+      font-size: clamp(14px, 2vw, 16px);
+      color: #6a6a6a;
+      margin-bottom: clamp(32px, 5vw, 40px);
+      line-height: 1.75;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background-color: rgba(201, 123, 126, 0.1);
+      margin: clamp(40px, 6vw, 60px) 0;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background-color: #fff9f7;
+      border-radius: 8px;
+      padding: clamp(24px, 4vw, 32px);
+      border: 1px solid rgba(201, 123, 126, 0.1);
+      margin: clamp(24px, 4vw, 32px) 0;
+    }
+
+    /* Responsive Video Container */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus */
+    button:focus,
+    a:focus {
+      outline: 2px solid #C97B7E;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER / NAV -->
+<header style="background-color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.02); position: sticky; top: 0; z-index: 100;">
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0;">
+    <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: #1e1e1e;">
+      Breakthrough
+    </div>
+    <nav style="display: none;">
+      <!-- Placeholder for future nav -->
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO / FV ===== -->
+<section class="section hero section-dark">
+  <div class="container">
+    <div class="grid-2">
+      <div class="hero-content">
+        <p class="tag">VISION BREAKTHROUGH SESSION</p>
+        <h1>事業も、人生も、もうひとつ上の景色へ。</h1>
+        <p class="hero-subtext">止まっていた思考と行動が、動き出す90分。ビジョン・価値観・思考パターンを整理し、次のステージへの突破口を見つける。「できない理由」が、「どうしたらできる」へ。</p>
+        <div class="hero-cta-section">
+          <button class="btn" onclick="document.querySelector('#cta-form').scrollIntoView({ behavior: 'smooth' });">申し込む</button>
+        </div>
+      </div>
+      <div>
+        <div class="img-placeholder">画像エリア<br><span style="font-size: 12px;">(ビジョンをテーマにした写真またはイラスト)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TARGET & SITUATION ===== -->
+<section class="section section-light">
+  <div class="container">
+    <h2 style="margin-bottom: clamp(24px, 4vw, 32px);">守成クラブなど経営者コミュニティに参加している<br>30〜50代の経営者・個人事業主の方へ</h2>
+
+    <p style="font-size: clamp(15px, 2.3vw, 17px); color: #6a6a6a; line-height: 1.8; margin-bottom: clamp(28px, 4vw, 36px); max-width: 720px;">
+      学び、人脈、行動量は増えている。それなのに、ここ数年、事業の景色が大きく変わっていない。本当はもっと挑戦したい。でも、気づけば「できる範囲」の中で動いている。そんな"停滞感"を感じている方へ向けたセッションです。
+    </p>
+
+    <div style="margin-top: clamp(32px, 5vw, 48px);">
+      <h3 style="color: #C97B7E; margin-bottom: clamp(20px, 3vw, 24px);">こんなお悩みありませんか？</h3>
+      <ul class="list-items">
+        <li>頑張っているのに、どこか"停滞感"が抜けない。</li>
+        <li>頭では分かっていても、無意識に行動を止めている感覚がある。</li>
+        <li>気づけば、やりたいことより、"できる範囲"で動いている。</li>
+        <li>売上や集客以前に、"なぜこの事業をやっているのか"が、ぼんやりしている。</li>
+        <li>学びも、人脈も増えているのに、この数年、事業が大きく発展していない。</li>
+        <li>何が原因なのか、自分ひとりでは整理しきれなくなっている。</li>
+        <li>本当は挑戦したいのに、"現実的に無理"と自分で制限してしまう。</li>
+        <li>周りには頑張っているように見えても、内側ではずっとモヤモヤしている。</li>
+        <li>「このままで終わりたくない」という感覚がどこかにある。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section class="section section-dark">
+  <div class="container">
+    <h2 style="margin-bottom: clamp(32px, 5vw, 48px); max-width: 720px;">このセッションで得られること</h2>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>ビジョンが整理される</h3>
+        <p>ビジョンや価値観が整理され、"本当に進みたい未来"が見えてくる。目の前のタスクではなく、次のステージを基準に選択できるようになります。</p>
+      </div>
+      <div class="card">
+        <h3>無意識のブレーキが外れる</h3>
+        <p>無意識にかけていたブレーキに気づき、止まっていた行動が自然と動き始める。「頑張らなきゃ」ではなく、"動きたくなる感覚"が戻ってきます。</p>
+      </div>
+      <div class="card">
+        <h3>挑戦への道が拓ける</h3>
+        <p>「できる範囲」ではなく、"本当はやってみたい未来"を描ける。挑戦することへのエネルギーが再起動していきます。</p>
+      </div>
+      <div class="card">
+        <h3>思考がクリアになる</h3>
+        <p>思考や感情が整理され、今の課題や優先順位がクリアになる。モヤモヤしていたものが言語化され、次の一歩が見えやすくなります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICE CONTENT ===== -->
+<section class="section section-light">
+  <div class="container">
+    <h2 style="margin-bottom: clamp(32px, 5vw, 48px);">セッション内容</h2>
+
+    <div class="grid-3" style="margin-bottom: clamp(48px, 8vw, 64px);">
+      <div style="text-align: center;">
+        <div style="font-size: clamp(28px, 5vw, 36px); font-weight: 600; color: #C97B7E; margin-bottom: 12px;">STEP 1</div>
+        <h3>現状整理</h3>
+        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px);">今感じている停滞感や課題を整理し、現在地を明確にします。</p>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: clamp(28px, 5vw, 36px); font-weight: 600; color: #C97B7E; margin-bottom: 12px;">STEP 2</div>
+        <h3>ビジョン再起動</h3>
+        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px);">「本当はどう在りたいのか」「どんな未来を実現したいのか」を言語化します。</p>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: clamp(28px, 5vw, 36px); font-weight: 600; color: #C97B7E; margin-bottom: 12px;">STEP 3</div>
+        <h3>アクション設計</h3>
+        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px);">思考・行動パターンを整理し、次のステージへの突破口を見つけます。</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <h3 style="margin-bottom: clamp(16px, 2.5vw, 20px);">なぜ、このセッションで突破口が見つかるのか</h3>
+      <p style="color: #6a6a6a; line-height: 1.8; margin-bottom: clamp(16px, 2.5vw, 20px);">
+        多くのコンサルやセミナーは、「こうすればうまくいく」というやり方を渡します。でも、やり方だけでは、心がついていかない。仮に、一時的にうまくいっても、いずれ立ち行かなくなる。
+      </p>
+      <p style="color: #6a6a6a; line-height: 1.8;">
+        だからこそ、このセッションで向き合うのは、その手前にあるマインドセットです。「お金がない」ではなく「どうすれば生み出せる？」「私にはできない」ではなく「どうしたらできる？」「いつかやりたい」ではなく「今できることは？」同じ出来事でも、どこに立って世界を見るかで、選べる一手が変わります。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIPPING POINT ===== -->
+<section class="section section-dark">
+  <div class="container">
+    <h2 style="margin-bottom: clamp(32px, 5vw, 48px);">景色が変わる一点</h2>
+
+    <div class="grid-2">
+      <div>
+        <div class="img-placeholder" style="aspect-ratio: 4/3;">ティッピングポイント図解<br><span style="font-size: 12px;">(時間 vs 成長度のグラフ・分岐点図)</span></div>
+      </div>
+      <div>
+        <p style="font-size: clamp(15px, 2.3vw, 17px); color: #6a6a6a; line-height: 1.8; margin-bottom: clamp(16px, 2.5vw, 20px);">
+          「昨日と同じ選択」を続けている限り、景色は大きく変わらない。行動量を増やしても、線の傾きそのものは変わらないからです。
+        </p>
+        <p style="font-size: clamp(15px, 2.3vw, 17px); color: #1e1e1e; line-height: 1.8; margin-bottom: clamp(16px, 2.5vw, 20px);">
+          <span class="accent">流れを変えるのは、努力の量ではなく、視点が切り替わる一点。</span>小さな視点の転換や選択の変化が"ティッピングポイント"となり、その先の成長曲線を大きく変えていきます。
+        </p>
+        <p style="font-size: clamp(15px, 2.3vw, 17px); color: #6a6a6a; line-height: 1.8;">
+          その一点を一緒に見つけるのが、このセッションです。未来Aと未来Bを分けるのは、才能でも運でもなく、どこで視点を変えられるか。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section section-light">
+  <div class="container">
+    <h2 style="margin-bottom: clamp(32px, 5vw, 48px);">お客様の声</h2>
+
+    <div style="margin-bottom: clamp(32px, 5vw, 48px);">
+      <div class="quote">
+        <p>説明される前に、直感で「この人だ」と感じました。山田さんご自身が大変な時期を乗り越えられて、それを支えたのがこのコーチングだったと知りました。何より共感したのは、ご自身のビジネスのためではなく、かつて自分が苦しんだのと同じように悩んでいる人のお役に立ちたい──そんな想いでした。</p>
+        <div class="quote-author">兵庫県 60代 不動産業 経営者</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: clamp(32px, 5vw, 48px);">
+      <div class="quote">
+        <p>自信が持てないことも、ビジネスの広げ方が分からず悩んでいたことも、「自分の力が足りないからだ」とずっと思っていました。でもセッションで気づいたのは、力が足りないのではなく、すでに自分には"ある"ものがたくさんあって、ただ、そこにフォーカスできていなかっただけ、ということでした。</p>
+        <div class="quote-author">島根県 30代 管理栄養士</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="quote">
+        <p>ひとりでは思い描けなかった"理想的な未来"を、一緒に想像する手伝いをしてもらいました。すると、自分が本当に求めているものが見えてきて、今の幸せに感謝しながらも、「もっと人生を楽しみたい」と素直に思えたんです。その未来を想像したら、叶えたくなりました。</p>
+        <div class="quote-author">広島県 50代 デザイナー</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3 style="margin-bottom: clamp(24px, 4vw, 32px); margin-top: clamp(32px, 5vw, 40px);">継続セッション受講後の変化</h3>
+
+    <div style="margin-bottom: clamp(24px, 4vw, 32px);">
+      <div class="quote" style="border-left-color: #C97B7E;">
+        <p><span class="accent">3か月間止まっていたSNS発信が、ブレーキをゆるめたら6時間で10名満席に。</span>間が空くほど「ちゃんとやらなきゃ」と動けなくなっていましたが、ブレーキをゆるめてもらったら気持ちが軽くなり、「できることをやってみよう」と再開。募集開始から6時間で10名満席になりました。</p>
+        <div class="quote-author">兵庫県 40代 幸運覚醒プロデューサー</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="quote" style="border-left-color: #C97B7E;">
+        <p><span class="accent">何年も踏み出せなかった私が、心地よさを軸に進んだら、初成約と35万円の売上に。</span>学びを繰り返すばかりで何年も動けずにいましたが、自分軸で商品を作り、有料モニターに10名が集まって35万円の売上に。お給料以外で収入を得たのは初めてで、胸がいっぱいになりました。その後も28万円の商品を成約できました。</p>
+        <div class="quote-author">京都府 40代 鉱物療法士</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTRUCTOR ===== -->
+<section class="section section-dark">
+  <div class="container">
+    <h2 style="margin-bottom: clamp(32px, 5vw, 48px);">講師紹介</h2>
+
+    <div class="grid-2">
+      <div>
+        <div class="img-placeholder" style="aspect-ratio: 1;">講師の顔写真<br><span style="font-size: 12px;">(プロフィール画像)</span></div>
+      </div>
+      <div>
+        <h3 style="margin-bottom: clamp(20px, 3vw, 24px);">「まだ見たことのない未来」を、一緒に見に行く伴走者でありたい。</h3>
+        <p style="color: #6a6a6a; line-height: 1.8; margin-bottom: clamp(16px, 2.5vw, 20px);">
+          行動している。学んでいる。人にも会っている。それなのに、どこか景色が変わらない。かつての私も、同じでした。
+        </p>
+        <p style="color: #6a6a6a; line-height: 1.8; margin-bottom: clamp(16px, 2.5vw, 20px);">
+          料理教室をしていた頃、収入は月10万円ほど。「好きなことをさせてもらえている」「お客様にも喜んでもらえている」──それで十分だと、本当にやりたい挑戦から目をそらしていました。
+        </p>
+        <p style="color: #6a6a6a; line-height: 1.8; margin-bottom: clamp(16px, 2.5vw, 20px);">
+          転機は、ひとつの気づきでした。自分の可能性を制限していたのは、ほかでもない自分自身だった、と。そこから私は、私の可能性を自分以上に信じてくれる人に出逢い、たくさんの問いを投げてもらえる環境に身を置き、やり方（2割）より、在り方（8割）を整えることに集中しました。
+        </p>
+        <p style="color: #1e1e1e; font-weight: 500; line-height: 1.8;">
+          すると、自分にムチを打って事業を大きくするのではなく、運ばれるように、ご縁がつながっていく感覚が生まれてきました。
+        </p>
+        <p style="color: #6a6a6a; line-height: 1.8; margin-top: clamp(20px, 3vw, 24px);">
+          やり方だけでは、一時うまくいっても、いずれ立ち行かなくなる。在り方を磨き続けることで、事業も人生も、流れが変わっていく。その"突破口が生まれる瞬間"に、これまで何度も立ち会ってきました。今度は、あなたの番です。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="section section-light">
+  <div class="container" style="text-align: center;">
+    <h2 style="margin-bottom: clamp(32px, 5vw, 48px);">ブレイクスルー体験セッション</h2>
+
+    <div class="pricing-box">
+      <p style="font-size: clamp(15px, 2.3vw, 17px); margin-bottom: clamp(16px, 2.5vw, 20px);">
+        90分｜対面・Zoom対応｜事前アンケートあり
+      </p>
+
+      <div class="price-original">33,000円（税込）</div>
+      <div class="price-current">5,500円（税込）</div>
+
+      <p class="price-subtitle">特別価格でご案内する理由</p>
+      <p style="font-size: clamp(14px, 2vw, 16px); color: #6a6a6a; line-height: 1.75; margin-bottom: clamp(32px, 5vw, 40px);">
+        「まずは、突破口が見つかる感覚を体験してほしい」──その想いから、普段は継続でサポートしているセッションを、単発で体験いただける形でご案内しています。体験枠には限りがあります。
+      </p>
+
+      <button class="btn btn-fullwidth" onclick="document.querySelector('#cta-form').scrollIntoView({ behavior: 'smooth' });">申し込む</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section section-dark">
+  <div class="container">
+    <h2 style="margin-bottom: clamp(32px, 5vw, 48px);">よくある質問</h2>
+
+    <div style="max-width: 720px;">
+      <div class="accordion">
+        <button class="accordion-button">
+          <span>Q. 何をするセッションですか？</span>
+          <span class="accordion-toggle"></span>
+        </button>
+        <div class="accordion-content">
+          現在感じている停滞感や課題を整理しながら、「本当はどう在りたいのか」「どんな未来を実現したいのか」を言語化していく90分のセッションです。ビジョン・価値観・思考パターンを整理することで、次のステージへの突破口を見つけていきます。
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-button">
+          <span>Q. まだやりたいことが明確じゃなくても受けられますか？</span>
+          <span class="accordion-toggle"></span>
+        </button>
+        <div class="accordion-content">
+          はい、大丈夫です。「やりたいことが分からない」「何が引っかかっているのか整理できない」そんな状態の方こそ、セッションを通して、自分でも気づいていなかった本音や可能性が見えてくることがあります。
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-button">
+          <span>Q. コンサルや自己分析との違いは何ですか？</span>
+          <span class="accordion-toggle"></span>
+        </button>
+        <div class="accordion-content">
+          「こうした方がいい」という答えを渡すのではなく、安心して本音を話せる関係性の中で、ビジョン・価値観・思考パターンを整理していくセッションです。無理に頑張るのではなく、「自分から動きたくなる感覚」を大切にしています。
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-button">
+          <span>Q. 無理に高額講座へ案内されませんか？</span>
+          <span class="accordion-toggle"></span>
+        </button>
+        <div class="accordion-content">
+          無理な勧誘は一切ありません。必要な方にのみ、「この未来をもっと加速させたい」と感じた場合の選択肢として、継続サポートをご案内することがあります。まずは、安心して体験セッションを受けていただけたら嬉しいです。
+        </div>
+      </div>
+
+      <div class="accordion">
+        <button class="accordion-button">
+          <span>Q. 経営や事業の相談をしても大丈夫ですか？</span>
+          <span class="accordion-toggle"></span>
+        </button>
+        <div class="accordion-content">
+          もちろん大丈夫です。売上や集客だけではなく、・なぜこの事業をやっているのか・本当はどんな未来を実現したいのか・どこで無意識にブレーキをかけているのか、まで含めて整理していくことで、事業の方向性や次の一歩がクリアになる方も多くいらっしゃいます。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSING CTA ===== -->
+<section class="section section-light">
+  <div class="container">
+    <div class="cta-box">
+      <h2>迷っているあなたへ</h2>
+      <p class="cta-box-text">
+        「このままで終わりたくない」その感覚は、次のステージへのサインです。変わるために必要なのは、もっと頑張ることではなく、一度立ち止まること。
+      </p>
+      <p style="font-size: clamp(18px, 3vw, 20px); color: #1e1e1e; font-weight: 600; margin-bottom: clamp(28px, 4vw, 36px);">事業も、人生も、もうひとつ上の景色へ。</p>
+      <button class="btn" onclick="document.querySelector('#cta-form').scrollIntoView({ behavior: 'smooth' });">ブレイクスルー体験セッションに申し込む</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORM ===== -->
+<section class="section section-dark">
+  <div class="container">
+    <div style="max-width: 600px; margin: 0 auto;">
+      <h2 style="margin-bottom: clamp(24px, 4vw, 32px); text-align: center;" id="cta-form">申込みフォーム</h2>
+      <p style="text-align: center; color: #6a6a6a; font-size: clamp(14px, 2vw, 16px); margin-bottom: clamp(32px, 5vw, 40px);">以下のフォームよりお申し込みください。折り返しご連絡させていただきます。</p>
+
+      <div style="background-color: #fff; padding: clamp(32px, 5vw, 40px); border-radius: 8px; border: 1px solid rgba(201, 123, 126, 0.1); box-shadow: 0 8px 30px rgba(0,0,0,0.05);">
+        <div style="text-align: center; color: #6a6a6a; font-size: clamp(14px, 2vw, 16px); padding: clamp(40px, 6vw, 60px) 0;">
+          <p style="margin-bottom: 16px;">フォームを準備中です。</p>
+          <p>外部フォーム（例：Googleフォーム、Typeform など）のリンクを挿入してください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background-color: #fff; padding: clamp(32px, 5vw, 40px) 0; border-top: 1px solid rgba(201, 123, 126, 0.1); margin-top: clamp(48px, 8vw, 80px);">
+  <div class="container" style="text-align: center;">
+    <p style="font-size: clamp(12px, 2vw, 14px); color: #6a6a6a; margin: 0;">
+      &copy; 2026 Breakthrough Session. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- ACCORDION SCRIPT -->
+<script>
+  document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const accordion = button.closest('.accordion');
+      accordion.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
