@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    { "source": "/", "destination": "/preparation-vol2.html", "permanent": false },
-    { "source": "/lp.html", "destination": "/closed.html", "permanent": false },
-    { "source": "/lp2.html", "destination": "/closed.html", "permanent": false },
-    { "source": "/lp-preview.html", "destination": "/closed.html", "permanent": false },
-    { "source": "/index.html", "destination": "/closed.html", "permanent": false }
-  ]
-}
