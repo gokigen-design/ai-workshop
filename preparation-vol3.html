@@ -6418,6 +6418,18 @@
         gap: 10px;
         margin-top: 8px;
       }
+      .advice-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .advice-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 600px) {
+        .advice-grid { grid-template-columns: 1fr; }
+      }
       .advice-item {
         background: #fff;
         border: 1px solid #C7DBF5;
@@ -11510,11 +11522,11 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
         if (teamA.length) {
           html += '<div style="font-family:\'DM Sans\',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.2em;color:#EA580C;text-transform:uppercase;margin:8px 0 10px;">Team A</div>';
-          teamA.forEach(function(p){ counter++; html += adviceItem(p, counter); });
+          html += '<div class="advice-grid">' + teamA.map(function(p){ counter++; return adviceItem(p, counter); }).join('') + '</div>';
         }
         if (teamB.length) {
           html += '<div style="font-family:\'DM Sans\',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.2em;color:#2563EB;text-transform:uppercase;margin:24px 0 10px;">Team B</div>';
-          teamB.forEach(function(p){ counter++; html += adviceItem(p, counter); });
+          html += '<div class="advice-grid">' + teamB.map(function(p){ counter++; return adviceItem(p, counter); }).join('') + '</div>';
         }
         el.innerHTML = html;
       }
