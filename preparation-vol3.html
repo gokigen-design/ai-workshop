@@ -6443,15 +6443,20 @@
       }
       .advice-item > summary {
         display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 14px 18px;
+        flex-direction: column;
+        gap: 6px;
+        padding: 14px 16px;
         cursor: pointer;
         list-style: none;
         font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
       }
       .advice-item > summary::-webkit-details-marker { display: none; }
       .advice-item > summary:hover { background: #F0F7FF; }
+      .advice-srow {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
       .advice-num {
         font-family: 'DM Sans', sans-serif;
         font-size: 11px;
@@ -6459,13 +6464,16 @@
         letter-spacing: 0.1em;
         color: #2563EB;
         flex-shrink: 0;
-        min-width: 22px;
       }
       .advice-name {
         flex: 1;
+        min-width: 0;
         font-size: 15px;
         font-weight: 600;
         color: var(--black);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .advice-toggle {
         width: 20px;
@@ -11467,8 +11475,8 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
             teamBadge = '<span style="font-family:\'DM Sans\',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;color:#16A34A;background:#F0FDF4;padding:2px 8px;border-radius:4px;margin-right:8px;">Advisor</span>';
           }
           var igLink = p.ig ?
-            '<a href="https://www.instagram.com/' + escapeHtml(p.ig) + '/" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#C13584;text-decoration:none;margin-left:auto;margin-right:12px;">' +
-              '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>' +
+            '<a href="https://www.instagram.com/' + escapeHtml(p.ig) + '/" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#C13584;text-decoration:none;white-space:nowrap;">' +
+              '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>' +
               '@' + escapeHtml(p.ig) +
             '</a>' : '';
           var sampleBtn = p.sampleUrl ?
@@ -11499,11 +11507,13 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
             '</div>' : '';
           return '<details class="advice-item">' +
             '<summary>' +
-              '<span class="advice-num">' + String(num).padStart(2, '0') + '</span>' +
-              teamBadge +
-              '<span class="advice-name">' + escapeHtml(p.name) + '</span>' +
-              igLink +
-              '<span class="advice-toggle"></span>' +
+              '<div class="advice-srow">' +
+                '<span class="advice-num">' + String(num).padStart(2, '0') + '</span>' +
+                teamBadge +
+                '<span class="advice-name">' + escapeHtml(p.name) + '</span>' +
+                '<span class="advice-toggle"></span>' +
+              '</div>' +
+              (igLink ? '<div class="advice-srow" style="padding-left:2px;">' + igLink + '</div>' : '') +
             '</summary>' +
             '<div class="advice-body">' +
               linksBlock +
