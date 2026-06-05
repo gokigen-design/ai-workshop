@@ -713,7 +713,7 @@
       border-left: 4px solid var(--accent);
     }
 
-    /* 月桂樹（ローレル）実績バッジ */
+    /* 実績バッジ（丸） */
     .achievements { margin-top: 28px; }
     .ach-title {
       font-weight: 700;
@@ -724,39 +724,39 @@
     .achievement-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 14px;
       justify-content: flex-start;
     }
     .ach-badge {
-      flex: 1 1 96px;
-      min-width: 96px;
-      max-width: 132px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
     }
-    .ach-wreath {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 120 / 116;
-    }
-    .ach-wreath .lw {
-      width: 100%;
-      height: 100%;
-      color: var(--accent);
-    }
-    .ach-center {
-      position: absolute;
-      inset: 0;
+    .ach-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 2.5px solid var(--accent);
+      background: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 0 12px;
       text-align: center;
+      padding: 8px;
     }
-    .ach-center .num {
-      font-weight: 700;
-      color: #3a2a20;
-      font-size: 16px;
+    .ach-circle .num {
+      font-weight: 800;
+      color: var(--accent);
+      font-size: clamp(15px, 2.5vw, 18px);
       line-height: 1.2;
+    }
+    .ach-circle .lbl {
+      color: #6a6a6a;
+      font-size: 11px;
+      line-height: 1.4;
+      margin-top: 2px;
     }
     .ach-center .lbl {
       font-size: 13px;
@@ -996,6 +996,74 @@
     </div>
   </section>
 
+  <!-- ===== QUALITY / Gallery Section ===== -->
+  <section style="background:#fff; padding: clamp(48px,8vw,72px) 0;">
+    <div class="container">
+      <div style="text-align:center; margin-bottom: 32px;">
+        <span style="font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.2em; color:var(--accent); text-transform:uppercase;">QUALITY</span>
+        <h2 style="margin:8px 0 12px;">ななが制作する投稿の一例</h2>
+        <p style="color:#6a6a6a; font-size:15px; margin-bottom:6px;">実店舗のブランドに合わせた動画・リール・カルーセルを制作します。</p>
+        <p style="color:#aaa; font-size:13px;">※ タップでカルーセル投稿をプレビューできます（実績写真は後ほど差し替え）</p>
+      </div>
+
+      <!-- ギャラリーグリッド（プレースホルダー） -->
+      <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:12px; max-width:960px; margin: 0 auto;">
+        <!-- 上段4枚 -->
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f5f0eb,#ede0d0); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
+          </span>
+          <span style="color:#bbb; font-size:13px;">動画サムネイル①</span>
+        </div>
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#e8f0f5,#d0e0ed); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
+          </span>
+          <span style="color:#bbb; font-size:13px;">リール動画②</span>
+        </div>
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f0f5eb,#daedc8); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>5
+          </span>
+          <span style="color:#bbb; font-size:13px;">店舗紹介③</span>
+        </div>
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f5ebf0,#edccd8); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>7
+          </span>
+          <span style="color:#bbb; font-size:13px;">プロモ動画④</span>
+        </div>
+        <!-- 下段4枚 -->
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f5f3e8,#ede8c5); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
+          </span>
+          <span style="color:#bbb; font-size:13px;">カルーセル⑤</span>
+        </div>
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#ebf0f5,#c8d8ed); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
+          </span>
+          <span style="color:#bbb; font-size:13px;">イベント動画⑥</span>
+        </div>
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f5eceb,#edceca); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
+          </span>
+          <span style="color:#bbb; font-size:13px;">商品紹介⑦</span>
+        </div>
+        <div style="aspect-ratio:1; background:linear-gradient(135deg,#eef5ec,#cde5c8); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
+          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
+          </span>
+          <span style="color:#bbb; font-size:13px;">ビフォーアフター⑧</span>
+        </div>
+      </div>
+
+      <p style="text-align:center; margin-top:20px; color:#aaa; font-size:12px;">▲ 実際の制作動画・リールに差し替えてください</p>
+    </div>
+  </section>
+
   <!-- Problem Section -->
   <section class="problem">
     <div class="container">
@@ -1202,11 +1270,11 @@
               </symbol>
             </svg>
             <div class="achievement-badges">
-              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">1.5万</span><span class="lbl">回再生</span></span></div></div>
-              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">採用動画</span><span class="lbl">国立病院</span></span></div></div>
-              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">プロモ</span><span class="lbl">リール制作</span></span></div></div>
-              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">ライブ</span><span class="lbl">撮影・編集</span></span></div></div>
-              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">250本+</span><span class="lbl">制作実績</span></span></div></div>
+              <div class="ach-badge"><div class="ach-circle"><span class="num">1.5万</span><span class="lbl">回再生</span></div></div>
+              <div class="ach-badge"><div class="ach-circle"><span class="num">採用動画</span><span class="lbl">国立病院</span></div></div>
+              <div class="ach-badge"><div class="ach-circle"><span class="num">プロモ</span><span class="lbl">リール制作</span></div></div>
+              <div class="ach-badge"><div class="ach-circle"><span class="num">ライブ</span><span class="lbl">撮影・編集</span></div></div>
+              <div class="ach-badge"><div class="ach-circle"><span class="num">250本+</span><span class="lbl">制作実績</span></div></div>
             </div>
           </div>
 
