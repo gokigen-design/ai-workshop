@@ -286,32 +286,133 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
     }
 
+    /* ── 当日の流れ（縦積みフロー） ── */
     .lesson-flow {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(24px, 4vw, 32px);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
       margin-top: 2em;
+      max-width: 680px;
     }
 
-    .flow-item {
-      padding-bottom: 1.6em;
-      border-bottom: 1px solid #e0e0e0;
+    .flow-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
     }
 
-    .flow-item:nth-child(odd) {
-      border-right: 1px solid #e0e0e0;
-      padding-right: clamp(24px, 4vw, 32px);
+    .flow-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 48px;
+      flex-shrink: 0;
+    }
+
+    .flow-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #d4a574;
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .flow-line {
+      width: 2px;
+      background-color: #e8d5c0;
+      flex: 1;
+      min-height: 24px;
+    }
+
+    .flow-arrow-down {
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 10px solid #e8d5c0;
+      margin-bottom: 8px;
+    }
+
+    .flow-body {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      padding: 16px 20px;
+      margin: 0 0 0 16px;
+      flex: 1;
+      margin-bottom: 8px;
+    }
+
+    .flow-spacer {
+      flex: 1;
+      margin-left: 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
     }
 
     .flow-item h4 {
       color: #d4a574;
-      font-size: clamp(16px, 2.2vw, 18px);
-      margin-bottom: 0.6em;
-      font-weight: 600;
+      font-size: clamp(15px, 2vw, 17px);
+      margin-bottom: 0.4em;
+      font-weight: 700;
     }
 
     .flow-item p {
       margin-bottom: 0;
+      font-size: clamp(14px, 1.8vw, 16px);
+      color: #6a6a6a;
+    }
+
+    /* ── レッスン案内カード ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 2.4em;
+    }
+
+    .info-item {
+      background: #fdf8f3;
+      border: 1px solid #eedfc8;
+      border-radius: 10px;
+      padding: 20px 16px;
+    }
+
+    .info-item h4 {
+      color: #d4a574;
+      font-size: clamp(13px, 1.8vw, 15px);
+      margin-bottom: 0.5em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .info-item p {
+      margin-bottom: 0;
+      font-size: clamp(14px, 1.8vw, 16px);
+      color: #1e1e1e;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .lesson-flow {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ========== 体験後の変化セクション ========== */
@@ -713,30 +814,77 @@
 
       <h3 style="margin-top: 2.4em;">当日の流れ</h3>
       <div class="lesson-flow">
-        <div class="flow-item">
-          <h4>ゴール確認</h4>
-          <p>ロードーナツの完成と、砂糖なしでも満たされる甘さを体験する目的を確認します。</p>
+
+        <div class="flow-row">
+          <div class="flow-left">
+            <div class="flow-num">1</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-body flow-item">
+            <h4>ゴール確認</h4>
+            <p>ロードーナツの完成と、砂糖なしでも満たされる甘さを体験する目的を確認します。</p>
+          </div>
         </div>
-        <div class="flow-item">
-          <h4>自己紹介・悩みの共有</h4>
-          <p>甘いものが欲しくなるタイミングや、レッスン後になりたい気持ちを簡単にシェアします。</p>
+
+        <div class="flow-row">
+          <div class="flow-left">
+            <div class="flow-arrow-down"></div>
+            <div class="flow-num">2</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-body flow-item">
+            <h4>自己紹介・悩みの共有</h4>
+            <p>甘いものが欲しくなるタイミングや、レッスン後になりたい気持ちを簡単にシェアします。</p>
+          </div>
         </div>
-        <div class="flow-item">
-          <h4>手元を見ながら実習</h4>
-          <p>見本動画で流れを確認し、参加者さんの手元を見ながら、混ぜ具合・固さ・成形のコツをお伝えします。</p>
+
+        <div class="flow-row">
+          <div class="flow-left">
+            <div class="flow-arrow-down"></div>
+            <div class="flow-num">3</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-body flow-item">
+            <h4>手元を見ながら実習</h4>
+            <p>見本動画で流れを確認し、参加者さんの手元を見ながら、混ぜ具合・固さ・成形のコツをお伝えします。</p>
+          </div>
         </div>
-        <div class="flow-item">
-          <h4>悩みに合わせたミニ座学</h4>
-          <p>冷やし時間に、自己紹介で出てきたお悩みに合わせて、甘いものが欲しくなる理由や、我慢だけに頼らない選び方をお話しします。</p>
+
+        <div class="flow-row">
+          <div class="flow-left">
+            <div class="flow-arrow-down"></div>
+            <div class="flow-num">4</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-body flow-item">
+            <h4>悩みに合わせたミニ座学</h4>
+            <p>冷やし時間に、お悩みに合わせて甘いものが欲しくなる理由や、我慢だけに頼らない選び方をお話しします。</p>
+          </div>
         </div>
-        <div class="flow-item">
-          <h4>仕上げ・試食</h4>
-          <p>カラフルに仕上げたロードーナツを味わい、砂糖なしでも満たされる甘さや食べ応えを体験します。</p>
+
+        <div class="flow-row">
+          <div class="flow-left">
+            <div class="flow-arrow-down"></div>
+            <div class="flow-num">5</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-body flow-item">
+            <h4>仕上げ・試食</h4>
+            <p>カラフルに仕上げたロードーナツを味わい、砂糖なしでも満たされる甘さや食べ応えを体験します。</p>
+          </div>
         </div>
-        <div class="flow-item">
-          <h4>保存方法の説明</h4>
-          <p>冷凍保存や食べ方、持ち運び方までお伝えします。</p>
+
+        <div class="flow-row">
+          <div class="flow-left">
+            <div class="flow-arrow-down"></div>
+            <div class="flow-num">6</div>
+          </div>
+          <div class="flow-body flow-item">
+            <h4>保存方法の説明</h4>
+            <p>冷凍保存や食べ方、持ち運び方までお伝えします。</p>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
