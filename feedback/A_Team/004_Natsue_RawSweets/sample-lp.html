@@ -158,10 +158,34 @@
       border-radius: 8px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
       transition: transform 0.3s ease;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
     }
 
     .empathy-card:hover {
       transform: translateY(-4px);
+    }
+
+    .empathy-card-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: rgba(212, 165, 116, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empathy-card-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .empathy-card-body {
+      flex: 1;
+      min-width: 0;
     }
 
     .empathy-card h3 {
@@ -197,6 +221,29 @@
     }
 
     /* ========== ロースイーツセクション ========== */
+    .sweets-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(12px, 2vw, 20px);
+    }
+
+    .sweets-gallery.top {
+      margin-bottom: clamp(24px, 4vw, 40px);
+    }
+
+    .sweets-gallery.bottom {
+      margin-top: clamp(24px, 4vw, 40px);
+    }
+
+    .sweets-gallery img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
     .about-raw-sweets {
       background-color: white;
       padding: clamp(40px, 6vw, 60px);
@@ -468,6 +515,10 @@
         grid-template-columns: 1fr;
       }
 
+      .sweets-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .experience-cards {
         grid-template-columns: 1fr;
       }
@@ -531,28 +582,58 @@
     <h2>こんなことないですか？</h2>
     <div class="empathy-cards">
       <div class="empathy-card">
-        <h3>夕方や夜になると、甘いものを探して冷蔵庫を開けている</h3>
-        <p>疲れてホッとした瞬間、パカッと開けて「何かないかな」と探してしまう。</p>
+        <div class="empathy-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>冷蔵庫を開けるアイコン</title><rect x="5.5" y="2.5" width="13" height="19" rx="2"/><line x1="5.5" y1="10" x2="18.5" y2="10"/><line x1="9" y1="5.2" x2="9" y2="7.3"/><line x1="9" y1="12.5" x2="9" y2="15"/></svg>
+        </div>
+        <div class="empathy-card-body">
+          <h3>夕方や夜になると、甘いものを探して冷蔵庫を開けている</h3>
+          <p>疲れてホッとした瞬間、パカッと開けて「何かないかな」と探してしまう。</p>
+        </div>
       </div>
       <div class="empathy-card">
-        <h3>「ちょっとだけ」のつもりが、気づいたら食べすぎている</h3>
-        <p>ひと口で終わるはずだったのに、手が止まらなくて、あとから少し落ち込む。</p>
+        <div class="empathy-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>クッキーのアイコン</title><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9.5" r="1.1" fill="#d4a574" stroke="none"/><circle cx="14.5" cy="9" r="1.1" fill="#d4a574" stroke="none"/><circle cx="13" cy="14.5" r="1.1" fill="#d4a574" stroke="none"/><circle cx="8.5" cy="14.5" r="1.1" fill="#d4a574" stroke="none"/></svg>
+        </div>
+        <div class="empathy-card-body">
+          <h3>「ちょっとだけ」のつもりが、気づいたら食べすぎている</h3>
+          <p>ひと口で終わるはずだったのに、手が止まらなくて、あとから少し落ち込む。</p>
+        </div>
       </div>
       <div class="empathy-card">
-        <h3>市販のお菓子を減らしたいけど、我慢だけでは続かない</h3>
-        <p>買わないと決めた日に限って食べたくなって、反動で余計に欲しくなる。</p>
+        <div class="empathy-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>買い物袋のアイコン</title><path d="M6 8h12l-1 12.5H7L6 8z"/><path d="M9 8V6.2a3 3 0 0 1 6 0V8"/></svg>
+        </div>
+        <div class="empathy-card-body">
+          <h3>市販のお菓子を減らしたいけど、我慢だけでは続かない</h3>
+          <p>買わないと決めた日に限って食べたくなって、反動で余計に欲しくなる。</p>
+        </div>
       </div>
       <div class="empathy-card">
-        <h3>子どもや家族のおやつも、本当は手作りした方がいいと思っている</h3>
-        <p>でも毎日は面倒で、結局すぐ買えるいつものお菓子に戻ってしまう。</p>
+        <div class="empathy-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>ハートのアイコン</title><path d="M12 20.5C12 20.5 4 16 4 10.2A3.6 3.6 0 0 1 12 8a3.6 3.6 0 0 1 8 2.2C20 16 12 20.5 12 20.5z"/></svg>
+        </div>
+        <div class="empathy-card-body">
+          <h3>子どもや家族のおやつも、本当は手作りした方がいいと思っている</h3>
+          <p>でも毎日は面倒で、結局すぐ買えるいつものお菓子に戻ってしまう。</p>
+        </div>
       </div>
       <div class="empathy-card">
-        <h3>食べるか、我慢するかで、毎回迷ってしまう</h3>
-        <p>食べてもモヤモヤするし、我慢してもずっと頭の中に残っている。</p>
+        <div class="empathy-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>迷っているアイコン</title><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.4 2.4 0 1 1 3 2.3c-.7.2-1 .7-1 1.5v.4"/><circle cx="11.6" cy="16.4" r="0.7" fill="#d4a574" stroke="none"/></svg>
+        </div>
+        <div class="empathy-card-body">
+          <h3>食べるか、我慢するかで、毎回迷ってしまう</h3>
+          <p>食べてもモヤモヤするし、我慢してもずっと頭の中に残っている。</p>
+        </div>
       </div>
       <div class="empathy-card">
-        <h3 style="color: #1e1e1e; margin-bottom: 0;">甘いものが好きなことが悪いわけではありません</h3>
-        <p style="margin-top: 0.8em; margin-bottom: 0;">ただ、食べたあとに自分を責める時間が増えているなら、今のまま我慢を増やすより、安心して食べられる選択肢をひとつ増やすことから始めてみませんか。</p>
+        <div class="empathy-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img"><title>きらめきのアイコン</title><path d="M12 3.5l1.9 4.6L18.5 10l-4.6 1.9L12 16.5l-1.9-4.6L5.5 10l4.6-1.9L12 3.5z"/></svg>
+        </div>
+        <div class="empathy-card-body">
+          <h3 style="color: #1e1e1e; margin-bottom: 0;">甘いものが好きなことが悪いわけではありません</h3>
+          <p style="margin-top: 0.8em; margin-bottom: 0;">ただ、食べたあとに自分を責める時間が増えているなら、今のまま我慢を増やすより、安心して食べられる選択肢をひとつ増やすことから始めてみませんか。</p>
+        </div>
       </div>
     </div>
   </div>
@@ -594,6 +675,12 @@
 <!-- ========== ロースイーツセクション ========== -->
 <section>
   <div class="container">
+    <div class="sweets-gallery top">
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=400&fit=crop" alt="いちごをのせたロースイーツ">
+      <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=400&fit=crop" alt="ナッツとドライフルーツのロースイーツ">
+      <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=400&fit=crop" alt="チョコレート系のロースイーツ">
+      <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=400&fit=crop" alt="カラフルなロースイーツの盛り合わせ">
+    </div>
     <div class="about-raw-sweets">
       <h2>ロースイーツとは</h2>
       <h3>あげない・焼かないおやつ</h3>
@@ -606,6 +693,12 @@
       <p>砂糖の強い甘さではなく、自然な甘さや食感を楽しめます。</p>
 
       <p style="margin-top: 2em; border-top: 1px solid #e0e0e0; padding-top: 2em; color: #6a6a6a;">ロースイーツは、特別な人だけが作るおしゃれなお菓子ではありません。材料を混ぜて、冷やして、固める。忙しい毎日の中でも、冷凍庫に置いておける"自分と家族のためのおやつ"です。</p>
+    </div>
+    <div class="sweets-gallery bottom">
+      <img src="https://images.unsplash.com/photo-1542124948-dc391252a940?w=400&h=400&fit=crop" alt="ベリーをのせたロースイーツ">
+      <img src="https://images.unsplash.com/photo-1488900128323-21503983a07e?w=400&h=400&fit=crop" alt="ロースイーツのカップデザート">
+      <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&h=400&fit=crop" alt="ナッツをのせたロースイーツ">
+      <img src="https://images.unsplash.com/photo-1519869325930-281384150729?w=400&h=400&fit=crop" alt="フルーツを添えたロースイーツ">
     </div>
   </div>
 </section>

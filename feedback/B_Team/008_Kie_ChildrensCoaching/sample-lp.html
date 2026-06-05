@@ -206,6 +206,104 @@
       line-height: 1.7;
     }
 
+    /* =============== Wish List (numbered badges) =============== */
+    .wish-list {
+      list-style: none;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .wish-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .wish-badge {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--accent);
+      color: #ffffff;
+      border-radius: 50%;
+      font-weight: 700;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 18px;
+      margin-top: 2px;
+    }
+
+    .wish-text {
+      font-size: clamp(15px, 3vw, 16px);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding-top: 4px;
+    }
+
+    /* =============== Problem List =============== */
+    .problem-list {
+      list-style: none;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .problem-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .problem-item::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-color: var(--accent);
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .problem-text {
+      font-size: clamp(15px, 3vw, 16px);
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* =============== Reason List =============== */
+    .reason-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-top: 2rem;
+    }
+
+    .reason-item {
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .reason-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .reason-item h3 {
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-size: clamp(17px, 4vw, 20px);
+    }
+
+    .reason-item p {
+      font-size: clamp(15px, 3vw, 16px);
+      margin-bottom: 0;
+    }
+
     /* =============== Card Grid =============== */
     .card-grid {
       display: grid;
@@ -345,46 +443,58 @@
       font-family: 'Zen Maru Gothic', sans-serif;
     }
 
-    /* =============== Pricing Table =============== */
+    /* =============== Pricing Cards =============== */
     .pricing-section {
       background-color: #ffffff;
     }
 
-    .pricing-content {
-      max-width: 600px;
-      margin: 0 auto;
+    .pricing-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin: 2rem auto;
+      max-width: 900px;
     }
 
-    .pricing-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 2rem 0;
-      background: #ffffff;
+    .pricing-card {
+      background: var(--accent-light);
+      padding: 32px 24px;
       border-radius: 8px;
-      overflow: hidden;
+      text-align: center;
       box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .pricing-table thead {
-      background-color: var(--accent-light);
+    .pricing-card:hover {
+      box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+      transform: translateY(-4px);
     }
 
-    .pricing-table th,
-    .pricing-table td {
-      padding: 20px;
-      text-align: left;
-      border-bottom: 1px solid var(--border-color);
-      font-size: clamp(15px, 3vw, 16px);
-    }
-
-    .pricing-table th {
-      font-weight: 600;
+    .pricing-card h3 {
       color: var(--accent);
       font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(16px, 4vw, 20px);
+      margin-bottom: 16px;
+      font-weight: 600;
     }
 
-    .pricing-table tbody tr:last-child td {
-      border-bottom: none;
+    .price {
+      font-size: clamp(28px, 6vw, 36px);
+      font-weight: 700;
+      color: var(--accent);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      margin-bottom: 8px;
+    }
+
+    .price-label {
+      font-size: clamp(14px, 3vw, 15px);
+      color: var(--text-secondary);
+      margin: 0;
+      font-weight: 400;
     }
 
     .pricing-info {
@@ -417,49 +527,57 @@
 
     .faq-item {
       margin: 16px 0;
-      border: 1px solid var(--border-color);
+      border: 2px solid var(--border-color);
       border-radius: 8px;
       overflow: hidden;
       transition: var(--transition);
+      background-color: #ffffff;
     }
 
     .faq-item:hover {
+      border-color: var(--accent);
       box-shadow: var(--shadow);
     }
 
     .faq-question {
-      padding: 20px;
-      background-color: var(--bg-main);
+      padding: 20px 24px;
+      background-color: #ffffff;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       font-weight: 500;
       font-family: 'Zen Maru Gothic', sans-serif;
       font-size: clamp(15px, 3vw, 16px);
       user-select: none;
       transition: var(--transition);
+      border: none;
+      width: 100%;
+      text-align: left;
+      color: var(--text-primary);
     }
 
     .faq-question:hover {
-      background-color: var(--accent-light);
+      background-color: var(--bg-main);
+      color: var(--accent);
     }
 
     .faq-toggle {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--accent);
       flex-shrink: 0;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1;
     }
 
     .faq-toggle::before {
       content: '+';
-      font-size: 24px;
-      font-weight: 300;
-      line-height: 1;
     }
 
     .faq-item.open .faq-toggle::before {
@@ -470,6 +588,7 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease;
+      border-top: 1px solid var(--border-color);
     }
 
     .faq-item.open .faq-answer {
@@ -477,7 +596,7 @@
     }
 
     .faq-answer-content {
-      padding: 20px;
+      padding: 24px;
       color: var(--text-secondary);
       font-size: clamp(14px, 3vw, 15px);
       line-height: 1.8;
@@ -645,26 +764,38 @@
 
   <!-- ============ 共感セクション ============ -->
   <section class="section">
-    <div class="container text-center">
-      <h2>こんな願いをお持ちのママへ</h2>
-      <p class="muted text-max">お子さまの成長を心から応援したいというあなたの気持ちをサポートします。</p>
-      <ul class="feature-list">
-        <li class="feature-item">
-          <span class="feature-text">子どもの「できた！」を増やしてあげたい</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">好きなことを見つけて夢中になってほしい</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">自分から挑戦できる子に育ってほしい</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">子どもの可能性を伸ばしてあげたい</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">自信をもって自分らしく成長してほしい</span>
-        </li>
-      </ul>
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2>こんな願いをお持ちのママへ</h2>
+          <p class="muted">お子さまの成長を心から応援したいというあなたの気持ちをサポートします。</p>
+          <ul class="wish-list">
+            <li class="wish-item">
+              <span class="wish-badge">1</span>
+              <span class="wish-text">子どもの「できた！」を増やしてあげたい</span>
+            </li>
+            <li class="wish-item">
+              <span class="wish-badge">2</span>
+              <span class="wish-text">好きなことを見つけて夢中になってほしい</span>
+            </li>
+            <li class="wish-item">
+              <span class="wish-badge">3</span>
+              <span class="wish-text">自分から挑戦できる子に育ってほしい</span>
+            </li>
+            <li class="wish-item">
+              <span class="wish-badge">4</span>
+              <span class="wish-text">子どもの可能性を伸ばしてあげたい</span>
+            </li>
+            <li class="wish-item">
+              <span class="wish-badge">5</span>
+              <span class="wish-text">自信をもって自分らしく成長してほしい</span>
+            </li>
+          </ul>
+        </div>
+        <div class="image-col">
+          <img src="https://images.unsplash.com/photo-1503454537688-e6694ad45ee1?w=400&h=500&fit=crop" alt="笑顔の子どもとママ">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -672,29 +803,36 @@
 
   <!-- ============ 問題セクション ============ -->
   <section class="section section-light">
-    <div class="container text-center">
-      <h2>こんなお悩みありませんか？</h2>
-      <p class="muted text-max">多くのママたちが感じている、成長段階での課題。あなただけではありません。</p>
-      <ul class="feature-list">
-        <li class="feature-item">
-          <span class="feature-text">新しいことに挑戦する前から「できない」と言ってしまう</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">間違えたり失敗したりすることを怖がっている</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">自信がなく、なかなか一歩を踏み出せない</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">失敗するとすぐに落ち込んでしまう</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">周りの子と比べて自信をなくしている</span>
-        </li>
-        <li class="feature-item">
-          <span class="feature-text">子どもの可能性をもっと伸ばしてあげたい</span>
-        </li>
-      </ul>
+    <div class="container">
+      <div class="two-col">
+        <div class="image-col">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=500&fit=crop" alt="悩むママと子ども">
+        </div>
+        <div>
+          <h2 class="text-center">こんなお悩みありませんか？</h2>
+          <p class="muted text-center">多くのママたちが感じている、成長段階での課題。あなただけではありません。</p>
+          <ul class="problem-list">
+            <li class="problem-item">
+              <span class="problem-text">新しいことに挑戦する前から「できない」と言ってしまう</span>
+            </li>
+            <li class="problem-item">
+              <span class="problem-text">間違えたり失敗したりすることを怖がっている</span>
+            </li>
+            <li class="problem-item">
+              <span class="problem-text">自信がなく、なかなか一歩を踏み出せない</span>
+            </li>
+            <li class="problem-item">
+              <span class="problem-text">失敗するとすぐに落ち込んでしまう</span>
+            </li>
+            <li class="problem-item">
+              <span class="problem-text">周りの子と比べて自信をなくしている</span>
+            </li>
+            <li class="problem-item">
+              <span class="problem-text">子どもの可能性をもっと伸ばしてあげたい</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -768,23 +906,30 @@
   <!-- ============ K.I.Eが選ばれる理由 ============ -->
   <section class="section section-light">
     <div class="container">
-      <h2 class="text-center">K.I.Eが選ばれる理由</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>音楽大学で学んだ専門性</h3>
-          <p class="muted">基礎から丁寧に指導します。愛知県立明和高等学校音楽科、東京音楽大学器楽科（ピアノ専攻）で学んだ経験を活かし、一人ひとりに合った指導を行います。</p>
+      <div class="two-col">
+        <div class="image-col">
+          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=500&fit=crop" alt="ピアノ教室K.I.Eの雰囲気">
         </div>
-        <div class="card">
-          <h3>小学校教員15年の経験</h3>
-          <p class="muted">子どもの個性や発達に合わせて関わります。たくさんの子どもたちと関わってきた経験をもとに、その子らしい成長をサポートします。</p>
-        </div>
-        <div class="card">
-          <h3>心理学・脳科学を取り入れたレッスン</h3>
-          <p class="muted">自ら伸びる力を育みます。声かけや関わり方を工夫し、「やればできる」という感覚を育てていきます。</p>
-        </div>
-        <div class="card">
-          <h3>香りの力を活かした環境づくり</h3>
-          <p class="muted">落ち着いて集中できる空間を整えています。心地よい環境の中で、安心してレッスンに取り組めます。</p>
+        <div>
+          <h2>K.I.Eが選ばれる理由</h2>
+          <div class="reason-list">
+            <div class="reason-item">
+              <h3>音楽大学で学んだ専門性</h3>
+              <p class="muted">基礎から丁寧に指導します。愛知県立明和高等学校音楽科、東京音楽大学器楽科（ピアノ専攻）で学んだ経験を活かし、一人ひとりに合った指導を行います。</p>
+            </div>
+            <div class="reason-item">
+              <h3>小学校教員15年の経験</h3>
+              <p class="muted">子どもの個性や発達に合わせて関わります。たくさんの子どもたちと関わってきた経験をもとに、その子らしい成長をサポートします。</p>
+            </div>
+            <div class="reason-item">
+              <h3>心理学・脳科学を取り入れたレッスン</h3>
+              <p class="muted">自ら伸びる力を育みます。声かけや関わり方を工夫し、「やればできる」という感覚を育てていきます。</p>
+            </div>
+            <div class="reason-item">
+              <h3>香りの力を活かした環境づくり</h3>
+              <p class="muted">落ち着いて集中できる空間を整えています。心地よい環境の中で、安心してレッスンに取り組めます。</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -866,6 +1011,9 @@
           <p class="muted">レッスンの様子をお伝えし、ご質問にお答えします。</p>
         </div>
       </div>
+      <div class="text-center" style="margin-top: 3rem;">
+        <a href="#experience" class="button">無料体験レッスンを受ける</a>
+      </div>
     </div>
   </section>
 
@@ -875,38 +1023,31 @@
   <section id="pricing" class="section pricing-section">
     <div class="container">
       <h2 class="text-center">レッスン料金</h2>
-      <div class="pricing-content">
-        <table class="pricing-table">
-          <thead>
-            <tr>
-              <th>コース</th>
-              <th>月謝</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>初心者コース</td>
-              <td>8,000円</td>
-            </tr>
-            <tr>
-              <td>中級者コース</td>
-              <td>9,000円</td>
-            </tr>
-            <tr>
-              <td>上級者コース</td>
-              <td>10,000円</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="pricing-info">
-          <p>・個人レッスン（マンツーマン）</p>
-          <p>・月4回 / 1回30分</p>
-          <p>・入会金なし・管理費なし</p>
-          <p>・教材費別途</p>
-          <p>・発表会は希望者のみ</p>
-          <p>・駐車場あり</p>
-          <p style="margin-top: 1.5rem; font-weight: 500;">体験レッスン後にレッスン内容や料金についてご案内いたします。ご不明な点はその場でお気軽にご質問ください。</p>
+      <div class="pricing-cards-grid">
+        <div class="pricing-card">
+          <h3>初心者コース</h3>
+          <div class="price">8,000円</div>
+          <p class="price-label">月謝</p>
         </div>
+        <div class="pricing-card">
+          <h3>中級者コース</h3>
+          <div class="price">9,000円</div>
+          <p class="price-label">月謝</p>
+        </div>
+        <div class="pricing-card">
+          <h3>上級者コース</h3>
+          <div class="price">10,000円</div>
+          <p class="price-label">月謝</p>
+        </div>
+      </div>
+      <div class="pricing-info">
+        <p>・個人レッスン（マンツーマン）</p>
+        <p>・月4回 / 1回30分</p>
+        <p>・入会金なし・管理費なし</p>
+        <p>・教材費別途</p>
+        <p>・発表会は希望者のみ</p>
+        <p>・駐車場あり</p>
+        <p style="margin-top: 1.5rem; font-weight: 500;">体験レッスン後にレッスン内容や料金についてご案内いたします。ご不明な点はその場でお気軽にご質問ください。</p>
       </div>
     </div>
   </section>

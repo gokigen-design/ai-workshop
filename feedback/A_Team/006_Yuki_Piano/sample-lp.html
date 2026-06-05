@@ -203,6 +203,52 @@
     width:48px;height:3px;background:var(--accent);border-radius:2px;
   }
 
+  /* ===== service flow (内容) zigzag ===== */
+  .flow-list{margin-top:40px;display:grid;gap:20px;}
+  .flow-step{
+    background:var(--bg-card);border-radius:var(--radius);
+    box-shadow:var(--shadow);border:1px solid #f0e7e0;overflow:hidden;
+    display:grid;grid-template-columns:230px 1fr;align-items:stretch;
+  }
+  .flow-step .fl-ill{
+    background:var(--accent-tint);display:flex;align-items:center;justify-content:center;padding:22px;
+  }
+  .flow-step .fl-ill svg{width:128px;height:128px;}
+  .flow-step .fl-body{padding:26px 30px;display:flex;flex-direction:column;justify-content:center;}
+  .flow-step:nth-of-type(even){grid-template-columns:1fr 230px;}
+  .flow-step:nth-of-type(even) .fl-ill{order:2;}
+  .flow-num{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+    color:var(--accent-dark);font-size:12px;letter-spacing:.12em;margin-bottom:12px;
+  }
+  .flow-num .n{
+    width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:14px;
+  }
+  .flow-step .fl-body strong{
+    display:block;font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+    font-size:clamp(16px,3.6vw,19px);line-height:1.5;margin-bottom:8px;
+  }
+  .flow-step .fl-body span{font-size:14px;color:var(--sub);line-height:1.85;}
+
+  /* ===== reasons grid (選ばれる理由) ===== */
+  .reason-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px;}
+  .reason-card{
+    background:var(--bg-card);border-radius:var(--radius);box-shadow:var(--shadow);
+    border:1px solid #f0e7e0;padding:32px 28px;text-align:center;
+  }
+  .reason-card .r-ill{
+    width:92px;height:92px;margin:0 auto 18px;border-radius:50%;
+    background:var(--accent-tint);display:flex;align-items:center;justify-content:center;
+  }
+  .reason-card .r-ill svg{width:48px;height:48px;color:var(--accent);}
+  .reason-card h4{
+    font-family:"Zen Maru Gothic",sans-serif;font-weight:700;
+    font-size:clamp(16px,3.6vw,18px);line-height:1.5;margin-bottom:10px;color:var(--text);
+  }
+  .reason-card p{font-size:14px;color:var(--sub);line-height:1.85;}
+
   /* ===== change list (実際の変化) ===== */
   .change-list{margin-top:36px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
   .change-card{
@@ -354,6 +400,10 @@
     .change-list{grid-template-columns:1fr;}
     .profile-grid{grid-template-columns:1fr;gap:28px;}
     .profile-photo{position:static;max-width:320px;margin:0 auto;}
+    .flow-step,.flow-step:nth-of-type(even){grid-template-columns:1fr;}
+    .flow-step .fl-ill,.flow-step:nth-of-type(even) .fl-ill{order:-1;padding:28px;}
+    .flow-step .fl-ill svg{width:104px;height:104px;}
+    .reason-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -524,45 +574,81 @@
       <p>黒鍵を最初から特別なものにせず、感覚的に理解できる構成だから、幼児でも「わかる！」を積み重ねながら進められます。</p>
     </div>
 
-    <!-- 内容 -->
+    <!-- 内容（左右交互＋イラスト） -->
     <h3 class="subheading">内容</h3>
-    <div class="benefit-list">
+    <div class="flow-list">
 
-      <div class="benefit-item">
-        <div class="num">1</div>
-        <div class="b-body">
+      <div class="flow-step">
+        <div class="fl-ill">
+          <svg viewBox="0 0 120 120" role="img" aria-label="さまざまな調を表す音符と鍵盤のイラスト">
+            <g fill="#bd7e6d"><circle cx="40" cy="34" r="6"/><circle cx="70" cy="26" r="6"/><rect x="44.5" y="14" width="2.6" height="22"/><rect x="74.5" y="8" width="2.6" height="20"/><rect x="44.5" y="13" width="32.6" height="2.6"/></g>
+            <rect x="20" y="58" width="80" height="46" rx="5" fill="#fff" stroke="#a8695a" stroke-width="2.4"/>
+            <g stroke="#ecd9cf" stroke-width="2"><line x1="36" y1="64" x2="36" y2="104"/><line x1="52" y1="64" x2="52" y2="104"/><line x1="68" y1="64" x2="68" y2="104"/><line x1="84" y1="64" x2="84" y2="104"/></g>
+            <g fill="#3a302c"><rect x="31" y="58" width="10" height="26" rx="2"/><rect x="63" y="58" width="10" height="26" rx="2"/><rect x="79" y="58" width="10" height="26" rx="2"/></g>
+          </svg>
+        </div>
+        <div class="fl-body">
+          <span class="flow-num"><span class="n">1</span>CONTENT</span>
           <strong>黒鍵を自然に取り入れ、どの調でも弾ける感覚を育てる。</strong>
           <span>ハ長調だけで終わらず、移調やスケールにつながる土台を作ります。</span>
         </div>
       </div>
 
-      <div class="benefit-item">
-        <div class="num">2</div>
-        <div class="b-body">
+      <div class="flow-step">
+        <div class="fl-ill">
+          <svg viewBox="0 0 120 120" role="img" aria-label="感覚で理解することを表すハートと音符のイラスト">
+            <path d="M60 98 C30 76 18 58 28 42 C36 30 53 32 60 46 C67 32 84 30 92 42 C102 58 90 76 60 98Z" fill="#f3e9e3" stroke="#bd7e6d" stroke-width="2.4"/>
+            <g fill="#a8695a"><circle cx="52" cy="66" r="6"/><rect x="56.5" y="44" width="2.6" height="22"/><path d="M59 44 C70 47 73 55 68 62 C71 53 66 49 59 49Z"/></g>
+            <g stroke="#cd9c5f" stroke-width="2.2" stroke-linecap="round"><line x1="86" y1="40" x2="92" y2="34"/><line x1="90" y1="50" x2="98" y2="48"/></g>
+          </svg>
+        </div>
+        <div class="fl-body">
+          <span class="flow-num"><span class="n">2</span>CONTENT</span>
           <strong>感覚から理解できるから、幼児でも進めやすい。</strong>
           <span>「説明して覚える」だけではなく、“感じながら理解する力”を育てます。</span>
         </div>
       </div>
 
-      <div class="benefit-item">
-        <div class="num">3</div>
-        <div class="b-body">
+      <div class="flow-step">
+        <div class="fl-ill">
+          <svg viewBox="0 0 120 120" role="img" aria-label="少しずつ積み上がっていく階段と音符のイラスト">
+            <rect x="20" y="76" width="24" height="26" rx="3" fill="#f3e9e3" stroke="#bd7e6d" stroke-width="2.4"/>
+            <rect x="48" y="60" width="24" height="42" rx="3" fill="#f3e9e3" stroke="#bd7e6d" stroke-width="2.4"/>
+            <rect x="76" y="42" width="24" height="60" rx="3" fill="#f3e9e3" stroke="#bd7e6d" stroke-width="2.4"/>
+            <g fill="#a8695a"><circle cx="84" cy="30" r="5.5"/><rect x="88" y="12" width="2.4" height="18"/><path d="M90 12 C99 14 101 21 96 27 C99 19 95 15 90 16Z"/></g>
+          </svg>
+        </div>
+        <div class="fl-body">
+          <span class="flow-num"><span class="n">3</span>CONTENT</span>
           <strong>「わかる！」を積み重ね、自分から弾ける力が育つ。</strong>
           <span>受け身ではなく、“考えて弾ける子”へ自然につながっていきます。</span>
         </div>
       </div>
 
-      <div class="benefit-item">
-        <div class="num">4</div>
-        <div class="b-body">
+      <div class="flow-step">
+        <div class="fl-ill">
+          <svg viewBox="0 0 120 120" role="img" aria-label="速く読めることを表す音符とスピードラインのイラスト">
+            <g stroke="#bd7e6d" stroke-width="3.4" stroke-linecap="round"><line x1="16" y1="52" x2="42" y2="52"/><line x1="12" y1="68" x2="36" y2="68"/><line x1="20" y1="84" x2="40" y2="84"/></g>
+            <g fill="#a8695a"><circle cx="62" cy="82" r="11"/><rect x="71" y="32" width="4" height="52"/><path d="M75 32 C90 36 94 49 86 60 C91 47 84 41 75 43Z"/></g>
+          </svg>
+        </div>
+        <div class="fl-body">
+          <span class="flow-num"><span class="n">4</span>CONTENT</span>
           <strong>音符の速読にもつながる設計。</strong>
           <span>3歳頃から小学校中学年まで、1〜2年かけて音楽の土台を育てられます。</span>
         </div>
       </div>
 
-      <div class="benefit-item">
-        <div class="num">5</div>
-        <div class="b-body">
+      <div class="flow-step">
+        <div class="fl-ill">
+          <svg viewBox="0 0 120 120" role="img" aria-label="どんな子にも届くことを表す3人の子どものイラスト">
+            <g fill="#f3e9e3" stroke="#bd7e6d" stroke-width="2.4"><circle cx="34" cy="52" r="11"/><path d="M18 98 C18 80 50 80 50 98Z"/><circle cx="86" cy="52" r="11"/><path d="M70 98 C70 80 102 80 102 98Z"/></g>
+            <circle cx="60" cy="44" r="13" fill="#bd7e6d"/><path d="M42 96 C42 74 78 74 78 96Z" fill="#bd7e6d"/>
+            <path d="M60 18 C63 22 68 22 65 27 L60 31 L55 27 C52 22 57 22 60 18Z" fill="#cd9c5f"/>
+          </svg>
+        </div>
+        <div class="fl-body">
+          <span class="flow-num"><span class="n">5</span>CONTENT</span>
           <strong>理解差がある子にも使いやすい。</strong>
           <span>視覚と感覚を使いながら進めることで、どんな子にも「楽しい！」を届けやすくなります。</span>
         </div>
@@ -570,40 +656,40 @@
 
     </div>
 
-    <!-- 選ばれる理由 -->
+    <!-- 選ばれる理由（2×2グリッド＋アイコン） -->
     <h3 class="subheading">選ばれる理由</h3>
-    <div class="benefit-list">
+    <div class="reason-grid">
 
-      <div class="benefit-item">
-        <div class="num">1</div>
-        <div class="b-body">
-          <strong>18年間、実際の教室で子どもたちを見ながら作られてきた。</strong>
-          <span>机上の理論ではなく、「どうしたら幼児でもわかるか」を現場で積み重ねながら生まれた導入メソッドです。</span>
+      <div class="reason-card">
+        <div class="r-ill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14.6 7.2 21l4.8-2.8L16.8 21 15 14.6"/><path d="M12 6.4l1 2 2.2.3-1.6 1.5.4 2.2L12 11.4l-2 1 .4-2.2L8.8 8.7l2.2-.3z"/></svg>
         </div>
+        <h4>18年間、実際の教室で子どもたちを見ながら作られてきた。</h4>
+        <p>机上の理論ではなく、「どうしたら幼児でもわかるか」を現場で積み重ねながら生まれた導入メソッドです。</p>
       </div>
 
-      <div class="benefit-item">
-        <div class="num">2</div>
-        <div class="b-body">
-          <strong>“どんな子でもわかる”を目指した導入設計。</strong>
-          <span>発達や理解速度の違いがある子にも、「わかる！」「楽しい！」を届けられるよう、感覚から理解へつなげていきます。</span>
+      <div class="reason-card">
+        <div class="r-ill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><path d="M14 19c.3-2.7 2.2-4.3 4.3-4.3 1.9 0 3.4 1.3 3.9 3.6"/></svg>
         </div>
+        <h4>“どんな子でもわかる”を目指した導入設計。</h4>
+        <p>発達や理解速度の違いがある子にも、「わかる！」「楽しい！」を届けられるよう、感覚から理解へつなげていきます。</p>
       </div>
 
-      <div class="benefit-item">
-        <div class="num">3</div>
-        <div class="b-body">
-          <strong>スケールにつながる“調感覚”を、導入期から育てる。</strong>
-          <span>黒鍵を特別なものにせず、移調やスケールへつながる感覚を小さい頃から育てていきます。</span>
+      <div class="reason-card">
+        <div class="r-ill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20v-3h4v-4h4v-4h4v-4h4"/><circle cx="18" cy="6" r="1.6" fill="currentColor" stroke="none"/></svg>
         </div>
+        <h4>スケールにつながる“調感覚”を、導入期から育てる。</h4>
+        <p>黒鍵を特別なものにせず、移調やスケールへつながる感覚を小さい頃から育てていきます。</p>
       </div>
 
-      <div class="benefit-item">
-        <div class="num">4</div>
-        <div class="b-body">
-          <strong>“わかる喜び”から始める導入期を大切にしている。</strong>
-          <span>幼児でも感覚から理解できるから、「やらされる」ではなく“弾きたい”が自然に育っていきます。</span>
+      <div class="reason-card">
+        <div class="r-ill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14a4 4 0 0 0 7 0"/><line x1="9" y1="9.5" x2="9.01" y2="9.5"/><line x1="15" y1="9.5" x2="15.01" y2="9.5"/></svg>
         </div>
+        <h4>“わかる喜び”から始める導入期を大切にしている。</h4>
+        <p>幼児でも感覚から理解できるから、「やらされる」ではなく“弾きたい”が自然に育っていきます。</p>
       </div>
 
     </div>
