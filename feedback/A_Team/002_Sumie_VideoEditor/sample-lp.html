@@ -304,7 +304,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
+      min-height: 44px;
       font-weight: 600;
+      color: #1e1e1e;
       background: white;
       border: none;
       width: 100%;
@@ -375,7 +378,7 @@
     }
 
     /* タップエリア */
-    button, a.btn, .accordion-header {
+    button:not(.accordion-header), a.btn {
       min-height: 44px;
       display: flex;
       align-items: center;
