@@ -242,41 +242,104 @@
     }
 
     .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
       margin-top: 40px;
     }
 
     .step-card {
       background: #faf8f5;
-      padding: 32px;
       border-radius: 8px;
-      position: relative;
+      overflow: hidden;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .step-card-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .step-card-body {
+      padding: 24px 20px;
     }
 
     .step-number {
-      display: inline-block;
       background-color: #6B8E23;
       color: white;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 16px;
+      font-size: 18px;
+      margin-bottom: 14px;
     }
 
     .step-card h3 {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      font-size: clamp(15px, 1.8vw, 18px);
     }
 
     .step-card p {
+      font-size: clamp(13px, 1.5vw, 15px);
+      color: #6a6a6a;
+    }
+
+    /* 三角矢印 */
+    .step-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 0 6px;
+      margin-top: 80px;
+    }
+
+    .step-arrow svg {
+      width: 24px;
+      height: 24px;
+      fill: #6B8E23;
+      opacity: 0.6;
+    }
+
+    /* 講師紹介：PC左写真・右テキスト */
+    .profile {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .profile h3 {
+      margin-bottom: 16px;
+    }
+
+    .profile-image {
+      width: 220px;
+      height: 220px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .profile-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .profile p {
       font-size: clamp(15px, 1.8vw, 16px);
       color: #6a6a6a;
+      line-height: 1.8;
     }
 
     /* ━━━━━ 実績セクション ━━━━━ */
@@ -512,10 +575,30 @@
       }
 
       .concerns-grid,
-      .benefits-grid,
-      .steps-grid {
+      .benefits-grid {
         grid-template-columns: 1fr;
         gap: 24px;
+      }
+
+      .steps-grid {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .step-arrow {
+        transform: rotate(90deg);
+        margin-top: 0;
+        padding: 4px 0;
+      }
+
+      .profile {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .profile-image {
+        width: 100%;
+        height: 240px;
       }
 
       .social-proof-content {
@@ -638,24 +721,45 @@
     </div>
     <div class="steps-grid">
       <div class="step-card">
-        <div class="step-number">1</div>
-        <h3>ヒアリング</h3>
-        <p>派遣会社様の採用課題、会社の魅力、ターゲット像などを詳しくお伺いします。</p>
+        <img class="step-card-img" src="https://picsum.photos/seed/step1/400/320" alt="ヒアリングのイメージ">
+        <div class="step-card-body">
+          <div class="step-number">1</div>
+          <h3>ヒアリング</h3>
+          <p>派遣会社様の採用課題、会社の魅力、ターゲット像などを詳しくお伺いします。</p>
+        </div>
+      </div>
+      <div class="step-arrow">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="2,4 22,12 2,20"/></svg>
       </div>
       <div class="step-card">
-        <div class="step-number">2</div>
-        <h3>企画構成案提示</h3>
-        <p>ヒアリング内容をもとに、どんな動画を、どのように制作するかの企画案をご提案します。</p>
+        <img class="step-card-img" src="https://picsum.photos/seed/step2/400/320" alt="企画構成案提示のイメージ">
+        <div class="step-card-body">
+          <div class="step-number">2</div>
+          <h3>企画構成案提示</h3>
+          <p>ヒアリング内容をもとに、どんな動画を、どのように制作するかの企画案をご提案します。</p>
+        </div>
+      </div>
+      <div class="step-arrow">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="2,4 22,12 2,20"/></svg>
       </div>
       <div class="step-card">
-        <div class="step-number">3</div>
-        <h3>撮影編集</h3>
-        <p>ご承認いただいた企画に基づき、撮影・編集を実施。月10本の動画を制作します。</p>
+        <img class="step-card-img" src="https://picsum.photos/seed/step3/400/320" alt="撮影編集のイメージ">
+        <div class="step-card-body">
+          <div class="step-number">3</div>
+          <h3>撮影編集</h3>
+          <p>ご承認いただいた企画に基づき、撮影・編集を実施。月10本の動画を制作します。</p>
+        </div>
+      </div>
+      <div class="step-arrow">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polygon points="2,4 22,12 2,20"/></svg>
       </div>
       <div class="step-card">
-        <div class="step-number">4</div>
-        <h3>納品・サポート</h3>
-        <p>完成した動画をお渡しします。3ヶ月～のご契約で、継続的なサポートを提供します。</p>
+        <img class="step-card-img" src="https://picsum.photos/seed/step4/400/320" alt="納品サポートのイメージ">
+        <div class="step-card-body">
+          <div class="step-number">4</div>
+          <h3>納品・サポート</h3>
+          <p>完成した動画をお渡しします。3ヶ月～のご契約で、継続的なサポートを提供します。</p>
+        </div>
       </div>
     </div>
   </div>
@@ -671,9 +775,11 @@
         <p>ショート動画を通じて、『野外活動をメインにした、のびのびした教育観』が伝わってきました。その思想に共感して、福岡から山梨に引っ越してでも、この職場で働きたいと思いました。</p>
       </div>
       <div class="profile">
-        <h3>講師紹介</h3>
         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="講師のプロフィール写真" class="profile-image">
-        <p>看護師として3社転職したからこそ分かったこと：企業の思想が候補者に伝わっていないから、ミスマッチが起きるんです。だから、ショート動画でその思想を継続的に発信することで、『本当にこの職場で働きたい』と思う人材が集まる仕組みを作りました。</p>
+        <div class="profile-body">
+          <h3>講師紹介</h3>
+          <p>看護師として3社転職したからこそ分かったこと：企業の思想が候補者に伝わっていないから、ミスマッチが起きるんです。だから、ショート動画でその思想を継続的に発信することで、『本当にこの職場で働きたい』と思う人材が集まる仕組みを作りました。</p>
+        </div>
       </div>
     </div>
   </div>
