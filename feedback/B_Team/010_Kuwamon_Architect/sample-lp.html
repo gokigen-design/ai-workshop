@@ -86,10 +86,13 @@
       grid-template-columns: 1fr 1fr;
       gap: 48px;
       align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(48px, 8vw, 80px) clamp(24px, 5vw, 48px);
     }
 
     .fv-text {
-      max-width: 500px;
+      max-width: 520px;
     }
 
     .fv-text h1 {
@@ -151,27 +154,42 @@
     }
 
     .problem-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
     .problem-item {
       display: flex;
-      gap: 12px;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid #f0ebe3;
     }
 
-    .problem-item::before {
-      content: "☑";
+    .problem-item:last-child { border-bottom: none; }
+
+    .problem-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(184,155,111,0.15), rgba(184,155,111,0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .problem-icon svg {
+      width: 22px;
+      height: 22px;
       color: var(--accent);
-      font-weight: bold;
-      flex-shrink: 0;
-      font-size: 18px;
     }
 
     .problem-item p {
       margin: 0;
-      font-size: clamp(14px, 1.8vw, 16px);
+      font-size: clamp(16px, 2.2vw, 18px);
+      line-height: 1.7;
     }
 
     .problem-text {
@@ -203,20 +221,43 @@
     }
 
     .benefit-item {
-      padding: 24px;
-      background: var(--bg);
-      border-radius: 6px;
-      border-left: 4px solid var(--accent);
+      padding: 28px 24px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border-top: 3px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .benefit-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(184,155,111,0.2), rgba(184,155,111,0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .benefit-icon svg {
+      width: 26px;
+      height: 26px;
+      color: var(--accent);
     }
 
     .benefit-item h3 {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      font-size: clamp(16px, 2.2vw, 19px);
     }
 
     .benefit-item p {
       margin: 0;
       font-size: clamp(14px, 1.8vw, 16px);
       color: var(--text-secondary);
+      line-height: 1.8;
     }
 
     /* ========== Services Section ========== */
@@ -615,27 +656,35 @@
       <div class="problems">
         <div class="problem-list">
           <div class="problem-item">
+            <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <p>毎日やることに追われ、自分の時間がほとんどない</p>
           </div>
           <div class="problem-item">
+            <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
             <p>家族や仕事を優先して、自分のことはいつも後回し</p>
           </div>
           <div class="problem-item">
+            <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
             <p>なんとなくイライラしたり、モヤモヤしたりすることが増えた</p>
           </div>
           <div class="problem-item">
+            <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
             <p>気分転換したいけれど、何をしたらいいかわからない</p>
           </div>
           <div class="problem-item">
+            <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
             <p>SNSを見ているうちに一日が終わってしまう</p>
           </div>
           <div class="problem-item">
+            <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
             <p>子育てが落ち着いてきたけれど、新しい楽しみが見つからない</p>
           </div>
           <div class="problem-item">
+            <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
             <p>趣味を始めたいけれど、一歩踏み出せない</p>
           </div>
           <div class="problem-item">
+            <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
             <p>自分のために時間やお金を使うことに少し罪悪感がある</p>
           </div>
         </div>
@@ -654,22 +703,27 @@
       <div class="benefits">
         <div class="benefit-grid">
           <div class="benefit-item">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
             <h3>無心になれる</h3>
             <p>花を選び、色を重ねる時間の中で、日頃のイライラやモヤモヤを忘れ、心を整える。</p>
           </div>
           <div class="benefit-item">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <h3>特別な作品が手に入る</h3>
             <p>完成した作品は、どれひとつ同じものがない、あなただけのキャンドル。</p>
           </div>
           <div class="benefit-item">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
             <h3>達成感を持ち帰れる</h3>
             <p>「どの作品よりも私の作品が一番かわいい」そんな嬉しい気持ちと一緒にお帰りください。</p>
           </div>
           <div class="benefit-item">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
             <h3>自分らしさを表現できる</h3>
             <p>選ぶ花や色はその時々の自分らしさを映し出す。毎回違う魅力を持つ作品が生まれます。</p>
           </div>
           <div class="benefit-item">
+            <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
             <h3>思い出とともに帰宅</h3>
             <p>お部屋に飾ったり灯したりするたびに、ワークショップで過ごした心がゆるむ時間を思い出せます。</p>
           </div>
