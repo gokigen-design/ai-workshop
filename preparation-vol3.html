@@ -6411,6 +6411,17 @@
 
     <div id="advice-list-container" class="advice-list"></div>
 
+    <!-- 全画面アドバイス・モーダル -->
+    <div id="advice-modal" class="adv-modal" onclick="if(event.target===this)closeAdviceModal()">
+      <div class="adv-modal-card">
+        <div class="adv-modal-head">
+          <div id="adv-modal-head-left" class="adv-modal-head-left"></div>
+          <button type="button" class="adv-modal-close" onclick="closeAdviceModal()" aria-label="閉じる"></button>
+        </div>
+        <div id="adv-modal-body" class="adv-modal-body"></div>
+      </div>
+    </div>
+
     <style>
       .advice-list {
         display: flex;
@@ -6542,8 +6553,160 @@
         color: var(--black);
         margin: 0;
       }
+
+      /* ── タップして開くタイル ── */
+      .adv-tile {
+        cursor: pointer;
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: #fff;
+      }
+      .adv-tile:hover,
+      .adv-tile:focus-visible {
+        background: #FFF0F7;
+        border-color: #EC4899;
+        box-shadow: 0 6px 18px rgba(236,72,153,0.16);
+        outline: none;
+      }
+      .adv-open-ico {
+        margin-left: auto;
+        width: 24px; height: 24px;
+        border-radius: 50%;
+        background: #FCE7F3;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .adv-open-ico::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 44%;
+        width: 7px; height: 7px;
+        border-top: 2px solid #DB2777;
+        border-right: 2px solid #DB2777;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      .adv-tile-hint {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #DB2777;
+      }
+
+      /* ── 重要部分の強調（マゼンタピンク）── */
+      .adv-hl {
+        color: #D6206E;
+        font-weight: 700;
+      }
+
+      /* ── 全画面モーダル ── */
+      .adv-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(22,24,40,0.55);
+        display: none;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .adv-modal.open { display: block; }
+      .adv-modal-card {
+        background: #fff;
+        width: min(680px, 92vw);
+        margin: 40px auto;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.32);
+        font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      }
+      .adv-modal-head {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 18px;
+        border-bottom: 1px solid #F1E3EC;
+        z-index: 2;
+      }
+      .adv-modal-head-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+        min-width: 0;
+      }
+      .adv-modal-name {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--black);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .adv-modal-close {
+        margin-left: auto;
+        width: 36px; height: 36px;
+        border: none;
+        border-radius: 50%;
+        background: #F3F4F6;
+        cursor: pointer;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .adv-modal-close:hover { background: #FCE7F3; }
+      .adv-modal-close::before,
+      .adv-modal-close::after {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 16px; height: 2px;
+        background: #555;
+        border-radius: 1px;
+      }
+      .adv-modal-close::before { transform: translate(-50%,-50%) rotate(45deg); }
+      .adv-modal-close::after { transform: translate(-50%,-50%) rotate(-45deg); }
+      .adv-modal-body {
+        padding: 18px 22px 32px;
+      }
+      .adv-modal-body .advice-block p {
+        font-size: 15.5px;
+        line-height: 2.05;
+      }
+      .adv-modal-body .adv-hl {
+        font-size: 16px;
+      }
+      @media (max-width: 600px) {
+        .adv-modal-card { width: 94vw; margin: 16px auto; border-radius: 14px; }
+        .adv-modal-body { padding: 16px 16px 28px; }
+        .adv-modal-body .advice-block p { font-size: 15px; }
+      }
     </style>
   </section>
+
+  <script>
+    function openAdviceModal(i){
+      var list = window.ADVICE_MODAL || [];
+      var d = list[i];
+      if(!d) return;
+      var head = document.getElementById('adv-modal-head-left');
+      if(head) head.innerHTML = '<span class="advice-num">' + d.num + '</span>' + d.teamBadge + '<span class="adv-modal-name">' + d.name + '</span>';
+      var body = document.getElementById('adv-modal-body');
+      if(body) body.innerHTML = d.igBadge + d.body;
+      var m = document.getElementById('advice-modal');
+      if(m){ m.classList.add('open'); m.scrollTop = 0; }
+      document.body.style.overflow = 'hidden';
+    }
+    function closeAdviceModal(){
+      var m = document.getElementById('advice-modal');
+      if(m) m.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAdviceModal(); });
+  </script>
 
   <!-- ═══ TAB 7: 用語集 ═══ -->
   <!-- ═══ TAB: AIっぽさをなくすプロンプト ═══ -->
@@ -11455,6 +11618,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       function renderAdviceList() {
         var el = document.getElementById('advice-list-container');
         if (!el) return;
+        window.ADVICE_MODAL = [];
         if (PARTICIPANTS.length === 0) {
           el.innerHTML =
             '<div style="background:#F0F7FF;border:1.5px dashed #93C5FD;border-radius:12px;padding:32px 24px;text-align:center;">' +
@@ -11511,24 +11675,31 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
               sampleBtn +
               refsHtml +
             '</div>' : '';
-          return '<details class="advice-item">' +
-            '<summary>' +
+          var adviceP = '<p>' + escapeHtml(advice).replace(/\n/g, '<br>').replace(/【([^】]+)】/g, '<span class="adv-hl">【$1】</span>') + '</p>';
+          var bodyHtml = linksBlock +
+            '<div class="advice-block">' +
+              '<div class="advice-from">From <strong>私たち</strong></div>' +
+              adviceP +
+            '</div>';
+          var igBadge = igLink ? '<div class="advice-srow" style="padding-left:2px;">' + igLink + '</div>' : '';
+          var modalIdx = window.ADVICE_MODAL.length;
+          window.ADVICE_MODAL.push({
+            num: String(num).padStart(2, '0'),
+            teamBadge: teamBadge,
+            name: escapeHtml(p.name),
+            igBadge: igBadge,
+            body: bodyHtml
+          });
+          return '<div class="advice-item adv-tile" role="button" tabindex="0" onclick="openAdviceModal(' + modalIdx + ')" onkeydown="if(event.key===\'Enter\'){openAdviceModal(' + modalIdx + ')}">' +
               '<div class="advice-srow">' +
                 '<span class="advice-num">' + String(num).padStart(2, '0') + '</span>' +
                 teamBadge +
                 '<span class="advice-name">' + escapeHtml(p.name) + '</span>' +
-                '<span class="advice-toggle"></span>' +
+                '<span class="adv-open-ico"></span>' +
               '</div>' +
-              (igLink ? '<div class="advice-srow" style="padding-left:2px;">' + igLink + '</div>' : '') +
-            '</summary>' +
-            '<div class="advice-body">' +
-              linksBlock +
-              '<div class="advice-block">' +
-                '<div class="advice-from">From <strong>私たち</strong></div>' +
-                '<p>' + escapeHtml(advice).replace(/\n/g, '<br>') + '</p>' +
-              '</div>' +
-            '</div>' +
-          '</details>';
+              igBadge +
+              '<div class="adv-tile-hint">タップして全文を読む</div>' +
+            '</div>';
         }
 
         var counter = 0;
