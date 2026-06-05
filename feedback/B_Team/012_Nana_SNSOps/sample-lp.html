@@ -411,6 +411,93 @@
       }
     }
 
+    /* Reason Cards (このサービスを選ぶ理由) */
+    .reason-wrap {
+      margin-bottom: 32px;
+    }
+
+    .reason-heading {
+      text-align: center;
+      font-size: clamp(20px, 5vw, 26px);
+      margin-bottom: 40px;
+    }
+
+    .reason-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .reason-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 36px 28px;
+      border-top: 4px solid var(--accent);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .reason-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(232, 149, 107, 0.18);
+    }
+
+    .reason-card-head {
+      position: relative;
+      padding-left: 38px;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--text-dark);
+      margin-bottom: 18px;
+    }
+
+    .reason-card-head:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .reason-card-body {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--text-sub);
+    }
+
+    .reason-emotion {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .reason-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .reason-card {
+        padding: 28px 24px;
+      }
+
+      .reason-card-head {
+        font-size: 18px;
+      }
+    }
+
     .reason-block {
       background: white;
       padding: 32px;
@@ -800,24 +887,20 @@
         </p>
       </div>
 
-      <div class="reason-block">
-        <h3>このサービスを選ぶ理由</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 24px;">
-          <div>
-            <strong style="color: var(--accent); font-size: 14px;">【機能的な理由】</strong>
-            <ul class="reason-list">
-              <li>撮影＋編集＋SNS視点が全部入り</li>
-              <li>リール編集だけ頼んだ料金で、撮影と企画もついてくる</li>
-              <li>撮影料は0円（編集料＋交通費のみ）</li>
-            </ul>
+      <div class="reason-wrap">
+        <h3 class="reason-heading">このサービスを選ぶ理由</h3>
+        <div class="reason-cards">
+          <div class="reason-card">
+            <div class="reason-card-head">撮影・編集・SNS視点が全部入り</div>
+            <div class="reason-card-body">撮影も編集も企画も、まるごとお任せ。<br><span class="reason-emotion">あなたの世界観を、そのままSNSへ届けられる。</span></div>
           </div>
-          <div>
-            <strong style="color: var(--accent); font-size: 14px;">【情緒的な理由】</strong>
-            <ul class="reason-list">
-              <li>あなたの世界観を、そのままSNSへ</li>
-              <li>「一緒にアカウントを作る体験」</li>
-              <li>「世界観で選ばれる」発信に変わる</li>
-            </ul>
+          <div class="reason-card">
+            <div class="reason-card-head">リール編集だけの料金で、撮影と企画つき</div>
+            <div class="reason-card-body">バラバラに頼むより、ぐっとお得。<br><span class="reason-emotion">「一緒にアカウントを作る体験」が手に入る。</span></div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-card-head">撮影料は0円（編集料＋交通費のみ）</div>
+            <div class="reason-card-body">初回限定だから、はじめやすい。<br><span class="reason-emotion">「世界観で選ばれる」発信に変わっていく。</span></div>
           </div>
         </div>
       </div>
