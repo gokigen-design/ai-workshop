@@ -265,6 +265,39 @@
       border-radius: 50%;
     }
 
+    /* Step Cards */
+    .step-card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: clamp(28px, 4vw, 36px) clamp(20px, 3vw, 28px);
+      text-align: center;
+      border: 1px solid rgba(201, 123, 126, 0.1);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      transition: all 250ms ease-out;
+    }
+
+    .step-card:hover {
+      box-shadow: 0 12px 40px rgba(201, 123, 126, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(64px, 12vw, 76px);
+      height: clamp(64px, 12vw, 76px);
+      margin: 0 auto clamp(16px, 2.5vw, 20px);
+      border-radius: 50%;
+      background-color: rgba(201, 123, 126, 0.08);
+      border: 2px solid rgba(201, 123, 126, 0.25);
+      color: #C97B7E;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(15px, 2.5vw, 18px);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
     /* Accordion */
     .accordion {
       border-bottom: 1px solid rgba(201, 123, 126, 0.1);
@@ -543,20 +576,20 @@
     <h2 style="margin-bottom: clamp(32px, 5vw, 48px);">セッション内容</h2>
 
     <div class="grid-3" style="margin-bottom: clamp(48px, 8vw, 64px);">
-      <div style="text-align: center;">
-        <div style="font-size: clamp(28px, 5vw, 36px); font-weight: 600; color: #C97B7E; margin-bottom: 12px;">STEP 1</div>
+      <div class="step-card">
+        <div class="step-badge">STEP<br>1</div>
         <h3>現状整理</h3>
-        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px);">今感じている停滞感や課題を整理し、現在地を明確にします。</p>
+        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px); margin: 0;">今感じている停滞感や課題を整理し、現在地を明確にします。</p>
       </div>
-      <div style="text-align: center;">
-        <div style="font-size: clamp(28px, 5vw, 36px); font-weight: 600; color: #C97B7E; margin-bottom: 12px;">STEP 2</div>
+      <div class="step-card">
+        <div class="step-badge">STEP<br>2</div>
         <h3>ビジョン再起動</h3>
-        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px);">「本当はどう在りたいのか」「どんな未来を実現したいのか」を言語化します。</p>
+        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px); margin: 0;">「本当はどう在りたいのか」「どんな未来を実現したいのか」を言語化します。</p>
       </div>
-      <div style="text-align: center;">
-        <div style="font-size: clamp(28px, 5vw, 36px); font-weight: 600; color: #C97B7E; margin-bottom: 12px;">STEP 3</div>
+      <div class="step-card">
+        <div class="step-badge">STEP<br>3</div>
         <h3>アクション設計</h3>
-        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px);">思考・行動パターンを整理し、次のステージへの突破口を見つけます。</p>
+        <p style="color: #6a6a6a; font-size: clamp(14px, 2vw, 16px); margin: 0;">思考・行動パターンを整理し、次のステージへの突破口を見つけます。</p>
       </div>
     </div>
 
