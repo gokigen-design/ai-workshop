@@ -162,29 +162,37 @@
       text-align: center;
     }
 
-    .empathy-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+    .empathy-list {
+      max-width: 720px;
+      margin: 0 auto;
+      list-style: none;
     }
 
-    .empathy-card {
+    .empathy-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
       background: #faf8f5;
-      padding: 24px;
+      padding: 20px 24px;
       border-radius: 6px;
-      border-left: 4px solid #d97070;
-      position: relative;
+      margin-bottom: 16px;
     }
 
-    .empathy-card p {
+    .empathy-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .empathy-check {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      margin-top: 2px;
+    }
+
+    .empathy-list li p {
       font-size: 15px;
       line-height: 1.8;
-    }
-
-    @media (max-width: 768px) {
-      .empathy-grid {
-        grid-template-columns: 1fr;
-      }
+      margin: 0;
     }
 
     /* ===== Future Section ===== */
@@ -201,13 +209,27 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 32px;
+      max-width: 960px;
+      margin: 0 auto;
     }
 
     .future-item {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: clamp(24px, 4vw, 40px);
+      align-items: center;
       background: white;
-      padding: 32px;
+      padding: 24px;
       border-radius: 8px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .future-img {
+      width: 100%;
+      height: 100%;
+      min-height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
     }
 
     .future-item strong {
@@ -222,6 +244,17 @@
       color: #6a6a6a;
     }
 
+    @media (max-width: 768px) {
+      .future-item {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .future-img {
+        min-height: 200px;
+      }
+    }
+
     /* ===== Service Section ===== */
     .service {
       background-color: white;
@@ -232,48 +265,121 @@
       text-align: center;
     }
 
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(32px, 5vw, 40px);
-    }
-
-    .service-item {
-      display: flex;
-      gap: 24px;
-    }
-
-    .service-step {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      background: #d97070;
-      color: white;
-      border-radius: 50%;
-      font-weight: 700;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-
-    .service-content h3 {
-      margin-bottom: 8px;
-    }
-
-    .service-content strong {
-      color: #d97070;
-      font-weight: 700;
-    }
-
-    .service-content p {
+    .service-lead {
+      max-width: 640px;
+      margin: -24px auto 48px;
+      text-align: center;
       font-size: 15px;
+      color: #6a6a6a;
       line-height: 1.8;
     }
 
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 3vw, 28px);
+      max-width: 1080px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
+    .course-card {
+      display: flex;
+      flex-direction: column;
+      background: #faf8f5;
+      border: 1px solid #efe8e0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .course-card.featured {
+      border: 2px solid #d97070;
+    }
+
+    .course-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .course-head {
+      padding: 24px 24px 16px;
+      text-align: center;
+      border-bottom: 1px solid #efe8e0;
+    }
+
+    .course-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #d97070;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .course-name {
+      font: clamp(17px, 4vw, 20px) / 1.4 'Zen Maru Gothic', sans-serif;
+      color: #1e1e1e;
+      margin-bottom: 12px;
+    }
+
+    .course-price {
+      font-size: 15px;
+      color: #6a6a6a;
+    }
+
+    .course-price b {
+      font-size: clamp(22px, 5vw, 28px);
+      color: #1e1e1e;
+      font-weight: 700;
+    }
+
+    .course-body {
+      padding: 24px;
+      flex-grow: 1;
+    }
+
+    .course-desc {
+      font-size: 14px;
+      color: #6a6a6a;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .course-feats {
+      list-style: none;
+    }
+
+    .course-feats li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .course-feats li:last-child {
+      margin-bottom: 0;
+    }
+
+    .course-feats li.off {
+      color: #b8b0a8;
+    }
+
+    .feat-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+    }
+
     @media (max-width: 768px) {
-      .service-grid {
+      .course-grid {
         grid-template-columns: 1fr;
+        max-width: 420px;
       }
     }
 
@@ -575,23 +681,43 @@
   <section class="empathy">
     <div class="container">
       <h2 style="margin-bottom: 48px; text-align: center;">こんなお悩みありませんか？</h2>
-      <div class="empathy-grid">
-        <div class="empathy-card">
+      <ul class="empathy-list">
+        <li>
+          <svg class="empathy-check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="#d97070"/>
+            <path d="M7 12.5L10.5 16L17 8.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <p>告知文を書いても「これで伝わってるのかな」と不安なまま投稿している</p>
-        </div>
-        <div class="empathy-card">
+        </li>
+        <li>
+          <svg class="empathy-check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="#d97070"/>
+            <path d="M7 12.5L10.5 16L17 8.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <p>バナーやビジュアルを自分で作っているけど、なんかプロっぽくならない</p>
-        </div>
-        <div class="empathy-card">
+        </li>
+        <li>
+          <svg class="empathy-check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="#d97070"/>
+            <path d="M7 12.5L10.5 16L17 8.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <p>プロモーション中、誰にも相談できなくて不安を一人で抱えたまま当日を迎えている</p>
-        </div>
-        <div class="empathy-card">
+        </li>
+        <li>
+          <svg class="empathy-check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="#d97070"/>
+            <path d="M7 12.5L10.5 16L17 8.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <p>やることが多すぎて、プロモーションに時間と手が全然追いつかない</p>
-        </div>
-        <div class="empathy-card">
+        </li>
+        <li>
+          <svg class="empathy-check" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="#d97070"/>
+            <path d="M7 12.5L10.5 16L17 8.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <p>毎回やり方を変えて工夫しているのに、なぜか結果が変わらない</p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -601,20 +727,32 @@
       <h2 style="margin-bottom: 48px; text-align: center;">このサービスを受けると</h2>
       <div class="future-grid">
         <div class="future-item">
-          <strong>自分では思いつかなかった戦略が生まれる</strong>
-          <p>「そのアイディア、なかった！」という瞬間が、プロモーションへの自信に変わる</p>
+          <img src="https://picsum.photos/400/300?random=11" alt="戦略を一緒に設計する様子" class="future-img">
+          <div>
+            <strong>自分では思いつかなかった戦略が生まれる</strong>
+            <p>「そのアイディア、なかった！」という瞬間が、プロモーションへの自信に変わる</p>
+          </div>
         </div>
         <div class="future-item">
-          <strong>配信文もバナーも、おまかせでいい</strong>
-          <p>苦手な制作作業から解放されて、本来の仕事に集中できる</p>
+          <img src="https://picsum.photos/400/300?random=12" alt="制作作業をおまかせするイメージ" class="future-img">
+          <div>
+            <strong>配信文もバナーも、おまかせでいい</strong>
+            <p>苦手な制作作業から解放されて、本来の仕事に集中できる</p>
+          </div>
         </div>
         <div class="future-item">
-          <strong>「欲しかった」と言ってくれる人から申込みが入る</strong>
-          <p>届いた実感が、「私のサービスは必要とされている」という確信に変わる</p>
+          <img src="https://picsum.photos/400/300?random=13" alt="申込みが届いて喜ぶイメージ" class="future-img">
+          <div>
+            <strong>「欲しかった」と言ってくれる人から申込みが入る</strong>
+            <p>届いた実感が、「私のサービスは必要とされている」という確信に変わる</p>
+          </div>
         </div>
         <div class="future-item">
-          <strong>プロモーション中、一人で抱えなくていい</strong>
-          <p>孤独な作業だったプロモーションが、安心して進められるものに変わる</p>
+          <img src="https://picsum.photos/400/300?random=14" alt="一人で抱えず安心して進めるイメージ" class="future-img">
+          <div>
+            <strong>プロモーション中、一人で抱えなくていい</strong>
+            <p>孤独な作業だったプロモーションが、安心して進められるものに変わる</p>
+          </div>
         </div>
       </div>
     </div>
@@ -623,29 +761,103 @@
   <!-- ========== SERVICE SECTION ========== -->
   <section class="service">
     <div class="container">
-      <h2 style="margin-bottom: 48px; text-align: center;">サービス内容</h2>
-      <div class="service-grid">
-        <div class="service-item">
-          <div class="service-step">STEP1</div>
-          <div class="service-content">
-            <h3>戦略設計</h3>
-            <p><strong>プロモーションの全体像を一緒に設計する</strong> ── 自分では思いつかなかったアイディアが生まれるセッション</p>
+      <h2 style="margin-bottom: 24px; text-align: center;">選べる3つのコース</h2>
+      <p class="service-lead">「戦略だけ相談したい」から「全部おまかせしたい」まで。今のあなたに合うサポートを選べます。</p>
+      <div class="course-grid">
+
+        <!-- Course A -->
+        <div class="course-card">
+          <img src="https://picsum.photos/400/240?random=21" alt="戦略を一緒に設計するセッションの様子" class="course-img">
+          <div class="course-head">
+            <span class="course-tag">COURSE A</span>
+            <div class="course-name">戦略設計コース</div>
+            <p class="course-price"><b>¥○○,○○○</b>（税込）</p>
+          </div>
+          <div class="course-body">
+            <p class="course-desc">プロモーションの全体像を一緒に設計する。自分では思いつかなかったアイディアが生まれるセッション。</p>
+            <ul class="course-feats">
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                プロモーション全体の戦略設計
+              </li>
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                ターゲット・打ち出しの整理
+              </li>
+              <li class="off">
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#e3dcd4"/><path d="M8.5 12H15.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+                配信文・バナー制作
+              </li>
+              <li class="off">
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#e3dcd4"/><path d="M8.5 12H15.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+                期間中の都度相談・伴走
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="service-item">
-          <div class="service-step">STEP2</div>
-          <div class="service-content">
-            <h3>制作・実務サポート</h3>
-            <p><strong>配信文・バナー制作から裏側の事務作業まで、全部おまかせ</strong> ── やることリストから「プロモーション作業」が消える</p>
+
+        <!-- Course B -->
+        <div class="course-card">
+          <img src="https://picsum.photos/400/240?random=22" alt="配信文やバナーを制作する様子" class="course-img">
+          <div class="course-head">
+            <span class="course-tag">COURSE B</span>
+            <div class="course-name">制作込みコース</div>
+            <p class="course-price"><b>¥○○,○○○</b>（税込）</p>
+          </div>
+          <div class="course-body">
+            <p class="course-desc">戦略設計に加えて、配信文・バナー制作から裏側の事務作業まで全部おまかせ。やることリストから「プロモーション作業」が消える。</p>
+            <ul class="course-feats">
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                プロモーション全体の戦略設計
+              </li>
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                ターゲット・打ち出しの整理
+              </li>
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                配信文・バナー制作・事務作業
+              </li>
+              <li class="off">
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#e3dcd4"/><path d="M8.5 12H15.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+                期間中の都度相談・伴走
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="service-item">
-          <div class="service-step">STEP3</div>
-          <div class="service-content">
-            <h3>伴走サポート</h3>
-            <p><strong>プロモーション期間中、都度相談・メンタルケアも対応（2ヶ月半）</strong> ── 迷ったとき・不安なとき、すぐに聞ける人がいる安心感</p>
+
+        <!-- Course C (featured) -->
+        <div class="course-card featured">
+          <img src="https://picsum.photos/400/240?random=23" alt="プロモーション期間中に伴走サポートする様子" class="course-img">
+          <div class="course-head">
+            <span class="course-tag">COURSE C</span>
+            <div class="course-name">全部おまかせ伴走コース</div>
+            <p class="course-price"><b>¥○○,○○○</b>（税込）</p>
+          </div>
+          <div class="course-body">
+            <p class="course-desc">戦略・制作に加えて、プロモーション期間中（2ヶ月半）の都度相談・メンタルケアまで対応。迷ったとき・不安なとき、すぐに聞ける人がいる安心感。</p>
+            <ul class="course-feats">
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                プロモーション全体の戦略設計
+              </li>
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                ターゲット・打ち出しの整理
+              </li>
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                配信文・バナー制作・事務作業
+              </li>
+              <li>
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#d97070"/><path d="M7 12.5L10.5 16L17 8.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                期間中（2ヶ月半）の都度相談・伴走
+              </li>
+            </ul>
           </div>
         </div>
+
       </div>
     </div>
   </section>
