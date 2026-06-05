@@ -88,6 +88,10 @@
       align-items: center;
     }
 
+    .fv-text {
+      max-width: 500px;
+    }
+
     .fv-text h1 {
       color: var(--text);
       margin-bottom: 24px;
@@ -150,7 +154,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
-      margin-bottom: 40px;
     }
 
     .problem-item {
@@ -172,9 +175,11 @@
     }
 
     .problem-text {
-      margin-top: 32px;
-      padding-top: 32px;
-      border-top: 2px solid var(--bg);
+      background: white;
+      border-radius: 8px;
+      padding: clamp(32px, 5vw, 48px);
+      box-shadow: var(--shadow);
+      margin-top: clamp(24px, 4vw, 32px);
     }
 
     /* ========== Benefits Section ========== */
@@ -227,6 +232,33 @@
       margin-bottom: 32px;
     }
 
+    .service-box.workshop-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .workshop-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .workshop-image {
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(135deg, rgba(184, 155, 111, 0.1) 0%, rgba(184, 155, 111, 0.05) 100%);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .workshop-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .service-box h3 {
       margin-bottom: 16px;
     }
@@ -234,16 +266,53 @@
     .course-list {
       list-style: none;
       margin: 24px 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
     }
 
     .course-list li {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--bg);
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 24px;
+      align-items: center;
       font-size: clamp(14px, 1.8vw, 16px);
     }
 
-    .course-list li:last-child {
-      border-bottom: none;
+    .course-item-image {
+      width: 150px;
+      height: 150px;
+      background: white;
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .course-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .course-item-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .course-item-name {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .course-item-price {
+      color: var(--accent);
+      font-weight: 600;
     }
 
     /* ========== Profile Section ========== */
@@ -368,11 +437,32 @@
 
     /* ========== Closing Section ========== */
     .closing {
-      background: linear-gradient(135deg, rgba(184, 155, 111, 0.08) 0%, rgba(184, 155, 111, 0.04) 100%);
+      background-image: url('https://images.unsplash.com/photo-1602188113235-7d7409b919cd?w=1200&h=800&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       border-radius: 8px;
       padding: clamp(40px, 8vw, 60px);
       margin-top: clamp(48px, 10vw, 80px);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: 1;
+    }
+
+    .closing > * {
+      position: relative;
+      z-index: 2;
     }
 
     .closing h2 {
@@ -442,6 +532,25 @@
 
       .testimonial-grid {
         grid-template-columns: 1fr;
+      }
+
+      .course-list li {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .course-item-image {
+        width: 100%;
+        height: 200px;
+      }
+
+      .service-box.workshop-info {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .workshop-image {
+        height: 300px;
       }
 
       .btn-primary {
@@ -530,12 +639,12 @@
             <p>自分のために時間やお金を使うことに少し罪悪感がある</p>
           </div>
         </div>
-        <div class="problem-text">
-          <p>もしひとつでも当てはまるなら、それは「もっと自分を大切にしたい」という心からのサインかもしれません。</p>
-          <p>40代、50代になると、仕事や家事、子育て、介護など、たくさんの役割を抱えながら毎日を過ごしています。</p>
-          <p>いつも誰かのために頑張っているからこそ、知らないうちに心も体も疲れてしまうもの。</p>
-          <p><strong>でも本当は、何かを頑張る時間ではなく、ただ夢中になって、自分の心を休ませる時間が必要です。</strong></p>
-        </div>
+      </div>
+      <div class="problem-text">
+        <p>もしひとつでも当てはまるなら、それは「もっと自分を大切にしたい」という心からのサインかもしれません。</p>
+        <p>40代、50代になると、仕事や家事、子育て、介護など、たくさんの役割を抱えながら毎日を過ごしています。</p>
+        <p>いつも誰かのために頑張っているからこそ、知らないうちに心も体も疲れてしまうもの。</p>
+        <p><strong>でも本当は、何かを頑張る時間ではなく、ただ夢中になって、自分の心を休ませる時間が必要です。</strong></p>
       </div>
     </section>
 
@@ -583,20 +692,65 @@
       <div class="service-box">
         <h3>制作できる作品</h3>
         <ul class="course-list">
-          <li>ボタニカルキャンドル　6,000円（税込）</li>
-          <li>アロマキャンドル　4,500円（税込）</li>
-          <li>アロマサシェ（2個制作）　5,000円（税込）</li>
-          <li>ビー玉キャンドル　3,500円（税込）</li>
-          <li>グラデーションキャンドル　3,500円（税込）</li>
+          <li>
+            <div class="course-item-image">
+              <img src="https://images.unsplash.com/photo-1602188113235-7d7409b919cd?w=200&h=200&fit=crop" alt="ボタニカルキャンドル">
+            </div>
+            <div class="course-item-text">
+              <div class="course-item-name">ボタニカルキャンドル</div>
+              <div class="course-item-price">6,000円（税込）</div>
+            </div>
+          </li>
+          <li>
+            <div class="course-item-image">
+              <img src="https://images.unsplash.com/photo-1615525304580-27aa8e5baed1?w=200&h=200&fit=crop" alt="アロマキャンドル">
+            </div>
+            <div class="course-item-text">
+              <div class="course-item-name">アロマキャンドル</div>
+              <div class="course-item-price">4,500円（税込）</div>
+            </div>
+          </li>
+          <li>
+            <div class="course-item-image">
+              <img src="https://images.unsplash.com/photo-1622494564551-aec67f3e08bb?w=200&h=200&fit=crop" alt="アロマサシェ">
+            </div>
+            <div class="course-item-text">
+              <div class="course-item-name">アロマサシェ（2個制作）</div>
+              <div class="course-item-price">5,000円（税込）</div>
+            </div>
+          </li>
+          <li>
+            <div class="course-item-image">
+              <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=200&h=200&fit=crop" alt="ビー玉キャンドル">
+            </div>
+            <div class="course-item-text">
+              <div class="course-item-name">ビー玉キャンドル</div>
+              <div class="course-item-price">3,500円（税込）</div>
+            </div>
+          </li>
+          <li>
+            <div class="course-item-image">
+              <img src="https://images.unsplash.com/photo-1603006905925-868d53d5b22c?w=200&h=200&fit=crop" alt="グラデーションキャンドル">
+            </div>
+            <div class="course-item-text">
+              <div class="course-item-name">グラデーションキャンドル</div>
+              <div class="course-item-price">3,500円（税込）</div>
+            </div>
+          </li>
         </ul>
       </div>
 
-      <div class="service-box">
-        <h3>ワークショップについて</h3>
-        <p><strong>開催場所：</strong>Lyömiサロン</p>
-        <p><strong>定員：</strong>4名</p>
-        <p><strong>所要時間：</strong>作品によって異なります</p>
-        <p>初心者の方も安心してご参加いただけます。少人数制だからこそ、ゆったりとした時間を大切にしながら、一人ひとりのペースに合わせてサポートいたします。</p>
+      <div class="service-box workshop-info">
+        <div class="workshop-text">
+          <h3>ワークショップについて</h3>
+          <p><strong>開催場所：</strong>Lyömiサロン</p>
+          <p><strong>定員：</strong>4名</p>
+          <p><strong>所要時間：</strong>作品によって異なります</p>
+          <p>初心者の方も安心してご参加いただけます。少人数制だからこそ、ゆったりとした時間を大切にしながら、一人ひとりのペースに合わせてサポートいたします。</p>
+        </div>
+        <div class="workshop-image">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=500&fit=crop" alt="Lyömiサロンの写真">
+        </div>
       </div>
 
       <div class="service-box">
