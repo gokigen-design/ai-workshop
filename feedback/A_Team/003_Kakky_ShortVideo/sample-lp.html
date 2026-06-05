@@ -175,17 +175,32 @@
     }
 
     .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 32px;
       margin-top: 40px;
     }
 
     .benefit-card {
       background: white;
-      padding: 32px;
       border-radius: 8px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      align-items: stretch;
+    }
+
+    .benefit-card-img {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .benefit-card-body {
+      padding: 32px;
     }
 
     .benefit-card h3 {
@@ -197,6 +212,17 @@
       font-size: clamp(15px, 1.8vw, 17px);
       color: #6a6a6a;
       line-height: 1.8;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .benefit-card {
+        grid-template-columns: 1fr;
+      }
+      .benefit-card-img {
+        min-height: 180px;
+        height: 180px;
+      }
     }
 
     /* ━━━━━ 解決方法セクション ━━━━━ */
@@ -579,16 +605,25 @@
     <h2>このサービスを受けると</h2>
     <div class="benefits-grid">
       <div class="benefit-card">
-        <h3>採用コストの無駄が削減される</h3>
-        <p>毎月の『原因不明の離職』が減り、人件費がかさむ悪循環から抜け出す。採用担当としての心理的な負担が軽くなる。</p>
+        <img class="benefit-card-img" src="https://picsum.photos/seed/benefit1/560/400" alt="採用コスト削減のイメージ">
+        <div class="benefit-card-body">
+          <h3>採用コストの無駄が削減される</h3>
+          <p>毎月の『原因不明の離職』が減り、人件費がかさむ悪循環から抜け出す。採用担当としての心理的な負担が軽くなる。</p>
+        </div>
       </div>
       <div class="benefit-card">
-        <h3>採用成功率が向上する</h3>
-        <p>採用候補者が『本当の職場』を知った上で応募してくるようになる。『合わない人は最初から応募しない』という自然な選別が起きる。</p>
+        <img class="benefit-card-img" src="https://picsum.photos/seed/benefit2/560/400" alt="採用成功率向上のイメージ">
+        <div class="benefit-card-body">
+          <h3>採用成功率が向上する</h3>
+          <p>採用候補者が『本当の職場』を知った上で応募してくるようになる。『合わない人は最初から応募しない』という自然な選別が起きる。</p>
+        </div>
       </div>
       <div class="benefit-card">
-        <h3>予測可能な採用計画が立てられる</h3>
-        <p>採用と定着のループが安定し、毎月『新しい人を探す』というサイクルから解放される。組織運営の見通しが立つ。</p>
+        <img class="benefit-card-img" src="https://picsum.photos/seed/benefit3/560/400" alt="採用計画のイメージ">
+        <div class="benefit-card-body">
+          <h3>予測可能な採用計画が立てられる</h3>
+          <p>採用と定着のループが安定し、毎月『新しい人を探す』というサイクルから解放される。組織運営の見通しが立つ。</p>
+        </div>
       </div>
     </div>
   </div>
