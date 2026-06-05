@@ -498,6 +498,142 @@
       }
     }
 
+    /* Timeline (サービスの流れ) */
+    .flow-wrap {
+      margin-bottom: 32px;
+    }
+
+    .timeline {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .tl-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      position: relative;
+    }
+
+    /* 縦の接続ライン */
+    .tl-marker {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tl-marker:before {
+      content: "";
+      position: absolute;
+      top: 56px;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), #f0c9b0);
+    }
+
+    .tl-marker-last:before {
+      display: none;
+    }
+
+    .tl-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e8956b 0%, #d97a4e 100%);
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(217, 122, 78, 0.28);
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .tl-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+
+    .tl-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .tl-desc {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+
+    .tl-time {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--accent-light);
+      color: #b96a40;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+
+    .flow-note {
+      max-width: 640px;
+      margin: 32px auto 0;
+      background: var(--bg-light);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .flow-note p {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .flow-note-strong {
+      margin-top: 12px !important;
+      color: var(--accent) !important;
+      font-weight: 700;
+      font-size: 15px !important;
+    }
+
+    @media (max-width: 768px) {
+      .tl-step {
+        grid-template-columns: 48px 1fr;
+        gap: 14px;
+      }
+
+      .tl-num {
+        width: 48px;
+        height: 48px;
+        font-size: 17px;
+      }
+
+      .tl-marker:before {
+        top: 48px;
+      }
+
+      .tl-card {
+        padding: 20px;
+      }
+
+      .tl-title {
+        font-size: 17px;
+      }
+    }
+
     .reason-block {
       background: white;
       padding: 32px;
@@ -575,6 +711,62 @@
       margin-top: 24px;
       font-size: 14px;
       border-left: 4px solid var(--accent);
+    }
+
+    /* 月桂樹（ローレル）実績バッジ */
+    .achievements { margin-top: 28px; }
+    .ach-title {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+    .achievement-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-start;
+    }
+    .ach-badge {
+      flex: 1 1 96px;
+      min-width: 96px;
+      max-width: 132px;
+    }
+    .ach-wreath {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 120 / 116;
+    }
+    .ach-wreath .lw {
+      width: 100%;
+      height: 100%;
+      color: var(--accent);
+    }
+    .ach-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      text-align: center;
+    }
+    .ach-center .num {
+      font-weight: 700;
+      color: #3a2a20;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+    .ach-center .lbl {
+      font-size: 13px;
+      color: #6a5a50;
+      line-height: 1.35;
+      margin-top: 3px;
+    }
+    @media (max-width: 768px) {
+      .achievement-badges { justify-content: center; }
+      .ach-badge { flex: 0 1 30%; min-width: 92px; }
     }
 
     @media (max-width: 768px) {
@@ -905,54 +1097,56 @@
         </div>
       </div>
 
-      <div class="reason-block">
-        <h3>サービスの流れ</h3>
-        <div class="service-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Step</th>
-                <th>内容</th>
-                <th>時間</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>01</td>
-                <td>公式LINEでお問い合わせ</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>02</td>
-                <td>参考動画のご準備と送付（PDF付き）</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>03</td>
-                <td>オンラインヒアリング</td>
-                <td>約60分</td>
-              </tr>
-              <tr>
-                <td>04</td>
-                <td>撮影企画書のご提案</td>
-                <td>企画書作成4時間以上</td>
-              </tr>
-              <tr>
-                <td>05</td>
-                <td>撮影当日</td>
-                <td>3時間〜半日以内</td>
-              </tr>
-              <tr>
-                <td>06</td>
-                <td>編集＆納品</td>
-                <td>5本=約1ヶ月 / 10本=約2ヶ月 / 20本=約3ヶ月</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="flow-wrap">
+        <h3 class="reason-heading">サービスの流れ</h3>
+        <div class="timeline">
+          <div class="tl-step">
+            <div class="tl-marker"><span class="tl-num">01</span></div>
+            <div class="tl-card">
+              <div class="tl-title">公式LINEでお問い合わせ</div>
+              <div class="tl-desc">まずはお気軽にメッセージを。ここからスタートです。</div>
+            </div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><span class="tl-num">02</span></div>
+            <div class="tl-card">
+              <div class="tl-title">参考動画のご準備と送付</div>
+              <div class="tl-desc">「世界観が見つかるPDF」を見ながら、好きな動画を集めます。</div>
+            </div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><span class="tl-num">03</span></div>
+            <div class="tl-card">
+              <div class="tl-title">オンラインヒアリング</div>
+              <div class="tl-desc">あなたの想いやこだわりを、じっくりお聞きします。<span class="tl-time">約60分</span></div>
+            </div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><span class="tl-num">04</span></div>
+            <div class="tl-card">
+              <div class="tl-title">撮影企画書のご提案</div>
+              <div class="tl-desc">何をどう撮るか、台本までこちらで用意します。<span class="tl-time">企画書作成4時間以上</span></div>
+            </div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker"><span class="tl-num">05</span></div>
+            <div class="tl-card">
+              <div class="tl-title">撮影当日</div>
+              <div class="tl-desc">その場でご案内するので、撮影が初めてでも大丈夫。<span class="tl-time">3時間〜半日以内</span></div>
+            </div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-marker tl-marker-last"><span class="tl-num">06</span></div>
+            <div class="tl-card">
+              <div class="tl-title">編集＆納品</div>
+              <div class="tl-desc">できあがったものから順次お渡し。<span class="tl-time">5本=約1ヶ月 / 10本=約2ヶ月 / 20本=約3ヶ月</span></div>
+            </div>
+          </div>
         </div>
-        <p style="font-size: 14px; color: var(--text-sub); margin-top: 20px;">
-          ご予約について：一人で運営するサービスのため、お一人おひとりに集中できる体制で対応しています。ご予約枠が埋まり次第、その月の受付を終了します。現在、2026年6月下旬以降のお受付となります。
-        </p>
+        <div class="flow-note">
+          <p>一人で運営するサービスのため、お一人おひとりに集中できる体制で対応しています。ご予約枠が埋まり次第、その月の受付を終了します。</p>
+          <p class="flow-note-strong">現在、2026年6月下旬以降のお受付となります。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -977,15 +1171,43 @@
 
           <p>SNSでの人との出会いで人生が変わった私だからこそ、SNS運用代行をしています。</p>
 
-          <div class="profile-highlight">
-            <strong>これまでに作ってきた動画実績</strong><br>
-            <p style="margin: 12px 0 0 0;">
-              ・リール 1.5万回再生：企画・編集<br>
-              ・国立病院の採用動画掲載：企画・撮影・編集<br>
-              ・プロモーションリール：企画・編集<br>
-              ・ライブカット動画：企画・撮影・編集<br>
-              ・その他、250本以上の編集や撮影同行も多数あり
-            </p>
+          <div class="achievements">
+            <p class="ach-title">これまでに作ってきた動画実績</p>
+            <!-- 月桂樹（ローレル）実績バッジの共通定義 -->
+            <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+              <symbol id="laurel" viewBox="0 0 120 116">
+                <g fill="currentColor" stroke="currentColor">
+                  <path d="M60 101 C43 98 30 83 26 63 C23 47 28 33 38 23" fill="none" stroke-width="2.4" stroke-linecap="round"/>
+                  <g stroke="none">
+                    <ellipse cx="38" cy="25" rx="8" ry="3.6" transform="rotate(68 38 25)"/>
+                    <ellipse cx="30" cy="37" rx="8.5" ry="3.8" transform="rotate(40 30 37)"/>
+                    <ellipse cx="25" cy="51" rx="9" ry="4" transform="rotate(15 25 51)"/>
+                    <ellipse cx="25" cy="65" rx="9" ry="4" transform="rotate(-10 25 65)"/>
+                    <ellipse cx="31" cy="78" rx="8.5" ry="3.8" transform="rotate(-32 31 78)"/>
+                    <ellipse cx="41" cy="89" rx="7.5" ry="3.4" transform="rotate(-52 41 89)"/>
+                  </g>
+                </g>
+                <g fill="currentColor" stroke="currentColor" transform="translate(120,0) scale(-1,1)">
+                  <path d="M60 101 C43 98 30 83 26 63 C23 47 28 33 38 23" fill="none" stroke-width="2.4" stroke-linecap="round"/>
+                  <g stroke="none">
+                    <ellipse cx="38" cy="25" rx="8" ry="3.6" transform="rotate(68 38 25)"/>
+                    <ellipse cx="30" cy="37" rx="8.5" ry="3.8" transform="rotate(40 30 37)"/>
+                    <ellipse cx="25" cy="51" rx="9" ry="4" transform="rotate(15 25 51)"/>
+                    <ellipse cx="25" cy="65" rx="9" ry="4" transform="rotate(-10 25 65)"/>
+                    <ellipse cx="31" cy="78" rx="8.5" ry="3.8" transform="rotate(-32 31 78)"/>
+                    <ellipse cx="41" cy="89" rx="7.5" ry="3.4" transform="rotate(-52 41 89)"/>
+                  </g>
+                </g>
+                <circle cx="60" cy="101" r="3.4" fill="currentColor"/>
+              </symbol>
+            </svg>
+            <div class="achievement-badges">
+              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">1.5万</span><span class="lbl">回再生</span></span></div></div>
+              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">採用動画</span><span class="lbl">国立病院</span></span></div></div>
+              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">プロモ</span><span class="lbl">リール制作</span></span></div></div>
+              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">ライブ</span><span class="lbl">撮影・編集</span></span></div></div>
+              <div class="ach-badge"><div class="ach-wreath"><svg class="lw"><use href="#laurel"/></svg><span class="ach-center"><span class="num">250本+</span><span class="lbl">制作実績</span></span></div></div>
+            </div>
           </div>
 
           <p style="margin-top: 24px;">Instagram：<a href="https://instagram.com/yours.7ms" target="_blank">@yours.7ms</a></p>
