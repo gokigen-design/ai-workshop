@@ -411,90 +411,99 @@
       }
     }
 
-    /* Reason Cards (このサービスを選ぶ理由) */
-    .reason-wrap {
-      margin-bottom: 32px;
+    /* ━━━ このサービスを選ぶ理由（横長カード縦積み） ━━━ */
+    .reason-section {
+      background: #fef0e8;
     }
 
-    .reason-heading {
+    .reason-section-head {
       text-align: center;
-      font-size: clamp(20px, 5vw, 26px);
-      margin-bottom: 40px;
+      margin-bottom: 48px;
     }
 
-    .reason-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .reason-card {
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      padding: 36px 28px;
-      border-top: 4px solid var(--accent);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .reason-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(232, 149, 107, 0.18);
-    }
-
-    .reason-card-head {
-      position: relative;
-      padding-left: 38px;
-      font-size: 19px;
+    .reason-section-head .eyebrow {
+      display: inline-block;
+      font-size: 12px;
       font-weight: 700;
-      line-height: 1.5;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .reason-rows {
+      display: grid;
+      gap: 24px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .reason-row {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+      align-items: stretch;
+    }
+
+    .reason-row-img {
+      width: 100%;
+      height: 100%;
+      min-height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .reason-row-content {
+      padding: 36px 36px 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .reason-row-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .reason-row-head {
+      font-size: clamp(17px, 3vw, 20px);
+      font-weight: 700;
+      line-height: 1.45;
       color: var(--text-dark);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
-    .reason-card-head:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 2px;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--accent);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .reason-card-body {
-      font-size: 16px;
+    .reason-row-body {
+      font-size: 15px;
       line-height: 1.9;
       color: var(--text-sub);
     }
 
     .reason-emotion {
       display: inline-block;
-      margin-top: 8px;
+      margin-top: 10px;
       color: var(--accent);
       font-weight: 600;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     @media (max-width: 768px) {
-      .reason-cards {
+      .reason-row {
         grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 480px;
-        margin-left: auto;
-        margin-right: auto;
       }
-
-      .reason-card {
+      .reason-row-img {
+        min-height: 200px;
+        height: 200px;
+        width: 100%;
+      }
+      .reason-row-content {
         padding: 28px 24px;
-      }
-
-      .reason-card-head {
-        font-size: 18px;
       }
     }
 
@@ -945,6 +954,113 @@
       }
     }
 
+    /* ━━━ QUALITYスマホモック ━━━ */
+    .quality-phones-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+    }
+    .quality-phones-row::-webkit-scrollbar { display: none; }
+
+    .quality-phone-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .quality-phone-frame {
+      position: relative;
+      width: 150px;
+      height: 268px;
+      background: #0a0a0a;
+      border-radius: 30px;
+      padding: 7px;
+      box-shadow:
+        0 0 0 1px #3a3a3a,
+        inset 0 0 0 1px #111,
+        0 24px 56px rgba(0,0,0,0.15);
+    }
+    .quality-phone-frame::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 12px;
+      background: #0a0a0a;
+      border-radius: 8px;
+      z-index: 10;
+    }
+    .quality-phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      background: #1a1a1a;
+    }
+    .quality-phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .quality-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.22);
+    }
+    .quality-play-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .quality-play-btn svg { width: 16px; height: 16px; margin-left: 3px; }
+    .quality-phone-caption {
+      text-align: center;
+      color: var(--text-sub);
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 150px;
+    }
+
+    /* ━━━ タイムラインアイコン ━━━ */
+    .tl-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .tl-icon svg {
+      width: 19px;
+      height: 19px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     /* Animation for scroll reveal */
     @keyframes fadeInUp {
       from {
@@ -1006,61 +1122,67 @@
         <p style="color:#aaa; font-size:13px;">※ タップでカルーセル投稿をプレビューできます（実績写真は後ほど差し替え）</p>
       </div>
 
-      <!-- ギャラリーグリッド（プレースホルダー） -->
-      <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:12px; max-width:960px; margin: 0 auto;">
-        <!-- 上段4枚 -->
-        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f5f0eb,#ede0d0); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
-          </span>
-          <span style="color:#bbb; font-size:13px;">動画サムネイル①</span>
+      <div class="quality-phones-row">
+
+        <div class="quality-phone-wrap">
+          <div class="quality-phone-frame">
+            <div class="quality-phone-screen">
+              <img src="https://picsum.photos/seed/nana-q1/300/540" alt="店舗リール動画サンプル1">
+              <div class="quality-play-overlay">
+                <div class="quality-play-btn">
+                  <svg viewBox="0 0 24 24" fill="var(--accent)"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="quality-phone-caption">店舗の空気感を<br>届けるリール</p>
         </div>
-        <div style="aspect-ratio:1; background:linear-gradient(135deg,#e8f0f5,#d0e0ed); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
-          </span>
-          <span style="color:#bbb; font-size:13px;">リール動画②</span>
+
+        <div class="quality-phone-wrap">
+          <div class="quality-phone-frame">
+            <div class="quality-phone-screen">
+              <img src="https://picsum.photos/seed/nana-q2/300/540" alt="商品紹介動画サンプル2">
+              <div class="quality-play-overlay">
+                <div class="quality-play-btn">
+                  <svg viewBox="0 0 24 24" fill="var(--accent)"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="quality-phone-caption">商品・メニュー<br>紹介動画</p>
         </div>
-        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f0f5eb,#daedc8); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>5
-          </span>
-          <span style="color:#bbb; font-size:13px;">店舗紹介③</span>
+
+        <div class="quality-phone-wrap">
+          <div class="quality-phone-frame">
+            <div class="quality-phone-screen">
+              <img src="https://picsum.photos/seed/nana-q3/300/540" alt="スタッフ紹介動画サンプル3">
+              <div class="quality-play-overlay">
+                <div class="quality-play-btn">
+                  <svg viewBox="0 0 24 24" fill="var(--accent)"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="quality-phone-caption">スタッフ・<br>こだわり紹介</p>
         </div>
-        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f5ebf0,#edccd8); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>7
-          </span>
-          <span style="color:#bbb; font-size:13px;">プロモ動画④</span>
+
+        <div class="quality-phone-wrap">
+          <div class="quality-phone-frame">
+            <div class="quality-phone-screen">
+              <img src="https://picsum.photos/seed/nana-q4/300/540" alt="ビフォーアフター動画サンプル4">
+              <div class="quality-play-overlay">
+                <div class="quality-play-btn">
+                  <svg viewBox="0 0 24 24" fill="var(--accent)"><polygon points="5,3 19,12 5,21"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="quality-phone-caption">ビフォーアフター<br>動画</p>
         </div>
-        <!-- 下段4枚 -->
-        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f5f3e8,#ede8c5); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
-          </span>
-          <span style="color:#bbb; font-size:13px;">カルーセル⑤</span>
-        </div>
-        <div style="aspect-ratio:1; background:linear-gradient(135deg,#ebf0f5,#c8d8ed); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
-          </span>
-          <span style="color:#bbb; font-size:13px;">イベント動画⑥</span>
-        </div>
-        <div style="aspect-ratio:1; background:linear-gradient(135deg,#f5eceb,#edceca); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
-          </span>
-          <span style="color:#bbb; font-size:13px;">商品紹介⑦</span>
-        </div>
-        <div style="aspect-ratio:1; background:linear-gradient(135deg,#eef5ec,#cde5c8); border-radius:10px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-          <span style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px; display:flex;align-items:center;gap:3px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>8
-          </span>
-          <span style="color:#bbb; font-size:13px;">ビフォーアフター⑧</span>
-        </div>
+
       </div>
 
-      <p style="text-align:center; margin-top:20px; color:#aaa; font-size:12px;">▲ 実際の制作動画・リールに差し替えてください</p>
+      <p style="text-align:center; margin-top:28px; color:#aaa; font-size:12px;">▲ 実際の制作動画・リールに差し替えてください</p>
     </div>
   </section>
 
@@ -1147,30 +1269,15 @@
         </p>
       </div>
 
-      <div class="reason-wrap">
-        <h3 class="reason-heading">このサービスを選ぶ理由</h3>
-        <div class="reason-cards">
-          <div class="reason-card">
-            <div class="reason-card-head">撮影・編集・SNS視点が全部入り</div>
-            <div class="reason-card-body">撮影も編集も企画も、まるごとお任せ。<br><span class="reason-emotion">あなたの世界観を、そのままSNSへ届けられる。</span></div>
-          </div>
-          <div class="reason-card">
-            <div class="reason-card-head">リール編集だけの料金で、撮影と企画つき</div>
-            <div class="reason-card-body">バラバラに頼むより、ぐっとお得。<br><span class="reason-emotion">「一緒にアカウントを作る体験」が手に入る。</span></div>
-          </div>
-          <div class="reason-card">
-            <div class="reason-card-head">撮影料は0円（編集料＋交通費のみ）</div>
-            <div class="reason-card-body">初回限定だから、はじめやすい。<br><span class="reason-emotion">「世界観で選ばれる」発信に変わっていく。</span></div>
-          </div>
-        </div>
-      </div>
-
       <div class="flow-wrap">
         <h3 class="reason-heading">サービスの流れ</h3>
         <div class="timeline">
           <div class="tl-step">
             <div class="tl-marker"><span class="tl-num">01</span></div>
             <div class="tl-card">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
               <div class="tl-title">公式LINEでお問い合わせ</div>
               <div class="tl-desc">まずはお気軽にメッセージを。ここからスタートです。</div>
             </div>
@@ -1178,6 +1285,9 @@
           <div class="tl-step">
             <div class="tl-marker"><span class="tl-num">02</span></div>
             <div class="tl-card">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </div>
               <div class="tl-title">参考動画のご準備と送付</div>
               <div class="tl-desc">「世界観が見つかるPDF」を見ながら、好きな動画を集めます。</div>
             </div>
@@ -1185,6 +1295,9 @@
           <div class="tl-step">
             <div class="tl-marker"><span class="tl-num">03</span></div>
             <div class="tl-card">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              </div>
               <div class="tl-title">オンラインヒアリング</div>
               <div class="tl-desc">あなたの想いやこだわりを、じっくりお聞きします。<span class="tl-time">約60分</span></div>
             </div>
@@ -1192,6 +1305,9 @@
           <div class="tl-step">
             <div class="tl-marker"><span class="tl-num">04</span></div>
             <div class="tl-card">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
               <div class="tl-title">撮影企画書のご提案</div>
               <div class="tl-desc">何をどう撮るか、台本までこちらで用意します。<span class="tl-time">企画書作成4時間以上</span></div>
             </div>
@@ -1199,6 +1315,9 @@
           <div class="tl-step">
             <div class="tl-marker"><span class="tl-num">05</span></div>
             <div class="tl-card">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
               <div class="tl-title">撮影当日</div>
               <div class="tl-desc">その場でご案内するので、撮影が初めてでも大丈夫。<span class="tl-time">3時間〜半日以内</span></div>
             </div>
@@ -1206,6 +1325,9 @@
           <div class="tl-step">
             <div class="tl-marker tl-marker-last"><span class="tl-num">06</span></div>
             <div class="tl-card">
+              <div class="tl-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+              </div>
               <div class="tl-title">編集＆納品</div>
               <div class="tl-desc">できあがったものから順次お渡し。<span class="tl-time">5本=約1ヶ月 / 10本=約2ヶ月 / 20本=約3ヶ月</span></div>
             </div>
@@ -1215,6 +1337,46 @@
           <p>一人で運営するサービスのため、お一人おひとりに集中できる体制で対応しています。ご予約枠が埋まり次第、その月の受付を終了します。</p>
           <p class="flow-note-strong">現在、2026年6月下旬以降のお受付となります。</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== このサービスを選ぶ理由 ===== -->
+  <section class="reason-section">
+    <div class="container">
+      <div class="reason-section-head">
+        <span class="eyebrow">WHY CHOOSE</span>
+        <h2>このサービスを選ぶ理由</h2>
+      </div>
+      <div class="reason-rows">
+
+        <div class="reason-row">
+          <img class="reason-row-img" src="https://picsum.photos/seed/nana-r1/520/380" alt="撮影・編集・SNS視点">
+          <div class="reason-row-content">
+            <p class="reason-row-num">REASON 01</p>
+            <p class="reason-row-head">撮影・編集・SNS視点が<br>全部入り</p>
+            <p class="reason-row-body">撮影も編集も企画も、まるごとお任せ。バラバラに発注する手間もなく、一貫したブランド感で仕上がります。<br><span class="reason-emotion">あなたの世界観を、そのままSNSへ届けられる。</span></p>
+          </div>
+        </div>
+
+        <div class="reason-row">
+          <img class="reason-row-img" src="https://picsum.photos/seed/nana-r2/520/380" alt="リール編集料金で撮影と企画つき">
+          <div class="reason-row-content">
+            <p class="reason-row-num">REASON 02</p>
+            <p class="reason-row-head">リール編集だけの料金で、<br>撮影と企画つき</p>
+            <p class="reason-row-body">バラバラに頼むより、ぐっとお得。撮影から企画・編集までをセットにすることで、コストと手間を同時に削減。<br><span class="reason-emotion">「一緒にアカウントを作る体験」が手に入る。</span></p>
+          </div>
+        </div>
+
+        <div class="reason-row">
+          <img class="reason-row-img" src="https://picsum.photos/seed/nana-r3/520/380" alt="撮影料0円">
+          <div class="reason-row-content">
+            <p class="reason-row-num">REASON 03</p>
+            <p class="reason-row-head">撮影料は0円<br>（編集料＋交通費のみ）</p>
+            <p class="reason-row-body">初回限定だから、はじめやすい。「まず試してみたい」という方でも、コストを抑えて本格的な動画制作を体験できます。<br><span class="reason-emotion">「世界観で選ばれる」発信に変わっていく。</span></p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

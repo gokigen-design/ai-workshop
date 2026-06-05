@@ -643,6 +643,142 @@
         padding: 0 24px 20px;
       }
     }
+
+    /* ━━━━━ 動画サンプルセクション ━━━━━ */
+    .video-samples {
+      background: #18181b;
+    }
+
+    .video-samples h2 {
+      color: #fff;
+    }
+
+    .video-samples .section-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      margin-top: 8px;
+      margin-bottom: 48px;
+    }
+
+    .phones-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .phones-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .phone-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .phone-frame {
+      position: relative;
+      width: 152px;
+      height: 272px;
+      background: #0a0a0a;
+      border-radius: 32px;
+      padding: 7px;
+      box-shadow:
+        0 0 0 1px #3a3a3a,
+        inset 0 0 0 1px #111,
+        0 28px 64px rgba(0,0,0,0.7);
+    }
+
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 52px;
+      height: 13px;
+      background: #0a0a0a;
+      border-radius: 8px;
+      z-index: 10;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      position: relative;
+      background: #1a1a1a;
+    }
+
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.22);
+    }
+
+    .play-btn-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    }
+
+    .play-btn-circle svg {
+      width: 18px;
+      height: 18px;
+      margin-left: 3px;
+    }
+
+    .phone-caption {
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      line-height: 1.65;
+      max-width: 152px;
+    }
+
+    @media (max-width: 700px) {
+      .phones-row {
+        gap: 16px;
+      }
+      .phone-frame {
+        width: 136px;
+        height: 244px;
+        border-radius: 28px;
+      }
+      .phone-frame::before {
+        width: 44px;
+      }
+      .phone-screen {
+        border-radius: 22px;
+      }
+      .phone-caption {
+        max-width: 136px;
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -761,6 +897,73 @@
           <p>完成した動画をお渡しします。3ヶ月～のご契約で、継続的なサポートを提供します。</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━━━ 動画サンプルセクション ━━━━━ -->
+<section class="video-samples">
+  <div class="container">
+    <h2>実際の採用動画、見てみてください</h2>
+    <p class="section-sub">こんな動画を月10本、制作しています</p>
+    <div class="phones-row">
+
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <img src="https://picsum.photos/seed/kakky-vid1/300/540" alt="採用動画サンプル1">
+            <div class="play-overlay">
+              <div class="play-btn-circle">
+                <svg viewBox="0 0 24 24" fill="#6B8E23"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="phone-caption">職場の日常を<br>リアルに伝える動画</p>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <img src="https://picsum.photos/seed/kakky-vid2/300/540" alt="採用動画サンプル2">
+            <div class="play-overlay">
+              <div class="play-btn-circle">
+                <svg viewBox="0 0 24 24" fill="#6B8E23"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="phone-caption">スタッフインタビュー<br>動画</p>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <img src="https://picsum.photos/seed/kakky-vid3/300/540" alt="採用動画サンプル3">
+            <div class="play-overlay">
+              <div class="play-btn-circle">
+                <svg viewBox="0 0 24 24" fill="#6B8E23"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="phone-caption">職場環境・設備<br>紹介動画</p>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <img src="https://picsum.photos/seed/kakky-vid4/300/540" alt="採用動画サンプル4">
+            <div class="play-overlay">
+              <div class="play-btn-circle">
+                <svg viewBox="0 0 24 24" fill="#6B8E23"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="phone-caption">1日の仕事の流れ<br>密着動画</p>
+      </div>
+
     </div>
   </div>
 </section>

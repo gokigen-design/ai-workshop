@@ -304,56 +304,77 @@
       margin-bottom: 16px;
     }
 
-    .course-list {
+    /* ========== Product Grid ========== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px 20px;
+      margin: 32px 0 0;
       list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
     }
 
-    .course-list li {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 24px;
-      align-items: center;
-      font-size: clamp(14px, 1.8vw, 16px);
-    }
-
-    .course-item-image {
-      width: 150px;
-      height: 150px;
-      background: white;
-      border-radius: 6px;
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .course-item-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .course-item-text {
+    .product-card {
       display: flex;
       flex-direction: column;
-      justify-content: center;
     }
 
-    .course-item-name {
+    .product-card-img {
+      position: relative;
+      background: #f2ede6;
+      border-radius: 4px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .product-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-card-img img {
+      transform: scale(1.04);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--text);
+      color: #fff;
+      font-size: 11px;
       font-weight: 600;
+      padding: 3px 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .product-name {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.45;
+      margin-bottom: 6px;
       color: var(--text);
-      margin-bottom: 8px;
     }
 
-    .course-item-price {
-      color: var(--accent);
-      font-weight: 600;
+    .product-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .product-price {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 14px;
+      }
     }
 
     /* ========== Profile Section ========== */
@@ -745,51 +766,40 @@
 
       <div class="service-box">
         <h3>制作できる作品</h3>
-        <ul class="course-list">
-          <li>
-            <div class="course-item-image">
-              <img src="https://images.unsplash.com/photo-1602188113235-7d7409b919cd?w=200&h=200&fit=crop" alt="ボタニカルキャンドル">
+        <ul class="product-grid">
+          <li class="product-card">
+            <div class="product-card-img">
+              <span class="product-badge">人気</span>
+              <img src="https://images.unsplash.com/photo-1602188113235-7d7409b919cd?w=400&h=400&fit=crop" alt="ボタニカルキャンドル">
             </div>
-            <div class="course-item-text">
-              <div class="course-item-name">ボタニカルキャンドル</div>
-              <div class="course-item-price">6,000円（税込）</div>
-            </div>
+            <p class="product-name">ボタニカルキャンドル</p>
+            <p class="product-sub">Lyömi</p>
+            <p class="product-price">¥6,000（税込）</p>
           </li>
-          <li>
-            <div class="course-item-image">
-              <img src="https://images.unsplash.com/photo-1615525304580-27aa8e5baed1?w=200&h=200&fit=crop" alt="アロマキャンドル">
+          <li class="product-card">
+            <div class="product-card-img">
+              <img src="https://images.unsplash.com/photo-1615525304580-27aa8e5baed1?w=400&h=400&fit=crop" alt="アロマキャンドル">
             </div>
-            <div class="course-item-text">
-              <div class="course-item-name">アロマキャンドル</div>
-              <div class="course-item-price">4,500円（税込）</div>
-            </div>
+            <p class="product-name">アロマキャンドル</p>
+            <p class="product-sub">Lyömi</p>
+            <p class="product-price">¥4,500（税込）</p>
           </li>
-          <li>
-            <div class="course-item-image">
-              <img src="https://images.unsplash.com/photo-1622494564551-aec67f3e08bb?w=200&h=200&fit=crop" alt="アロマサシェ">
+          <li class="product-card">
+            <div class="product-card-img">
+              <span class="product-badge">新作</span>
+              <img src="https://images.unsplash.com/photo-1622494564551-aec67f3e08bb?w=400&h=400&fit=crop" alt="アロマサシェ">
             </div>
-            <div class="course-item-text">
-              <div class="course-item-name">アロマサシェ（2個制作）</div>
-              <div class="course-item-price">5,000円（税込）</div>
-            </div>
+            <p class="product-name">アロマサシェ<br>（2個制作）</p>
+            <p class="product-sub">Lyömi</p>
+            <p class="product-price">¥5,000（税込）</p>
           </li>
-          <li>
-            <div class="course-item-image">
-              <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=200&h=200&fit=crop" alt="ビー玉キャンドル">
+          <li class="product-card">
+            <div class="product-card-img">
+              <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=400&fit=crop" alt="ビー玉キャンドル">
             </div>
-            <div class="course-item-text">
-              <div class="course-item-name">ビー玉キャンドル</div>
-              <div class="course-item-price">3,500円（税込）</div>
-            </div>
-          </li>
-          <li>
-            <div class="course-item-image">
-              <img src="https://images.unsplash.com/photo-1603006905925-868d53d5b22c?w=200&h=200&fit=crop" alt="グラデーションキャンドル">
-            </div>
-            <div class="course-item-text">
-              <div class="course-item-name">グラデーションキャンドル</div>
-              <div class="course-item-price">3,500円（税込）</div>
-            </div>
+            <p class="product-name">ビー玉キャンドル</p>
+            <p class="product-sub">Lyömi</p>
+            <p class="product-price">¥3,500（税込）</p>
           </li>
         </ul>
       </div>
