@@ -236,20 +236,31 @@
 
     .list-items li {
       position: relative;
-      padding-left: clamp(28px, 4vw, 32px);
+      padding: clamp(16px, 2.5vw, 20px) clamp(20px, 3vw, 24px) clamp(16px, 2.5vw, 20px) clamp(44px, 5vw, 52px);
       margin-bottom: clamp(12px, 2vw, 16px);
       font-size: clamp(14px, 2vw, 16px);
       color: #1e1e1e;
       line-height: 1.7;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 1px solid rgba(201, 123, 126, 0.1);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      transition: all 250ms ease-out;
+    }
+
+    .list-items li:hover {
+      box-shadow: 0 12px 40px rgba(201, 123, 126, 0.12);
+      transform: translateY(-2px);
     }
 
     .list-items li::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0.6em;
-      width: 6px;
-      height: 6px;
+      left: clamp(20px, 3vw, 24px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
       background-color: #C97B7E;
       border-radius: 50%;
     }
