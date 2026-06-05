@@ -327,6 +327,90 @@
       background-color: #faf8f5;
     }
 
+    /* Plan Cards */
+    .plan-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .plan-card {
+      background: white;
+      border: 1px solid #ece6df;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 40px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(232, 149, 107, 0.18);
+    }
+
+    .plan-card-featured {
+      border: 2px solid var(--accent);
+      background: linear-gradient(180deg, #fff 0%, #fdf3eb 100%);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #d97a4e 0%, #e8956b 100%);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(232, 149, 107, 0.3);
+    }
+
+    .plan-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .plan-price {
+      font-size: clamp(28px, 5vw, 36px);
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .plan-per {
+      font-size: 15px;
+      color: var(--text-sub);
+      background: var(--accent-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .plan-cards {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .plan-card {
+        padding: 32px 24px;
+      }
+    }
+
     .reason-block {
       background: white;
       padding: 32px;
@@ -691,34 +775,24 @@
       </div>
 
       <div style="margin-bottom: 48px;">
-        <h3 style="text-align: center; margin-bottom: 24px;">プラン</h3>
-        <div class="service-table">
-          <table>
-            <thead>
-              <tr>
-                <th>プラン</th>
-                <th>価格</th>
-                <th>1本あたり</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>5本プラン</td>
-                <td>¥40,000</td>
-                <td>¥8,000</td>
-              </tr>
-              <tr>
-                <td>10本プラン</td>
-                <td>¥75,000</td>
-                <td>¥7,500</td>
-              </tr>
-              <tr>
-                <td>20本プラン</td>
-                <td>¥140,000</td>
-                <td>¥7,000</td>
-              </tr>
-            </tbody>
-          </table>
+        <h3 style="text-align: center; margin-bottom: 32px;">プラン</h3>
+        <div class="plan-cards">
+          <div class="plan-card">
+            <div class="plan-name">5本プラン</div>
+            <div class="plan-price">¥40,000</div>
+            <div class="plan-per">1本あたり ¥8,000</div>
+          </div>
+          <div class="plan-card plan-card-featured">
+            <div class="plan-badge">人気</div>
+            <div class="plan-name">10本プラン</div>
+            <div class="plan-price">¥75,000</div>
+            <div class="plan-per">1本あたり ¥7,500</div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-name">20本プラン</div>
+            <div class="plan-price">¥140,000</div>
+            <div class="plan-per">1本あたり ¥7,000</div>
+          </div>
         </div>
         <p style="text-align: center; font-size: 14px; color: var(--text-sub);">
           ・すべてのプランに「あなたの世界観が見つかるPDF」付き<br>
