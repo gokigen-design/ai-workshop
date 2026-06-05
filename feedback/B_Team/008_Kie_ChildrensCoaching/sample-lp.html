@@ -450,23 +450,26 @@
 
     .pricing-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin: 2rem auto;
-      max-width: 900px;
+      max-width: 1000px;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-cards-grid { grid-template-columns: 1fr; }
     }
 
     .pricing-card {
-      background: var(--accent-light);
-      padding: 32px 24px;
-      border-radius: 8px;
+      background: #fff;
+      border: 2px solid var(--accent-light);
+      border-radius: 16px;
       text-align: center;
       box-shadow: var(--shadow);
       transition: var(--transition);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
     }
 
     .pricing-card:hover {
@@ -474,27 +477,99 @@
       transform: translateY(-4px);
     }
 
+    /* おすすめカード */
+    .pricing-card.recommended {
+      border-color: var(--accent);
+      position: relative;
+    }
+
+    .pricing-card-header {
+      background: var(--accent-light);
+      padding: 28px 24px 20px;
+    }
+
     .pricing-card h3 {
       color: var(--accent);
       font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: clamp(16px, 4vw, 20px);
-      margin-bottom: 16px;
-      font-weight: 600;
+      font-size: clamp(16px, 4vw, 19px);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .pricing-card-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
     }
 
     .price {
-      font-size: clamp(28px, 6vw, 36px);
+      font-size: clamp(28px, 5vw, 34px);
       font-weight: 700;
       color: var(--accent);
       font-family: 'Zen Maru Gothic', sans-serif;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .price-label {
-      font-size: clamp(14px, 3vw, 15px);
+      font-size: 13px;
       color: var(--text-secondary);
       margin: 0;
       font-weight: 400;
+    }
+
+    .pricing-card-body {
+      padding: 20px 24px 28px;
+      flex: 1;
+      text-align: left;
+    }
+
+    .pricing-card-target {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .pricing-card-feat {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .pricing-card-feat li {
+      font-size: clamp(13px, 2vw, 14px);
+      color: var(--text-secondary);
+      padding: 7px 0;
+      border-bottom: 1px solid #f0ebf5;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.6;
+    }
+
+    .pricing-card-feat li:last-child { border-bottom: none; }
+
+    .pricing-card-feat li::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 10px;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     .pricing-info {
@@ -755,7 +830,7 @@
         <a href="#experience" class="button">無料体験レッスン受付中</a>
       </div>
       <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="ピアノレッスンの風景">
+        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&h=600&fit=crop" alt="ピアノの鍵盤">
       </div>
     </div>
   </section>
@@ -1024,21 +1099,65 @@
     <div class="container">
       <h2 class="text-center">レッスン料金</h2>
       <div class="pricing-cards-grid">
+
+        <!-- 初心者コース -->
         <div class="pricing-card">
-          <h3>初心者コース</h3>
-          <div class="price">8,000円</div>
-          <p class="price-label">月謝</p>
+          <div class="pricing-card-header">
+            <h3>初心者コース</h3>
+            <div class="price">8,000円</div>
+            <p class="price-label">月謝（税込）</p>
+          </div>
+          <div class="pricing-card-body">
+            <p class="pricing-card-target">こんな方に</p>
+            <ul class="pricing-card-feat">
+              <li>ピアノをはじめて習う方</li>
+              <li>ドレミから丁寧に始めたい方</li>
+              <li>音符が読めなくても大丈夫</li>
+              <li>月4回 / 1回30分</li>
+              <li>マンツーマンレッスン</li>
+            </ul>
+          </div>
         </div>
+
+        <!-- 中級者コース（おすすめ） -->
+        <div class="pricing-card recommended">
+          <div class="pricing-card-header" style="background: linear-gradient(135deg, #ede0f7, #d8c4f0);">
+            <div class="pricing-card-badge">おすすめ</div>
+            <h3>中級者コース</h3>
+            <div class="price">9,000円</div>
+            <p class="price-label">月謝（税込）</p>
+          </div>
+          <div class="pricing-card-body">
+            <p class="pricing-card-target">こんな方に</p>
+            <ul class="pricing-card-feat">
+              <li>ある程度弾けるが伸び悩んでいる方</li>
+              <li>両手の演奏をしっかり定着させたい方</li>
+              <li>表現力・音楽性を磨きたい方</li>
+              <li>月4回 / 1回30分</li>
+              <li>マンツーマンレッスン</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 上級者コース -->
         <div class="pricing-card">
-          <h3>中級者コース</h3>
-          <div class="price">9,000円</div>
-          <p class="price-label">月謝</p>
+          <div class="pricing-card-header">
+            <h3>上級者コース</h3>
+            <div class="price">10,000円</div>
+            <p class="price-label">月謝（税込）</p>
+          </div>
+          <div class="pricing-card-body">
+            <p class="pricing-card-target">こんな方に</p>
+            <ul class="pricing-card-feat">
+              <li>コンクールや発表会に挑戦したい方</li>
+              <li>難曲・クラシックの本格的な演奏を目指す方</li>
+              <li>音大受験を視野に入れている方</li>
+              <li>月4回 / 1回30分</li>
+              <li>マンツーマンレッスン</li>
+            </ul>
+          </div>
         </div>
-        <div class="pricing-card">
-          <h3>上級者コース</h3>
-          <div class="price">10,000円</div>
-          <p class="price-label">月謝</p>
-        </div>
+
       </div>
       <div class="pricing-info">
         <p>・個人レッスン（マンツーマン）</p>
