@@ -6000,6 +6000,34 @@
       <div class="faq-cat">─ 公開・デプロイでつまずいた時</div>
 
       <details class="faq-acc">
+      <details class="faq-acc">
+        <summary>「最新ビルドが失敗しました」という赤いエラーが出た</summary>
+        <div class="faq-acc-body">
+          <p>これはワークショップ参加者の5人以上が同じ場所で詰まる、<strong>超あるあるエラー</strong>です。</p>
+          <p><strong>原因：</strong>ビルド設定で「フレームワーク」が自動選択され、<code>npm run build</code> というコマンドが実行されてしまうため失敗します。シンプルなHTMLサイトはビルド不要なので、設定を変えるだけで解決します。</p>
+          <p><strong>解決手順（3つの設定を確認する）：</strong></p>
+          <div style="background:#FEF9F0;border:1px solid #FBBF24;border-radius:8px;padding:14px 18px;margin:8px 0 12px;">
+            <div style="font-size:12px;font-weight:700;color:#92400E;margin-bottom:10px;">Cloudflare Pages のビルド設定画面</div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="background:#f6821f;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;">変える</span>
+                <span><strong>フレームワークプリセット</strong> → <strong style="color:#dc2626;">「なし」を選ぶ</strong>（ここが最重要）</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="background:#f6821f;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;">空白に</span>
+                <span><strong>ビルドコマンド</strong> → <strong style="color:#dc2626;">何も入れない（完全に空白）</strong></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;">そのまま</span>
+                <span><strong>ルートディレクトリ</strong> → 触らなくてOK</span>
+              </div>
+            </div>
+          </div>
+          <p>設定を変えたら「<strong>保存してデプロイ</strong>」を押す。1〜2分でデプロイが成功します。</p>
+          <p style="font-size:12px;color:#6b7280;">すでにデプロイ失敗している場合：Cloudflareダッシュボード →「設定」→「ビルドとデプロイ」→ ビルド設定を上記に変更 →「保存」→「再デプロイ」で解決できます。</p>
+        </div>
+      </details>
+
         <summary>Cloudflare Pages で「GitHub のリポジトリがありません」と言われた</summary>
         <div class="faq-acc-body">
           <p>Cloudflare Pages は「GitHub にあるファイルを自動でネットに公開する」しくみです。先に GitHub 上に<strong>リポジトリ（ファイルの入れ物）</strong>を作る必要があります。</p>
@@ -9411,16 +9439,71 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
           左メニュー「建てる」→「従業員とページ」→ 右上オレンジのボタン「アプリケーションを作成する」
         </div>
       </div>
-      <!-- Sub-step: Select method -->
-      <div style="margin:0 0 4px 0;font-size:12px;color:var(--gray-mid);line-height:1.8;padding-left:4px;">
-        次の画面で &rarr; <strong style="color:var(--black);">「GitHub で続行」</strong>をクリック（「静的ファイルをアップロード」ではない）
-      </div>
-      <!-- Screenshot: Method selection -->
-      <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;">
-        <img src="images/cf-step-a-select-method.png" style="width:100%;display:block;" alt="Cloudflareのプロジェクト作成画面">
-        <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-          「GitHub で続行」を選ぶのがポイント（「静的ファイルをアップロード」では自動にならない）
+      <!-- Sub-step: Select method (正しい入口・最重要) -->
+      <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:10px;padding:14px 18px;margin:0 0 12px;">
+        <div style="font-size:13px;font-weight:700;color:#b91c1c;line-height:1.8;margin-bottom:6px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          ここが受講生ほぼ全員がつまずく最大の罠です
         </div>
+        <div style="font-size:13px;color:#374151;line-height:1.9;">
+          次の画面で、上の目立つ<strong>「Continue with GitHub」は押さないでください</strong>。これを押すと <strong style="color:#b91c1c;">Workers（労働者）</strong> 扱いになり、「最新ビルドが失敗しました」のエラーになります。<br>
+          正解は、画面の一番下にある小さな文字<strong style="color:#b91c1c;">「Pages を導入しようとお考えですか？ 始める」の “始める”</strong> です。
+        </div>
+      </div>
+
+      <!-- Mock: Ship something new 画面（赤丸で正解ボタンを強調）-->
+      <div style="margin:0 0 8px;border-radius:14px;border:1px solid #eee;background:#F7F7F8;padding:22px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+        <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;max-width:460px;margin:0 auto;">
+          <div style="font-size:15px;font-weight:700;color:#1d2735;margin-bottom:4px;">Ship something new</div>
+          <div style="font-size:11px;color:#9ca3af;margin-bottom:16px;line-height:1.6;">Select from a git repo, drag and drop your code or select a template.</div>
+          <!-- Continue with GitHub（押さない）-->
+          <div style="position:relative;display:flex;align-items:center;gap:10px;border:1px solid #e5e7eb;border-radius:8px;padding:11px 14px;margin-bottom:9px;opacity:0.7;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#1d2735" style="flex-shrink:0;"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 015 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg>
+            <span style="font-size:13px;color:#374151;">Continue with GitHub</span>
+            <span style="position:absolute;right:12px;background:#e3342f;color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;">押さない</span>
+          </div>
+          <!-- 他の選択肢（参考表示）-->
+          <div style="display:flex;align-items:center;gap:10px;border:1px solid #e5e7eb;border-radius:8px;padding:11px 14px;margin-bottom:9px;opacity:0.55;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#e24329" style="flex-shrink:0;"><path d="M12 21.5l3.7-11.4H8.3L12 21.5z"/><path d="M3 10.1l1.4-4.3 2.9 9-4.3-3.1a.9.9 0 01-.3-1.0z" opacity="0.7"/><path d="M21 10.1l-1.4-4.3-2.9 9 4.3-3.1a.9.9 0 00.3-1.0z" opacity="0.7"/></svg>
+            <span style="font-size:13px;color:#374151;">Connect GitLab</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;border:1px solid #e5e7eb;border-radius:8px;padding:11px 14px;margin-bottom:9px;opacity:0.55;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+            <span style="font-size:13px;color:#374151;">Hello World を開始する</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;border:1px solid #e5e7eb;border-radius:8px;padding:11px 14px;margin-bottom:9px;opacity:0.55;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M16 8l-6 2-2 6 6-2 2-6z"/></svg>
+            <span style="font-size:13px;color:#374151;">テンプレートを選択</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;border:1px solid #e5e7eb;border-radius:8px;padding:11px 14px;margin-bottom:6px;opacity:0.55;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" style="flex-shrink:0;"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>
+            <span style="font-size:13px;color:#374151;">Upload your static files</span>
+          </div>
+          <!-- 赤い吹き出し ここをクリック -->
+          <div style="text-align:right;margin-top:14px;">
+            <span style="display:inline-block;position:relative;background:#e3342f;color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:18px;">ここをクリック
+              <span style="position:absolute;bottom:-7px;right:26px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid #e3342f;"></span>
+            </span>
+          </div>
+          <!-- Pages 始める（赤丸で強調）-->
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:8px;">
+            <span style="font-size:12px;color:#6b7280;">Pages を導入しようとお考えですか？</span>
+            <span style="position:relative;display:inline-block;">
+              <span style="display:inline-block;font-size:13px;font-weight:700;color:#1d2735;padding:7px 18px;">始める</span>
+              <span style="position:absolute;top:-5px;left:-6px;right:-6px;bottom:-5px;border:2.5px solid #e3342f;border-radius:50%;"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div style="background:#FEF9F0;border:1px solid #FBBF24;padding:10px 18px;border-radius:8px;font-size:12px;color:#92400E;font-weight:600;margin-bottom:12px;line-height:1.8;">
+        上の「Continue with GitHub」は押さない。赤丸で囲った小さな「始める」からPagesフローへ進むのが正解です。
+      </div>
+      <!-- 詳しい解説リンク -->
+      <div style="margin:0 0 20px;">
+        <a href="https://aiotaku-cf-pages-guide.pages.dev/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#f6821f;text-decoration:none;border-bottom:1px dotted #f6821f;padding-bottom:1px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f6821f" stroke-width="2" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          詳しい解説はこちら（チームメイト作成のCloudflare対処ガイド）
+        </a>
       </div>
 
       <!-- STEP B -->
@@ -10645,6 +10728,34 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       <div class="faq-cat">─ 公開・デプロイでつまずいた時</div>
 
       <details class="faq-acc">
+      <details class="faq-acc">
+        <summary>「最新ビルドが失敗しました」という赤いエラーが出た</summary>
+        <div class="faq-acc-body">
+          <p>これはワークショップ参加者の5人以上が同じ場所で詰まる、<strong>超あるあるエラー</strong>です。</p>
+          <p><strong>原因：</strong>ビルド設定で「フレームワーク」が自動選択され、<code>npm run build</code> というコマンドが実行されてしまうため失敗します。シンプルなHTMLサイトはビルド不要なので、設定を変えるだけで解決します。</p>
+          <p><strong>解決手順（3つの設定を確認する）：</strong></p>
+          <div style="background:#FEF9F0;border:1px solid #FBBF24;border-radius:8px;padding:14px 18px;margin:8px 0 12px;">
+            <div style="font-size:12px;font-weight:700;color:#92400E;margin-bottom:10px;">Cloudflare Pages のビルド設定画面</div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="background:#f6821f;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;">変える</span>
+                <span><strong>フレームワークプリセット</strong> → <strong style="color:#dc2626;">「なし」を選ぶ</strong>（ここが最重要）</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="background:#f6821f;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;">空白に</span>
+                <span><strong>ビルドコマンド</strong> → <strong style="color:#dc2626;">何も入れない（完全に空白）</strong></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;">そのまま</span>
+                <span><strong>ルートディレクトリ</strong> → 触らなくてOK</span>
+              </div>
+            </div>
+          </div>
+          <p>設定を変えたら「<strong>保存してデプロイ</strong>」を押す。1〜2分でデプロイが成功します。</p>
+          <p style="font-size:12px;color:#6b7280;">すでにデプロイ失敗している場合：Cloudflareダッシュボード →「設定」→「ビルドとデプロイ」→ ビルド設定を上記に変更 →「保存」→「再デプロイ」で解決できます。</p>
+        </div>
+      </details>
+
         <summary>Cloudflare Pages で「GitHub のリポジトリがありません」と言われた</summary>
         <div class="faq-acc-body">
           <p>Cloudflare Pages は「GitHub にあるファイルを自動でネットに公開する」しくみです。先に GitHub 上に<strong>リポジトリ（ファイルの入れ物）</strong>を作る必要があります。</p>
