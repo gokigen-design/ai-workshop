@@ -9378,9 +9378,17 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <div class="card-num" style="background:linear-gradient(135deg,#f6821f,#f9a641);">&#x26A1;</div>
         <div class="card-title">自動デプロイの設定（一度だけ）</div>
       </div>
+      <!-- 初回のみ必要の案内 -->
+      <div style="display:flex;align-items:flex-start;gap:10px;background:linear-gradient(135deg,#EEF4FF,#E0F7FA);border:1px solid #B8CCFF;border-radius:10px;padding:12px 16px;margin-bottom:14px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4F7EF7" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01M12 11v6"/></svg>
+        <div style="font-size:13px;color:var(--black);line-height:1.9;">
+          <strong>新しいサイト（新しいリポジトリ）を作るときだけ必要な設定です。</strong><br>
+          <span style="color:var(--gray-mid);">同じサイトへの2回目以降の更新は「pushして」と言うだけ。ここに戻る必要はありません。</span>
+        </div>
+      </div>
+
       <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:6px;">
-        この設定を一度済ませると、<strong style="color:var(--black);">「Claudeにpushして」と言うだけでLPが自動更新</strong>されます。<br>
-        毎回Cloudflareを開いてドラッグ&amp;ドロップする作業は、もう不要になります。
+        この設定を一度済ませると、<strong style="color:var(--black);">「Claudeにpushして」と言うだけでLPが自動更新</strong>されます。
       </p>
 
       <!-- 仕組みの図解 -->
@@ -9661,6 +9669,37 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <div style="background:var(--green-lt);padding:10px 18px;font-size:12px;color:var(--green);font-weight:600;border-top:1px solid #eee;">
           pushするたびに自動でデプロイ履歴が積み上がっていきます
         </div>
+      </div>
+    </div>
+
+    <!-- wrangler禁止 -->
+    <div class="card" style="border-color:#FCA5A5;background:linear-gradient(135deg,#fff 60%,#FEF2F2);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:32px;height:32px;border-radius:8px;background:#DC2626;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:#DC2626;text-transform:uppercase;">注意</div>
+          <div style="font-size:15px;font-weight:700;color:var(--black);">Claudeが「wrangler」を使おうとしたら止めて</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:14px;">
+        Claudeが <code style="background:#FEE2E2;padding:1px 6px;border-radius:4px;color:#991B1B;">wrangler deploy</code> や <code style="background:#FEE2E2;padding:1px 6px;border-radius:4px;color:#991B1B;">wrangler publish</code> を実行しようとする場合があります。<br>
+        これは<strong style="color:#DC2626;">GitHubを通らずに直接Cloudflareにデプロイ</strong>してしまうためNGです。GitHubに最新版が残らず、次の更新でズレが起きます。
+      </p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;background:#FEE2E2;border-radius:8px;padding:10px 14px;">
+          <span style="color:#DC2626;font-weight:700;font-family:'DM Sans',sans-serif;flex-shrink:0;font-size:12px;">NG</span>
+          <span style="font-size:13px;color:#374151;line-height:1.8;">wrangler → GitHubを通らずにデプロイ → GitHubに最新版が残らない</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;background:var(--green-lt);border-radius:8px;padding:10px 14px;">
+          <span style="color:var(--green);font-weight:700;font-family:'DM Sans',sans-serif;flex-shrink:0;font-size:12px;">OK</span>
+          <span style="font-size:13px;color:#374151;line-height:1.8;">git push → GitHubに保存 → Cloudflare Pagesが自動検知して公開</span>
+        </div>
+      </div>
+      <div style="background:var(--beige);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--gray-mid);line-height:1.9;">
+        Claudeがwranglerを使おうとしたら、こう伝えてください：<br>
+        <strong style="color:var(--black);">「wranglerは使わず、GitHubにpushしてCloudflare Pagesで更新して」</strong>
       </div>
     </div>
 
