@@ -9067,42 +9067,6 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
     <!-- ━━━ PART 2: 実際の手順 ━━━ -->
 
-    <!-- ━━━ Claude Code への指示プロンプト（コピペ用） ━━━ -->
-    <div class="card" style="background:#1C1D2E;border:none;color:#F5EFE4;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <div style="width:32px;height:32px;border-radius:8px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </div>
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">Copy &amp; Paste</div>
-          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.4;">Claude Code への指示プロンプト</div>
-        </div>
-      </div>
-
-      <p style="font-size:13px;color:rgba(245,239,228,0.7);line-height:1.9;margin-bottom:14px;">
-        下のテキストをそのままコピーして、<strong style="color:#fff;">Claude Code のチャット欄に貼り付けて Enter</strong>。Claudeが GitHub への保存 → Cloudflare での公開まで案内してくれます。
-      </p>
-
-      <!-- プロンプト本文 -->
-      <pre id="deploy-prompt-text" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:13px;line-height:1.9;color:#F5EFE4;background:rgba(255,255,255,0.06);border-left:3px solid var(--orange);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;">今このフォルダで作ったLPを、インターネットに公開したいです。
-
-以下の手順で進めてください：
-① GitHubに新しいリポジトリを作って、このフォルダの中身をプッシュする
-② Cloudflare Pages で、そのGitHubリポジトリと連携してデプロイする
-③ 公開URLが発行されたら教えてください
-
-詰まったところがあれば、その都度わかりやすく案内してください。</pre>
-
-      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-text').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:var(--orange);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        このプロンプトをコピー
-      </button>
-
-      <p style="font-size:11px;color:rgba(245,239,228,0.5);line-height:1.8;margin-top:14px;">
-        ※ Cloudflare と GitHub を繋ぐ画面操作は、このあとの手順で一緒に進めます。
-      </p>
-    </div>
-
     <!-- ━━━ 2回目以降は呪文ひとつでOK ━━━ -->
     <div class="card" style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border-color:var(--orange-border);">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
