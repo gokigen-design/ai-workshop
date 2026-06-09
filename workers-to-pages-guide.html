@@ -9,116 +9,91 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --orange:#f6821f;
-    --red:#e3342f;
-    --ink:#1d2735;
-    --gray:#5b6472;
-    --line:#e5e7eb;
-    --bg:#fffdfa;
+    --orange:#f6821f; --red:#e3342f; --ink:#1d2735; --gray:#5b6472;
+    --line:#e5e7eb; --blue:#2563eb;
   }
   *{box-sizing:border-box;}
   body{
-    margin:0;
-    font-family:'Hiragino Sans','Yu Gothic',sans-serif;
-    color:var(--ink);
-    background:linear-gradient(180deg,#FFF6EE,#EAF7F8);
-    line-height:1.9;
-    font-size:16px;
+    margin:0; font-family:'Hiragino Sans','Yu Gothic',sans-serif; color:var(--ink);
+    background:linear-gradient(180deg,#FFF6EE,#EAF7F8); line-height:1.9; font-size:16px;
   }
-  .wrap{max-width:680px;margin:0 auto;padding:0 18px 80px;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px 80px;}
   .maru{font-family:'Zen Maru Gothic',sans-serif;}
 
-  /* hero */
-  .hero{text-align:center;padding:48px 20px 32px;}
-  .hero .eyebrow{
-    display:inline-block;background:var(--orange);color:#fff;font-size:13px;font-weight:700;
-    padding:5px 16px;border-radius:20px;letter-spacing:.04em;
-  }
-  .hero h1{font-size:26px;line-height:1.5;margin:16px 0 10px;}
+  .hero{text-align:center;padding:44px 16px 28px;}
+  .hero .eyebrow{display:inline-block;background:var(--orange);color:#fff;font-size:13px;font-weight:700;padding:5px 16px;border-radius:20px;}
+  .hero h1{font-size:25px;line-height:1.5;margin:16px 0 10px;}
   .hero p{font-size:15px;color:var(--gray);margin:0;}
 
-  /* goal / safety boxes */
-  .note-card{
-    background:#fff;border:1px solid var(--line);border-radius:16px;
-    padding:20px 22px;margin:14px 0;box-shadow:0 8px 24px rgba(0,0,0,.04);
-  }
+  .note-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:14px 0;box-shadow:0 8px 24px rgba(0,0,0,.04);}
   .note-card h2{font-size:17px;margin:0 0 8px;display:flex;align-items:center;gap:8px;}
-  .note-card p{font-size:14px;color:var(--gray);margin:6px 0;}
-  .goal-big{
-    background:linear-gradient(135deg,#FFF3E8,#E0F7FA);border:2px dashed #FDD9B5;
-    border-radius:16px;padding:18px 20px;text-align:center;font-size:17px;font-weight:700;margin:14px 0;
-  }
+  .note-card p{font-size:14px;color:#374151;margin:6px 0;}
+  .goal-big{background:linear-gradient(135deg,#FFF3E8,#E0F7FA);border:2px dashed #FDD9B5;border-radius:16px;padding:18px 20px;text-align:center;font-size:17px;font-weight:700;margin:14px 0;}
 
-  /* steps */
-  .step{
-    background:#fff;border:1px solid var(--line);border-radius:18px;
-    padding:22px 22px 24px;margin:18px 0;box-shadow:0 8px 24px rgba(0,0,0,.05);
-  }
+  .step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 20px 22px;margin:18px 0;box-shadow:0 8px 24px rgba(0,0,0,.05);}
   .step-head{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
-  .step-num{
-    flex-shrink:0;width:40px;height:40px;border-radius:50%;
-    background:linear-gradient(135deg,#f6821f,#f9a641);color:#fff;
-    font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:19px;
-    display:flex;align-items:center;justify-content:center;
-  }
+  .step-num{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#f6821f,#f9a641);color:#fff;font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:19px;display:flex;align-items:center;justify-content:center;}
   .step-num.done{background:linear-gradient(135deg,#22c55e,#16a34a);}
-  .step-title{font-size:18px;font-weight:700;line-height:1.4;}
+  .step-title{font-size:17px;font-weight:700;line-height:1.4;}
   .step-body{font-size:14.5px;color:#374151;}
   .step-body strong{color:var(--ink);}
   .hl{color:var(--red);font-weight:700;}
   .hl-o{color:var(--orange);font-weight:700;}
 
-  /* mock screen container */
-  .mock{
-    background:#F4F5F7;border:1px solid var(--line);border-radius:14px;
-    padding:18px;margin:14px 0 4px;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  }
-  .mock-inner{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;}
-  .mock-cap{font-size:12px;color:#9ca3af;text-align:center;margin-top:8px;}
+  /* ===== Cloudflare 画面の再現 ===== */
+  .scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0 4px;border-radius:12px;border:1px solid var(--line);}
+  .cf{min-width:520px;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:12px;color:#374151;}
+  .cf-top{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--line);font-size:11px;color:#5b6472;}
+  .cf-logo{width:20px;height:14px;background:linear-gradient(180deg,#f6821f,#f9a641);border-radius:7px 7px 9px 9px;flex-shrink:0;}
+  .cf-body{display:flex;}
+  .cf-side{width:150px;flex-shrink:0;border-right:1px solid var(--line);padding:10px 8px;}
+  .cf-side .q{background:#f4f5f7;border-radius:8px;padding:6px 8px;color:#9ca3af;margin-bottom:8px;}
+  .cf-side .si{padding:6px 8px;border-radius:6px;color:#5b6472;display:flex;align-items:center;gap:7px;margin-bottom:1px;}
+  .cf-side .si.active{background:#eef0f3;color:#1d2735;font-weight:700;}
+  .cf-side .si.sub{padding-left:20px;font-size:11px;}
+  .cf-side .sec{font-size:10px;color:#9ca3af;margin:9px 4px 3px;}
+  .cf-side .dot{width:13px;height:13px;flex-shrink:0;color:#9ca3af;}
+  .cf-main{flex:1;padding:14px 16px;min-width:0;}
+  .cf-h{font-size:17px;font-weight:700;color:#1d2735;margin:0 0 3px;}
+  .cf-sub{font-size:11px;color:#9ca3af;margin:0 0 12px;line-height:1.6;}
+  .cf-blue{background:var(--blue);color:#fff;font-weight:700;font-size:12px;padding:8px 14px;border-radius:8px;display:inline-block;white-space:nowrap;}
+  .cf-orange{background:var(--orange);color:#fff;font-weight:700;font-size:12.5px;padding:9px 16px;border-radius:8px;display:inline-block;text-align:center;}
+  .cf-item{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:9px;padding:11px 13px;margin-bottom:8px;}
+  .cf-item .ic{width:18px;height:18px;flex-shrink:0;}
+  .cf-item .nm{font-weight:700;color:#1d2735;}
+  .cf-item .url{font-size:11px;color:#9ca3af;}
+  .cf-tab{display:flex;gap:14px;border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;font-size:12px;}
+  .cf-tab .t{color:#9ca3af;}
+  .cf-tab .t.on{color:#1d2735;font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:7px;margin-bottom:-9px;}
+  .cf-field{margin-bottom:11px;}
+  .cf-field .lb{font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;}
+  .cf-field .bx{border:1px solid #d1d5da;border-radius:6px;padding:7px 11px;font-size:12px;color:#1d2735;}
+  .cf-field .bx.empty{color:#cbd2da;}
+  .addr{display:flex;align-items:center;gap:8px;background:#eef0f3;border-radius:20px;padding:8px 14px;font-size:13px;color:#374151;margin:0;}
+  .cap{font-size:12px;color:#9ca3af;text-align:center;margin-top:8px;}
 
-  /* address bar */
-  .addrbar{display:flex;align-items:center;gap:8px;background:#eef0f3;border-radius:20px;padding:8px 14px;font-size:14px;color:#374151;}
-
-  /* generic cf row */
-  .cf-row{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px 13px;margin-bottom:8px;font-size:13px;color:#374151;}
-  .cf-row .url{color:#9ca3af;font-size:12px;}
-  .cf-blue{background:#2563eb;color:#fff;font-weight:700;font-size:12.5px;padding:8px 15px;border-radius:8px;display:inline-block;white-space:nowrap;}
-  .cf-orange{background:var(--orange);color:#fff;font-weight:700;font-size:13px;padding:10px 0;border-radius:8px;text-align:center;}
-
-  /* red ring overlay */
+  /* 赤丸・吹き出し */
   .target{position:relative;display:inline-block;}
-  .ring{position:absolute;top:-7px;left:-10px;right:-10px;bottom:-7px;border:3px solid var(--red);border-radius:40px;pointer-events:none;}
+  .ring{position:absolute;top:-7px;left:-10px;right:-10px;bottom:-7px;border:3px solid var(--red);border-radius:40px;pointer-events:none;z-index:2;}
   .ring.circle{border-radius:50%;left:-7px;right:-7px;}
-  .ring.box{border-radius:8px;}
+  .ring.box{border-radius:9px;}
+  .bubble{display:inline-block;position:relative;background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:16px;z-index:3;}
+  .bubble .tail{position:absolute;bottom:-6px;left:20px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:7px solid var(--red);}
+  .tag-no{background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:11px;}
 
-  /* bubble */
-  .bubble{display:inline-block;position:relative;background:var(--red);color:#fff;font-size:12px;font-weight:700;padding:6px 15px;border-radius:18px;}
-  .bubble .tail{position:absolute;bottom:-7px;left:24px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--red);}
-  .bubble.up .tail{top:-7px;bottom:auto;border-top:none;border-bottom:8px solid var(--red);}
-
-  /* no tag */
-  .tag-no{background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;}
-
-  /* check list for settings */
-  .set-row{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:8px;padding:9px 13px;margin-bottom:7px;font-size:13px;}
-  .set-val{font-weight:700;color:#16a34a;}
-
-  /* warn */
-  .warn{background:#FEF2F2;border:1px solid #FCA5A5;border-radius:10px;padding:12px 15px;font-size:13px;color:#374151;margin:10px 0;line-height:1.85;}
+  .warn{background:#FEF2F2;border:1px solid #FCA5A5;border-radius:10px;padding:11px 14px;font-size:13px;color:#374151;margin:10px 0;line-height:1.8;}
   .warn b{color:var(--red);}
+  .tip{background:#FFFBEB;border:1px solid #FCD34D;border-radius:10px;padding:10px 14px;font-size:12.5px;color:#92400E;margin:10px 0;line-height:1.8;}
+  .swipe{font-size:11px;color:#9ca3af;text-align:right;margin:2px 4px -6px 0;}
 
-  .tip{background:#FFFBEB;border:1px solid #FCD34D;border-radius:10px;padding:11px 15px;font-size:12.5px;color:#92400E;margin:10px 0;line-height:1.85;}
-
-  .finish{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:1px solid #86efac;border-radius:18px;padding:26px 22px;text-align:center;margin:24px 0;}
+  .finish{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:1px solid #86efac;border-radius:18px;padding:24px 20px;text-align:center;margin:24px 0;}
   .finish h2{font-size:20px;margin:0 0 8px;color:#166534;}
   .finish p{font-size:14px;color:#15803d;margin:4px 0;}
-
-  .key{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:18px 0;}
+  .key{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:18px 0;}
   .key h2{font-size:17px;margin:0 0 10px;}
   table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;}
-  table.cmp th,table.cmp td{border:1px solid var(--line);padding:9px 11px;text-align:left;}
-  table.cmp th{background:#F4F5F7;font-weight:700;}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:8px 10px;text-align:left;}
+  table.cmp th{background:#f4f5f7;font-weight:700;}
   .footnote{font-size:12px;color:#9ca3af;text-align:center;margin-top:30px;line-height:1.8;}
   svg{vertical-align:middle;}
 </style>
@@ -126,245 +101,220 @@
 <body>
 <div class="wrap">
 
-  <!-- HERO -->
   <div class="hero">
     <span class="eyebrow">CLOUDFLARE　はじめてガイド</span>
     <h1 class="maru">ワーカーズ → ページーズ<br>直し方ガイド</h1>
     <p>上から順番に見ていけば、初心者でも自分で直せます。</p>
   </div>
 
-  <!-- GOAL -->
-  <div class="goal-big maru">
-    今日のゴール：<br>サイトを「ワーカーズ」から「ページーズ」に直す
-  </div>
+  <div class="goal-big maru">今日のゴール：<br>サイトを「ワーカーズ」から「ページーズ」に直す</div>
 
-  <!-- SAFETY -->
   <div class="note-card">
     <h2 class="maru"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>はじめに、安心してほしいこと</h2>
     <p>・<strong>何回まちがえても、サイトは壊れません。</strong>気楽にどうぞ。</p>
     <p>・むずかしい設定は<strong>「何も入力しない」</strong>のが正解です。</p>
-    <p>・押すところは、このガイドで<span class="hl">赤い丸・四角</span>で囲ってあります。</p>
+    <p>・押すところは<span class="hl">赤い丸・四角</span>で囲ってあります。画面が横に長いときは<strong>指で左右にスワイプ</strong>すると全部見えます。</p>
   </div>
 
-  <!-- なぜ直す？ -->
   <div class="note-card">
     <h2 class="maru"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f6821f" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>そもそも、なぜ直すの？</h2>
-    <p>「ワーカーズ」で公開すると、<strong>GitHubと繋がっていない</strong>ので、最新の状態が保存されず、あとで困ります。「ページーズ（GitHub連携）」に直すと、<strong>編集して push するだけで自動で公開</strong>されるようになります。</p>
+    <p>「ワーカーズ」で公開すると<strong>GitHubと繋がっていない</strong>ので、最新が保存されず後で困ります。「ページーズ（GitHub連携）」に直すと、<strong>編集して push するだけで自動公開</strong>になります。</p>
   </div>
 
   <!-- STEP 1 -->
   <div class="step">
     <div class="step-head"><div class="step-num">1</div><div class="step-title maru">Cloudflare を開く</div></div>
-    <div class="step-body">
-      ブラウザのアドレス欄に <strong>dash.cloudflare.com</strong> と打って開きます。
-    </div>
-    <div class="mock">
-      <div class="addrbar">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
-        <span class="target"><strong>dash.cloudflare.com</strong><span class="ring box"></span></span>
+    <div class="step-body">ブラウザのアドレス欄に <strong>dash.cloudflare.com</strong> と打って開きます。下のような「アカウントホーム」の画面が出ればOKです。</div>
+    <div class="scrollx"><div class="cf">
+      <div style="padding:12px;"><div class="addr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg><span class="target"><strong>dash.cloudflare.com</strong><span class="ring box"></span></span></div></div>
+      <div class="cf-top"><span class="cf-logo"></span><span>あなたのアカウント</span></div>
+      <div class="cf-body">
+        <div class="cf-side">
+          <div class="q">クイック検索…</div>
+          <div class="si active"><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>アカウントホーム</div>
+          <div class="si"><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>最近</div>
+          <div class="si"><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>ドメイン</div>
+          <div class="sec">建てる</div>
+          <div class="si"><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l5 9-5 9M8 3L3 12l5 9"/></svg>計算する</div>
+        </div>
+        <div class="cf-main">
+          <div class="cf-h">あなたのアカウント</div>
+          <div class="cf-sub">アカウントホーム</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div style="border:1px solid var(--line);border-radius:8px;padding:10px;"><div style="font-size:10px;color:#9ca3af;">Security</div><div style="font-weight:700;">98%</div></div>
+            <div style="border:1px solid var(--line);border-radius:8px;padding:10px;"><div style="font-size:10px;color:#9ca3af;">Performance</div><div style="font-weight:700;">—</div></div>
+            <div style="border:1px solid var(--line);border-radius:8px;padding:10px;"><div style="font-size:10px;color:#9ca3af;">Activity</div><div style="font-weight:700;">0</div></div>
+          </div>
+        </div>
       </div>
-    </div>
+    </div></div>
   </div>
 
   <!-- STEP 2 -->
   <div class="step">
     <div class="step-head"><div class="step-num">2</div><div class="step-title maru">「従業員とページ」を開く</div></div>
-    <div class="step-body">
-      左のメニューの「<strong>計算する</strong>」をクリック → 出てきた「<strong>従業員とページ</strong>」をクリック。<br>
-      サイトの一覧から、直したいサイト（練習なら <strong>cf-practice-worker</strong>）を探します。
-    </div>
-    <div class="mock">
-      <div class="mock-inner" style="max-width:240px;">
-        <div style="font-size:11px;color:#9ca3af;margin-bottom:8px;">左メニュー</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#374151;padding:8px 10px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d2735" stroke-width="2"><path d="M16 3l5 9-5 9M8 3L3 12l5 9"/></svg>計算する
+    <div class="step-body">左メニューの「<strong>計算する</strong>」をクリック → 出てきた「<strong>従業員とページ</strong>」をクリック。サイトの一覧が出て、直したいサイト（練習なら <strong>cf-practice-worker</strong>）が見つかります。</div>
+    <div class="swipe">← 横にスワイプできます →</div>
+    <div class="scrollx"><div class="cf">
+      <div class="cf-top"><span class="cf-logo"></span><span>あなたのアカウント</span></div>
+      <div class="cf-body">
+        <div class="cf-side">
+          <div class="q">クイック検索…</div>
+          <div class="si"><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>アカウントホーム</div>
+          <div class="sec">建てる</div>
+          <div class="si"><svg class="dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l5 9-5 9M8 3L3 12l5 9"/></svg>計算する</div>
+          <div class="target" style="display:block;">
+            <div class="si sub active">従業員とページ</div>
+            <span class="ring box"></span>
+          </div>
+          <div class="si sub">可観測性</div>
+          <div class="si sub">コンテナ</div>
         </div>
-        <div class="target" style="display:block;margin-left:18px;">
-          <div style="background:#eef0f3;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;color:#1d2735;">従業員とページ</div>
-          <span class="ring box"></span>
+        <div class="cf-main">
+          <div class="cf-item"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg><div><div class="nm">AIワークショップ3</div><div class="url">ai-workshop3.pages.dev</div></div></div>
+          <div class="target" style="display:block;">
+            <div class="cf-item" style="margin:0;"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#1d2735" stroke-width="2"><path d="M16 3l5 9-5 9M8 3L3 12l5 9"/></svg><div><div class="nm">cf-practice-worker</div><div class="url">cf-practice-worker…workers.dev</div></div></div>
+            <span class="ring box"></span>
+          </div>
         </div>
       </div>
-    </div>
+    </div></div>
+    <div class="cap">左の「従業員とページ」を押すと、右に一覧が出ます。直すサイトを探します。</div>
   </div>
 
   <!-- STEP 3 -->
   <div class="step">
     <div class="step-head"><div class="step-num">3</div><div class="step-title maru">「アプリケーションを作成する」を押す</div></div>
-    <div class="step-body">
-      画面の<strong>右上</strong>にある青いボタンを押します。
-    </div>
-    <div class="mock">
-      <div class="mock-inner">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
-          <span style="font-size:15px;font-weight:700;">従業員とページ</span>
+    <div class="step-body">「従業員とページ」の画面の<strong>右上</strong>にある青いボタンを押します。</div>
+    <div class="scrollx"><div class="cf">
+      <div class="cf-main" style="padding:16px;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+          <div><div class="cf-h" style="display:flex;align-items:center;gap:6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d2735" stroke-width="2"><path d="M16 3l5 9-5 9M8 3L3 12l5 9"/></svg>従業員とページ</div><div class="cf-sub">サーバーレス関数、サイト等を構築・デプロイします。</div></div>
           <span class="target"><span class="cf-blue">＋ アプリケーションを作成する</span><span class="ring"></span></span>
         </div>
+        <div style="margin-top:8px;"><div class="cf-item" style="opacity:.6;margin:0;"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg><div><div class="nm">cf-practice-worker</div></div></div></div>
       </div>
-    </div>
+    </div></div>
   </div>
 
   <!-- STEP 4 -->
   <div class="step">
     <div class="step-head"><div class="step-num">4</div><div class="step-title maru">下の小さい「さあ始めましょう」を押す</div></div>
-    <div class="warn">
-      <b>ここが一番つまずくポイント！</b><br>
-      上の大きい「Continue with GitHub」は<b>押さないで</b>。これを押すと、また「ワーカーズ」になってしまいます。
-    </div>
-    <div class="step-body">
-      正解は、画面の<strong>一番下</strong>の小さい文字「Pages のデプロイをお考えですか？ <span class="hl-o">さあ始めましょう</span>」です。
-    </div>
-    <div class="mock">
-      <div class="mock-inner">
-        <div style="font-size:14px;font-weight:700;margin-bottom:12px;">新しいものを出荷する</div>
-        <div class="cf-row" style="opacity:.7;position:relative;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="#1d2735"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 015 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg>
-          Continue with GitHub
-          <span class="tag-no" style="position:absolute;right:10px;">押さない</span>
-        </div>
-        <div class="cf-row" style="opacity:.5;">Connect GitLab</div>
-        <div class="cf-row" style="opacity:.5;">テンプレートを選択してください</div>
-        <div style="text-align:right;margin-top:10px;">
-          <span class="bubble">ここを押す<span class="tail"></span></span>
-        </div>
-        <div style="text-align:right;margin-top:6px;font-size:12px;color:#6b7280;">
-          Pages のデプロイをお考えですか？
-          <span class="target"><strong style="color:#1d2735;">&nbsp;さあ始めましょう&nbsp;</strong><span class="ring circle"></span></span>
-        </div>
-      </div>
-    </div>
+    <div class="warn"><b>ここが一番つまずくポイント！</b><br>上の大きい「Continue with GitHub」は<b>押さないで</b>。これを押すと、また「ワーカーズ」になってしまいます。</div>
+    <div class="step-body">正解は、画面の<strong>一番下</strong>の小さい文字「Pages のデプロイをお考えですか？ <span class="hl-o">さあ始めましょう</span>」です。</div>
+    <div class="scrollx"><div class="cf"><div class="cf-main">
+      <div style="font-size:14px;font-weight:700;color:#1d2735;margin-bottom:3px;">新しいものを出荷する</div>
+      <div class="cf-sub">Gitリポジトリから選択するか、コードをドラッグ＆ドロップしてください。</div>
+      <div class="cf-item" style="opacity:.7;position:relative;"><svg class="ic" viewBox="0 0 24 24" fill="#1d2735"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 015 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg><span class="nm" style="font-weight:400;color:#374151;">Continue with GitHub</span><span class="tag-no" style="position:absolute;right:11px;">押さない</span></div>
+      <div class="cf-item" style="opacity:.5;">Connect GitLab</div>
+      <div class="cf-item" style="opacity:.5;">テンプレートを選択してください</div>
+      <div class="cf-item" style="opacity:.5;">静的ファイルをアップロードしてください</div>
+      <div style="text-align:right;margin-top:8px;"><span class="bubble">ここを押す<span class="tail"></span></span></div>
+      <div style="text-align:right;margin-top:5px;font-size:12px;color:#6b7280;">Pages のデプロイをお考えですか？<span class="target"><strong style="color:#1d2735;">&nbsp;さあ始めましょう&nbsp;</strong><span class="ring circle"></span></span></div>
+    </div></div></div>
   </div>
 
   <!-- STEP 5 -->
   <div class="step">
     <div class="step-head"><div class="step-num">5</div><div class="step-title maru">「Gitリポジトリをインポート」を選ぶ</div></div>
-    <div class="step-body">
-      カードが2つ出ます。<strong>上のカード</strong>「既存のGitリポジトリをインポートする」の青いボタンを押します。<br>
-      <span style="font-size:12.5px;color:#9ca3af;">（下の「ドラッグアンドドロップ」は押さない＝GitHubと繋がらないため）</span>
-    </div>
-    <div class="mock">
-      <div class="mock-inner" style="position:relative;">
-        <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:8px;padding:13px;margin-bottom:9px;">
-          <span style="font-size:13px;font-weight:700;">既存のGitリポジトリを<br>インポートする</span>
-          <span class="target"><span class="cf-blue" style="background:#fff;color:#2563eb;border:1px solid #2563eb;">さあ始めましょう</span><span class="ring"></span></span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:8px;padding:13px;opacity:.55;">
-          <span style="font-size:13px;font-weight:700;">ファイルをドラッグ<br>アンドドロップ</span>
-          <span style="font-size:12px;color:#2563eb;border:1px solid #2563eb;border-radius:6px;padding:6px 12px;">さあ始めましょう</span>
-        </div>
+    <div class="step-body">カードが2つ出ます。<strong>上のカード</strong>「既存のGitリポジトリをインポートする」の青いボタンを押します。<br><span style="font-size:12.5px;color:#9ca3af;">（下の「ドラッグアンドドロップ」は押さない＝GitHubと繋がらないため）</span></div>
+    <div class="scrollx"><div class="cf"><div class="cf-main">
+      <div class="cf-h" style="text-align:center;">さあ始めましょう</div>
+      <div class="cf-sub" style="text-align:center;">Pagesを始めましょう。どのように始めますか？</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:9px;padding:13px;margin-bottom:9px;">
+        <span style="font-size:12.5px;font-weight:700;color:#1d2735;">既存のGitリポジトリを<br>インポートする</span>
+        <span class="target"><span style="font-size:12px;color:var(--blue);border:1px solid var(--blue);border-radius:7px;padding:7px 13px;white-space:nowrap;">さあ始めましょう</span><span class="ring"></span></span>
       </div>
-    </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:9px;padding:13px;opacity:.5;">
+        <span style="font-size:12.5px;font-weight:700;color:#1d2735;">ファイルをドラッグ<br>アンドドロップ</span>
+        <span style="font-size:12px;color:var(--blue);border:1px solid var(--blue);border-radius:7px;padding:7px 13px;white-space:nowrap;">さあ始めましょう</span>
+      </div>
+    </div></div></div>
   </div>
 
   <!-- STEP 6 -->
   <div class="step">
-    <div class="step-head"><div class="step-num">6</div><div class="step-title maru">直したいサイトの入れ物を選ぶ</div></div>
-    <div class="step-body">
-      リポジトリ（サイトの入れ物）の一覧が出ます。直したいもの（練習なら <strong>cf-practice</strong>）をクリックして、<strong>右下の「セットアップを開始します」</strong>を押します。
-    </div>
-    <div class="mock">
-      <div class="mock-inner">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-          <div class="cf-row" style="margin:0;justify-content:center;opacity:.55;">AIワークショップ</div>
-          <span class="target"><div class="cf-row" style="margin:0;justify-content:center;font-weight:700;background:#eef4ff;border-color:#93b4ff;">cf-practice ✓</div><span class="ring box"></span></span>
-          <div class="cf-row" style="margin:0;justify-content:center;opacity:.55;">kuwamon-lp</div>
-          <div class="cf-row" style="margin:0;justify-content:center;opacity:.55;">aya-ai-design</div>
-        </div>
-        <div style="text-align:right;">
-          <span class="target"><span class="cf-blue">セットアップを開始します</span><span class="ring"></span></span>
-        </div>
+    <div class="step-head"><div class="step-num">6</div><div class="step-title maru">直したいサイトを選んで「セットアップを開始」</div></div>
+    <div class="step-body">リポジトリ（サイトの入れ物）の一覧が出ます。直したいもの（練習なら <strong>cf-practice</strong>）をクリック → <strong>右下の「セットアップを開始します」</strong>を押します。</div>
+    <div class="scrollx"><div class="cf"><div class="cf-main">
+      <div class="cf-h">アカウントからサイトをデプロイする</div>
+      <div class="cf-tab"><span class="t on">GitHub</span><span class="t">GitLab</span></div>
+      <div style="font-size:11px;font-weight:700;margin-bottom:4px;">GitHubアカウント</div>
+      <div class="cf-field"><div class="bx" style="display:flex;justify-content:space-between;">ゴキゲンデザイン <span style="color:#9ca3af;">▾</span></div></div>
+      <div style="font-size:11px;color:#6b7280;margin:8px 0 6px;">リポジトリを選択してください</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px;">
+        <div class="cf-item" style="margin:0;justify-content:center;opacity:.55;">AIワークショップ</div>
+        <span class="target"><div class="cf-item" style="margin:0;justify-content:center;background:#eef4ff;border-color:#93b4ff;"><span class="nm">cf-practice</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div><span class="ring box"></span></span>
+        <div class="cf-item" style="margin:0;justify-content:center;opacity:.55;">kuwamon-lp</div>
+        <div class="cf-item" style="margin:0;justify-content:center;opacity:.55;">aya-ai-design</div>
       </div>
-    </div>
+      <div style="text-align:right;"><span class="target"><span class="cf-blue">セットアップを開始します</span><span class="ring"></span></span></div>
+    </div></div></div>
   </div>
 
   <!-- STEP 7 -->
   <div class="step">
     <div class="step-head"><div class="step-num">7</div><div class="step-title maru">設定は何も入力せず「保存してデプロイ」</div></div>
-    <div class="step-body">
-      むずかしい設定は<strong>何も入力しません。</strong>下の3つが「なし」「空っぽ」になっていればOK。確認したら、下の<strong>「保存してデプロイする」</strong>を押します。
-    </div>
-    <div class="mock">
-      <div class="mock-inner">
-        <div class="set-row"><span>フレームワークプリセット</span><span class="set-val">なし</span></div>
-        <div class="set-row"><span>ビルドコマンド</span><span class="set-val">空っぽ</span></div>
-        <div class="set-row"><span>ビルド出力ディレクトリ</span><span class="set-val">空っぽ</span></div>
-        <div style="text-align:right;margin-top:12px;">
-          <span class="target"><span class="cf-blue">保存してデプロイする</span><span class="ring"></span></span>
-        </div>
-      </div>
-      <div class="mock-cap">この3つは触らなくてOK。最初から正解になっています。</div>
-    </div>
+    <div class="step-body">むずかしい設定は<strong>何も入力しません。</strong>下の3つが「なし」「空っぽ」ならOK。確認したら、下の<strong>「保存してデプロイする」</strong>を押します。</div>
+    <div class="scrollx"><div class="cf"><div class="cf-main">
+      <div class="cf-h" style="text-align:center;font-size:15px;">ビルドとデプロイメントを設定する</div>
+      <div class="cf-field"><div class="lb">プロジェクト名</div><div class="bx">cf-practice</div></div>
+      <div class="cf-field"><div class="lb">生産部門（ブランチ）</div><div class="bx">main</div></div>
+      <div class="cf-field"><div class="lb">フレームワークプリセット <span style="color:#16a34a;font-weight:700;">← なし でOK</span></div><div class="bx" style="display:flex;justify-content:space-between;">なし <span style="color:#9ca3af;">▾</span></div></div>
+      <div class="cf-field"><div class="lb">ビルドコマンド <span style="color:#16a34a;font-weight:700;">← 空っぽでOK</span></div><div class="bx empty">（何も入力しない）</div></div>
+      <div class="cf-field"><div class="lb">ビルド出力ディレクトリ <span style="color:#16a34a;font-weight:700;">← 空っぽでOK</span></div><div class="bx empty">（何も入力しない）</div></div>
+      <div style="text-align:right;margin-top:6px;"><span class="target"><span class="cf-blue">保存してデプロイする</span><span class="ring"></span></span></div>
+    </div></div></div>
+    <div class="cap">この3つは触らなくてOK。最初から正解になっています。</div>
   </div>
 
   <!-- STEP 8 -->
   <div class="step">
     <div class="step-head"><div class="step-num done">8</div><div class="step-title maru">公開成功！（1〜2分待つ）</div></div>
-    <div class="step-body">
-      チェックマークが順番につき、「<strong>成功！</strong>」と出れば完成です。新しいサイトのURL <strong>◯◯.pages.dev</strong> が発行されます。<br>
-      <span class="hl-o">エラーが出なければ大成功です。</span>
-    </div>
-    <div class="mock">
-      <div class="mock-inner" style="text-align:center;">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-        <div style="font-weight:700;font-size:15px;margin:8px 0 4px;">成功！デプロイされました</div>
-        <div style="font-size:13px;color:#2563eb;text-decoration:underline;">cf-practice.pages.dev</div>
-      </div>
-    </div>
+    <div class="step-body">チェックマークが順番につき、「<strong>成功！</strong>」と出れば完成です。新しいサイトのURL <strong>◯◯.pages.dev</strong> が発行されます。<br><span class="hl-o">エラーが出なければ大成功です。</span></div>
+    <div class="scrollx"><div class="cf"><div class="cf-main" style="text-align:center;padding:22px 16px;">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+      <div style="font-weight:700;font-size:15px;margin:8px 0 4px;color:#1d2735;">成功！プロジェクトはデプロイされました</div>
+      <div style="font-size:13px;color:#9ca3af;">プロジェクトをプレビューするには</div>
+      <div style="font-size:13px;color:var(--blue);text-decoration:underline;margin-top:2px;">cf-practice.pages.dev</div>
+    </div></div></div>
   </div>
 
   <!-- STEP 9 -->
   <div class="step">
     <div class="step-head"><div class="step-num">9</div><div class="step-title maru">古いワーカーズを消す（お片付け）</div></div>
-    <div class="warn">
-      <b>消すものを間違えないで！</b><br>
-      消すのは古い <b>◯◯-worker</b>（◇マーク）。<br>
-      さっき作った新しい <b>◯◯.pages.dev</b>（⚡マーク）は<b>残します</b>。
-    </div>
-    <div class="step-body">
-      「従業員とページ」に戻り、古いワーカー（練習なら <strong>cf-practice-worker</strong>）を開く → 上のタブ「<strong>設定</strong>」 → 一番下までスクロール → 赤い「<strong>消去</strong>」を押します。
-    </div>
-    <div class="mock">
-      <div class="mock-inner">
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#374151;">
-          <span>このワーカーを完全に削除します</span>
-          <span class="target"><span style="color:var(--red);font-weight:700;">消去</span><span class="ring box"></span></span>
-        </div>
+    <div class="warn"><b>消すものを間違えないで！</b><br>消すのは古い <b>◯◯-worker</b>（◇マーク）。さっき作った新しい <b>◯◯.pages.dev</b>（⚡マーク）は<b>残します</b>。</div>
+    <div class="step-body">「従業員とページ」で古いワーカー（練習なら <strong>cf-practice-worker</strong>）を開く → 上のタブ「<strong>設定</strong>」 → 一番下までスクロール → 赤い「<strong>消去</strong>」を押します。</div>
+    <div class="scrollx"><div class="cf"><div class="cf-main">
+      <div class="cf-tab"><span class="t">概要</span><span class="t">指標</span><span class="t">デプロイメント</span><span class="target" style="display:inline-block;"><span class="t on">設定</span><span class="ring box"></span></span></div>
+      <div style="font-size:11px;color:#9ca3af;margin-bottom:8px;">一般的な</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:8px;padding:12px 13px;">
+        <span style="font-size:12px;color:#374151;">このワーカーを完全に削除します</span>
+        <span class="target"><span style="color:var(--red);font-weight:700;">消去</span><span class="ring box"></span></span>
       </div>
-    </div>
+    </div></div></div>
   </div>
 
   <!-- STEP 10 -->
   <div class="step">
     <div class="step-head"><div class="step-num">10</div><div class="step-title maru">名前をコピペして「消去」</div></div>
-    <div class="step-body">
-      確認の画面が出たら、<strong>名前を入力</strong>します。名前の横の<strong>コピーマーク</strong>を押すとコピーできるので、それを欄に貼り付け（ペースト）すると簡単です。最後に赤い「<strong>消去</strong>」を押して完了！
-    </div>
-    <div class="mock">
-      <div class="mock-inner">
-        <div style="font-size:12px;color:#6b7280;margin-bottom:6px;">
-          入力してください
-          <span style="background:#eef0f3;border-radius:5px;padding:2px 8px;font-weight:700;color:#1d2735;">cf-practice-worker</span>
-          <span class="target"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="ring circle"></span></span>
-          <span style="font-size:11px;color:#9ca3af;">← コピー</span>
-        </div>
-        <div style="border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13px;color:#374151;margin-bottom:12px;">cf-practice-worker</div>
-        <div style="text-align:right;">
-          <span class="target"><span style="background:var(--red);color:#fff;font-weight:700;font-size:13px;padding:8px 18px;border-radius:8px;display:inline-block;">消去</span><span class="ring"></span></span>
-        </div>
-      </div>
-    </div>
-    <div class="tip">
-      豆知識：欄に出ている「cf-プラクティスワーカー」という日本語は自動翻訳の見た目です。本当の名前は英語の <strong>cf-practice-worker</strong>。コピーマークから貼り付ければ間違いません。
-    </div>
+    <div class="step-body">確認画面が出たら、<strong>名前を入力</strong>します。名前の横の<strong>コピーマーク</strong>を押すとコピーできるので、欄に貼り付け（ペースト）すると簡単です。最後に赤い「<strong>消去</strong>」を押して完了！</div>
+    <div class="scrollx"><div class="cf"><div class="cf-main">
+      <div style="font-size:13px;font-weight:700;color:#1d2735;margin-bottom:8px;">ワーカーを削除</div>
+      <div style="font-size:11.5px;color:#6b7280;margin-bottom:8px;line-height:1.7;"><strong>cf-practice-worker</strong> を削除すると元に戻せません。</div>
+      <div style="font-size:11px;color:#6b7280;margin-bottom:6px;">入力してください <span style="background:#eef0f3;border-radius:5px;padding:2px 8px;font-weight:700;color:#1d2735;">cf-practice-worker</span> <span class="target"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="ring circle"></span></span> <span style="font-size:10px;color:#9ca3af;">← コピー</span></div>
+      <div style="border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:12px;color:#374151;margin-bottom:11px;">cf-practice-worker</div>
+      <div style="text-align:right;"><span class="target"><span style="background:var(--red);color:#fff;font-weight:700;font-size:12.5px;padding:7px 17px;border-radius:8px;display:inline-block;">消去</span><span class="ring"></span></span></div>
+    </div></div></div>
+    <div class="tip">豆知識：欄の「cf-プラクティスワーカー」という日本語は自動翻訳の見た目です。本当の名前は英語の <strong>cf-practice-worker</strong>。コピーマークから貼り付ければ間違いません。</div>
   </div>
 
-  <!-- FINISH -->
   <div class="finish">
     <h2 class="maru">これで完了です！おつかれさまでした</h2>
     <p>古いワーカーが消えて、新しい <strong>◯◯.pages.dev</strong> だけが残れば成功です。</p>
     <p>これからは「<strong>push して</strong>」と言うだけで、自動で公開されます。</p>
   </div>
 
-  <!-- KEY TAKEAWAY -->
   <div class="key">
     <h2 class="maru">いちばん大事なこと（覚えておくと安心）</h2>
     <p style="font-size:14px;color:var(--gray);margin:0 0 12px;">つまずきの本当の分かれ目は「ワーカーズ か ページーズ か」ではなく、<strong style="color:var(--orange);">GitHubと繋がっているか・いないか</strong>です。</p>
@@ -376,10 +326,7 @@
     </table>
   </div>
 
-  <div class="footnote">
-    AIワークショップ｜Cloudflare はじめてガイド<br>
-    ※ このページの画面はすべてイメージです（個人情報は含みません）。
-  </div>
+  <div class="footnote">AIワークショップ｜Cloudflare はじめてガイド<br>※ 画面はすべて再現イメージです（個人情報は含みません）。</div>
 
 </div>
 </body>
