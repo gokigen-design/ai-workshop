@@ -9067,6 +9067,66 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
 
     <!-- ━━━ PART 2: 実際の手順 ━━━ -->
 
+    <!-- ━━━ Claude Code への指示プロンプト（コピペ用） ━━━ -->
+    <div class="card" style="background:#1C1D2E;border:none;color:#F5EFE4;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">Copy &amp; Paste</div>
+          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.4;">Claude Code への指示プロンプト</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:rgba(245,239,228,0.7);line-height:1.9;margin-bottom:14px;">
+        下のテキストをそのままコピーして、<strong style="color:#fff;">Claude Code のチャット欄に貼り付けて Enter</strong>。Claudeが GitHub への保存 → Cloudflare での公開まで案内してくれます。
+      </p>
+
+      <!-- プロンプト本文 -->
+      <pre id="deploy-prompt-text" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:13px;line-height:1.9;color:#F5EFE4;background:rgba(255,255,255,0.06);border-left:3px solid var(--orange);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;">今このフォルダで作ったLPを、インターネットに公開したいです。
+
+以下の手順で進めてください：
+① GitHubに新しいリポジトリを作って、このフォルダの中身をプッシュする
+② Cloudflare Pages で、そのGitHubリポジトリと連携してデプロイする
+③ 公開URLが発行されたら教えてください
+
+詰まったところがあれば、その都度わかりやすく案内してください。</pre>
+
+      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-text').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:var(--orange);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        このプロンプトをコピー
+      </button>
+
+      <p style="font-size:11px;color:rgba(245,239,228,0.5);line-height:1.8;margin-top:14px;">
+        ※ Cloudflare と GitHub を繋ぐ画面操作は、このあとの手順で一緒に進めます。
+      </p>
+    </div>
+
+    <!-- ━━━ 2回目以降は呪文ひとつでOK ━━━ -->
+    <div class="card" style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border-color:var(--orange-border);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:28px;height:28px;border-radius:8px;background:var(--beige);color:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">2nd time onward</div>
+          <div style="font-size:14px;font-weight:700;color:var(--black);line-height:1.4;">2回目以降は呪文ひとつでOK</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:12px;">
+        一度この流れを通せば、別のLPを公開するときも下の一言を Claude Code に言うだけ。あとは全部やってくれます。
+      </p>
+
+      <pre id="deploy-prompt-short" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:14px;font-weight:600;line-height:1.8;color:var(--black);background:#fff;border:1px dashed var(--orange-border);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;text-align:center;">GitHubにプッシュして、Cloudflareでデプロイして</pre>
+
+      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-short').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--black);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        この呪文をコピー
+      </button>
+    </div>
+
     <!-- 1. GitHub保管庫を作る -->
     <div class="card">
       <div class="card-head">
@@ -9115,7 +9175,7 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <div class="deploy-step-num">2</div>
         <div>
           <div class="deploy-step-title">リポジトリ名を入力</div>
-          <div class="deploy-step-desc">英数字・ハイフンのみ。例：<code style="background:#fff;padding:2px 8px;border-radius:4px;">my-lp</code></div>
+          <div class="deploy-step-desc">英数字・ハイフン・小文字で入力。例：<code style="background:#fff;padding:2px 8px;border-radius:4px;">my-lp</code></div>
         </div>
       </div>
       <!-- Mock: Repo name input -->
@@ -9297,66 +9357,6 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       </div>
     </div>
 
-    <!-- ━━━ Claude Code への指示プロンプト（コピペ用） ━━━ -->
-    <div class="card" style="background:#1C1D2E;border:none;color:#F5EFE4;">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-        <div style="width:32px;height:32px;border-radius:8px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </div>
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">Copy &amp; Paste</div>
-          <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.4;">Claude Code への指示プロンプト</div>
-        </div>
-      </div>
-
-      <p style="font-size:13px;color:rgba(245,239,228,0.7);line-height:1.9;margin-bottom:14px;">
-        下のテキストをそのままコピーして、<strong style="color:#fff;">Claude Code のチャット欄に貼り付けて Enter</strong>。Claudeが GitHub への保存 → Cloudflare での公開まで案内してくれます。
-      </p>
-
-      <!-- プロンプト本文 -->
-      <pre id="deploy-prompt-text" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:13px;line-height:1.9;color:#F5EFE4;background:rgba(255,255,255,0.06);border-left:3px solid var(--orange);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;">今このフォルダで作ったLPを、インターネットに公開したいです。
-
-以下の手順で進めてください：
-① GitHubに新しいリポジトリを作って、このフォルダの中身をプッシュする
-② Cloudflare Pages で、そのGitHubリポジトリと連携してデプロイする
-③ 公開URLが発行されたら教えてください
-
-詰まったところがあれば、その都度わかりやすく案内してください。</pre>
-
-      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-text').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:var(--orange);color:#fff;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        このプロンプトをコピー
-      </button>
-
-      <p style="font-size:11px;color:rgba(245,239,228,0.5);line-height:1.8;margin-top:14px;">
-        ※ うまく進まないときは、下の詳しい手順を見ながら進めるか、講師に声をかけてください。
-      </p>
-    </div>
-
-    <!-- ━━━ 2回目以降は呪文ひとつでOK ━━━ -->
-    <div class="card" style="background:linear-gradient(135deg,#fff 60%,#FAF5EC);border-color:var(--orange-border);">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:28px;height:28px;border-radius:8px;background:var(--beige);color:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>
-        </div>
-        <div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;">2nd time onward</div>
-          <div style="font-size:14px;font-weight:700;color:var(--black);line-height:1.4;">2回目以降は呪文ひとつでOK</div>
-        </div>
-      </div>
-
-      <p style="font-size:13px;color:var(--gray-mid);line-height:1.9;margin-bottom:12px;">
-        一度この流れを通せば、別のLPを公開するときも下の一言を Claude Code に言うだけ。あとは全部やってくれます。
-      </p>
-
-      <pre id="deploy-prompt-short" style="white-space:pre-wrap;word-break:break-word;font-family:'Zen Maru Gothic','Noto Sans JP',sans-serif;font-size:14px;font-weight:600;line-height:1.8;color:var(--black);background:#fff;border:1px dashed var(--orange-border);border-radius:8px;padding:14px 18px;margin:0 0 12px 0;text-align:center;">GitHubにプッシュして、Cloudflareでデプロイして</pre>
-
-      <button onclick="(function(b){var t=document.getElementById('deploy-prompt-short').innerText;navigator.clipboard.writeText(t).then(function(){var o=b.innerHTML;b.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;vertical-align:-2px;margin-right:6px;&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg>コピーしました';setTimeout(function(){b.innerHTML=o;},1800);});})(this)" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--black);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        この呪文をコピー
-      </button>
-    </div>
-
     <!-- 2. ファイルを送る -->
     <div class="card">
       <div class="card-head">
@@ -9468,15 +9468,10 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
         <div style="font-size:11px;color:var(--gray-lt);line-height:1.7;margin-top:10px;text-align:center;">※ この画面はイメージです（個人情報は含みません）</div>
       </div>
 
-      <!-- Sub-step: Select method (正しい入口・最重要) -->
-      <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:10px;padding:14px 18px;margin:0 0 12px;">
-        <div style="font-size:13px;font-weight:700;color:#b91c1c;line-height:1.8;margin-bottom:6px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-          ここが受講生ほぼ全員がつまずく最大の罠です
-        </div>
-        <div style="font-size:13px;color:#374151;line-height:1.9;">
-          次の画面で、上の目立つ<strong>「Continue with GitHub」は押さないでください</strong>。これを押すと <strong style="color:#b91c1c;">Workers（労働者）</strong> 扱いになり、「最新ビルドが失敗しました」のエラーになります。<br>
-          正解は、画面の一番下にある小さな文字<strong style="color:#b91c1c;">「Pages を導入しようとお考えですか？ 始める」の “始める”</strong> です。
+      <!-- Sub-step: Select method (正しい入口) -->
+      <div style=”background:#FFF9F5;border:1px solid #FDD9B5;border-radius:10px;padding:12px 18px;margin:0 0 12px;”>
+        <div style=”font-size:13px;color:#374151;line-height:1.9;”>
+          次の画面では、右下の小さな文字 <strong style=”color:#f6821f;”>「Pages を導入しようとお考えですか？ 始める」の “始める”</strong> を押して進みます。
         </div>
       </div>
 
@@ -9601,38 +9596,17 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
       </div>
       <div style="font-size:12px;color:var(--gray-lt);line-height:1.8;">APIトークンやシークレットの設定は不要です。Cloudflareのダッシュボード操作だけで完結します。</div>
 
-      <!-- 救済：すでにWorkersで公開してしまった人へ -->
+      <!-- 間違えてしまった人へ -->
       <div style="background:linear-gradient(135deg,#FFF9F5,#FFF3E8);border:1px solid #FDD9B5;border-radius:12px;padding:18px 20px;margin-top:22px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f6821f" stroke-width="2" style="flex-shrink:0;"><path d="M3 12a9 9 0 109-9 9 9 0 00-9 9z"/><path d="M12 7v5l3 2"/></svg>
-          <span style="font-size:14px;font-weight:700;color:var(--black);">すでに Workers や CLI で公開してしまった人へ</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f6821f" stroke-width="2" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01M12 11v6"/></svg>
+          <span style="font-size:14px;font-weight:700;color:var(--black);">間違えてしまった人へ</span>
         </div>
-        <div style="background:#fff;border:1px solid #FDD9B5;border-radius:8px;padding:11px 15px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.85;">
-          <strong style="color:var(--black);">大事な見分け方：</strong>つまずきの本当の分かれ目は「Workers か Pages か」ではなく、<strong style="color:#f6821f;">GitHub連携が "ある" か "ない" か</strong>です。下のどちらに当てはまっても、直し方はまったく同じです。<br>
-          ・Workers で公開してしまった（労働者アイコン）<br>
-          ・CLI（wrangler）で公開した → 種類は Pages でも <strong>GitHubは通っていない</strong>（＝「Git Provider: No」状態）
-        </div>
-        <div style="font-size:13px;color:#374151;line-height:1.9;margin-bottom:12px;">
-          <strong>結論：今のものは直さなくてOK。</strong>コードをGitHubに上げてから、<strong style="color:#f6821f;">同じリポジトリでPagesを"もう一度"作り直す</strong>のが、一番カンタンで迷いません。何も失いません（変わるのは公開URLだけ）。
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:flex-start;gap:11px;">
-            <div style="background:#f6821f;color:#fff;font-size:12px;font-weight:700;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
-            <div style="font-size:13px;color:#374151;line-height:1.8;">まず Claude に「<strong>GitHubにpushして</strong>」と言って、最新のコードをGitHubに保存しておく（これが大事）</div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:11px;">
-            <div style="background:#f6821f;color:#fff;font-size:12px;font-weight:700;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
-            <div style="font-size:13px;color:#374151;line-height:1.8;">上の手順A〜Cをもう一度やる。「アプリケーションを作成する」→ 下の小さい「<strong>始める</strong>」→ <strong>さっきと同じリポジトリ</strong>を選ぶ → 新しい <code style="background:#fff;border:1px solid #FDD9B5;border-radius:4px;padding:1px 5px;">◯◯.pages.dev</code> のURLができる</div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:11px;">
-            <div style="background:#22c55e;color:#fff;font-size:12px;font-weight:700;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
-            <div style="font-size:13px;color:#374151;line-height:1.8;">新しい <code style="background:#fff;border:1px solid #FDD9B5;border-radius:4px;padding:1px 5px;">.pages.dev</code> のURLを「本物」として使う。古いほう（Worker、またはCLIで作ったPages）は右の「<strong>…</strong>」メニューから削除すると、次から迷いません（残しておいても害はありません）</div>
-          </div>
-        </div>
-        <div style="background:#fff;border-radius:8px;padding:11px 15px;margin-top:13px;font-size:12px;color:var(--gray-mid);line-height:1.8;">
-          <strong style="color:var(--black);">なぜ作り直しが一番ラク？</strong><br>
-          Workersを後からPagesに「変換」したり、CLIで作ったPagesを後から「GitHub連携」に切り替えることはできません。でもコードさえGitHubにあれば、連携Pagesを作り直すだけで一瞬で同じサイトが復活します。URLが変わるだけなので、まだ人に共有していない今のうちが直しどきです。
-        </div>
+        <p style="font-size:13px;color:#374151;line-height:1.9;margin-bottom:14px;">Workersで公開してしまった人・CLIで公開してしまった人、どちらも同じガイドで直せます。スクリーンショット付きの手順を用意しています。</p>
+        <a href="workers-to-pages-guide.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#f6821f;color:#fff;font-size:13px;font-weight:700;padding:10px 22px;border-radius:24px;text-decoration:none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          スクリーンショット付きガイドを見る
+        </a>
       </div>
     </div>
 
@@ -9688,121 +9662,6 @@ LP構成は FV → 悩み → 解決策 → 得られること → 講師紹介 
           pushするたびに自動でデプロイ履歴が積み上がっていきます
         </div>
       </div>
-    </div>
-
-
-    <!-- 参考: Cloudflare Pagesにドラッグ&ドロップで公開する方法 -->
-    <div class="card" style="border-color:#e5e7eb;background:#FAFAFA;">
-      <details id="dd-deploy-toggle">
-        <summary style="list-style:none;cursor:pointer;-webkit-appearance:none;" onclick="var d=this.parentElement;var icon=this.querySelector('.toggle-chevron');setTimeout(function(){icon.style.transform=d.open?'rotate(90deg)':'rotate(0deg)';},0);">
-          <div class="card-head" style="margin-bottom:0;">
-            <div class="card-num" style="background:#e5e7eb;color:#9ca3af;">3</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:600;color:var(--gray-mid);">ドラッグ&amp;ドロップで公開する（参考）</div>
-              <div style="font-size:12px;color:var(--gray-lt);margin-top:2px;line-height:1.6;">自動デプロイが難しい場合の代替方法です &#x25B6; タップで開く</div>
-            </div>
-            <svg class="toggle-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#9ca3af" stroke-width="2" style="transition:transform 0.2s;flex-shrink:0;"><polyline points="6 3 11 8 6 13"/></svg>
-          </div>
-        </summary>
-        <div style="margin-top:20px;border-top:1px solid #e5e7eb;padding-top:20px;">
-          <p style="font-size:14px;color:var(--gray-mid);line-height:1.9;margin-bottom:16px;">
-            フォルダをブラウザにドラッグするだけでLPが公開されます。GitHubとの連携なしで使える方法です。
-          </p>
-
-          <!-- Step 3-1 -->
-          <div class="deploy-step-item" style="margin-bottom:10px;">
-            <div class="deploy-step-num">1</div>
-            <div>
-              <div class="deploy-step-title"><a href="https://pages.cloudflare.com" target="_blank" style="color:var(--black);border-bottom:1px dotted var(--blue);text-decoration:none;">pages.cloudflare.com</a> を開く</div>
-              <div class="deploy-step-desc">ログイン後、「Workers &amp; Pages」&#x2192;「Pages」&#x2192;「Create a project」&#x2192;「<strong>Upload assets</strong>」を選びます。</div>
-            </div>
-          </div>
-          <!-- Mock: Upload assets selection -->
-          <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-            <div style="background:#f6821f;padding:10px 20px;display:flex;align-items:center;gap:10px;">
-              <span style="color:#fff;font-size:13px;font-weight:700;">Cloudflare</span>
-              <span style="color:rgba(255,255,255,0.7);font-size:13px;">| Pages</span>
-            </div>
-            <div style="padding:20px;">
-              <div style="font-size:14px;font-weight:700;color:#1d2735;margin-bottom:14px;">Create a new project</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                <div style="border:1px solid #e5e7eb;border-radius:10px;padding:16px;opacity:0.4;">
-                  <div style="font-size:12px;font-weight:700;color:#6b7280;">Connect to Git</div>
-                </div>
-                <div style="border:2.5px solid #f6821f;border-radius:10px;padding:16px;background:#FFF9F5;position:relative;">
-                  <div style="position:absolute;top:-10px;right:10px;background:#f6821f;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:8px;">こちらを選ぶ</div>
-                  <div style="font-size:20px;margin-bottom:8px;">&#x1F4C2;</div>
-                  <div style="font-size:12px;font-weight:700;color:#1d2735;margin-bottom:3px;">Upload assets</div>
-                  <div style="font-size:10px;color:#6b7280;line-height:1.5;">ファイルを直接アップロード</div>
-                </div>
-              </div>
-            </div>
-            <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-              &#x1F446;「Upload assets」を選びます
-            </div>
-          </div>
-
-          <!-- Step 3-2 -->
-          <div class="deploy-step-item" style="margin-bottom:10px;">
-            <div class="deploy-step-num">2</div>
-            <div>
-              <div class="deploy-step-title">プロジェクト名をつける</div>
-              <div class="deploy-step-desc">英数字とハイフンで入力します（例：<code style="background:var(--beige);padding:1px 6px;border-radius:4px;">my-lp</code>）。これがURLの一部になります。</div>
-            </div>
-          </div>
-          <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-            <div style="padding:20px;">
-              <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:6px;">Project name</div>
-              <div style="border:2px solid #f6821f;border-radius:6px;padding:9px 12px;font-size:14px;color:#1d2735;font-weight:600;">my-lp</div>
-              <div style="margin-top:8px;font-size:11px;color:#6b7280;">Your site will be available at: <span style="color:#f6821f;font-weight:600;">my-lp.pages.dev</span></div>
-            </div>
-            <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-              &#x1F446; 好きな名前をつけてください（ローマ字でOK）
-            </div>
-          </div>
-
-          <!-- Step 3-3 -->
-          <div class="deploy-step-item" style="margin-bottom:10px;">
-            <div class="deploy-step-num">3</div>
-            <div>
-              <div class="deploy-step-title">LPのフォルダをドラッグ&amp;ドロップ</div>
-              <div class="deploy-step-desc">Claude Codeで作ったプロジェクトフォルダごとドラッグします。<code style="background:var(--beige);padding:1px 6px;border-radius:4px;">index.html</code> が入っているフォルダをそのまま投げ込んでください。</div>
-            </div>
-          </div>
-          <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-            <div style="padding:20px;">
-              <div style="border:2.5px dashed #f6821f;border-radius:12px;background:#FFF9F5;padding:32px 20px;text-align:center;">
-                <div style="font-size:36px;margin-bottom:10px;">&#x1F4C1;</div>
-                <div style="font-size:14px;font-weight:700;color:#1d2735;margin-bottom:4px;">Drop your project folder here</div>
-                <div style="font-size:12px;color:#6b7280;margin-bottom:14px;">or click to browse</div>
-                <div style="background:#f6821f;color:#fff;font-size:12px;font-weight:700;padding:7px 20px;border-radius:6px;display:inline-block;">Select a folder</div>
-              </div>
-            </div>
-            <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-              &#x1F446; フォルダをここにドラッグ&amp;ドロップするだけ！
-            </div>
-          </div>
-
-          <!-- Step 3-4 -->
-          <div class="deploy-step-item" style="margin-bottom:10px;">
-            <div class="deploy-step-num">4</div>
-            <div>
-              <div class="deploy-step-title">「Deploy site」を押す</div>
-              <div class="deploy-step-desc">ファイルがアップロードされたら「Deploy site」ボタンを押します。30秒〜1分で完了です。</div>
-            </div>
-          </div>
-          <div style="margin:0 0 20px;border-radius:10px;overflow:hidden;border:1px solid #eee;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;">
-            <div style="padding:20px;">
-              <div style="display:flex;justify-content:flex-end;">
-                <div style="background:#f6821f;color:#fff;font-size:13px;font-weight:700;padding:10px 28px;border-radius:6px;">Deploy site</div>
-              </div>
-            </div>
-            <div style="background:var(--orange-dim);padding:10px 18px;font-size:12px;color:var(--orange);font-weight:600;border-top:1px solid var(--orange-border);">
-              &#x1F446;「Deploy site」を押して完了！URLが発行されます。
-            </div>
-          </div>
-        </div>
-      </details>
     </div>
 
     <!-- 用語まとめ -->
