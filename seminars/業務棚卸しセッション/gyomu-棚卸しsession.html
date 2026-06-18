@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>業務棚卸しセッション｜AIワークショップ 1〜3期生</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-deep:   #2563EB;
+      --blue-mid:    #3B82F6;
+      --blue-light:  #60A5FA;
+      --blue-pale:   #BFDBFE;
+      --blue-bg:     #EFF6FF;
+      --blue-bg2:    #F0F9FF;
+      --teal:        #0EA5E9;
+      --text:        #545454;
+      --text-dark:   #1e3a5f;
+      --text-light:  #7A8BA0;
+      --white:       #FFFFFF;
+      --border:      #DBEAFE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text);
+      background: #F8FBFF;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Hero ─────────────────────────────────────────────── */
+    .hero {
+      background: #EFF6FF;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-img-wrap {
+      width: 100%;
+      line-height: 0;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero-img-sp { display: none; }
+    .hero-img-pc { display: block; }
+
+    .hero-dates {
+      background: #fff;
+      padding: 28px 24px 32px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+    }
+
+    .date-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .date-card {
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 14px;
+      padding: 14px 20px;
+      font-size: 14px;
+      color: var(--text-dark);
+      font-weight: 500;
+      min-width: 130px;
+      line-height: 1.5;
+    }
+
+    .date-card .day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--blue-mid);
+      display: block;
+    }
+
+    /* ─── Sections ──────────────────────────────────────────── */
+    .section {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--blue-mid);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 400;
+      font-size: clamp(20px, 3.5vw, 28px);
+      color: var(--text-dark);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    /* ─── Purpose Cards ─────────────────────────────────────── */
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .purpose-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .purpose-icon {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .purpose-icon img {
+      width: 88px;
+      height: 88px;
+      object-fit: contain;
+    }
+
+    .purpose-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .purpose-card p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.75;
+    }
+
+    /* ─── Timeline ───────────────────────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue-light), var(--blue-pale));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -36px;
+      top: 4px;
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, var(--blue-mid), var(--teal));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+    }
+
+    .timeline-dot svg { display: block; }
+
+    .timeline-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--blue-mid);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .timeline-item p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.85;
+    }
+
+    .timeline-sub {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .timeline-sub-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .timeline-sub-item .bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    /* ─── Prompt Box ─────────────────────────────────────────── */
+    .prompt-section {
+      background: linear-gradient(145deg, #EFF6FF 0%, #F0F9FF 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prompt-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .prompt-box {
+      background: var(--white);
+      border: 1.5px solid rgba(59,130,246,0.25);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(37,99,235,0.08);
+    }
+
+    .prompt-header {
+      background: linear-gradient(135deg, var(--blue-deep), var(--teal));
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .prompt-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prompt-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 100px;
+      color: #fff;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover { background: rgba(255,255,255,0.32); }
+
+    .prompt-body {
+      padding: 28px 28px 24px;
+    }
+
+    .prompt-lead {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      line-height: 1.75;
+    }
+
+    .prompt-text {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 2;
+      color: var(--text);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .prompt-divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 20px 0;
+    }
+
+    .prompt-note {
+      background: #EFF6FF;
+      border-left: 3px solid var(--blue-light);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--text-dark);
+      color: #fff;
+      font-size: 13px;
+      padding: 12px 28px;
+      border-radius: 100px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 9999;
+      white-space: nowrap;
+    }
+
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ─── 感動体験 ───────────────────────────────────────────── */
+    .wonder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .wonder-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wonder-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-mid), var(--teal));
+    }
+
+    .wonder-before {
+      font-size: 12px;
+      color: var(--text-light);
+      background: #F8FBFF;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+
+    .wonder-arrow {
+      text-align: center;
+      margin: 6px 0;
+      color: var(--blue-light);
+    }
+
+    .wonder-after {
+      font-size: 13px;
+      color: var(--text-dark);
+      background: #EFF6FF;
+      border-radius: 8px;
+      padding: 10px 12px;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    .wonder-label {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ─── Camp CTA ───────────────────────────────────────────── */
+    .camp-section {
+      background: linear-gradient(145deg, #FFF0F5 0%, #FFE4EE 55%, #FFF8F5 100%);
+      padding: 72px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .camp-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .camp-section::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255,200,220,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .camp-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .camp-badge {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 100px;
+      padding: 6px 20px;
+      margin-bottom: 24px;
+    }
+
+    .camp-section h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 400;
+      font-size: clamp(22px, 4vw, 32px);
+      color: #C94E7A;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .camp-section p {
+      font-size: 14px;
+      color: #A84068;
+      line-height: 1.85;
+      margin-bottom: 36px;
+    }
+
+    .camp-detail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .camp-detail-item {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(201,78,122,0.2);
+      border-radius: 12px;
+      padding: 14px 22px;
+      color: #C94E7A;
+      font-size: 14px;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .camp-detail-item svg { flex-shrink: 0; }
+
+    /* SVGアイコンをピンクに */
+    .camp-detail-item svg path[stroke],
+    .camp-detail-item svg rect[stroke],
+    .camp-detail-item svg circle[stroke] { stroke: #C94E7A; }
+    .camp-detail-item svg path[fill]:not([fill="none"]) { fill: #C94E7A; }
+
+    .homework-box {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(201,78,122,0.2);
+      border-radius: 16px;
+      padding: 24px 28px;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+
+    .homework-box h4 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #C94E7A;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .homework-box h4 svg path { stroke: #C94E7A; }
+
+    .homework-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .homework-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #A04065;
+      line-height: 1.7;
+    }
+
+    .hw-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(201,78,122,0.1);
+      border: 1px solid rgba(201,78,122,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #C94E7A;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* ─── Camp Flyer Image ──────────────────────────────────── */
+    .camp-flyer {
+      margin: 0 auto 32px;
+      max-width: 460px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+    }
+
+    .camp-flyer-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .camp-detail-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 40px;
+      background: linear-gradient(135deg, #FF2D78 0%, #FF6FA3 100%);
+      border: none;
+      border-radius: 100px;
+      color: #fff;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      box-shadow: none;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .camp-detail-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.88;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      background: var(--text-dark);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─── Divider ────────────────────────────────────────────── */
+    .wave-divider {
+      line-height: 0;
+      overflow: hidden;
+    }
+
+    /* ─── Step Prompts ──────────────────────────────────────── */
+    .step-block {
+      margin-bottom: 36px;
+    }
+    .step-block:last-child { margin-bottom: 0; }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue-deep), var(--teal));
+      border-radius: 100px;
+      padding: 5px 14px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .step-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    .step-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--blue-mid);
+      margin-left: 6px;
+    }
+
+    .step-connector {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 0;
+      color: var(--blue-light);
+    }
+
+    .step-connector-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--blue-pale), transparent);
+    }
+
+    .step-connector-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--blue-light);
+      white-space: nowrap;
+    }
+
+    /* ─── Submit Form ───────────────────────────────────────── */
+    .submit-section {
+      background: linear-gradient(145deg, #F0F9FF 0%, #EFF6FF 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .submit-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      text-align: center;
+    }
+
+    .submit-icon-wrap {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--blue-deep), var(--teal));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.2);
+    }
+
+    .submit-wrapper h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 400;
+      font-size: clamp(20px, 3.5vw, 26px);
+      color: var(--text-dark);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .submit-wrapper .submit-sub {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.85;
+      margin-bottom: 36px;
+    }
+
+    .submit-form {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .form-field label span {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 400;
+      margin-left: 6px;
+    }
+
+    .form-field input[type="text"],
+    .form-field textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+    }
+
+    .form-field input[type="text"]:focus,
+    .form-field textarea:focus {
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
+    }
+
+    .form-field textarea {
+      min-height: 200px;
+    }
+
+    .form-hint {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 6px;
+      line-height: 1.7;
+      display: block;
+    }
+
+    .submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 20px 32px;
+      background: linear-gradient(135deg, #FF2D78 0%, #FF6FA3 100%);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 28px rgba(255,45,120,0.38);
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 38px rgba(255,45,120,0.48);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Success State */
+    .submit-success {
+      display: none;
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #10B981, #06B6D4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(16,185,129,0.25);
+    }
+
+    .submit-success h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .submit-success p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.85;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      /* Hero */
+      .hero-dates { padding: 20px 16px 28px; }
+      .hero-sub { font-size: 13px; margin-bottom: 16px; }
+      .date-cards { gap: 8px; }
+      .date-card { min-width: 72px; padding: 10px 12px; font-size: 13px; }
+      .date-card .day { font-size: 20px; }
+
+      /* Sections */
+      .section { padding: 44px 16px; }
+      .section-title { font-size: 20px; margin-bottom: 24px; }
+      .section-label { font-size: 11px; }
+
+      /* Purpose cards — 1列 */
+      .purpose-grid { grid-template-columns: 1fr; gap: 14px; }
+      .purpose-card { padding: 20px 18px; display: flex; align-items: center; gap: 18px; text-align: left; }
+      .purpose-icon { width: 64px; height: 64px; margin: 0; flex-shrink: 0; }
+      .purpose-icon img { width: 64px; height: 64px; }
+      .purpose-card h3 { font-size: 15px; margin-bottom: 4px; }
+      .purpose-card p { font-size: 13px; }
+
+      /* Timeline */
+      .timeline { padding-left: 28px; }
+      .timeline::before { left: 8px; }
+      .timeline-dot { left: -28px; width: 20px; height: 20px; }
+      .timeline-item h3 { font-size: 16px; }
+      .timeline-item p { font-size: 14px; }
+      .timeline-sub-item { font-size: 13px; }
+
+      /* Prompt section */
+      .prompt-wrapper { padding: 44px 16px; }
+      .step-name { font-size: 15px; }
+      .prompt-body { padding: 18px 16px; }
+      .prompt-text { font-size: 13px; line-height: 1.9; }
+      .prompt-lead { font-size: 13px; }
+      .prompt-note { font-size: 13px; padding: 12px 14px; }
+      .prompt-header h3 { font-size: 13px; }
+      .copy-btn { font-size: 11px; padding: 7px 12px; }
+
+      /* Submit */
+      .submit-wrapper { padding: 44px 16px; }
+      .submit-wrapper h2 { font-size: 20px; }
+      .submit-wrapper .submit-sub { font-size: 13px; }
+      .form-field label { font-size: 14px; }
+      .form-field input[type="text"],
+      .form-field textarea { font-size: 16px; /* iOSズーム防止 */ padding: 14px 16px; }
+      .submit-btn { font-size: 16px; padding: 18px 24px; }
+
+      /* Wonder cards — 1列 */
+      .wonder-grid { grid-template-columns: 1fr; }
+      .wonder-before, .wonder-after { font-size: 13px; }
+
+      /* Camp */
+      .camp-section { padding: 52px 16px; }
+      .camp-section h2 { font-size: 22px; }
+      .camp-section p { font-size: 14px; }
+      .camp-detail { gap: 10px; }
+      .camp-detail-item { font-size: 13px; padding: 12px 16px; }
+      .homework-box { padding: 18px 16px; }
+      .homework-list li { font-size: 13px; }
+      .camp-flyer { max-width: 100%; margin-bottom: 24px; }
+      .camp-detail-btn { font-size: 14px; padding: 12px 28px; }
+    }
+
+    @media (max-width: 400px) {
+      .date-card { min-width: 62px; padding: 8px 10px; }
+      .date-card .day { font-size: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Hero ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-img-wrap">
+    <picture>
+      <source media="(max-width: 640px)" srcset="image/sp_fv.png">
+      <img src="image/pc_fv1.png" alt="AI業務棚卸しワーク会 — その業務、実はAIに任せられるかも!?" class="hero-img-pc">
+    </picture>
+  </div>
+</section>
+
+<!-- ─── Purpose ───────────────────────────────────────────── -->
+<section class="section">
+  <span class="section-label">What you'll discover</span>
+  <h2 class="section-title">
+    「あ、これ自動化できるんだ」<br>の感動を体験してほしい
+  </h2>
+
+  <div class="purpose-grid">
+    <div class="purpose-card">
+      <div class="purpose-icon">
+        <img src="image/23.png" alt="時間の見える化イラスト">
+      </div>
+      <h3>時間の使い方が<br>一目でわかる</h3>
+      <p>頭の中を書き出すだけで、何にどれだけ時間を使っているか全体像が見えてきます</p>
+    </div>
+
+    <div class="purpose-card">
+      <div class="purpose-icon">
+        <img src="image/24.png" alt="業務棚卸しのイラスト">
+      </div>
+      <h3>AIに任せられる業務が<br>具体的にわかる</h3>
+      <p>「これもAIに頼めるんだ」という発見が、毎週の仕事のやり方を変えるきっかけになります</p>
+    </div>
+
+    <div class="purpose-card">
+      <div class="purpose-icon">
+        <img src="image/22.png" alt="優先順位のイラスト">
+      </div>
+      <h3>次の一手が<br>クリアになる</h3>
+      <p>優先順位が整理されて、本当に自分がやるべき仕事だけに集中できるようになります</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Timeline ──────────────────────────────────────────── -->
+<section class="section" style="padding-top: 0;">
+  <span class="section-label">Session Flow</span>
+  <h2 class="section-title">当日の流れ</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="4" fill="white"/>
+        </svg>
+      </div>
+      <span class="timeline-time">10 min</span>
+      <h3>自己紹介・今日の目的を確認</h3>
+      <p>参加者みんなで軽く顔合わせ。今日のゴールを共有します。</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="4" fill="white"/>
+        </svg>
+      </div>
+      <span class="timeline-time">40 min</span>
+      <h3>タスク棚卸しワーク</h3>
+      <p>メインの時間です。以下の手順でClaudeと一緒に進めます。</p>
+
+      <div class="timeline-sub">
+        <div class="timeline-sub-item">
+          <span class="bullet"></span>
+          <span>毎週のタスク・やりたいけどできていないこと・手が止まっていることを書き出す（10分）</span>
+        </div>
+        <div class="timeline-sub-item">
+          <span class="bullet"></span>
+          <span>Claudeにコピペして「丸ごと任せられる・一緒にやる・人間がやる」の3種類に仕分け（15分）</span>
+        </div>
+        <div class="timeline-sub-item">
+          <span class="bullet"></span>
+          <span>「インパクトが大きい×取り組みやすい」で最初に始めるものを決める（15分）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="4" fill="white"/>
+        </svg>
+      </div>
+      <span class="timeline-time">20 min</span>
+      <h3>みんなでシェア</h3>
+      <p>「Claudeで取り組みたい！」と思ったことを発表し合います。他の人の気づきが、自分のヒントになることがよくあります。</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="4" fill="white"/>
+        </svg>
+      </div>
+      <span class="timeline-time">10〜20 min</span>
+      <h3>まとめ・次のステップ</h3>
+      <p>自動化候補のトップ1〜3を決めて、それぞれ「どんなインプットで何を自動化したいか」を一言でまとめます。セッション後すぐに動き出せる状態にして終わります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Prompt ─────────────────────────────────────────────── -->
+<section class="prompt-section">
+  <div class="prompt-wrapper">
+    <span class="section-label">Copy & Paste Prompts</span>
+    <h2 class="section-title" style="margin-bottom: 12px;">当日使うプロンプト</h2>
+    <p style="font-size: 14px; color: var(--text-light); margin-bottom: 36px; line-height: 1.85;">
+      3ステップを順番に進めます。同じClaudeの会話画面で続けて使ってください。
+    </p>
+
+    <!-- ─── STEP 1 ─── -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 1</span>
+        <span class="step-name">仕事全体を書き出す<span class="step-time">— 10分</span></span>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-header">
+          <div class="prompt-header-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M8 9h8M8 13h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" stroke="white" stroke-width="1.5"/>
+            </svg>
+            <h3>Prompt 1 — タスクの書き出し</h3>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-1')" aria-label="プロンプト1をコピー">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            コピーする
+          </button>
+        </div>
+        <div class="prompt-body">
+          <p class="prompt-lead">【ここにあなたのビジネス内容】を実際のビジネスに書き換えてから送信してください。</p>
+          <div class="prompt-text" id="prompt-1">私は「ここにあなたのビジネスを書く（例：ネイルサロン経営、オンライン講座運営、ハンドメイド販売など）」をしています。
+ClaudeというAIと一緒に、仕事をもっと楽にしたいと思っています。
+
+以下の3つに分けて思いつくものを書き出すので、カテゴリごとに整理してください。そのあと、「他にこういうことも当てはまりませんか？」と聞いてください。
+
+【毎週繰り返しているタスク】
+・
+・
+
+【やりたいと思いつつ、ずっとできていないこと】
+（例：LPを作りたい、会員サイトを整備したい、SNS投稿を仕組み化したいなど）
+・
+・
+
+【時間がかかって困っていること・手が止まっていること】
+・
+・</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── connector ─── -->
+    <div class="step-connector">
+      <div class="step-connector-line"></div>
+      <span class="step-connector-text">Claudeの返答を確認したら次へ</span>
+      <div class="step-connector-line" style="background: linear-gradient(90deg, transparent, var(--blue-pale));"></div>
+    </div>
+
+    <!-- ─── STEP 2 ─── -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 2</span>
+        <span class="step-name">Claudeでできることを仕分け<span class="step-time">— 15分</span></span>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-header">
+          <div class="prompt-header-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M8 9h8M8 13h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" stroke="white" stroke-width="1.5"/>
+            </svg>
+            <h3>Prompt 2 — 3色に仕分け</h3>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-2')" aria-label="プロンプト2をコピー">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            コピーする
+          </button>
+        </div>
+        <div class="prompt-body">
+          <p class="prompt-lead">STEP 1 の会話の続きで、そのままこのプロンプトを送ります。</p>
+          <div class="prompt-text" id="prompt-2">ありがとう。では、さっき整理してくれた内容を、以下の3つに仕分けしてください。
+
+🟢 Claudeに丸ごと任せられる
+→ 作成・自動化・代行ができるもの（LP制作、会員サイト、文章作成、自動返信、資料まとめなど）
+
+🟡 Claudeがいれば格段に楽になる
+→ 下書き・構成・アイデア出しを手伝ってもらうと、ひとりでは難しかったことが進むもの
+
+🔴 人間がやるべき
+→ あなたの感性・判断・関係性が必要で、AIには任せられないもの
+
+それぞれの理由も一言で教えてください。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── connector ─── -->
+    <div class="step-connector">
+      <div class="step-connector-line"></div>
+      <span class="step-connector-text">仕分け結果を確認したら次へ</span>
+      <div class="step-connector-line" style="background: linear-gradient(90deg, transparent, var(--blue-pale));"></div>
+    </div>
+
+    <!-- ─── STEP 3 ─── -->
+    <div class="step-block">
+      <div class="step-header">
+        <span class="step-badge">STEP 3</span>
+        <span class="step-name">最初にClaudeで取り組むことを決める<span class="step-time">— 10分</span></span>
+      </div>
+      <div class="prompt-box">
+        <div class="prompt-header">
+          <div class="prompt-header-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M8 9h8M8 13h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" stroke="white" stroke-width="1.5"/>
+            </svg>
+            <h3>Prompt 3 — 優先順位を決める</h3>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-3')" aria-label="プロンプト3をコピー">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+              <path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            コピーする
+          </button>
+        </div>
+        <div class="prompt-body">
+          <p class="prompt-lead">STEP 2 の結果をもとに、同じ会話でそのまま送ります。</p>
+          <div class="prompt-text" id="prompt-3">仕分けの結果を見て、質問です。
+
+🟢と🟡の中から、以下の基準で「最初にClaudeで取り組むべきもの」をベスト3で教えてください。
+
+選ぶ基準：
+・できたら仕事が大きく変わると感じる
+・ずっと気になっていてなかなか手をつけられていない
+・やり方がある程度イメージできる
+
+それぞれ「なぜこれが最初か」の理由もつけてください。</div>
+          <hr class="prompt-divider">
+          <div class="prompt-note">
+            <strong style="color: var(--text-dark); font-size: 13px;">ここで出た「ベスト1」が発表のネタになります</strong><br>
+            結果が出たら、Claudeで取り組みたいことのトップ1〜3を発表してください。講師が集計してランキングを発表します。
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── Submit Form ───────────────────────────────────────── -->
+<section class="submit-section">
+  <div class="submit-wrapper">
+
+    <div class="submit-icon-wrap">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+        <path d="M9 11l3 3L22 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h2>あなたのベスト1を<br>ランキングに登録しよう</h2>
+    <p class="submit-sub">
+      STEP 3で出た結果をそのままコピーして貼り付けてください。<br>
+      みんなの回答を集計して、このセッションのランキングを発表します！
+    </p>
+
+    <!-- フォーム表示中 -->
+    <div id="submit-form-area">
+      <div class="submit-form">
+        <div class="form-field">
+          <label for="field-name">お名前<span>（任意）</span></label>
+          <input type="text" id="field-name" placeholder="例：あや" autocomplete="off">
+        </div>
+
+        <div class="form-field">
+          <label for="field-result">Claudeが出した「取り組みたいことベスト3」の内容<span>（必須）</span></label>
+          <textarea id="field-result" placeholder="STEP 3の結果をここにコピー＆ペーストしてください。&#10;&#10;例：&#10;1位：会員サイトのログイン機能を作る&#10;2位：SNSコメントへの返信を半自動化する&#10;3位：セミナーのLPを一から作る"></textarea>
+          <span class="form-hint">Claudeの回答画面から「ベスト3」の部分をそのままコピーして貼り付けるだけでOKです。</span>
+        </div>
+
+        <button class="submit-btn" id="submit-btn" onclick="submitResult()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ランキングに登録する
+        </button>
+      </div>
+    </div>
+
+    <!-- 送信完了後 -->
+    <div class="submit-success" id="submit-success">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>登録完了！</h3>
+      <p>
+        ありがとうございます。<br>
+        全員の回答が集まったら、ランキングを発表します。<br>
+        発表を楽しみにしていてください！
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── Camp CTA ───────────────────────────────────────────── -->
+<section class="camp-section">
+  <div class="camp-inner">
+
+    <h2>
+      セッションで見つけた課題を<br>
+      熱海合宿で実装しよう
+    </h2>
+
+    <p>
+      棚卸しセッションで「自動化したい！」と思ったトップ1〜3を、<br>
+      合宿当日に実際に動く形にします。<br>
+      「考えてくる」→「作る」→「動かす」を一日で体験できます。
+    </p>
+
+    <div class="camp-detail">
+      <div class="camp-detail-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="1.5"/>
+          <path d="M3 9h18" stroke="white" stroke-width="1.5"/>
+          <path d="M8 2v4M16 2v4" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        7月3日（木）
+      </div>
+      <div class="camp-detail-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" fill="#C94E7A"/>
+        </svg>
+        静岡県 熱海
+      </div>
+      <div class="camp-detail-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.5"/>
+          <path d="M12 8v4l3 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        終日・実装合宿
+      </div>
+    </div>
+
+    <div class="homework-box">
+      <h4>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        セッション後の宿題（合宿までにやること）
+      </h4>
+      <ul class="homework-list">
+        <li>
+          <span class="hw-num">1</span>
+          <span>自動化したいタスクのトップ1〜3を決める</span>
+        </li>
+        <li>
+          <span class="hw-num">2</span>
+          <span>「どんなインプットで、何を自動化したいか」を一言でまとめてみる</span>
+        </li>
+        <li>
+          <span class="hw-num">3</span>
+          <span>Claudeに相談しながら、実装のイメージを膨らませておく</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="camp-flyer">
+      <img src="image/aitirasi.png" alt="AI合宿チラシ — AIオタクと行く、本気で遊び学ぶAI合宿" class="camp-flyer-img">
+    </div>
+
+    <a href="#" class="camp-detail-btn">
+      <!-- ハイビスカス -->
+      <svg width="18" height="18" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 花びら 5枚 -->
+        <ellipse cx="18" cy="8"  rx="4" ry="7.5" fill="rgba(255,255,255,0.9)" transform="rotate(0 18 18)"/>
+        <ellipse cx="18" cy="8"  rx="4" ry="7.5" fill="rgba(255,255,255,0.9)" transform="rotate(72 18 18)"/>
+        <ellipse cx="18" cy="8"  rx="4" ry="7.5" fill="rgba(255,255,255,0.9)" transform="rotate(144 18 18)"/>
+        <ellipse cx="18" cy="8"  rx="4" ry="7.5" fill="rgba(255,255,255,0.9)" transform="rotate(216 18 18)"/>
+        <ellipse cx="18" cy="8"  rx="4" ry="7.5" fill="rgba(255,255,255,0.9)" transform="rotate(288 18 18)"/>
+        <!-- 中心の円 -->
+        <circle cx="18" cy="18" r="5.5" fill="rgba(255,255,255,0.6)"/>
+        <circle cx="18" cy="18" r="3"   fill="white"/>
+        <!-- 雌しべの点 -->
+        <circle cx="18" cy="18" r="1.2" fill="#FF6FA3"/>
+      </svg>
+      AI合宿の詳細を見る
+    </a>
+
+  </div>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────────────── -->
+<footer>
+  <p>AI Workshop — 業務棚卸しセッション 2026</p>
+</footer>
+
+<!-- ─── Toast ─────────────────────────────────────────────── -->
+<div class="copy-toast" id="copy-toast">プロンプトをコピーしました</div>
+
+<script>
+  function copyPrompt(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var text = el.innerText;
+    var toast = document.getElementById('copy-toast');
+
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 2500);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(showToast).catch(function() {
+        fallbackCopy(text, showToast);
+      });
+    } else {
+      fallbackCopy(text, showToast);
+    }
+  }
+
+  function fallbackCopy(text, cb) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    cb();
+  }
+
+  // ─── フォーム送信 ─────────────────────────────────────────
+  // GASデプロイ後にこのURLを書き換えてください
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbx8iMiwLMLyD27BSGaHPX7skNElpqHRE2H6xVkCQlOBNhaJIKvF_NbJog64IInsSPLa/exec';
+
+  function submitResult() {
+    var name   = document.getElementById('field-name').value.trim() || '匿名';
+    var result = document.getElementById('field-result').value.trim();
+    var btn    = document.getElementById('submit-btn');
+
+    if (!result) {
+      document.getElementById('field-result').focus();
+      document.getElementById('field-result').style.borderColor = '#EF4444';
+      setTimeout(function() {
+        document.getElementById('field-result').style.borderColor = '';
+      }, 1500);
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '送信中...';
+
+    // GETパラメーター方式（GASのCORS制限を回避する最も確実な方法）
+    var url = GAS_URL
+      + '?name='   + encodeURIComponent(name)
+      + '&result=' + encodeURIComponent(result);
+
+    // imgタグ経由で送信（no-corsより確実にリクエストが届く）
+    var img = new Image();
+    img.onload = img.onerror = function() {
+      document.getElementById('submit-form-area').style.display = 'none';
+      document.getElementById('submit-success').style.display   = 'block';
+    };
+    // 2秒後に強制的に完了表示（タイムアウト対策）
+    setTimeout(function() {
+      document.getElementById('submit-form-area').style.display = 'none';
+      document.getElementById('submit-success').style.display   = 'block';
+    }, 2000);
+    img.src = url;
+  }
+</script>
+</body>
+</html>

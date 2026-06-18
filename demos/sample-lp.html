@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>デザイナー視点もりもりAIワークショップ | AI女子</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #1A1A2E;
+      --purple: #7C3AED;
+      --purple-lt: #EDE9FE;
+      --purple-mid: #A78BFA;
+      --gold: #D97706;
+      --gold-lt: #FEF3C7;
+      --beige: #FAF8F4;
+      --border: #E8E2D8;
+      --gray: #6B7280;
+      --gray-lt: #9CA3AF;
+      --white: #FFFFFF;
+      --green: #059669;
+      --green-lt: #D1FAE5;
+    }
+
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-size: 15px;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ── FV ── */
+    .fv {
+      background: linear-gradient(160deg, #1A1A2E 0%, #2D1B69 60%, #1A1A2E 100%);
+      padding: 70px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .fv::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%);
+      pointer-events: none;
+    }
+    .fv::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,119,6,0.2), transparent 70%);
+      pointer-events: none;
+    }
+    .fv-badge {
+      display: inline-block;
+      background: rgba(124,58,237,0.3);
+      border: 1px solid var(--purple-mid);
+      color: var(--purple-mid);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .fv-copy {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .fv-copy span {
+      display: inline;
+      background: linear-gradient(135deg, #A78BFA, #60A5FA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .fv-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      line-height: 2;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+    .fv-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+    .fv-feature {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+    .btn-main {
+      display: inline-block;
+      background: linear-gradient(135deg, #7C3AED, #A855F7);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(124,58,237,0.45);
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── セクション共通 ── */
+    section { padding: 64px 20px; }
+    .inner { max-width: 640px; margin: 0 auto; }
+    .sec-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--purple);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    /* ── お悩み ── */
+    .problem-sec { background: var(--beige); }
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .problem-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 18px;
+      background: #fff;
+      border-radius: 12px;
+      border-left: 3px solid var(--purple);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .problem-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--purple-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .problem-lead {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    /* ── ベネフィット ── */
+    .benefit-sec { background: linear-gradient(160deg, #1A1A2E, #2D1B69 80%, #1A1A2E); }
+    .benefit-sec .sec-label { color: var(--purple-mid); }
+    .benefit-sec .sec-title { color: #fff; }
+    .benefit-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .benefit-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 14px;
+      padding: 20px 22px;
+    }
+    .benefit-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .benefit-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #A855F7);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .benefit-title { font-size: 14px; font-weight: 700; color: #fff; }
+    .benefit-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.8; }
+
+    /* ── 受講生の声 ── */
+    .voice-sec { background: var(--beige); }
+    .voice-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .voice-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 22px;
+      border: 1px solid var(--border);
+    }
+    .voice-quote {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.7;
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 18px;
+    }
+    .voice-quote::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 4px;
+      width: 3px; height: calc(100% - 8px);
+      background: linear-gradient(to bottom, #7C3AED, #A855F7);
+      border-radius: 2px;
+    }
+    .voice-meta { font-size: 12px; color: var(--gray-lt); }
+
+    /* ── カリキュラム ── */
+    .curriculum-sec { background: #fff; }
+    .curriculum-phase {
+      margin-bottom: 24px;
+    }
+    .phase-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .phase-badge {
+      background: var(--purple);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 3px 12px;
+      border-radius: 10px;
+    }
+    .phase-title { font-size: 14px; font-weight: 700; }
+    .phase-items {
+      background: var(--beige);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .phase-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    .phase-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ── タイムテーブル ── */
+    .time-sec { background: var(--beige); }
+    .time-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .time-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .time-row:last-child { border-bottom: none; }
+    .time-clock {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--purple);
+      text-align: right;
+    }
+    .time-label { font-size: 14px; line-height: 1.7; }
+
+    /* ── 講師 ── */
+    .instructor-sec { background: #fff; }
+    .instructor-card {
+      background: linear-gradient(135deg, var(--purple-lt), #EFF6FF);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .instructor-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #A855F7);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .instructor-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .instructor-title {
+      font-size: 12px;
+      color: var(--purple);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .instructor-bio {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.9;
+      text-align: left;
+    }
+
+    /* ── 料金・CTA ── */
+    .price-sec {
+      background: linear-gradient(160deg, #1A1A2E, #2D1B69 80%, #1A1A2E);
+      text-align: center;
+    }
+    .price-sec .sec-label { color: var(--purple-mid); }
+    .price-sec .sec-title { color: #fff; }
+    .price-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 20px;
+      padding: 32px 24px;
+      margin-bottom: 28px;
+    }
+    .price-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-tax {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+    .price-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+    }
+    .price-include-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+    }
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #A855F7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── フッター ── */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FV -->
+  <section class="fv">
+    <div class="fv-badge">AI WORKSHOP</div>
+    <h1 class="fv-copy">
+      「AIで作れる」は当たり前。<br>
+      <span>"伝わるLP"まで</span><br>
+      作れていますか？
+    </h1>
+    <p class="fv-sub">
+      Claude Codeを使って<br>
+      "なんとなく作る"から卒業し、<br>
+      売れる導線・伝わる設計まで整ったLPを<br>
+      たった1日で作れるようになる講座
+    </p>
+    <div class="fv-features">
+      <span class="fv-feature">パソコン苦手でもOK</span>
+      <span class="fv-feature">セットアップから完全サポート</span>
+      <span class="fv-feature">その日中にLPの土台完成</span>
+    </div>
+    <a href="https://x.gd/JK2Ae" target="_blank" class="btn-main">オープンチャットで詳細を見る</a>
+  </section>
+
+  <!-- お悩み -->
+  <section class="problem-sec">
+    <div class="inner">
+      <div class="sec-label">For you</div>
+      <p class="problem-lead">こんなお悩みありませんか？</p>
+      <div class="problem-list">
+        <div class="problem-item">
+          <div class="problem-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v5M6 9v1" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          AIを触ってるけど、結局何に使えばいいかわからない
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v5M6 9v1" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          LPを作りたいのに、ずっと止まっている
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v5M6 9v1" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          CanvaやChatGPTで作っても、なんかダサい
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v5M6 9v1" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          自分のサービスがうまく伝わらない
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v5M6 9v1" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          外注すると高いし、自分でできるようになりたい
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ベネフィット -->
+  <section class="benefit-sec">
+    <div class="inner">
+      <div class="sec-label">What you get</div>
+      <h2 class="sec-title">この講座では、<br>こんな未来が手に入ります</h2>
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-card-head">
+            <div class="benefit-num">1</div>
+            <div class="benefit-title">"伝わる設計"までセットで学ぶ</div>
+          </div>
+          <div class="benefit-desc">
+            Claude Codeの使い方だけでなく、なぜこの順番なのか・なぜこの見せ方なのか・なぜこの言葉なのか。設計の根拠まで理解できます。
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card-head">
+            <div class="benefit-num">2</div>
+            <div class="benefit-title">3名のデザイナーが徹底サポート</div>
+          </div>
+          <div class="benefit-desc">
+            ただのAI講座じゃない。プロのデザイナー視点で整えるから、「なんとなく作った」感が消えます。
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-card-head">
+            <div class="benefit-num">3</div>
+            <div class="benefit-title">その場で"売れる形"まで完成</div>
+          </div>
+          <div class="benefit-desc">
+            「作る」じゃなく「売れる形にする」。迷わせない設計で、手を動かしながら当日中に完成まで持っていきます。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 受講生の声 -->
+  <section class="voice-sec">
+    <div class="inner">
+      <div class="sec-label">Voice</div>
+      <h2 class="sec-title">受講生の声</h2>
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="voice-quote">
+            ずっと出せなかったサービスをこの講座をきっかけに公開できました
+          </div>
+          <div class="voice-meta">お菓子販売</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-quote">
+            パソコン苦手だったのに、気づいたら朝から晩まで触ってました
+          </div>
+          <div class="voice-meta">パーティープロデューサー</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-quote">
+            提案書を作って、そのまま5件受注しました
+          </div>
+          <div class="voice-meta">教育関係者</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- カリキュラム -->
+  <section class="curriculum-sec">
+    <div class="inner">
+      <div class="sec-label">Curriculum</div>
+      <h2 class="sec-title">講座の内容</h2>
+
+      <div class="curriculum-phase">
+        <div class="phase-label">
+          <span class="phase-badge">BEFORE</span>
+          <span class="phase-title">事前ミーティング</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item"><span class="phase-dot"></span>方向性整理</div>
+          <div class="phase-item"><span class="phase-dot"></span>素材・情報の準備</div>
+        </div>
+      </div>
+
+      <div class="curriculum-phase">
+        <div class="phase-label">
+          <span class="phase-badge">DAY</span>
+          <span class="phase-title">リアルセミナー（6〜8時間）</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item"><span class="phase-dot"></span>セットアップ確認</div>
+          <div class="phase-item"><span class="phase-dot"></span>Claude Code操作</div>
+          <div class="phase-item"><span class="phase-dot"></span>LP制作</div>
+          <div class="phase-item"><span class="phase-dot"></span>発表＆フィードバック</div>
+        </div>
+      </div>
+
+      <div class="curriculum-phase">
+        <div class="phase-label">
+          <span class="phase-badge">AFTER</span>
+          <span class="phase-title">セミナー後サポート</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item"><span class="phase-dot"></span>LP添削・フィードバック（一人ひとり）</div>
+          <div class="phase-item"><span class="phase-dot"></span>会員サイト閲覧権（デザイン知識・最新AI情報 / 90日間）</div>
+          <div class="phase-item"><span class="phase-dot"></span>1ヶ月間 集中Slackサポート（24時間受付）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- タイムテーブル -->
+  <section class="time-sec">
+    <div class="inner">
+      <div class="sec-label">Timetable</div>
+      <h2 class="sec-title">当日の流れ</h2>
+      <div class="time-list">
+        <div class="time-row">
+          <div class="time-clock">10:00</div>
+          <div class="time-label">セミナー開始・セットアップ確認<br><span style="font-size:12px;color:var(--gray-lt);">Claude Codeが動くか最終チェック</span></div>
+        </div>
+        <div class="time-row">
+          <div class="time-clock"></div>
+          <div class="time-label">Claude Code操作<br><span style="font-size:12px;color:var(--gray-lt);">基本の動かし方を一緒に体験</span></div>
+        </div>
+        <div class="time-row">
+          <div class="time-clock">11:00</div>
+          <div class="time-label">LP制作スタート<br><span style="font-size:12px;color:var(--gray-lt);">ワークシートをClaudeに渡して、一気に作る</span></div>
+        </div>
+        <div class="time-row">
+          <div class="time-clock">16:00</div>
+          <div class="time-label">発表＆フィードバック<br><span style="font-size:12px;color:var(--gray-lt);">全員で見せ合い、講師から一言フィードバック</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 講師紹介 -->
+  <section class="instructor-sec">
+    <div class="inner">
+      <div class="sec-label">Instructor</div>
+      <h2 class="sec-title">講師紹介</h2>
+      <div class="instructor-card">
+        <div class="instructor-avatar">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="14" r="7" fill="rgba(255,255,255,0.3)"/><path d="M4 32c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="instructor-name">AI女子</div>
+        <div class="instructor-title">デザイナー / AIリサーチャー</div>
+        <p class="instructor-bio">
+          20年のデザイナー歴で、現在も現役で活動しています。AIが大好きでリサーチも大好き、最新情報を調べるのが何よりの楽しみです。<br><br>
+          Claude Code（クロードコード）と出会い、その楽しさに触れました。そんなワクワクを、ぜひ皆さんに届けたいと思っています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金・CTA -->
+  <section class="price-sec">
+    <div class="inner">
+      <div class="sec-label">Price</div>
+      <h2 class="sec-title">料金・お申し込み</h2>
+      <div class="price-card">
+        <div class="price-num">¥55,000</div>
+        <div class="price-tax">（税込）</div>
+        <div class="price-includes">
+          <div class="price-include-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            事前キックオフミーティング（90分）
+          </div>
+          <div class="price-include-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            リアルセミナー（6〜8時間）
+          </div>
+          <div class="price-include-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            LP添削・フィードバック
+          </div>
+          <div class="price-include-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            会員サイト90日間アクセス
+          </div>
+          <div class="price-include-item">
+            <div class="check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            1ヶ月間Slackサポート
+          </div>
+        </div>
+      </div>
+      <a href="https://x.gd/JK2Ae" target="_blank" class="btn-main">オープンチャットで詳細を見る</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>AI女子 デザイナー視点もりもりAIワークショップ</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FVプレビュー 3案比較</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; color: #fff; font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif; }
+
+  .page-header {
+    text-align: center; padding: 24px 20px 20px;
+    background: #0a0a1a; border-bottom: 1px solid rgba(0,212,255,0.2);
+  }
+  .page-header h1 { font-size: 16px; color: #00d4ff; margin-bottom: 8px; letter-spacing: 0.08em; }
+  .page-header p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.8; }
+
+  .option-label {
+    text-align: center; padding: 20px 16px 12px;
+    background: #0d0d20; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .badge {
+    display: inline-block; padding: 3px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 8px;
+  }
+  .badge-a { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.4); }
+  .badge-c { background: rgba(255,200,0,0.15); color: #ffd700; border: 1px solid rgba(255,200,0,0.4); }
+  .badge-d { background: rgba(168,255,100,0.15); color: #a0ff64; border: 1px solid rgba(168,255,100,0.4); }
+  .option-label h2 { font-size: 15px; margin-bottom: 4px; }
+  .option-label p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  /* ─── 共通FVコンテナ ─── */
+  .fv-wrap {
+    position: relative; width: 100%; height: 540px; overflow: hidden; background: #000;
+  }
+
+  /* ─── A案修正版 ─── */
+  .fv-a .bg-blur {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    filter: blur(30px) brightness(0.25) saturate(0.6);
+    transform: scale(1.1); z-index: 1;
+  }
+  .fv-a .main-video {
+    position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+    height: 100%; width: auto; z-index: 2; object-fit: contain;
+  }
+  .fv-a .side-fade-l {
+    position: absolute; top: 0; left: 0; bottom: 0; width: 12%;
+    background: linear-gradient(to right, rgba(0,0,0,0.9), transparent); z-index: 3;
+  }
+  .fv-a .side-fade-r {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 12%;
+    background: linear-gradient(to left, rgba(0,0,0,0.9), transparent); z-index: 3;
+  }
+  /* VEO透かし隠し：動画下部をグラデーションで暗く */
+  .fv-a .veo-mask {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 44px;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%);
+    z-index: 5;
+  }
+
+  /* ─── C案：レスポンシブ切り替え ─── */
+  .fv-c .bg-blur {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    filter: blur(30px) brightness(0.2) saturate(0.6);
+    transform: scale(1.1); z-index: 1;
+  }
+  /* PC (769px以上): 横型クロップ（女性が見えるよう30%オフセット） */
+  .fv-c .main-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 30%; z-index: 2;
+  }
+  .fv-c .bottom-fade {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 28%;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.85)); z-index: 3;
+  }
+  /* スマホ (768px以下): 縦型中央 */
+  @media (max-width: 768px) {
+    .fv-c .main-video {
+      width: auto; height: 100%; top: 0; bottom: 0;
+      left: 50%; right: auto; transform: translateX(-50%);
+      object-fit: contain; object-position: center;
+    }
+    .fv-c .bottom-fade { display: none; }
+  }
+
+  /* ─── D案：静止画＋CTAボタンのみ ─── */
+  .fv-wrap.fv-d { height: 580px; }
+  .fv-d .hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 48%; z-index: 1;
+  }
+  /* スマホ：コンテナを高くして画像テキストとボタンの間にスペース確保 */
+  @media (max-width: 768px) {
+    .fv-wrap.fv-d { height: 660px; }
+    .fv-d .hero-img { object-position: center top; }
+  }
+  /* 底部グラデーション：AIWORKSHOPウォーターマークを隠す */
+  .fv-d .bottom-cover {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 42%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0,0,10,0.7) 38%,
+      rgba(0,0,10,0.96) 65%,
+      #00000a 100%
+    );
+    z-index: 2;
+  }
+  /* スマホはグラデーション浅め（画像テキストを見せる） */
+  @media (max-width: 768px) {
+    .fv-d .bottom-cover {
+      height: 26%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0,0,10,0.6) 45%,
+        rgba(0,0,10,0.96) 75%,
+        #00000a 100%
+      );
+    }
+  }
+  /* CTAボタンエリア */
+  .fv-d .cta-area {
+    position: absolute; bottom: 32px; left: 0; right: 0;
+    display: flex; justify-content: center; z-index: 4;
+  }
+  /* キラーンボタン */
+  .cta-kiran {
+    display: inline-block; padding: 15px 48px; border-radius: 6px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 16px; font-weight: 700; letter-spacing: 0.14em;
+    background: linear-gradient(135deg, #00c8f0, #9d4edd, #00c8f0);
+    background-size: 200% 100%;
+    color: #fff; cursor: pointer; border: none;
+    position: relative; overflow: hidden;
+    box-shadow:
+      0 0 20px rgba(0,212,255,0.55),
+      0 0 50px rgba(168,85,247,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.25);
+    animation: bg-shift 4s ease infinite;
+  }
+  /* 光の走るキラーン */
+  .cta-kiran::before {
+    content: '';
+    position: absolute; top: -50%; left: -80%;
+    width: 45%; height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.55),
+      transparent
+    );
+    transform: skewX(-18deg);
+    animation: kiran 2.2s ease-in-out infinite;
+  }
+  @keyframes kiran {
+    0%   { left: -80%; opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { left: 180%; opacity: 0; }
+  }
+  @keyframes bg-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+  }
+
+  /* フェードループオーバーレイ */
+  .fv-fade {
+    position: absolute; inset: 0; background: #000;
+    z-index: 8; opacity: 0; pointer-events: none;
+  }
+
+  /* 音声ボタン */
+  .sound-btn {
+    position: absolute; bottom: 14px; right: 14px; z-index: 10;
+    background: rgba(0,0,0,0.6); border: 1px solid rgba(0,212,255,0.5);
+    border-radius: 20px; color: rgba(0,212,255,0.9);
+    font-size: 11px; letter-spacing: 0.08em; padding: 6px 14px;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+  }
+
+  /* 説明カード */
+  .option-desc {
+    padding: 18px 20px; background: #0d0d20;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  @media (max-width: 640px) { .option-desc { grid-template-columns: 1fr; } }
+  .desc-card {
+    background: rgba(255,255,255,0.04); border-radius: 8px;
+    padding: 14px; font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7;
+  }
+  .desc-card strong {
+    display: block; font-size: 12px; margin-bottom: 6px; letter-spacing: 0.06em;
+  }
+  .desc-card.merit strong { color: #00d4ff; }
+  .desc-card.demerit strong { color: #f87171; }
+
+  .choose-btn {
+    display: block; width: calc(100% - 40px); margin: 0 20px 24px;
+    padding: 14px; border-radius: 8px; text-align: center;
+    font-size: 14px; font-weight: 700; cursor: pointer; border: 2px solid; background: transparent;
+    transition: background 0.2s; letter-spacing: 0.06em;
+  }
+  .choose-a { border-color: #00d4ff; color: #00d4ff; }
+  .choose-a:hover { background: rgba(0,212,255,0.1); }
+  .choose-c { border-color: #ffd700; color: #ffd700; }
+  .choose-c:hover { background: rgba(255,215,0,0.1); }
+  .choose-d { border-color: #a0ff64; color: #a0ff64; }
+  .choose-d:hover { background: rgba(160,255,100,0.1); }
+
+  .divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(0,212,255,0.25), transparent);
+    margin: 8px 0;
+  }
+
+  .page-footer {
+    text-align: center; padding: 28px 20px 48px; background: #0a0a1a;
+    border-top: 1px solid rgba(0,212,255,0.15);
+    font-size: 13px; color: rgba(255,255,255,0.5); line-height: 2.0;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>FV 3案プレビュー</h1>
+  <p>A案修正版 / C案（PC横型・スマホ縦型） / D案（静止画＋テキスト）<br>
+  ブラウザ幅を変えてPC・スマホ両方を確認できます。</p>
+</div>
+
+<!-- ════ A案 修正版 ════ -->
+<div class="option-label">
+  <div class="badge badge-a">A案 修正版</div>
+  <h2>縦型動画・中央配置　VEO透かし非表示</h2>
+  <p>動画全体が見える。VEO透かしを下部グラデーションで隠した。PCでは左右にぼかし帯。</p>
+</div>
+
+<div class="fv-wrap fv-a">
+  <video class="bg-blur" autoplay muted loop playsinline tabindex="-1">
+    <source src="images/oosaka_fv.mp4" type="video/mp4">
+  </video>
+  <video class="main-video" id="video-a" autoplay muted loop playsinline>
+    <source src="images/oosaka_fv.mp4" type="video/mp4">
+  </video>
+  <div class="side-fade-l"></div>
+  <div class="side-fade-r"></div>
+  <div class="veo-mask"></div>
+  <div class="fv-fade" id="fade-a"></div>
+  <button class="sound-btn" onclick="toggleSound('video-a','icon-a','label-a')">
+    <span id="icon-a">&#128263;</span>
+    <span id="label-a">SOUND ON</span>
+  </button>
+</div>
+
+<div class="option-desc">
+  <div class="desc-card merit">
+    <strong>メリット</strong>
+    動画に入っている日時テキスト（AI WORKSHOP / 2026.06.06 SAT）がそのまま見える。スマホでかっこいい。
+  </div>
+  <div class="desc-card demerit">
+    <strong>デメリット</strong>
+    PCでは縦長動画が小さく、左右のぼかし帯が広くなる。
+  </div>
+</div>
+<button class="choose-btn choose-a" onclick="alert('A案修正版！とClaude Codeに送ってください')">A案修正版にする！（縦型・VEO非表示）</button>
+
+<div class="divider"></div>
+
+<!-- ════ C案 ════ -->
+<div class="option-label">
+  <div class="badge badge-c">C案</div>
+  <h2>PC→横型クロップ　スマホ→縦型　自動切り替え</h2>
+  <p>ブラウザ幅769px以上では横型に切り替え、女性・大阪ネオンが大きく表示される。スマホは縦型。</p>
+</div>
+
+<div class="fv-wrap fv-c">
+  <video class="bg-blur" autoplay muted loop playsinline tabindex="-1">
+    <source src="images/oosaka_fv.mp4" type="video/mp4">
+  </video>
+  <video class="main-video" id="video-c" autoplay muted loop playsinline>
+    <source src="images/oosaka_fv.mp4" type="video/mp4">
+  </video>
+  <div class="bottom-fade"></div>
+  <div class="fv-fade" id="fade-c"></div>
+  <button class="sound-btn" onclick="toggleSound('video-c','icon-c','label-c')">
+    <span id="icon-c">&#128263;</span>
+    <span id="label-c">SOUND ON</span>
+  </button>
+</div>
+
+<div class="option-desc">
+  <div class="desc-card merit">
+    <strong>メリット</strong>
+    PCでは横型LPに自然にフィット。女性と大阪ネオンが大きく迫力ある表示になる。
+  </div>
+  <div class="desc-card demerit">
+    <strong>デメリット</strong>
+    PCでは動画下部のAI WORKSHOP・日時テキストが切れる。LP側に別途テキスト追記が必要。
+  </div>
+</div>
+<button class="choose-btn choose-c" onclick="alert('C案！とClaude Codeに送ってください')">C案にする！（PC横型・スマホ縦型）</button>
+
+<div class="divider"></div>
+
+<!-- ════ D案 ════ -->
+<div class="option-label">
+  <div class="badge badge-d">D案</div>
+  <h2>静止画＋テキストオーバーレイ</h2>
+  <p>oosaka_fv1.jpg を背景に、タイトル・日時・CTAを重ねる。動きはないが安定した表示。VEO透かしなし。</p>
+</div>
+
+<div class="fv-wrap fv-d">
+  <img class="hero-img" src="images/oosaka_fv1.jpg" alt="AI Workshop in Osaka">
+  <div class="bottom-cover"></div>
+  <div class="cta-area">
+    <button class="cta-kiran">お申し込みはこちら</button>
+  </div>
+</div>
+
+<div class="option-desc">
+  <div class="desc-card merit">
+    <strong>メリット</strong>
+    日時・場所をLP側で自由に管理できる。PC・スマホ両方で安定表示。VEO透かしなし。
+  </div>
+  <div class="desc-card demerit">
+    <strong>デメリット</strong>
+    動画の動きがなくなる。女性の表示位置はLP組み込み後に微調整が必要な場合がある。
+  </div>
+</div>
+<button class="choose-btn choose-d" onclick="alert('D案！とClaude Codeに送ってください')">D案にする！（静止画＋テキスト）</button>
+
+<div class="page-footer">
+  「A案修正版で実装して」「C案で実装して」「D案で実装して」と送ってください。<br>
+  ブラウザ幅を広げるとPC表示、狭めるとスマホ表示が確認できます。
+</div>
+
+<script>
+  // フェードループ
+  function setupFade(videoId, fadeId) {
+    const video = document.getElementById(videoId);
+    const fadeEl = document.getElementById(fadeId);
+    if (!video || !fadeEl) return;
+    const FADE_OUT = 1.0, FADE_IN = 0.7;
+    video.addEventListener('timeupdate', () => {
+      if (!video.duration) return;
+      const t = video.currentTime;
+      const rem = video.duration - t;
+      let op = 0;
+      if (rem < FADE_OUT) op = 1 - rem / FADE_OUT;
+      else if (t < FADE_IN) op = 1 - t / FADE_IN;
+      fadeEl.style.opacity = Math.min(1, Math.max(0, op));
+    });
+  }
+  setupFade('video-a', 'fade-a');
+  setupFade('video-c', 'fade-c');
+
+  // 音声トグル
+  function toggleSound(videoId, iconId, labelId) {
+    const v = document.getElementById(videoId);
+    v.muted = !v.muted;
+    document.getElementById(iconId).innerHTML = v.muted ? '&#128263;' : '&#128266;';
+    document.getElementById(labelId).textContent = v.muted ? 'SOUND ON' : 'SOUND OFF';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloudflare Pages デプロイマニュアル</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .page-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  /* ヘッダー */
+  .manual-header {
+    background: #F6821F;
+    color: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 32px;
+  }
+  .manual-header .label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: rgba(255,255,255,0.25);
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .manual-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .manual-header .meta {
+    font-size: 13px;
+    opacity: 0.9;
+    line-height: 1.9;
+  }
+  .manual-header .point-box {
+    margin-top: 18px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+  .manual-header .point-box strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  /* 全体フロー */
+  .flow-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #F6821F;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  /* ステップカード */
+  .step-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 0;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .step-num {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #F6821F;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .step-title small {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: #888;
+    margin-top: 2px;
+  }
+  .step-body {
+    padding: 18px 22px 22px;
+  }
+  .step-desc {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #333;
+    margin-bottom: 18px;
+  }
+  .step-mock {
+    margin: 0 -2px;
+  }
+  .step-mock svg {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  /* 注意・ポイントボックス */
+  .note-box {
+    margin-top: 16px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.85;
+  }
+  .note-box.warning {
+    background: #fff5f0;
+    border-left: 4px solid #F6821F;
+    color: #7a3b00;
+  }
+  .note-box.point {
+    background: #f0f7ff;
+    border-left: 4px solid #3b82f6;
+    color: #1e3a5f;
+  }
+  .note-box.success {
+    background: #f0fff4;
+    border-left: 4px solid #38a169;
+    color: #1a4731;
+  }
+  .note-box strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  /* 完了バナー */
+  .done-banner {
+    background: linear-gradient(135deg, #38a169, #2f855a);
+    color: #fff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .done-banner .done-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .done-banner h2 { font-size: 1.3rem; margin-bottom: 10px; }
+  .done-banner p { font-size: 13px; opacity: 0.9; line-height: 1.8; }
+  .done-banner .url-box {
+    margin-top: 16px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    word-break: break-all;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ヘッダー -->
+  <div class="manual-header">
+    <div class="label">DEPLOYMENT MANUAL</div>
+    <h1>Cloudflare Pages<br>公開マニュアル</h1>
+    <div class="meta">
+      所要時間：約5〜10分<br>
+      対象：はじめてCloudflare Pagesを使う方
+    </div>
+    <div class="point-box">
+      <strong>このマニュアルのポイント</strong>
+      Cloudflareへのログインは「Google」で行います。<br>
+      GitHubではログインしないようにしましょう（エラーになることがあります）。<br>
+      ログインさえできれば、あとは画面の指示に沿って進めるだけです。
+    </div>
+  </div>
+
+  <!-- 全体フロー -->
+  <div class="flow-section">
+    <div class="section-title">STEP 全体の流れ</div>
+    <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- 背景 -->
+      <rect width="640" height="220" fill="#fafafa" rx="8"/>
+
+      <!-- Step boxes -->
+      <!-- 1 -->
+      <rect x="12" y="30" width="88" height="64" rx="10" fill="#FFF3E8" stroke="#F6821F" stroke-width="1.5"/>
+      <text x="56" y="55" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#F6821F">STEP 1</text>
+      <text x="56" y="71" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">Cloudflare</text>
+      <text x="56" y="84" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">にアクセス</text>
+      <!-- arrow -->
+      <line x1="101" y1="62" x2="115" y2="62" stroke="#ccc" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- 2 -->
+      <rect x="116" y="30" width="88" height="64" rx="10" fill="#FFF3E8" stroke="#F6821F" stroke-width="1.5"/>
+      <text x="160" y="55" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#F6821F">STEP 2</text>
+      <text x="160" y="71" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">Googleで</text>
+      <text x="160" y="84" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">ログイン</text>
+      <!-- arrow -->
+      <line x1="205" y1="62" x2="219" y2="62" stroke="#ccc" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- 3 -->
+      <rect x="220" y="30" width="88" height="64" rx="10" fill="#FFF3E8" stroke="#F6821F" stroke-width="1.5"/>
+      <text x="264" y="55" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#F6821F">STEP 3</text>
+      <text x="264" y="71" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">+追加 →</text>
+      <text x="264" y="84" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">ページ</text>
+      <!-- arrow -->
+      <line x1="309" y1="62" x2="323" y2="62" stroke="#ccc" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- 4 -->
+      <rect x="324" y="30" width="88" height="64" rx="10" fill="#FFF3E8" stroke="#F6821F" stroke-width="1.5"/>
+      <text x="368" y="55" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#F6821F">STEP 4</text>
+      <text x="368" y="71" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">GitHub連携</text>
+      <text x="368" y="84" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">・リポジトリ選択</text>
+      <!-- arrow -->
+      <line x1="413" y1="62" x2="427" y2="62" stroke="#ccc" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- 5 -->
+      <rect x="428" y="30" width="88" height="64" rx="10" fill="#FFF3E8" stroke="#F6821F" stroke-width="1.5"/>
+      <text x="472" y="55" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#F6821F">STEP 5</text>
+      <text x="472" y="71" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">ビルド設定</text>
+      <text x="472" y="84" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">・デプロイ</text>
+      <!-- arrow -->
+      <line x1="517" y1="62" x2="531" y2="62" stroke="#ccc" stroke-width="2" marker-end="url(#arr)"/>
+
+      <!-- 6 -->
+      <rect x="532" y="30" width="88" height="64" rx="10" fill="#E6F4EA" stroke="#38a169" stroke-width="1.5"/>
+      <text x="576" y="55" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#38a169">完了</text>
+      <text x="576" y="71" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">公開URL</text>
+      <text x="576" y="84" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#333">が発行される</text>
+
+      <!-- 下部説明 -->
+      <text x="56" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">ブラウザで</text>
+      <text x="56" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">開くだけ</text>
+
+      <text x="160" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#E53E3E" font-weight="700">Googleを</text>
+      <text x="160" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#E53E3E" font-weight="700">選んでね！</text>
+
+      <text x="264" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">ダッシュボード</text>
+      <text x="264" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">から操作</text>
+
+      <text x="368" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">リポジトリ</text>
+      <text x="368" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">= 作業フォルダ</text>
+
+      <text x="472" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">空欄でOK</text>
+      <text x="472" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#888">な項目あり</text>
+
+      <text x="576" y="130" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#38a169" font-weight="700">*.pages.dev</text>
+      <text x="576" y="142" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#38a169" font-weight="700">で公開！</text>
+
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#ccc"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num">1</div>
+      <div class="step-title">
+        Cloudflare のサイトを開く
+        <small>ブラウザのアドレスバーにURLを入力</small>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        ブラウザ（ChromeやSafari）を開いて、アドレスバーに以下のURLを入力し、Enterキーを押します。
+      </p>
+      <div style="background:#1a1a2e;color:#00d4ff;font-family:monospace;padding:12px 16px;border-radius:8px;font-size:14px;font-weight:700;margin-bottom:18px;letter-spacing:0.03em;">
+        dash.cloudflare.com
+      </div>
+      <div class="step-mock">
+        <svg viewBox="0 0 640 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="120" fill="#f1f3f4" rx="8"/>
+          <!-- browser chrome -->
+          <rect x="0" y="0" width="640" height="36" fill="#e8eaed" rx="8"/>
+          <rect x="0" y="22" width="640" height="14" fill="#e8eaed"/>
+          <!-- dots -->
+          <circle cx="18" cy="18" r="5" fill="#ea4335"/>
+          <circle cx="34" cy="18" r="5" fill="#fbbc04"/>
+          <circle cx="50" cy="18" r="5" fill="#34a853"/>
+          <!-- address bar -->
+          <rect x="80" y="8" width="460" height="20" fill="#fff" rx="10" stroke="#ccc" stroke-width="1"/>
+          <text x="310" y="22" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#555">dash.cloudflare.com</text>
+          <!-- page content -->
+          <rect x="220" y="55" width="200" height="50" fill="#fff" rx="8" stroke="#ddd" stroke-width="1"/>
+          <text x="320" y="77" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#F6821F">Cloudflare</text>
+          <text x="320" y="93" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#555">ログイン画面が開きます</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num">2</div>
+      <div class="step-title">
+        「グーグル」ボタンでログイン
+        <small>GitHubではなくGoogleを選ぶのがポイント</small>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        ログイン画面が表示されたら、<strong>「グーグル」ボタン</strong>を押します。<br>
+        「GitHub」ボタンはエラーになる場合があるので選ばないようにしましょう。
+      </p>
+      <div class="step-mock">
+        <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="380" fill="#f8f9fa" rx="8"/>
+          <!-- card -->
+          <rect x="170" y="20" width="300" height="340" fill="#fff" rx="16" stroke="#e0e0e0" stroke-width="1" filter="url(#shadow1)"/>
+          <!-- title -->
+          <text x="320" y="60" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#1a1a2e">Cloudflareにログインする</text>
+          <!-- Google button -->
+          <rect x="195" y="82" width="250" height="44" fill="#fff" rx="8" stroke="#dadce0" stroke-width="1.5"/>
+          <circle cx="232" cy="104" r="10" fill="#fff"/>
+          <!-- Google G logo simplified -->
+          <text x="232" y="109" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#4285f4">G</text>
+          <text x="320" y="109" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">グーグル</text>
+          <!-- Apple button -->
+          <rect x="195" y="134" width="250" height="44" fill="#fff" rx="8" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="232" y="161" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#555"></text>
+          <text x="320" y="161" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#aaa">りんご</text>
+          <!-- GitHub button -->
+          <rect x="195" y="186" width="250" height="44" fill="#fff" rx="8" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="320" y="213" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#aaa">GitHub</text>
+          <!-- divider -->
+          <line x1="210" y1="248" x2="295" y2="248" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="320" y="252" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">または</text>
+          <line x1="345" y1="248" x2="430" y2="248" stroke="#e0e0e0" stroke-width="1"/>
+          <!-- email/pass -->
+          <rect x="195" y="264" width="250" height="36" fill="#f8f9fa" rx="6" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="247" y="287" font-family="sans-serif" font-size="11" fill="#aaa">メールアドレス</text>
+          <rect x="195" y="308" width="250" height="36" fill="#f8f9fa" rx="6" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="247" y="331" font-family="sans-serif" font-size="11" fill="#aaa">パスワード</text>
+
+          <!-- RED BOX around Google -->
+          <rect x="188" y="76" width="264" height="56" rx="10" fill="none" stroke="#E53E3E" stroke-width="3" stroke-dasharray="8 4"/>
+          <!-- Arrow -->
+          <line x1="465" y1="104" x2="458" y2="104" stroke="#E53E3E" stroke-width="2.5" marker-end="url(#redarr)" stroke-dasharray="6 3"/>
+          <text x="520" y="99" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#E53E3E">ここを</text>
+          <text x="520" y="115" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#E53E3E">クリック！</text>
+
+          <!-- X mark on GitHub -->
+          <text x="464" y="213" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#E53E3E">×</text>
+          <text x="510" y="208" font-family="sans-serif" font-size="11" fill="#E53E3E">GitHubは</text>
+          <text x="510" y="222" font-family="sans-serif" font-size="11" fill="#E53E3E">選ばない</text>
+
+          <defs>
+            <filter id="shadow1" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.12)"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div class="note-box warning">
+        <strong>注意：GitHubでログインしないで！</strong>
+        GitHubボタンを押すと「アカウント情報が一致しません」というエラーになる場合があります。必ず「グーグル」を選んでください。
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num">3</div>
+      <div class="step-title">
+        ダッシュボードで「+ 追加」を押す
+        <small>ログイン後のトップ画面から操作</small>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        ログインするとダッシュボード（管理画面）が開きます。右上付近にある青い<strong>「+ 追加」</strong>ボタンを押してください。
+      </p>
+      <div class="step-mock">
+        <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="260" fill="#f8f9fa" rx="8"/>
+          <!-- top bar -->
+          <rect x="0" y="0" width="640" height="50" fill="#fff" rx="8"/>
+          <rect x="0" y="35" width="640" height="15" fill="#fff"/>
+          <!-- CF logo -->
+          <circle cx="28" cy="25" r="14" fill="#F6821F"/>
+          <text x="28" y="30" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="900" fill="#fff">CF</text>
+          <text x="120" y="30" font-family="sans-serif" font-size="13" fill="#555">Hiropiro549@gmail.com...</text>
+          <!-- buttons -->
+          <rect x="450" y="12" width="80" height="26" fill="#fff" rx="6" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="490" y="29" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#555">AIに質問する</text>
+          <rect x="545" y="12" width="80" height="26" fill="#2563eb" rx="6"/>
+          <text x="585" y="29" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff">+ 追加</text>
+
+          <!-- left sidebar -->
+          <rect x="0" y="50" width="180" height="210" fill="#f1f5f9"/>
+          <text x="20" y="80" font-family="sans-serif" font-size="12" fill="#888">アカウントホーム</text>
+          <text x="20" y="105" font-family="sans-serif" font-size="12" fill="#888">最近</text>
+          <text x="20" y="130" font-family="sans-serif" font-size="12" fill="#888">ドメイン</text>
+          <text x="20" y="165" font-family="sans-serif" font-size="11" fill="#aaa">建てる</text>
+          <text x="20" y="185" font-family="sans-serif" font-size="12" fill="#888">従業員とページ</text>
+          <!-- main content title -->
+          <text x="210" y="90" font-family="sans-serif" font-size="16" font-weight="700" fill="#1a1a2e">Hiropiro549@gmail.comのアカウント</text>
+
+          <!-- RED BOX around + 追加 -->
+          <rect x="538" y="6" width="96" height="38" rx="8" fill="none" stroke="#E53E3E" stroke-width="3" stroke-dasharray="8 4"/>
+          <!-- Arrow + label -->
+          <line x1="538" y1="25" x2="490" y2="25" stroke="#E53E3E" stroke-width="2.5" stroke-dasharray="6 3"/>
+          <circle cx="540" cy="25" r="4" fill="#E53E3E"/>
+          <text x="408" y="18" font-family="sans-serif" font-size="13" font-weight="700" fill="#E53E3E">ここを</text>
+          <text x="408" y="33" font-family="sans-serif" font-size="13" font-weight="700" fill="#E53E3E">クリック！</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num">4</div>
+      <div class="step-title">
+        メニューから「ページ」を選ぶ
+        <small>ドロップダウンメニューが出てきます</small>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        「+ 追加」を押すとメニューが出てきます。一覧の中から<strong>「ページ」</strong>を選んでクリックしてください。<br>
+        「ウェブサイトやフルスタックアプリを即座にデプロイ（公開する）」と書かれています。
+      </p>
+      <div class="step-mock">
+        <svg viewBox="0 0 640 340" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="340" fill="#f8f9fa" rx="8"/>
+          <!-- top bar -->
+          <rect x="0" y="0" width="640" height="50" fill="#fff"/>
+          <circle cx="28" cy="25" r="14" fill="#F6821F"/>
+          <text x="28" y="30" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="900" fill="#fff">CF</text>
+          <rect x="545" y="12" width="80" height="26" fill="#2563eb" rx="6"/>
+          <text x="585" y="29" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff">+ 追加</text>
+          <!-- dropdown -->
+          <rect x="10" y="55" width="340" height="270" fill="#fff" rx="12" stroke="#e0e0e0" stroke-width="1" filter="url(#shadow2)"/>
+          <!-- items -->
+          <text x="30" y="92" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">ドメインを接続する</text>
+          <text x="30" y="108" font-family="sans-serif" font-size="11" fill="#888">ウェブトラフィックの速度とセキュリティを最適化</text>
+          <line x1="20" y1="118" x2="340" y2="118" stroke="#f0f0f0" stroke-width="1"/>
+          <text x="30" y="140" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">ドメインの移管</text>
+          <text x="30" y="156" font-family="sans-serif" font-size="11" fill="#888">更新料を節約</text>
+          <line x1="20" y1="166" x2="340" y2="166" stroke="#f0f0f0" stroke-width="1"/>
+          <text x="30" y="188" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">労働者</text>
+          <text x="30" y="204" font-family="sans-serif" font-size="11" fill="#888">サーバーレス関数、サイト、アプリを構築する</text>
+          <line x1="20" y1="214" x2="340" y2="214" stroke="#f0f0f0" stroke-width="1"/>
+
+          <!-- ページ item highlighted -->
+          <rect x="10" y="218" width="340" height="56" fill="#FFF3E8" rx="0"/>
+          <text x="30" y="242" font-family="sans-serif" font-size="14" font-weight="700" fill="#F6821F">ページ</text>
+          <text x="30" y="259" font-family="sans-serif" font-size="11" fill="#c05a00">ウェブサイトやフルスタックアプリを即座にデプロイ</text>
+
+          <line x1="20" y1="276" x2="340" y2="276" stroke="#f0f0f0" stroke-width="1"/>
+          <text x="30" y="298" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">R2ストレージバケット</text>
+          <text x="30" y="314" font-family="sans-serif" font-size="11" fill="#888">ファイルやオブジェクトを保存できます</text>
+
+          <!-- RED BOX around ページ -->
+          <rect x="6" y="214" width="348" height="64" rx="6" fill="none" stroke="#E53E3E" stroke-width="3" stroke-dasharray="8 4"/>
+          <!-- Arrow -->
+          <line x1="360" y1="246" x2="430" y2="246" stroke="#E53E3E" stroke-width="2.5" stroke-dasharray="6 3" marker-end="url(#redarr2)"/>
+          <text x="450" y="240" font-family="sans-serif" font-size="13" font-weight="700" fill="#E53E3E">「ページ」を</text>
+          <text x="450" y="258" font-family="sans-serif" font-size="13" font-weight="700" fill="#E53E3E">クリック！</text>
+
+          <defs>
+            <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.12)"/>
+            </filter>
+            <marker id="redarr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#E53E3E"/>
+            </marker>
+            <marker id="redarr2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#E53E3E"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num">5</div>
+      <div class="step-title">
+        「既存のGitリポジトリをインポートする」を選ぶ
+        <small>2択が出てきます。上の方を選んでください</small>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        「さあ始めましょう」という画面が出てきます。<br>
+        2つの選択肢のうち、<strong>上の「既存のGitリポジトリをインポートする」</strong>の「さあ始めましょう」ボタンを押します。
+      </p>
+      <div class="step-mock">
+        <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="280" fill="#f8f9fa" rx="8"/>
+          <text x="320" y="48" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#1a1a2e">さあ始めましょう</text>
+          <text x="320" y="68" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#888">Pagesを始めましょう。どのように始めますか？</text>
+
+          <!-- option 1 highlighted -->
+          <rect x="60" y="86" width="520" height="72" fill="#fff" rx="12" stroke="#F6821F" stroke-width="2"/>
+          <rect x="80" y="104" width="30" height="30" fill="#f0f4ff" rx="6"/>
+          <text x="95" y="124" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#555">&#9135;</text>
+          <text x="130" y="110" font-family="sans-serif" font-size="13" font-weight="700" fill="#1a1a2e">既存のGitリポジトリをインポートする</text>
+          <text x="130" y="128" font-family="sans-serif" font-size="11" fill="#888">まず、既存のGitリポジトリをインポートすることから始めます</text>
+          <rect x="450" y="102" width="110" height="32" fill="#2563eb" rx="8"/>
+          <text x="505" y="122" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fff">さあ始めましょう</text>
+
+          <!-- option 2 -->
+          <rect x="60" y="172" width="520" height="72" fill="#fff" rx="12" stroke="#e0e0e0" stroke-width="1"/>
+          <rect x="80" y="190" width="30" height="30" fill="#f0f4ff" rx="6"/>
+          <text x="95" y="210" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#aaa">&#9650;</text>
+          <text x="130" y="196" font-family="sans-serif" font-size="13" font-weight="700" fill="#aaa">ファイルをドラッグアンドドロップしてください</text>
+          <text x="130" y="214" font-family="sans-serif" font-size="11" fill="#ccc">HTML、CSS、JSファイルなどをアップロード</text>
+          <rect x="450" y="188" width="110" height="32" fill="#e0e0e0" rx="8"/>
+          <text x="505" y="208" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">さあ始めましょう</text>
+
+          <!-- RED BOX -->
+          <rect x="54" y="80" width="532" height="84" rx="14" fill="none" stroke="#E53E3E" stroke-width="3" stroke-dasharray="8 4"/>
+          <text x="320" y="255" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#E53E3E">上の「さあ始めましょう」ボタンをクリック！</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num">6</div>
+      <div class="step-title">
+        GitHubアカウントとリポジトリを選ぶ
+        <small>リポジトリ = 作業ファイルが入っているフォルダのこと</small>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        GitHubアカウント「ゴキゲンデザイン」が選ばれていることを確認し、<br>
+        一覧から<strong>「AIワークショップ」</strong>を選んでクリックします（青枠がつきます）。<br>
+        選んだら右下の<strong>「セットアップを開始します」</strong>ボタンを押します。
+      </p>
+      <div class="step-mock">
+        <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="420" fill="#f8f9fa" rx="8"/>
+          <!-- GitHub account selector -->
+          <text x="30" y="40" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">GitHubアカウント</text>
+          <rect x="30" y="50" width="220" height="38" fill="#fff" rx="8" stroke="#e0e0e0" stroke-width="1.5"/>
+          <rect x="40" y="60" width="20" height="18" fill="#e0e0e0" rx="4"/>
+          <text x="68" y="74" font-family="sans-serif" font-size="13" fill="#333">ゴキゲンデザイン</text>
+          <text x="230" y="74" font-family="sans-serif" font-size="14" fill="#888">&#x2304;</text>
+          <!-- search -->
+          <text x="30" y="112" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">リポジトリを選択してください</text>
+          <rect x="30" y="120" width="580" height="34" fill="#fff" rx="8" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="50" y="142" font-family="sans-serif" font-size="12" fill="#aaa">リポジトリを検索...</text>
+          <!-- grid -->
+          <!-- AIワークショップ - selected -->
+          <rect x="30" y="164" width="270" height="54" fill="#fff" rx="10" stroke="#2563eb" stroke-width="2.5"/>
+          <text x="68" y="190" font-family="sans-serif" font-size="13" font-weight="700" fill="#1a1a2e">AIワークショップ</text>
+          <circle cx="274" cy="191" r="11" fill="none" stroke="#2563eb" stroke-width="2"/>
+          <path d="M267,191 L271,195 L281,186" stroke="#2563eb" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- others -->
+          <rect x="320" y="164" width="270" height="54" fill="#fff" rx="10" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="340" y="190" font-family="sans-serif" font-size="13" fill="#aaa">テストクラウドフレアデプロイ</text>
+          <rect x="30" y="228" width="270" height="54" fill="#fff" rx="10" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="50" y="254" font-family="sans-serif" font-size="13" fill="#aaa">ハンドメイド会員サイト</text>
+          <rect x="320" y="228" width="270" height="54" fill="#fff" rx="10" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="340" y="254" font-family="sans-serif" font-size="13" fill="#aaa">アツコ・LP・ジャーニー</text>
+          <rect x="30" y="292" width="270" height="54" fill="#fff" rx="10" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="50" y="318" font-family="sans-serif" font-size="13" fill="#aaa">よしこ-イベント-デモ</text>
+          <rect x="320" y="292" width="270" height="54" fill="#fff" rx="10" stroke="#e0e0e0" stroke-width="1"/>
+          <text x="340" y="318" font-family="sans-serif" font-size="13" fill="#aaa">夢のカレンダー</text>
+
+          <!-- セットアップボタン -->
+          <rect x="430" y="364" width="180" height="40" fill="#2563eb" rx="10"/>
+          <text x="520" y="388" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#fff">セットアップを開始します</text>
+
+          <!-- RED BOX around AIワークショップ -->
+          <rect x="24" y="158" width="282" height="66" rx="12" fill="none" stroke="#E53E3E" stroke-width="3" stroke-dasharray="8 4"/>
+          <text x="320" y="178" text-anchor="start" font-family="sans-serif" font-size="12" font-weight="700" fill="#E53E3E">&#x2460; AIワークショップをクリック</text>
+
+          <!-- RED BOX around button -->
+          <rect x="424" y="358" width="192" height="52" rx="12" fill="none" stroke="#E53E3E" stroke-width="3" stroke-dasharray="8 4"/>
+          <text x="424" y="352" font-family="sans-serif" font-size="12" font-weight="700" fill="#E53E3E">&#x2461; ボタンを押す</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num">7</div>
+      <div class="step-title">
+        ビルド設定を確認して「保存してデプロイする」
+        <small>設定はほぼそのままでOK。確認だけして進む</small>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        ビルド設定の画面が出てきます。以下の表の通りになっているか確認して、<strong>「保存してデプロイする」</strong>ボタンを押します。
+      </p>
+
+      <!-- 設定確認表 -->
+      <div style="background:#f8f9fa;border-radius:10px;overflow:hidden;border:1px solid #e0e0e0;margin-bottom:18px;">
+        <div style="background:#1a1a2e;padding:10px 16px;">
+          <span style="color:#fff;font-size:13px;font-weight:700;">設定の確認ポイント</span>
+        </div>
+        <div style="padding:0;">
+          <div style="display:flex;border-bottom:1px solid #e8e8e8;padding:12px 16px;gap:12px;">
+            <div style="width:180px;font-size:13px;color:#555;font-weight:700;flex-shrink:0;">フレームワークプリセット</div>
+            <div style="font-size:13px;color:#333;">「なし」のままでOK</div>
+          </div>
+          <div style="display:flex;border-bottom:1px solid #e8e8e8;padding:12px 16px;gap:12px;">
+            <div style="width:180px;font-size:13px;color:#555;font-weight:700;flex-shrink:0;">ビルドコマンド</div>
+            <div style="font-size:13px;color:#333;">空欄のままでOK（何も入力しない）</div>
+          </div>
+          <div style="display:flex;padding:12px 16px;gap:12px;">
+            <div style="width:180px;font-size:13px;color:#555;font-weight:700;flex-shrink:0;">ビルド出力ディレクトリ</div>
+            <div style="font-size:13px;color:#333;">「/」が入っていればOK</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-mock">
+        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="360" fill="#f8f9fa" rx="8"/>
+          <text x="320" y="36" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="700" fill="#1a1a2e">ビルドとデプロイメントを設定する</text>
+
+          <!-- プロジェクト名 -->
+          <text x="40" y="72" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">プロジェクト名</text>
+          <rect x="40" y="80" width="300" height="36" fill="#fff" rx="8" stroke="#e0e0e0" stroke-width="1.5"/>
+          <text x="56" y="103" font-family="sans-serif" font-size="13" fill="#333">ai-workshop</text>
+          <text x="40" y="130" font-family="sans-serif" font-size="11" fill="#888">あなたのプロジェクトは ai-workshop3.pages.dev にデプロイされます</text>
+
+          <!-- フレームワーク -->
+          <text x="40" y="162" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">フレームワークプリセット</text>
+          <rect x="40" y="170" width="200" height="36" fill="#fff" rx="8" stroke="#e0e0e0" stroke-width="1.5"/>
+          <text x="56" y="193" font-family="sans-serif" font-size="13" fill="#555">なし</text>
+          <text x="224" y="193" font-family="sans-serif" font-size="12" fill="#aaa">&#x2304;</text>
+
+          <!-- ビルドコマンド -->
+          <text x="40" y="228" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">ビルドコマンド</text>
+          <rect x="40" y="236" width="300" height="36" fill="#fff" rx="8" stroke="#e0e0e0" stroke-width="1.5"/>
+          <text x="56" y="259" font-family="sans-serif" font-size="12" fill="#ccc">（空欄のまま）</text>
+
+          <!-- ビルド出力 -->
+          <text x="40" y="294" font-family="sans-serif" font-size="13" font-weight="700" fill="#333">ビルド出力ディレクトリ</text>
+          <text x="40" y="322" font-family="sans-serif" font-size="14" fill="#555">/</text>
+          <rect x="54" y="308" width="120" height="36" fill="#fff" rx="8" stroke="#2563eb" stroke-width="2"/>
+          <text x="70" y="331" font-family="sans-serif" font-size="13" fill="#333">/</text>
+
+          <!-- 保存ボタン -->
+          <rect x="430" y="308" width="180" height="40" fill="#2563eb" rx="10"/>
+          <text x="520" y="332" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#fff">保存してデプロイする</text>
+
+          <!-- OK marks -->
+          <text x="356" y="103" font-family="sans-serif" font-size="18" fill="#38a169">&#10003;</text>
+          <text x="256" y="193" font-family="sans-serif" font-size="18" fill="#38a169">&#10003;</text>
+          <text x="356" y="259" font-family="sans-serif" font-size="18" fill="#38a169">&#10003;</text>
+          <text x="186" y="331" font-family="sans-serif" font-size="18" fill="#38a169">&#10003;</text>
+
+          <!-- RED BOX around button -->
+          <rect x="424" y="302" width="192" height="52" rx="12" fill="none" stroke="#E53E3E" stroke-width="3" stroke-dasharray="8 4"/>
+          <text x="424" y="296" font-family="sans-serif" font-size="12" font-weight="700" fill="#E53E3E">確認したら押す！</text>
+        </svg>
+      </div>
+      <div class="note-box point">
+        <strong>プロジェクト名について</strong>
+        プロジェクト名を変えると公開URLも変わります。「ai-workshop3」など好きな名前にしてもOKです。名前を変えた場合は「.pages.dev」の前の部分が変わります。
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 8 完了 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-num">8</div>
+      <div class="step-title">
+        「成功！」画面が出たら公開完了
+        <small>表示されたURLにアクセスして確認しましょう</small>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">
+        「成功！プロジェクトはリージョン：地球にデプロイされました。」という画面が出れば完成です。<br>
+        表示されているリンクをクリックしてサイトを確認しましょう。
+      </p>
+      <div class="step-mock">
+        <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="280" fill="#f0fff4" rx="8"/>
+          <!-- success icon -->
+          <circle cx="320" cy="68" r="36" fill="#38a169"/>
+          <path d="M304,68 L316,80 L338,56" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- text -->
+          <text x="320" y="132" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#1a4731">成功！</text>
+          <text x="320" y="154" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2d6a4f">プロジェクトはリージョン：地球にデプロイされました。</text>
+          <!-- URL box -->
+          <rect x="140" y="172" width="360" height="44" fill="#fff" rx="10" stroke="#38a169" stroke-width="2"/>
+          <text x="320" y="190" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">公開URL</text>
+          <text x="320" y="207" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#2563eb">ai-workshop3.pages.dev</text>
+          <!-- RED BOX around URL -->
+          <rect x="134" y="166" width="372" height="56" rx="12" fill="none" stroke="#E53E3E" stroke-width="3" stroke-dasharray="8 4"/>
+          <text x="320" y="252" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#E53E3E">このURLをクリックして確認！</text>
+        </svg>
+      </div>
+      <div class="note-box success">
+        <strong>公開完了！これで誰でもアクセスできます</strong>
+        「ai-workshop3.pages.dev/lp3.html」のようにファイル名をURLの後ろにつけると、特定のページを開けます。
+      </div>
+    </div>
+  </div>
+
+  <!-- 完了バナー -->
+  <div class="done-banner">
+    <div class="done-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h2>デプロイ完了！</h2>
+    <p>
+      これからはGitHubにコードをプッシュするだけで<br>
+      自動的にこのURLに反映されます。
+    </p>
+    <div class="url-box">
+      https://ai-workshop3.pages.dev/lp3.html
+    </div>
+  </div>
+
+  <!-- よくある質問 -->
+  <div class="flow-section" style="margin-top:28px;">
+    <div class="section-title">よくある質問</div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="background:#f8f9fa;border-radius:10px;padding:16px;">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px;color:#1a1a2e;">GitHubでログインしたらエラーになった</div>
+        <div style="font-size:13px;color:#555;line-height:1.8;">ログイン画面に戻って「グーグル」ボタンを選んでください。CloudflareはGoogleで登録されているため、GitHubログインだとアカウントが一致しないエラーが出ます。</div>
+      </div>
+      <div style="background:#f8f9fa;border-radius:10px;padding:16px;">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px;color:#1a1a2e;">URLに「4j2」など謎の文字がついてしまう</div>
+        <div style="font-size:13px;color:#555;line-height:1.8;">プロジェクト名が他の人に使われているとランダムな文字が追加されます。プロジェクト名を「aya-ai-workshop」など別の名前に変えると、きれいなURLになります。</div>
+      </div>
+      <div style="background:#f8f9fa;border-radius:10px;padding:16px;">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px;color:#1a1a2e;">料金はかかりますか？</div>
+        <div style="font-size:13px;color:#555;line-height:1.8;">無料です。広告も表示されません。月500回のビルドまで無料なので、チームで更新しても余裕で使えます。</div>
+      </div>
+      <div style="background:#f8f9fa;border-radius:10px;padding:16px;">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px;color:#1a1a2e;">更新したファイルを反映するには？</div>
+        <div style="font-size:13px;color:#555;line-height:1.8;">Claude Codeでファイルを編集 → GitHubにプッシュ（push）するだけで、自動的にCloudflareに反映されます。毎回Cloudflareを開く必要はありません。</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

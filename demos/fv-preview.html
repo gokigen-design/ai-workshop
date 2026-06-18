@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FVプレビュー2択比較</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; color: #fff; font-family: 'Hiragino Kaku Gothic ProN', sans-serif; }
+
+  .page-header {
+    text-align: center;
+    padding: 24px 20px 20px;
+    background: #0a0a1a;
+    border-bottom: 1px solid rgba(0,212,255,0.2);
+  }
+  .page-header h1 { font-size: 16px; color: #00d4ff; margin-bottom: 8px; letter-spacing: 0.08em; }
+  .page-header p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.8; }
+
+  /* ─── 共通ラベル ─── */
+  .option-label {
+    text-align: center;
+    padding: 20px 16px 12px;
+    background: #0d0d20;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .badge-a { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.4); }
+  .badge-b { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.4); }
+  .option-label h2 { font-size: 15px; margin-bottom: 4px; }
+  .option-label p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  /* ─── OPTION A: 縦型動画を中央に配置（左右はぼかし背景）─── */
+  .fv-a {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    background: #000;
+  }
+  /* ぼかし背景（同じ動画を引き伸ばしてぼかす） */
+  .fv-a .bg-blur {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(30px) brightness(0.25) saturate(0.6);
+    transform: scale(1.1);
+    z-index: 1;
+  }
+  /* 中央の縦型動画 */
+  .fv-a .main-video {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: auto;
+    z-index: 2;
+    object-fit: contain;
+  }
+  /* 左右グラデ（自然につながるように） */
+  .fv-a .side-fade-left {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 15%;
+    background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+    z-index: 3;
+  }
+  .fv-a .side-fade-right {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 15%;
+    background: linear-gradient(to left, rgba(0,0,0,0.8), transparent);
+    z-index: 3;
+  }
+  /* フェードループ用オーバーレイ */
+  .fv-fade {
+    position: absolute; inset: 0;
+    background: #000;
+    z-index: 8;
+    opacity: 0;
+    pointer-events: none;
+  }
+  /* 音声ボタン */
+  .sound-btn {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(0,212,255,0.5);
+    border-radius: 20px;
+    color: rgba(0,212,255,0.9);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 6px 14px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ─── OPTION B: 上部を表示（横型にクロップ）─── */
+  .fv-b {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    background: #000;
+  }
+  .fv-b .main-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top; /* 上部を優先表示 */
+    z-index: 1;
+  }
+  /* 下グラデ（下部の切れ目を自然に） */
+  .fv-b .bottom-fade {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 30%;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.9));
+    z-index: 2;
+  }
+
+  /* ─── 説明・選択エリア ─── */
+  .option-desc {
+    padding: 18px 20px;
+    background: #0d0d20;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 640px) { .option-desc { grid-template-columns: 1fr; } }
+  .desc-card {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+  }
+  .desc-card strong { display: block; font-size: 12px; color: #00d4ff; margin-bottom: 6px; letter-spacing: 0.06em; }
+
+  .choose-btn {
+    display: block;
+    width: calc(100% - 40px);
+    margin: 0 20px 24px;
+    padding: 14px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid;
+    background: transparent;
+    transition: background 0.2s;
+  }
+  .choose-a { border-color: #00d4ff; color: #00d4ff; }
+  .choose-a:hover { background: rgba(0,212,255,0.12); }
+  .choose-b { border-color: #c084fc; color: #c084fc; }
+  .choose-b:hover { background: rgba(168,85,247,0.12); }
+
+  .divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(0,212,255,0.3), transparent);
+    margin: 8px 0;
+  }
+
+  .page-footer {
+    text-align: center;
+    padding: 28px 20px 48px;
+    background: #0a0a1a;
+    border-top: 1px solid rgba(0,212,255,0.15);
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.9;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>FV 2択プレビュー</h1>
+  <p>縦型動画(9:16)を横型LPで使う方法は2択です。<br>どちらがいいか教えてください。</p>
+</div>
+
+<!-- ════ OPTION A ════ -->
+<div class="option-label">
+  <div class="badge badge-a">OPTION A</div>
+  <h2>縦型のまま中央に表示　左右はぼかし背景</h2>
+  <p>動画全体が見える。女性も文字も全部見える。左右は同じ動画をぼかして自然につなげる。</p>
+</div>
+
+<div class="fv-a" id="fv-a">
+  <!-- ぼかし背景 -->
+  <video class="bg-blur" autoplay muted loop playsinline tabindex="-1">
+    <source src="images/oosaka_fv.mp4" type="video/mp4">
+  </video>
+  <!-- 中央メイン動画 -->
+  <video class="main-video" id="video-a" autoplay muted loop playsinline>
+    <source src="images/oosaka_fv.mp4" type="video/mp4">
+  </video>
+  <div class="side-fade-left"></div>
+  <div class="side-fade-right"></div>
+  <div class="fv-fade" id="fade-a"></div>
+  <button class="sound-btn" onclick="toggleA()">
+    <span id="icon-a">&#128263;</span>
+    <span id="label-a">SOUND ON</span>
+  </button>
+</div>
+
+<div class="option-desc">
+  <div class="desc-card">
+    <strong>メリット</strong>
+    動画の内容が全部見える。女性・テキスト・大阪の映像すべて表示。
+  </div>
+  <div class="desc-card">
+    <strong>デメリット</strong>
+    PCでは左右にぼかし帯ができる。スマホでは縦型のまま全画面でかっこいい。
+  </div>
+</div>
+<button class="choose-btn choose-a" onclick="alert('A案！とClaude Codeに送ってください')">A案にする！（縦型・ぼかし背景）</button>
+
+<div class="divider"></div>
+
+<!-- ════ OPTION B ════ -->
+<div class="option-label">
+  <div class="badge badge-b">OPTION B</div>
+  <h2>上部をクロップして横型に表示</h2>
+  <p>横型LPに合わせてトリミング。動画の上部（女性・テキスト部分）を優先表示。大阪のネオン全体は見えなくなる。</p>
+</div>
+
+<div class="fv-b">
+  <video class="main-video" id="video-b" autoplay muted loop playsinline>
+    <source src="images/oosaka_fv.mp4" type="video/mp4">
+  </video>
+  <div class="bottom-fade"></div>
+  <div class="fv-fade" id="fade-b"></div>
+  <button class="sound-btn" onclick="toggleB()">
+    <span id="icon-b">&#128263;</span>
+    <span id="label-b">SOUND ON</span>
+  </button>
+</div>
+
+<div class="option-desc">
+  <div class="desc-card">
+    <strong>メリット</strong>
+    従来の横型FVのまま自然に収まる。他のセクションとのバランスが取りやすい。
+  </div>
+  <div class="desc-card">
+    <strong>デメリット</strong>
+    動画の下半分（大阪のネオン等）は見えない。縦型素材が本来持つ情報量が活かせない。
+  </div>
+</div>
+<button class="choose-btn choose-b" onclick="alert('B案！とClaude Codeに送ってください')">B案にする！（横型クロップ）</button>
+
+<div class="page-footer">
+  A案・B案を確認して「A案で実装して」「B案で実装して」と送ってください。<br>
+  どちらもフェードループ付きで実装します。
+</div>
+
+<script>
+  // ─── フェードループ共通関数 ───
+  function setupFade(video, fadeEl) {
+    const FADE_OUT = 1.0;
+    const FADE_IN  = 0.7;
+    video.addEventListener('timeupdate', () => {
+      if (!video.duration) return;
+      const t = video.currentTime;
+      const rem = video.duration - t;
+      let op = 0;
+      if (rem < FADE_OUT)  op = 1 - rem / FADE_OUT;
+      else if (t < FADE_IN) op = 1 - t / FADE_IN;
+      fadeEl.style.opacity = Math.min(1, Math.max(0, op));
+    });
+  }
+
+  setupFade(document.getElementById('video-a'), document.getElementById('fade-a'));
+  setupFade(document.getElementById('video-b'), document.getElementById('fade-b'));
+
+  // ─── 音声トグル ───
+  function toggleA() {
+    const v = document.getElementById('video-a');
+    v.muted = !v.muted;
+    document.getElementById('icon-a').innerHTML  = v.muted ? '&#128263;' : '&#128266;';
+    document.getElementById('label-a').textContent = v.muted ? 'SOUND ON' : 'SOUND OFF';
+  }
+  function toggleB() {
+    const v = document.getElementById('video-b');
+    v.muted = !v.muted;
+    document.getElementById('icon-b').innerHTML  = v.muted ? '&#128263;' : '&#128266;';
+    document.getElementById('label-b').textContent = v.muted ? 'SOUND ON' : 'SOUND OFF';
+  }
+</script>
+</body>
+</html>
