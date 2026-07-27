@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Obsidianセミナー アーカイブ＆まとめ｜AIワークショップ限定</title>
+<meta name="description" content="AIワークショップ限定。Obsidian×AIで散らかった情報を資産に変えるセミナーのアーカイブとまとめ。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f4fbff;
+    --bg-card: #ffffff;
+    --bg-accent: #e6f4ff;
+    --bg-pink: #fff0f6;
+    --ink: #1a1a1a;
+    --ink-soft: #3d4a5c;
+    --ink-mute: #7a8a9a;
+    --line: #cfe7f5;
+    --line-pink: #f7c8dc;
+    --primary: #0099e5;
+    --primary-dark: #0073b3;
+    --primary-light: #66c5ff;
+    --accent: #ff3d80;
+    --accent-dark: #e6005c;
+    --accent-soft: #ffe0ec;
+    --gradient-blue: linear-gradient(135deg, #4dc3ff 0%, #0099e5 100%);
+    --gradient-pink: linear-gradient(135deg, #ff6ba6 0%, #ff1f7c 100%);
+    --gradient-sky: linear-gradient(180deg, #d6f0ff 0%, #f4fbff 60%, #ffffff 100%);
+    --shadow: 0 4px 20px rgba(0, 153, 224, 0.10);
+    --shadow-pink: 0 4px 20px rgba(255, 61, 128, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Noto Sans JP", "游ゴシック", "Yu Gothic", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--gradient-sky);
+    padding: 96px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before, .hero::after {
+    content: "✦";
+    position: absolute;
+    color: var(--accent);
+    opacity: 0.5;
+    font-size: 22px;
+    animation: twinkle 2.6s ease-in-out infinite;
+  }
+  .hero::before { top: 18%; left: 8%; }
+  .hero::after { top: 70%; right: 10%; animation-delay: 1.3s; color: var(--primary); }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.2); }
+  }
+  .hero .eyebrow {
+    display: inline-block;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 20px;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.18em;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, #0078b8 0%, #00a3e0 50%, #ff3d80 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero h1 .tiny {
+    display: block;
+    font-size: 14px;
+    color: var(--ink-mute);
+    letter-spacing: 0.25em;
+    margin-bottom: 14px;
+    font-weight: 500;
+    -webkit-text-fill-color: var(--ink-mute);
+    background: none;
+  }
+  .hero p.lead {
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 2;
+  }
+  .hero .meta {
+    display: inline-flex;
+    gap: 28px;
+    margin-top: 36px;
+    padding: 14px 28px;
+    background: #ffffff;
+    border: 2px solid var(--primary-light);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--primary-dark);
+    letter-spacing: 0.12em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-weight: 500;
+    box-shadow: var(--shadow);
+  }
+  .hero .meta span::before {
+    content: "✦ ";
+    color: var(--accent);
+    margin-right: 4px;
+  }
+  .hero .meta span:first-child::before { content: ""; margin-right: 0; }
+
+  /* ARCHIVE VIDEO */
+  .archive {
+    margin: -48px auto 56px;
+    max-width: 820px;
+    position: relative;
+    z-index: 2;
+  }
+  .archive-card {
+    background: var(--bg-card);
+    border: 2px solid var(--primary-light);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .archive-label { text-align: center; margin-bottom: 22px; }
+  .archive-eyebrow {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.3em;
+    font-size: 13px;
+    font-weight: 600;
+    display: block;
+  }
+  .archive-label h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px 0 6px;
+  }
+  .archive-label p {
+    font-size: 13px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+  }
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #000;
+    box-shadow: 0 4px 18px rgba(0, 153, 224, 0.18);
+  }
+  .video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .timestamps {
+    margin-top: 24px;
+    padding: 22px 24px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #fff0f6 100%);
+    border: 1px solid var(--primary-light);
+    border-radius: 12px;
+  }
+  .timestamps h4 {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 700;
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+  }
+  .timestamps h4::before, .timestamps h4::after {
+    content: "✦";
+    color: var(--primary);
+    margin: 0 10px;
+    font-size: 11px;
+  }
+  .timestamps ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4px 16px;
+  }
+  .timestamps ul li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: 1px dashed rgba(102, 197, 255, 0.3);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .timestamps ul li a {
+    flex-shrink: 0;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    min-width: 64px;
+    transition: color 0.2s ease;
+  }
+  .timestamps ul li a:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--bg-card);
+    border: 2px solid var(--primary-light);
+    border-radius: 16px;
+    padding: 36px;
+    margin: 0 auto 72px;
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+  }
+  .toc h2 {
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--primary-dark);
+    text-align: center;
+    margin-bottom: 28px;
+    font-weight: 700;
+  }
+  .toc h2::before, .toc h2::after {
+    content: "✦";
+    color: var(--accent);
+    margin: 0 14px;
+    font-size: 12px;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .toc ol li { counter-increment: toc; }
+  .toc ol li a {
+    display: block;
+    padding: 14px 12px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13.5px;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+    background: #ffffff;
+    font-weight: 500;
+  }
+  .toc ol li a::before {
+    content: "0" counter(toc);
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 18px;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .toc ol li a:hover {
+    background: var(--bg-pink);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-pink);
+  }
+
+  /* INTRO */
+  .intro { padding: 24px 0 64px; }
+  .intro-card {
+    background: var(--bg-card);
+    border: 2px solid var(--primary-light);
+    border-left: 6px solid var(--accent);
+    padding: 32px 36px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+  .intro-card h3 {
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    margin-bottom: 18px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .intro-card h3::before {
+    content: "✦";
+    color: var(--accent);
+    font-size: 18px;
+  }
+  .intro-card p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .intro-card p:last-child { margin-bottom: 0; }
+  .intro-card strong { color: var(--accent-dark); font-weight: 700; }
+
+  /* Person */
+  .person {
+    padding: 88px 0 72px;
+    border-bottom: 2px dashed var(--line);
+    position: relative;
+  }
+  .person::before {
+    content: "✦";
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    color: var(--primary-light);
+    font-size: 16px;
+    opacity: 0.6;
+  }
+  .person-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .person-num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 76px;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    text-shadow: 0 4px 12px rgba(255, 61, 128, 0.15);
+  }
+  .person-title-wrap { flex: 1; min-width: 240px; }
+  .person h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+  }
+  .person .sub {
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+  .person .overview {
+    background: linear-gradient(135deg, #e6f4ff 0%, #fff0f6 100%);
+    padding: 22px 26px;
+    border-radius: 14px;
+    margin: 36px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.95;
+    border: 1px solid var(--primary-light);
+  }
+  .person .overview strong { color: var(--accent-dark); font-weight: 700; }
+
+  .subblock {
+    background: rgba(230, 244, 255, 0.4);
+    border-left: 4px solid var(--primary);
+    padding: 16px 22px;
+    margin: 40px 0 24px;
+    border-radius: 0 8px 8px 0;
+  }
+  .subblock h3 {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--primary-dark);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .subblock h3::before {
+    content: "✦";
+    color: var(--accent);
+    font-size: 14px;
+  }
+  .subblock p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.85;
+  }
+
+  .topic { margin: 44px 0; }
+  .topic h3 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--primary-dark);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+  }
+  .topic h3::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--gradient-pink);
+    border-radius: 2px;
+  }
+  .topic h3 .num {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 15px;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+  .topic p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    line-height: 2;
+  }
+  .topic ul { list-style: none; padding-left: 0; }
+  .topic ul li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.95;
+  }
+  .topic ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .topic ul li strong { color: var(--primary-dark); font-weight: 700; }
+  .topic p strong { color: var(--accent-dark); font-weight: 700; }
+
+  .flow-box {
+    background: linear-gradient(135deg, #f0f9ff 0%, #fff0f6 100%);
+    border: 1px solid var(--primary-light);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .flow-box h4 {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .flow-box ol {
+    counter-reset: flow;
+    list-style: none;
+    padding-left: 0;
+  }
+  .flow-box ol li {
+    counter-increment: flow;
+    position: relative;
+    padding: 6px 0 6px 32px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .flow-box ol li::before {
+    content: counter(flow);
+    position: absolute;
+    left: 0; top: 8px;
+    width: 22px; height: 22px;
+    background: var(--gradient-pink);
+    color: #fff;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flow-box ol li strong { color: var(--primary-dark); font-weight: 700; }
+
+  .prompt-box {
+    background: #f0f9ff;
+    border: 1px dashed var(--primary);
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin: 18px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+  .prompt-box::before {
+    content: "✦ PROMPT EXAMPLE";
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.3em;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .prompt-box code {
+    font-family: "Noto Sans JP", monospace;
+    color: var(--primary-dark);
+    background: rgba(255,255,255,0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  .quote {
+    border-left: 3px solid var(--primary-light);
+    padding: 4px 0 4px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--ink-mute);
+    font-style: italic;
+    line-height: 1.9;
+  }
+
+  .praise {
+    background: linear-gradient(135deg, #fff0f6 0%, #ffe0ec 100%);
+    padding: 20px 24px;
+    border-radius: 12px;
+    margin: 18px 0;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    border: 1px solid var(--line-pink);
+    box-shadow: var(--shadow-pink);
+  }
+  .praise::before {
+    content: "✦  ";
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .praise strong { color: var(--accent-dark); font-weight: 700; }
+
+  .done-list {
+    background: linear-gradient(135deg, #e6f7ff 0%, #f4fbff 100%);
+    border: 1px solid var(--primary-light);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .done-list h4 {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .done-list h4::before {
+    content: "✓";
+    background: var(--gradient-blue);
+    color: #fff;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .done-list ul { list-style: none; padding: 0; }
+  .done-list ul li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+  .done-list ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* Tips section */
+  .tips {
+    background: linear-gradient(180deg, #fff0f6 0%, #ffffff 100%);
+    padding: 80px 0;
+    border-top: 2px dashed var(--line);
+    position: relative;
+  }
+  .tips::before, .tips::after {
+    content: "✦";
+    position: absolute;
+    color: var(--primary);
+    opacity: 0.4;
+    font-size: 20px;
+  }
+  .tips::before { top: 50px; left: 8%; }
+  .tips::after { bottom: 50px; right: 8%; color: var(--accent); }
+  .tips h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #0099e5 0%, #ff3d80 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tips .sub-line {
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--primary);
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    margin-bottom: 52px;
+    font-weight: 500;
+  }
+
+  /* FAQ */
+  .faq {
+    background: linear-gradient(180deg, #ffffff 0%, #fff8fb 100%);
+    padding: 80px 0;
+    border-top: 2px dashed var(--line);
+    position: relative;
+  }
+  .faq::before, .faq::after {
+    content: "✦";
+    position: absolute;
+    color: var(--accent);
+    opacity: 0.4;
+    font-size: 20px;
+  }
+  .faq::before { top: 50px; left: 8%; }
+  .faq::after { bottom: 50px; right: 8%; color: var(--primary); }
+  .faq h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #0099e5 0%, #ff3d80 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .faq .sub-line {
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--primary);
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    margin-bottom: 48px;
+    font-weight: 500;
+  }
+  .faq-card {
+    background: #ffffff;
+    border: 2px solid var(--primary-light);
+    border-radius: 18px;
+    padding: 36px 40px;
+    box-shadow: var(--shadow);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .faq-q {
+    display: flex;
+    gap: 18px;
+    padding-bottom: 22px;
+    margin-bottom: 26px;
+    border-bottom: 2px dashed var(--line);
+  }
+  .faq-q .label {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .faq-q p {
+    font-size: 15.5px;
+    color: var(--ink);
+    line-height: 1.85;
+    font-weight: 500;
+    margin: 6px 0 0;
+  }
+  .faq-a {
+    display: flex;
+    gap: 18px;
+  }
+  .faq-a .label {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .faq-a .body { flex: 1; min-width: 0; }
+  .faq-a .body .lead-line {
+    background: linear-gradient(135deg, #fff0f6 0%, #ffe0ec 100%);
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 6px 0 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    line-height: 1.85;
+  }
+  .faq-a .body h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 28px 0 12px;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .faq-a .body h4::before {
+    content: "✦";
+    color: var(--accent);
+    font-size: 14px;
+  }
+  .faq-a .body p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.95;
+    margin-bottom: 12px;
+  }
+  .faq-a .body strong { color: var(--accent-dark); font-weight: 700; }
+  .faq-a .body ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 16px;
+  }
+  .faq-a .body ul li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 8px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+  }
+  .faq-a .body ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .faq-a .body ul li strong { color: var(--primary-dark); font-weight: 700; }
+  .faq-a .body code {
+    background: #f0f9ff;
+    color: var(--primary-dark);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: "Noto Sans JP", monospace;
+    font-size: 13.5px;
+    font-weight: 500;
+    border: 1px solid var(--line);
+  }
+  .faq-a .body .compare-box {
+    background: linear-gradient(135deg, #f0f9ff 0%, #fff0f6 100%);
+    border: 1px solid var(--primary-light);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 14px 0 18px;
+  }
+  .faq-a .body .compare-box dl {
+    margin: 0;
+  }
+  .faq-a .body .compare-box dt {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .faq-a .body .compare-box dt::before {
+    content: "●";
+    color: var(--accent);
+    font-size: 10px;
+  }
+  .faq-a .body .compare-box dd {
+    margin: 0 0 14px 16px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .faq-a .body .compare-box dd:last-child { margin-bottom: 0; }
+  .faq-a .body .summary-box {
+    background: linear-gradient(135deg, #fff0f6 0%, #e6f4ff 100%);
+    border: 2px solid var(--primary-light);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+  .faq-a .body .summary-box h4 {
+    margin-top: 0;
+    color: var(--accent-dark);
+  }
+  .faq-a .body .summary-box h4::before { color: var(--primary); }
+  .faq-a .body .summary-box ul li { margin-bottom: 10px; }
+  .faq-a .body .closing-line {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 15px;
+    font-weight: 700;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Claude Code status mockup */
+  .status-mockup {
+    background: #1f2127;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 18px 0 24px;
+    max-width: 480px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+  }
+  .status-mockup-tag {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--gradient-pink);
+    color: #fff;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    padding: 3px 12px;
+    border-radius: 999px;
+    box-shadow: var(--shadow-pink);
+  }
+  .status-row { margin-bottom: 14px; }
+  .status-row:last-child { margin-bottom: 0; }
+  .status-row .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 7px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .status-row .name {
+    color: #e2e2e8;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .status-row .meta {
+    color: #8a8a94;
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .status-row .meta .pct {
+    color: #c8c8d0;
+    margin-left: 8px;
+  }
+  .status-row .bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .status-row .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #5B9CFF 0%, #6EA8FF 100%);
+    border-radius: 2px;
+  }
+  .status-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #8a8a94;
+    margin: 18px 0 14px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .status-section-header::after {
+    content: "→";
+    color: #6a6a74;
+    font-size: 13px;
+  }
+  .faq-a .body p.status-caption {
+    font-size: 12.5px;
+    color: var(--ink-mute);
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 22px;
+    margin-top: -6px;
+  }
+  .faq-a .body p.status-caption strong { color: var(--primary-dark); }
+
+  /* COMMON */
+  .common {
+    background: linear-gradient(180deg, #ffffff 0%, #e6f4ff 100%);
+    padding: 80px 0;
+    border-top: 2px dashed var(--line);
+    position: relative;
+  }
+  .common::before, .common::after {
+    content: "✦";
+    position: absolute;
+    color: var(--accent);
+    opacity: 0.4;
+    font-size: 20px;
+  }
+  .common::before { top: 50px; left: 8%; }
+  .common::after { bottom: 50px; right: 8%; color: var(--primary); }
+  .common h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 10px;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .common .sub-line {
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: var(--primary);
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    margin-bottom: 52px;
+    font-weight: 500;
+  }
+  .common-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .common-card {
+    background: #ffffff;
+    padding: 26px 24px;
+    border-radius: 14px;
+    border: 2px solid var(--line);
+    transition: all 0.3s ease;
+  }
+  .common-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-pink);
+  }
+  .common-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .common-card h4 span {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .common-card p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+
+  /* FLYER */
+  .flyer {
+    background: #ffffff;
+    padding: 48px 24px 56px;
+    text-align: center;
+  }
+  .flyer-inner { max-width: 420px; margin: 0 auto; }
+  .flyer-label {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-mute);
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+  .flyer-title {
+    font-size: 12.5px;
+    color: var(--primary-dark);
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .flyer img {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 24px rgba(0, 153, 224, 0.15);
+    opacity: 0.92;
+    transition: all 0.4s ease;
+    border: 1px solid var(--line);
+  }
+  .flyer img:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    box-shadow: 0 8px 32px rgba(255, 61, 128, 0.18);
+  }
+
+  /* FOOTER */
+  footer {
+    background: linear-gradient(135deg, #0099e5 0%, #00a3e0 50%, #ff3d80 100%);
+    color: #ffffff;
+    padding: 64px 24px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  footer::before, footer::after {
+    content: "✦";
+    position: absolute;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 24px;
+  }
+  footer::before { top: 30px; left: 12%; }
+  footer::after { bottom: 30px; right: 12%; }
+  footer .ft-eyebrow {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: #ffffff;
+    font-size: 20px;
+    letter-spacing: 0.25em;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  footer p {
+    font-size: 14.5px;
+    line-height: 2;
+    letter-spacing: 0.08em;
+    max-width: 600px;
+    margin: 0 auto 10px;
+    color: rgba(255, 255, 255, 0.95);
+  }
+  footer p strong { color: #fff4d6; font-weight: 700; }
+  footer .signoff {
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.18em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { padding: 64px 20px 56px; }
+    .hero h1 { font-size: 24px; line-height: 1.6; }
+    .hero p.lead { font-size: 14px; }
+    .hero .meta {
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 22px;
+      font-size: 12px;
+    }
+    .hero .meta span::before { content: ""; margin-right: 0; }
+    .container { padding: 0 18px; }
+    .archive {
+      margin: -32px 16px 40px;
+      max-width: none;
+    }
+    .archive-card { padding: 20px 16px; border-radius: 14px; }
+    .archive-label h2 { font-size: 18px; }
+    .archive-label p { font-size: 12px; }
+    .toc {
+      padding: 26px 20px;
+      margin: 0 16px 56px;
+      border-radius: 14px;
+    }
+    .toc ol { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .toc ol li a { font-size: 12.5px; padding: 12px 6px; }
+
+    .person { padding: 64px 0 48px; }
+    .person-header { gap: 16px; }
+    .person-num { font-size: 56px; }
+    .person h2 { font-size: 21px; }
+    .person .overview { padding: 18px 20px; font-size: 13.5px; }
+
+    .topic { margin: 36px 0; }
+    .topic h3 { font-size: 16px; }
+    .topic p, .topic ul li { font-size: 14px; }
+    .subblock { padding: 14px 18px; }
+    .subblock h3 { font-size: 14.5px; }
+    .flow-box { padding: 16px 18px; }
+    .flow-box ol li { font-size: 13px; }
+    .done-list { padding: 16px 18px; }
+
+    .intro-card { padding: 24px 22px; }
+    .tips, .common, .faq { padding: 56px 0; }
+    .tips h2, .common h2, .faq h2 { font-size: 22px; }
+    .faq-card { padding: 26px 22px; border-radius: 14px; }
+    .faq-q, .faq-a { gap: 12px; }
+    .faq-q .label, .faq-a .label { font-size: 28px; }
+    .faq-q p { font-size: 14.5px; }
+    .faq-a .body .lead-line { font-size: 14px; padding: 14px 16px; }
+    .faq-a .body h4 { font-size: 14.5px; margin: 22px 0 10px; }
+    .faq-a .body p, .faq-a .body ul li { font-size: 13.5px; }
+    .faq-a .body .compare-box, .faq-a .body .summary-box { padding: 16px 18px; }
+    .faq-a .body .closing-line { font-size: 14px; }
+    .status-mockup { padding: 18px 18px; }
+    .status-row .name { font-size: 12.5px; }
+    .status-row .meta { font-size: 11px; }
+    .status-mockup-tag { font-size: 10px; padding: 2px 10px; }
+    .faq-a .body p.status-caption { font-size: 11.5px; }
+    .common-grid { gap: 14px; }
+    .common-card { padding: 22px 20px; }
+
+    .flyer { padding: 36px 20px 40px; }
+    .flyer img { max-width: 280px; }
+
+    footer { padding: 48px 20px 36px; }
+    footer .ft-eyebrow { font-size: 17px; }
+    footer p { font-size: 13.5px; }
+  }
+
+  /* ===== ARCHIVE 補足 ===== */
+  .archive-note {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-mute);
+    line-height: 1.9;
+  }
+  .archive-note a { color: var(--primary-dark); word-break: break-all; }
+
+  /* ===== SUMMARY（おさらい） ===== */
+  .summary-sec {
+    background: linear-gradient(180deg, #ffffff 0%, var(--bg-accent) 100%);
+    padding: 72px 24px 76px;
+    position: relative;
+    overflow: hidden;
+  }
+  .summary-sec h2 {
+    text-align: center;
+    font-size: 26px;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #0078b8 0%, #00a3e0 50%, #ff3d80 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .summary-sec .sub-line {
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-mute);
+    letter-spacing: 0.14em;
+    margin-bottom: 38px;
+  }
+  .sum-list { list-style: none; padding: 0; max-width: 720px; margin: 0 auto; }
+  .sum-list li {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 24px 20px 62px;
+    margin-bottom: 12px;
+    position: relative;
+    font-size: 14.5px;
+    line-height: 1.95;
+    color: var(--ink-soft);
+    box-shadow: var(--shadow);
+  }
+  .sum-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 22px;
+    top: 20px;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--gradient-blue);
+    color: #fff;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sum-list li strong { color: var(--accent-dark); font-weight: 700; }
+
+  /* ===== GIFT ===== */
+  .gift-box {
+    max-width: 720px;
+    margin: 40px auto 0;
+    background: var(--bg-pink);
+    border: 1px dashed var(--line-pink);
+    border-radius: 18px;
+    padding: 32px 34px;
+  }
+  .gift-box h3 {
+    font-size: 17px;
+    color: var(--accent-dark);
+    margin-bottom: 14px;
+    letter-spacing: 0.04em;
+  }
+  .gift-box p { font-size: 14px; color: var(--ink-soft); line-height: 2; }
+  .gift-box ul { list-style: none; padding: 0; margin: 16px 0; }
+  .gift-box ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .gift-box ul li::before {
+    content: "✦";
+    position: absolute; left: 0;
+    color: var(--accent);
+  }
+  .keyword-chip {
+    display: inline-block;
+    background: var(--gradient-pink);
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    padding: 8px 28px;
+    border-radius: 999px;
+    margin: 6px 0;
+    box-shadow: var(--shadow-pink);
+  }
+
+  /* ===== CTA（8/9セミナー） ===== */
+  .cta-sec {
+    padding: 80px 24px 90px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffeef5 40%, #ffdde9 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-sec::before, .cta-sec::after {
+    content: "✦";
+    position: absolute;
+    color: var(--accent);
+    opacity: 0.45;
+    font-size: 24px;
+    animation: twinkle 2.6s ease-in-out infinite;
+  }
+  .cta-sec::before { top: 8%; left: 7%; }
+  .cta-sec::after { bottom: 10%; right: 8%; animation-delay: 1.3s; }
+  .cta-card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 22px;
+    padding: 46px 42px 44px;
+    box-shadow: 0 14px 48px rgba(255, 61, 128, 0.26);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .cta-card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 8px;
+    background: var(--gradient-pink);
+  }
+  .cta-ribbon {
+    display: inline-block;
+    background: var(--gradient-pink);
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    padding: 7px 24px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-pink);
+  }
+  .cta-eyebrow {
+    display: inline-block;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 19px;
+    letter-spacing: 0.18em;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 14px;
+  }
+  .cta-card h2 {
+    font-size: 25px;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .cta-card h2 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #0078b8 0%, #00a3e0 50%, #ff3d80 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-meta {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .cta-meta span {
+    font-size: 13px;
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border: 1px solid var(--line-pink);
+    border-radius: 999px;
+    padding: 6px 18px;
+    letter-spacing: 0.04em;
+  }
+  .price-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 8px 0 10px;
+  }
+  .price-old {
+    font-size: 17px;
+    color: var(--ink-mute);
+    text-decoration: line-through;
+  }
+  .price-arrow { color: var(--ink-mute); font-size: 15px; }
+  .price-mid { font-size: 19px; color: var(--ink-soft); font-weight: 500; }
+  .price-free {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: var(--gradient-pink);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-body {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 2.05;
+    text-align: left;
+    margin-top: 24px;
+  }
+  .cta-body strong { color: var(--accent-dark); font-weight: 700; }
+  .share-box {
+    background: var(--bg-pink);
+    border: 1px solid var(--line-pink);
+    border-left: 4px solid var(--accent);
+    border-radius: 14px;
+    padding: 26px 28px;
+    margin-top: 30px;
+    text-align: left;
+  }
+  .share-box h4 {
+    font-size: 15.5px;
+    color: var(--accent-dark);
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+  .share-box p { font-size: 14px; color: var(--ink-soft); line-height: 2; }
+  .share-box p + p { margin-top: 12px; }
+  .share-box strong { color: var(--accent-dark); font-weight: 700; }
+
+  /* 紹介する側 / される側の整理 */
+  .case-row { display: grid; gap: 12px; margin-top: 18px; }
+  .case {
+    background: #fff;
+    border: 1px solid var(--line-pink);
+    border-radius: 14px;
+    padding: 20px 22px;
+  }
+  .case-label {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: var(--gradient-pink);
+    border-radius: 999px;
+    padding: 4px 14px;
+    margin-bottom: 10px;
+  }
+  .case.self { border-color: var(--line); }
+  .case.self .case-label { background: var(--gradient-blue); }
+  .case p { font-size: 13.5px; line-height: 1.95; color: var(--ink-soft); }
+  .case p + p { margin-top: 8px; }
+  .case strong { color: var(--accent-dark); font-weight: 700; }
+  .case.self strong { color: var(--primary-dark); }
+
+  @media (max-width: 640px) {
+    .summary-sec h2, .cta-card h2 { font-size: 21px; }
+    .sum-list li { padding: 18px 20px 18px 54px; font-size: 13.5px; }
+    .sum-list li::before { left: 18px; }
+    .gift-box, .cta-card { padding: 30px 22px; }
+    .cta-card { padding: 36px 20px 34px; }
+    .price-free { font-size: 28px; }
+    .share-box { padding: 22px 18px; }
+    .cta-body { font-size: 13.5px; }
+    .case { padding: 18px 18px; }
+    .case p { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow">Obsidian Session  /  Archive</div>
+  <h1>
+    <span class="tiny">AIワークショップ限定  ＊  情報整理セミナー</span>
+    散らかった情報を、資産に変える
+  </h1>
+  <p class="lead">
+    お昼のお時間にお集まりいただき、ありがとうございました。<br />
+    先日、とあるセミナーで登壇した内容を、みなさんにもまるごとお届けした1時間です。<br />
+    <strong>まずはアーカイブを見てください。</strong>このページは、あとから探しやすくするためのおまけです。
+  </p>
+  <div class="meta">
+    <span>2026.07.27</span>
+    <span>約60分</span>
+    <span>ちゃかな / あや</span>
+  </div>
+</header>
+
+<!-- ARCHIVE VIDEO -->
+<section class="archive container">
+  <div class="archive-card">
+    <div class="archive-label">
+      <span class="archive-eyebrow">✦  ARCHIVE  ✦</span>
+      <h2>まずは、これを見てください</h2>
+      <p>クリックして再生 — 当日の1時間、まるごと録画です</p>
+    </div>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/o_9mxHkHFQk"
+        title="Obsidianセミナー アーカイブ動画"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="timestamps">
+      <h4>TIMESTAMPS</h4>
+      <ul>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=0" target="_blank" rel="noopener">0:00</a>オープニング｜今日お話しすること</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=56" target="_blank" rel="noopener">0:56</a>なぜ「情報整理」の話をするのか</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=216" target="_blank" rel="noopener">3:36</a>みんな、どこに保管していますか？</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=352" target="_blank" rel="noopener">5:52</a>個別相談を貯めたら成約率が上がった話</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=443" target="_blank" rel="noopener">7:23</a>Obsidianで「材料化」する</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=483" target="_blank" rel="noopener">8:03</a>フォルダは作らない。分類はAIに任せる</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=647" target="_blank" rel="noopener">10:47</a>Obsidianとは（無料・ローカル・軽い）</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=718" target="_blank" rel="noopener">11:58</a>「ChatGPTが覚えてくれるのでは？」</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=749" target="_blank" rel="noopener">12:29</a>NotionやNotebookLMとの違い</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=889" target="_blank" rel="noopener">14:49</a>LINE特典「オタク」のご案内</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=944" target="_blank" rel="noopener">15:44</a>【デモ】貯めるとどうなるか</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=1036" target="_blank" rel="noopener">17:16</a>アンケート（スプレッドシート）を読ませる</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=1115" target="_blank" rel="noopener">18:35</a>LINEのやり取りから決定事項だけ出す</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=1186" target="_blank" rel="noopener">19:46</a>Gmail連携・毎朝のデイリーログ</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=1320" target="_blank" rel="noopener">22:00</a>打つより話す。5〜6倍速い</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=1424" target="_blank" rel="noopener">23:44</a>8月9日セミナーのご案内</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=1573" target="_blank" rel="noopener">26:13</a>ここから質疑応答タイム</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=1748" target="_blank" rel="noopener">29:08</a>階層は自分で作らなくていい？</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=1800" target="_blank" rel="noopener">30:00</a>Googleドライブと何が違うの？</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=2064" target="_blank" rel="noopener">34:24</a>iCloudにVaultを作ってスマホと繋ぐ</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=2412" target="_blank" rel="noopener">40:12</a>音声や動画も入れられる？</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=2691" target="_blank" rel="noopener">44:51</a>話が脱線して戻れなくなる問題</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=2776" target="_blank" rel="noopener">46:16</a>解決策：今日のログを出してもらう</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=2906" target="_blank" rel="noopener">48:26</a>「第二の脳」という考え方</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=3190" target="_blank" rel="noopener">53:10</a>15分でリールを作って60万回再生</li>
+        <li><a href="https://youtu.be/o_9mxHkHFQk?t=3379" target="_blank" rel="noopener">56:19</a>どのAIで相談したか分からなくなる</li>
+      </ul>
+    </div>
+
+    <p class="archive-note">
+      プレイヤーが表示されないときは、こちらから直接どうぞ。<br />
+      <a href="https://youtu.be/o_9mxHkHFQk" target="_blank" rel="noopener">https://youtu.be/o_9mxHkHFQk</a><br />
+      限定公開のURLです。ワークショップのみなさんの中だけでお使いください。
+    </p>
+  </div>
+</section>
+
+<!-- TOC -->
+<nav class="container toc">
+  <h2>CONTENTS</h2>
+  <ol>
+    <li><a href="#why">なぜ「情報整理」なのか</a></li>
+    <li><a href="#obsidian">なぜObsidianなのか</a></li>
+    <li><a href="#folder">フォルダは作らない</a></li>
+    <li><a href="#demo">デモでお見せしたこと</a></li>
+    <li><a href="#howto">今日からの使い方</a></li>
+    <li><a href="#faq">質疑応答ハイライト</a></li>
+    <li><a href="#cases">シェアされた事例</a></li>
+    <li><a href="#summary">3分でおさらい</a></li>
+    <li><a href="#next">8月9日のご案内</a></li>
+  </ol>
+</nav>
+
+<!-- INTRO -->
+<section class="container intro">
+  <div class="intro-card">
+    <h3>はじめに</h3>
+    <p>この回のきっかけは、みなさんのLP制作を見ていて気づいたことでした。「この人たち、<strong>情報を整理したらもっとすごいものが作れる</strong>」。そう思ったので、別のコミュニティで話してきた内容を、そのまま持ち帰ってきました。</p>
+    <p>このページは、その1時間を<strong>あとから探しやすくするためのまとめ</strong>です。要点は書いてありますが、雰囲気や細かいニュアンスは動画のほうがずっと伝わります。まずは上のアーカイブを流しながら、気になるところだけタイムスタンプで飛んでみてください。</p>
+    <p>いちばん下に「3分でおさらい」も置いています。時間がない方はそこだけでも。</p>
+  </div>
+</section>
+
+<!-- 01 なぜ情報整理 -->
+<section id="why" class="container">
+  <div class="topic">
+    <h3><span class="num">01</span>なぜ「情報整理」なのか</h3>
+    <p>散らかっているのは、みんなのデフォルトです。私も、あやちゃんも、ゆみちゃんも同じでした。だらしないからではなく、<strong>置き場所が分かれていること</strong>が原因です。</p>
+    <ul>
+      <li><strong>Googleドライブ</strong>：いちばん多い。ただし「どこに入れたっけ」になりがち</li>
+      <li><strong>LINEのトーク</strong>：やり取りが流れて、遡れなくなる</li>
+      <li><strong>スクリーンショット</strong>：気づくと何百枚も溜まっている</li>
+      <li><strong>デスクトップ</strong>：画像だらけ。忙しくなるほど散らかる</li>
+      <li><strong>Canvaで作ったもの</strong>：作りっぱなしで、そのまま</li>
+    </ul>
+
+    <div class="quote">
+      あるようで、ない。忘れているから。<br />
+      それって、宝の持ち腐れなんですよね。
+    </div>
+
+    <p>ある起業家さんのサポートに入ったとき、いちばん時間を使っていたのが「探す時間」でした。今すぐ出てくればその場で進むのに、「ちょっと待ってくださいね」と検索している。<strong>1回使って終わりではありません。</strong>お客様の声を貯めておけば次の講座の改善に使えるし、グルコンや個別相談の記録も同じです。</p>
+
+    <div class="praise">
+      先日のランチ会で、すでに結果を出している方から聞いた話です。その方は<strong>個別相談の記録をすべてObsidianに</strong>入れていました。お客様のインサイトが見えて、需要が分かって、頭の中がごちゃごちゃしなくなって——結果として<strong>成約率が上がった</strong>そうです。「整理すると気持ちがいい」で終わらず、数字が動いている実例です。
+    </div>
+
+    <div class="done-list">
+      <h4>貯める価値があるもの</h4>
+      <ul>
+        <li>お客様の声・感想</li>
+        <li>個別相談／グルコンの記録</li>
+        <li>講座メモ・議事録</li>
+        <li>日々の気づき、ふと思いついたアイデア</li>
+        <li>LINEやメールでのやり取り</li>
+        <li>毎日発信している方は、その原稿や話した内容も全部</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 02 なぜObsidian -->
+<section id="obsidian" class="container">
+  <div class="topic">
+    <h3><span class="num">02</span>なぜObsidianなのか</h3>
+    <p>ひとことで言うと、<strong>無料のメモ帳</strong>です。ただ、置き場所と保存形式に理由があります。</p>
+    <ul>
+      <li><strong>無料で使える</strong>：まず入れてみるハードルが低い</li>
+      <li><strong>ローカルに残る</strong>：データは自分のパソコンの中。Obsidianというサービスがなくなっても、書いたものは消えません</li>
+      <li><strong>とにかく軽い</strong>：MDファイル（ただのテキスト）なので、いくら増えても容量を気にしなくて大丈夫。みなさんのリール素材や写真1枚のほうがよっぽど重いです</li>
+    </ul>
+
+    <p>当日いただいた質問に、「ChatGPTに入れておけば覚えてくれるのでは？」がありました。たしかに賢いのですが、<strong>覚えているようで忘れます</strong>。そして、データがどこに残っているか見えません。セッションの中でしか辿れない。Obsidianに入れておけば、自分の手元に形として残ります。</p>
+
+    <div class="flow-box">
+      <h4>複数のAIを使っている人ほど効きます</h4>
+      <ol>
+        <li>Claude Code、Codex、Gemini……と使い分けていると「<strong>この話どのAIにしたっけ？</strong>」が必ず起きる</li>
+        <li>Obsidianを真ん中に置くと、CodexからもClaude Codeからも<strong>同じ場所を読みに行ける</strong></li>
+        <li>結果、どちらで話したかを覚えていなくてよくなる</li>
+      </ol>
+    </div>
+
+    <p><strong>NotionやNotebookLMとの違い</strong>は、メモを貯める機能そのものではなく<strong>AIとの相性</strong>です。Claude CodeなどのAIエージェントと組ませたとき、自分だけのナレッジが積み上がる形にしやすい。ここはゆみちゃんが調べ尽くしてくれました。</p>
+
+    <p>ちなみにエンジニア寄りの方は、GitHubにすべて入れて管理していたりします。ただ難易度が高いので、私たちはObsidianで進めます。</p>
+  </div>
+</section>
+
+<!-- 03 フォルダは作らない -->
+<section id="folder" class="container">
+  <div class="topic">
+    <h3><span class="num">03</span>フォルダは、作らない</h3>
+    <p>今日いちばん覚えて帰ってほしいのがここです。「データ管理」と聞くと、まずフォルダの構成を考えたくなります。私たちもそうでした。<strong>でも、そこはもう不要です。</strong></p>
+    <p>とりあえず入れる。分類はAIに任せる。それだけで大丈夫です。人間がきれいに分類するより、<strong>そのほうがAIは迷わない</strong>と言われています。入れたあとにAIがその箱を読み返してくれるので、先に整える必要がありません。</p>
+
+    <div class="prompt-box">
+      <code>Obsidianの中が散らかってきたので、使いやすいように整理してください。
+どう整理するか、実行する前にプランを見せてください。</code>
+    </div>
+
+    <p>溜まってごちゃごちゃしてきたら、頭のいいモード（推論レベルを上げた状態）でこう頼めば、「じゃあ、こうしましょうか」と提案が返ってきます。<strong>仕組みを最初に作っておけば、同じことを言い続けなくても守ってくれます。</strong></p>
+  </div>
+</section>
+
+<!-- 04 デモ -->
+<section id="demo" class="container">
+  <div class="topic">
+    <h3><span class="num">04</span>デモでお見せしたこと</h3>
+    <p>特別なことはしていません。「貯めておいて、聞くだけ」です。動画では <a href="https://youtu.be/o_9mxHkHFQk?t=944" target="_blank" rel="noopener" style="color:var(--primary-dark);">15:44あたり</a> から実際の画面を映しています。</p>
+
+    <div class="flow-box">
+      <h4>実際にやっていること</h4>
+      <ol>
+        <li><strong>アンケート（スプレッドシート）を読ませる</strong>：熱海合宿でいただいたフィードバックをそのまま読み込ませて「まとめて」と頼むだけ。満足度や声が整理され、<strong>どこから取ってきたかのソースつき</strong>で出てきます。余計な列は勝手に省いてくれます。</li>
+        <li><strong>LINEのやり取りを読ませる</strong>：トークはテキストで書き出せます。宿とのやり取りを丸ごと入れて「決まったことを出して」と頼むと、雑談を除いた<strong>決定事項だけ</strong>が出てきます。公式LINEの質問を入れておけば「どんな質問が多かったっけ」も呼び出せます。</li>
+        <li><strong>Gmailも同じように</strong>：連携しておけば「どこを検討したんだっけ」を数秒で引っ張ってこられます。</li>
+        <li><strong>毎朝、自分にデイリーログが届く</strong>：予定をすべてObsidianに読み込ませて、毎日ログが届く設定にしています。自分で書いているのは1〜2行だけ。あとは作業を見て自動で記録してくれます。</li>
+      </ol>
+    </div>
+
+    <div class="praise">
+      つまり、<strong>貯めることだけ決めておけば、整理も、まとめも、思い出すことも全部お願いできる</strong>ということです。私たちがごちゃごちゃ考える部分を減らしていく、という発想です。
+    </div>
+  </div>
+</section>
+
+<!-- 05 今日からの使い方 -->
+<section id="howto" class="container">
+  <div class="topic">
+    <h3><span class="num">05</span>今日からの使い方</h3>
+    <p>「入れたはいいけど、何をすればいいの？」という質問を毎回いただきます。その答えです。</p>
+
+    <ul>
+      <li><strong>打つより、話す</strong>：手で打つより口で話したほうが5〜6倍は速いです。思いついたことをペラペラ喋って、そのまま入れる。この体験から始めるのがいちばん早い。</li>
+      <li><strong>「勝手に保存」ではなく「聞いて」にする</strong>：全部を自動保存させると、いらないものまで溜まります。</li>
+      <li><strong>最初のうちは監視する</strong>：「全部メモしてるはず」と思っていたら、実はサボっていたことがありました。定着するまでは時々のぞいてあげてください。</li>
+    </ul>
+
+    <div class="prompt-box">
+      <code>これは残しておいたほうがいいと思ったら、
+Obsidianに保存するか、私に聞いてください。</code>
+    </div>
+
+    <p>こう伝えておくと、話しているうちにアイデアが出たタイミングで「これ、保存しておく？」と向こうから聞いてくれるようになります。</p>
+
+    <div class="done-list">
+      <h4>スマホからも入れられるようにする</h4>
+      <ul>
+        <li>MacとiPhoneの両方にObsidianアプリを入れる</li>
+        <li>保管庫（Vault）の置き場所を<strong>iCloud</strong>にする</li>
+        <li>スマホは「ボソッと思いついたことを放り込む」だけでもOK</li>
+      </ul>
+    </div>
+    <p>アイデアは、パソコンの前にいないときに降ってきます。合宿のときに「散歩中に思いついたことを入れたい」という方がいて、いいなと思って真似させてもらった方法です。</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <div class="container">
+    <h2>質疑応答ハイライト</h2>
+    <div class="sub-line">— questions from the session —</div>
+
+    <div class="faq-card">
+      <div class="faq-q">
+        <span class="label">Q.</span>
+        <p>Googleドライブに資料があるなら、わざわざObsidianに入れなくても<strong>「ドライブを見に行って」でよくない</strong>ですか？</p>
+      </div>
+      <div class="faq-a">
+        <span class="label">A.</span>
+        <div class="body">
+          <p class="lead-line">理由は3つあります。ただ、いまうまく回っているなら無理に変えなくて大丈夫です。</p>
+          <ul>
+            <li><strong>セキュリティ</strong>：ドライブを丸ごと開放したくない場合、触ってほしくないデータまで見せずに済みます</li>
+            <li><strong>横断できる</strong>：Obsidianに集めておくと、Aという箱とBという箱をつなげて答えを作れます</li>
+            <li><strong>速い・軽い</strong>：両方を探させると時間もトークンもかかります。まとまったMDファイルを読むほうが断然速い</li>
+          </ul>
+          <p class="closing-line">「これから貯めるもの」からObsidianに寄せていくのがおすすめです。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q">
+        <span class="label">Q.</span>
+        <p>階層は自分で作らなくていいんですか？「これはどこに入れよう」と考えなくていい？</p>
+      </div>
+      <div class="faq-a">
+        <span class="label">A.</span>
+        <div class="body">
+          <p class="lead-line">作りません。入れるところまでが人間の仕事です。</p>
+          <p>そこから先は任せてしまって大丈夫ですし、そのほうがAIも迷いません。きちんとしたタイプの方ほど最初に設計したくなるのですが、ここは手放してOKです。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q">
+        <span class="label">Q.</span>
+        <p>入れられるのは文字だけですか？ <strong>音声や動画</strong>は入れられない？</p>
+      </div>
+      <div class="faq-a">
+        <span class="label">A.</span>
+        <div class="body">
+          <p class="lead-line">基本はテキストです。動画や音声は「文字起こしを入れる」が正解です。</p>
+          <p>そのまま入れるとURLだけが保存されてしまいます。「中身を保存したい」と伝えると、文字起こしを通す仕組みを提案してくれます。個別相談の録画も、書き起こして入れている方が多いです。</p>
+          <ul>
+            <li>音声をまとめてテキスト化するサービスと連携する方法もあります</li>
+            <li><strong>動画を入れると自動で文字起こしされてObsidianに飛ぶツール</strong>を自作している人もいました</li>
+          </ul>
+          <p class="closing-line">ライブや収録をしている方は、ここを自動化するとかなり楽になります。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q">
+        <span class="label">Q.</span>
+        <p>AIと話していると話がどんどん枝分かれして、<strong>「そもそも何だったっけ」と戻れなくなります</strong>。みんなどう管理していますか？</p>
+      </div>
+      <div class="faq-a">
+        <span class="label">A.</span>
+        <div class="body">
+          <p class="lead-line">最後に「今日考えたことのログを出して」と頼むのがおすすめです。</p>
+          <p>「これをやって、これをやって、これはまだ残っています」と並べてくれるので、「あ、これやろうと思ってたんだ」と戻ってこられます。</p>
+          <p>さらに進めるなら、毎朝そのログが届くように設定して<strong>秘書のように使う</strong>形にできます。「昨日やったこと」「終わっていないこと」を毎日通知してもらう、という使い方です。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q">
+        <span class="label">Q.</span>
+        <p>AIを何個も使っていて、<strong>どこで相談したか分からなくなります</strong>。これがいちばん困っています。</p>
+      </div>
+      <div class="faq-a">
+        <span class="label">A.</span>
+        <div class="body">
+          <p class="lead-line">まさにそこがObsidianの出番です。</p>
+          <p>全部つないで集約しておけば、<strong>どこで聞いてもいい状態</strong>になります。過去のやり取りも「今までの分を全部読み込んで」と頼めば持ってこられます。アイデアが転がっているのもそういう場所なので、拾っておく価値があります。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <div class="faq-q">
+        <span class="label">Q.</span>
+        <p>アイデアをあちこちに書き散らしてしまうのですが、貯めると何かいいことはありますか？</p>
+      </div>
+      <div class="faq-a">
+        <span class="label">A.</span>
+        <div class="body">
+          <p class="lead-line">ノート同士のつながりが見える、マップのような機能があります。</p>
+          <p><strong>近いアイデア同士が可視化される</strong>ので、「ここでひらめいたことと、あのとき考えたことをつなげたらいいんだ」という発見が出てきます。全部を1か所に貯めることの、いちばん面白い効果かもしれません。だから<strong>「第二の脳」</strong>と呼ばれています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 事例 -->
+<section id="cases" class="tips">
+  <div class="container">
+    <h2>当日シェアされた事例</h2>
+    <div class="sub-line">— stories from the field —</div>
+
+    <div class="common-grid">
+      <div class="common-card">
+        <h4><span>01</span>15分でリール、60万回再生</h4>
+        <p>フォトグラファーの方の事例。まず<strong>リサーチをAIにさせる仕組み</strong>を作り、自分の素材とObsidianのナレッジを組み合わせて、15分でリールを1本仕上げて投稿。テロップも効果音も入った状態まで自動化されていました。</p>
+      </div>
+      <div class="common-card">
+        <h4><span>02</span>揃えるべきは3つだけ</h4>
+        <p>「素材が揃っていること」「ナレッジが溜まっていること」「リサーチができていること」。この3つが揃えば、<strong>人を雇わなくても回せるようになる</strong>とおっしゃっていました。</p>
+      </div>
+      <div class="common-card">
+        <h4><span>03</span>スマホからでも使えます</h4>
+        <p>Claude Codeは連携しておけばスマホからも見られます。移動中にToDoを確認したり指示を出したり。<strong>スマホだけでLINE配信まで完結</strong>させている方もいます。</p>
+      </div>
+      <div class="common-card">
+        <h4><span>04</span>コンテンツが生まれる仕組み</h4>
+        <p>ナレッジを全部入れておいて「こういうものを作りたい」と伝えると、必要な材料を集めて成果物を出す。よくある質問集をごっそり持ってくることも。<strong>入れれば入れるほど強くなります。</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 要約 -->
+<section id="summary" class="summary-sec">
+  <h2>3分でおさらい</h2>
+  <div class="sub-line">— summary —</div>
+  <ul class="sum-list">
+    <li>散らかっているのはデフォルト。原因は<strong>置き場所が分かれていること</strong>。いちばんもったいないのは「探す時間」。</li>
+    <li>お客様の声・個別相談・講座メモは<strong>使い回せる資産</strong>。貯めた人は成約率まで変わっている。</li>
+    <li>Obsidianは<strong>無料・ローカル保存・超軽量</strong>。サービスが終わってもデータは自分の手元に残る。</li>
+    <li>ChatGPTの記憶は<strong>覚えているようで忘れる</strong>。どこにあるかも見えない。だから外に置く。</li>
+    <li>複数のAIを使っている人ほど効く。Obsidianを真ん中に置けば<strong>どこで聞いてもいい状態</strong>になる。</li>
+    <li><strong>フォルダは作らない。</strong>とりあえず入れて、分類はAIに任せる。そのほうがAIも迷わない。</li>
+    <li>貯めたものは、まとめ・決定事項の抽出・毎朝のデイリーログとして返ってくる。</li>
+    <li>入れ方は<strong>打つより話す</strong>（5〜6倍速い）。保存は「勝手に」ではなく<strong>「聞いて」ルール</strong>に。</li>
+    <li>動画や音声は<strong>文字起こしを入れる</strong>。iCloudにVaultを作ればスマホからも放り込める。</li>
+    <li>これが<strong>「第二の脳」</strong>。散らばったアイデアがつながり始めます。</li>
+  </ul>
+
+  <div class="gift-box">
+    <h3>いちばん最初の一歩は、これです</h3>
+    <p>公式LINEで下のキーワードを送ってください。本当は先日の交流会に来てくださった方だけにお配りしていたものですが、せっかくなのでみなさんも受け取ってください。</p>
+    <ul>
+      <li><strong>Obsidian はじめの一歩ガイド</strong>｜何ができるのか、基礎の部分</li>
+      <li><strong>つぶやきレシピガイド</strong>｜何を入れればいいのか、具体例つき</li>
+      <li><strong>Codex 設定ガイド</strong>｜最初の設定まわり</li>
+    </ul>
+    <p style="text-align:center; margin-top:6px;"><span class="keyword-chip">オタク</span></p>
+    <p style="text-align:center; font-size:13px;">受け取ったあとは、ブロックしてもらって構いません。</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="next" class="cta-sec">
+  <div class="cta-card">
+    <div class="cta-ribbon">ワークショップのみなさんへ</div>
+    <div class="cta-eyebrow">Next Session</div>
+    <h2>8月9日、<em>「実際にどう設定するか」</em><br />を全部やります</h2>
+
+    <div class="cta-meta">
+      <span>8月9日（日）</span>
+      <span>20:00 - 22:00</span>
+      <span>オンライン</span>
+      <span>アーカイブつき</span>
+    </div>
+
+    <div class="price-row">
+      <span class="price-old">9,800円</span>
+      <span class="price-arrow">→</span>
+      <span class="price-mid">サンキュー価格 3,900円</span>
+      <span class="price-arrow">→</span>
+      <span class="price-free">みなさんは無料</span>
+    </div>
+
+    <div class="cta-body">
+      <p>今日お話ししたのは「こういうことができますよ」という部分でした。では<strong>実際にどう設定して、どう回していくのか</strong>。そこを2時間かけて詳しくやるのが8月9日です。</p>
+      <p style="margin-top:14px;">交流会に来てくださった方には、サンキュー価格の3,900円でご案内しています。<strong>ワークショップのみなさんからは、いつも気づきをいただいています。</strong>だからこれは、お礼の気持ちです。どうぞ無料で来てください。</p>
+      <p style="margin-top:14px;">当日来られない方も大丈夫です。<strong>アーカイブを勝手にお送りします</strong>ので、あとからゆっくり見てください。それでも、できれば生で来ていただけたら嬉しいです。その場で質問もできるので。</p>
+    </div>
+
+    <div class="case-row" style="margin-top:30px;">
+      <div class="case self">
+        <span class="case-label">みなさんの参加方法</span>
+        <p><strong>お手続きは必要ありません。</strong>「行きます」とだけ教えてください。</p>
+        <p>ワークショップのみなさんは無料なので、決済ページを通していただく必要はありません。参加される方には、<strong>こちらから当日の参加リンクを直接お送りします。</strong></p>
+      </div>
+    </div>
+
+    <div class="share-box">
+      <h4>もしできれば、お願いがあります</h4>
+      <p>今日のシェアを「よかったな」と思ってもらえたなら、<strong>「この人も知っていたほうがいいんじゃないかな」という方</strong>がいたら教えてあげたり、<strong>ストーリーズでシェア</strong>してもらえると助かります。</p>
+      <p>いまご案内用のLPを作っている最中なので、できあがったらみなさんに共有します。それをぽんと送っていただくだけで大丈夫です。</p>
+
+      <div class="case-row">
+        <div class="case">
+          <span class="case-label">お誘いの仕方</span>
+          <p>「こういうセミナーがあって、<strong>私も行くんだけど、一緒にどう？</strong>」くらいのフランクな感じで十分です。かしこまったご紹介はいりません。</p>
+        </div>
+        <div class="case">
+          <span class="case-label">お友達のお申し込み</span>
+          <p>ご紹介いただいた方は、<strong>LPからそのままお申し込み・お手続き・決済をお願いします。</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-eyebrow">Thank you</div>
+  <p>
+    お昼のお時間に集まってくださって、本当にありがとうございました。<br />
+    「何に困っているか」を聞かせてもらえるのが、私たちにとっていちばんありがたいことです。<br />
+    分からないところは、いつでもインスタのDMに送ってくださいね。
+  </p>
+  <p style="margin-top: 20px;">
+    <strong>とにかく今日から、Obsidianを使ってみてください。</strong>
+  </p>
+  <div class="signoff">
+    OBSIDIAN SESSION &nbsp;・&nbsp; ちゃかな / あや &nbsp;・&nbsp; AIワークショップ限定
+  </div>
+</footer>
+
+</body>
+</html>
