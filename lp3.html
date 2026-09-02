@@ -535,7 +535,7 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
   }
-  /* プレースホルダ（画像が来たら <img> に差し替え） */
+  /* プレースホルダ（画像が来たら <img loading="lazy" decoding="async"> に差し替え） */
   .sup5-ph {
     position: absolute; inset: 0;
     display: flex; flex-direction: column;
@@ -1288,7 +1288,7 @@
     display: flex;
     justify-content: center;
     z-index: 10;
-    animation: badgeDrop 0.7s cubic-bezier(0.16, 1, 0.3, 1) 5.0s both;
+    animation: badgeDrop 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
   }
   /* ── バッジ本体 ── */
   .fv-top-badge {
@@ -5103,9 +5103,7 @@
 <!-- パララックス固定背景＋動画背景：切り替えの"見せ場" -->
 <section class="parallax-host videobg-host" style="padding: 120px 20px; text-align:center;">
   <!-- 動画（video/hero-bg.mp4 を用意すれば自動的に再生。なければ下のフォールバックが表示される） -->
-  <video class="videobg-video" autoplay muted loop playsinline preload="metadata" poster="">
-    <source src="video/hero-bg.mp4" type="video/mp4">
-  </video>
+  <!-- video/hero-bg.mp4 は本番に置いていない（30MB・Gitに未登録）ため削除。下の videobg-fallback が背景になる -->
   <div class="videobg-fallback"></div>
   <div class="grid-floor"></div>
   <div class="videobg-inner" style="max-width: 960px; margin: 0 auto; position:relative; z-index:2;">
@@ -5592,7 +5590,7 @@
       <article class="sup5-card reveal-left delay-1">
         <div class="sup5-no">01</div>
         <div class="sup5-media">
-          <img src="images/PREP%20SESSION.webp" alt="プレップセッション：事前オンラインMTGの様子">
+          <img src="images/PREP%20SESSION.webp" alt="プレップセッション：事前オンラインMTGの様子" loading="lazy" decoding="async">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">2時間・Zoomオンライン・開催前</div>
@@ -5607,7 +5605,7 @@
       <article class="sup5-card reveal-right delay-2">
         <div class="sup5-no">02</div>
         <div class="sup5-media">
-          <img src="images/today/IMG_9624.webp" alt="当日のリアル会場：講師3人が横についてサポート">
+          <img src="images/today/IMG_9624.webp" alt="当日のリアル会場：講師3人が横についてサポート" loading="lazy" decoding="async">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">1日集中・リアル会場</div>
@@ -5622,7 +5620,7 @@
       <article class="sup5-card reveal-left delay-3">
         <div class="sup5-no">03</div>
         <div class="sup5-media">
-          <img src="images/1DAY%20BUILD.webp" alt="リフトレッスン：仕上げの添削会">
+          <img src="images/1DAY%20BUILD.webp" alt="リフトレッスン：仕上げの添削会" loading="lazy" decoding="async">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">後日開催・Zoomオンライン</div>
@@ -5637,7 +5635,7 @@
       <article class="sup5-card reveal-right delay-4">
         <div class="sup5-no">04</div>
         <div class="sup5-media">
-          <img src="images/SLACK%20SUPPORT.webp" alt="スラックサポート：いつでも質問できるSlackサポート">
+          <img src="images/SLACK%20SUPPORT.webp" alt="スラックサポート：いつでも質問できるSlackサポート" loading="lazy" decoding="async">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">期間中いつでも・聞き放題</div>
@@ -5652,7 +5650,7 @@
       <article class="sup5-card reveal-left delay-5">
         <div class="sup5-no">05</div>
         <div class="sup5-media">
-          <img src="images/LIFETIME%20ACCESS.webp" alt="会員サイト：受講後も見返せる専用サイト">
+          <img src="images/LIFETIME%20ACCESS.webp" alt="会員サイト：受講後も見返せる専用サイト" loading="lazy" decoding="async">
         </div>
         <div class="sup5-body">
           <div class="sup5-when">受講後いつでも・専用会員サイト</div>
@@ -5977,7 +5975,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <img src="images/sayan-before.webp" alt="さーやんのBEFORE" class="baof-phone-before-img">
+                <img src="images/sayan-before.webp" alt="さーやんのBEFORE" class="baof-phone-before-img" loading="lazy" decoding="async">
               </div>
             </div>
           </div>
@@ -6081,7 +6079,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <img src="images/hana-before.webp" alt="はなさんのBEFORE" class="baof-phone-before-img">
+                <img src="images/hana-before.webp" alt="はなさんのBEFORE" class="baof-phone-before-img" loading="lazy" decoding="async">
               </div>
             </div>
           </div>
@@ -6241,7 +6239,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <img src="images/ebi-before.webp" alt="えびちゃんのBEFORE" class="baof-phone-before-img">
+                <img src="images/ebi-before.webp" alt="えびちゃんのBEFORE" class="baof-phone-before-img" loading="lazy" decoding="async">
               </div>
             </div>
           </div>
@@ -6297,7 +6295,7 @@
             <span class="baof-phone-tag before">BEFORE</span>
             <div class="baof-phone before">
               <div class="baof-phone-screen">
-                <img src="images/zoe-before.webp" alt="ぞえさんのBEFORE" class="baof-phone-before-img">
+                <img src="images/zoe-before.webp" alt="ぞえさんのBEFORE" class="baof-phone-before-img" loading="lazy" decoding="async">
               </div>
             </div>
           </div>
@@ -6310,7 +6308,7 @@
             <div class="baof-phone after">
               <div class="baof-phone-screen">
                 <div class="baof-phone-scroll-img">
-                  <img src="images/zoe-after.webp" alt="ぞえさんのAFTER（LPスクリーンショット）">
+                  <img src="images/zoe-after.webp" alt="ぞえさんのAFTER（LPスクリーンショット）" loading="lazy" decoding="async">
                 </div>
                 <span class="baof-phone-badge">SCROLL</span>
               </div>
@@ -6701,7 +6699,7 @@
     </div>
     <div class="instructor-cards">
       <div class="instructor-card reveal delay-1" style="border-color: rgba(0,212,255,0.4); box-shadow: 0 0 30px rgba(0,212,255,0.15);">
-<div class="instructor-photo"><img src="images/aya.webp" alt="あや"></div>
+<div class="instructor-photo"><img src="images/aya.webp" alt="あや" loading="lazy" decoding="async"></div>
         <h3>あや</h3>
         <p>飲食接客業から、妊娠・出産を機にデザイナーへ転身したチーム内最年少！「エクセル・ブラインドタッチ不可」の非IT系ながら、異常なまでの集中力とAIを武器に、今回のLPや5つのツールを自力で爆速制作。歴の浅さを「誰よりも早い初動」でカバーする、不可能を可能にする実践派クリエイターです。</p>
         <div style="margin-top:14px; background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(192,132,252,0.1)); border: 1px solid rgba(0,212,255,0.5); border-radius:10px; padding:14px 16px; text-align:center; line-height:1.8;">
@@ -6710,13 +6708,13 @@
         </div>
       </div>
       <div class="instructor-card reveal delay-2" style="border-color: rgba(0,212,255,0.4); box-shadow: 0 0 30px rgba(0,212,255,0.15);">
-        <div class="instructor-photo"><img src="images/yumi.webp" alt="ゆみ"></div>
+        <div class="instructor-photo"><img src="images/yumi.webp" alt="ゆみ" loading="lazy" decoding="async"></div>
         <h3>ゆみ</h3>
         <div class="role">IN-HOUSE DESIGNER</div>
         <p>会社員インハウスデザイナー歴22年。真面目なベテラン…と思いきや、その実態は寝食を忘れて最新AIを触り倒す「AI鬼オタク」。AIが楽しすぎて夜更かしを極め、翌日に支障をきたすほどのめり込んでいます。22年培ったデザイン力に最先端のAIを掛け合わせ、チームのバナーや動画も私が作りました！圧倒的な熱量と技術で、皆さんのアウトプットをサポートします。</p>
       </div>
       <div class="instructor-card reveal delay-3" style="border-color: rgba(0,212,255,0.4); box-shadow: 0 0 30px rgba(0,212,255,0.15);">
-        <div class="instructor-photo"><img src="images/chikano.webp" alt="ちかの"></div>
+        <div class="instructor-photo"><img src="images/chikano.webp" alt="ちかの" loading="lazy" decoding="async"></div>
         <h3>ちゃかな</h3>
         <div class="role">CREATIVE DIRECTOR</div>
         <p>デザイナー歴20年（会社15年＋独立5年）。ウェブ・動画・プロモーションで起業家さんの魅力を世に放つ「推し活」系デザイナー。好奇心旺盛なB型Apple信者が現在どっぷりハマっているのがAI沼。息をするように最新トレンドを浴びる「趣味＝インプット」な自称・AIオタクです！</p>
@@ -7331,8 +7329,8 @@
   (function(){
     const gate = document.getElementById('gate-opening');
     if (!gate) { document.body.style.overflow = ''; return; }
-    const GATE_SHOW_MS = 2200;   // ゲート演出の表示時間
-    const GATE_FADE_MS = 1000;   // フェードアウト時間（CSS transitionと一致）
+    const GATE_SHOW_MS = 700;   // ゲート演出の表示時間
+    const GATE_FADE_MS = 450;   // フェードアウト時間（CSS transitionと一致）
     const startedAt = Date.now();
     let started = false;
 
@@ -7360,7 +7358,7 @@
     if (document.readyState === 'complete') startFade();
     else window.addEventListener('load', startFade);
     // 安全装置：最大6秒で強制解除
-    setTimeout(startFade, 6000);
+    setTimeout(startFade, 2200);
   })();
 
   window.addEventListener('load', () => {
@@ -7459,7 +7457,7 @@
     if (!html.classList.contains('intro-playing')) return;
     try { sessionStorage.setItem('ws_intro_played', '1'); } catch(e) {}
 
-    var INTRO_DURATION = 3800;
+    var INTRO_DURATION = 1500;
     var t = setTimeout(finish, INTRO_DURATION);
 
     function finish(){
