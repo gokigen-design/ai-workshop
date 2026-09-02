@@ -4772,6 +4772,34 @@
     .claude-speech { font-size: 0.95rem !important; padding: 12px 14px !important; }
   }
 </style>
+<style>
+/* 2026-09-02 スマホでFVのボタンが画面外だったので、画面下に固定バーを追加（あや指示）
+   FV画像は日付まで全部見せたいので切り抜かず、そのまま。 */
+@media (max-width: 768px) {
+  body { padding-bottom: 78px; }
+  .fv-fixed-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(0,5,25,0.94);
+    border-top: 1px solid rgba(0,212,255,0.55);
+    backdrop-filter: blur(6px);
+  }
+  .fv-fixed-cta a {
+    display: block; width: 100%; max-width: 460px; margin: 0 auto;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #ff2d95 0%, #a855f7 50%, #00d4ff 100%);
+    color: #fff; font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.02rem; font-weight: 900; letter-spacing: 0.08em;
+    text-align: center; text-decoration: none;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  }
+  .fv-fixed-cta small {
+    display: block; margin-top: 5px;
+    color: rgba(255,255,255,0.75); font-size: 11.5px; text-align: center;
+  }
+}
+@media (min-width: 769px) { .fv-fixed-cta { display: none; } }
+</style>
 </head>
 <body>
 
@@ -7444,5 +7472,9 @@
     if (skipBtn) skipBtn.addEventListener('click', finish);
   })();
 </script>
+<div class="fv-fixed-cta">
+  <a href="https://forms.gle/rTJyi6ogyVfroqtB8" target="_blank" rel="noopener">お申し込みはこちら</a>
+  <small>先着順・少人数限定／お席に限りがございます</small>
+</div>
 </body>
 </html>
