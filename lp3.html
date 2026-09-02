@@ -4773,42 +4773,31 @@
   }
 </style>
 <style>
-/* 2026-09-02 スマホ対応（あや指示）
-   ・FV画像は上も下も切らない。1画面に丸ごと収める
-   ・申し込みボタンは画面下に固定。小さい文字は入れない */
+/* 2026-09-02 スマホ：FVのボタンを1画面に入れる（あや指示）
+   ・画像は横幅いっぱい。上（大阪出陣）は絶対に切らない
+   ・下の反射床ぶんだけ詰めて、そのぶんボタンを入れる
+   ・追従バーは作らない */
 @media (max-width: 768px) {
-  body { padding-bottom: 84px; }
-
   .fv-hero-wrap {
     aspect-ratio: auto;
-    height: calc(100vh - 92px);
-    height: calc(100svh - 92px);
-    min-height: 380px;
+    height: calc(100vh - 84px);
+    height: calc(100svh - 84px);
+    min-height: 400px;
   }
   .fv-hero-photo {
-    object-fit: contain;          /* 切らずに全体を見せる */
-    object-position: center center;
+    object-fit: cover;
+    object-position: center top;   /* 上を基準にするので、上は切れない */
   }
-  .fv-hero-wrap::after { height: 2%; }
-
-  .fv-fixed-cta {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
-    padding: 9px 14px calc(9px + env(safe-area-inset-bottom));
-    background: rgba(0,5,25,0.94);
-    border-top: 1px solid rgba(0,212,255,0.55);
-    backdrop-filter: blur(6px);
-  }
-  .fv-fixed-cta a {
-    display: block; width: 100%; max-width: 460px; margin: 0 auto;
-    padding: 15px 20px;
-    background: linear-gradient(135deg, #ff2d95 0%, #a855f7 50%, #00d4ff 100%);
-    color: #fff; font-family: 'Noto Sans JP', sans-serif;
-    font-size: 1.02rem; font-weight: 900; letter-spacing: 0.08em;
-    text-align: center; text-decoration: none;
-    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  .fv-hero-wrap::after { height: 3%; }
+  .fv-bottom-block { padding: 8px 16px 20px; }
+  .fv-title-band { padding: 4px 0 2px; }
+  .fv-micro { display: none; }   /* 小さい文字はFVから外す（あや指示）。そのぶんボタンが上がる */
+  .fv-bottom-block .cta-btn {
+    min-width: 0; width: 100%;
+    padding: 14px 20px;
+    font-size: 1.0rem;
   }
 }
-@media (min-width: 769px) { .fv-fixed-cta { display: none; } }
 </style>
 </head>
 <body>
@@ -7482,8 +7471,5 @@
     if (skipBtn) skipBtn.addEventListener('click', finish);
   })();
 </script>
-<div class="fv-fixed-cta">
-  <a href="https://forms.gle/rTJyi6ogyVfroqtB8" target="_blank" rel="noopener">お申し込みはこちら</a>
-</div>
 </body>
 </html>
