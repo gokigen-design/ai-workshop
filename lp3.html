@@ -4773,13 +4773,27 @@
   }
 </style>
 <style>
-/* 2026-09-02 スマホでFVのボタンが画面外だったので、画面下に固定バーを追加（あや指示）
-   FV画像は日付まで全部見せたいので切り抜かず、そのまま。 */
+/* 2026-09-02 スマホ対応（あや指示）
+   ・FV画像は上も下も切らない。1画面に丸ごと収める
+   ・申し込みボタンは画面下に固定。小さい文字は入れない */
 @media (max-width: 768px) {
-  body { padding-bottom: 78px; }
+  body { padding-bottom: 84px; }
+
+  .fv-hero-wrap {
+    aspect-ratio: auto;
+    height: calc(100vh - 92px);
+    height: calc(100svh - 92px);
+    min-height: 380px;
+  }
+  .fv-hero-photo {
+    object-fit: contain;          /* 切らずに全体を見せる */
+    object-position: center center;
+  }
+  .fv-hero-wrap::after { height: 2%; }
+
   .fv-fixed-cta {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
-    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    padding: 9px 14px calc(9px + env(safe-area-inset-bottom));
     background: rgba(0,5,25,0.94);
     border-top: 1px solid rgba(0,212,255,0.55);
     backdrop-filter: blur(6px);
@@ -4792,10 +4806,6 @@
     font-size: 1.02rem; font-weight: 900; letter-spacing: 0.08em;
     text-align: center; text-decoration: none;
     clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-  }
-  .fv-fixed-cta small {
-    display: block; margin-top: 5px;
-    color: rgba(255,255,255,0.75); font-size: 11.5px; text-align: center;
   }
 }
 @media (min-width: 769px) { .fv-fixed-cta { display: none; } }
@@ -7474,7 +7484,6 @@
 </script>
 <div class="fv-fixed-cta">
   <a href="https://forms.gle/rTJyi6ogyVfroqtB8" target="_blank" rel="noopener">お申し込みはこちら</a>
-  <small>先着順・少人数限定／お席に限りがございます</small>
 </div>
 </body>
 </html>
